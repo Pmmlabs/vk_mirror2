@@ -8117,6 +8117,14 @@ img.im_photo_thumb {
     display: block
 }
 
+.im-mess.im-mess_search.im-mess_fav-search .page_media_link_title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .im-mess.im-mess_srv {
     padding-right: 0;
     cursor: default

@@ -3224,8 +3224,7 @@
     },
     j0Lq: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
-        var _lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("98sY"),
-            _lib_user_env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8+we");
+        var _lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("98sY");
         window.TopNotifierCur || (window.TopNotifierCur = {
             link: "top_notify_btn",
             count: "top_notify_count",
@@ -3267,7 +3266,6 @@
                 }
             },
             trackViews: function() {
-                if (!Object(_lib_user_env__WEBPACK_IMPORTED_MODULE_1__.a)("notifications_views")) return !1;
                 var e = ge("top_notify_cont");
                 "IntersectionObserver" in window && (TopNotifierCur.viewsObserver && TopNotifierCur.viewsObserver.disconnect(), TopNotifierCur.viewsObserver = new IntersectionObserver(function(e) {
                     e.forEach(function(e) {

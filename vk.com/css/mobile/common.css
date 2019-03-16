@@ -1380,7 +1380,7 @@ input.wide_button {
 .OwnerRow__verified,
 .top_author,
 .verified {
-    background-image: url('/images/mobile/skins/icon/statuses.png?13');
+    background-image: url('/images/mobile/skins/icon/statuses.png?14');
     -moz-background-size: 20px;
     -o-background-size: 20px;
     background-size: 20px;
@@ -1429,7 +1429,7 @@ input.wide_button {
 .OwnerRow__verified,
 .vk_2x .top_author,
 .vk_2x .verified {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .wi_author .top_author,
@@ -6726,7 +6726,7 @@ div.pm_item .pm_counter {
 }
 
 .pp_last_activity .mlvi {
-    background-image: url('/images/mobile/skins/icon/statuses.png?13');
+    background-image: url('/images/mobile/skins/icon/statuses.png?14');
     -moz-background-size: 100%!important;
     -o-background-size: 100%!important;
     background-size: 100%!important;
@@ -6745,7 +6745,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .pp_last_activity .mlvi {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .pp_info,
@@ -6882,7 +6882,7 @@ div.pm_item .pm_counter {
 }
 
 .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses.png?13');
+    background-image: url('/images/mobile/skins/icon/statuses.png?14');
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
@@ -6894,7 +6894,7 @@ div.pm_item .pm_counter {
 }
 
 .vk_2x .create_post .post_timer:after {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .create_post .medias_thumb .ph_img,
@@ -19316,11 +19316,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-size: 20px 883px;
     background-repeat: no-repeat;
     background-position: -5px -813px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x .author-page__slim-header .Unfold__triggerIcon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .author-page__slim-header .Unfold__popup {
@@ -30941,11 +30941,11 @@ a.feedBlocks__article:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -179px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x .vk__page_newCreatePost #medias_map .medias_map .medias_map_close:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?13')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .vk__page_newCreatePost #post_options_box {
@@ -32029,6 +32029,12 @@ body.apps_settingsPageBody .basis__content {
 
 .vk_2x .header__back {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5')
+}
+
+@media (min-width: 882px) {
+    .n .header__back[href='/menu'] {
+        display: none
+    }
 }
 
 @media (min-width: 882px) {
@@ -39799,7 +39805,7 @@ body.apps_settingsPageBody .basis__content {
 .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x #id_search_items .lvi.mlvi:before,
@@ -39875,7 +39881,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .pm_item .i_gift.i_icon:before,
 .vk_2x .pm_item .i_money.i_icon:before,
 .vk_2x .vk__page_redesign .basis .ii_btn.Icon_bluer:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .Icon_online:before {
@@ -50256,11 +50262,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -200px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x .uMailWrite__attachments .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .uMailWrite__attachments .medias_link {
@@ -50293,11 +50299,11 @@ a .BookmarkListItem__subtitle:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -242px;
-    background-image: url('/images/mobile/skins/icon/statuses.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x .uMailWrite__attachments .medias_audio .medias_link_icon:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .uMailWrite__attachments .attachment_type_poll .medias_link_icon:before {
@@ -50336,12 +50342,12 @@ a .BookmarkListItem__subtitle:hover {
     -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('/images/mobile/skins/icon/statuses.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses.png?14')
 }
 
 .vk_2x .uMailWrite__attachments .medias_row .tu_cancel_wrap:before,
 .vk_2x .uMailWrite__attachments .medias_thumb .tu_cancel_wrap:before {
-    background-image: url('/images/mobile/skins/icon/statuses_2x.png?12')
+    background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
 .uMailWrite__attachments .medias_row .tu_cancel_wrap:before {

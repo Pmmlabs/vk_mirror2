@@ -1,1371 +1,3004 @@
 var Video = {
-    regBR: new RegExp("<br>", "g"),
-    CHANNEL_PREFIX: "channel",
-    CATEGORY_PREFIX: "cat_",
+    regBR: new RegExp('<br>', 'g'),
+
+    CHANNEL_PREFIX: 'channel',
+    CATEGORY_PREFIX: 'cat_',
     SIGNIFICANT_POSITIONS: 50,
-    VIDEO_SEARCH_TYPE: "search_videos",
-    VIDEO_GLOBAL_SEARCH_TYPE: "search_global_videos",
-    ALBUM_SEARCH_TYPE: "search_albums",
-    ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE: "search_promo_albums",
-    SEARCH_FILTERS: ["hd", "notsafe", "date", "order", "len"],
-    AVAILABLE_TABS: ["all", "uploaded", "albums"],
+
+    VIDEO_SEARCH_TYPE: 'search_videos',
+    VIDEO_GLOBAL_SEARCH_TYPE: 'search_global_videos',
+    ALBUM_SEARCH_TYPE: 'search_albums',
+    ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE: 'search_promo_albums',
+    SEARCH_FILTERS: ['hd', 'notsafe', 'date', 'order', 'len'],
+
+    AVAILABLE_TABS: ['all', 'uploaded', 'albums'],
+
     VIDEOS_PER_PAGE: 60,
     ALBUMS_PER_PAGE: 12,
     VIDEOS_PER_ROW: 3,
+
     PLAYLIST_OBJECT_ID_INDEX: 6,
-    SEARCH_KEEP_FILTERS_DELAY: 3e3,
-    SEARCH_STATS_POSITION_FIELDS: ["oid", "vid", "clicked", "viewStarted", "viewedParts", "viewedSeconds"],
+
+    SEARCH_KEEP_FILTERS_DELAY: 3000,
+
+    SEARCH_STATS_POSITION_FIELDS: ['oid', 'vid', 'clicked', 'viewStarted', 'viewedParts', 'viewedSeconds'],
+
     getLoc: function() {
-        return cur.curLoc ? cur.curLoc : (isEmpty(nav.objLoc) || !nav.objLoc[0] || 0 != nav.objLoc[0].indexOf("video")) && cur.section && inArray(cur.section, ["catalog", "all", "uploaded", "albums"]) ? {
-            0: "catalog" == cur.section ? "video" : "videos" + cur.oid
-        } : nav.objLoc
+        if (cur.curLoc) {
+            return cur.curLoc;
+        } else if ((isEmpty(nav.objLoc) || !nav.objLoc[0] || nav.objLoc[0].indexOf('video') != 0) && cur.section && inArray(cur.section, ['catalog', 'all', 'uploaded', 'albums'])) {
+            return {
+                0: cur.section == 'catalog' ? 'video' : ('videos' + cur.oid)
+            };
+        } else {
+            return nav.objLoc;
+        }
     },
+
     init: function() {
-        cur.searchInputEl = geByClass1("video_search_input"), cur.videoRecentlyRemoved = {}, cur.videoShowWindow = {}, cur.found = {}, cur.silentLoaded = {}, cur.currentSortings = {}, cur._preloadedPages = {}, cur.videoSearchFilters = {}, cur.videoSearchStats = null, cur.videoSearchPos = null, cur.module = "video", cur.albumsPreload = cur.albumsPreload || {}, cur.albumsShowingAll = {}, cur.curLoc = !!cur.query && nav.fromStr(cur.query), cur._back = {
+        cur.searchInputEl = geByClass1('video_search_input');
+
+        cur.videoRecentlyRemoved = {};
+        cur.videoShowWindow = {};
+        cur.found = {};
+        cur.silentLoaded = {};
+        cur.currentSortings = {};
+        cur._preloadedPages = {};
+        cur.videoSearchFilters = {};
+        cur.videoSearchStats = null;
+        cur.videoSearchPos = null;
+        cur.module = 'video';
+        cur.albumsPreload = cur.albumsPreload || {};
+        cur.albumsShowingAll = {};
+        cur.curLoc = cur.query ? nav.fromStr(cur.query) : false;
+        cur._back = {
             hide: [function() {
-                removeEvent(window, "scroll", cur._ev_onScroll)
+                removeEvent(window, 'scroll', cur._ev_onScroll);
             }],
             show: [function() {
-                Video._initScroll()
-            }]
-        }, isObject(cur.curLoc) && (cur.curLoc.section = cur.section), cur.getOwnerId = function() {
-            return cur.oid
-        }, Video.initNavigation(), Video.initSearch();
-        var e = Video._getCurrentSectionType();
-        Video.isInAlbum() || Video.loadSilent(), Video.loadSilent(Video.getLoc().section), "catalog" == e ? (Videocat.init(), vk.id && Video._preloadPage("all")) : (Video.initOwnerVideoPage(), vk.id == cur.getOwnerId() && -1 != Video.AVAILABLE_TABS.indexOf(e) && Video._preloadPage("catalog")), cur.curLoc = !1, cur.section = !1, cur.currentModule = function() {
-            return Video.isInSearch() ? "video_search" : Video.isInCatalog() ? "videocat" : Video.isInVideosList() ? cur.oid < 0 ? "community_videos" : cur.oid == vk.id ? "profile_own_videos" : "profile_videos" : cur.module
-        }, Video._initScroll(), addEvent(window, "beforeunload", function(e) {
-            var o = Video.getLoc();
-            return 0 <= o[0].indexOf("video") && o.q && Video.logSearchStats(), !0
-        }), Video._updateThumbsInView()
+                Video._initScroll();
+            }],
+        };
+
+        if (isObject(cur.curLoc)) {
+            cur.curLoc.section = cur.section;
+        }
+
+        cur.getOwnerId = function() {
+            return cur.oid;
+        };
+
+        Video.initNavigation();
+
+        Video.initSearch();
+
+        var curSectionType = Video._getCurrentSectionType();
+
+        if (!Video.isInAlbum()) {
+            Video.loadSilent();
+        }
+        Video.loadSilent(Video.getLoc().section);
+
+        if (curSectionType == 'catalog') {
+            Videocat.init();
+            if (vk.id) {
+                Video._preloadPage('all');
+            }
+        } else {
+            Video.initOwnerVideoPage();
+            if (vk.id == cur.getOwnerId() && (Video.AVAILABLE_TABS.indexOf(curSectionType) != -1)) {
+                Video._preloadPage('catalog');
+            }
+        }
+
+        cur.curLoc = false;
+        cur.section = false;
+
+        cur.currentModule = function() {
+            if (Video.isInSearch()) {
+                return 'video_search';
+            } else if (Video.isInCatalog()) {
+                return 'videocat';
+            } else if (Video.isInVideosList()) {
+                return cur.oid < 0 ? 'community_videos' : (cur.oid == vk.id ? 'profile_own_videos' : 'profile_videos');
+            }
+            return cur.module;
+        }
+
+        Video._initScroll();
+
+        addEvent(window, 'beforeunload', function(event) {
+            var loc = Video.getLoc();
+            if (loc[0].indexOf('video') >= 0 && loc.q) {
+                Video.logSearchStats();
+            }
+            return true;
+        });
+
+        Video._updateThumbsInView();
     },
+
     _initScroll: function() {
-        cur._ev_onScroll && removeEvent(window, "scroll", cur._ev_onScroll), addEvent(window, "scroll", cur._ev_onScroll = Video.onScroll), cur.destroy.push(function() {
-            removeEvent(window, "scroll", cur._ev_onScroll)
-        })
+        cur._ev_onScroll && removeEvent(window, 'scroll', cur._ev_onScroll);
+        addEvent(window, 'scroll', cur._ev_onScroll = Video.onScroll);
+        cur.destroy.push(function() {
+            removeEvent(window, 'scroll', cur._ev_onScroll);
+        });
     },
-    _preloadPage: function(d) {
-        ajax.post("al_video.php", {
-            act: "s",
-            section: d,
+
+    _preloadPage: function(section) {
+        ajax.post('al_video.php', {
+            act: 's',
+            section: section,
             preload: 1
         }, {
-            onDone: function(e, o, i) {
-                if (Video.isInCatalog() || Video.isInVideosList()) {
-                    var t = cur.getOwnerId(),
-                        r = cur.videosCount[t];
-                    extend(cur, o), extend(cur.videosCount[t], r), cur._preloadedPages = cur._preloadedPages || {}, cur._preloadedPages[d] = ce("div", {
-                        innerHTML: e,
-                        id: "video_content_" + d
-                    }), cur._preloadedPages.other = i, "all" == d && Video.loadSilent(d), cur._switchOnPagePreloaded && Video._switch.apply(Video, cur._switchOnPagePreloaded), cur._switchOnPagePreloaded = !1
+            onDone: function(html, addCur, otherBlocks) {
+                if (!Video.isInCatalog() && !Video.isInVideosList()) {
+                    return
                 }
+
+                var oid = cur.getOwnerId(),
+                    curVideosCount = cur.videosCount[oid];
+
+                extend(cur, addCur);
+                extend(cur.videosCount[oid], curVideosCount);
+
+                cur._preloadedPages = cur._preloadedPages || {};
+                cur._preloadedPages[section] = ce('div', {
+                    innerHTML: html,
+                    id: 'video_content_' + section
+                });
+                cur._preloadedPages['other'] = otherBlocks; // for catalog
+
+                if (section == 'all') {
+                    Video.loadSilent(section);
+                }
+
+                if (cur._switchOnPagePreloaded) {
+                    Video._switch.apply(Video, cur._switchOnPagePreloaded);
+                }
+                cur._switchOnPagePreloaded = false;
             }
-        })
+        });
     },
+
     initOwnerVideoPage: function() {
-        if (!cur._videoInited) {
-            cur._videoInited = !0, cur.videoCanSort && (Video.isInAlbum() || (cur.albumsSorter = new GridSorter("video_albums_list", "video_playlist_item_a", {
-                onReorder: Video._onAlbumReorder
-            })), Video._createSorters());
-            var e = ge("video_sort_dd");
-            e && (cur.videoSortDD = new InlineDropdown(e, {
+        if (cur._videoInited) return;
+        cur._videoInited = true;
+
+        if (cur.videoCanSort) {
+            if (!Video.isInAlbum()) {
+                cur.albumsSorter = new GridSorter('video_albums_list', 'video_playlist_item_a', {
+                    onReorder: Video._onAlbumReorder
+                });
+            }
+
+            Video._createSorters();
+        }
+
+        var sortDD = ge('video_sort_dd');
+        if (sortDD) {
+            cur.videoSortDD = new InlineDropdown(sortDD, {
                 items: cur.videoSortItems,
-                withArrow: !0,
-                selected: "default",
+                withArrow: true,
+                selected: 'default',
                 onSelect: Video._sortVideos
-            })), Video._toggleSorter("albums" != Video.getLoc().section)
-        }
-    },
-    _toggleSorter: function(e) {
-        var o = geByClass1("video_tab_actions_wrap"),
-            i = [geByClass1("_video_sort_dd_wrap", o), geByClass1("divider", o)];
-        toggle(i[0], e), toggle(i[1], e)
-    },
-    _switch: function(e, o) {
-        var i = ge("video_content_" + o);
-        if (!i && void 0 === cur._preloadedPages[o]) return !(cur._switchOnPagePreloaded = [e, o]);
-        if (Video.doSearch(""), Video.inputVal(cur.searchInputEl, ""), hide("video_content_" + e), toggle("videocat_other_blocks", "catalog" != e), i || ge("video_layout_contents").appendChild(cur._preloadedPages[o]), show(i), "catalog" == e) Video.initOwnerVideoPage(), setDocumentTitle(getLang("video_myvideos"));
-        else {
-            var t = ge("videocat_other_blocks");
-            trim(t.innerHTML) || (t.innerHTML = cur._preloadedPages.other), Videocat.init(), setDocumentTitle(getLang("video_catalogue_tab_full"))
-        }
-        return toggle("video_add_album_btn", "catalog" != o), uiTabs.switchTab(domFC(ge("videocat_tab_" + o))), uiTabs.hideProgress("video_main_tabs"), Video._updateThumbsInView(), !1
-    },
-    updateEmptyPlaceholder: function(e) {
-        if (e) {
-            var o = !1,
-                i = "";
-            "albums" == e ? cur.playlistsCount || (o = !0, i = "video_no_albums_placeholder_text") : cur.videosCount[cur.getOwnerId()][e] || (o = !0, i = "video_no_videos_here_yet"), Video._toggleEmptyPlaceholder(o, i)
-        }
-    },
-    initNavigation: function() {
-        cur.nav.push(function(e, o, i, t) {
-            var r, d = void 0 !== e[0],
-                a = d && i[0] == "videos" + vk.id,
-                n = d && "video" == i[0],
-                c = "comments" == i.section,
-                s = i.q && !o.q && 0 <= i[0].indexOf("video"),
-                l = o.q && !i.q && 0 <= o[0].indexOf("video"),
-                u = "upload" == o.section && !i.section,
-                _ = e.q;
-            if ((l || _) && Video.logSearchStats(), s || _ ? Video._initSearchStats(i) : l && Video._clearSearchStats(), c) return delete cur._back, !0;
-            if (d) {
-                var v = cur.getOwnerId();
-                if (v == vk.id && !inArray(e[0], ["video", "videos" + v])) return !0;
-                if (v != vk.id && !inArray(e[0], ["videos" + v])) return !0
-            }
-            if (a ? (nav.setLoc(i), r = Video._switch("catalog", "all")) : n && (nav.setLoc(i), r = Video._switch("all", "catalog")), r || u) return !0;
-            if (uiTabs.hideProgress("video_main_tabs"), "all" == e.section && delete i.section, s && (cur.videoLocBeforeSearch = o), l && (cur.videoSearchFilters = {}, Video.doSearch(), Video.inputVal(cur.searchInputEl, ""), cur.videoLocBeforeSearch && t.fromSearch)) {
-                var h = clone(cur.videoLocBeforeSearch);
-                return delete cur.videoLocBeforeSearch, nav.go(h), !1
-            }
-            trim(val(cur.searchInputEl)), trim(i.q || "");
-            var g = i.section || "all";
-            if (i.q) Video.isInAlbum() || delete i.section, Video._prepareSearchFilters(i), t.fromSearch || Video.inputVal(cur.searchInputEl, i.q), t.fromSearch || t.globalQuery || (t.globalQuery = i.q), Video.doSearch(i.q, t.globalQuery);
-            else {
-                if (-1 == Video.AVAILABLE_TABS.indexOf(g)) return !0;
-                if (Video.isInAlbum(o.section)) return nav.setLoc(i), !0;
-                each(Video.AVAILABLE_TABS, function(e, o) {
-                    hide("video_subtab_pane_" + o)
-                }), show("video_subtab_pane_" + g), Video.updateEmptyPlaceholder(g);
-                var S = domFC(ge("video_tab_" + g));
-                S && uiTabs.switchTab(S, {
-                    noAnim: t.hist
-                });
-                geByClass1("video_tab_actions_wrap"), geByClass1("_video_sort_dd_wrap"), geByClass1("divider");
-                "albums" != g ? (Video.loadSilent(g), cur.videoSortDD && cur.videoSortDD.select(cur.currentSortings[g] || "default", !0), Video._toggleSorter(!0)) : Video._toggleSorter(!1), Video._createSorters(g)
-            }
-            return !!i.show_original || (nav.setLoc(i), !1)
-        }), cur.destroy.push(function() {
-            cur.nav.pop()
-        })
-    },
-    initSearch: function() {
-        (cur.searchInputEl = ge("video_search_input"), cur.searchInputEl) && (data(cur.searchInputEl, "opts").onChange = function(e, o) {
-            e = trim(e), o = isString(o) ? trim(o) : "";
-            var i = {};
-            e || (each(Video.SEARCH_FILTERS, function(e, o) {
-                i[o] = !1
-            }), cur.videoPrevSearchFilters = clone(cur.videoSearchFilters), setTimeout(function() {
-                delete cur.videoPrevSearchFilters
-            }, Video.SEARCH_KEEP_FILTERS_DELAY)), e && cur.videoPrevSearchFilters && (i = cur.videoPrevSearchFilters, delete cur.videoPrevSearchFilters), nav.change(extend({
-                q: e || !1
-            }, i), !1, {
-                fromSearch: !0,
-                globalQuery: o
-            })
-        }, data(cur.searchInputEl, "opts").onBlur = function() {
-            trim(val(cur.searchInputEl)) && (cur.vSearchInputBlurred = !0)
-        }, browser.msie && intval(browser.version) <= 10 || cur.searchInputEl.focus())
-    },
-    _sortVideos: function(i) {
-        window.tooltips && tooltips.hideAll();
-        var e = Video._getCurrentSectionType(),
-            o = cur.getOwnerId();
-        "album" == e && (e = Video.getLoc().section);
-        var t = cur.silentLoaded[o][e],
-            r = 0;
-        t = t.filter(function(e) {
-            var o = e[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + e[VideoConstants.VIDEO_ITEM_INDEX_ID];
-            return !cur.videoRecentlyRemoved[o] || (r++, !1)
-        });
-        var d = cur.videosCount[cur.getOwnerId()];
-        if (r && d)
-            if (Video.isInAlbum()) {
-                var a = "album_" + Video._getSectionAlbumId();
-                d[a] && (d[a] -= r, val(geByClass1("_video_subtitle_counter", ge("video_layout_contents")), langNumeric(d[a], cur.lang.video_playlist_size)))
-            } else d.all -= r, Video.updateTabCounter(d.all);
-        if (!(cur.silentLoaded[o][e] = t)) return show("video_sort_progress"), hide("video_sort_dd"), void Video._addPendingAction(e, function() {
-            Video._sortVideos(i)
-        });
-        hide("video_sort_progress"), show("video_sort_dd"), clearTimeout(cur._sortTO), cur._sortTO = setTimeout(function() {
-            t.length && (t.sort(function(e, o) {
-                switch (i) {
-                    case "default":
-                        return e[cur.indexIndex] - o[cur.indexIndex];
-                    case "new":
-                        return o[VideoConstants.VIDEO_ITEM_INDEX_DATE] - e[VideoConstants.VIDEO_ITEM_INDEX_DATE];
-                    case "old":
-                        return e[VideoConstants.VIDEO_ITEM_INDEX_DATE] - o[VideoConstants.VIDEO_ITEM_INDEX_DATE];
-                    case "popularity":
-                        return o[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] - e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS]
-                }
-            }), ge("video_" + e + "_list").innerHTML = "", cur.videoShowWindow && cur.videoShowWindow[o] && (cur.videoShowWindow[o][e] = !1), Video.showMore(e), Video._reinitSorters("default" != i), cur.currentSortings = cur.currentSortings || {}, cur.currentSortings[e] = i)
-        }, 10)
-    },
-    _reindex: function(e) {
-        for (var o = 0, i = e.length; o < i; o++) e[o].length >= cur.indexIndex ? e[o][cur.indexIndex] = o : e[o].push(o)
-    },
-    _onAlbumReorder: function(e, o, i) {
-        var t = e.getAttribute("data-id"),
-            r = i ? i.getAttribute("data-id") : null,
-            d = o ? o.getAttribute("data-id") : null;
-        ajax.post("al_video.php", {
-            act: "reorder_albums",
-            oid: cur.getOwnerId(),
-            aid: t,
-            before: d,
-            after: r,
-            hash: cur.videoAlbumsSortHash
-        })
-    },
-    _onReorder: function(e, o, i) {
-        var t = cur.getOwnerId(),
-            r = domData(e, "id"),
-            d = i ? domData(i, "id") : null,
-            a = o ? domData(o, "id") : null,
-            n = Video._getCurrentSectionType();
-        "album" == n && (n = Video.getLoc().section.split("_")[1]);
-        var c = Video._getCurrentSectionType(),
-            s = cur.silentLoaded[t][c];
-        if (s) {
-            var l = -1,
-                u = -1;
-            if (each(s, function(e, o) {
-                    var i = o[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + o[VideoConstants.VIDEO_ITEM_INDEX_ID];
-                    if (i == r && (l = e), i == d && (u = e), 0 <= u && 0 <= l) return !1
-                }), 0 <= l) {
-                var _ = s.splice(l, 1)[0];
-                u < 0 ? s.unshift(_) : (l < u && u--, s.splice(u + 1, 0, _)), Video._reindex(s)
-            }
-        }
-        ajax.post("al_video.php", {
-            act: "reorder_videos",
-            album_id: n,
-            target_id: t,
-            vid: r,
-            before: a,
-            after: d,
-            hash: cur.videoSortHash
-        })
-    },
-    _prepareSearchFilters: function(i) {
-        return cur.videoSearchFilters = {}, each(Video.SEARCH_FILTERS, function(e, o) {
-            cur.videoSearchFilters[o] = i[o]
-        }), cur.videoSearchFilters
-    },
-    onFilterRemoved: function(e) {
-        Video._setFilterSelector(e), clearTimeout(cur._frto), cur._frto = setTimeout(Video._onFiltersChanged, 10)
-    },
-    _setFilterSelector: function(e, o) {
-        var i, t = cur["videoFilter_" + e];
-        return !!t && ("Selector" == t.__className ? (void 0 === o && (o = t.options.defaultItems[0][0]), t.selectItem(o, !1), (i = clone(t.selectedItems()[0])).push(i[0] == t.options.defaultItems[0][0])) : hasClass(t, "checkbox") && (toggleClass(t, "on", !!o), i = [!!o, data(t, "title"), !o]), i)
-    },
-    _onFiltersChanged: function() {
-        var e = hasClass("video_fltr_hd", "on"),
-            o = hasClass("video_fltr_notsafe", "on"),
-            i = cur.videoFilter_len.selectedItems()[0][0],
-            t = cur.videoFilter_date.selectedItems()[0][0],
-            r = cur.videoFilter_order.selectedItems()[0][0];
-        nav.change({
-            hd: !!e && 1,
-            len: 0 < i && i,
-            date: 0 < t && t,
-            order: 0 <= r && r,
-            notsafe: !!o && 1
-        }, !1, {
-            filtersChanged: !0
-        })
-    },
-    initFilters: function() {
-        if (geByClass1("video_search_input")) {
-            cur.videoFilter_len = new Dropdown(ge("video_fltr_len"), cur.lenFilters, {
-                big: 1,
-                zeroPlaceholder: !0,
-                onChange: Video._onFiltersChanged
-            }), cur.videoFilter_date = new Dropdown(ge("video_fltr_date"), cur.dateFilters, {
-                big: 1,
-                zeroPlaceholder: !0,
-                onChange: Video._onFiltersChanged
-            }), cur.videoFilter_order = new Dropdown(ge("video_fltr_order"), cur.orderFilters, {
-                big: 1,
-                zeroPlaceholder: !0,
-                onChange: Video._onFiltersChanged
-            }), cur.videoFilter_hd = ge("video_fltr_hd"), removeEvent(cur.videoFilter_hd, "click"), addEvent(cur.videoFilter_hd, "click", Video._onFiltersChanged), data(cur.videoFilter_hd, "title", cur.lang.video_hd_checkbox), cur.videoFilter_notsafe = ge("video_fltr_notsafe"), removeEvent(cur.videoFilter_notsafe, "click"), addEvent(cur.videoFilter_notsafe, "click", Video._onFiltersChanged), data(cur.videoFilter_notsafe, "title", cur.lang.video_filter_no_safe);
-            var e = Video.getLoc().q;
-            e && (Video._prepareSearchFilters(Video.getLoc()), cur.searchText = e, Video.inputVal(cur.searchInputEl, cur.searchText), Video.doSearch(e, e))
-        }
-    },
-    _isGeneralSection: function(e) {
-        for (var o = 0; o < Video.AVAILABLE_TABS.length; o++)
-            if (e == Video.AVAILABLE_TABS[o]) return !0;
-        return !1
-    },
-    loadSilent: function(e) {
-        e = e || "all";
-        var _ = cur.getOwnerId(),
-            v = Video.isInAlbum(e),
-            h = !!cur.isSnippetVideoSelection;
-        if ((v || this._isGeneralSection(e)) && "albums" != e) {
-            cur.silentLoaded = cur.silentLoaded || {}, cur.silentLoaded[_] = cur.silentLoaded[_] || {}, cur.silentLoadingProgress = cur.silentLoadingProgress || {}, cur.silentLoadingProgress[_] = cur.silentLoadingProgress[_] || {};
-            var o = cur.silentLoadingProgress[_][e];
-            !0 !== o && cur.pageVideosList && cur.pageVideosList[_] && (!1 !== o ? void 0 === o && (cur.silentLoadingProgress[_][e] = !0, function(t) {
-                function e(e, o) {
-                    cur.silentLoadingProgress && cur.silentLoadingProgress[_] && (cur.silentLoadingProgress[_][t] = !1, e && (e.length && (cur.indexIndex = e[0].length), Video._reindex(e), cur.silentLoaded[_][t] = e), o && (cur.albumsPreload[_] = !1, cur.silentLoaded[_].albums = o), Video.indexItems(function() {
-                        cur.silentLoadingProgress && (Video._callPendingAction(t), o && Video._callPendingAction("albums"), Video.showMore(t))
-                    }))
-                }
-                var o = cur.pageVideosList[_][t],
-                    i = !!o && cur.videosCount[_][t] <= o.list.length,
-                    r = !!v || cur.albumsPreload && cur.playlistsCount <= cur.albumsPreload[_].length;
-                if (r && (cur.silentLoaded[_].albums = cur.albumsPreload[_]), i && r) e(cur.pageVideosList[_][t].list, cur.albumsPreload[_]);
-                else if (cur.noVideos) e([], []);
-                else {
-                    if (!cur.videosCount || !cur.videosCount[_]) return e([], []);
-                    var d = cur.VIDEO_SILENT_VIDEOS_CHUNK_SIZE,
-                        a = cur.videosCount[_][t],
-                        n = Math.ceil(a / d),
-                        c = new callHub(function() {
-                            e([].concat.apply([], s), l)
-                        }, n),
-                        s = new Array(n),
-                        l = [];
-                    if (0 == n) return e([], []);
-                    for (var u = 0; u < n; u++) ! function(i) {
-                        ajax.post("/al_video.php", {
-                            act: "load_videos_silent",
-                            oid: _,
-                            section: t,
-                            rowlen: Video.VIDEOS_PER_ROW,
-                            offset: i * d,
-                            snippet_video: h ? 1 : 0,
-                            need_albums: intval(!r && "all" == t && intval(0 == i))
-                        }, {
-                            onDone: function(e, o) {
-                                e && e[t] && e[t].list ? s[i] = e[t].list : s[i] = [], 0 == i && (l = o), c.done()
-                            }
-                        })
-                    }(u)
-                }
-            }(e)) : Video._callPendingAction(e))
-        }
-    },
-    indexItems: function(e) {
-        if (cur.getOwnerId) {
-            var i = 0,
-                t = cur.getOwnerId();
-            cur.videoIndexes = cur.videoIndexes || {}, cur.videoIndexes[t] = cur.videoIndexes[t] || {}, each(cur.silentLoaded[t], function(e, o) {
-                cur.videoIndexes[t][e] || i++
             });
-            var r = new callHub(e, i);
-            each(cur.silentLoaded[t], function(o, e) {
-                cur.videoIndexes[t][o] || (cur.videoIndexes[t][o] = new vkIndexer(e, function(e) {
-                    return "albums" == o ? e[0] : e[VideoConstants.VIDEO_ITEM_INDEX_TITLE]
-                }, function() {
-                    r.done()
-                }))
-            })
         }
+
+        Video._toggleSorter(Video.getLoc().section != 'albums');
     },
-    _updateSearchPageTitle: function(e) {
-        curBox() || (e ? (cur.prevVideoPageTitle || (cur.prevVideoPageTitle = document.title), setDocumentTitle(getLang("video_title_search").replace("{q}", e))) : cur.prevVideoPageTitle && setDocumentTitle(cur.prevVideoPageTitle))
+
+    _toggleSorter: function(show) {
+        var parentEl = geByClass1('video_tab_actions_wrap');
+        var sortEls = [geByClass1('_video_sort_dd_wrap', parentEl), geByClass1('divider', parentEl)];
+        toggle(sortEls[0], show);
+        toggle(sortEls[1], show);
     },
-    inputVal: function(e, o) {
-        if (val(e) != o) {
-            val(e, o);
-            var i = gpeByClass("_wrap", e);
-            toggleClass(i, "ui_search_field_empty", !o)
+
+    _switch: function(from, to) {
+        var content = ge('video_content_' + to);
+
+        if (!content && typeof cur._preloadedPages[to] == 'undefined') { // wait for page load
+            cur._switchOnPagePreloaded = [from, to];
+            return false;
         }
-    },
-    doSearch: function(o, i) {
-        if (cur.searchInputEl) {
-            var t = cur.videoLocalSearchQuery = trim(o),
-                r = cur.videoGlobalSearchQuery = trim(i);
-            each(Video.SEARCH_FILTERS, function(e, o) {
-                var i = Video._setFilterSelector(o, cur.videoSearchFilters[o]);
-                i && uiSearch.toggleFilter(cur.searchInputEl, o, i[1], !i[2])
-            }), cur.noEmptyLocalResults = Video.isInCatalog(), Video._toggleSearchProgress(!!t);
-            var e = [Video.VIDEO_SEARCH_TYPE, Video.ALBUM_SEARCH_TYPE, Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE, Video.VIDEO_GLOBAL_SEARCH_TYPE];
-            Video.isInSearch() && cur.noEmptyLocalResults && e.pop(), each(e, function(e, o) {
-                hide("video_subtab_pane_" + o)
-            }), toggle("videocat_other_blocks", Video.isInCatalog() && !o), t || Video._toggleSearchContent(!1), curBox() ? ge("box_layer_wrap").scrollTop = 0 : scrollToTop(1e3);
-            var d = Video.isInAlbum() ? Video.getLoc().section : "all";
-            Video._clearPendingAction(d), Video._updateSearchPageTitle(t), t && (Video._addPendingAction(d, function() {
-                var e = Video._searchLocally(t);
-                i && e && cur.lastProcessedSearchText !== o && (cur.lastProcessedSearchText = o, saveSearchAttemptStats("video", 0, e)), e < 15 && Video._searchGlobally(r), Video._toggleSearchProgress(!1)
-            }), Video.loadSilent(d), Video._searchGlobally(r))
+
+        Video.doSearch('');
+        Video.inputVal(cur.searchInputEl, '');
+
+        hide('video_content_' + from);
+
+        toggle('videocat_other_blocks', from != 'catalog');
+
+        if (!content) {
+            ge('video_layout_contents').appendChild(cur._preloadedPages[to]);
         }
-    },
-    _toggleSearchProgress: function(e) {
-        cur.searchProgressRef = cur.searchProgressRef || 0, cur.searchProgressRef = Math.max(0, cur.searchProgressRef + (e ? 1 : -1)), e = 0 < cur.searchProgressRef;
-        var o = geByClass1("ui_search_fltr_control", geByClass1("video_search_input")),
-            i = geByClass1("ui_search_fltr_progress", o);
-        toggle(i, e), hasClass(o, "shown") || toggleClass(gpeByClass("_wrap", cur.searchInputEl), "ui_search_loading", e)
-    },
-    _buildFiltersSearchStr: function() {
-        var i = [];
-        return each(cur.videoSearchFilters || {}, function(e, o) {
-            o && i.push(e + ":" + o)
-        }), "$" + i.join("#")
-    },
-    _searchGlobally: function(h, e) {
-        if (h) {
-            var g = 0 < (e = intval(e)),
-                S = +new Date;
-            cur.globalSearchResults = cur.globalSearchResults || {};
-            var V = h + Video._buildFiltersSearchStr();
-            if (!g && cur.globalSearchResults[V]) return cur.lastProcessedSearchText !== h && (cur.lastProcessedSearchText = h, saveSearchAttemptStats("video", S, cur.globalSearchResults[V].count)), void Video._showGlobalSearchResults(h);
-            if (cur.globalSearchInProgress != h) {
-                cur.globalSearchInProgress = h, !g && Video._toggleSearchProgress(!0);
-                var o = !!cur.isSnippetVideoSelection,
-                    i = {
-                        act: "search_video",
-                        q: h,
-                        offset: e || 0,
-                        from: cur.oid
-                    };
-                o && (i.snippet_video = 1), ajax.post("/al_video.php", extend(i, cur.videoSearchFilters), {
-                    onDone: function(e, o, i, t, r, d) {
-                        u || cur.lastProcessedSearchText === h || (cur.lastProcessedSearchText = h, saveSearchAttemptStats("video", S, e)), cur.globalSearchInProgress = !1, !g && Video._toggleSearchProgress(!1), curBox() && (r = !1), cur.globalSearchResults[V] = cur.globalSearchResults[V] || {
-                            count: 0,
-                            countHash: o,
-                            list: [],
-                            realOffset: 0,
-                            promoPlaylists: r
-                        };
-                        var a = cur.globalSearchResults[V];
-                        a.done = a.done || !i.list || 0 == i.list.length;
-                        var n = a.list.length;
-                        if (!a.done) {
-                            for (var c = i.list[0], s = 0, l = a.list.length - 1; 0 <= l; l--) {
-                                var u = a.list.length - l;
-                                if (20 < u) break;
-                                var _ = a.list[l];
-                                if (c[0] == _[0] && c[1] == _[1]) {
-                                    s = u;
-                                    break
-                                }
-                            }
-                            a.count = parseInt(e), Array.prototype.push.apply(a.list, i.list.slice(s));
-                            var v = a.list.length % Video.VIDEOS_PER_ROW;
-                            e > Video.VIDEOS_PER_PAGE && v && a.list.length < a.count && (a.list.splice(-v, Video.VIDEOS_PER_ROW), d -= v), a.realOffset = d
-                        }(t || !a.done && a.list.length == n) && (a.done = !0), Video._showGlobalSearchResults(h, g)
-                    }
-                })
+
+        show(content);
+
+        if (from == 'catalog') {
+            Video.initOwnerVideoPage();
+
+            setDocumentTitle(getLang('video_myvideos'))
+        } else {
+            var otherCatalogBlocks = ge('videocat_other_blocks');
+            if (!trim(otherCatalogBlocks.innerHTML)) {
+                otherCatalogBlocks.innerHTML = cur._preloadedPages['other'];
             }
+
+            Videocat.init();
+
+            setDocumentTitle(getLang('video_catalogue_tab_full'));
         }
+
+        toggle('video_add_album_btn', to != 'catalog');
+
+        uiTabs.switchTab(domFC(ge('videocat_tab_' + to)));
+        uiTabs.hideProgress('video_main_tabs');
+
+        Video._updateThumbsInView();
+
+        return false;
     },
-    _toggleEmptySearchPlaceholder: function(e, o, i) {
-        var t = ge("video_empty_placeholder_search"),
-            r = cur.getOwnerId() < 0 ? "video_not_found_group" : "video_not_found_user";
-        if (cur.getOwnerId() == vk.id && (r = "video_not_found_yours"), Video.isInAlbum() && (r = "video_not_found_in_album"), Video.isInCatalog() && (r = "video_not_found_globally"), o && (t.innerHTML = getLang(r).replace("{searchText}", "<b>" + clean(o.replace(/\$/g, "$$$$")) + "</b>")), toggle(t, e), i) {
-            var d = !0,
-                a = ge("video_layout_search");
-            each(domChildren(a), function() {
-                if (isVisible(this)) return d = !1
-            }), d && toggle(t, !0)
-        }
-    },
-    _toggleEmptyPlaceholder: function(e, o) {
-        var i = ge("video_empty_placeholder_main");
-        e && i && (i.innerHTML = getLang(o)), toggle(i, e)
-    },
-    _showSearchResult: function(e) {
-        var o = cur.found[e],
-            i = cur.getOwnerId();
-        if (toggle("video_subtab_pane_" + e, !!o.count), o.count) {
-            var t, r = "";
-            switch (e) {
-                case Video.ALBUM_SEARCH_TYPE:
-                    t = "albums";
-                case Video.VIDEO_SEARCH_TYPE:
-                    t = t || "videos", r = Video.isInAlbum() ? cur.lang["video_found_" + t + "_in_album"] : cur.getOwnerId() < 0 ? cur.lang["video_found_" + t + "_community"] : cur.getOwnerId() == vk.id ? cur.lang["video_found_" + t + "_yours"] : cur.lang["video_found_" + t + "_of"];
-                    break;
-                case Video.VIDEO_GLOBAL_SEARCH_TYPE:
-                    r = cur.lang.video_found_videos_global;
-                    break;
-                case Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE:
-                    r = getLang("video_search_promo_playlists")
+
+    updateEmptyPlaceholder: function(section) {
+        if (!section) return; // something wrong
+
+        var doShow = false,
+            langKey = '';
+
+        if (section == 'albums') {
+            if (!cur.playlistsCount) {
+                doShow = true;
+                langKey = 'video_no_albums_placeholder_text';
             }
-            r = (r = langNumeric(o.count, r, !0)).replace("{user}", cur.lang.video_owner_name_gen);
-            var d = geByClass1("video_subtitle", ge("video_subtab_pane_" + e));
-            val(d, r);
-            var a = e == Video.VIDEO_GLOBAL_SEARCH_TYPE ? cur.videoGlobalSearchQuery : cur.videoLocalSearchQuery;
-            a += Video._buildFiltersSearchStr(), cur._videoRenderedSearchResults = cur._videoRenderedSearchResults || {};
-            var n = cur._videoRenderedSearchResults;
-            n[e] != a && (n[e] = a, ge("video_" + e + "_list").innerHTML = "", cur.videoShowWindow && cur.videoShowWindow[i] && delete cur.videoShowWindow[i][e], Video.showMore(e))
+
+        } else if (!cur.videosCount[cur.getOwnerId()][section]) {
+            doShow = true;
+            langKey = 'video_no_videos_here_yet';
         }
+
+        Video._toggleEmptyPlaceholder(doShow, langKey);
     },
-    _showGlobalSearchResults: function(e, o) {
-        var i = e + Video._buildFiltersSearchStr(),
-            t = cur.getOwnerId(),
-            r = Video.isInAlbum() ? Video.getLoc().section : "all",
-            d = !!cur.silentLoaded[t][r];
-        if ((e == cur.videoGlobalSearchQuery || e == cur.videoLocalSearchQuery) && d && cur.globalSearchResults[i] && 0 <= cur.globalSearchResults[i].count) {
-            var a = cur.globalSearchResults[i];
-            cur.found[Video.VIDEO_GLOBAL_SEARCH_TYPE] = {
-                list: a.list,
-                count: a.count,
-                done: a.done,
-                realOffset: a.realOffset
-            }, cur.found[Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE] = {
-                list: a.promoPlaylists,
-                count: a.promoPlaylists.length,
-                done: !0
-            }, cur.noEmptyLocalResults && (Video._toggleSearchContent(!0), 0 == a.count ? Video._toggleEmptySearchPlaceholder(!0, e) : Video._toggleEmptySearchPlaceholder(!1)), o || (Video._showSearchResult(Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE), Video._showSearchResult(Video.VIDEO_GLOBAL_SEARCH_TYPE)), Video._callPendingAction(Video.VIDEO_GLOBAL_SEARCH_TYPE)
-        }
-    },
-    _toggleSearchContent: function(e) {
-        toggle("video_layout_contents", !e), toggle("video_layout_search", !!e)
-    },
-    _searchLocally: function(e) {
-        if (cur.found = {}, !e || !cur.videoIndexes) return !1;
-        var o = cur.getOwnerId(),
-            i = [],
-            t = [];
-        !Video.isInAlbum() && cur.videoIndexes[o].albums && (t = cur.videoIndexes[o].albums.search(e), cur.found[Video.ALBUM_SEARCH_TYPE] = {
-            list: t,
-            count: t.length
-        }, Video._showSearchResult(Video.ALBUM_SEARCH_TYPE));
-        var r = Video.isInAlbum() ? Video.getLoc().section : "all";
-        if (cur.videoIndexes[o][r]) {
-            var d = cur.videoIndexes[o][r].search(e);
-            each(d, function(e, o) {
-                (!cur.videoSearchFilters.hd || o[VideoConstants.VIDEO_ITEM_INDEX_FLAGS] & VideoConstants.VIDEO_ITEM_FLAG_HD) && (vkNow() / 1e3 - o[VideoConstants.VIDEO_ITEM_INDEX_DATE] > cur.videoSearchFilters.date || i.push(o))
-            }), cur.found[Video.VIDEO_SEARCH_TYPE] = {
-                list: i,
-                count: i.length
-            }, Video._showSearchResult(Video.VIDEO_SEARCH_TYPE)
-        }
-        return t.length + i.length ? (Video._toggleSearchContent(!0), Video._toggleEmptySearchPlaceholder(!1)) : cur.noEmptyLocalResults ? Video._toggleEmptySearchPlaceholder(!1, void 0, !0) : (Video._toggleSearchContent(!0), Video._toggleEmptySearchPlaceholder(!0, e)), i ? i.length : 0
-    },
-    onItemEnter: function(e) {
-        setTitle(e, e, e.innerHTML.replace(/<\/?em>/g, ""))
-    },
-    showMoreAlbums: function(e) {
-        var o = !1,
-            i = cur.getOwnerId();
-        cur.albumsPreload && cur.albumsPreload[i] && !cur.silentLoaded[i].albums && (cur.silentLoaded[i].albums = cur.albumsPreload[i], o = !0), cur.albumsShowingAll[i] = !0, Video.showMore("albums", e), o && (cur.silentLoaded[i].albums = !1)
-    },
-    prepareVideoItemAttrs: function(e) {
-        var i = attrs = "",
-            o = {};
-        o[VideoConstants.VIDEO_ITEM_FLAG_EXTERNAL] = "video_ext", o[VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE] = "video_active_live", o[VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT] = "video_can_edit", o[VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD] = "video_can_add", o[VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE] = "video_can_delete", o[VideoConstants.VIDEO_ITEM_FLAG_PRIVATE] = "video_private", o[VideoConstants.VIDEO_ITEM_FLAG_NO_AUTOPLAY] = "video_nap", o[VideoConstants.VIDEO_ITEM_FLAG_ADDED] = "video_added", o[VideoConstants.VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD] = "video_skip_thumb_load";
-        var t = e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
-        each(o, function(e, o) {
-            t & e && (i += o + " ")
-        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (i += " video_no_duration");
-        var r = !(t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE),
-            d = e[VideoConstants.VIDEO_ITEM_INDEX_BLOCKED],
-            a = !(t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD);
-        return r && (d || a) && (i += " video_no_actions"), d && (i += " video_blocked"), cur.videoCanAddAlbums && (i += " video_can_edit_albums"), cur.isSnippetVideoSelection && (i += " no_video_select_btn"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [i, attrs]
-    },
-    buildVideoEl: function(e) {
-        var o = trim(cur.videoItemTpl);
-        (e = clone(e))[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = langNumeric(e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], cur.lang.video_N_views_list, !0), e[VideoConstants.VIDEO_ITEM_INDEX_DATE] = Video.getFormattedUpdatedTime(e[VideoConstants.VIDEO_ITEM_INDEX_DATE]), e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS] & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE && (e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] = '<span class="video_thumb_label_live_icon"></span>');
-        var i = Video.prepareVideoItemAttrs(e),
-            t = rs(o, e);
-        return t = t.replace("%classes%", i[0]).replace("%attrs%", i[1]), t = se(t)
-    },
-    buildPlaylistEl: function(e) {
-        var o = trim(cur.albumItemTpl);
-        return se(rs(o, e))
-    },
-    onMoreLoaded: function(e, o, i, t, r) {
-        Video._loading = !1;
-        var d, a = cur.getOwnerId(),
-            n = cur.videoShowWindow[a][o],
-            c = ge("video_" + o + "_list");
-        if (c) {
-            e = geByClass1("ui_load_more_btn", gpeByClass("ge_video_pane", c));
-            var s = 0 <= o.indexOf("albums"),
-                l = s ? 0 : 3,
-                u = Video._getCurrentSectionType();
-            u = "album" == u ? Video.getLoc().section : "all";
-            var _ = !1;
-            0 <= o.indexOf("search") && cur.searchText && (_ = new RegExp("(" + cur.searchText.replace(/\|/g, "").replace(cur.videoIndexes[a][u].delimiter, "|").replace(/^\||\|$/g, "").replace(/([\+\*\)\(])/g, "\\$1") + ")", "gi"));
-            for (var v = 0, h = i.length; v < h; v++) {
-                var g = extend({}, i[v]);
-                _ && (g[l] = g[l].replace(_, "<em>$1</em>")), d = s ? Video.buildPlaylistEl(g) : Video.buildVideoEl(g), o == Video.VIDEO_GLOBAL_SEARCH_TYPE && d.setAttribute("data-search-pos", v + n.offset), c.appendChild(d)
+
+    initNavigation: function() {
+        cur.nav.push(function videoNav(changed, oldLoc, newLoc, opts) {
+            var pageChanged = changed[0] !== undefined; // video <-> videocat
+            var goingToMyVideos = pageChanged && newLoc[0] == ('videos' + vk.id);
+            var goingToCatalog = pageChanged && newLoc[0] == 'video';
+            var goingToComments = newLoc.section == 'comments';
+            var startedSearch = newLoc.q && !oldLoc.q && newLoc[0].indexOf('video') >= 0;
+            var leavingSearch = oldLoc.q && !newLoc.q && oldLoc[0].indexOf('video') >= 0;
+            var leavingUpload = oldLoc.section == 'upload' && !newLoc.section;
+
+            var changedSearch = changed.q;
+
+            // stats
+            if (leavingSearch || changedSearch) {
+                Video.logSearchStats();
             }
-            n.offset = t, n.done = !i.length || r, toggle(e, !n.done), o == Video.VIDEO_GLOBAL_SEARCH_TYPE && (cur.videoSearchStats || Video._initSearchStats(Video.getLoc()), cur.videoSearchStats.lastActionTime = (new Date).getTime(), Video._updateLastSeenElement(c))
-        }
-    },
-    showMore: function(e, o) {
-        e = e || Video._getCurrentSectionType();
-        var i = curBox() ? curBox().bodyNode : void 0,
-            t = geByClass1("_video_" + e + "_list", i);
-        if (t) {
-            var r = Video.isInAlbum(e),
-                d = cur.getOwnerId();
-            if (!r && -1 == Video.AVAILABLE_TABS.indexOf(e) || cur.silentLoaded[d][e]) {
-                unlockButton(o), cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[d] = cur.videoShowWindow[d] || {}, cur.videoShowWindow[d][e] || (cur.videoShowWindow[d][e] = {
-                    done: !1,
-                    offset: t.children.length
-                });
-                var a = cur.videoShowWindow[d][e];
-                if (!a.done)
-                    if (0 <= e.indexOf("search") && cur.found[e]) {
-                        var n;
-                        if (e == Video.VIDEO_GLOBAL_SEARCH_TYPE) {
-                            if (s = cur.found[e].list.length, n = cur.found[e].realOffset || s, l = cur.found[e].list.slice(a.offset, s), !(u = cur.found[e].done) && 0 == l.length) return Video._addPendingAction(e, function() {
-                                Video.showMore(e, o)
-                            }), lockButton(o), void(cur.globalSearchInProgress || Video._searchGlobally(cur.videoGlobalSearchQuery, n))
-                        } else s = a.offset + Video.VIDEOS_PER_PAGE, l = cur.found[e].list.slice(a.offset, s), u = s >= cur.found[e].list.length;
-                        Video.onMoreLoaded(o, e, l, s, u)
-                    } else if ((r || -1 != Video.AVAILABLE_TABS.indexOf(e)) && cur.silentLoaded[d][e]) {
-                    var c = cur.silentLoaded[d][e],
-                        s = Math.min(c.length, a.offset + Video.VIDEOS_PER_PAGE),
-                        l = c.slice(a.offset, s),
-                        u = !1;
-                    "albums" == e && cur.albumsPreload[d] ? (u = cur.albumsNoMore, cur.albumsPreload[d] = !1) : u = s >= c.length, "albums" == e && (cur.albumsShowingAll[d] = !u), Video.onMoreLoaded(o, e, l, s, u)
+            if (startedSearch || changedSearch) {
+                Video._initSearchStats(newLoc);
+            } else if (leavingSearch) {
+                Video._clearSearchStats();
+            }
+
+            // check if leaving this page
+            if (goingToComments) {
+                delete cur._back;
+                return true;
+            }
+            if (pageChanged) {
+                var oid = cur.getOwnerId();
+                if (oid == vk.id && !inArray(changed[0], ['video', 'videos' + oid])) {
+                    return true;
                 }
-                Video._updateThumbsInView()
-            } else isButtonLocked(o) || (Video._addPendingAction(e, function() {
-                Video.showMore(e, o)
-            }), lockButton(o))
+
+                if (oid != vk.id && !inArray(changed[0], ['videos' + oid])) {
+                    return true;
+                }
+            }
+
+            { // switch main video tabs
+                var needHardNavigation;
+
+                if (goingToMyVideos) {
+                    nav.setLoc(newLoc);
+                    needHardNavigation = Video._switch('catalog', 'all');
+
+                } else if (goingToCatalog) {
+                    nav.setLoc(newLoc);
+                    needHardNavigation = Video._switch('all', 'catalog');
+                }
+
+                if (needHardNavigation || leavingUpload) {
+                    return true;
+                }
+            }
+
+            // hide tab progress
+            uiTabs.hideProgress('video_main_tabs');
+
+            // cleanup section=all parameter (since it is default)
+            if (changed.section == 'all') {
+                delete newLoc.section;
+            }
+
+            // if search then save location to return back to it later
+            if (startedSearch) {
+                cur.videoLocBeforeSearch = oldLoc;
+            }
+
+            if (leavingSearch) {
+                //cur.videoSearchStr = '';
+                cur.videoSearchFilters = {};
+                Video.doSearch();
+
+                Video.inputVal(cur.searchInputEl, '');
+
+                // if we have information about prev location state and input was explicitly cleared
+                // then try to set previous state
+                if (cur.videoLocBeforeSearch && (opts.fromSearch)) {
+                    var prevLoc = clone(cur.videoLocBeforeSearch);
+                    delete cur.videoLocBeforeSearch;
+                    nav.go(prevLoc);
+                    return false;
+                }
+            }
+
+            // update search input according to what is in url
+            if (trim(val(cur.searchInputEl)) != trim(newLoc.q || '')) {
+                //val(cur.searchInputEl, trim(newLoc.q || ''));
+            }
+
+            var newSection = newLoc.section || 'all';
+
+            if (newLoc.q) { // searching
+                if (!Video.isInAlbum()) {
+                    delete newLoc.section;
+                }
+
+                Video._prepareSearchFilters(newLoc);
+
+                if (!opts.fromSearch) {
+                    Video.inputVal(cur.searchInputEl, newLoc.q);
+                }
+
+                if (!opts.fromSearch && !opts.globalQuery) {
+                    opts.globalQuery = newLoc.q;
+                }
+
+                Video.doSearch(newLoc.q, opts.globalQuery);
+
+            } else if (Video.AVAILABLE_TABS.indexOf(newSection) != -1) { // switching to subtab
+
+                if (Video.isInAlbum(oldLoc.section)) { // hard navigation if leaving album
+                    nav.setLoc(newLoc);
+                    return true;
+                }
+
+                // hide all subtabs ...
+                each(Video.AVAILABLE_TABS, function(i, s) {
+                    hide('video_subtab_pane_' + s);
+                });
+
+                // ... and show current one
+                show('video_subtab_pane_' + newSection);
+
+                // toggle empty placelolder
+                Video.updateEmptyPlaceholder(newSection);
+
+                // select tab
+                var switchTab = domFC(ge('video_tab_' + newSection));
+                switchTab && uiTabs.switchTab(switchTab, {
+                    noAnim: opts.hist
+                });
+
+                var actionsWrapEl = geByClass1('video_tab_actions_wrap');
+                var sortEls = [geByClass1('_video_sort_dd_wrap'), geByClass1('divider')];
+
+                if (newSection != 'albums') {
+                    Video.loadSilent(newSection); // start silent loading videos of current tab
+
+                    cur.videoSortDD && cur.videoSortDD.select(cur.currentSortings[newSection] || 'default', true);
+
+                    Video._toggleSorter(true);
+                } else {
+                    Video._toggleSorter(false);
+                }
+
+                Video._createSorters(newSection);
+
+            } else {
+                return true;
+            }
+
+            // moder acts
+            if (newLoc['show_original']) {
+                return true;
+            }
+
+            nav.setLoc(newLoc);
+            return false;
+        });
+
+        cur.destroy.push(function() {
+            cur.nav.pop();
+        });
+    },
+
+    initSearch: function() {
+        cur.searchInputEl = ge('video_search_input');
+
+        function onInputChange(query, globalQuery) {
+            query = trim(query);
+            globalQuery = isString(globalQuery) ? trim(globalQuery) : '';
+            //cur.searchText = trim(query);
+            //cur.globalSearchText = trim(globalQuery);
+
+            var filtersLoc = {};
+
+            if (!query) {
+                each(Video.SEARCH_FILTERS, function(i, sp) {
+                    filtersLoc[sp] = false;
+                });
+
+                cur.videoPrevSearchFilters = clone(cur.videoSearchFilters);
+                setTimeout(function() {
+                    delete cur.videoPrevSearchFilters;
+                }, Video.SEARCH_KEEP_FILTERS_DELAY);
+            }
+
+            if (query && cur.videoPrevSearchFilters) {
+                filtersLoc = cur.videoPrevSearchFilters;
+                delete cur.videoPrevSearchFilters;
+            }
+
+            nav.change(extend({
+                q: query || false
+            }, filtersLoc), false, {
+                fromSearch: true,
+                globalQuery: globalQuery
+            });
+        }
+
+        function onInputBlur() {
+            var text = trim(val(cur.searchInputEl));
+            if (text) {
+                cur.vSearchInputBlurred = true;
+            }
+        }
+
+        if (cur.searchInputEl) {
+            data(cur.searchInputEl, 'opts')['onChange'] = onInputChange;
+            data(cur.searchInputEl, 'opts')['onBlur'] = onInputBlur;
+
+            var oldIE = browser.msie && intval(browser.version) <= 10;
+            if (!oldIE) {
+                cur.searchInputEl.focus();
+            }
         }
     },
-    isInAlbum: function(e) {
-        return 0 === (e || Video.getLoc().section || "").indexOf("album_")
+
+    _sortVideos: function(sortType) {
+        window.tooltips && tooltips.hideAll();
+
+        var curSection = Video._getCurrentSectionType(),
+            oid = cur.getOwnerId();
+        if (curSection == 'album') {
+            curSection = Video.getLoc().section;
+        }
+
+        var videos = cur.silentLoaded[oid][curSection];
+
+        // clean deleted recently videos
+        var removedCount = 0;
+        videos = videos.filter(function(v) {
+            var vid = v[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + '_' + v[VideoConstants.VIDEO_ITEM_INDEX_ID];
+            if (cur.videoRecentlyRemoved[vid]) {
+                removedCount++;
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        // and update counter
+        var counters = cur.videosCount[cur.getOwnerId()];
+        if (removedCount && counters) {
+            if (Video.isInAlbum()) {
+                var albumSection = 'album_' + Video._getSectionAlbumId();
+                if (counters[albumSection]) {
+                    counters[albumSection] -= removedCount;
+                    val(geByClass1('_video_subtitle_counter', ge('video_layout_contents')), langNumeric(counters[albumSection], cur.lang.video_playlist_size));
+                }
+            } else {
+                counters.all -= removedCount;
+                Video.updateTabCounter(counters.all);
+            }
+        }
+
+        cur.silentLoaded[oid][curSection] = videos;
+
+        if (!videos) {
+            show('video_sort_progress');
+            hide('video_sort_dd');
+            Video._addPendingAction(curSection, function() {
+                Video._sortVideos(sortType);
+            });
+
+            return;
+        }
+
+        hide('video_sort_progress');
+        show('video_sort_dd');
+
+        clearTimeout(cur._sortTO);
+        cur._sortTO = setTimeout(function() {
+            if (!videos.length) return;
+
+            videos.sort(function(a, b) {
+                switch (sortType) {
+                    case 'default':
+                        return a[cur.indexIndex] - b[cur.indexIndex];
+                    case 'new':
+                        return b[VideoConstants.VIDEO_ITEM_INDEX_DATE] - a[VideoConstants.VIDEO_ITEM_INDEX_DATE];
+                    case 'old':
+                        return a[VideoConstants.VIDEO_ITEM_INDEX_DATE] - b[VideoConstants.VIDEO_ITEM_INDEX_DATE];
+                    case 'popularity':
+                        return b[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] - a[VideoConstants.VIDEO_ITEM_INDEX_VIEWS];
+                }
+            });
+
+            var curListEl = ge('video_' + curSection + '_list');
+            curListEl.innerHTML = '';
+
+            if (cur.videoShowWindow && cur.videoShowWindow[oid]) {
+                cur.videoShowWindow[oid][curSection] = false;
+            }
+
+            Video.showMore(curSection);
+
+            Video._reinitSorters(sortType != 'default');
+
+            cur.currentSortings = cur.currentSortings || {};
+            cur.currentSortings[curSection] = sortType;
+        }, 10);
     },
+
+    _reindex: function(videos) {
+        for (var i = 0, len = videos.length; i < len; i++) {
+            if (videos[i].length >= cur.indexIndex) {
+                videos[i][cur.indexIndex] = i;
+            } else {
+                videos[i].push(i);
+            }
+        }
+    },
+
+    _onAlbumReorder: function(albumEl, nextAlbumEl, prevAlbumEl) {
+        var aid = albumEl.getAttribute('data-id');
+        var paid = prevAlbumEl ? prevAlbumEl.getAttribute('data-id') : null;
+        var naid = nextAlbumEl ? nextAlbumEl.getAttribute('data-id') : null;
+
+        ajax.post('al_video.php', {
+            act: 'reorder_albums',
+            oid: cur.getOwnerId(),
+            aid: aid,
+            before: naid,
+            after: paid,
+            hash: cur.videoAlbumsSortHash
+        });
+    },
+
+    _onReorder: function(videoEl, nextVideoEl, prevVideoEl) {
+        var oid = cur.getOwnerId();
+        var vid = domData(videoEl, 'id');
+        var pvid = prevVideoEl ? domData(prevVideoEl, 'id') : null;
+        var nvid = nextVideoEl ? domData(nextVideoEl, 'id') : null;
+        var albumId = Video._getCurrentSectionType();
+        if (albumId == 'album') {
+            albumId = Video.getLoc().section.split('_')[1];
+        }
+
+        // swap elements in array
+        var curSection = Video._getCurrentSectionType();
+        var videos = cur.silentLoaded[oid][curSection];
+        if (videos) {
+            var foundIndex = -1,
+                foundAfter = -1;
+
+            each(videos, function(i, v) {
+                var cvid = v[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + '_' + v[VideoConstants.VIDEO_ITEM_INDEX_ID];
+                if (cvid == vid) {
+                    foundIndex = i;
+                }
+                if (cvid == pvid) {
+                    foundAfter = i;
+                }
+                if (foundAfter >= 0 && foundIndex >= 0) return false;
+            });
+
+            if (foundIndex >= 0) {
+                var deleted = videos.splice(foundIndex, 1)[0];
+                if (foundAfter < 0) {
+                    videos.unshift(deleted);
+                } else {
+                    if (foundAfter > foundIndex) {
+                        foundAfter--;
+                    }
+                    videos.splice(foundAfter + 1, 0, deleted);
+                }
+
+                Video._reindex(videos);
+            }
+        }
+
+        ajax.post('al_video.php', {
+            act: 'reorder_videos',
+            album_id: albumId,
+            target_id: oid,
+            vid: vid,
+            before: nvid,
+            after: pvid,
+            hash: cur.videoSortHash
+        });
+    },
+
+    /* filters */
+    _prepareSearchFilters: function(loc) {
+        cur.videoSearchFilters = {};
+        each(Video.SEARCH_FILTERS, function(i, sp) {
+            cur.videoSearchFilters[sp] = loc[sp];
+        });
+
+        return cur.videoSearchFilters;
+    },
+    onFilterRemoved: function(filterId) {
+        Video._setFilterSelector(filterId);
+
+        // multiple filters may be removed, so batch them
+        clearTimeout(cur._frto);
+        cur._frto = setTimeout(Video._onFiltersChanged, 10);
+    },
+
+    // returns [selectedId, title, isDefaultSelectedselected]
+    _setFilterSelector: function(fid, fv) {
+        var filterSelector = cur['videoFilter_' + fid],
+            selected;
+
+        if (!filterSelector) {
+            return false;
+        }
+
+        if (filterSelector.__className == 'Selector') {
+            if (fv === undefined) {
+                fv = filterSelector.options.defaultItems[0][0];
+            }
+            filterSelector.selectItem(fv, false);
+
+            selected = clone(filterSelector.selectedItems()[0]);
+            selected.push(selected[0] == filterSelector.options.defaultItems[0][0]);
+
+        } else if (hasClass(filterSelector, 'checkbox')) {
+            toggleClass(filterSelector, 'on', !!fv);
+
+            selected = [!!fv, data(filterSelector, 'title'), !fv];
+        }
+
+        return selected;
+    },
+
+    _onFiltersChanged: function() {
+        var hd = hasClass('video_fltr_hd', 'on');
+        var notsafe = hasClass('video_fltr_notsafe', 'on');
+        var len = cur.videoFilter_len.selectedItems()[0][0];
+        var date = cur.videoFilter_date.selectedItems()[0][0];
+        var order = cur.videoFilter_order.selectedItems()[0][0];
+
+        nav.change({
+            hd: hd ? 1 : false,
+            len: len > 0 ? len : false,
+            date: date > 0 ? date : false,
+            order: order >= 0 ? order : false,
+            notsafe: notsafe ? 1 : false
+        }, false, {
+            filtersChanged: true
+        });
+    },
+
+    initFilters: function() {
+        var searchInputEl = geByClass1('video_search_input');
+        if (!searchInputEl) return;
+
+        cur.videoFilter_len = new Dropdown(ge('video_fltr_len'), cur.lenFilters, {
+            big: 1,
+            zeroPlaceholder: true,
+            onChange: Video._onFiltersChanged
+        });
+
+        cur.videoFilter_date = new Dropdown(ge('video_fltr_date'), cur.dateFilters, {
+            big: 1,
+            zeroPlaceholder: true,
+            onChange: Video._onFiltersChanged
+        });
+
+        cur.videoFilter_order = new Dropdown(ge('video_fltr_order'), cur.orderFilters, {
+            big: 1,
+            zeroPlaceholder: true,
+            onChange: Video._onFiltersChanged
+        });
+
+        cur.videoFilter_hd = ge('video_fltr_hd');
+
+        removeEvent(cur.videoFilter_hd, 'click');
+        addEvent(cur.videoFilter_hd, 'click', Video._onFiltersChanged);
+        data(cur.videoFilter_hd, 'title', cur.lang.video_hd_checkbox);
+
+        cur.videoFilter_notsafe = ge('video_fltr_notsafe');
+
+        removeEvent(cur.videoFilter_notsafe, 'click');
+        addEvent(cur.videoFilter_notsafe, 'click', Video._onFiltersChanged);
+        data(cur.videoFilter_notsafe, 'title', cur.lang.video_filter_no_safe);
+
+        var q = Video.getLoc().q;
+        if (q) {
+            Video._prepareSearchFilters(Video.getLoc());
+            cur.searchText = q;
+
+            Video.inputVal(cur.searchInputEl, cur.searchText);
+
+            Video.doSearch(q, q);
+        }
+    },
+
+    _isGeneralSection: function(section) {
+        for (var i = 0; i < Video.AVAILABLE_TABS.length; i++) {
+            if (section == Video.AVAILABLE_TABS[i]) {
+                return true;
+            }
+        }
+        return false;
+    },
+
+    loadSilent: function(section) {
+        section = section || 'all';
+
+        var oid = cur.getOwnerId();
+        var isAlbum = Video.isInAlbum(section);
+        var isSnippetVideo = !!cur.isSnippetVideoSelection;
+
+        if (!isAlbum && !this._isGeneralSection(section) || section == 'albums') return;
+
+        cur.silentLoaded = cur.silentLoaded || {};
+        cur.silentLoaded[oid] = cur.silentLoaded[oid] || {};
+
+        cur.silentLoadingProgress = cur.silentLoadingProgress || {};
+        cur.silentLoadingProgress[oid] = cur.silentLoadingProgress[oid] || {};
+
+        var silentProgress = cur.silentLoadingProgress[oid][section];
+
+        if (silentProgress === true) { // silent load in progress
+            return;
+        }
+
+        if (!cur.pageVideosList || !cur.pageVideosList[oid]) { // means render of videos page doesn't even ended, so no need to silent load yet
+            return;
+        }
+
+        if (silentProgress === false) { // silent load already done
+            Video._callPendingAction(section);
+            return;
+        }
+
+        if (typeof silentProgress == 'undefined') {
+            cur.silentLoadingProgress[oid][section] = true;
+
+            (function(section) {
+                function onLoad(videos, albums) {
+                    if (!cur.silentLoadingProgress || !cur.silentLoadingProgress[oid]) return; // seems that we navigated away
+
+                    cur.silentLoadingProgress[oid][section] = false;
+
+                    if (videos) {
+                        if (videos.length) {
+                            cur.indexIndex = videos[0].length;
+                        }
+
+                        Video._reindex(videos);
+
+                        cur.silentLoaded[oid][section] = videos;
+                    }
+
+                    if (albums) {
+                        cur.albumsPreload[oid] = false; // dont need any more
+                        cur.silentLoaded[oid]['albums'] = albums;
+                    }
+
+                    Video.indexItems(function() {
+                        if (!cur.silentLoadingProgress) return; // seems that we navigated away
+
+                        Video._callPendingAction(section);
+
+                        if (albums) {
+                            Video._callPendingAction('albums');
+                        }
+
+                        Video.showMore(section);
+                    });
+                }
+
+                var pageVideosList = cur.pageVideosList[oid][section]; // videos that was loaded with page
+
+                var hasAllVideosAlready = pageVideosList ? cur.videosCount[oid][section] <= pageVideosList.list.length : false;
+                var hasAllAlbumsAlready = isAlbum ? true : cur.albumsPreload && cur.playlistsCount <= cur.albumsPreload[oid].length;
+
+                if (hasAllAlbumsAlready) {
+                    cur.silentLoaded[oid]['albums'] = cur.albumsPreload[oid];
+                }
+
+                if (hasAllVideosAlready && hasAllAlbumsAlready) {
+                    onLoad(cur.pageVideosList[oid][section].list, cur.albumsPreload[oid]);
+                } else if (cur.noVideos) {
+                    onLoad([], []);
+                } else {
+                    function onAllChunksLoaded() {
+                        var videos = [].concat.apply([], loadedVideos);
+                        onLoad(videos, loadedAlbums);
+                    }
+
+                    if (!cur.videosCount || !cur.videosCount[oid]) {
+                        return onLoad([], []);
+                    }
+
+                    var chunkSize = cur.VIDEO_SILENT_VIDEOS_CHUNK_SIZE;
+                    var estimatedCount = cur.videosCount[oid][section];
+
+                    var chunksCount = Math.ceil(estimatedCount / chunkSize);
+                    var loadHub = new callHub(onAllChunksLoaded, chunksCount);
+                    var loadedVideos = new Array(chunksCount);
+                    var loadedAlbums = [];
+
+                    if (chunksCount == 0) {
+                        return onLoad([], []);
+                    }
+
+                    for (var chunkIndex = 0; chunkIndex < chunksCount; chunkIndex++) {
+                        (function(index) {
+                            ajax.post('/al_video.php', {
+                                act: 'load_videos_silent',
+                                oid: oid,
+                                section: section,
+                                rowlen: Video.VIDEOS_PER_ROW,
+                                offset: index * chunkSize,
+                                snippet_video: (isSnippetVideo ? 1 : 0),
+                                need_albums: intval(!hasAllAlbumsAlready && (section == 'all') && intval(index == 0))
+                            }, {
+                                onDone: function(videos, albums) {
+                                    if (videos && videos[section] && videos[section].list) {
+                                        loadedVideos[index] = videos[section].list;
+                                    } else {
+                                        loadedVideos[index] = [];
+                                    }
+
+                                    if (index == 0) {
+                                        loadedAlbums = albums;
+                                    }
+
+                                    loadHub.done();
+                                }
+                            });
+                        })(chunkIndex);
+                    }
+                }
+            })(section);
+        }
+    },
+
+    indexItems: function(cb) {
+        if (!cur.getOwnerId) {
+            return;
+        }
+
+        var indexesNeeded = 0,
+            oid = cur.getOwnerId();
+
+        cur.videoIndexes = cur.videoIndexes || {};
+        cur.videoIndexes[oid] = cur.videoIndexes[oid] || {};
+
+        each(cur.silentLoaded[oid], function(type, items) {
+            if (!cur.videoIndexes[oid][type]) {
+                indexesNeeded++;
+            }
+        });
+
+        var hub = new callHub(cb, indexesNeeded);
+
+        each(cur.silentLoaded[oid], function(type, items) {
+            if (!cur.videoIndexes[oid][type]) {
+                cur.videoIndexes[oid][type] = new vkIndexer(items, function(item) {
+                    return type == 'albums' ? item[0] : item[VideoConstants.VIDEO_ITEM_INDEX_TITLE];
+                }, function() {
+                    hub.done();
+                });
+            }
+        });
+    },
+
+    _updateSearchPageTitle: function(searchStr) {
+        if (!!curBox()) return;
+
+        if (!searchStr) {
+            if (cur.prevVideoPageTitle) {
+                setDocumentTitle(cur.prevVideoPageTitle);
+            }
+        } else {
+            if (!cur.prevVideoPageTitle) {
+                cur.prevVideoPageTitle = document.title;
+            }
+            setDocumentTitle(getLang('video_title_search').replace('{q}', searchStr));
+        }
+    },
+
+    inputVal: function(inputEl, v) {
+        if (val(inputEl) == v) {
+            return
+        }
+
+        val(inputEl, v);
+
+        var wrapEl = gpeByClass('_wrap', inputEl);
+        toggleClass(wrapEl, 'ui_search_field_empty', !v);
+    },
+
+    doSearch: function(searchStr, globalSearchStr) {
+        if (!cur.searchInputEl) {
+            return;
+        }
+
+        var localSearchQuery = cur.videoLocalSearchQuery = trim(searchStr);
+        var globalSearchQuery = cur.videoGlobalSearchQuery = trim(globalSearchStr);
+
+        // update filters ui
+        each(Video.SEARCH_FILTERS, function(i, fid) {
+            var selected = Video._setFilterSelector(fid, cur.videoSearchFilters[fid]);
+            selected && uiSearch.toggleFilter(cur.searchInputEl, fid, selected[1], !selected[2]);
+        });
+
+        // dont show empty local results placeholder
+        cur.noEmptyLocalResults = Video.isInCatalog();
+
+        // show/hide progress
+        Video._toggleSearchProgress(!!localSearchQuery);
+
+        // hide current search panels
+        var panelsToHide = [Video.VIDEO_SEARCH_TYPE, Video.ALBUM_SEARCH_TYPE, Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE, Video.VIDEO_GLOBAL_SEARCH_TYPE /*keep it last (see below)*/ ];
+        if (Video.isInSearch() && cur.noEmptyLocalResults) {
+            panelsToHide.pop();
+        }
+
+        // hide search panels
+        each(panelsToHide, function(i, type) {
+            hide('video_subtab_pane_' + type);
+        });
+
+        toggle('videocat_other_blocks', Video.isInCatalog() && !searchStr);
+
+        if (!localSearchQuery) {
+            // switch to main layout
+            Video._toggleSearchContent(false);
+        }
+
+        if (curBox()) {
+            ge('box_layer_wrap').scrollTop = 0;
+        } else {
+            scrollToTop(1000);
+        }
+
+        // search in particular album or all videos
+        var isAlbum = Video.isInAlbum();
+        var searchInSection = isAlbum ? Video.getLoc().section : 'all';
+
+        // reset pending actions for previous searches
+        Video._clearPendingAction(searchInSection);
+
+        Video._updateSearchPageTitle(localSearchQuery);
+
+        if (localSearchQuery) {
+            Video._addPendingAction(searchInSection, function() { // wait for videos been loaded
+                // first need local search
+                var foundCount = Video._searchLocally(localSearchQuery);
+                if (globalSearchStr && foundCount && cur.lastProcessedSearchText !== searchStr) {
+                    cur.lastProcessedSearchText = searchStr;
+                    saveSearchAttemptStats('video', 0, foundCount);
+                }
+                // next need global
+                if (foundCount < 15) {
+                    Video._searchGlobally(globalSearchQuery);
+                }
+
+                Video._toggleSearchProgress(false);
+            });
+
+            // load videos (if they not already loaded)
+            Video.loadSilent(searchInSection);
+
+            // init global search while silent is in progress
+            // (anyway, global results will be rendered after local results will be available)
+            Video._searchGlobally(globalSearchQuery);
+        }
+    },
+
+    _toggleSearchProgress: function(isLoading) {
+        cur.searchProgressRef = cur.searchProgressRef || 0;
+        cur.searchProgressRef = Math.max(0, cur.searchProgressRef + (isLoading ? 1 : -1));
+
+        isLoading = cur.searchProgressRef > 0;
+
+        var filtersPanel = geByClass1('ui_search_fltr_control', geByClass1('video_search_input'));
+        var progressEl = geByClass1('ui_search_fltr_progress', filtersPanel);
+        toggle(progressEl, isLoading);
+
+        if (!hasClass(filtersPanel, 'shown')) {
+            toggleClass(gpeByClass('_wrap', cur.searchInputEl), 'ui_search_loading', isLoading);
+        }
+    },
+
+    _buildFiltersSearchStr: function() {
+        var str = [];
+        each(cur.videoSearchFilters || {}, function(fn, fv) {
+            fv && str.push(fn + ':' + fv);
+        });
+        return '$' + str.join('#');
+    },
+
+    _searchGlobally: function(searchText, offset) {
+        if (!searchText) {
+            return;
+        }
+
+        offset = intval(offset);
+
+        var isNext = offset > 0;
+        var ts = +new Date();
+
+        cur.globalSearchResults = cur.globalSearchResults || {};
+
+        var resKey = searchText + Video._buildFiltersSearchStr();
+        if (!isNext && cur.globalSearchResults[resKey]) {
+            if (cur.lastProcessedSearchText !== searchText) {
+                cur.lastProcessedSearchText = searchText;
+                saveSearchAttemptStats('video', ts, cur.globalSearchResults[resKey].count);
+            }
+
+            Video._showGlobalSearchResults(searchText);
+            return;
+        }
+
+        if (cur.globalSearchInProgress == searchText) return;
+        cur.globalSearchInProgress = searchText;
+
+        !isNext && Video._toggleSearchProgress(true);
+
+        var isSnippetVideo = !!cur.isSnippetVideoSelection;
+
+        var requestParams = {
+            act: 'search_video',
+            q: searchText,
+            offset: offset || 0,
+            from: cur.oid,
+        };
+        if (isSnippetVideo) {
+            requestParams.snippet_video = 1;
+        }
+
+        ajax.post('/al_video.php', extend(requestParams, cur.videoSearchFilters), {
+            onDone: function(count, countHash, data, noMore, promoPlaylists, realOffset) {
+                if (!offset && cur.lastProcessedSearchText !== searchText) {
+                    cur.lastProcessedSearchText = searchText;
+                    saveSearchAttemptStats('video', ts, count);
+                }
+                cur.globalSearchInProgress = false;
+
+                !isNext && Video._toggleSearchProgress(false);
+
+                if (curBox()) {
+                    promoPlaylists = false;
+                }
+
+                { // merge it with existing data ...
+                    cur.globalSearchResults[resKey] = cur.globalSearchResults[resKey] || {
+                        count: 0,
+                        countHash: countHash,
+                        list: [],
+                        realOffset: 0,
+                        promoPlaylists: promoPlaylists
+                    };
+
+                    var gsr = cur.globalSearchResults[resKey];
+                    gsr.done = gsr.done || !data.list || data.list.length == 0;
+
+                    var prevCount = gsr.list.length;
+
+                    if (!gsr.done) {
+                        // remove duplicates ...
+                        var firstVideo = data.list[0],
+                            duplicateOffset = 0;
+                        for (var i = gsr.list.length - 1; i >= 0; i--) {
+                            var offset = gsr.list.length - i;
+                            if (offset > 20) break;
+                            var v = gsr.list[i];
+                            if (firstVideo[0] == v[0] && firstVideo[1] == v[1]) {
+                                duplicateOffset = offset;
+                                break;
+                            }
+                        }
+
+                        gsr.count = parseInt(count);
+                        Array.prototype.push.apply(gsr.list, data.list.slice(duplicateOffset));
+
+                        var toBeDeleted = gsr.list.length % Video.VIDEOS_PER_ROW;
+                        if (count > Video.VIDEOS_PER_PAGE && toBeDeleted && gsr.list.length < gsr.count) {
+                            gsr.list.splice(-toBeDeleted, Video.VIDEOS_PER_ROW);
+                            realOffset -= toBeDeleted;
+                        }
+                        gsr.realOffset = realOffset;
+                    }
+                }
+
+                if (noMore || !gsr.done && gsr.list.length == prevCount) { // no real changes
+                    gsr.done = true;
+                }
+
+                Video._showGlobalSearchResults(searchText, isNext);
+            }
+        });
+    },
+
+    _toggleEmptySearchPlaceholder: function(doShow, searchText, noEmpty) {
+        var placeholderEl = ge('video_empty_placeholder_search');
+        var langKey = cur.getOwnerId() < 0 ? 'video_not_found_group' : 'video_not_found_user';
+        if (cur.getOwnerId() == vk.id) langKey = 'video_not_found_yours';
+        if (Video.isInAlbum()) langKey = 'video_not_found_in_album';
+        if (Video.isInCatalog()) langKey = 'video_not_found_globally';
+
+        if (searchText) {
+            placeholderEl.innerHTML = getLang(langKey).replace('{searchText}', '<b>' + clean(searchText.replace(/\$/g, '$$$$')) + '</b>');
+        }
+        toggle(placeholderEl, doShow);
+
+        // prevent layout be empty (ne krasivo)
+        if (noEmpty) {
+            var emptyLayout = true;
+            var searchLayout = ge('video_layout_search');
+            each(domChildren(searchLayout), function() {
+                if (isVisible(this)) {
+                    emptyLayout = false;
+                    return false;
+                }
+            })
+            if (emptyLayout) {
+                toggle(placeholderEl, true);
+            }
+        }
+    },
+
+    _toggleEmptyPlaceholder: function(doShow, langKey) {
+        var placeholderEl = ge('video_empty_placeholder_main');
+        if (doShow && placeholderEl) {
+            placeholderEl.innerHTML = getLang(langKey);
+        }
+        toggle(placeholderEl, doShow);
+    },
+
+    _showSearchResult: function(type) {
+        var found = cur.found[type],
+            oid = cur.getOwnerId();
+
+        toggle('video_subtab_pane_' + type, !!found.count);
+
+        if (found.count) {
+            var headerLang = '',
+                langType;
+            switch (type) {
+                case Video.ALBUM_SEARCH_TYPE:
+                    langType = 'albums';
+
+                case Video.VIDEO_SEARCH_TYPE:
+                    langType = langType || 'videos';
+
+                    if (Video.isInAlbum()) {
+                        headerLang = cur.lang['video_found_' + langType + '_in_album'];
+                    } else if (cur.getOwnerId() < 0) {
+                        headerLang = cur.lang['video_found_' + langType + '_community'];
+                    } else if (cur.getOwnerId() == vk.id) {
+                        headerLang = cur.lang['video_found_' + langType + '_yours'];
+                    } else {
+                        headerLang = cur.lang['video_found_' + langType + '_of'];
+                    }
+                    break;
+
+                case Video.VIDEO_GLOBAL_SEARCH_TYPE:
+                    headerLang = cur.lang.video_found_videos_global;
+                    break;
+
+                case Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE:
+                    headerLang = getLang('video_search_promo_playlists');
+                    break;
+            }
+
+            headerLang = langNumeric(found.count, headerLang, true);
+            headerLang = headerLang.replace('{user}', cur.lang.video_owner_name_gen);
+
+            var headerEl = geByClass1('video_subtitle', ge('video_subtab_pane_' + type));
+            val(headerEl, headerLang);
+
+            // dont rerender same results
+            var searchQuery = type == Video.VIDEO_GLOBAL_SEARCH_TYPE ? cur.videoGlobalSearchQuery : cur.videoLocalSearchQuery;
+            searchQuery += Video._buildFiltersSearchStr();
+
+            cur._videoRenderedSearchResults = cur._videoRenderedSearchResults || {};
+            var rendered = cur._videoRenderedSearchResults;
+
+            if (rendered[type] != searchQuery) {
+                rendered[type] = searchQuery;
+
+                ge('video_' + type + '_list').innerHTML = '';
+
+                if (cur.videoShowWindow && cur.videoShowWindow[oid]) {
+                    delete cur.videoShowWindow[oid][type];
+                }
+                Video.showMore(type);
+            }
+        }
+    },
+
+    _showGlobalSearchResults: function(searchText, moreLoaded) {
+        var resKey = searchText + Video._buildFiltersSearchStr();
+
+        var oid = cur.getOwnerId();
+        var section = Video.isInAlbum() ? Video.getLoc().section : 'all';
+
+        var localSearchDone = !!cur.silentLoaded[oid][section];
+        var isActualSearchQuery = searchText == cur.videoGlobalSearchQuery || searchText == cur.videoLocalSearchQuery;
+
+        if (isActualSearchQuery && localSearchDone && cur.globalSearchResults[resKey] && cur.globalSearchResults[resKey].count >= 0) { // ensure that received data is still actual ...
+
+            var globalResults = cur.globalSearchResults[resKey];
+            cur.found[Video.VIDEO_GLOBAL_SEARCH_TYPE] = {
+                list: globalResults.list,
+                count: globalResults.count,
+                done: globalResults.done,
+                realOffset: globalResults.realOffset
+            };
+
+            cur.found[Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE] = {
+                list: globalResults.promoPlaylists,
+                count: globalResults.promoPlaylists.length,
+                done: true
+            };
+
+            if (cur.noEmptyLocalResults) {
+                Video._toggleSearchContent(true);
+                if (globalResults.count == 0) {
+                    Video._toggleEmptySearchPlaceholder(true, searchText);
+                } else {
+                    Video._toggleEmptySearchPlaceholder(false);
+                }
+            }
+
+            if (!moreLoaded) {
+                Video._showSearchResult(Video.ALBUM_GLOBAL_SEARCH_PROMO_PLAYLISTS_TYPE);
+                Video._showSearchResult(Video.VIDEO_GLOBAL_SEARCH_TYPE);
+            }
+
+            Video._callPendingAction(Video.VIDEO_GLOBAL_SEARCH_TYPE);
+        }
+    },
+
+    _toggleSearchContent: function(switchToSearch) {
+        toggle('video_layout_contents', !switchToSearch);
+        toggle('video_layout_search', !!switchToSearch);
+    },
+
+    _searchLocally: function(searchText) {
+        cur.found = {};
+
+        if (!searchText || !cur.videoIndexes) return false;
+
+        var oid = cur.getOwnerId();
+        var foundVideos = [],
+            foundAlbums = [];
+
+        // 1. search albums
+        if (!Video.isInAlbum() && cur.videoIndexes[oid]['albums']) {
+            foundAlbums = cur.videoIndexes[oid]['albums'].search(searchText);
+
+            cur.found[Video.ALBUM_SEARCH_TYPE] = {
+                list: foundAlbums,
+                count: foundAlbums.length
+            };
+
+            Video._showSearchResult(Video.ALBUM_SEARCH_TYPE);
+        }
+
+        // 2. search videos
+        var searchInSection = Video.isInAlbum() ? Video.getLoc().section : 'all';
+        if (cur.videoIndexes[oid][searchInSection]) {
+            var foundVideosFromIndex = cur.videoIndexes[oid][searchInSection].search(searchText);
+
+            // apply filters
+            each(foundVideosFromIndex, function(i, video) {
+                if (cur.videoSearchFilters.hd && !(video[VideoConstants.VIDEO_ITEM_INDEX_FLAGS] & VideoConstants.VIDEO_ITEM_FLAG_HD)) return;
+
+                if ((vkNow() / 1000 - video[VideoConstants.VIDEO_ITEM_INDEX_DATE]) > cur.videoSearchFilters.date) return;
+
+                foundVideos.push(video);
+            });
+
+            cur.found[Video.VIDEO_SEARCH_TYPE] = {
+                list: foundVideos,
+                count: foundVideos.length
+            };
+
+            Video._showSearchResult(Video.VIDEO_SEARCH_TYPE);
+        }
+
+        var totalFoundObjects = foundAlbums.length + foundVideos.length;
+
+        if (!totalFoundObjects) {
+            if (cur.noEmptyLocalResults) { // searching in catalog, so no need to show empty local results
+                // layout switch and placeholder will be show at global results search
+                Video._toggleEmptySearchPlaceholder(false, (void 0), true);
+            } else {
+                Video._toggleSearchContent(true);
+                Video._toggleEmptySearchPlaceholder(true, searchText);
+            }
+
+        } else {
+            Video._toggleSearchContent(true);
+            Video._toggleEmptySearchPlaceholder(false);
+        }
+
+        return foundVideos ? foundVideos.length : 0;
+    },
+
+    onItemEnter: function(titleEl) {
+        setTitle(titleEl, titleEl, titleEl.innerHTML.replace(/<\/?em>/g, ''));
+    },
+
+    showMoreAlbums: function(btn) {
+        var needReset = false,
+            oid = cur.getOwnerId();
+
+        if (cur.albumsPreload && cur.albumsPreload[oid] && !cur.silentLoaded[oid].albums) {
+            cur.silentLoaded[oid].albums = cur.albumsPreload[oid];
+            needReset = true;
+        }
+
+        cur.albumsShowingAll[oid] = true;
+
+        Video.showMore('albums', btn);
+
+        if (needReset) {
+            cur.silentLoaded[oid].albums = false;
+        }
+    },
+
+    prepareVideoItemAttrs: function(video) {
+        var cls = attrs = '';
+
+        { // classes
+            var flagToCls = {};
+
+            // keep in sync with video.helper.php hVideoPrepareItemHtmlAttributes
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_EXTERNAL] = 'video_ext';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE] = 'video_active_live';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT] = 'video_can_edit';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD] = 'video_can_add';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE] = 'video_can_delete';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_PRIVATE] = 'video_private';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_NO_AUTOPLAY] = 'video_nap';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_ADDED] = 'video_added';
+            flagToCls[VideoConstants.VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD] = 'video_skip_thumb_load';
+
+            var videoFlags = video[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
+
+            each(flagToCls, function(bit, c) {
+                if (videoFlags & bit) {
+                    cls += c + ' ';
+                }
+            });
+
+            if (!video[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] && !video[VideoConstants.VIDEO_ITEM_INDEX_DURATION] && !(videoFlags & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE)) {
+                cls += ' video_no_duration';
+            }
+
+            var notOwner = !(videoFlags & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT) && !(videoFlags & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE);
+            var isBlocked = video[VideoConstants.VIDEO_ITEM_INDEX_BLOCKED];
+            var noActions = !(videoFlags & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD);
+            if (notOwner && (isBlocked || noActions)) {
+                cls += ' video_no_actions';
+            }
+
+            if (isBlocked) {
+                cls += ' video_blocked';
+            }
+
+            if (cur.videoCanAddAlbums) {
+                cls += ' video_can_edit_albums';
+            }
+
+            if (cur.isSnippetVideoSelection) {
+                cls += ' no_video_select_btn';
+            }
+        }
+
+        { // attrs
+            if (videoFlags & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN) {
+                attrs += ' rel="nofollow"';
+            }
+        }
+
+        return [cls, attrs];
+    },
+
+    buildVideoEl: function(video) {
+        var tpl = trim(cur.videoItemTpl);
+        video = clone(video);
+
+        video[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = langNumeric(video[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], cur.lang.video_N_views_list, true);
+        video[VideoConstants.VIDEO_ITEM_INDEX_DATE] = Video.getFormattedUpdatedTime(video[VideoConstants.VIDEO_ITEM_INDEX_DATE]);
+        if (video[VideoConstants.VIDEO_ITEM_INDEX_FLAGS] & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE) {
+            video[VideoConstants.VIDEO_ITEM_INDEX_DURATION] = '<span class="video_thumb_label_live_icon"></span>';
+        }
+
+        var clsAndAttrs = Video.prepareVideoItemAttrs(video);
+
+        var el = rs(tpl, video);
+        el = el.replace('%classes%', clsAndAttrs[0]).replace('%attrs%', clsAndAttrs[1]);
+        el = se(el);
+
+        return el;
+    },
+
+    buildPlaylistEl: function(playlist) {
+        var tpl = trim(cur.albumItemTpl);
+        return se(rs(tpl, playlist));
+    },
+
+    onMoreLoaded: function(btn, type, data, newOffset, noMore) {
+        Video._loading = false;
+
+        var oid = cur.getOwnerId();
+        var loaded = cur.videoShowWindow[oid][type];
+        var contEl = ge('video_' + type + '_list'),
+            itemEl;
+
+        if (contEl) {
+            btn = geByClass1('ui_load_more_btn', gpeByClass('ge_video_pane', contEl));
+
+            var isAlbumRendering = type.indexOf('albums') >= 0;
+            var titleIndex = isAlbumRendering ? 0 : 3;
+
+            var section = Video._getCurrentSectionType();
+            section = section == 'album' ? Video.getLoc().section : 'all';
+
+            var selectRegex = false;
+            if (type.indexOf('search') >= 0 && cur.searchText) {
+                selectRegex = new RegExp('(' + cur.searchText.replace(/\|/g, '').replace(cur.videoIndexes[oid][section].delimiter, '|').replace(/^\||\|$/g, '').replace(/([\+\*\)\(])/g, '\\$1') + ')', 'gi');
+            }
+
+            for (var i = 0, len = data.length; i < len; i++) {
+                var item = extend({}, data[i]);
+
+                if (selectRegex) {
+                    item[titleIndex] = item[titleIndex].replace(selectRegex, '<em>$1</em>');
+                }
+
+                if (isAlbumRendering) {
+                    itemEl = Video.buildPlaylistEl(item);
+                } else {
+                    itemEl = Video.buildVideoEl(item);
+                }
+
+                if (type == Video.VIDEO_GLOBAL_SEARCH_TYPE) {
+                    itemEl.setAttribute('data-search-pos', i + loaded.offset);
+                }
+
+                contEl.appendChild(itemEl);
+            }
+
+            loaded.offset = newOffset;
+
+            loaded.done = !data.length || noMore;
+            toggle(btn, !loaded.done);
+
+            if (type == Video.VIDEO_GLOBAL_SEARCH_TYPE) {
+                if (!cur.videoSearchStats) {
+                    Video._initSearchStats(Video.getLoc());
+                }
+
+                cur.videoSearchStats.lastActionTime = new Date().getTime();
+                Video._updateLastSeenElement(contEl);
+            }
+        }
+    },
+
+    showMore: function(type, btn) {
+        type = type || Video._getCurrentSectionType();
+
+        var parentNode = curBox() ? curBox().bodyNode : undefined;
+        var contEl = geByClass1('_video_' + type + '_list', parentNode);
+
+        if (!contEl) return;
+
+        var isAlbum = Video.isInAlbum(type),
+            oid = cur.getOwnerId();
+        if ((isAlbum || Video.AVAILABLE_TABS.indexOf(type) != -1) && !cur.silentLoaded[oid][type]) {
+
+            if (!isButtonLocked(btn)) {
+                Video._addPendingAction(type, function() {
+                    Video.showMore(type, btn);
+                });
+
+                lockButton(btn);
+            }
+
+            return;
+        }
+
+        unlockButton(btn);
+
+        cur.videoShowWindow = cur.videoShowWindow || {};
+        cur.videoShowWindow[oid] = cur.videoShowWindow[oid] || {};
+
+        if (!cur.videoShowWindow[oid][type]) {
+            cur.videoShowWindow[oid][type] = {
+                done: false,
+                offset: contEl.children.length
+            };
+        }
+
+        var videoShowWindow = cur.videoShowWindow[oid][type];
+        if (!videoShowWindow.done) {
+            if (type.indexOf('search') >= 0 && cur.found[type]) {
+                var newOffset, realOffset, data, noMore;
+
+                if (type == Video.VIDEO_GLOBAL_SEARCH_TYPE) {
+                    newOffset = cur.found[type].list.length;
+                    realOffset = cur.found[type].realOffset || newOffset;
+                    data = cur.found[type].list.slice(videoShowWindow.offset, newOffset);
+                    noMore = cur.found[type].done;
+
+                    if (!noMore && data.length == 0) { // still waiting for next chunk of data
+                        Video._addPendingAction(type, function() {
+                            Video.showMore(type, btn);
+                        });
+                        lockButton(btn);
+
+                        if (!cur.globalSearchInProgress) {
+                            Video._searchGlobally(cur.videoGlobalSearchQuery, realOffset);
+                        }
+                        return;
+                    }
+                } else {
+                    newOffset = videoShowWindow.offset + Video.VIDEOS_PER_PAGE;
+                    data = cur.found[type].list.slice(videoShowWindow.offset, newOffset);
+                    noMore = newOffset >= cur.found[type].list.length;
+                }
+
+                Video.onMoreLoaded(btn, type, data, newOffset, noMore);
+
+            } else if (isAlbum || Video.AVAILABLE_TABS.indexOf(type) != -1) {
+                if (cur.silentLoaded[oid][type]) {
+                    var items = cur.silentLoaded[oid][type];
+                    var newOffset = Math.min(items.length, videoShowWindow.offset + Video.VIDEOS_PER_PAGE);
+                    var data = items.slice(videoShowWindow.offset, newOffset);
+                    var noMore = false;
+
+                    if (type == 'albums' && cur.albumsPreload[oid]) {
+                        noMore = cur.albumsNoMore;
+                        cur.albumsPreload[oid] = false;
+                    } else {
+                        noMore = newOffset >= items.length;
+                    }
+
+                    if (type == 'albums') {
+                        cur.albumsShowingAll[oid] = !noMore;
+                    }
+
+                    Video.onMoreLoaded(btn, type, data, newOffset, noMore);
+                }
+            }
+        }
+
+        Video._updateThumbsInView();
+    },
+
+    isInAlbum: function(section) {
+        return (section || Video.getLoc().section || '').indexOf('album_') === 0;
+    },
+
     isInSearch: function() {
-        return !!Video.getLoc().q
+        return !!Video.getLoc().q;
     },
+
     _getSectionAlbumId: function() {
-        var e = Video.getLoc().section || "all";
-        switch (e) {
-            case "all":
+        var section = Video.getLoc().section || 'all';
+        switch (section) {
+            case 'all':
                 return -2;
-            case "uploaded":
+            case 'uploaded':
                 return -1;
             default:
-                return e.split("_")[1]
+                return section.split('_')[1];
         }
     },
-    isInCatalog: function(e) {
-        return "video" == (e = e || Video.getLoc())[0] && !e.section
-    },
-    _getCurrentSectionType: function() {
-        return cur.videoForcedSection ? cur.videoForcedSection : Video.isInCatalog() ? "catalog" : Video.isInAlbum(Video.getLoc().section) ? "album" : Video.getLoc().section || "all"
-    },
-    onScroll: function() {
-        var e;
-        cur.getOwnerId && cur.albumsShowingAll[cur.getOwnerId()] ? e = "albums" : (e = Video._getCurrentSectionType(), Video.getLoc().q || "search" == e ? e = isVisible(gpeByClass("ge_video_pane", "ui_search_global_videos_load_more")) ? Video.VIDEO_GLOBAL_SEARCH_TYPE : Video.VIDEO_SEARCH_TYPE : "album" == e && (e = Video.getLoc().section));
-        var o = curBox() ? curBox().bodyNode : void 0,
-            i = geByClass1("_video_" + e + "_list", o);
-        if (i) {
-            var t = gpeByClass("ge_video_pane", i),
-                r = geByClass1("ui_load_more_btn", t);
-            if (r) {
-                var d = clientHeight();
-                scrollGetY() + d > getXY(r)[1] - d / 2 && Video.showMore(e, r)
-            }
-            e == Video.VIDEO_GLOBAL_SEARCH_TYPE && Video._updateLastSeenElement(i)
-        }
-        Video._updateChooseFixedBottom(), Video._updateThumbsInView()
-    },
-    _initScrollFixedSearch: function(e) {
-        var o = geByClass1("video_search_input");
-        toggleClass(o, "video_need_fix", e), e && (cur.fixSearchHeaderInfo = cur.fixSearchHeaderInfo || {
-            searchTop: getXY(o)[1],
-            mainHeaderHeight: getSize("page_header_cont")[1],
-            videoContWidth: getSize(geByClass1("video_content"))[0]
-        })
-    },
-    getFormattedUpdatedTime: function(e) {
-        var o = intval(vkNow() / 1e3) - e;
 
-        function i(e, o, i) {
-            return isArray(o) && e < o.length ? o[e] : langNumeric(e, i)
-        }
-        var t = "video_added_";
-        return o < 5 ? getLang(t + "now") : o < 60 ? i(o, cur.lang[t + "sec"][0], cur.lang[t + "sec"][1]) : o < 3600 ? i(intval(o / 60), cur.lang[t + "min"][0], cur.lang[t + "min"][1]) : o < 86400 ? i(intval(o / 3600), cur.lang[t + "hour"][0], cur.lang[t + "hour"][1]) : o < 2592e3 ? i(intval(o / 86400), cur.lang[t + "day"][0], cur.lang[t + "day"][1]) : o < 31536e3 ? i(intval(o / 2592e3), cur.lang[t + "month"][0], cur.lang[t + "month"][1]) : i(intval(o / 31536e3), cur.lang[t + "year"][0], cur.lang[t + "year"][1])
+    isInCatalog: function(loc) {
+        loc = loc || Video.getLoc();
+        return loc[0] == 'video' && !loc.section;
     },
-    _createSorters: function(e) {
-        cur.videoCanSort && (cur.videoSorter && cur.videoSorter.destroy(), "album" == (e = e || Video._getCurrentSectionType()) && (e = Video.getLoc().section), cur.videoSorter = new GridSorter(ge("video_" + e + "_list"), "video_item_thumb", {
+
+    _getCurrentSectionType: function() {
+        if (cur.videoForcedSection) {
+            return cur.videoForcedSection;
+        } else if (Video.isInCatalog()) {
+            return 'catalog';
+        } else if (Video.isInAlbum(Video.getLoc().section)) {
+            return 'album';
+        } else {
+            return Video.getLoc().section || 'all';
+        }
+    },
+
+    onScroll: function() {
+        var curSection;
+
+        if (cur.getOwnerId && cur.albumsShowingAll[cur.getOwnerId()]) {
+            curSection = 'albums';
+        } else {
+            curSection = Video._getCurrentSectionType();
+
+            if (Video.getLoc().q || curSection == 'search' /*from choose box*/ ) {
+                if (isVisible(gpeByClass('ge_video_pane', 'ui_search_global_videos_load_more'))) {
+                    curSection = Video.VIDEO_GLOBAL_SEARCH_TYPE;
+                } else {
+                    curSection = Video.VIDEO_SEARCH_TYPE;
+                }
+            } else if (curSection == 'album') {
+                curSection = Video.getLoc().section;
+            }
+        }
+
+        var parentNode = curBox() ? curBox().bodyNode : undefined;
+        var curListEl = geByClass1('_video_' + curSection + '_list', parentNode);
+
+        if (curListEl) {
+            var curListPane = gpeByClass('ge_video_pane', curListEl);
+
+            var showMoreBtnEl = geByClass1('ui_load_more_btn', curListPane);
+            if (showMoreBtnEl) {
+                var ch = clientHeight(),
+                    scroll = scrollGetY(),
+                    btnPos = getXY(showMoreBtnEl);
+                if ((scroll + ch) > (btnPos[1] - ch / 2)) {
+                    Video.showMore(curSection, showMoreBtnEl);
+                }
+            }
+
+            if (curSection == Video.VIDEO_GLOBAL_SEARCH_TYPE) {
+                Video._updateLastSeenElement(curListEl);
+            }
+        }
+
+        Video._updateChooseFixedBottom();
+
+        Video._updateThumbsInView();
+    },
+
+    _initScrollFixedSearch: function(doFix) {
+        var searchEl = geByClass1('video_search_input');
+        toggleClass(searchEl, 'video_need_fix', doFix);
+
+        if (doFix) {
+            cur.fixSearchHeaderInfo = cur.fixSearchHeaderInfo || {
+                searchTop: getXY(searchEl)[1],
+                mainHeaderHeight: getSize('page_header_cont')[1],
+                videoContWidth: getSize(geByClass1('video_content'))[0],
+            }
+        }
+    },
+
+    getFormattedUpdatedTime: function(time) {
+        var timeNow = intval(vkNow() / 1000);
+        var diff = timeNow - time,
+            timeText = '';
+
+        function langVideoNumeric(num, words, arr) {
+            if (isArray(words) && num < words.length) {
+                return words[num];
+            }
+            return langNumeric(num, arr);
+        }
+
+        var langPrefix = 'video_added_';
+
+        if (diff < 5) {
+            timeText = getLang(langPrefix + 'now');
+        } else if (diff < 60) {
+            timeText = langVideoNumeric(diff, cur.lang[langPrefix + 'sec'][0], cur.lang[langPrefix + 'sec'][1]);
+        } else if (diff < 3600) {
+            timeText = langVideoNumeric(intval(diff / 60), cur.lang[langPrefix + 'min'][0], cur.lang[langPrefix + 'min'][1]);
+        } else if (diff < 24 * 3600) {
+            timeText = langVideoNumeric(intval(diff / 3600), cur.lang[langPrefix + 'hour'][0], cur.lang[langPrefix + 'hour'][1]);
+        } else if (diff < 30 * 24 * 3600) {
+            timeText = langVideoNumeric(intval(diff / (24 * 3600)), cur.lang[langPrefix + 'day'][0], cur.lang[langPrefix + 'day'][1]);
+        } else if (diff < 365 * 24 * 3600) {
+            timeText = langVideoNumeric(intval(diff / (30 * 24 * 3600)), cur.lang[langPrefix + 'month'][0], cur.lang[langPrefix + 'month'][1]);
+        } else {
+            timeText = langVideoNumeric(intval(diff / (365 * 24 * 3600)), cur.lang[langPrefix + 'year'][0], cur.lang[langPrefix + 'year'][1]);
+        }
+        return timeText;
+    },
+    _createSorters: function(type) {
+        if (!cur.videoCanSort) return;
+
+        if (cur.videoSorter) {
+            cur.videoSorter.destroy();
+        }
+
+        type = type || Video._getCurrentSectionType();
+        if (type == 'album') {
+            type = Video.getLoc().section;
+        }
+
+        cur.videoSorter = new GridSorter(ge('video_' + type + '_list'), 'video_item_thumb', {
             onReorder: Video._onReorder,
-            onDragOverElClass: "video_playlist_item",
-            onDragLeave: function(e, o) {
-                removeClass(e, "video_on_drag_over"), removeClass(o, "video_on_drag_over")
+            onDragOverElClass: 'video_playlist_item',
+            onDragLeave: function(overEl, dragEl) {
+                removeClass(overEl, 'video_on_drag_over');
+                removeClass(dragEl, 'video_on_drag_over');
             },
-            onDragEnter: function(e, o) {
-                addClass(e, "video_on_drag_over"), addClass(o, "video_on_drag_over")
+            onDragEnter: function(overEl, dragEl) {
+                addClass(overEl, 'video_on_drag_over');
+                addClass(dragEl, 'video_on_drag_over');
             },
-            onDragDrop: function(t, e) {
-                var o = attr(e, "data-id").split("_"),
-                    r = attr(t, "data-id");
-                return ajax.post("/al_video.php", {
-                    act: "a_add_to_playlist",
-                    oid: o[0],
-                    vid: o[1],
+            onDragDrop: function(overEl, dragEl) {
+                var vid = attr(dragEl, 'data-id').split('_');
+                var aid = attr(overEl, 'data-id');
+
+                ajax.post('/al_video.php', {
+                    act: 'a_add_to_playlist',
+                    oid: vid[0],
+                    vid: vid[1],
                     gid: cur.getOwnerId() < 0 ? -cur.getOwnerId() : 0,
                     add: 1,
-                    playlist_id: r,
+                    playlist_id: aid,
                     own: 1,
                     hash: cur.videoAddToPlaylistOwnHash
                 }, {
-                    onDone: function(e, o) {
-                        if (o && o[r]) {
-                            var i = Video.buildPlaylistEl(o[r]);
-                            domPN(t).replaceChild(i, t), Video._reinitSorters(), cur.albumsSorter.update()
+                    onDone: function(playlistsIds, playlists) {
+                        if (playlists && playlists[aid]) {
+                            var playlistEl = Video.buildPlaylistEl(playlists[aid]);
+                            domPN(overEl).replaceChild(playlistEl, overEl);
+                            Video._reinitSorters();
+                            cur.albumsSorter.update();
                         }
                     }
-                }), !0
+                });
+
+                return true; // cancel drag
             }
-        }))
+        });
     },
-    _reinitSorters: function(e) {
-        cur.videoCanSort && (clearTimeout(cur._rsto), cur._rsto = setTimeout(function() {
-            cur.videoSorter ? e ? cur.videoSorter.disable() : cur.videoSorter.enable() : Video._createSorters()
-        }))
+
+    _reinitSorters: function(disable) {
+        if (!cur.videoCanSort) return;
+
+        clearTimeout(cur._rsto);
+        cur._rsto = setTimeout(function() {
+            if (cur.videoSorter) {
+                if (disable) {
+                    cur.videoSorter.disable();
+                } else {
+                    cur.videoSorter.enable();
+                }
+            } else {
+                Video._createSorters();
+            }
+        });
     },
-    _saveHistoryAction: function(e, o) {
+
+    _saveHistoryAction: function(videoOwnerId, videoId) {
         if (Video.isInSearch() && cur.videoGlobalSearchQuery) {
-            var i = cur.videoGlobalSearchQuery + Video._buildFiltersSearchStr(),
-                t = cur.globalSearchResults[i];
-            t && !cur.videoSearchFilters.notsafe && uiSearch.saveHistorySearch(this.searchInputEl, cur.videoGlobalSearchQuery, e, o, t.count, t.countHash)
+            var globalKey = cur.videoGlobalSearchQuery + Video._buildFiltersSearchStr();
+            var globalRes = cur.globalSearchResults[globalKey];
+
+            if (globalRes && !cur.videoSearchFilters.notsafe) {
+                uiSearch.saveHistorySearch(this.searchInputEl, cur.videoGlobalSearchQuery, videoOwnerId, videoId, globalRes.count, globalRes.countHash);
+            }
         }
     },
-    onVideoAdd: function(e, o, _, v, i) {
-        var t = gpeByClass("_video_item", o),
-            h = intval(toggleClass(t, "video_added")),
-            r = {};
-        return r = h ? {
-            playlist_id: -2
-        } : {
-            playlists: 0
-        }, Video._saveHistoryAction(_, v), ajax.post("/al_video.php", extend({
-            act: "a_add_to_playlist",
-            oid: _,
-            vid: v,
-            add: intval(h),
-            hash: i
-        }, r), {
+
+    onVideoAdd: function(ev, btn, oid, vid, hash) {
+        var videoItemEl = gpeByClass('_video_item', btn),
+            isAdd = intval(toggleClass(videoItemEl, 'video_added'));
+
+        var params = {};
+        if (isAdd) {
+            params = {
+                playlist_id: -2 // all playlist
+            };
+        } else {
+            params = {
+                playlists: 0
+            };
+        }
+
+        Video._saveHistoryAction(oid, vid);
+
+        ajax.post('/al_video.php', extend({
+            act: 'a_add_to_playlist',
+            oid: oid,
+            vid: vid,
+            add: intval(isAdd),
+            hash: hash
+        }, params), {
             onFail: function() {
-                h && (window.tooltips && tooltips.destroyAll(), removeClass(t, "video_added"))
-            },
-            onDone: function(e, o, i) {
-                var t = cur.currentSortings && (!cur.currentSortings.all || "default" == cur.currentSortings.all),
-                    r = !!cur._preloadedPages && geByClass1("_video_list_my_all", cur._preloadedPages.all),
-                    d = !1;
-                if (r) {
-                    var a = geByClass1("ge_video_item_" + _ + "_" + v, r);
-                    a && re(a), d = !!a, h && t && r.insertBefore(Video.buildVideoEl(i), r.firstChild)
+                if (isAdd) {
+                    window.tooltips && tooltips.destroyAll();
+                    removeClass(videoItemEl, 'video_added');
                 }
-                if (cur.silentLoaded && cur.silentLoaded[vk.id] && cur.silentLoaded[vk.id].all) {
-                    var n = cur.silentLoaded[vk.id].all;
-                    if (h) t && (n.unshift(i), Video._reindex(n));
-                    else
-                        for (var c = 0, s = n.length; c < s; c++)
-                            if (n[c][0] == _ && n[c][1] == v) {
-                                n.splice(c, 1);
-                                break
-                            } if (cur.videosCount[vk.id]) {
-                        var l = h ? 1 : -1;
-                        1 == l && d && (l = 0);
-                        var u = cur.videosCount[vk.id].all = Math.max(0, (cur.videosCount[vk.id].all || 0) + l);
-                        Video.updateTabCounter(u)
+            },
+            onDone: function(playlists, affectedPlaylists, video) {
+                // simple dynamic update in dom
+                var isDefaultSorting = cur.currentSortings && (!cur.currentSortings['all'] || cur.currentSortings['all'] == 'default');
+                var allMyListEl = cur._preloadedPages ? geByClass1('_video_list_my_all', cur._preloadedPages['all']) : false;
+                var wasAlreadyInList = false;
+                if (allMyListEl) {
+                    var itemEl = geByClass1('ge_video_item_' + oid + '_' + vid, allMyListEl);
+                    itemEl && re(itemEl);
+
+                    wasAlreadyInList = !!itemEl;
+
+                    if (isAdd) {
+                        isDefaultSorting && allMyListEl.insertBefore(Video.buildVideoEl(video), allMyListEl.firstChild);
+                    }
+                }
+
+                // in objects
+                if (cur.silentLoaded && cur.silentLoaded[vk.id] && cur.silentLoaded[vk.id]['all']) {
+                    var allVideos = cur.silentLoaded[vk.id]['all'];
+                    if (isAdd) {
+                        if (isDefaultSorting) {
+                            allVideos.unshift(video);
+                            Video._reindex(allVideos);
+                        }
+                    } else {
+                        for (var i = 0, len = allVideos.length; i < len; i++) {
+                            if (allVideos[i][0] == oid && allVideos[i][1] == vid) {
+                                allVideos.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (cur.videosCount[vk.id]) {
+                        var increment = isAdd ? 1 : -1;
+                        if (increment == 1 && wasAlreadyInList) {
+                            increment = 0;
+                        }
+
+                        var count = cur.videosCount[vk.id]['all'] = Math.max(0, (cur.videosCount[vk.id]['all'] || 0) + increment);
+
+                        Video.updateTabCounter(count);
                     }
                 }
             }
-        }), window.tooltips && tooltips.destroyAll(), cancelEvent(e)
+        });
+
+        window.tooltips && tooltips.destroyAll(); // to reset 'add to playlist' tooltip
+
+        return cancelEvent(ev);
     },
-    updateTabCounter: function(e) {
-        var o = ge("video_tab_all");
-        o && (geByClass1("ui_tab_count", o).innerHTML = e)
+
+    updateTabCounter: function(count) {
+        var allTab = ge('video_tab_all');
+        if (allTab) {
+            var allTabCounter = geByClass1('ui_tab_count', allTab);
+            allTabCounter.innerHTML = count;
+        }
     },
-    onVideoMove: function(e, o, i, t, r) {
-        return showBox("/al_video.php", {
-            act: "video_playlists_box",
+
+    onVideoMove: function(ev, btn, oid, vid, hash) {
+        showBox('/al_video.php', {
+            act: 'video_playlists_box',
             target_id: cur.getOwnerId(),
-            oid: i,
-            vid: t,
-            hash: r
+            oid: oid,
+            vid: vid,
+            hash: hash
         }, {
             dark: 1
-        }), cancelEvent(e)
+        });
+
+        return cancelEvent(ev);
     },
-    _showProgressPanel: function(e) {
-        var o = se('<div class="video_delete_progress _video_delete_progress"><div class="round_spinner"></div></div>');
-        return e.appendChild(o), o
+
+    _showProgressPanel: function(itemEl) {
+        var progressEl = se('<div class="video_delete_progress _video_delete_progress"><div class="round_spinner"></div></div>');
+        itemEl.appendChild(progressEl);
+        return progressEl;
     },
-    onVideoDelete: function(e, o, i, t, r) {
-        var d = gpeByClass("_video_item", o),
-            a = (attr(d, "data-id"), Video._getCurrentSectionType());
-        addClass(d, "video_deleted");
-        var n = Video._showProgressPanel(d),
-            c = "album" == a ? Video._getSectionAlbumId() : -2;
-        return cur.videoRecentlyRemoved || (cur.videoRecentlyRemoved = {}), cur.videoRecentlyRemoved[i + "_" + t] = !0, ajax.post("/al_video.php", {
-            act: "a_delete_video",
-            oid: i,
-            vid: t,
+
+    onVideoDelete: function(ev, btn, oid, vid, hash) {
+        var itemEl = gpeByClass('_video_item', btn),
+            videoId = attr(itemEl, 'data-id'),
+            section = Video._getCurrentSectionType();
+
+        addClass(itemEl, 'video_deleted');
+        var progressEl = Video._showProgressPanel(itemEl);
+
+        var playlistId = section == 'album' ? Video._getSectionAlbumId() : -2;
+
+        if (!cur.videoRecentlyRemoved) {
+            cur.videoRecentlyRemoved = {};
+        }
+        cur.videoRecentlyRemoved[oid + '_' + vid] = true;
+
+        ajax.post('/al_video.php', {
+            act: 'a_delete_video',
+            oid: oid,
+            vid: vid,
             from: cur.oid,
-            pl_id: c,
-            hash: r
+            pl_id: playlistId,
+            hash: hash
         }, {
-            onDone: function(e) {
-                re(n), d.appendChild(se(e));
-                var o = data(d, "restoreTO");
-                clearTimeout(o), o = setTimeout(function() {
-                    re(geByClass1("_video_restore_act", d))
-                }, 6e4), data(d, "restoreTO", o)
+            onDone: function(restoreHtml) {
+                re(progressEl);
+                itemEl.appendChild(se(restoreHtml));
+
+                var restoreTO = data(itemEl, 'restoreTO');
+                clearTimeout(restoreTO);
+                restoreTO = setTimeout(function() {
+                    re(geByClass1('_video_restore_act', itemEl));
+                }, 1000 * 60);
+                data(itemEl, 'restoreTO', restoreTO);
             }
-        }), Video._reinitSorters(!0), cancelEvent(e)
+        });
+
+        Video._reinitSorters(true);
+
+        return cancelEvent(ev);
     },
-    restoreVideo: function(e, o, i, t, r) {
-        var d = gpeByClass("_video_item", e),
-            a = gpeByClass("_video_restore", e),
-            n = Video._showProgressPanel(d),
-            c = Video._getCurrentSectionType();
-        re(a);
-        var s = "album" == c ? Video._getSectionAlbumId() : -2;
-        ajax.post("/al_video.php", {
-            act: "a_restore_video",
-            from: t,
-            video_id: i,
-            pl_id: s,
-            hash: r
+
+    restoreVideo: function(btn, type, videoId, from, hash) {
+        var itemEl = gpeByClass('_video_item', btn);
+        var restoreEl = gpeByClass('_video_restore', btn);
+        var progressEl = Video._showProgressPanel(itemEl);
+        var section = Video._getCurrentSectionType();
+
+        re(restoreEl);
+        var playlistId = section == 'album' ? Video._getSectionAlbumId() : -2;
+
+        ajax.post('/al_video.php', {
+            act: 'a_restore_video',
+            from: from,
+            video_id: videoId,
+            pl_id: playlistId,
+            hash: hash
         }, {
             onDone: function() {
-                removeClass(d, "video_deleted"), re(n)
+                removeClass(itemEl, 'video_deleted');
+                re(progressEl);
             }
-        }), delete cur.videoRecentlyRemoved[i]
+        });
+
+        delete cur.videoRecentlyRemoved[videoId];
     },
-    onVideoEdit: function(e, o, i, t, r) {
-        return cur.videoEditItem = gpeByClass("video_item", o), window.Videoview && Videoview.hidePlayer(), showBox("al_video.php", {
-            act: "edit_box",
-            vid: t,
-            oid: i
+
+    onVideoEdit: function(ev, btn, oid, vid, hash) {
+        cur.videoEditItem = gpeByClass('video_item', btn);
+
+        window.Videoview && Videoview.hidePlayer();
+        var box = showBox('al_video.php', {
+            act: 'edit_box',
+            vid: vid,
+            oid: oid
         }, {
             dark: 1
-        }).setOptions({
+        });
+        box.setOptions({
             onHide: function() {
-                window.Videoview && Videoview.showPlayer()
+                window.Videoview && Videoview.showPlayer();
             }
-        }), cancelEvent(e)
+        });
+
+        return cancelEvent(ev);
     },
-    switchChooserToOwner: function(e) {
-        var o = curBox(),
-            i = !!cur.isSnippetVideoSelection,
-            t = {
-                to_id: e,
-                switched: 1
-            };
-        i && (t.snippet_video = 1), showBox("al_video.php", extend(t, {
-            act: "a_choose_video_box"
+
+    switchChooserToOwner: function(toOwnerId) {
+        var box = curBox();
+        var isSnippetVideo = !!cur.isSnippetVideoSelection;
+
+        var boxRequestParams = {
+            to_id: toOwnerId,
+            switched: 1
+        };
+        if (isSnippetVideo) {
+            boxRequestParams.snippet_video = 1;
+        }
+
+        function showCachedBox() {
+            showBox('al_video.php', extend(boxRequestParams, {
+                act: 'a_choose_video_box'
+            }), {
+                cache: 1,
+                dark: 1,
+                onDone: function() {
+                    if (!cur.videoUploadParams.vars.is_wall_upload_allowed) {
+                        re('video_choose_upload_area_wrap');
+                    }
+                },
+            });
+        }
+
+        showBox('al_video.php', extend(boxRequestParams, {
+            act: 'a_choose_video_box'
         }), {
-            showProgress: o.showCloseProgress.bind(o),
-            hideProgress: o.hideCloseProgress.bind(o),
+            showProgress: box.showCloseProgress.bind(box),
+            hideProgress: box.hideCloseProgress.bind(box),
             cache: 1,
             dark: 1,
             onDone: function() {
-                curBox().hide(), showBox("al_video.php", extend(t, {
-                    act: "a_choose_video_box"
-                }), {
-                    cache: 1,
-                    dark: 1,
-                    onDone: function() {
-                        cur.videoUploadParams.vars.is_wall_upload_allowed || re("video_choose_upload_area_wrap")
-                    }
-                })
+                curBox().hide();
+                showCachedBox();
+            },
+        });
+    },
+
+    chooseBoxBack: function() {
+        cur.videoChoosePrevSection = cur.videoChoosePrevSection || 'all';
+        if (cur.videoChoosePrevSection.indexOf('album_') == 0) {
+            cur.videoChoosePrevSection = 'albums';
+        }
+        nav.go('/videos?section=' + cur.videoChoosePrevSection);
+    },
+
+    initChooseBox: function(isNoteEdit, isReview, toMail, curOwnerId, defaultTitle, blockPersonal, isSnippetVideo) {
+        cur.found = {};
+        cur.currentSortings = {};
+        cur._preloadedPages = {};
+        cur.videoSearchFilters = {};
+        cur.chosenVideos = [];
+        cur.albumsShowingAll = {};
+        cur.isNoteEdit = isNoteEdit;
+        cur.videoShowWindow = {};
+        cur.isSnippetVideoSelection = isSnippetVideo;
+
+        var box = curBox();
+
+        var oldOwner = cur.getOwnerId;
+        cur.getOwnerId = function() {
+            return curOwnerId;
+        }
+        box.setOptions({
+            onHideAttempt: function() {
+                cur.getOwnerId = oldOwner;
+                return true;
             }
         })
-    },
-    chooseBoxBack: function() {
-        cur.videoChoosePrevSection = cur.videoChoosePrevSection || "all", 0 == cur.videoChoosePrevSection.indexOf("album_") && (cur.videoChoosePrevSection = "albums"), nav.go("/videos?section=" + cur.videoChoosePrevSection)
-    },
-    initChooseBox: function(e, i, o, s, t, r, d) {
-        cur.found = {}, cur.currentSortings = {}, cur._preloadedPages = {}, cur.videoSearchFilters = {}, cur.chosenVideos = [], cur.albumsShowingAll = {}, cur.isNoteEdit = e, cur.videoShowWindow = {}, cur.isSnippetVideoSelection = d;
-        var l = curBox(),
-            a = cur.getOwnerId;
 
-        function u() {
-            l.setOptions({
+        function updateBox() {
+            box.setOptions({
                 width: 631,
-                bodyStyle: "padding: 0",
-                hideButtons: !0
-            }), ge("box_layer_wrap").scrollTop = 0
+                bodyStyle: 'padding: 0',
+                hideButtons: true
+            });
+            ge('box_layer_wrap').scrollTop = 0;
         }
 
-        function _() {
-            each(Video.AVAILABLE_TABS, function(e, o) {
-                hide("video_subtab_pane_" + o)
-            }), hide(geByClass1("video_subtab_pane_album"))
+        function hideAllPanes() {
+            each(Video.AVAILABLE_TABS, function(i, s) {
+                hide('video_subtab_pane_' + s);
+            });
+            hide(geByClass1('video_subtab_pane_album')); // current opened album
         }
 
-        function v() {
-            l.setOptions({
-                title: '<div class="back" onclick="Video.chooseBoxBack();">' + getLang("video_choose_box_back_to_videos") + "</div>",
-                bodyStyle: "padding: 0",
+        function showBackButton() {
+            box.setOptions({
+                title: '<div class="back" onclick="Video.chooseBoxBack();">' + getLang('video_choose_box_back_to_videos') + '</div>',
+                bodyStyle: 'padding: 0',
                 noRefreshCoords: 1
-            })
+            });
         }
 
-        function h() {
-            var e = t;
-            if (!r && !i && cur.videoSwitchOwnerId) {
-                var o = s == vk.id ? getLang("video_choose_wall_to_group_videos") : getLang("video_choose_wall_to_my_videos");
-                e += '<span class="divider">|</span><a class="toggle" onclick="Video.switchChooserToOwner(' + (s == vk.id ? cur.videoSwitchOwnerId : vk.id) + ')">' + o + "</a>"
+        function showDefaultTitle() {
+            var title = defaultTitle;
+            if (!blockPersonal && !isReview && cur.videoSwitchOwnerId) {
+                var text = (curOwnerId == vk.id) ? getLang('video_choose_wall_to_group_videos') : getLang('video_choose_wall_to_my_videos');
+                var switchOwnerId = (curOwnerId == vk.id) ? cur.videoSwitchOwnerId : vk.id;
+                title += '<span class="divider">|</span><a class="toggle" onclick="Video.switchChooserToOwner(' + switchOwnerId + ')">' + text + '</a>';
             }
-            l.getOptions().defaultTitle && (e = l.getOptions().defaultTitle), l.setOptions({
-                title: e,
-                grey: i
-            })
+
+            if (box.getOptions().defaultTitle) {
+                title = box.getOptions().defaultTitle;
+            }
+
+            box.setOptions({
+                title: title,
+                grey: isReview
+            });
         }
 
-        function g() {
-            curBox() && each(geByClass("video_item", curBox().bodyNode), function() {
-                var e = geByClass1("media_check_btn_wrap", this),
-                    o = this.getAttribute("data-id");
-                toggleClass(e, "checked", -1 != cur.chosenVideos.indexOf(o))
-            })
-        }
-        cur.getOwnerId = function() {
-            return s
-        }, l.setOptions({
-            onHideAttempt: function() {
-                return cur.getOwnerId = a, !0
+        function updateCheckedVideos() {
+            if (curBox()) {
+                each(geByClass('video_item', curBox().bodyNode), function() {
+                    var checkEl = geByClass1('media_check_btn_wrap', this);
+                    var vid = this.getAttribute('data-id');
+                    toggleClass(checkEl, 'checked', cur.chosenVideos.indexOf(vid) != -1);
+                });
             }
-        }), cur.nav.push(function(e, o, i, t) {
-            if (!t.filtersChanged && 1 == Object.keys(i).length && i[0] && 0 != i[0].indexOf("video") && !t.fromSearch) return !0;
-            if (e[0] && !e.section && i[0] != "videos" + s) return !0;
-            hide("global_prg");
-            var r = geByClass1("video_default_tabs", l.bodyNode),
-                d = geByClass1("video_subtab_pane_album", l.bodyNode),
-                a = e.section ? e.section : "all";
-            Video._prepareSearchFilters(i);
-            var n = e.section ? "" : i.q || val(cur.searchInputEl);
-            if (n ? (trim(val(cur.searchInputEl)), trim(n), a = "search", t.fromSearch || t.globalQuery || (t.globalQuery = n), Video.doSearch(n, t.globalQuery), v(), Video._updateChooseFixedBottom()) : (Video.inputVal(cur.searchInputEl, ""), Video.doSearch("")), cur.videoForcedSection = a, -1 != Video.AVAILABLE_TABS.indexOf(a)) _(), show("video_subtab_pane_" + a), show(r), hide("albumPane"), h(), u(), "albums" != (cur.videoChoosePrevSection = a) && Video.loadSilent(a), Video.updateEmptyPlaceholder(a);
-            else if (a && 0 == a.indexOf("album_")) {
-                var c = a.split("_")[1];
-                showGlobalPrg(ge("video_playlist_item_" + c), {
-                    cls: "progress_inv_img",
+        }
+
+        cur.nav.push(function videoChooseBoxNav(changed, oldLoc, newLoc, opts) {
+            if (!opts.filtersChanged && Object.keys(newLoc).length == 1 && newLoc[0] && newLoc[0].indexOf('video') != 0 && !opts.fromSearch) {
+                return true;
+            }
+
+            if (changed[0] && !changed.section) {
+                if (newLoc[0] != 'videos' + curOwnerId) { // prevent navigation when goiind to ALL video tab
+                    return true;
+                }
+            }
+
+            hide('global_prg');
+
+            var videoTabs = geByClass1('video_default_tabs', box.bodyNode);
+            var albumPane = geByClass1('video_subtab_pane_album', box.bodyNode);
+
+            var newSection = changed.section ? changed.section : 'all';
+
+            Video._prepareSearchFilters(newLoc);
+
+            var q = changed.section ? '' : (newLoc.q || val(cur.searchInputEl));
+            if (q) {
+                if (trim(val(cur.searchInputEl)) != trim(q)) {
+                    //val(cur.searchInputEl, trim(q));
+                }
+
+                newSection = 'search';
+
+                if (!opts.fromSearch && !opts.globalQuery) {
+                    opts.globalQuery = q;
+                }
+
+                Video.doSearch(q, opts.globalQuery);
+
+                showBackButton();
+                Video._updateChooseFixedBottom();
+
+            } else {
+                Video.inputVal(cur.searchInputEl, '');
+                Video.doSearch('');
+            }
+
+            cur.videoForcedSection = newSection;
+
+            if (Video.AVAILABLE_TABS.indexOf(newSection) != -1) {
+                hideAllPanes();
+
+                show('video_subtab_pane_' + newSection);
+                show(videoTabs);
+                hide('albumPane');
+
+                showDefaultTitle();
+
+                updateBox();
+
+                cur.videoChoosePrevSection = newSection;
+
+                if (newSection != 'albums') {
+                    Video.loadSilent(newSection);
+                }
+
+                Video.updateEmptyPlaceholder(newSection);
+
+            } else if (newSection && newSection.indexOf('album_') == 0) {
+                var albumId = newSection.split('_')[1];
+
+                showGlobalPrg(ge('video_playlist_item_' + albumId), {
+                    cls: 'progress_inv_img',
                     w: 46,
                     h: 16,
                     shift: [0, -22],
-                    zIndex: 1e3
-                }), Video._addPendingAction(a, function() {
-                    v(), _(), hide("global_prg"), hide(r), d.id = "video_subtab_pane_" + a;
-                    var e = geByClass1("video_items_list", d);
-                    e.id = "video_" + a + "_list", addClass(e, "_video_" + a + "_list"), e.innerHTML = "", show(d);
-                    var o = cur.getOwnerId();
-                    cur.videoShowWindow = cur.videoShowWindow || {}, cur.videoShowWindow[o] = cur.videoShowWindow[o] || {}, cur.videoShowWindow[o][a] = !1, Video.showMore(a, geByClass1("ui_load_more_btn", ge("video_subtab_pane_album"))), u(), g(), Video._updateChooseFixedBottom()
-                }), cur.videoChoosePrevSection = a, Video.loadSilent(a)
+                    zIndex: 1000
+                });
+
+                Video._addPendingAction(newSection, function() {
+                    showBackButton();
+
+                    hideAllPanes();
+                    hide('global_prg');
+                    hide(videoTabs);
+
+                    albumPane.id = 'video_subtab_pane_' + newSection;
+                    var itemsList = geByClass1('video_items_list', albumPane);
+                    itemsList.id = 'video_' + newSection + '_list';
+                    addClass(itemsList, '_video_' + newSection + '_list');
+                    itemsList.innerHTML = '';
+
+                    show(albumPane);
+
+                    var oid = cur.getOwnerId();
+
+                    cur.videoShowWindow = cur.videoShowWindow || {};
+                    cur.videoShowWindow[oid] = cur.videoShowWindow[oid] || {};
+                    cur.videoShowWindow[oid][newSection] = false;
+
+                    Video.showMore(newSection, geByClass1('ui_load_more_btn', ge('video_subtab_pane_album')));
+
+                    updateBox();
+                    updateCheckedVideos();
+
+                    Video._updateChooseFixedBottom();
+                });
+
+                cur.videoChoosePrevSection = newSection;
+                Video.loadSilent(newSection);
             }
-            return g(), !1
-        }), cur.chooseVideoToMail = o, cur.isCurrentVideoLayer = !0, Video.loadSilent(), u(), addEvent(ge("box_layer_wrap"), "scroll", Video.onScroll);
-        var n = boxLayerWrap.scrollTop;
-        elfocus(geByClass1("_scroll_node", l.bodyNode)), boxLayerWrap.scrollTop = n, Video.initSearch(), h(), i || (cur.chooseVideoMedia = function(e, o, i) {
-            var t = e;
-            hasClass(t, "media_check_btn_wrap") ? cur.cancelClick = !0 : t = geByClass1("media_check_btn_wrap", t), toggleClass(t, "checked");
-            var r;
-            if (0 <= (r = cur.chosenVideos.indexOf(o))) cur.chosenVideos.splice(r, 1);
-            else {
-                if (10 <= cur.chosenVideos.length) return;
-                cur.chosenVideos.push(o)
-            }
-            if (1 == cur.chosenVideos.length && !i) return Video.doAttachSelectedVideos(e), !1;
-            var d = ge("video_choosebox_bottom");
-            if (0 < cur.chosenVideos.length) {
-                show(d);
-                var a = cur.chooseVideoAdd ? cur.lang.video_add_videos : cur.lang.global_attach_videos;
-                val(geByClass1("video_choosebox_attach_btn", d), langNumeric(cur.chosenVideos.length, a)), Video._updateChooseFixedBottom()
-            } else hide(d);
-            return toggleClass(ge("video_choose_box"), "with_bottom_fixed", isVisible(d)), !1
-        }), window.uiScrollBox && uiScrollBox.init(curBox(), {
-            onHide: function() {
-                hide("global_prg"), cur.nav.pop(), removeEvent(ge("box_layer_wrap"), "scroll", Video.onScroll), cur.isCurrentVideoLayer = !1
-            }
-        })
-    },
-    doAttachSelectedVideos: function(e, o) {
-        hasClass(e, "flat_button") ? lockButton(e) : showGlobalPrg(geByClass1("video_item_thumb_wrap", e) || e, {
-            cls: "progress_inv_img",
-            w: 46,
-            h: 16,
-            zIndex: 1e3
+
+            updateCheckedVideos();
+            return false;
+
         });
-        var i = function() {
-            hasClass(e, "flat_button") && unlockButton(e), hide("global_prg")
+
+        cur.chooseVideoToMail = toMail;
+        cur.isCurrentVideoLayer = true;
+        Video.loadSilent();
+
+        updateBox();
+        addEvent(ge('box_layer_wrap'), 'scroll', Video.onScroll);
+
+        var oldScroll = boxLayerWrap.scrollTop;
+        elfocus(geByClass1('_scroll_node', box.bodyNode));
+        boxLayerWrap.scrollTop = oldScroll;
+
+        Video.initSearch();
+        showDefaultTitle();
+
+        if (!isReview) {
+            cur.chooseVideoMedia = function(ref, videoId, dontHide) {
+                var btn = ref;
+
+                if (!hasClass(btn, 'media_check_btn_wrap')) {
+                    btn = geByClass1('media_check_btn_wrap', btn);
+                } else {
+                    cur.cancelClick = true;
+                }
+
+                toggleClass(btn, 'checked');
+
+                var index = 0;
+                if ((index = cur.chosenVideos.indexOf(videoId)) >= 0) {
+                    cur.chosenVideos.splice(index, 1);
+                } else {
+                    if (cur.chosenVideos.length >= 10) return;
+
+                    cur.chosenVideos.push(videoId);
+                }
+
+                if (cur.chosenVideos.length == 1 && !dontHide) {
+                    Video.doAttachSelectedVideos(ref);
+                    return false;
+                }
+
+                var bottomEl = ge('video_choosebox_bottom');
+                if (cur.chosenVideos.length > 0) {
+                    show(bottomEl);
+                    var text = cur.chooseVideoAdd ? cur.lang.video_add_videos : cur.lang.global_attach_videos;
+                    val(geByClass1('video_choosebox_attach_btn', bottomEl), langNumeric(cur.chosenVideos.length, text));
+                    Video._updateChooseFixedBottom();
+                } else {
+                    hide(bottomEl);
+                }
+
+                toggleClass(ge('video_choose_box'), 'with_bottom_fixed', isVisible(bottomEl));
+
+                return false;
+            };
+        }
+
+        window.uiScrollBox && uiScrollBox.init(curBox(), {
+            onHide: function() {
+                hide('global_prg');
+                cur.nav.pop();
+                removeEvent(ge('box_layer_wrap'), 'scroll', Video.onScroll);
+                cur.isCurrentVideoLayer = false;
+            }
+        });
+    },
+
+    doAttachSelectedVideos: function(btn, videoIds) {
+        if (hasClass(btn, 'flat_button')) {
+            lockButton(btn);
+        } else {
+            showGlobalPrg(geByClass1('video_item_thumb_wrap', btn) || btn, {
+                cls: 'progress_inv_img',
+                w: 46,
+                h: 16,
+                zIndex: 1000
+            });
+        }
+
+        var onDone = function() {
+            if (hasClass(btn, 'flat_button')) {
+                unlockButton(btn);
+            }
+
+            hide('global_prg');
         };
-        if (cur.chooseVideoAdd) return cur.chooseVideoAdd(cur.chosenVideos, "", i);
-        Video.attachVideos(cur.chosenVideos, i)
+
+        if (cur.chooseVideoAdd) {
+            return cur.chooseVideoAdd(cur.chosenVideos, '', onDone);
+        }
+
+        Video.attachVideos(cur.chosenVideos, onDone);
     },
-    attachVideos: function(e, o) {
-        ajax.post("al_video.php", {
-            act: "a_videos_attach_info",
+
+    attachVideos: function(videos, onDone) {
+        ajax.post('al_video.php', {
+            act: 'a_videos_attach_info',
             to_mail: intval(cur.chooseVideoToMail),
-            videos: e.join(",")
+            videos: videos.join(',')
         }, {
-            onDone: function(e) {
-                if (o && o(), cur.isSnippetVideoSelection && cur.chooseSnippetVideo) return each(e, function(e, o) {
-                    return cur.chooseSnippetVideo(e, o), !1
-                }), void(curBox() && curBox().hide());
-                var i = 0;
-                each(e, function(e, o) {
-                    cur.isNoteEdit && window.editorChooseVideo ? window.editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, i, 1 < cur.chosenVideos.length), i++
-                }), curBox() && 1 < cur.chosenVideos.length && curBox().hide()
-            }
-        })
+            onDone: function(data) {
+                if (onDone) onDone();
+                if (cur.isSnippetVideoSelection && cur.chooseSnippetVideo) {
+                    each(data, function(vid, info) {
+                        cur.chooseSnippetVideo(vid, info);
+                        return false;
+                    });
+                    if (curBox()) {
+                        curBox().hide();
+                    }
+                    return;
+                }
+
+                var index = 0;
+                each(data, function(vid, info) {
+                    if (cur.isNoteEdit && window.editorChooseVideo) {
+                        window.editorChooseVideo(info.thumb, info.name, info.duration, '/video' + vid, vid);
+                    } else {
+                        cur.chooseMedia('video', vid, info, index, cur.chosenVideos.length > 1);
+                    }
+
+                    index++;
+                });
+
+                if (curBox() && cur.chosenVideos.length > 1) {
+                    curBox().hide();
+                }
+            },
+        });
     },
+
     _updateChooseFixedBottom: function() {
-        var e = curBox(),
-            o = ge("video_choosebox_bottom");
-        if (e && o) {
-            var i = gpeByClass("box_layout", e.bodyNode);
-            0 < getSize(i)[1] + (getXY(i)[1] - scrollGetY()) - clientHeight() ? addClass(o, "fixed") : removeClass(o, "fixed")
-        }
-    },
-    _addPendingAction: function(e, o) {
-        var i = cur.getOwnerId ? cur.getOwnerId() : cur.oid;
-        if (cur.videoPendingAction = cur.videoPendingAction || {}, cur.videoPendingAction[i] = cur.videoPendingAction[i] || {}, e) {
-            var t = cur.videoPendingAction[i][e];
-            cur.videoPendingAction[i][e] = function() {
-                o(), t && t()
+        var box = curBox();
+        var bottomEl = ge('video_choosebox_bottom');
+
+        if (box && bottomEl) {
+            var boxLayout = gpeByClass('box_layout', box.bodyNode);
+            var size = getSize(boxLayout)[1];
+            var pos = getXY(boxLayout)[1] - scrollGetY();
+
+            if ((size + pos - clientHeight()) > 0) {
+                addClass(bottomEl, 'fixed');
+            } else {
+                removeClass(bottomEl, 'fixed');
             }
         }
     },
-    _callPendingAction: function(e) {
-        Video._addPendingAction();
-        var o = Video.getCurOwnerId();
-        cur.videoPendingAction[o][e] && cur.videoPendingAction[o][e](), cur.videoPendingAction[o][e] = !1
+
+    _addPendingAction: function(section, func) {
+        var oid = cur.getOwnerId ? cur.getOwnerId() : cur.oid;
+        cur.videoPendingAction = cur.videoPendingAction || {};
+        cur.videoPendingAction[oid] = cur.videoPendingAction[oid] || {};
+
+        if (section) {
+            var currFunc = cur.videoPendingAction[oid][section];
+            cur.videoPendingAction[oid][section] = function() {
+                func();
+                currFunc && currFunc();
+            };
+        }
     },
-    _clearPendingAction: function(e) {
+
+    _callPendingAction: function(section) {
         Video._addPendingAction();
-        var o = Video.getCurOwnerId();
-        cur.videoPendingAction[o][e] = !1
+        var oid = Video.getCurOwnerId();
+
+        cur.videoPendingAction[oid][section] && cur.videoPendingAction[oid][section]();
+        cur.videoPendingAction[oid][section] = false;
     },
-    toggleTooltip: function(e, o) {
-        showTooltip(e, {
-            appendParentCls: "videocat_row",
+
+    _clearPendingAction: function(section) {
+        Video._addPendingAction(); // ensure objects are exist
+        var oid = Video.getCurOwnerId();
+        cur.videoPendingAction[oid][section] = false;
+    },
+
+    toggleTooltip: function(ref, text) {
+        showTooltip(ref, {
+            appendParentCls: 'videocat_row',
             black: 1,
-            text: o,
+            text: text,
             shift: [9, 18, 3],
-            needLeft: !0
-        })
+            needLeft: true
+        });
     },
-    toggleAddTooltip: function(e, o, i) {
-        var t = gpeByClass("_video_item", e);
-        Video.toggleTooltip(e, hasClass(t, "video_added") ? i : o)
+    toggleAddTooltip: function(ref, textAdd, textAdded) {
+        var itemEl = gpeByClass('_video_item', ref);
+        Video.toggleTooltip(ref, hasClass(itemEl, 'video_added') ? textAdded : textAdd);
     },
-    show: function(e, o, i, t) {
-        if (cur.articleEditorLayer) return cancelEvent(e);
+
+    show: function(e, videoId, opts, obj) {
+        if (cur.articleEditorLayer) {
+            return cancelEvent(e)
+        }
+
         if (cur.isCurrentChooseVideoBox) {
-            var r = window.event,
-                d = o.split("_");
-            return ajax.post("al_video.php", {
-                act: "a_video_photo_sizes",
-                oid: d[0],
-                vid: d[1],
+            var lastEvent = window.event;
+            var videoIds = videoId.split('_');
+            ajax.post('al_video.php', {
+                act: 'a_video_photo_sizes',
+                oid: videoIds[0],
+                vid: videoIds[1],
                 type: cur.isCurrentChooseVideoBox
             }, {
                 onDone: function() {
-                    switch (window.event = r || window.event, cur.isCurrentChooseVideoBox) {
-                        case "video_add":
-                            cur.chooseVideoAdd(o, arguments[0]);
+                    window.event = lastEvent || window.event;
+                    switch (cur.isCurrentChooseVideoBox) {
+                        case 'video_add':
+                            cur.chooseVideoAdd(videoId, arguments[0]);
                             break;
-                        case "wiki_editor":
-                            editorChooseVideo(arguments[0], arguments[1], arguments[2], "video" + o, o);
+                        case 'wiki_editor':
+                            editorChooseVideo(arguments[0], arguments[1], arguments[2], 'video' + videoId, videoId);
                             break;
-                        case "video_choose":
-                            cur.chooseMedia("video", o, arguments[0])
+                        case 'video_choose':
+                            cur.chooseMedia('video', videoId, arguments[0]);
+                            break;
                     }
                 }
-            }), cancelEvent(e), !1
-        }
-        if (t && hasClass(t, "video_row_deleted")) return !1;
-        if (!vk.id && t && hasClass(t, "video_row_not_public")) return showDoneBox(getLang("video_please_sign_in")), !1;
-        var a = extend({
-                root: 1,
-                autoplay: 1
-            }, i || {}),
-            n = i ? i.listId : "";
-        if (n || (n = cur.oid < 0 ? "club" + -cur.oid : cur.pvVideoTagsShown && cur.pvShown ? "tag" + cur.pvVideoTagsShown : ""), !a.module) {
-            var c = cur.currentModule ? cur.currentModule() : cur.module;
-            "video_search" == c && isAncestor(t, "video_search_videos_list") && (c = "video_search_local"), a.module = c
-        }
-        if (Video.isInVideosList() && !a.playlistId) {
-            var s, l = Video.getLoc().section || "all";
-            "all" == l ? a.playlistId = cur.oid + "_-2" : "uploaded" == l ? a.playlistId = cur.oid + "_-1" : (s = l.match(/^album_(\d+)$/)) && (a.playlistId = cur.oid + "_" + s[1])
-        }
-        if (Video.isInCatalog() && a.playlistId && /^cat_\d+$/.test(a.playlistId) && t) {
-            var u = gpeByClass("videocat_row", t),
-                _ = u ? u.getAttribute("data-type") : "";
-            (_ = intval(_.replace("cat_", ""))) && cur.moreVideosInfo[_] && (a.catLoadMore = function(e, o, i) {
-                Videocat.slideLoadMore(e, o, i)
-            }.pbind(u, _))
-        }
-        if (a.playlistId && (a.addParams = extend(a.addParams || {}, {
-                playlist_id: a.playlistId,
-                show_next: intval(window.VideoPlaylist && !!VideoPlaylist.getList(a.playlistId)),
-                force_no_repeat: 1
-            })), a.playlistId && /^cat_ugc_popular/.test(a.playlistId) && (statlogsValueEvent("videocat_popular", "", "play"), cur.popularQid)) {
-            a.addParams = extend(a.addParams || {}, {
-                suggestions_qid: cur.popularQid
             });
-            var v = domPN(t),
-                h = geByClass("video_item", ge("videocat_page_block_ugc_popular")),
-                g = indexOf(h, v) + 1;
-            vkImage().src = "//go.imgsmail.ru/vk?pxn=vic&qid=" + cur.popularQid + "&vid=" + o + "&p=" + g + "&t=0"
+
+            cancelEvent(e);
+            return false;
         }
-        if (cur.videoSearchStats) {
-            var S = domClosest("video_item", t);
-            if (S && S.hasAttribute("data-search-pos")) {
-                cur.videoSearchPos = parseInt(S.getAttribute("data-search-pos")), cur.videoSearchPos > cur.videoSearchStats.lastSeenIndex && (cur.videoSearchStats.lastSeenElement = S, cur.videoSearchStats.lastSeenIndex = cur.videoSearchPos), cur.videoSearchStats.positions[cur.videoSearchPos] = extend({
-                    clicked: 0
-                }, cur.videoSearchStats.positions[cur.videoSearchPos]), cur.videoSearchStats.positions[cur.videoSearchPos].clicked++;
-                var V = ++cur.videoSearchStats.clickNum,
-                    p = (new Date).getTime() - cur.videoSearchStats.lastActionTime;
-                a.addParams = extend(a.addParams || {}, {
-                    click_num: V,
-                    click_time: p
-                })
+
+        if (obj && hasClass(obj, 'video_row_deleted')) {
+            return false;
+        }
+        if (!vk.id && obj && hasClass(obj, 'video_row_not_public')) {
+            showDoneBox(getLang('video_please_sign_in'));
+            return false;
+        }
+        var options = extend({
+            root: 1,
+            autoplay: 1
+        }, opts || {});
+        var listId = opts ? opts.listId : '';
+        if (!listId) {
+            if (cur.oid < 0) {
+                listId = 'club' + (-cur.oid);
+            } else if (cur.pvVideoTagsShown && cur.pvShown) {
+                listId = 'tag' + cur.pvVideoTagsShown;
+            } else {
+                listId = '';
             }
         }
-        var f = o.split("_");
-        return Video._saveHistoryAction(f[0], f[1]), showVideo(o, n, a, e)
+
+        if (!options.module) {
+            var module = cur.currentModule ? cur.currentModule() : cur.module;
+            if (module == 'video_search' && isAncestor(obj, 'video_search_videos_list')) {
+                module = 'video_search_local';
+            }
+            options.module = module;
+        }
+
+        if (Video.isInVideosList() && !options.playlistId) {
+            var section = Video.getLoc().section || 'all';
+            var match;
+            if (section == 'all') {
+                options.playlistId = cur.oid + '_-2';
+            } else if (section == 'uploaded') {
+                options.playlistId = cur.oid + '_-1';
+            } else if (match = section.match(/^album_(\d+)$/)) {
+                options.playlistId = cur.oid + '_' + match[1];
+            }
+        }
+
+        if (Video.isInCatalog() && options.playlistId && /^cat_\d+$/.test(options.playlistId) && obj) {
+            var rowEl = gpeByClass('videocat_row', obj);
+            var rowType = rowEl ? rowEl.getAttribute('data-type') : '';
+            rowType = intval(rowType.replace('cat_', ''));
+            if (rowType && cur.moreVideosInfo[rowType]) {
+                options.catLoadMore = (function(rowEl, rowType, callback) {
+                    Videocat.slideLoadMore(rowEl, rowType, callback);
+                }).pbind(rowEl, rowType);
+            }
+        }
+
+        if (options.playlistId) {
+            options.addParams = extend(options.addParams || {}, {
+                playlist_id: options.playlistId,
+                show_next: intval(window.VideoPlaylist && !!VideoPlaylist.getList(options.playlistId)),
+                force_no_repeat: 1
+            });
+        }
+
+        if (options.playlistId && /^cat_ugc_popular/.test(options.playlistId)) {
+            statlogsValueEvent('videocat_popular', '', 'play');
+            if (cur.popularQid) {
+                options.addParams = extend(options.addParams || {}, {
+                    suggestions_qid: cur.popularQid
+                });
+                var videoItem = domPN(obj);
+                var popularItems = geByClass('video_item', ge('videocat_page_block_ugc_popular'));
+                var pos = indexOf(popularItems, videoItem) + 1;
+                vkImage().src = '//go.imgsmail.ru/vk?pxn=vic&qid=' + cur.popularQid + '&vid=' + videoId + '&p=' + pos + '&t=0';
+            }
+        }
+
+        if (cur.videoSearchStats) {
+            var parentContainer = domClosest('video_item', obj);
+            if (parentContainer && parentContainer.hasAttribute('data-search-pos')) {
+                cur.videoSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
+
+                // A user could click the video whose thumbnail is barely seen on the screen.
+                // But we need to take this video into account, as long as user noticed it.
+                if (cur.videoSearchPos > cur.videoSearchStats.lastSeenIndex) {
+                    cur.videoSearchStats.lastSeenElement = parentContainer;
+                    cur.videoSearchStats.lastSeenIndex = cur.videoSearchPos;
+                }
+
+                cur.videoSearchStats.positions[cur.videoSearchPos] = extend({
+                    'clicked': 0
+                }, cur.videoSearchStats.positions[cur.videoSearchPos]);
+                cur.videoSearchStats.positions[cur.videoSearchPos].clicked++;
+
+                var clickNum = ++cur.videoSearchStats.clickNum;
+                var clickTime = new Date().getTime() - cur.videoSearchStats.lastActionTime;
+                options.addParams = extend(options.addParams || {}, {
+                    click_num: clickNum,
+                    click_time: clickTime
+                });
+            }
+        }
+
+        var vidIds = videoId.split('_');
+        Video._saveHistoryAction(vidIds[0], vidIds[1]);
+
+        return showVideo(videoId, listId, options, e);
     },
+
     isInVideosList: function() {
-        var e = Video.getLoc();
-        return /^videos-?\d+|video-?\d+_\d+$/.test(e[0]) && !e.q && (inArray(Video._getCurrentSectionType(), Video.AVAILABLE_TABS) || Video.isInAlbum())
+        var loc = Video.getLoc();
+        return /^videos-?\d+|video-?\d+_\d+$/.test(loc[0]) && !loc['q'] && (inArray(Video._getCurrentSectionType(), Video.AVAILABLE_TABS) || Video.isInAlbum());
     },
+
     onDeleteFromPlaylist: function(event, vid, oid) {
-        var video = !1,
-            list = cur.videoList[cur.vSection].list,
+        var video = false;
+        var list = cur.videoList[cur.vSection].list,
             spliceIndex = -1;
-        if (each(list, function(e, o) {
-                if (o[0] == oid && o[1] == vid) return video = o, !1
-            }), "all" == cur.vSection) video[VideoConstants.VIDEO_ITEM_INDEX_HASH] && ajax.post("/al_video.php", {
-            act: "a_delete_from_all_albums",
-            vid: vid,
-            oid: oid,
-            target_id: cur.oid,
-            hash: video[VideoConstants.VIDEO_ITEM_INDEX_HASH]
-        }, {
-            onDone: function() {
-                Video.updateVideo(cur.oid, video, [], !0), Video.initSorter()
+        each(list, function(i, v) {
+            if (v[0] == oid && v[1] == vid) {
+                video = v;
+                return false;
             }
         });
-        else {
-            var hash, currPlaylistId = (cur.vSection || "_").split("_")[1];
-            each(cur.sections, function(e, o) {
-                if (o[0] == currPlaylistId) return hash = o[VideoConstants.VIDEO_ITEM_INDEX_HASH], !1
-            }), hash && ajax.post("/al_video.php", {
-                act: "a_add_to_playlist",
-                vid: vid,
-                oid: oid,
-                gid: cur.oid < 0 ? -cur.oid : 0,
-                hash: hash,
-                playlist_id: currPlaylistId,
-                add: 0
-            }, {
-                onDone: function(playlists) {
-                    var playlists = eval("(" + playlists + ")"),
-                        removed = [currPlaylistId];
-                    playlists.push(currPlaylistId), Video.updateVideo(cur.oid, video, playlists, !1, [], removed), Video.initSorter()
+
+        if (cur.vSection == 'all') {
+            if (video[VideoConstants.VIDEO_ITEM_INDEX_HASH] /*hash*/ ) {
+                ajax.post('/al_video.php', {
+                    act: 'a_delete_from_all_albums',
+                    vid: vid,
+                    oid: oid,
+                    target_id: cur.oid,
+                    hash: video[VideoConstants.VIDEO_ITEM_INDEX_HASH]
+                }, {
+                    onDone: function() {
+                        Video.updateVideo(cur.oid, video, [], true);
+                        Video.initSorter();
+                    }
+                });
+            }
+        } else {
+            var hash, currPlaylistId = (cur.vSection || '_').split('_')[1];
+            each(cur.sections, function(i, v) {
+                if (v[0] == currPlaylistId) {
+                    hash = v[VideoConstants.VIDEO_ITEM_INDEX_HASH];
+                    return false;
                 }
-            })
+            });
+
+            if (hash) {
+                ajax.post('/al_video.php', {
+                    act: 'a_add_to_playlist',
+                    vid: vid,
+                    oid: oid,
+                    gid: cur.oid < 0 ? -cur.oid : 0,
+                    hash: hash,
+                    playlist_id: currPlaylistId,
+                    add: 0
+                }, {
+                    onDone: function(playlists) {
+                        var playlists = eval('(' + playlists + ')');
+                        var removed = [currPlaylistId];
+                        playlists.push(currPlaylistId);
+                        Video.updateVideo(cur.oid, video, playlists, false, [], removed);
+                        Video.initSorter();
+                    }
+                });
+            }
         }
-        window.tooltips && tooltips.hideAll(), cancelEvent(event)
+
+        window.tooltips && tooltips.hideAll();
+
+        cancelEvent(event);
     },
-    deleteAlbum: function(e, o) {
-        return e = e.split("_")[1], showBox("al_video.php", {
-            act: "delete_album",
-            aid: e,
+
+    deleteAlbum: function(aid, ev) {
+        aid = aid.split('_')[1];
+        showBox('al_video.php', {
+            act: 'delete_album',
+            aid: aid,
             oid: cur.oid
         }, {
             dark: 1
-        }), cancelEvent(o)
+        });
+        return cancelEvent(ev);
     },
-    editAlbum: function(e, o) {
-        return e = e.split("_")[1], showBox("al_video.php", {
-            act: "edit_album",
+    editAlbum: function(aid, ev) {
+        aid = aid.split('_')[1];
+        showBox('al_video.php', {
+            act: 'edit_album',
             oid: cur.oid,
-            aid: e
+            aid: aid
         }, {
             dark: 1
-        }), cancelEvent(o)
+        });
+        return cancelEvent(ev);
     },
     createAlbum: function() {
-        showBox("al_video.php", {
-            act: "edit_album",
+        showBox('al_video.php', {
+            act: 'edit_album',
             oid: cur.oid
         }, {
             dark: 1
-        })
+        });
     },
     uploadVideoBox: function() {
-        if (cur.uploadBanned) return showFastBox({
-            title: getLang("video_no_upload_title")
-        }, getLang("video_claims_no_upload")), !1;
-        showTabbedBox("al_video.php?act=upload_box", {
-            oid: cur.oid
+        if (cur.uploadBanned) {
+            showFastBox({
+                title: getLang('video_no_upload_title')
+            }, getLang('video_claims_no_upload'));
+            return false;
+        }
+
+        var box = showTabbedBox('al_video.php?act=upload_box', {
+            oid: cur.oid,
         }, {
-            stat: ["video_edit.css", "privacy.css", "privacy.js"],
+            stat: ['video_edit.css', 'privacy.css', 'privacy.js'],
             params: {
-                bodyStyle: "position: relative;",
+                bodyStyle: 'position: relative;',
                 dark: 1,
-                hideButtons: 1
-            }
+                hideButtons: 1,
+            },
         });
-        return !1
+        return false;
     },
-    isVideoPlayerOpen: function(e, o) {
-        var i = e;
-        return o && (i += "_" + o), window.mvcur && !0 === mvcur.mvShown && mvcur.videoRaw === i
+
+    isVideoPlayerOpen: function(oid, vid) {
+        var rawId = oid;
+        if (vid) {
+            rawId += '_' + vid;
+        }
+        return window.mvcur && mvcur.mvShown === true && mvcur.videoRaw === rawId;
     },
-    startPollVideoReady: function(o, i) {
-        var t = o + "_" + i;
+
+    startPollVideoReady: function(oid, vid) {
+        var videoRaw = oid + '_' + vid;
+
         setTimeout(function() {
-            ajax.post("al_video.php", {
-                act: "check_upload_status",
-                video: t,
-                oid: o,
-                vid: i
+            ajax.post('al_video.php', {
+                act: 'check_upload_status',
+                video: videoRaw,
+                oid: oid,
+                vid: vid
             }, {
-                onDone: function(e) {
-                    Video.isVideoPlayerOpen(o, i) && (e ? (mvcur.minimized ? Videoview.hide(!1, !0) : Videoview.backLocation(), showVideo(t, "", {})) : Video.startPollVideoReady(o, i))
+                onDone: function(isUploaded) {
+                    if (Video.isVideoPlayerOpen(oid, vid)) {
+                        if (isUploaded) {
+                            if (mvcur.minimized) {
+                                Videoview.hide(false, true);
+                            } else {
+                                Videoview.backLocation();
+                            }
+
+                            showVideo(videoRaw, '', {});
+                        } else {
+                            Video.startPollVideoReady(oid, vid);
+                        }
+                    }
                 }
-            })
-        }, 1e4)
+            });
+        }, 10000);
     },
-    showPlaylistsBox: function(e, o, i) {
-        showBox("/al_video.php", {
-            act: "video_playlists_box",
+    showPlaylistsBox: function(event, vid, oid) {
+        showBox('/al_video.php', {
+            act: 'video_playlists_box',
             target_id: cur.oid,
-            oid: i,
-            vid: o
+            oid: oid,
+            vid: vid
         }, {
             dark: 1
-        }), cancelEvent(e)
-    },
-    tcSlide: function(e, o, i, t) {
-        var r = gpeByClass("video_tc_slider", o),
-            d = geByClass1("video_tc_slider_cont", r),
-            a = getSize(d.children[0])[0] + 5,
-            n = data(d, "currOffset") || 0;
-        n += i, n = Math.max(4 - d.children.length, Math.min(0, n)), data(d, "currOffset", n), t && addClass(d, "no_transition"), setStyle(d, {
-            left: n * a
-        }), t && setTimeout(function() {
-            removeClass(d, "no_transition")
         });
-        var c = 0 == n,
-            s = n == -(d.children.length - 4),
-            l = geByClass1("video_tc_btn_left", r),
-            u = geByClass1("video_tc_btn_right", r);
-
-        function _(e, o) {
-            e ? addEvent(o, "mouseleave", function() {
-                setStyle(o, "pointer-events", "none"), removeEvent(o, "mouseleave")
-            }) : setStyle(o, "pointer-events", "all")
-        }
-        return toggleClass(l, "video_tc_btn_none", c), toggleClass(u, "video_tc_btn_none", s), _(c, l), _(s, u), e && cancelEvent(e), !1
+        cancelEvent(event);
     },
+
+    tcSlide: function(event, btn, offset, noAnim) {
+        var ITEMS_CNT = 4;
+        var parent = gpeByClass('video_tc_slider', btn);
+        var slider = geByClass1('video_tc_slider_cont', parent);
+        var itemWidth = getSize(slider.children[0])[0] + 5 /* margin-right */ ;
+
+        var currOffset = data(slider, 'currOffset') || 0;
+        currOffset += offset;
+        currOffset = Math.max(-slider.children.length + ITEMS_CNT, Math.min(0, currOffset));
+        data(slider, 'currOffset', currOffset);
+
+        if (noAnim) {
+            addClass(slider, 'no_transition');
+        }
+
+        setStyle(slider, {
+            left: currOffset * itemWidth
+        });
+
+        if (noAnim) {
+            setTimeout(function() {
+                removeClass(slider, 'no_transition');
+            });
+        }
+
+        // update buttons
+        var hideLeftBtn = currOffset == 0;
+        var hideRightBtn = currOffset == -(slider.children.length - ITEMS_CNT);
+        var btnLeft = geByClass1('video_tc_btn_left', parent);
+        var btnRight = geByClass1('video_tc_btn_right', parent);
+        toggleClass(btnLeft, 'video_tc_btn_none', hideLeftBtn);
+        toggleClass(btnRight, 'video_tc_btn_none', hideRightBtn);
+
+        function initBtnHide(isHide, btn) {
+            if (isHide) {
+                addEvent(btn, 'mouseleave', function() {
+                    setStyle(btn, 'pointer-events', 'none');
+                    removeEvent(btn, 'mouseleave');
+                });
+            } else {
+                setStyle(btn, 'pointer-events', 'all');
+            }
+        }
+
+        initBtnHide(hideLeftBtn, btnLeft);
+        initBtnHide(hideRightBtn, btnRight);
+
+        event && cancelEvent(event);
+
+        return false;
+    },
+
     deleteUploadedVideo: function() {
-        showFastBox({
-            title: getLang("video_header_delete"),
-            bodyStyle: "padding: 20px; line-height: 160%;",
+        var box = showFastBox({
+            title: getLang('video_header_delete'),
+            bodyStyle: 'padding: 20px; line-height: 160%;',
             dark: 1,
             forceNoBtn: 1
-        }, getLang("video_delete_all_user_uploaded"), getLang("box_yes"), function() {
-            ajax.post("al_video.php", {
-                act: "deleteAllUploaded",
+        }, getLang('video_delete_all_user_uploaded'), getLang('box_yes'), function() {
+
+            ajax.post('al_video.php', {
+                act: 'deleteAllUploaded',
                 oid: cur.oid
             }, {
                 showProgress: function() {
-                    curBox().showProgress()
+                    curBox().showProgress();
                 },
                 onDone: function() {
-                    boxQueue.hideLast()
+                    boxQueue.hideLast();
                 }
-            })
-        }, getLang("box_no"))
+            });
+        }, getLang('box_no'));
     },
+
     updateAlbum: function() {},
+
     updateVideo: function() {},
-    _initSearchStats: function(e) {
-        cur.videoSearchPos = null, cur.videoSearchStats = {
-            loc: e,
+
+    _initSearchStats: function(loc) {
+        cur.videoSearchPos = null;
+        cur.videoSearchStats = {
+            loc: loc,
             totalViews: 0,
             lastSeenElement: null,
             lastSeenIndex: -1,
             totalViewedTime: 0,
             clickNum: 0,
-            lastActionTime: (new Date).getTime(),
+            lastActionTime: new Date().getTime(),
             positions: []
-        }
+        };
     },
+
     _clearSearchStats: function() {
-        delete cur.videoSearchPos, delete cur.videoSearchStats
+        delete cur.videoSearchPos;
+        delete cur.videoSearchStats;
     },
+
     logSearchStats: function() {
         if (cur.vSearchInputBlurred && cur.videoSearchStats) {
-            cur.vSearchInputBlurred = !1;
-            var e = cur.videoSearchStats.loc.q + Video._buildFiltersSearchStr();
-            if (!cur.globalSearchResults || !cur.globalSearchResults[e]) return;
-            for (var o = cur.globalSearchResults[e].list || [], i = Video._serializeSearchParams(cur.videoSearchStats.loc), t = cur.videoSearchStats.lastSeenIndex + 1, r = [], d = 0; d < t; d++) {
-                var a = extend(cur.videoSearchStats.positions[d] || {}, Video._extractSearchStat(o[d]));
-                r.push(Video._serializeSearchStat(a))
+            cur.vSearchInputBlurred = false;
+
+            var resKey = cur.videoSearchStats.loc.q + Video._buildFiltersSearchStr();
+            if (!cur.globalSearchResults || !cur.globalSearchResults[resKey]) {
+                return;
             }
-            ajax.post("al_video.php", {
-                act: "a_search_query_stat",
-                query: i,
+            var searchList = cur.globalSearchResults[resKey].list || [];
+            var query = Video._serializeSearchParams(cur.videoSearchStats.loc);
+            var lastSeen = cur.videoSearchStats.lastSeenIndex + 1;
+
+            // Here we prepare some statistics for search quality metrics
+            // and collecting data for search formula learning
+            var positionStats = [];
+            for (var i = 0; i < lastSeen; i++) {
+                var stats = extend(cur.videoSearchStats.positions[i] || {}, Video._extractSearchStat(searchList[i]));
+                positionStats.push(Video._serializeSearchStat(stats));
+            }
+
+            ajax.post('al_video.php', {
+                act: 'a_search_query_stat',
+                query: query,
                 count: cur.videoSearchStats.totalViews,
                 total_viewed_time: cur.videoSearchStats.totalViewedTime,
-                scrolled_until: t,
-                position_stats: r
-            })
+                scrolled_until: lastSeen,
+                position_stats: positionStats
+            });
         }
     },
-    _serializeSearchParams: function(e) {
-        return (e.hd ? "1" : "0") + "#" + (e.notsafe ? "1" : "0") + "#" + (e.order || "") + "#" + (e.date || "") + "#" + (e.len || "") + "#" + e.q
+
+    _serializeSearchParams: function(loc) {
+        var hd = loc.hd ? '1' : '0';
+        var adult = loc.notsafe ? '1' : '0';
+        var order = loc.order || '';
+        var dateAdded = loc.date || '';
+        var len = loc.len || '';
+        var text = loc.q;
+        return hd + '#' + adult + '#' + order + '#' + dateAdded + '#' + len + '#' + text;
     },
-    _extractSearchStat: function(e) {
-        return e ? {
-            oid: e[0],
-            vid: e[1]
-        } : {}
+
+    _extractSearchStat: function(v) {
+        if (!v) return {};
+        return {
+            'oid': v[0],
+            'vid': v[1]
+        };
     },
-    _serializeSearchStat: function(e) {
-        e = e || {};
-        for (var o = "", i = 0; i < Video.SEARCH_STATS_POSITION_FIELDS.length; i++) {
-            var t = e[Video.SEARCH_STATS_POSITION_FIELDS[i]];
-            null == t && (t = ""), o += o ? "," + t : t
+
+    _serializeSearchStat: function(stat) {
+        stat = stat || {};
+
+        var res = '';
+        for (var i = 0; i < Video.SEARCH_STATS_POSITION_FIELDS.length; i++) {
+            var param = stat[Video.SEARCH_STATS_POSITION_FIELDS[i]];
+            if (param === null || typeof(param) === 'undefined') {
+                param = '';
+            }
+            res += res ? ',' + param : param;
         }
-        return o
+
+        return res;
     },
-    _updateLastSeenElement: function(e) {
-        if (cur.videoSearchStats && (null !== cur.videoSearchStats.lastSeenElement && e.contains(cur.videoSearchStats.lastSeenElement) || (cur.videoSearchStats.lastSeenElement = domFC(e), cur.videoSearchStats.lastSeenElement))) {
-            cur.videoSearchStats.lastSeenIndex = 0;
-            var o = clientHeight(),
-                i = domNS(cur.videoSearchStats.lastSeenElement);
-            if (i) {
-                for (var t = i.getBoundingClientRect(); null !== i && t.top + i.clientHeight / 2 < o && (cur.videoSearchStats.lastSeenElement = i, i = domNS(cur.videoSearchStats.lastSeenElement));) t = i.getBoundingClientRect();
-                cur.videoSearchStats.lastSeenIndex = parseInt(cur.videoSearchStats.lastSeenElement.getAttribute("data-search-pos")) || 0
+
+    _updateLastSeenElement: function(elementsList) {
+        if (!cur.videoSearchStats) {
+            return
+        }
+
+        if (cur.videoSearchStats.lastSeenElement === null || !elementsList.contains(cur.videoSearchStats.lastSeenElement)) {
+            cur.videoSearchStats.lastSeenElement = domFC(elementsList);
+            if (!cur.videoSearchStats.lastSeenElement) {
+                return;
             }
         }
+
+        cur.videoSearchStats.lastSeenIndex = 0;
+
+        var windowHeight = clientHeight();
+        var ns = domNS(cur.videoSearchStats.lastSeenElement);
+        if (!ns) {
+            return;
+        }
+        var nsRect = ns.getBoundingClientRect();
+
+        while (ns !== null && (nsRect.top + ns.clientHeight / 2 < windowHeight)) {
+            cur.videoSearchStats.lastSeenElement = ns;
+            ns = domNS(cur.videoSearchStats.lastSeenElement);
+            if (!ns) {
+                break;
+            }
+            nsRect = ns.getBoundingClientRect();
+        }
+
+        cur.videoSearchStats.lastSeenIndex = parseInt(cur.videoSearchStats.lastSeenElement.getAttribute('data-search-pos')) || 0;
     },
+
     _updateThumbsInView: function() {
-        clearTimeout(this._updateThumbsInViewTO), this._updateThumbsInViewTO = setTimeout(function() {
-            var r = null,
-                d = clientHeight(),
-                a = "im" == cur.module ? 0 : scrollGetY();
-            each(geByClass("_video_item_thumb"), function(e, o) {
-                if (domData(o, "thumb")) {
-                    var i = getXY(o, "im" == cur.module)[1];
-                    if (r = r || getSize(o), i > a - r[1] - 800 && i < a + d + 800) {
-                        var t = domData(o, "thumb");
-                        domData(o, "thumb", null), setStyle(o, "background-image", "url('" + t + "')")
-                    }
+        var gap = 800;
+
+        clearTimeout(this._updateThumbsInViewTO);
+        this._updateThumbsInViewTO = setTimeout(function() {
+
+            var thumbSize = null;
+            var wh = clientHeight();
+            var scrollTop = cur.module == 'im' ? 0 : scrollGetY();
+
+            each(geByClass('_video_item_thumb'), function(i, thumbEl) {
+                if (!domData(thumbEl, 'thumb')) {
+                    return;
                 }
-            })
-        }, 50)
+
+                var ypos = getXY(thumbEl, cur.module == 'im')[1];
+
+                thumbSize = thumbSize || getSize(thumbEl);
+
+                if (ypos > (scrollTop - thumbSize[1] - gap) && ypos < (scrollTop + wh + gap)) {
+                    var url = domData(thumbEl, 'thumb');
+                    domData(thumbEl, 'thumb', null);
+                    setStyle(thumbEl, 'background-image', 'url(\'' + url + '\')');
+                }
+            });
+
+        }, 50);
     },
+
     copyAlbumVideosList: function() {
-        var e = Video._getCurrentSectionType(),
-            o = cur.getOwnerId();
-        if ("album" == e && (e = Video.getLoc().section), !0 !== cur.silentLoadingProgress[o][e] && cur.silentLoaded[o][e]) {
-            var i = cur.silentLoaded[o][e].map(function(e) {
-                return "https://vk.com/video" + e[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + e[VideoConstants.VIDEO_ITEM_INDEX_ID]
-            }).join("\n");
-            showFastBox("", '<textarea class="dark" style="width: 100%; height: 350px;">' + i + "</textarea>")
-        } else showFastBox("", "List has not loaded yet")
+        var section = Video._getCurrentSectionType();
+        var oid = cur.getOwnerId();
+        if (section == 'album') {
+            section = Video.getLoc().section;
+        }
+
+        if (cur.silentLoadingProgress[oid][section] === true || !cur.silentLoaded[oid][section]) {
+            showFastBox('', 'List has not loaded yet');
+            return;
+        }
+
+        var videos = cur.silentLoaded[oid][section];
+        var text = videos.map(function(v) {
+            return 'https://vk.com/video' + v[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + '_' + v[VideoConstants.VIDEO_ITEM_INDEX_ID];
+        }).join('\n');
+        showFastBox('', '<textarea class="dark" style="width: 100%; height: 350px;">' + text + '</textarea>');
     },
+
     getCurOwnerId: function() {
-        return cur.getOwnerId ? cur.getOwnerId() : cur.oid
+        if (cur.getOwnerId) {
+            return cur.getOwnerId();
+        }
+        return cur.oid;
     }
 };
+
 try {
-    stManager.done("video.js")
+    stManager.done('video.js');
 } catch (e) {}

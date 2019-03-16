@@ -1064,8 +1064,8 @@
                             for (var r in e) t.indexOf(r) >= 0 || Object.prototype.hasOwnProperty.call(e, r) && (n[r] = e[r]);
                             return n
                         }(t, ["className", "tokens", "onSelect", "onRemoveToken", "removeTokenPlaceholder", "value", "placeholder", "useInfiniteScroll", "loadMore", "hasMore", "virtualized", "notFoundText", "children", "emptyText", "isSearching"]),
-                        w = f ? a.a : "div",
-                        O = f ? {
+                        O = f ? a.a : "div",
+                        w = f ? {
                             loadMore: p,
                             hasMore: g,
                             virtualized: h,
@@ -1111,10 +1111,10 @@
                         className: "MultiSelect__empty"
                     }, r.createElement("div", {
                         className: "MultiSelect__emptyIn"
-                    }, d ? b : v)), r.createElement(w, c({
+                    }, d ? b : v)), r.createElement(O, c({
                         className: "MultiSelect__scroll",
                         ref: this.scrollContainerRef
-                    }, O), k.map(function(t) {
+                    }, w), k.map(function(t) {
                         return r.createElement(o.a, {
                             className: "MultiSelect__suggestsItem",
                             "data-id": t.props["data-id"],
@@ -1277,7 +1277,7 @@
 
         function j(e, t, n, r) {
             if (n) {
-                w(e, t, r);
+                O(e, t, r);
                 var i = domData(n, "list-id"),
                     a = i && v(t.children, i);
                 a && r.forEach(function(e) {
@@ -1288,7 +1288,7 @@
             }
         }
 
-        function w(e, t, n) {
+        function O(e, t, n) {
             var r = domQuery("." + n.join("."), t);
             r && Object(h.p)(r).forEach(function(e) {
                 n.forEach(function(t) {
@@ -1299,7 +1299,7 @@
             })
         }
 
-        function O(e, t) {
+        function w(e, t) {
             var n = t && domQuery("." + t.join("."), e)[0];
             return n ? domData(n, "list-id") : null
         }
@@ -1572,7 +1572,7 @@
                     var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
                         a = o.getContainer(),
                         s = a.children,
-                        c = y(s, t.get().hoveredListItemId || O(a, r)),
+                        c = y(s, t.get().hoveredListItemId || w(a, r)),
                         l = Object(h.p)(s).slice(c + 1).find(n().hoverableFn);
                     j(t, a, l, e), I(t, o, n, null, !1, i.top, i.bottom)
                 },
@@ -1580,7 +1580,7 @@
                     var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
                         a = o.getContainer(),
                         s = a.children,
-                        c = y(s, t.get().hoveredListItemId || O(a, r)),
+                        c = y(s, t.get().hoveredListItemId || w(a, r)),
                         l = c >= 0 && Object(h.p)(s).slice(0, c).reverse().find(n().hoverableFn);
                     j(t, a, l, e), I(t, o, n, null, !1, i.top, i.bottom)
                 },
@@ -1599,7 +1599,7 @@
                     l && (j(t, a, l, r), I(t, o, n, c, !1, i.top, i.bottom))
                 },
                 unhoverElements: function(e) {
-                    w(t, o.getContainer(), e)
+                    O(t, o.getContainer(), e)
                 },
                 reset: function() {
                     var e = t.get().scrolls;
@@ -2305,7 +2305,7 @@
                         searchOnlyMessages: !0
                     })) : r = [ae()], n.pipeReplace(Promise.resolve(r))
                 }.bind(null, t, e, v),
-                w = function(e, t, n, a, o, s) {
+                O = function(e, t, n, a, o, s) {
                     var c = intval(domData(s, "peer")),
                         l = domData(s, "action"),
                         u = domData(s, "sid"),
@@ -2333,42 +2333,42 @@
                     }
                     cancelEvent(o)
                 }.bind(null, t, e, c, n),
-                O = te.bind(null, n, t, e, v),
+                w = te.bind(null, n, t, e, v),
                 k = function(e, t) {
                     Object(i.Gc)(e, t, r.o)
                 }.bind(null, t, n),
                 C = Object(s.a)({
                     handlers: function(a, o) {
-                        o(e, "click", "_im_dialog_close", O), o(e, "click", "_im_dialog_markre", h), o(e, "click", R, p), o(e, "click", "_im_dialog", y), o(e, "click", i.q, j), o(e, "mouseover", "_im_dialog_close", u), o(e, "mouseover", "_im_dialog_markre", d), o(e, "click", i.i, function() {
+                        o(e, "click", "_im_dialog_close", w), o(e, "click", "_im_dialog_markre", h), o(e, "click", R, p), o(e, "click", "_im_dialog", y), o(e, "click", i.q, j), o(e, "mouseover", "_im_dialog_close", u), o(e, "mouseover", "_im_dialog_markre", d), o(e, "click", i.i, function() {
                             Object(r.Sb)(cur.imDb), pe(t, v, n)
-                        }), o(e, "click", i.u, k), o(e, "mouseover", R, f), o(e, "click", F, w), a(e, "mouseover", throttle(v.unhoverElements.bind(v, U), 100))
+                        }), o(e, "click", i.u, k), o(e, "mouseover", R, f), o(e, "click", F, O), a(e, "mouseover", throttle(v.unhoverElements.bind(v, U), 100))
                     }
                 });
             return l(e, c, v, n, C)
         }
         var ye = n("O8ze"),
             je = n("QOPk"),
-            we = n("Wu9C"),
-            Oe = n("q1tI"),
+            Oe = n("Wu9C"),
+            we = n("q1tI"),
             ke = n("i8i4"),
             Ce = n("T/g7"),
             Se = (n("17x9"), n("pemR"));
 
         function Ee(e) {
-            return Oe.createElement("header", {
+            return we.createElement("header", {
                 className: Object(Se.a)("PopupHeader", e.className),
                 style: e.style
-            }, e.back && Oe.createElement("div", {
+            }, e.back && we.createElement("div", {
                 className: "PopupHeader__back",
                 onClick: e.onBackClick
-            }, Oe.createElement("button", {
+            }, we.createElement("button", {
                 className: "PopupHeader__backBtn",
                 onClick: e.onBackClick
-            }, e.back)), Oe.createElement("h2", {
+            }, e.back)), we.createElement("h2", {
                 className: "PopupHeader__title"
-            }, e.title), Oe.createElement("div", {
+            }, e.title), we.createElement("div", {
                 className: "PopupHeader__close"
-            }, Oe.createElement("button", {
+            }, we.createElement("button", {
                 className: "PopupHeader__closeBtn",
                 onClick: e.onCloseClick
             })))
@@ -2459,39 +2459,39 @@
                         u = Object(Se.a)("ChatSettingsInfo__title", {
                             "ChatSettingsInfo__title-service": 64 & this.props.flags
                         });
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: l
-                    }, Oe.createElement("header", {
+                    }, we.createElement("header", {
                         className: "ChatSettingsInfo__header"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "ChatSettingsInfo__photo"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "ChatSettingsInfo__attach nim-peer nim-peer_larger",
                         "data-tip": Me("mail_settings_photo"),
                         onClick: this.onPhotoUpload
-                    }, n ? Oe.createElement("img", {
+                    }, n ? we.createElement("img", {
                         src: n,
                         width: "80",
                         height: "80",
                         alt: s,
                         className: "ChatSettingsInfo__photoSelf"
-                    }) : Oe.createElement("div", {
+                    }) : we.createElement("div", {
                         className: "nim-peer--photo-w"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "ChatSettingsInfo__photoGrid nim-peer--photo",
                         dangerouslySetInnerHTML: {
                             __html: a
                         }
-                    }))), n && c && Oe.createElement(Ie.a, {
+                    }))), n && c && we.createElement(Ie.a, {
                         text: Me("mail_settings_remove_photo"),
                         position: "t",
                         align: "left"
-                    }, Oe.createElement("button", {
+                    }, we.createElement("button", {
                         onClick: this.onPhotoRemove,
                         className: "ChatSettingsInfo__photoRemove"
-                    }))), Oe.createElement("h3", {
+                    }))), we.createElement("h3", {
                         className: u
-                    }, c ? Oe.createElement(Te.a, {
+                    }, c ? we.createElement(Te.a, {
                         value: this.state.title,
                         changed: this.state.titleChanged,
                         useEnter: !0,
@@ -2499,16 +2499,16 @@
                         onChange: this.onChangeTitle,
                         onCancel: this.onCancelTitle,
                         validate: this.onValidateTitle
-                    }) : s), Oe.createElement("div", {
+                    }) : s), we.createElement("div", {
                         className: "ChatSettingsInfo__meta"
-                    }, o)), i && Oe.createElement("div", {
+                    }, o)), i && we.createElement("div", {
                         className: "ChatSettingsInfo__description"
-                    }, c ? Oe.createElement(Te.a, {
+                    }, c ? we.createElement(Te.a, {
                         value: i,
                         onSave: this.onSaveDescription
                     }) : i))
                 }, t
-            }(Oe.PureComponent),
+            }(we.PureComponent),
             Be = n("dLHM"),
             De = n("XTb9"),
             Ne = n("BN/X");
@@ -2556,29 +2556,29 @@
                         r = e.store,
                         a = He("mail_invite_link_reset_explainer").split("{reset_link}"),
                         o = !Object(i.pb)(r, r.get().peer);
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "ChatSettingsInvitationLink"
-                    }, this.props.reseted && Oe.createElement("div", {
+                    }, this.props.reseted && we.createElement("div", {
                         className: "ChatSettingsInvitationLink__reseted"
-                    }, He("mail_invite_link_reseted_explainer")), Oe.createElement("p", null, He("mail_invite_link_explainer")), Oe.createElement("div", {
+                    }, He("mail_invite_link_reseted_explainer")), we.createElement("p", null, He("mail_invite_link_explainer")), we.createElement("div", {
                         className: "ChatSettingsInvitationLink__main"
-                    }, Oe.createElement(Be.a, {
+                    }, we.createElement(Be.a, {
                         ref: this.getInputRef,
                         readOnly: "readonly",
                         className: "ChatSettingsInvitationLink__input",
                         value: n
-                    }), Oe.createElement(xe.a, {
+                    }), we.createElement(xe.a, {
                         onClick: this.onCopy
-                    }, He("mail_get_invite_link_copy")), Oe.createElement(De.a, {
+                    }, He("mail_get_invite_link_copy")), we.createElement(De.a, {
                         className: "ChatSettingsInvitationLink__copied",
                         shown: this.state.copied,
                         callback: this.onBlinkTextHide
-                    }, He("mail_invite_link_copied"))), o && Oe.createElement("p", null, a[0], Oe.createElement(Ne.a, {
+                    }, He("mail_invite_link_copied"))), o && we.createElement("p", null, a[0], we.createElement(Ne.a, {
                         className: "ChatSettingsInvitationLink__reset",
                         onClick: t
                     }, He("mail_invite_reset_link")), a[1]))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             Fe = n("6raB"),
             qe = n("hIV1");
         var Ue = Ce.a.getLang,
@@ -2616,29 +2616,29 @@
                         }
                     }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
                 }(t, e), t.prototype.render = function() {
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "ChatSettingsResetInvitationLink"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "ChatSettingsResetInvitationLink__text",
                         dangerouslySetInnerHTML: {
                             __html: Ue("mail_chat_reset_link_warning")
                         }
-                    }), Oe.createElement(qe.a, {
+                    }), we.createElement(qe.a, {
                         alignment: "right"
-                    }, Oe.createElement(xe.a, {
+                    }, we.createElement(xe.a, {
                         appearance: "tertiary",
                         onClick: this.props.onCancel
-                    }, Ue("global_cancel")), Oe.createElement(Fe.a, {
+                    }, Ue("global_cancel")), we.createElement(Fe.a, {
                         onClick: this.onConfirm,
                         loading: this.state.loading
                     }, Ue("mail_chat_reset_link_confirm"))))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             We = n("enZq"),
             Ke = n("p+C8");
 
         function Ve(e) {
-            return Oe.createElement("div", {
+            return we.createElement("div", {
                 className: Object(Se.a)("ChatSettingsRoundedIcon", "ChatSettingsRoundedIcon--" + e.type)
             })
         }
@@ -2691,50 +2691,50 @@
                         u = Object(Se.a)("ChatSettingsMenu", {
                             "ChatSettingsMenu--copied": this.state.copied
                         });
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "ChatSettings__pane"
-                    }, Oe.createElement(We.a, {
+                    }, we.createElement(We.a, {
                         className: u
-                    }, Oe.createElement(Ke.a, {
+                    }, we.createElement(Ke.a, {
                         onClick: this.props.showAttachments,
                         chevron: !0
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "attach"
-                    }), Qe("mail_im_show_media_history"))), (c || l) && Oe.createElement(We.a, {
+                    }), Qe("mail_im_show_media_history"))), (c || l) && we.createElement(We.a, {
                         className: u
-                    }, c && Oe.createElement(Ke.a, {
+                    }, c && we.createElement(Ke.a, {
                         onClick: this.onShowInviteLink,
                         chevron: Object(D.f)(t)
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "link"
-                    }), Qe(s ? "mail_vkcomgroup_invite_link" : "mail_chat_invite_link"), o.inviteLink && Oe.createElement("span", {
+                    }), Qe(s ? "mail_vkcomgroup_invite_link" : "mail_chat_invite_link"), o.inviteLink && we.createElement("span", {
                         className: "ChatSettingsMenu__invite"
-                    }, Oe.createElement("span", {
+                    }, we.createElement("span", {
                         className: "ChatSettingsMenu__hidden"
-                    }, Oe.createElement("input", {
+                    }, we.createElement("input", {
                         type: "text",
                         readOnly: !0,
                         value: o.inviteLink,
                         ref: this.getHiddenInput
-                    })), Oe.createElement(De.a, {
+                    })), we.createElement(De.a, {
                         className: "ChatSettingsMenu__copied",
                         shown: this.state.copied,
                         callback: this.onBlinkTextHide
-                    }, Qe("mail_invite_link_copied")), Oe.createElement(Ne.a, {
+                    }, Qe("mail_invite_link_copied")), we.createElement(Ne.a, {
                         className: "ChatSettingsMenu__copy",
                         onClick: this.onCopyInviteLink
-                    }, Qe("mail_get_invite_link_copy")))), l && Oe.createElement(Ke.a, {
+                    }, Qe("mail_get_invite_link_copy")))), l && we.createElement(Ke.a, {
                         onClick: this.props.showSettings,
                         chevron: !0,
-                        aside: Oe.createElement(De.a, {
+                        aside: we.createElement(De.a, {
                             shown: n,
                             callback: r
                         }, Qe("global_changes_saved"))
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "gear"
                     }), Qe("mail_settings_options"))))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             Ge = n("uW+i"),
             Je = n("NsuH"),
             Ye = n("As6E");
@@ -2824,34 +2824,34 @@
                         o = this.getMemberRole(n, i),
                         s = e === i,
                         c = a && this.getActions(n);
-                    return Oe.createElement(Oe.Fragment, null, o && Oe.createElement("span", {
+                    return we.createElement(we.Fragment, null, o && we.createElement("span", {
                         className: "ChatSettingsMembersEdit__role"
-                    }, o), c && c.length > 0 && Oe.createElement(Ye.a, {
+                    }, o), c && c.length > 0 && we.createElement(Ye.a, {
                         position: "b",
                         align: "right",
                         trigger: "hover",
                         marginTop: -8,
                         marginLeft: 1,
                         data: this.getActions(n)
-                    }, Oe.createElement("span", {
+                    }, we.createElement("span", {
                         className: "ChatSettingsMembersEdit__actions"
-                    })), !a && !s && Object(D.i)(r, i) && Oe.createElement(Ie.a, {
+                    })), !a && !s && Object(D.i)(r, i) && we.createElement(Ie.a, {
                         text: $e("mail_settings_kick"),
                         position: "t",
                         align: "right"
-                    }, Oe.createElement("span", {
+                    }, we.createElement("span", {
                         onClick: this.kick,
                         className: "ChatSettingsMembersEdit__kick"
-                    })), !a && s && Oe.createElement(Ie.a, {
+                    })), !a && s && we.createElement(Ie.a, {
                         text: $e("mail_leave_chat"),
                         position: "t",
                         align: "right"
-                    }, Oe.createElement("span", {
+                    }, we.createElement("span", {
                         onClick: this.props.onLeave,
                         className: "ChatSettingsMembersEdit__kick"
                     })))
                 }, t
-            }(Oe.Component);
+            }(we.Component);
         var tt = 50,
             nt = {
                 appendParentCls: "ChatSettingsWrapper"
@@ -3000,11 +3000,11 @@
                         j = g.adminIds.reduce(function(e, t) {
                             return e[t] = !0, e
                         }, {});
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: Object(Se.a)("ChatSettingsMembersWidget", y)
-                    }, Oe.createElement("header", {
+                    }, we.createElement("header", {
                         className: "ChatSettingsMembersWidget__header"
-                    }, Oe.createElement("input", {
+                    }, we.createElement("input", {
                         placeholder: st("mail_members_search"),
                         className: "ChatSettingsMembersWidget__search",
                         onChange: this.onSearchChange,
@@ -3012,44 +3012,44 @@
                         onPaste: this.onSearchChange,
                         value: this.state.searchQuery,
                         ref: this.searchInputRef
-                    }), Oe.createElement("button", {
+                    }), we.createElement("button", {
                         className: "ChatSettingsMembersWidget__searchIcon",
                         onClick: this.onToggleSearch
-                    }), Oe.createElement(Ge.a, {
+                    }), we.createElement(Ge.a, {
                         className: "ChatSettingsMembersWidget__tabs",
                         onTabClick: this.onTabClick
-                    }, Oe.createElement("span", {
+                    }, we.createElement("span", {
                         key: "all"
-                    }, st("mail_settings_everyone") + " ", Oe.createElement("span", {
+                    }, st("mail_settings_everyone") + " ", we.createElement("span", {
                         className: "Tabs__desc"
-                    }, Object(i.P)(g))), g.adminIds.length > 0 && Oe.createElement("span", {
+                    }, Object(i.P)(g))), g.adminIds.length > 0 && we.createElement("span", {
                         key: "admins"
-                    }, st("mail_settings_admins") + " ", Oe.createElement("span", {
+                    }, st("mail_settings_admins") + " ", we.createElement("span", {
                         className: "Tabs__desc"
-                    }, g.adminIds.length)))), Oe.createElement("div", {
+                    }, g.adminIds.length)))), we.createElement("div", {
                         className: "ChatSettingsMembersWidget__list"
-                    }, Oe.createElement(We.a, {
+                    }, we.createElement(We.a, {
                         border: !1
                     }, b.length > 0 && b.map(function(t) {
-                        if ("add" === t) return Oe.createElement(Ke.a, {
+                        if ("add" === t) return we.createElement(Ke.a, {
                             selectable: !1,
                             border: !1,
                             key: "add",
                             onClick: e.props.showMembersSettings,
-                            aside: Oe.createElement(De.a, {
+                            aside: we.createElement(De.a, {
                                 className: "ChatSettingsMembersWidget__blink",
                                 shown: a,
                                 callback: o
                             }, at(r || 0, st("mail_settings_members_added", "raw")))
-                        }, Oe.createElement("span", {
+                        }, we.createElement("span", {
                             className: "ChatSettingsMembersWidget__add"
-                        }, Oe.createElement("span", null, st("mail_settings_add_members"))));
+                        }, we.createElement("span", null, st("mail_settings_add_members"))));
                         var s = e.getInviter(t.id),
                             c = v && v[t.id] ? Object(i.V)(f, t.id, v[t.id], nt) : "";
-                        return Oe.createElement(Ke.a, {
+                        return we.createElement(Ke.a, {
                             selectable: !1,
                             border: !1,
-                            aside: Oe.createElement(et, {
+                            aside: we.createElement(et, {
                                 adminMap: j,
                                 store: n,
                                 storeData: f,
@@ -3057,10 +3057,10 @@
                                 onLeave: e.props.onLeave
                             }),
                             key: t.id
-                        }, Oe.createElement(Je.a, {
+                        }, we.createElement(Je.a, {
                             photo: t.photo,
                             title: t.name,
-                            description: Oe.createElement("span", {
+                            description: we.createElement("span", {
                                 title: s,
                                 dangerouslySetInnerHTML: {
                                     __html: c
@@ -3068,14 +3068,14 @@
                             }),
                             href: t.link
                         }))
-                    }), !b.length && l && u && Oe.createElement("div", {
+                    }), !b.length && l && u && we.createElement("div", {
                         className: "ChatSettingsMembersWidget__empty"
-                    }, st("mail_settings_not_found")), !(l && u) && _ && Oe.createElement("div", {
+                    }, st("mail_settings_not_found")), !(l && u) && _ && we.createElement("div", {
                         className: "ChatSettingsMembersWidget__more",
                         onClick: this.onShowMore
                     }, st("mail_settings_show_all_members")))))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             lt = function() {
                 var e = this;
                 this.onToggleSearch = function() {
@@ -3268,9 +3268,9 @@
                 }, t.prototype.render = function() {
                     var e, t = this,
                         n = Object.keys(this.state.selected).length;
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "ChatSettingsMembers"
-                    }, Oe.createElement(dt.a, (ft(e = {
+                    }, we.createElement(dt.a, (ft(e = {
                         className: "ChatSettingsMembers__multiSelect",
                         tokens: this.state.selected.map(function(e) {
                             return {
@@ -3286,30 +3286,30 @@
                         onChange: this.onChange,
                         onSelect: this.onSelect
                     }, "useInfiniteScroll", !0), ft(e, "hasMore", !1), ft(e, "virtualized", !0), ft(e, "loadMore", function() {}), ft(e, "notFoundText", pt("mail_not_found")), ft(e, "autoFocus", !0), ft(e, "isSearching", this.isSearching), e), this.state.found.map(function(e) {
-                        return Oe.createElement("div", {
+                        return we.createElement("div", {
                             className: Object(Se.a)("ChatSettingsMembers__entity", ft({}, "ChatSettingsMembers__entity--selected", t.selected[e])),
                             key: e,
                             "data-id": e
-                        }, Oe.createElement(Je.a, {
+                        }, we.createElement(Je.a, {
                             size: "34",
                             title: t.data[e].name,
                             photo: t.data[e].photo
                         }))
-                    })), Oe.createElement(qe.a, {
+                    })), we.createElement(qe.a, {
                         alignment: "right"
-                    }, Oe.createElement(Fe.a, {
+                    }, we.createElement(Fe.a, {
                         disabled: 0 === n,
                         onClick: this.onAddPeople,
                         loading: this.state.loading
                     }, pt(n < 2 ? "mail_append_chat" : "mail_im_create_chat_with"))))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             yt = n("mSoV");
         var jt = Math.log2 || function(e) {
                 return Math.log(e) / Math.LN2
             },
-            wt = Ce.a.getLang,
-            Ot = function(e) {
+            Ot = Ce.a.getLang,
+            wt = function(e) {
                 function t(n) {
                     ! function(e, t) {
                         if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
@@ -3363,89 +3363,89 @@
                         n = this.state.flags,
                         r = [{
                             value: !0,
-                            label: wt("mail_settings_only_admins")
+                            label: Ot("mail_settings_only_admins")
                         }, {
                             value: !1,
-                            label: wt("mail_settings_all_members")
+                            label: Ot("mail_settings_all_members")
                         }],
                         i = t.serverSettings;
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "ChatSettingsOptions"
-                    }, Oe.createElement(We.a, null, Oe.createElement(Ke.a, {
+                    }, we.createElement(We.a, null, we.createElement(Ke.a, {
                         selectable: !1,
-                        aside: Oe.createElement(yt.a, {
+                        aside: we.createElement(yt.a, {
                             className: "ChatSettingsOptions__select",
                             onChange: this.onChange,
                             name: jt(D.c),
                             options: r,
                             value: !!(n & D.c)
                         })
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "plus"
-                    }), wt("mail_settings_can_invite")), Oe.createElement(Ke.a, {
+                    }), Ot("mail_settings_can_invite")), we.createElement(Ke.a, {
                         selectable: !1,
-                        aside: Oe.createElement(yt.a, {
+                        aside: we.createElement(yt.a, {
                             className: "ChatSettingsOptions__select",
                             onChange: this.onChange,
                             name: jt(D.b),
                             options: r,
                             value: !!(n & D.b)
                         })
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "pencil"
-                    }), wt("mail_settings_can_edit_info")), Oe.createElement(Ke.a, {
+                    }), Ot("mail_settings_can_edit_info")), we.createElement(Ke.a, {
                         selectable: !1,
-                        aside: Oe.createElement(yt.a, {
+                        aside: we.createElement(yt.a, {
                             className: "ChatSettingsOptions__select",
                             onChange: this.onChange,
                             name: jt(D.d),
                             options: r,
                             value: !!(n & D.d)
                         })
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "pin"
-                    }), wt("mail_settings_can_pin")), Oe.createElement(Ke.a, {
+                    }), Ot("mail_settings_can_pin")), we.createElement(Ke.a, {
                         selectable: !1,
-                        aside: Oe.createElement(yt.a, {
+                        aside: we.createElement(yt.a, {
                             className: "ChatSettingsOptions__longselect",
                             onChange: this.onChange,
                             name: jt(D.a),
                             options: [{
                                 value: !1,
-                                label: wt("mail_settings_only_owner")
+                                label: Ot("mail_settings_only_owner")
                             }, {
                                 value: !0,
-                                label: wt("mail_settings_owner_and_admins")
+                                label: Ot("mail_settings_owner_and_admins")
                             }],
                             value: !!(n & D.a)
                         })
-                    }, Oe.createElement(Ve, {
+                    }, we.createElement(Ve, {
                         type: "user"
-                    }), wt("mail_settings_admins_can_add_admins")), i.map(function(t) {
-                        return Oe.createElement(Ke.a, {
+                    }), Ot("mail_settings_admins_can_add_admins")), i.map(function(t) {
+                        return we.createElement(Ke.a, {
                             selectable: !1,
                             key: t.name,
-                            aside: Oe.createElement(yt.a, {
+                            aside: we.createElement(yt.a, {
                                 className: "ChatSettingsOptions__select",
                                 onChange: e.onChange,
                                 name: jt(t.bit),
                                 options: t.options,
                                 value: !!(n & t.bit)
                             })
-                        }, Oe.createElement(Ve, {
+                        }, we.createElement(Ve, {
                             type: t.icon
                         }), t.name)
-                    })), Oe.createElement(qe.a, {
+                    })), we.createElement(qe.a, {
                         alignment: "right"
-                    }, Oe.createElement(xe.a, {
+                    }, we.createElement(xe.a, {
                         appearance: "tertiary",
                         onClick: this.onCancel
-                    }, wt("global_cancel")), Oe.createElement(Fe.a, {
+                    }, Ot("global_cancel")), we.createElement(Fe.a, {
                         onClick: this.onSave,
                         loading: this.state.loading
-                    }, wt("global_save"))))
+                    }, Ot("global_save"))))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             kt = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
@@ -3611,18 +3611,18 @@
                         c = Object(i.pb)(n, o),
                         l = !c || !n.get().gid,
                         u = xt(c ? "mail_im_n_vkcomgroup_members" : "mail_im_n_chat_members", Object(i.P)(s));
-                    return Oe.createElement("section", {
+                    return we.createElement("section", {
                         className: "ChatSettings"
-                    }, Oe.createElement(Ee, {
+                    }, we.createElement(Ee, {
                         title: this.getPopupTitle(),
                         back: this.state.section !== Ct ? xt("global_back") : void 0,
                         onCloseClick: r,
                         onBackClick: function() {
                             return e.go(Ct)
                         }
-                    }), this.state.section === Ct && Oe.createElement("div", {
+                    }), this.state.section === Ct && we.createElement("div", {
                         className: "ChatSettings__content"
-                    }, Oe.createElement(Le, {
+                    }, we.createElement(Le, {
                         store: n,
                         photo: s.photoLarge,
                         grid: s.photoGrid,
@@ -3630,7 +3630,7 @@
                         flags: s.data.flags,
                         meta: u,
                         description: ""
-                    }), Oe.createElement(Xe, {
+                    }), we.createElement(Xe, {
                         store: n,
                         showNotificationSettings: function() {},
                         showMembersSettings: function() {
@@ -3645,9 +3645,9 @@
                         membersCount: this.state.membersCount,
                         flagsUpdated: this.state.flagsUpdated,
                         onHideStatus: this.onHideStatus
-                    }), c ? null : Oe.createElement("div", {
+                    }), c ? null : we.createElement("div", {
                         className: "ChatSettings__pane"
-                    }, Oe.createElement(ut, {
+                    }, we.createElement(ut, {
                         store: n,
                         onLeave: this.onLeave,
                         showMembersSettings: function() {
@@ -3656,37 +3656,37 @@
                         membersAdded: this.state.membersAdded,
                         onHideStatus: this.onHideStatus,
                         membersCount: this.state.membersCount
-                    })), l && Oe.createElement("div", {
+                    })), l && we.createElement("div", {
                         className: "ChatSettings__pane"
-                    }, Oe.createElement(xe.a, {
+                    }, we.createElement(xe.a, {
                         appearance: ["link", "mobile"],
                         className: "ChatSettings__leave",
                         onClick: this.onLeave
-                    }, xt(c ? "mail_leave_channel" : "mail_settings_leave")))), 1 === this.state.section && Oe.createElement(vt, {
+                    }, xt(c ? "mail_leave_channel" : "mail_settings_leave")))), 1 === this.state.section && we.createElement(vt, {
                         store: n,
                         afterSave: this.afterMembersAdded
-                    }), 6 === this.state.section && Oe.createElement(Ot, {
+                    }), 6 === this.state.section && we.createElement(wt, {
                         tab: s,
                         back: function() {
                             return e.go(Ct)
                         },
                         onSave: this.onUpdateFlags,
                         afterSave: this.afterUpdateFlags
-                    }), this.state.section === St && Oe.createElement(Re, {
+                    }), this.state.section === St && we.createElement(Re, {
                         store: n,
                         onReset: function() {
                             return e.go(3)
                         },
                         reseted: this.state.invitationLinkReseted,
                         invitationLink: this.state.invitationLink
-                    }), 3 === this.state.section && Oe.createElement(ze, {
+                    }), 3 === this.state.section && we.createElement(ze, {
                         onConfirm: this.onResetLink,
                         onCancel: function() {
                             return e.go(St)
                         }
                     }))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             Tt = window,
             Pt = Tt.MessageBox,
             Mt = Tt.show,
@@ -3697,7 +3697,7 @@
 
         function At(e) {
             var t = Ft();
-            t && ke.render(Oe.createElement(It, {
+            t && ke.render(we.createElement(It, {
                 store: e,
                 closePopup: Ht,
                 updatePopup: Rt
@@ -3779,7 +3779,7 @@
             if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
             return !t || "object" != typeof t && "function" != typeof t ? e : t
         }
-        var Kt = Oe.createContext(),
+        var Kt = we.createContext(),
             Vt = Kt.Provider,
             Qt = Kt.Consumer,
             Xt = Vt;
@@ -3812,13 +3812,13 @@
                     this.store.unsubscribe(this.onUpdate)
                 }, n.prototype.render = function() {
                     var t = this;
-                    return Oe.createElement(Qt, null, function(n) {
-                        return t.store || (t.store = n), Oe.createElement(e, zt({}, t.props, {
+                    return we.createElement(Qt, null, function(n) {
+                        return t.store || (t.store = n), we.createElement(e, zt({}, t.props, {
                             store: n
                         }))
                     })
                 }, n
-            }(Oe.Component)
+            }(we.Component)
         }
         var Jt = n("vRp6"),
             Yt = Object.assign || function(e) {
@@ -3862,12 +3862,12 @@
                             for (var r in e) t.indexOf(r) >= 0 || Object.prototype.hasOwnProperty.call(e, r) && (n[r] = e[r]);
                             return n
                         }(e, ["className"]);
-                    return Oe.createElement(Be.a, Yt({}, n, {
+                    return we.createElement(Be.a, Yt({}, n, {
                         className: Object(Se.a)(t, "BlockSearchInput"),
                         ref: this.getRef
                     }))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             en = $t;
         $t.defaultProps = Be.a.defaultProps;
         var tn = function(e) {
@@ -3900,21 +3900,21 @@
                         t = e.photo,
                         n = e.title,
                         r = e.online;
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: Object(Se.a)("Avatar", {
                             "Avatar--online": r,
                             "Avatar--mobile": mobPlatforms[r]
                         })
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "Avatar__wrapper"
-                    }, Oe.createElement("img", {
+                    }, we.createElement("img", {
                         onError: this.onError,
                         className: "Avatar__img",
                         src: this.state.errored ? "/images/camera_c.gif" : t,
                         alt: n
                     })))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             nn = n("ThPM"),
             rn = n("7p7+"),
             an = n("PjZB"),
@@ -4238,37 +4238,37 @@
                         l = i.found,
                         u = i.sending,
                         d = i.activeElement;
-                    return Oe.createElement("section", {
+                    return we.createElement("section", {
                         className: Object(Se.a)("MessageForward", {
                             "MessageForward--form": 0 === o && !!c
                         })
-                    }, Oe.createElement(Ee, {
-                        title: Oe.createElement(Oe.Fragment, null, Oe.createElement("span", {
+                    }, we.createElement(Ee, {
+                        title: we.createElement(we.Fragment, null, we.createElement("span", {
                             className: "MessageForward__title"
-                        }, fn("mail_forward_messages")), Object(a.B)(n) && Oe.createElement("span", {
+                        }, fn("mail_forward_messages")), Object(a.B)(n) && we.createElement("span", {
                             className: "MessageForward__switch",
                             onClick: this.toggleMode
                         }, fn(0 === o ? "mail_forward_to_community_messages" : "mail_forward_to_im"))),
                         onCloseClick: r
-                    }), Oe.createElement("div", {
+                    }), we.createElement("div", {
                         className: "MessageForward__content",
                         onMouseLeave: this.cleanSelectedRecipient
-                    }, Oe.createElement(en, {
+                    }, we.createElement(en, {
                         value: this.state.value,
                         onChange: this.onChange,
                         placeholder: fn("mail_top_search"),
                         autoFocus: !0,
                         key: "search",
                         ref: this.getSearchRef
-                    }), s && Oe.createElement("div", {
+                    }), s && we.createElement("div", {
                         className: "MessageForward__results",
                         key: "loading"
-                    }, Oe.createElement(rn.a, {
+                    }, we.createElement(rn.a, {
                         className: "MessageForward__stub"
-                    }, Oe.createElement(an.a, null))), !s && 0 === l.length && Oe.createElement("div", {
+                    }, we.createElement(an.a, null))), !s && 0 === l.length && we.createElement("div", {
                         className: "MessageForward__results",
                         key: "no-results"
-                    }, Oe.createElement(rn.a, null, fn("mail_im_search_empty_chats"))), !s && l.length > 0 && Oe.createElement(Jt.a, {
+                    }, we.createElement(rn.a, null, fn("mail_im_search_empty_chats"))), !s && l.length > 0 && we.createElement(Jt.a, {
                         virtualized: !0,
                         className: "MessageForward__results",
                         loadMore: this.loadMore,
@@ -4280,7 +4280,7 @@
                             s = t.name,
                             l = t.photo,
                             u = t.online;
-                        return Oe.createElement(Ke.a, {
+                        return we.createElement(Ke.a, {
                             key: i,
                             "data-id": i,
                             onClick: e.onClick,
@@ -4288,30 +4288,30 @@
                             active: r === d,
                             canBeHovered: !1,
                             onMouseEnter: e.selectRecipient.bind(null, r, !1),
-                            aside: 0 === o ? Oe.createElement("span", {
+                            aside: 0 === o ? we.createElement("span", {
                                 className: Object(Se.a)("MessageForward__radio", {
                                     "MessageForward__radio--selected": +c === i
                                 })
                             }) : ""
-                        }, Oe.createElement(Je.a, {
+                        }, we.createElement(Je.a, {
                             size: "34",
                             title: s,
-                            photo: Array.isArray(l) ? Oe.createElement(nn.a, {
+                            photo: Array.isArray(l) ? we.createElement(nn.a, {
                                 photos: l
-                            }) : Oe.createElement(tn, {
+                            }) : we.createElement(tn, {
                                 online: (Object(a.t)(n, i) || {}).online || u,
                                 title: s,
                                 photo: l
                             }),
                             description: e.getMembersCount(i)
                         }))
-                    })), Oe.createElement("footer", {
+                    })), we.createElement("footer", {
                         className: "MessageForward__footer",
                         ref: this.getFormRef,
                         key: "footer"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "MessageForward__form _emoji_field_wrap"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "MessageForward__input",
                         tabIndex: "0",
                         contentEditable: !0,
@@ -4319,30 +4319,30 @@
                         "aria-multiline": !0,
                         ref: this.getInputRef,
                         placeholder: fn("mail_im_enter_msg")
-                    }), Oe.createElement("div", {
+                    }), we.createElement("div", {
                         className: "MessageForward__emoji emoji_smile_wrap _emoji_wrap"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         ref: this.getEmojiButtonRef,
                         className: "emoji_smile _emoji_btn",
                         title: fn("global_emoji_hint"),
                         onMouseOver: this.onEmojiButtonMouseOver,
                         onMouseOut: this.onEmojiButtonMouseOut,
                         onClick: this.onEmojiButtonClick
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "emoji_smile_icon_vector emoji_smile_icon"
-                    })))), u ? Oe.createElement("div", {
+                    })))), u ? we.createElement("div", {
                         className: "MessageForward__send-spinner"
-                    }, Oe.createElement(an.a, null)) : Oe.createElement("button", {
+                    }, we.createElement(an.a, null)) : we.createElement("button", {
                         className: "MessageForward__send",
                         onClick: this.send
                     }))))
                 }, t
-            }(Oe.Component)),
+            }(we.Component)),
             vn = window,
             yn = vn.MessageBox,
             jn = vn.show,
-            wn = vn.hide,
-            On = vn.isVisible,
+            On = vn.hide,
+            wn = vn.isVisible,
             kn = vn.getLang,
             Cn = vn.boxRefreshCoords,
             Sn = void 0;
@@ -4362,7 +4362,7 @@
         function Tn(e) {
             var t = document.querySelector("#box_layer_wrap"),
                 n = document.querySelector("#box_loader"),
-                r = On(t);
+                r = wn(t);
             return {
                 unmount: function() {
                     var t = In();
@@ -4372,7 +4372,7 @@
                     Cn(n), jn(n), r || jn(t)
                 },
                 hideLoader: function() {
-                    wn(n), r || wn(t)
+                    On(n), r || On(t)
                 }
             }
         }
@@ -4388,9 +4388,9 @@
                     onShow: function() {
                         ! function(e) {
                             var t = In();
-                            t && ke.render(Oe.createElement(Xt, {
+                            t && ke.render(we.createElement(Xt, {
                                 value: e
-                            }, Oe.createElement(_n, {
+                            }, we.createElement(_n, {
                                 getLang: kn,
                                 closePopup: En,
                                 updatePopup: xn
@@ -4517,31 +4517,31 @@
                 };
             if (m) {
                 var j = Object(a.p)(t),
-                    w = function(e) {
+                    O = function(e) {
                         var t = Object(a.p)(e);
                         if (!t || Object(B.c)(e, t.userId)) return !1;
                         return t.userId
                     }(t);
-                j && Object(we.a)(t, s) && (w ? t.set(r.hb.bind(null, (h = {}, b = s, _ = [w], b in h ? Object.defineProperty(h, b, {
+                j && Object(Oe.a)(t, s) && (O ? t.set(r.hb.bind(null, (h = {}, b = s, _ = [O], b in h ? Object.defineProperty(h, b, {
                     value: _,
                     enumerable: !0,
                     configurable: !0,
                     writable: !0
                 }) : h[b] = _, h))).then(Jn.bind(null, e, t, n)) : y.pinned = !0)
             }
-            var O = "";
-            m ? O = f ? getTemplate("im_vkcomgroup_members", {
+            var w = "";
+            m ? w = f ? getTemplate("im_vkcomgroup_members", {
                 name: getLang("mail_im_n_vkcomgroup_members", Object(i.P)(c))
             }) : v ? getTemplate("im_chat_members", {
                 name: getLang("mail_im_n_chat_members", Object(i.P)(c))
-            }) : "" : Object(i.Fb)(s) && (O = Object(i.W)(t, s));
+            }) : "" : Object(i.Fb)(s) && (w = Object(i.W)(t, s));
             var k = getTemplate("im_simple_name", {
                 name: c.tab,
                 href: f ? "/club" + -c.ownerId : c.href,
                 name_attr: l,
                 ads_union: c.ad_union_ids_attr,
-                online: O,
-                more_cls: "" === O ? "im-page--title--1line" : ""
+                online: w,
+                more_cls: "" === w ? "im-page--title--1line" : ""
             });
             val(geByClass1("im-page--title-wrapper", e), k);
             var C = val(d) && !c.top_banner,
@@ -4694,7 +4694,7 @@
                             }, 2e3)
                         },
                         j = !1,
-                        w = !1;
+                        O = !1;
                     showBox("al_im.php", {
                         act: "a_get_link",
                         gid: e.get().gid,
@@ -4702,15 +4702,15 @@
                         markup: 1
                     }, {
                         onDone: function(e) {
-                            b = geByClass1(Kn, e.bodyNode), j = geByClass1("_im_reset_link", e.bodyNode), w = geByClass1("_im_invite_copy", e.bodyNode), _ = geByClass1("_im_invite_copied", e.bodyNode), elfocus(b, 0, b.value.length), addEvent(j, "click", h), addEvent(w, "click", y)
+                            b = geByClass1(Kn, e.bodyNode), j = geByClass1("_im_reset_link", e.bodyNode), O = geByClass1("_im_invite_copy", e.bodyNode), _ = geByClass1("_im_invite_copied", e.bodyNode), elfocus(b, 0, b.value.length), addEvent(j, "click", h), addEvent(O, "click", y)
                         },
                         params: {
                             hideButtons: !0,
                             onHide: function() {
-                                removeEvent(j, "click", h), removeEvent(w, "click", y)
+                                removeEvent(j, "click", h), removeEvent(O, "click", y)
                             },
                             onShow: function() {
-                                addEvent(j, "click", h), addEvent(w, "click", y)
+                                addEvent(j, "click", h), addEvent(O, "click", y)
                             }
                         }
                     }, {});
@@ -4730,9 +4730,9 @@
                 case "invite":
                     if (Object(i.hb)(m)) Object(i.eb)(e, m, t, r.qc);
                     else if (Object(i.Fb)(m)) {
-                        var O = e.get().tabs[m],
+                        var w = e.get().tabs[m],
                             k = [
-                                [m, O.tab]
+                                [m, w.tab]
                             ];
                         e.set(r.qc.bind(null, "chat", [])).then(function() {
                             return t().showCreation(e, k)
@@ -4740,13 +4740,13 @@
                     }
                     break;
                 case "pin_hide":
-                    Object(we.c)(e, Object(a.o)(e), t);
+                    Object(Oe.c)(e, Object(a.o)(e), t);
                     break;
                 case "pin_unhide":
-                    Object(we.d)(e, Object(a.o)(e), t);
+                    Object(Oe.d)(e, Object(a.o)(e), t);
                     break;
                 case "unpin":
-                    Object(we.e)(e, Object(a.o)(e), t);
+                    Object(Oe.e)(e, Object(a.o)(e), t);
                     break;
                 case "settings":
                     n().showSettings(e)
@@ -4932,15 +4932,15 @@
                             var v = Object(a.l)(e, l[0]),
                                 y = Xn(l, e),
                                 j = y ? r.Oc.bind(null, d) : r.Ab.bind(null, v, d),
-                                w = y ? r.Nc.bind(null, d) : r.zb.bind(null, v, d),
-                                O = function(e, t, n) {
+                                O = y ? r.Nc.bind(null, d) : r.zb.bind(null, v, d),
+                                w = function(e, t, n) {
                                     return e().updateChatTopic(t, n), n
                                 }.bind(null, t, d);
                             e.set(r.r.bind(null, e, v, d)).then(function(e) {
                                 return e.set(j)
-                            }).then(O).then(function(e) {
-                                return e.set(w)
-                            }).then(O)
+                            }).then(w).then(function(e) {
+                                return e.set(O)
+                            }).then(w)
                     }
                     m && nr(e, t, n)
                 }.bind(null, t, n, l),
@@ -5008,8 +5008,8 @@
             vr = void 0,
             yr = void 0,
             jr = void 0,
-            wr = void 0,
             Or = void 0,
+            wr = void 0,
             kr = void 0,
             Cr = !1,
             Sr = !1,
@@ -5076,11 +5076,11 @@
         }
 
         function Ir() {
-            Or(), mr.innerHTML = ur(Cr.duration), Cr.duration >= cr && Ar()
+            wr(), mr.innerHTML = ur(Cr.duration), Cr.duration >= cr && Ar()
         }
 
         function Tr() {
-            Or(), stManager.add(["voice_message_player.js", "speech.js"], function() {
+            wr(), stManager.add(["voice_message_player.js", "speech.js"], function() {
                 Cr || (Cr = Speech.newRecorder(), addEvent(Cr, "progress", Ir)), AudioMessagePlayer.detachPlayer(), AudioMessagePlayer.pauseGlobalMedia(), Cr.record().then(function() {
                     var e;
                     e = _r, kr.isRecording = !0, cancelStackPush("audio_message_cancel", function(e) {
@@ -5127,7 +5127,7 @@
 
         function Dr() {
             var e = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0];
-            Mr(), AudioMessagePlayer.loaded && (AudioMessagePlayer.resumeGlobalMedia(), AudioMessagePlayer.detachPlayer()), removeEvent(Cr, "finish", Br), removeEvent(Cr, "finish", Lr), Pr(), Hr(), e && wr()
+            Mr(), AudioMessagePlayer.loaded && (AudioMessagePlayer.resumeGlobalMedia(), AudioMessagePlayer.detachPlayer()), removeEvent(Cr, "finish", Br), removeEvent(Cr, "finish", Lr), Pr(), Hr(), e && Or()
         }
 
         function Nr() {
@@ -5168,10 +5168,10 @@
         }
 
         function Ur(e, t, n, a, o) {
-            return _r = t, kr = t.get().audio_msg, Or = function(e) {
+            return _r = t, kr = t.get().audio_msg, wr = function(e) {
                 var t = e.get().peer;
                 Object(i.ob)(e, t) && !Object(i.gb)(e) && Date.now() - (Object(i.Z)(e, t).lastTyping || 0) > 1e3 * r.b && e.set(r.mc.bind(null, t))
-            }.bind(null, t), jr = n, wr = o, Object(sr.a)(), Object(i.Q)().then(function(e) {
+            }.bind(null, t), jr = n, Or = o, Object(sr.a)(), Object(i.Q)().then(function(e) {
                 var n = e.length > 0;
                 n ? (Rr(), a()) : setCookie("remixvoice", "0", 7), t.set(r.zc.bind(null, n))
             }).catch(function(e) {
@@ -5223,7 +5223,7 @@
                         }(e, ["color", "action"]),
                         i = t.toLowerCase().replace("default", "secondary"),
                         a = Emoji.emojiToHTML(clean(Object(Wr.a)(n.label)).replace(/\n(\r)?/gi, " "), !0);
-                    return Oe.createElement(xe.a, Kr({
+                    return we.createElement(xe.a, Kr({
                         wide: !0,
                         overflow: !0
                     }, r, {
@@ -5233,7 +5233,7 @@
                         }
                     }))
                 }, t
-            }(Oe.Component),
+            }(we.Component),
             Jr = Gt(function(e) {
                 function t() {
                     return Vr(this, t), Qr(this, e.apply(this, arguments))
@@ -5242,26 +5242,26 @@
                     var e = this,
                         t = Object(a.f)(this.props.store);
                     if (!t || !t.buttons) return null;
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: Object(Se.a)("Keyboard", {
                             "Keyboard--hidden": t.hide
                         })
-                    }, Oe.createElement(zr.a, {
+                    }, we.createElement(zr.a, {
                         className: "Keyboard__scroll-wrapper"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "Keyboard__container"
                     }, t.buttons.map(function(t, n) {
-                        return Oe.createElement("div", {
+                        return we.createElement("div", {
                             key: "row-" + n,
                             className: "Keyboard__row"
                         }, t.map(function(n, r) {
-                            return Oe.createElement("div", {
+                            return we.createElement("div", {
                                 className: "Keyboard__button",
                                 key: "row-" + r,
                                 style: {
                                     width: (i = t.length, "calc(100% / " + i + " - 10px)")
                                 }
-                            }, Oe.createElement(Gr, Kr({
+                            }, we.createElement(Gr, Kr({
                                 onClick: function() {
                                     return e.props.send(n)
                                 }
@@ -5270,7 +5270,7 @@
                         }))
                     }))))
                 }, t
-            }(Oe.Component));
+            }(we.Component));
 
         function Yr() {
             return document.getElementById("_im_keyboard_container")
@@ -5285,9 +5285,9 @@
                             function(e, t, n) {
                                 var r = Yr();
                                 if (r) {
-                                    var i = Oe.createElement(Xt, {
+                                    var i = we.createElement(Xt, {
                                         value: e
-                                    }, Oe.createElement(Jr, {
+                                    }, we.createElement(Jr, {
                                         send: t
                                     }));
                                     ke.render(i, r, n)
@@ -5345,54 +5345,54 @@
                         o = this.state.isShowDropDown;
                     if (!a()) return null;
                     var s = n();
-                    return Oe.createElement("div", {
+                    return we.createElement("div", {
                         className: "TemplatesDropDown",
                         onMouseOver: this.toggleDropdown.bind(this, !0),
                         onMouseOut: this.toggleDropdown.bind(this, !1)
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: Object(Se.a)("TemplatesDropDown__wrapper", {
                             "TemplatesDropDown__wrapper--show": o
                         }),
                         "aria-hidden": o
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "TemplatesDropDown__container"
-                    }, Oe.createElement(zr.a, {
+                    }, we.createElement(zr.a, {
                         className: "TemplatesDropDown__scroll-wrapper"
-                    }, Oe.createElement("div", null, " ", Oe.createElement("header", {
+                    }, we.createElement("div", null, " ", we.createElement("header", {
                         className: "TemplatesDropDown__header"
-                    }, Oe.createElement("h2", {
+                    }, we.createElement("h2", {
                         className: "TemplatesDropDown__title"
-                    }, $r("mail_community_templates")), Oe.createElement("a", {
+                    }, $r("mail_community_templates")), we.createElement("a", {
                         role: "button",
                         className: "TemplatesDropDown__setting-button",
                         onClick: r
-                    }, $r("mail_settings_configure"))), s.length ? Oe.createElement("ul", {
+                    }, $r("mail_settings_configure"))), s.length ? we.createElement("ul", {
                         className: "TemplatesDropDown__list"
                     }, s.map(function(t) {
-                        return Oe.createElement("li", {
+                        return we.createElement("li", {
                             key: t.id,
                             className: "TemplatesDropDown__item",
                             onMouseDown: e.elementOnClick.bind(null, t.id)
-                        }, Oe.createElement("h3", {
+                        }, we.createElement("h3", {
                             className: "TemplatesDropDown__item-name",
                             dangerouslySetInnerHTML: {
                                 __html: t.name
                             }
-                        }), Oe.createElement("div", {
+                        }), we.createElement("div", {
                             className: "TemplatesDropDown__item-content",
                             dangerouslySetInnerHTML: {
                                 __html: t.text
                             }
                         }))
-                    })) : Oe.createElement("div", {
+                    })) : we.createElement("div", {
                         className: "TemplatesDropDown__not-found-container"
-                    }, Oe.createElement("span", null, $r("mail_community_templates_not_found")), Oe.createElement(Ne.a, {
+                    }, we.createElement("span", null, $r("mail_community_templates_not_found")), we.createElement(Ne.a, {
                         onClick: i
-                    }, $r("mail_add_community_template"))))))), Oe.createElement("button", {
+                    }, $r("mail_add_community_template"))))))), we.createElement("button", {
                         className: "TemplatesDropDown__icon"
                     }))
                 }, t
-            }(Oe.Component)),
+            }(we.Component)),
             ti = Object.assign || function(e) {
                 for (var t = 1; t < arguments.length; t++) {
                     var n = arguments[t];
@@ -5423,7 +5423,7 @@
                 }(this, e.call.apply(e, [this].concat(r)));
                 return a.onChange = function() {
                     a.props.onChange && a.props.onChange(Emoji.val(a.container))
-                }, a.containerRef = Oe.createRef(), a.state = {
+                }, a.containerRef = we.createRef(), a.state = {
                     value: a.props.initialValue
                 }, a
             }
@@ -5462,7 +5462,7 @@
                         for (var r in e) t.indexOf(r) >= 0 || Object.prototype.hasOwnProperty.call(e, r) && (n[r] = e[r]);
                         return n
                     }(e, ["tabIndex", "isMultiLine", "initialValue"]));
-                return Oe.createElement("div", ti({
+                return we.createElement("div", ti({
                     role: "textbox",
                     ref: this.containerRef,
                     tabIndex: t,
@@ -5470,7 +5470,7 @@
                     "aria-multiline": n
                 }, r))
             }, t
-        }(Oe.Component);
+        }(we.Component);
         ri.defaultProps = {
             isMultiLine: !1,
             tabIndex: 0,
@@ -5636,80 +5636,80 @@
                         a = i.section,
                         o = i.editableMessage,
                         s = n();
-                    return Oe.createElement("section", {
+                    return we.createElement("section", {
                         className: "TemplatesSettings"
-                    }, Oe.createElement(Ee, {
-                        title: Oe.createElement("span", {
+                    }, we.createElement(Ee, {
+                        title: we.createElement("span", {
                             className: "TemplatesSettings__title"
                         }, a === ci && si("mail_community_templates"), a === li && si("mail_add_community_template")),
                         onCloseClick: r
-                    }), Oe.createElement("main", {
+                    }), we.createElement("main", {
                         className: "TemplatesSettings__content"
-                    }, a === ci && (s.length ? Oe.createElement(zr.a, {
+                    }, a === ci && (s.length ? we.createElement(zr.a, {
                         className: "TemplatesSettings__scroll-wrapper"
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "TemplatesSettings__list"
                     }, s.map(function(t) {
-                        return Oe.createElement("section", {
+                        return we.createElement("section", {
                             key: t.id,
                             className: "TemplatesSettings__item"
-                        }, Oe.createElement("h3", {
+                        }, we.createElement("h3", {
                             className: "TemplatesSettings__item-name",
                             dangerouslySetInnerHTML: {
                                 __html: t.name
                             }
-                        }), Oe.createElement("div", {
+                        }), we.createElement("div", {
                             className: "TemplatesSettings__item-content",
                             dangerouslySetInnerHTML: {
                                 __html: t.text
                             }
-                        }), Oe.createElement("div", {
+                        }), we.createElement("div", {
                             className: "TemplatesSettings__buttons-row"
-                        }, Oe.createElement(Ne.a, {
+                        }, we.createElement(Ne.a, {
                             onClick: function() {
                                 return e.go(li, t)
                             },
                             className: "TemplatesSettings__item-button"
-                        }, si("mail_settings_edit")), Oe.createElement("span", {
+                        }, si("mail_settings_edit")), we.createElement("span", {
                             className: "TemplatesSettings__buttons-splitter",
                             "aria-hidden": "true"
-                        }, " · "), Oe.createElement(Ne.a, {
+                        }, " · "), we.createElement(Ne.a, {
                             onClick: e.deleteTemplate.bind(null, t.id),
                             className: "TemplatesSettings__item-button"
                         }, si("mail_delete"))))
-                    }))) : Oe.createElement("div", {
+                    }))) : we.createElement("div", {
                         className: "TemplatesSettings__not-found-container"
-                    }, Oe.createElement("span", null, si("mail_community_templates_not_found")), Oe.createElement(Ne.a, {
+                    }, we.createElement("span", null, si("mail_community_templates_not_found")), we.createElement(Ne.a, {
                         onClick: function() {
                             return e.go(li)
                         }
-                    }, si("mail_add_community_template")))), a === li && Oe.createElement("form", {
+                    }, si("mail_add_community_template")))), a === li && we.createElement("form", {
                         className: "TemplatesSettings__form",
                         id: "create_template_form",
                         onSubmit: this.saveTemplate
-                    }, Oe.createElement("div", {
+                    }, we.createElement("div", {
                         className: "TemplatesSettings__form-row"
-                    }, Oe.createElement("label", {
+                    }, we.createElement("label", {
                         className: "TemplatesSettings__label",
                         htmlFor: "name"
-                    }, si("mail_name"), ":"), Oe.createElement("div", {
+                    }, si("mail_name"), ":"), we.createElement("div", {
                         className: "TemplatesSettings__input-container"
-                    }, Oe.createElement(ii, {
+                    }, we.createElement(ii, {
                         id: "name",
                         type: "text",
                         initialValue: o.name,
                         className: "TemplatesSettings__input",
                         onChange: this.onChangeEditableMessage.bind(null, "name")
-                    }), Oe.createElement("span", {
+                    }), we.createElement("span", {
                         className: "TemplatesSettings__notice"
-                    }, si("mail_community_templates_input_size").replace("{min}", 2).replace("{max}", "200")))), Oe.createElement("div", {
+                    }, si("mail_community_templates_input_size").replace("{min}", 2).replace("{max}", "200")))), we.createElement("div", {
                         className: "TemplatesSettings__form-row"
-                    }, Oe.createElement("label", {
+                    }, we.createElement("label", {
                         className: "TemplatesSettings__label",
                         htmlFor: "text"
-                    }, si("mail_text"), ":"), Oe.createElement("div", {
+                    }, si("mail_text"), ":"), we.createElement("div", {
                         className: "TemplatesSettings__input-container"
-                    }, Oe.createElement(ii, {
+                    }, we.createElement(ii, {
                         id: "text",
                         name: "text",
                         isMultiLine: !0,
@@ -5717,44 +5717,44 @@
                         initialValue: o.text,
                         className: "TemplatesSettings__textarea",
                         onChange: this.onChangeEditableMessage.bind(null, "text")
-                    }), Oe.createElement("span", {
+                    }), we.createElement("span", {
                         className: "TemplatesSettings__notice"
-                    }, si("mail_community_templates_input_size").replace("{min}", 5).replace("{max}", "2 000")))), Oe.createElement("div", {
+                    }, si("mail_community_templates_input_size").replace("{min}", 5).replace("{max}", "2 000")))), we.createElement("div", {
                         className: "TemplatesSettings__form-row"
-                    }, Oe.createElement("label", {
+                    }, we.createElement("label", {
                         className: "TemplatesSettings__label"
-                    }, si("mail_hints"), ":"), Oe.createElement("div", {
+                    }, si("mail_hints"), ":"), we.createElement("div", {
                         className: "TemplatesSettings__input-container"
                     }, oi().map(function(t) {
-                        return Oe.createElement(xe.a, {
+                        return we.createElement(xe.a, {
                             type: "button",
                             onMouseDown: e.addHint.bind(null, t),
                             appearance: "secondary",
                             className: "TemplatesSettings__hint",
                             key: t.id
                         }, t.label)
-                    }))))), Oe.createElement("footer", {
+                    }))))), we.createElement("footer", {
                         className: "TemplatesSettings__footer"
-                    }, a === ci && Oe.createElement(Oe.Fragment, null, Oe.createElement(Ne.a, {
+                    }, a === ci && we.createElement(we.Fragment, null, we.createElement(Ne.a, {
                         onClick: function() {
                             return e.go(li)
                         }
-                    }, si("mail_add_community_template")), Oe.createElement(xe.a, {
+                    }, si("mail_add_community_template")), we.createElement(xe.a, {
                         onClick: r
-                    }, si("mail_close"))), a === li && Oe.createElement(Oe.Fragment, null, Oe.createElement("div", null, o.id && Oe.createElement(Ne.a, {
+                    }, si("mail_close"))), a === li && we.createElement(we.Fragment, null, we.createElement("div", null, o.id && we.createElement(Ne.a, {
                         onClick: this.deleteTemplate.bind(null, o.id)
-                    }, si("mail_delete_community_template"))), Oe.createElement("div", null, Oe.createElement(xe.a, {
+                    }, si("mail_delete_community_template"))), we.createElement("div", null, we.createElement(xe.a, {
                         appearance: "tertiary",
                         onClick: function() {
                             return e.go(ci)
                         }
-                    }, si("mail_cancel")), Oe.createElement(xe.a, {
+                    }, si("mail_cancel")), we.createElement(xe.a, {
                         onClick: this.saveTemplate,
                         form: "create_template_form",
                         type: "submit"
                     }, si("mail_save"))))))
                 }, t
-            }(Oe.Component);
+            }(we.Component);
         ui.defaultProps = {
             section: ci
         };
@@ -5781,9 +5781,9 @@
                         width: 500,
                         onShow: function() {
                             var r = document.getElementById("TemplatesSettings");
-                            r && ke.render(Oe.createElement(Xt, {
+                            r && ke.render(we.createElement(Xt, {
                                 value: t
-                            }, Oe.createElement(di, {
+                            }, we.createElement(di, {
                                 popup: s,
                                 section: e,
                                 getTemplates: function() {
@@ -5886,7 +5886,7 @@
             })
         }
 
-        function wi(e, t, n) {
+        function Oi(e, t, n) {
             var r = g({
                 queues: {},
                 debug: n && n.debug,
@@ -5968,7 +5968,7 @@
                 }
             }
         }
-        var Oi = n("hOuX"),
+        var wi = n("hOuX"),
             ki = n("rCUf"),
             Ci = "_im_upload_dropbox",
             Si = "jpg jpeg png gif heic heif".split(" "),
@@ -6283,7 +6283,7 @@
             if (Na(t, r)) return Promise.resolve(!1);
             var l = ja(r);
             l.getBoundAttach(n.message) && (n.message = ""), n.share_url = l.getShareUrl(), n.cancelled_shares = l.getCancelledShares();
-            var u, d = Object(Oi.a)(),
+            var u, d = Object(wi.a)(),
                 m = {
                     peerId: t,
                     messageId: "rid" + d,
@@ -6388,7 +6388,7 @@
             return e.get().tfdraft || new on.a
         }
 
-        function wa(e, t, n, o, s, c) {
+        function Oa(e, t, n, o, s, c) {
             var l = arguments,
                 u = Object(a.o)(e),
                 d = Object(a.f)(e) || {},
@@ -6399,7 +6399,7 @@
             return Promise.resolve().then(function() {
                 if (Object(a.N)(e)) {
                     if (Object(r.V)(e.get()) || !Object(i.ob)(e, e.get().peer)) {
-                        var o = _a(e, ea, wa, Object(h.p)(l));
+                        var o = _a(e, ea, Oa, Object(h.p)(l));
                         return e.set(r.tc.bind(null, !0, o)).then(function() {
                             Object(i.Ib)(g)
                         })
@@ -6425,14 +6425,14 @@
             })
         }
 
-        function Oa(e, t, n, o, s, l) {
+        function wa(e, t, n, o, s, l) {
             var u = arguments,
                 d = arguments.length > 6 && void 0 !== arguments[6] ? arguments[6] : [];
             return Promise.resolve().then(function() {
                 var m = geByClass1("_im_send", o);
                 if (!Object(a.N)(e)) return !1;
                 if (Object(r.V)(e.get()) || !Object(i.ob)(e, e.get().peer)) {
-                    var f = _a(e, ea, Oa, Object(h.p)(u));
+                    var f = _a(e, ea, wa, Object(h.p)(u));
                     return e.set(r.tc.bind(null, !0, f)).then(function() {
                         Object(i.Ib)(m)
                     })
@@ -6829,7 +6829,7 @@
                     return e.set(r.D.bind(null, t, n, {}))
                 }.bind(null, t);
             ls.remove("im_send_queue_2" + vk.id), ls.remove("im_send_queue_1" + vk.id);
-            var g = wi(p, function(e, t, n, r) {
+            var g = Oi(p, function(e, t, n, r) {
                     e.get().longpoll.push([c.kb(t, n.mess, r)])
                 }.bind(null, t), {
                     store: "ls",
@@ -6841,8 +6841,8 @@
                 v = g.resend,
                 y = g.setErrored,
                 j = g.complete,
-                w = ga.bind(null, t, l, b, d, e),
-                O = function(e) {
+                O = ga.bind(null, t, l, b, d, e),
+                w = function(e) {
                     var t = ja(e).getFwdRaw();
                     t && window.showForwardBox({
                         act: "a_show_forward_box",
@@ -6906,7 +6906,7 @@
                         from: "from_gim"
                     } : {}
                 }),
-                S = Oa.bind(null, t, l, b, e, d, C),
+                S = wa.bind(null, t, l, b, e, d, C),
                 E = function(e, t, n) {
                     var r = Emoji.val(geByClass1("_im_text", t));
                     Object(a.x)(e) && "" !== r || Fa(e, t).then(function(t) {
@@ -6997,7 +6997,7 @@
                 }(e, t), t.get().textMediaSelector = C, t.set(r.T.bind(null, _, v, y, j));
             var P = geByClass1("_im_text", e);
             setTimeout(function() {
-                Object(a.o)(t) && d().setDraft(t, Object(a.u)(Object(a.g)(t))), ka(t, e, C, S, w, f, l)
+                Object(a.o)(t) && d().setDraft(t, Object(a.u)(Object(a.g)(t))), ka(t, e, C, S, O, f, l)
             }, 0);
             var M = xa.bind(null, t, e, l),
                 L = function(e, t, n) {
@@ -7045,15 +7045,15 @@
                     return (0, Object(s.b)(Zr).bindMutations)(Object(s.a)({
                         handlers: function(e, t) {}
                     }), t, r)
-                }(0, t, 0, wa.bind(null, t, l, b, e, d)),
+                }(0, t, 0, Oa.bind(null, t, l, b, e, d)),
                 F = function(e, t, n, r) {
                     var i = (0, Object(s.b)(pi).bindMutations)(Object(s.a)({
                         handlers: function(e, t) {}
                     }), e, t, n, r);
                     i.toggleImText();
-                    var a = Oe.createElement(Xt, {
+                    var a = we.createElement(Xt, {
                         value: e
-                    }, Oe.createElement(ei, {
+                    }, we.createElement(ei, {
                         getTemplates: i.getPreparedTemplates,
                         applyTemplate: i.applyTemplate.bind(i),
                         isNeededRendering: i.isNeedRenderTemplates,
@@ -7105,7 +7105,7 @@
                                 black: !0,
                                 shift: [4, 5]
                             })
-                        }), i(e.parentNode, "click", oa, D), i(e.parentNode, "click", sa, N), i(e.parentNode, "click", aa, M), i(e.parentNode, "click", ca, L), i(e.parentNode, "click", la, B), i(e, "click", ia, M), i(e, "click", "_im_will_fwd", O), i(e, "keydown", "_im_text", function(e) {
+                        }), i(e.parentNode, "click", oa, D), i(e.parentNode, "click", sa, N), i(e.parentNode, "click", aa, M), i(e.parentNode, "click", ca, L), i(e.parentNode, "click", la, B), i(e, "click", ia, M), i(e, "click", "_im_will_fwd", w), i(e, "keydown", "_im_text", function(e) {
                             return function(e, t, n, i) {
                                 if (38 === i.which && n().isEmpty(e) && !t().getEditingMessage() && !Emoji.shown && !hasAccessibilityMode() && !Object(r.V)(e.get())) {
                                     var o = Object(Ri.c)(e, Object(a.g)(e));
@@ -7219,7 +7219,7 @@
         function io(e, t, n, r, o) {
             var s = Object(a.o)(e),
                 c = Object(a.t)(e, s),
-                l = 105 + (Object(we.a)(e, Object(a.o)(e)) || c && c.top_banner ? Object(i.Y)() : 0);
+                l = 105 + (Object(Oe.a)(e, Object(a.o)(e)) || c && c.top_banner ? Object(i.Y)() : 0);
             showTooltip(t, {
                 shift: [n, 10],
                 black: 1,
@@ -7421,7 +7421,7 @@
             yo = 2e3,
             jo = 100;
 
-        function wo(e, t, n, r) {
+        function Oo(e, t, n, r) {
             var i = e instanceof Array ? e : geByClass("_im_bar_date", e),
                 a = t.contHeight();
             mo.onNewMessagesChunk();
@@ -7432,7 +7432,7 @@
             return r.barMap = extend(s, o), r.barMapKeys = Object.keys(r.barMap).sort(), Promise.resolve(r)
         }
 
-        function Oo(e, t, n, r, a) {
+        function wo(e, t, n, r, a) {
             var o = e.get().barMap[t],
                 s = Object(i.ib)(a) ? _o : bo;
             return n - (o[0] + n - o[1]) + r - s
@@ -7444,12 +7444,12 @@
                 s = void 0,
                 c = n - t;
             a.barMapKeys.forEach(function(t) {
-                var a = Oo(e, t, n, r, i);
+                var a = wo(e, t, n, r, i);
                 if (a >= c) {
-                    var l = o ? Oo(e, o, n, r, i) : n;
+                    var l = o ? wo(e, o, n, r, i) : n;
                     o = l > a ? t : o
                 } else if (a < c) {
-                    var u = s ? Oo(e, s, n, r, i) : 0;
+                    var u = s ? wo(e, s, n, r, i) : 0;
                     s = a > u ? t : s
                 }
             });
@@ -7467,7 +7467,7 @@
                         text: n.textContent,
                         date: domData(n, "date")
                     }
-                }(e, o), l[s + "Left"] = Oo(e, o, n, r, i) - c)
+                }(e, o), l[s + "Left"] = wo(e, o, n, r, i) - c)
             }), l
         }
 
@@ -7478,15 +7478,15 @@
                 u = o.scrollTop(),
                 d = l.lastTop ? l.lastTop - u : 0;
             l.lastTop = u;
-            var m, f, p, g = Object(we.a)(s, s.peer) ? Object(i.Y)() : 0,
+            var m, f, p, g = Object(Oe.a)(s, s.peer) ? Object(i.Y)() : 0,
                 h = Object(r.Y)(s.peer, s) && s.tabs[s.peer] && s.tabs[s.peer].top_banner ? 50 : 0,
                 b = (Object(i.ib)(e) ? po + g + h : 0) - go / 2,
                 _ = ko(t, u, o.contHeight(), b, e),
                 v = _.prevBar,
                 y = _.curBar,
                 j = _.prevLeft,
-                w = "translateY(0px)",
-                O = !1,
+                O = "translateY(0px)",
+                w = !1,
                 k = !1,
                 C = !1;
             y || c || (y = function(e) {
@@ -7496,15 +7496,15 @@
                     text: getShortDate(intval(n), !1, !0, getLang("months_of", "raw")),
                     date: n
                 } : null
-            }(a)), y ? O = y : k = !0, v && y && j > -go && j < 0 && (C = !0, k = !1, O = y, w = "translateY(" + (-go - j) + "px)"), O && function(e, t) {
+            }(a)), y ? w = y : k = !0, v && y && j > -go && j < 0 && (C = !0, k = !1, w = y, O = "translateY(" + (-go - j) + "px)"), w && function(e, t) {
                 domData(e, "ts") !== t.date && (e.innerHTML = t.text, domData(e, "ts", t.date), setStyle(e, {
                     visibility: "visible"
                 }))
-            }(n, O), C ? t.set(function(e, t, n, r) {
+            }(n, w), C ? t.set(function(e, t, n, r) {
                 return r.barTransition = r.barMap[t][2], n > 0 ? (addClass(r.barMap[t][2], "im-page--date-bar-transition-inverse"), addClass(e, "im-page--date-bar-transition-inverse")) : n < 0 && (removeClass(r.barMap[t][2], "im-page--date-bar-transition-inverse"), removeClass(e, "im-page--date-bar-transition-inverse")), addClass(r.barMap[t][2], "im-page--date-bar-transition"), addClass(e, "im-page--date-bar-transition"), Promise.resolve(r)
             }.bind(null, n, v.date, d)) : t.set(function(e, t) {
                 return t.barTransition && (removeClass(t.barTransition, "im-page--date-bar-transition"), t.barTransition = null), removeClass(e, "im-page--date-bar-transition"), Promise.resolve(t)
-            }.bind(null, n)), w && setStyle(n, (m = {}, f = cssTransformProp, p = w, f in m ? Object.defineProperty(m, f, {
+            }.bind(null, n)), O && setStyle(n, (m = {}, f = cssTransformProp, p = O, f in m ? Object.defineProperty(m, f, {
                 value: p,
                 enumerable: !0,
                 configurable: !0,
@@ -7523,11 +7523,11 @@
                 a = null,
                 o = null,
                 s = debounce(function(e) {
-                    r.set(wo.bind(null, t, e, !1))
+                    r.set(Oo.bind(null, t, e, !1))
                 }, 500);
             return {
                 reset: function(i) {
-                    r.set(wo.bind(null, t, i, !0)).then(function() {
+                    r.set(Oo.bind(null, t, i, !0)).then(function() {
                         Co(e, r, n, t, i)
                     })
                 },
@@ -7542,7 +7542,7 @@
                     }.bind(null, e))
                 },
                 parseMore: function(i, a) {
-                    r.set(wo.bind(null, i, a, !1)).then(function() {
+                    r.set(Oo.bind(null, i, a, !1)).then(function() {
                         Co(e, r, n, t, a)
                     })
                 },
@@ -7565,37 +7565,41 @@
         }
         var Eo = n("nyd8"),
             xo = n("uytb"),
-            Io = "_im_top_banner_button",
-            To = "_im_top_banner_hide";
+            Io = n("p3re"),
+            To = n("t7n3"),
+            Po = n("FWc3"),
+            Mo = n("zxIV"),
+            Lo = "_im_top_banner_button",
+            Bo = "_im_top_banner_hide";
 
-        function Po(e, t) {
+        function Do(e, t) {
             var n = geByClass1("_im_dialog_actions", e);
-            toggleClass(n, "im-page--chat-header_top-banner", t)
+            Object(Mo.vb)(n, "im-page--chat-header_top-banner", t)
         }
 
-        function Mo(e, t) {
-            var n = geByClass1(To, e);
-            n && window.tooltips && tooltips.hide(n), Po(e, !1), t.innerHTML = ""
+        function No(e, t) {
+            var n = geByClass1(Bo, e);
+            n && window.tooltips && tooltips.hide(n), Do(e, !1), t.innerHTML = ""
         }
 
-        function Lo(e, t, n) {
+        function Ao(e, t, n) {
             var o = geByClass1("_im_top_banner", e),
                 c = Object(s.a)({
                     handlers: function(a, s) {
                         var c = geByClass1("_im_dialog_actions", e);
-                        s(e, "click", To, function(a) {
-                            t.set(r.S.bind(null, t.get().peer)), Mo(e, o);
-                            var s = !!Object(i.Yb)(t);
-                            Object(i.G)(t, s, !0, n)
-                        }), s(e, "click", Io, function(a) {
+                        s(e, "click", Bo, function() {
+                            t.set(r.S.bind(null, t.get().peer)), No(e, o);
+                            var a = !!Object(i.Yb)(t);
+                            Object(i.G)(t, a, !0, n)
+                        }), s(e, "click", Lo, function(a) {
                             var s = function(e, t, n, i) {
-                                    var a = domData(e, "payload");
-                                    return !!a && (t.set(r.k.bind(null, t.get().peer, a)), Mo(n, i), !0)
+                                    var a = Object(Mo.s)(e, "payload");
+                                    return !!a && (t.set(r.k.bind(null, t.get().peer, a)), No(n, i), !0)
                                 }(a.target, t, e, o),
                                 c = !!Object(i.Yb)(t);
                             Object(i.G)(t, c, !s, n)
-                        }), s(c, "mouseover", To, function(e, t) {
-                            showTooltip(t, {
+                        }), s(c, "mouseover", Bo, function(e, t) {
+                            Object(Po.c)(t, {
                                 text: getLang("mail_top_banner_hide"),
                                 black: 1,
                                 shift: [8, 4],
@@ -7606,42 +7610,48 @@
                 });
             return {
                 renderPeer: function(t) {
-                    var r, s, c, l = Object(a.t)(t, t.get().peer).top_banner,
-                        u = o.children.length;
-                    l && !Object(a.K)(t) ? (Po(e, !0), o.innerHTML = (s = (r = l).icon ? getTemplate("im_top_banner_icon", {
-                        icon: r.icon
-                    }) : "", c = (c = (r.buttons || []).map(function(e) {
-                        var t = "";
-                        switch (e.layout) {
-                            case "secondary":
-                                t = "secondary";
-                                break;
-                            default:
-                                t = "blue_button"
-                        }
-                        return "link" === e.type ? getTemplate("im_top_banner_button_link", {
-                            link: e.link,
-                            text: e.text,
-                            css_class: t
-                        }) : getTemplate("im_top_banner_button", {
-                            callback_data: e.callback_data,
-                            text: e.text,
-                            css_class: t
+                    var r = Object(a.t)(t, t.get().peer).top_banner,
+                        s = o.children.length;
+                    r && !Object(a.K)(t) ? (Do(e, !0), o.innerHTML = function(e) {
+                        var t = e.icon ? Object(To.n)("im_top_banner_icon", {
+                                icon: e.icon
+                            }) : "",
+                            n = e.text;
+                        "employees_banner" === e.name && (n = Object(Io.e)(n, Io.b.bind(null, !1)), n = Object(Io.f)(n));
+                        var r = (e.buttons || []).map(function(e) {
+                            var t = "";
+                            switch (e.layout) {
+                                case "secondary":
+                                    t = "secondary";
+                                    break;
+                                default:
+                                    t = "blue_button"
+                            }
+                            return "link" === e.type ? Object(To.n)("im_top_banner_button_link", {
+                                link: e.link,
+                                text: e.text,
+                                css_class: t
+                            }) : Object(To.n)("im_top_banner_button", {
+                                callback_data: e.callback_data,
+                                text: e.text,
+                                css_class: t
+                            })
+                        });
+                        return r = r.concat([Object(To.n)("im_top_banner_hide_btn", {})]), Object(To.n)("im_top_banner", {
+                            text: n,
+                            icon: t,
+                            buttons: r.join("")
                         })
-                    })).concat([getTemplate("im_top_banner_hide_btn", {})]), getTemplate("im_top_banner", {
-                        text: r.text,
-                        icon: s,
-                        buttons: c.join("")
-                    }))) : o.children.length && Mo(e, o);
-                    var d = o.children.length;
-                    Object(i.G)(t, d, u, n)
+                    }(r)) : o.children.length && No(e, o);
+                    var c = o.children.length;
+                    Object(i.G)(t, c, s, n)
                 },
                 unmount: function() {
                     Object(s.c)(c)
                 }
             }
         }
-        var Bo = function() {
+        var Ho = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -7665,59 +7675,59 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            Do = 1e3,
-            No = -30,
-            Ao = 30,
-            Ho = 2e3,
-            Ro = 700,
-            Fo = 15,
-            qo = 47,
-            Uo = "_im_to_end",
-            zo = "_im_failed_action",
-            Wo = "_im_mess_link",
-            Ko = "_im_admin_name",
-            Vo = "_im_typer_c",
-            Qo = "_im_error",
-            Xo = "_im_join_cancel",
-            Go = "_im_retry_media",
-            Jo = "im-audio-message_recorded",
-            Yo = "im-audio-message_recording",
-            Zo = "_im_mess_srv",
-            $o = "im_srv_mess_link",
-            es = "_chat_invitation",
-            ts = "_im_mess",
-            ns = "_im_replied_message",
-            is = "_im_replied_author_link",
-            as = !1,
-            os = {};
+            Ro = 1e3,
+            Fo = -30,
+            qo = 30,
+            Uo = 2e3,
+            zo = 700,
+            Wo = 15,
+            Ko = 47,
+            Vo = "_im_to_end",
+            Qo = "_im_failed_action",
+            Xo = "_im_mess_link",
+            Go = "_im_admin_name",
+            Jo = "_im_typer_c",
+            Yo = "_im_error",
+            Zo = "_im_join_cancel",
+            $o = "_im_retry_media",
+            es = "im-audio-message_recorded",
+            ts = "im-audio-message_recording",
+            ns = "_im_mess_srv",
+            is = "im_srv_mess_link",
+            as = "_chat_invitation",
+            os = "_im_mess",
+            ss = "_im_replied_message",
+            cs = "_im_replied_author_link",
+            us = !1,
+            ds = {};
 
-        function ss(e) {
+        function ms(e) {
             var t = Object(a.t)(e, e.get().peer);
             return !!Object(a.p)(e) || !!t.top_banner
         }
 
-        function cs(e, t) {
+        function fs(e, t) {
             var n = Object(h.r)(e),
                 r = Object(a.t)(n, t);
-            return Object(i.hb)(t) && Object(we.a)(n, t) || !!r.top_banner && !Object(a.K)(t, n)
+            return Object(i.hb)(t) && Object(Oe.a)(n, t) || !!r.top_banner && !Object(a.K)(t, n)
         }
 
-        function us(e, t) {
+        function ps(e, t) {
             return Object(i.Y)()
         }
 
-        function ds(e, t) {
+        function gs(e, t) {
             var n = ge("page_header"),
                 r = geByClass1("_im_chat_input_w", t),
                 i = r.offsetHeight - r.clientHeight;
-            return Math.min(window.clientHeight() - i, Math.max(Math.max(0, e), Ro + n.offsetHeight + t.offsetTop))
+            return Math.min(window.clientHeight() - i, Math.max(Math.max(0, e), zo + n.offsetHeight + t.offsetTop))
         }
 
-        function ms(e, t) {
+        function hs(e, t) {
             return geByClass1("_im_mess_" + t, e)
         }
 
-        function fs(e, t, n) {
+        function bs(e, t, n) {
             var r, a, o, s, c, l, u, d = geByClass1(e, t),
                 m = void 0,
                 f = void 0;
@@ -7729,7 +7739,7 @@
                     removeClass(bodyNode, "cursor_ns_resize")
                 },
                 onDrag: function(e, r) {
-                    var a = ds(f - m + r, t);
+                    var a = gs(f - m + r, t);
                     Object(i.jc)(a), n().fixHeight()
                 }
             }, o = void 0, s = void 0, c = function(e) {
@@ -7741,32 +7751,32 @@
             }, (r = d).beginDragHandler = u, addEvent(r, "mousedown touchstart", u)
         }
 
-        function ps(e, t) {
+        function _s(e, t) {
             var n;
             n = geByClass1(e, t), removeEvent(n, "mousedown touchstart", n.beginDragHandler)
         }
 
-        function gs(e) {
+        function vs(e) {
             hide(e.target)
         }
 
-        function hs(e, t, n) {
+        function ys(e, t, n) {
             var i = Object(a.t)(t, n),
                 o = Object(r.Bc)(i.history);
             toggleClass(e, "im-page--history_empty-hist", !o)
         }
 
-        function bs(e) {
+        function js(e) {
             return geByClass1("_im_peer_history", e)
         }
 
-        function _s(e, t) {
+        function Os(e, t) {
             var n = t.contHeight(),
                 r = e.scrollTop + (n - e.contHeight);
             t.scrollTop(r)
         }
 
-        function vs(e, t, n, a, o, s, c, l) {
+        function ws(e, t, n, a, o, s, c, l) {
             var u = !(arguments.length > 8 && void 0 !== arguments[8]) || arguments[8],
                 d = arguments.length > 9 && void 0 !== arguments[9] && arguments[9],
                 m = (t.get().tabs || {})[n];
@@ -7775,21 +7785,21 @@
             if (!t.get().tabHistoryNotChanged) {
                 val(geByClass1("_im_page_peer_name", e), m.tab);
                 var p = Object(r.Bc)(m.history);
-                hs(e, t, n), p || (p = getLang("mail_im_here_history")), val(f, p), getAudioPlayer().isPlaying() && getAudioPlayer().updateCurrentPlaying(), Object(i.ib)(t) || Object(i.L)("_chat_body_wrap", e), Ms(t, a, e)
+                ys(e, t, n), p || (p = getLang("mail_im_here_history")), val(f, p), getAudioPlayer().isPlaying() && getAudioPlayer().updateCurrentPlaying(), Object(i.ib)(t) || Object(i.L)("_chat_body_wrap", e), Ns(t, a, e)
             }
-            if (Object(r.Y)(n, t.get()) ? o().showSearch(t) : o().cancelSearch(t, !1), c.changePeer(n, t), t.get().msgid) Cs(a, e, t.get().msgid, t);
+            if (Object(r.Y)(n, t.get()) ? o().showSearch(t) : o().cancelSearch(t, !1), c.changePeer(n, t), t.get().msgid) Is(a, e, t.get().msgid, t);
             else if (m.scrollBottom && u) {
-                _s(m, a);
+                Os(m, a);
                 var g = Object(i.tb)(t, e, a),
-                    h = Bo(g, 1)[0];
+                    h = Ho(g, 1)[0];
                 m.skipped || setTimeout(function() {
-                    m.unread && !h && xs(t, e, !0), js(t, a, e)
+                    m.unread && !h && Ms(t, e, !0), Cs(t, a, e)
                 }, 100)
-            } else ks(a, e, o, t, d) || a.scrollBottom(No);
+            } else xs(a, e, o, t, d) || a.scrollBottom(Fo);
             window.LazyLoad && window.LazyLoad.scan(!!a.scroll && a.scroll.scroller)
         }
 
-        function ys(e, t) {
+        function ks(e, t) {
             var n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2] || t.scrollTop(),
                 i = t.scrollBottom(),
                 a = t.contHeight(),
@@ -7797,13 +7807,13 @@
             e.set(r.ac.bind(null, o, n, i, a))
         }
 
-        function js(e, t, n) {
+        function Cs(e, t, n) {
             var r = Object(a.F)(e),
                 i = 4 * t.getScrollHeight();
-            t.scrollBottom() > i && !r && xs(e, n, !0, 2 * t.getScrollHeight())
+            t.scrollBottom() > i && !r && Ms(e, n, !0, 2 * t.getScrollHeight())
         }
 
-        function ws(e, t, n, o, s, c, l, u) {
+        function Ss(e, t, n, o, s, c, l, u) {
             var d = !(arguments.length > 8 && void 0 !== arguments[8]) || arguments[8];
             if ((e.get().history_init || (e.get().history_init = !0, !(u.scrollTop() > 0))) && !je.a.isFullscreen) {
                 s.update(u), s.show();
@@ -7811,114 +7821,114 @@
                 if (0 !== m && Object(i.ob)(e.get(), m) && (mo.onHistoryScroll(u.scrollTop()), !layers.visible)) {
                     var f = Object(a.F)(e),
                         p = Object(a.t)(e, m);
-                    p && !p.skipped && l < 0 ? js(e, u, c) : l > 0 && !p.skipped && !p.unread && Ns(e, c), Es(e, u) && (f && p && !p.skipped && Ns(e, c), p.unread > 0 && Os(e));
+                    p && !p.skipped && l < 0 ? Cs(e, u, c) : l > 0 && !p.skipped && !p.unread && Fs(e, c), Ps(e, u) && (f && p && !p.skipped && Fs(e, c), p.unread > 0 && Es(e));
                     var g = Object(i.Lc)(n);
-                    if (!Object(r.Y)(m, e.get()) && d && o(u), !as && (l < 0 || 0 === u.scrollBottom()) && u.scrollBottom() < Do) {
+                    if (!Object(r.Y)(m, e.get()) && d && o(u), !us && (l < 0 || 0 === u.scrollBottom()) && u.scrollBottom() < Ro) {
                         if (Object(r.Y)(m, e.get())) return;
                         if (p.skipped > 0 && !e.get().no_moving_down) {
                             var h = gpeByClass("_im_page_history", h),
                                 b = e.get();
-                            as = !0;
+                            us = !0;
                             var _ = e.set(r.mb).then(t().loadHistory.bind(null, b.peer, {
                                 reversed: !0
                             })).then(function() {
-                                Os(e), as = !1, xs(e, h), p.skipped || e.set(r.p.bind(null, e.get().peer, !1, !1))
+                                Es(e), us = !1, Ms(e, h), p.skipped || e.set(r.p.bind(null, e.get().peer, !1, !1))
                             });
-                            return Ts(h, !0), void _.then(Ts.bind(null, h, !1))
+                            return Bs(h, !0), void _.then(Bs.bind(null, h, !1))
                         }
                     }
-                    if (!as && u.scrollTop() < Do) {
+                    if (!us && u.scrollTop() < Ro) {
                         if (Object(r.Y)(m, e.get())) {
-                            as = !0;
+                            us = !0;
                             var v = t().getSearchResulstModule();
-                            return v.isAll(e) ? void(as = !1) : void g(v.loadMore(e).then(function(n) {
-                                as = !1, n && (t().loadHistory(e.get().peer, {}, e, n), o(u))
+                            return v.isAll(e) ? void(us = !1) : void g(v.loadMore(e).then(function(n) {
+                                us = !1, n && (t().loadHistory(e.get().peer, {}, e, n), o(u))
                             }), "up")
                         }
                         var y = e.get();
-                        p.allShown || (as = !0, g(e.set(r.qb.bind(null, 0, 0)).then(t().loadHistory.bind(null, y.peer, {})).then(function() {
-                            as = !1, o(u)
+                        p.allShown || (us = !0, g(e.set(r.qb.bind(null, 0, 0)).then(t().loadHistory.bind(null, y.peer, {})).then(function() {
+                            us = !1, o(u)
                         }), "up"))
                     }
-                    l < 0 && Fs(e, m, u.scrollBottom(), c, t), Object(r.gd)()
+                    l < 0 && Ws(e, m, u.scrollBottom(), c, t), Object(r.gd)()
                 }
             }
         }
 
-        function Os(e) {
+        function Es(e) {
             if (!(window.curNotifier && curNotifier.idle_manager && curNotifier.idle_manager.is_idle)) return e.set(r.Fb.bind(null, e.get().peer))
         }
 
-        function ks(e, t, n, r, a) {
+        function xs(e, t, n, r, a) {
             var o = geByClass1("_im_unread_bar_row", t);
             if (o) {
                 var s = r.get(),
                     c = s.peer,
                     l = o.getBoundingClientRect(),
                     u = geByClass1("_im_chat_body_abs", t).getBoundingClientRect().top + 20;
-                Object(i.ib)(r) && (u += qo + (cs(s, c) ? us() : 0));
+                Object(i.ib)(r) && (u += Ko + (fs(s, c) ? ps() : 0));
                 var d = e.scrollTop() - u + l.top;
-                return e.scrollTop(d), ys(r, e, d), setTimeout(function() {
-                    c === r.get().peer && ws(r, n, bs(t), function() {}, a, t, 0, e)
-                }, 80), Os(r), !0
+                return e.scrollTop(d), ks(r, e, d), setTimeout(function() {
+                    c === r.get().peer && Ss(r, n, js(t), function() {}, a, t, 0, e)
+                }, 80), Es(r), !0
             }
             return !1
         }
 
-        function Cs(e, t, n, r) {
-            var a = ms(t, n);
+        function Is(e, t, n, r) {
+            var a = hs(t, n);
             if (a) {
                 var o = Object(i.ib)(r),
                     s = r.get().peer,
                     c = o ? window.clientHeight() : geByClass1("_im_chat_body_abs", t).offsetHeight,
                     l = a.offsetTop + domPN(a).offsetTop + domPN(domPN(a)).offsetTop + domPN(domPN(domPN(a))).offsetTop;
-                o && cs(r, s) && (l -= us(r.get())), e.scrollTop(l - e.getScrollHeight() / 2 + c / 2), addClass(a, "im-mess_light"), setTimeout(function() {
+                o && fs(r, s) && (l -= ps(r.get())), e.scrollTop(l - e.getScrollHeight() / 2 + c / 2), addClass(a, "im-mess_light"), setTimeout(function() {
                     removeClass(a, "im-mess_light")
-                }, Ho)
+                }, Uo)
             }
         }
 
-        function Ss(e, t, n) {
+        function Ts(e, t, n) {
             n.updateLastSeen(e)
         }
 
-        function Es(e, t) {
+        function Ps(e, t) {
             return Object(a.w)(e) >= intval(t.scrollBottom())
         }
 
-        function xs(e, t, n) {
+        function Ms(e, t, n) {
             var a = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0,
                 o = e.get().peer;
             if (!Object(i.yb)(o)) {
                 var s = e.get().tabs[o],
-                    c = geByClass1(Uo, t),
+                    c = geByClass1(Vo, t),
                     l = geByClass1("_im_to_end_label", c);
                 n && s.unread > 0 ? val(l, getLang("mail_im_new_messages", s.unread)) : val(l, getLang("mail_im_to_end_new"));
                 var u = !1;
-                (n || s.skipped > 0) && !Object(r.Y)(e.get().peer, e.get()) ? (u = !0, addClass(c, "im-to-end_shown")) : Ds(c, !0), e.set(r.Wc.bind(null, [u, intval(a)]))
+                (n || s.skipped > 0) && !Object(r.Y)(e.get().peer, e.get()) ? (u = !0, addClass(c, "im-to-end_shown")) : Rs(c, !0), e.set(r.Wc.bind(null, [u, intval(a)]))
             }
         }
 
-        function Is(e) {
+        function Ls(e) {
             var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
-            return (0 !== e.scrollTop() || 0 !== e.scrollBottom()) && e.scrollBottom() < (t ? Ao + t : Ao)
+            return (0 !== e.scrollTop() || 0 !== e.scrollBottom()) && e.scrollBottom() < (t ? qo + t : qo)
         }
 
-        function Ts(e, t) {
-            var n = geByClass1(Uo, e);
+        function Bs(e, t) {
+            var n = geByClass1(Vo, e);
             toggleClass(n, "im-to-end_loading", t)
         }
 
-        function Ps(e, t, n, i) {
-            if (!t.get().tabs[t.get().peer].skipped) return i.scrollBottom(No), xs(t, n), Os(t), void Fs(t, t.get().peer, 0, n, e);
-            Ts(n, !0), t.set(r.p.bind(null, t.get().peer, !1, !1)).then(function() {
+        function Ds(e, t, n, i) {
+            if (!t.get().tabs[t.get().peer].skipped) return i.scrollBottom(Fo), Ms(t, n), Es(t), void Ws(t, t.get().peer, 0, n, e);
+            Bs(n, !0), t.set(r.p.bind(null, t.get().peer, !1, !1)).then(function() {
                 return t.set(r.sb.bind(null, t.get().peer, !0, -1, !1))
             }).then(function() {
-                Ts(n, !1), e().changePeer(t, !1, !1), Os(t)
+                Bs(n, !1), e().changePeer(t, !1, !1), Es(t)
             })
         }
 
-        function Ms(e, t, n) {
+        function Ns(e, t, n) {
             var r = arguments.length > 3 && void 0 !== arguments[3] && arguments[3];
             if (Object(i.ib)(e)) {
                 var a = t.contHeight(),
@@ -7928,8 +7938,8 @@
                     l = geByClass1("_im_chat_input_parent", n),
                     u = geByClass1("_im_chat_audio_input_parent", n);
                 if (!1 !== (r = !1 !== r ? r : Object(i.U)()) && r > 0) {
-                    var d = ds(r, n),
-                        m = d - (hasClass(u, Yo) || hasClass(u, Jo) ? u : l).offsetHeight;
+                    var d = gs(r, n),
+                        m = d - (hasClass(u, ts) || hasClass(u, es) ? u : l).offsetHeight;
                     c.style.height = window.clientHeight() - d - s + "px", setStyle(o, {
                         top: m + "px",
                         bottom: "auto"
@@ -7940,7 +7950,7 @@
                 });
                 var f = geByClass1("_im_peer_history_w", n);
                 return setStyle(f, {
-                    borderBottomWidth: o.offsetHeight - Fo - 1
+                    borderBottomWidth: o.offsetHeight - Wo - 1
                 }), t.contHeight() - a
             }
             Object(i.L)("_chat_body_wrap", n);
@@ -7948,12 +7958,12 @@
             return t.update(!1, !0), p - t.getScrollHeight()
         }
 
-        function Ls(e, t, n, r) {
+        function As(e, t, n, r) {
             var i = t.offsetHeight;
             r(), e.heightIncreased(t.offsetHeight - i, n)
         }
 
-        function Bs(e, t) {
+        function Hs(e, t) {
             var n = t.getBoundingClientRect().top;
             showTooltip(t, {
                 className: "im-page--admin-tt",
@@ -7967,35 +7977,35 @@
             })
         }
 
-        function Ds(e) {
+        function Rs(e) {
             var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
             hasClass(e, "im-to-end_shown") && (t && addClass(e, "im-to-end_fast"), removeClass(e, "im-to-end_shown"), t && (e.offsetHeight, removeClass(e, "im-to-end_fast")))
         }
 
-        function Ns(e, t) {
+        function Fs(e, t) {
             var n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2],
-                i = geByClass1(Uo, t);
-            e.set(r.Wc.bind(null, [!1, 0])), Ds(i, n)
+                i = geByClass1(Vo, t);
+            e.set(r.Wc.bind(null, [!1, 0])), Rs(i, n)
         }
 
-        function As(e) {
+        function qs(e) {
             var t = Object(a.g)(e);
             Object(i.hb)(t.peerId) && (t.pinHideId = cur.imDb.select(xo.a, t.peerId))
         }
 
-        function Hs(e, t, n, r, i) {
+        function Us(e, t, n, r, i) {
             e.setState({
                 isEditing: !1
-            }), removeClass(r, "im-mess_is_editing"), removeClass(geByClass1("_im_page_history"), "is_msg_editing"), cancelStackFilter("cancel_edit"), n.setDraft(e, Object(a.o)(e) ? Object(a.u)(Object(a.g)(e)) : null), n.toggleStickers(e, !0), n.restoreKeyboard(), Rs(t)
+            }), removeClass(r, "im-mess_is_editing"), removeClass(geByClass1("_im_page_history"), "is_msg_editing"), cancelStackFilter("cancel_edit"), n.setDraft(e, Object(a.o)(e) ? Object(a.u)(Object(a.g)(e)) : null), n.toggleStickers(e, !0), n.restoreKeyboard(), zs(t)
         }
 
-        function Rs(e) {
+        function zs(e) {
             Object(h.p)(geByClass("_im_history_tooltip", e)).forEach(hide)
         }
 
-        function Fs(e, t, n, i, o) {
+        function Ws(e, t, n, i, o) {
             var s = Object(a.t)(e, t);
-            if (!(Date.now() - (s.lastReset || 0) < 1e3) && (s && s.msgs && s.history && !as && s.offset > 300 && 0 == s.skipped && n < 50 && n >= 0 && 0 === (e.get().selectedMessages || []).length)) {
+            if (!(Date.now() - (s.lastReset || 0) < 1e3) && (s && s.msgs && s.history && !us && s.offset > 300 && 0 == s.skipped && n < 50 && n >= 0 && 0 === (e.get().selectedMessages || []).length)) {
                 var c = Object.keys(s.msgs).filter(function(e) {
                         return e > 0
                     }).sort(function(e, t) {
@@ -8008,12 +8018,12 @@
             }
         }
 
-        function qs(e) {
+        function Ks(e) {
             checkEvent(e) || cancelEvent(e)
         }
 
-        function Us(e, t, n, l, u, m, f, p, g, h, b, _, v, y, j, w) {
-            var O = void 0,
+        function Vs(e, t, n, l, u, m, f, p, g, h, b, _, v, y, j, O) {
+            var w = void 0,
                 k = throttle(function() {
                     n.smoothScroll.apply(n, arguments)
                 }, 300);
@@ -8026,23 +8036,23 @@
                         s = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
                     if (0 === e.get().peer && j.disable(), revertLastInlineVideo(t), 0 === e.get().peer) return u.setDraft(e, null),
                         function(e) {
-                            addClass(e, "im-page--history_empty"), bs(e).innerHTML = ""
+                            addClass(e, "im-page--history_empty"), js(e).innerHTML = ""
                         }(t);
                     if (Object(i.ob)(e.get(), e.get().peer)) {
                         removeClass(t, "im-page--history_search"), e.set(r.E), l.changeActions(e);
                         var c = e.get().peer,
                             d = e.get().prevPeer;
-                        removeClass(t, "im-page--history_loading"), toggleClass(t, "im-page--history_vkcomgroup", Object(i.pb)(e, c)), o ? u.setDraft(e, Object(a.u)(Object(a.g)(e))) : u.updateState(e), xs(e, t), m().updateTyping(c, e), j.toggle(!0), Ss(e, 0, l), Object(i.yb)(d) && !Object(i.yb)(c) ? (! function(e, t, n, r, i, a, o, s, c, l) {
-                            removeClass(e, "im-page--history_empty"), vs(e, t, n, r, i, a, o, s, c, l)
-                        }(t, e, c, n, m, l, p, w, s, j), j.reset(n)) : Object(i.yb)(d) || Object(i.yb)(c) || (vs(t, e, c, n, m, l, p, w, s, j), j.reset(n)), Object(i.yb)(c) || ws(e, m, bs(t), v, j, t, 0, n), Object(i.K)(t)
+                        removeClass(t, "im-page--history_loading"), toggleClass(t, "im-page--history_vkcomgroup", Object(i.pb)(e, c)), o ? u.setDraft(e, Object(a.u)(Object(a.g)(e))) : u.updateState(e), Ms(e, t), m().updateTyping(c, e), j.toggle(!0), Ts(e, 0, l), Object(i.yb)(d) && !Object(i.yb)(c) ? (! function(e, t, n, r, i, a, o, s, c, l) {
+                            removeClass(e, "im-page--history_empty"), ws(e, t, n, r, i, a, o, s, c, l)
+                        }(t, e, c, n, m, l, p, O, s, j), j.reset(n)) : Object(i.yb)(d) || Object(i.yb)(c) || (ws(t, e, c, n, m, l, p, O, s, j), j.reset(n)), Object(i.yb)(c) || Ss(e, m, js(t), v, j, t, 0, n), Object(i.K)(t)
                     }
                 },
                 preparePeer: function(e) {
                     var n = Object(a.o)(e);
-                    As(e), u.setDraft(e, Object(a.u)(Object(a.t)(e, n))), m().updateTyping(n, e), m().hideError(), l.renderPeer(e), w.renderPeer(e), l.hideActions(e), p.changePeer(n, e), Ss(e, 0, l), j.toggle(!1), Ns(e, t, !0)
+                    qs(e), u.setDraft(e, Object(a.u)(Object(a.t)(e, n))), m().updateTyping(n, e), m().hideError(), l.renderPeer(e), O.renderPeer(e), l.hideActions(e), p.changePeer(n, e), Ts(e, 0, l), j.toggle(!1), Fs(e, t, !0)
                 },
                 saveScroll: function(e) {
-                    return ys(e, n)
+                    return ks(e, n)
                 },
                 loadingPeer: function(e) {
                     Object(r.V)(e.get()) || (removeClass(t, "im-page--history_empty"), addClass(t, "im-page--history_loading"))
@@ -8054,7 +8064,7 @@
                     f().removeSelection(e)
                 },
                 replaceMessageAttrs: function(e, n) {
-                    Object(i.ec)(n.get(), bs(t), e)
+                    Object(i.ec)(n.get(), js(t), e)
                 },
                 cleanSelection: function(e) {
                     h.cleanSelection(e)
@@ -8063,29 +8073,29 @@
                     f().updateDialogFilters(e)
                 },
                 getSearchResulstModule: function() {
-                    return O
+                    return w
                 },
                 insertSearch: function(e, r) {
-                    O || (l.deselectAll(r), O = d(t, r)), addClass(t, "im-page--history_search"), e ? (removeClass(t, "im-page--history_search-empty"), bs(t).innerHTML = e) : (addClass(t, "im-page--history_search-empty"), bs(t).innerHTML = Object(i.Tb)()), Ms(r, n, t), n.scrollBottom(0), xs(r, t), j.reset(n)
+                    w || (l.deselectAll(r), w = d(t, r)), addClass(t, "im-page--history_search"), e ? (removeClass(t, "im-page--history_search-empty"), js(t).innerHTML = e) : (addClass(t, "im-page--history_search-empty"), js(t).innerHTML = Object(i.Tb)()), Ns(r, n, t), n.scrollBottom(0), Ms(r, t), j.reset(n)
                 },
                 updateChatTopic: function(e, t) {
-                    f().updateDialog(e, t), e === t.get().peer && (l.renderPeer(t), l.renderActions(t), w.renderPeer(t))
+                    f().updateDialog(e, t), e === t.get().peer && (l.renderPeer(t), l.renderActions(t), O.renderPeer(t))
                 },
                 updateActions: function(e) {
                     l.changeActions(e)
                 },
                 updateChatPhoto: function(e, r, a) {
                     if (Object(i.ub)(e.peerId, a.get())) {
-                        l.renderPeer(a), w.renderPeer(a);
-                        var o = Is(n);
-                        Object(i.w)(e, r, a.get(), bs(t)), o && n.scrollBottom(No)
+                        l.renderPeer(a), O.renderPeer(a);
+                        var o = Ls(n);
+                        Object(i.w)(e, r, a.get(), js(t)), o && n.scrollBottom(Fo)
                     }
                 },
                 markImportant: function(e, n, r) {
-                    ms(t, e) && (l.changedMessageSelection(r), g.markImportant(e, n, r))
+                    hs(t, e) && (l.changedMessageSelection(r), g.markImportant(e, n, r))
                 },
                 isNewMessagesVisible: function(e) {
-                    return Es(e, n)
+                    return Ps(e, n)
                 },
                 loadHistory: function(e, r, a) {
                     var o = arguments.length > 3 && void 0 !== arguments[3] && arguments[3],
@@ -8119,19 +8129,19 @@
                 },
                 editMessage: function(e, r) {
                     if (Object(i.ob)(e, r.peerId) && Object(i.ub)(r.peerId, e.get())) {
-                        if (!ms(t, r.messageId)) return;
-                        ys(e, n), Object(i.J)(e.get(), r, t), _s(Object(a.t)(e, r.peerId), n), l.reRenderPinned(e), j.reset(n)
+                        if (!hs(t, r.messageId)) return;
+                        ks(e, n), Object(i.J)(e.get(), r, t), Os(Object(a.t)(e, r.peerId), n), l.reRenderPinned(e), j.reset(n)
                     }
                 },
                 addMessage: function(e, s) {
                     if (!Object(r.Y)(s.peerId, e.get()) && Object(i.ob)(e, s.peerId) && Object(i.ub)(s.peerId, e.get())) {
-                        if (ms(t, s.messageId)) return;
-                        var c = bs(t);
-                        Ls(j, c, n, function() {
-                            var r = Is(n),
+                        if (hs(t, s.messageId)) return;
+                        var c = js(t);
+                        As(j, c, n, function() {
+                            var r = Ls(n),
                                 l = geByClass1("_im_unread_bar_row", t),
                                 u = Object(i.tb)(e, t, n),
-                                d = Bo(u, 2),
+                                d = Ho(u, 2),
                                 f = d[0],
                                 p = d[1];
                             Object(i.x)(e.get(), s, c, !0, !0, !f && !l), removeClass(t, "im-page--history_empty-hist");
@@ -8139,14 +8149,14 @@
                                 h = Object(o.l)(s) && s.userId === vk.id,
                                 b = s.kludges && s.kludges.source_act,
                                 _ = h && b !== i.f && b !== i.h;
-                            g.skipped || f || !Object(o.n)(g, s) || Object(o.k)(s) || xs(e, t, !0, p), (s.local || r || _) && n.scrollBottom(0), m().updateTyping(s.peerId, e), Rs(t)
+                            g.skipped || f || !Object(o.n)(g, s) || Object(o.k)(s) || Ms(e, t, !0, p), (s.local || r || _) && n.scrollBottom(0), m().updateTyping(s.peerId, e), zs(t)
                         });
                         var l = domPS(domLC(c));
                         if (hasClass(l, "_im_bar_date")) {
                             var u = ce("div");
                             u.innerHTML = l.outerHTML, j.parseMore(u, n)
                         }
-                        m().hideError(), j.update(n), Object(r.Zc)(e.get()), Fs(e, s.peerId, n.scrollBottom(), 0, m)
+                        m().hideError(), j.update(n), Object(r.Zc)(e.get()), Ws(e, s.peerId, n.scrollBottom(), 0, m)
                     }
                 },
                 setMessageErrored: function(e, n, r, a) {
@@ -8156,7 +8166,7 @@
                     e.get().peer === n.peerId && Object(i.Jb)(e.get(), n.peerId, t)
                 },
                 compensateHistoryHeightChange: function(e) {
-                    n.scrollTop(n.scrollTop() + e * us(_.get(), _.get().peer))
+                    n.scrollTop(n.scrollTop() + e * ps(_.get(), _.get().peer))
                 },
                 updateTyping: function(e, n) {
                     if (!Object(r.Y)(e, n.get())) {
@@ -8166,7 +8176,7 @@
                                 c = geByClass1(i.v, t);
                             if (c || s) {
                                 if (!c) {
-                                    var l = geByClass1(Vo, t);
+                                    var l = geByClass1(Jo, t);
                                     val(l, getTemplate("im_typing", {
                                         cls: Object(i.ib)(n) ? "im-activity_classic" : ""
                                     })), c = geByClass1(i.v, t)
@@ -8179,24 +8189,24 @@
                     }
                 },
                 scrollFix: function(e, t, r) {
-                    j.heightIncreased(r, n), j.update(n), Object(i.ub)(t, e.get()) && Is(n, r) && n.scrollBottom(No)
+                    j.heightIncreased(r, n), j.update(n), Object(i.ub)(t, e.get()) && Ls(n, r) && n.scrollBottom(Fo)
                 },
                 goToEnd: function() {
                     var e = this;
-                    Ps(function() {
+                    Ds(function() {
                         return e
                     }, _, t, n)
                 },
                 updateGoToEnd: function(e, r) {
                     var i = Object(a.t)(e, e.get().peer);
-                    i && i.skipped ? xs(e, t) : Ns(e, t, r), b(0, n, !1);
+                    i && i.skipped ? Ms(e, t) : Fs(e, t, r), b(0, n, !1);
                     var o = e.get().peer;
                     setTimeout(function() {
-                        e.get().peer === o && ys(e, n)
+                        e.get().peer === o && ks(e, n)
                     })
                 },
                 newMessage: function(e) {
-                    f().newMessage(e), Ns(e, t, !0)
+                    f().newMessage(e), Fs(e, t, !0)
                 },
                 scroll: function(e, t) {
                     var r = arguments.length > 2 && void 0 !== arguments[2] && arguments[2],
@@ -8212,7 +8222,7 @@
                     f().showCreation(e, t)
                 },
                 updateScroll: function() {
-                    return Ms(_, n, t)
+                    return Ns(_, n, t)
                 },
                 toggleBarDate: function(e) {
                     j.toggle(e)
@@ -8227,8 +8237,8 @@
                     return u.isEmpty(e)
                 },
                 replaceAttachmentPlaceholders: function(e, r) {
-                    if (Object(i.ub)(r.peerId, e.get())) Ls(j, bs(t), n, function() {
-                        var o = Is(n);
+                    if (Object(i.ub)(r.peerId, e.get())) As(j, js(t), n, function() {
+                        var o = Ls(n);
                         Object(i.dc)(t, r, e.get());
                         var s = Object(a.t)(e, r.peerId);
                         if (s.mediacontent[r.messageId].length >= 3 && s.mediacontent[r.messageId][2].pinned) {
@@ -8246,29 +8256,29 @@
                     }
                 },
                 removeMessages: function(e, r, a) {
-                    a.get().peer === r && (Object(i.Mb)(e, bs(t)), Ms(a, n, t), l.changedMessageSelection(a))
+                    a.get().peer === r && (Object(i.Mb)(e, js(t)), Ns(a, n, t), l.changedMessageSelection(a))
                 },
                 removeStartingFromMessage: function(e, r, a) {
                     if (a.get().peer === r) {
-                        var o = bs(t),
+                        var o = js(t),
                             s = geByClass1("_im_mess_" + e, o);
-                        Object(i.Ob)(s, o), Ms(a, n, t), l.changedMessageSelection(a)
+                        Object(i.Ob)(s, o), Ns(a, n, t), l.changedMessageSelection(a)
                     }
                 },
                 hideGoToEnd: function(e) {
-                    Ns(_, t, e)
+                    Fs(_, t, e)
                 },
                 removeMessagesRestore: function(e, n, r, a) {
-                    a.get().peer === n && Object(i.Nb)(e, n, r, bs(t))
+                    a.get().peer === n && Object(i.Nb)(e, n, r, js(t))
                 },
                 updateState: function(e, t) {
                     f().updateState(e, t)
                 },
                 updateBanner: function(e) {
-                    w.renderPeer(e)
+                    O.renderPeer(e)
                 },
                 updateChat: function(e, t) {
-                    e.get().peer === t && (l.changeActions(e), l.renderPeer(e), l.renderActions(e), w.renderPeer(e), u.updateState(e), Object(r.Zc)(e.get()))
+                    e.get().peer === t && (l.changeActions(e), l.renderPeer(e), l.renderActions(e), O.renderPeer(e), u.updateState(e), Object(r.Zc)(e.get()))
                 },
                 focustTxt: function(e) {
                     u.focusOn(e)
@@ -8279,7 +8289,7 @@
                 showSearch: function(e) {
                     addClass(t, "im-page--hisory_search-open"), e.setState({
                         searchShown: !0
-                    }), ss(e) && this.updateChatTopic(e.get().peer, e), this.cancelEditing(), setTimeout(function() {
+                    }), ms(e) && this.updateChatTopic(e.get().peer, e), this.cancelEditing(), setTimeout(function() {
                         return p.focus(e)
                     }, 10)
                 },
@@ -8287,17 +8297,17 @@
                     var a = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
                     if (e.get().searchShown && (removeClass(t, "im-page--hisory_search-open"), removeClass(t, "im-page--history_search"), removeClass(t, "im-page--history_search-empty"), e.setState({
                             searchShown: !1
-                        }), ss(e) && this.updateChatTopic(e.get().peer, e), l.changedMessageSelection(e)), a && !Object(i.yb)(e.get().peer) && O) {
+                        }), ms(e) && this.updateChatTopic(e.get().peer, e), l.changedMessageSelection(e)), a && !Object(i.yb)(e.get().peer) && w) {
                         var o = e.get().tabs[e.get().peer];
-                        bs(t).innerHTML = Object(r.Bc)(o.history), Ms(e, n, t), n.scrollBottom(0), e.get().msgid && (Cs(n, t, e.get().msgid, e), xs(e, t)), v(n), j.reset(n)
+                        js(t).innerHTML = Object(r.Bc)(o.history), Ns(e, n, t), n.scrollBottom(0), e.get().msgid && (Is(n, t, e.get().msgid, e), Ms(e, t)), v(n), j.reset(n)
                     }
-                    O && (O.unmount(), O = !1, Object(i.K)(t))
+                    w && (w.unmount(), w = !1, Object(i.K)(t))
                 },
                 updateHistory: function(e) {
                     0 !== _.get().peer && e(t)
                 },
                 focusOnMessage: function() {
-                    Cs(n, t, _.get().msgid, _)
+                    Is(n, t, _.get().msgid, _)
                 },
                 sendEditMessage: function(e, t) {
                     e.set(r.C.bind(null, Object(a.t)(e, t.peerId), t)).catch(function(n) {
@@ -8305,14 +8315,14 @@
                     })
                 },
                 unmount: function() {
-                    Object(s.c)(e), n.destroy(), clearInterval(y), u.unmount(), l.unmount(), g.unmount(), h.unmount(), p.unmount(), cancelStackFilter("forward"), ps("_im_chat_resize_track", t)
+                    Object(s.c)(e), n.destroy(), clearInterval(y), u.unmount(), l.unmount(), g.unmount(), h.unmount(), p.unmount(), cancelStackFilter("forward"), _s("_im_chat_resize_track", t)
                 },
                 removePeer: function(e, t) {
                     f().removePeer(e, t)
                 },
                 restoreScroll: function(e, t) {
                     var r = e.get().tabs[t];
-                    r.scrollBottom ? _s(r, n) : n.scrollBottom(No)
+                    r.scrollBottom ? Os(r, n) : n.scrollBottom(Fo)
                 },
                 resendMessage: function(e, n) {
                     e === _.get().peer && Object(i.Dc)(e, n, t)
@@ -8320,16 +8330,16 @@
                 respond: function(e, t) {
                     u.attachMessages(e, t), u.focusOn(e);
                     var r = Object(a.t)(e, t);
-                    r && !r.skipped && (n.scrollBottom(No), v(n))
+                    r && !r.skipped && (n.scrollBottom(Fo), v(n))
                 },
                 cancelRecording: function() {
                     u.cancelRecording()
                 },
                 hideError: function() {
-                    hide(geByClass1(Qo, t))
+                    hide(geByClass1(Yo, t))
                 },
                 showError: function(e) {
-                    geByClass1(Qo, t).innerHTML = e, show(geByClass1(Qo, t)), n.scrollBottom(No)
+                    geByClass1(Yo, t).innerHTML = e, show(geByClass1(Yo, t)), n.scrollBottom(Fo)
                 },
                 startEditing: function(e) {
                     if (Object(r.V)(_.get())) Object(i.Ac)();
@@ -8337,13 +8347,13 @@
                         e = Object(a.P)(e);
                         var n = Object(i.X)(_);
                         if (!(u.isBlocked() || n && n.messageId == e.messageId)) {
-                            n && this.cancelEditing(), Rs(t), _.get().searchShown && this.cancelSearch(_);
-                            var o = ms(t, e.messageId);
+                            n && this.cancelEditing(), zs(t), _.get().searchShown && this.cancelSearch(_);
+                            var o = hs(t, e.messageId);
                             o && (this.cancelRecording(), function(e, t, n, r, i) {
                                 e.setState({
                                     isEditing: !0
                                 }), n.saveText(e), addClass(r, "im-mess_is_editing"), addClass(geByClass1("_im_page_history"), "is_msg_editing"), cancelStackPush("cancel_edit", function() {
-                                    return Hs(e, t, n, r)
+                                    return Us(e, t, n, r)
                                 });
                                 var a = new on.a;
                                 a.dData.txt = Object(Ri.b)(i.text), a.dData.attaches = Object(Fi.a)(i.kludges, i.messageId), n.toggleStickers(e, !1), n.setDraft(e, a), setTimeout(function() {
@@ -8355,36 +8365,36 @@
                 },
                 cancelEditing: function() {
                     var e = Object(i.X)(_);
-                    e && Hs(_, t, u, ms(t, e.messageId))
+                    e && Us(_, t, u, hs(t, e.messageId))
                 },
                 getEditingMessage: function() {
                     return Object(i.X)(_)
                 },
                 focusEditingMessage: function() {
                     var e = Object(i.X)(_);
-                    e && Cs(n, t, e.messageId, _), u.focusOn(_)
+                    e && Is(n, t, e.messageId, _), u.focusOn(_)
                 }
             }
         }
 
-        function zs(e, t, n, l, u) {
+        function Qs(e, t, n, l, u) {
             var d = geByClass1("_im_peer_history_w", e);
             show(d), hasAccessibilityMode() && addClass(d, "history_a11y");
-            var m, f, p, g = Object(s.b)(Us),
+            var m, f, p, g = Object(s.b)(Vs),
                 _ = g.callMutations,
                 v = g.bindMutations,
-                y = (m = ys.bind(null, t), f = debounce(m, 100), p = throttle(m, 100), function(e) {
+                y = (m = ks.bind(null, t), f = debounce(m, 100), p = throttle(m, 100), function(e) {
                     f(e), p(e)
                 }),
                 j = So(t, e),
-                w = ws.bind(null, t, _, d, y, j, e),
-                O = Object(b.a)(geByClass1("_im_chat_body_abs", e), {
-                    onScroll: w,
+                O = Ss.bind(null, t, _, d, y, j, e),
+                w = Object(b.a)(geByClass1("_im_chat_body_abs", e), {
+                    onScroll: O,
                     nativeScroll: Object(i.ib)(t),
                     shadows: !1
                 });
             setTimeout(function() {
-                t.get().peer && (As(t), (Object(a.g)(t).pinned || Object(a.g)(t).top_banner) && (_().updateChatTopic(t.get().peer, t), t.set(r.oc), k.changeActions(t)), t.get().msgid ? Cs(O, e, t.get().msgid, t) : ks(O, e, _, t, j) || O.scrollBottom(No), t.get().history_init = !1, j.reset(O), xs(t, e), ws(t, _, d, y, j, e, 0, O), Object(i.K)(e), nav.objLoc.st && (t.mutate(r.vc.bind(null, nav.objLoc.st, t.get().peer)), _().startSearch(t)))
+                t.get().peer && (qs(t), (Object(a.g)(t).pinned || Object(a.g)(t).top_banner) && (_().updateChatTopic(t.get().peer, t), t.set(r.oc), k.changeActions(t)), t.get().msgid ? Is(w, e, t.get().msgid, t) : xs(w, e, _, t, j) || w.scrollBottom(Fo), t.get().history_init = !1, j.reset(w), Ms(t, e), Ss(t, _, d, y, j, e, 0, w), Object(i.K)(e), nav.objLoc.st && (t.mutate(r.vc.bind(null, nav.objLoc.st, t.get().peer)), _().startSearch(t)))
             }, 15);
             var k = or(geByClass1("_im_dialog_actions", e), t, _),
                 C = Ua(geByClass1("_im_text_input", e), t, Object(i.ib)(t) ? l.updateMenu : void 0, function(e, t) {
@@ -8397,23 +8407,23 @@
                         changedMessageSelection: k.changedMessageSelection
                     }
                 });
-            Object(we.b)(e, t, _);
-            var I = Lo(e, t, function() {
+            Object(Oe.b)(e, t, _);
+            var I = Ao(e, t, function() {
                 return {
                     hidePinned: function() {
-                        Object(we.c)(t, t.get().peer, _, !1)
+                        Object(Oe.c)(t, t.get().peer, _, !1)
                     },
                     compensateHistoryHeightChange: function(e) {
                         _().compensateHistoryHeightChange(e)
                     },
                     showPinned: function() {
-                        Object(we.d)(t, t.get().peer, _, !1)
+                        Object(Oe.d)(t, t.get().peer, _, !1)
                     }
                 }
             });
             Object(i.yb)(t.get().peer) || t.set(r.Vb.bind(null, t.get().peer)).then(function() {
-                Object(i.hc)(t.get().peer, t.get(), bs(e)), hs(e, t, t.get().peer)
-            }), fs("_im_chat_resize_track", e, u);
+                Object(i.hc)(t.get().peer, t.get(), js(e)), ys(e, t, t.get().peer)
+            }), bs("_im_chat_resize_track", e, u);
             var T = function(e, t, n, r, i) {
                     var o = domData(i, "msgid"),
                         s = e.get().peer,
@@ -8426,14 +8436,14 @@
                     var s = intval(domData(o, "peer")),
                         c = intval(domData(gpeByClass("_im_mess", o), "msgid")),
                         l = e.get().tabs[s].hash;
-                    return Object(r.Xb)(c, s, l, e.get().gid), e.set(r.Wb.bind(null, c, s)).then(i.gc.bind(null, c, s, bs(t))).then(function() {
-                        return Ms(e, n, t)
+                    return Object(r.Xb)(c, s, l, e.get().gid), e.set(r.Wb.bind(null, c, s)).then(i.gc.bind(null, c, s, js(t))).then(function() {
+                        return Ns(e, n, t)
                     }), !1
-                }.bind(null, t, e, O),
+                }.bind(null, t, e, w),
                 M = function(e, t) {
                     e().showCreation(t)
                 }.bind(null, u, t),
-                L = Ps.bind(null, _, t, e, O),
+                L = Ds.bind(null, _, t, e, w),
                 B = function(e, t, n, r) {
                     if (hasClass(n.target, "_im_mess_marker")) {
                         var a = n.target;
@@ -8465,7 +8475,7 @@
                 A = function(e, t, n, a, o) {
                     var s = domData(o, "action"),
                         c = domData(o, "msgid"),
-                        l = geByClass1("_im_mess_marker", ms(n, c)),
+                        l = geByClass1("_im_mess_marker", hs(n, c)),
                         u = Number(c) > 0 ? "edit" : "send";
                     switch (s) {
                         case "resend":
@@ -8473,7 +8483,7 @@
                             break;
                         case "delete":
                             Object(ye.j)("delete", u), e.set(r.Jb.bind(null, e.get().peer, c)).then(function() {
-                                Object(i.Mb)([c], bs(n))
+                                Object(i.Mb)([c], js(n))
                             })
                     }
                     tooltips.hide(l, {
@@ -8485,30 +8495,30 @@
                     var o = q2ajx(a.getAttribute("href")),
                         s = intval(o.msgid);
                     s && e.set(r.p.bind(null, e.get().peer, s, !1)).then(function() {
-                        return Cs(n, t, s, e)
+                        return Is(n, t, s, e)
                     }), cancelEvent(i)
-                }.bind(null, t, e, O),
+                }.bind(null, t, e, w),
                 R = function(e, t, n) {
                     je.a.isFullscreen || 0 === t.get().peer || Object(i.ib)(t) || e().restoreScroll(t, t.get().peer)
-                }.bind(null, _, t, O),
+                }.bind(null, _, t, w),
                 F = function(e, t) {
                     var n = e.get(),
                         s = n.peer,
-                        c = domClosest(Zo, t.target),
+                        c = domClosest(ns, t.target),
                         l = intval(domData(c, "msgid")),
                         u = Object(a.m)(e, s, l),
                         d = u && Object(o.l)(u) && u.kludges.source_act;
                     if (d === i.f || d === i.h) {
-                        var m = c.querySelector("." + $o);
+                        var m = c.querySelector("." + is);
                         if (m && "A" !== m.tagName) {
                             var f = u.kludges.source_chat_local_id;
-                            if (!f || os[f]) return;
-                            os[f] = Object(r.N)(s, f, n).then(function(e) {
-                                var t = Bo(e, 1)[0];
+                            if (!f || ds[f]) return;
+                            ds[f] = Object(r.N)(s, f, n).then(function(e) {
+                                var t = Ho(e, 1)[0];
                                 if (t) {
                                     var n = "/im?sel=" + Object(i.H)(s) + "&msgid=" + t,
                                         r = m.innerHTML;
-                                    domReplaceEl(m, Object(i.ic)(n, r, !0, $o)), delete os[f]
+                                    domReplaceEl(m, Object(i.ic)(n, r, !0, is)), delete ds[f]
                                 }
                             })
                         }
@@ -8527,7 +8537,7 @@
                 }.bind(null, t, _),
                 U = function(e, t, n, r) {
                     var a = r.target,
-                        o = domClosest(ns, a),
+                        o = domClosest(ss, a),
                         s = Number(o.getAttribute("data-msgid")),
                         c = domClosest("im-mess", a),
                         l = Number(c.getAttribute("data-msgid")),
@@ -8546,7 +8556,7 @@
                                 i = geByClass1("_im_log_body", r),
                                 a = geByClass1("_im_mess_susp_cont", r);
                             i.innerHTML = a.innerHTML
-                        }.bind(null, e)), o(e, "click", zo, A), o(e, "click", Wo, H), o(e, "mouseover", Ko, Bs), o(e, "mouseover", Zo, F), o(e, "click", $o, q), o(e, "click", Qo, gs), o(e, "click", ns, U), o(e, "click", is, qs), o(e, "click", es, function(e, n) {
+                        }.bind(null, e)), o(e, "click", Qo, A), o(e, "click", Xo, H), o(e, "mouseover", Go, Hs), o(e, "mouseover", ns, F), o(e, "click", is, q), o(e, "click", Yo, vs), o(e, "click", ss, U), o(e, "click", cs, Ks), o(e, "click", as, function(e, n) {
                             if (checkEvent(e)) return !0;
                             if (!gpeByClass("wall_postlink_preview_btn", e.target) && !hasClass(e.target, "wall_postlink_preview_btn")) return !0;
                             var a = geByClass1("flat_button", n),
@@ -8555,12 +8565,12 @@
                                     invite_hash: domData(a, "hash")
                                 };
                             Object(i.qc)(t, o, r.db), cancelEvent(e)
-                        }), o(e, "click", Xo, function() {
+                        }), o(e, "click", Zo, function() {
                             return t.get().longpoll.push([Object(c.Ab)()])
-                        }), o(e, "click", Go, function(e) {
+                        }), o(e, "click", $o, function(e) {
                             return function(e, t, n) {
                                 var o = e.get(),
-                                    s = domClosest(ts, n.target),
+                                    s = domClosest(os, n.target),
                                     c = domData(s, "msgid"),
                                     l = Object(a.m)(o, o.peer, c),
                                     u = function(e) {
@@ -8568,7 +8578,7 @@
                                     };
                                 l && (Object(ye.j)("retry_attach"), e.set(r.g.bind(null, l, [Object(i.Vb)(e, l)])).then(u), e.set(r.pb.bind(null, l)).then(u))
                             }(t, _, e)
-                        }), n(geByClass1("_im_peer_history_w", e), "mousemove", j.show), n(geByClass1("_im_start_new", e), "click", M), n(geByClass1(Uo, e), "click", L), n(geByClass1("_im_cancel_edit", e), "click", function() {
+                        }), n(geByClass1("_im_peer_history_w", e), "mousemove", j.show), n(geByClass1("_im_start_new", e), "click", M), n(geByClass1(Vo, e), "click", L), n(geByClass1("_im_cancel_edit", e), "click", function() {
                             return _().cancelEditing(), !1
                         }), n(geByClass1("_im_edit_focus_cur", e), "click", function() {
                             return _().focusEditingMessage(), !1
@@ -8581,7 +8591,7 @@
                     }
                 });
             curNotifier.recvClbks.pin_hide = [function(e) {
-                e.hide ? Object(we.c)(t, e.peer, _, !1) : Object(we.d)(t, e.peer, _, !1)
+                e.hide ? Object(Oe.c)(t, e.peer, _, !1) : Object(Oe.d)(t, e.peer, _, !1)
             }], window.showForwardBox = function(e) {
                 return function(e, t) {
                     Object(i.A)(showBox("al_im.php", t, {
@@ -8589,10 +8599,10 @@
                     }), e)
                 }(t, e)
             };
-            var W = setInterval(Ss.bind(null, t, e, k), 1e4);
-            return v(z, e, O, k, C, _, u, S, E, x, w, t, y, W, j, I)
+            var W = setInterval(Ts.bind(null, t, e, k), 1e4);
+            return v(z, e, w, k, C, _, u, S, E, x, O, t, y, W, j, I)
         }
-        var Ws = function() {
+        var Xs = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -8616,13 +8626,13 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            Ks = [],
-            Vs = 0,
-            Qs = !1;
+            Gs = [],
+            Js = 0,
+            Ys = !1;
 
-        function Xs(e) {
-            Ks = Ks.reduce(function(t, n) {
-                var r = Ws(n, 2),
+        function Zs(e) {
+            Gs = Gs.reduce(function(t, n) {
+                var r = Xs(n, 2),
                     i = r[0],
                     a = r[1];
                 return a(e) ? t : t.concat([
@@ -8630,20 +8640,20 @@
                 ])
             }, [])
         }
-        var Gs = function(e) {
+        var $s = function(e) {
                 var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
-                return Vs++, {
+                return Js++, {
                     stop: function() {
-                        Vs--,
+                        Js--,
                         function(e) {
-                            Ks = Ks.filter(function(t) {
-                                return Ws(t, 1)[0] !== e
-                            }), 0 === Vs && (document.body.removeEventListener("click", Xs, !0), Qs = !1)
+                            Gs = Gs.filter(function(t) {
+                                return Xs(t, 1)[0] !== e
+                            }), 0 === Js && (document.body.removeEventListener("click", Zs, !0), Ys = !1)
                         }(e)
                     },
                     replaceOrAdd: function(n) {
-                        var r = Ks.filter(function(t) {
-                                var n = Ws(t, 1)[0];
+                        var r = Gs.filter(function(t) {
+                                var n = Xs(t, 1)[0];
                                 return e === n
                             }),
                             i = function(e, t) {
@@ -8657,21 +8667,21 @@
                                 }
                             }(n, t);
                         r.length > 0 ? function(e, t) {
-                            Ks = Ks.map(function(n) {
-                                var r = Ws(n, 2),
+                            Gs = Gs.map(function(n) {
+                                var r = Xs(n, 2),
                                     i = r[0],
                                     a = r[1];
                                 return i === e ? [e, t] : [i, a]
                             })
                         }(e, i) : function(e, t) {
-                            !1 === Qs && (Qs = !0, document.body.addEventListener("click", Xs, !0)), Ks = Ks.concat([
+                            !1 === Ys && (Ys = !0, document.body.addEventListener("click", Zs, !0)), Gs = Gs.concat([
                                 [e, t]
                             ])
                         }(e, i)
                     }
                 }
             },
-            Js = function() {
+            ec = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -8696,7 +8706,7 @@
                 }
             }();
 
-        function Ys(e, t, n, a) {
+        function tc(e, t, n, a) {
             var o = ge("box_layer_wrap"),
                 l = t.get().longpoll,
                 u = g({
@@ -8730,7 +8740,7 @@
                     if (!e.loading && !e.all && n.scrollTop + window.innerHeight - n.scrollHeight > -300) {
                         var o = geByClass1("_im_peer_history", t.bodyNode);
                         e.loading = !0, Object(i.Lc)(o)(Object(r.kb)(e.offset).then(function(t) {
-                            var n = Js(t, 4),
+                            var n = ec(t, 4),
                                 s = (n[0], n[1]),
                                 c = (n[2], n[3]);
                             e.all = c.all, e.offset = c.offset, e.all ? addClass(o, "im-important_all") : e.loading = !1, a.set(r.yb.bind(null, Object(i.Ec)(c.msgs, c.hash)));
@@ -8754,7 +8764,7 @@
                 }
             }
         }
-        var Zs = function() {
+        var nc = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -8778,36 +8788,36 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            $s = debounce(L.b, 1e3),
-            ec = "_im_important_counter",
-            tc = "_im_gim_mute";
+            rc = debounce(L.b, 1e3),
+            ic = "_im_important_counter",
+            ac = "_im_gim_mute";
 
-        function nc(e) {
+        function oc(e) {
             return ge("im_dialogs_search", e)
         }
 
-        function rc(e, t, n, i, o, s) {
+        function sc(e, t, n, i, o, s) {
             var c = trim(s);
             if (Object(a.M)(e, c)) {
-                var l = sc.bind(null, e, n, o, t);
+                var l = dc.bind(null, e, n, o, t);
                 c ? (e.setState({
                     recentSearch: !1
                 }), o.stop()) : o.replaceOrAdd(l), cancelStackPush("im_search", l), c && e.set(r.rc.bind(null, c, !1)).then(t), addClass(i, "im-page--dialogs-search_fill"), addClass(i, "_im_d_search")
             } else c || (o.stop(), e.set(r.rc.bind(null, "", !1)).then(t), removeClass(i, "im-page--dialogs-search_fill"), removeClass(i, "_im_d_search"))
         }
 
-        function ic(e, t, n) {
+        function cc(e, t, n) {
             return function() {
                 Object(a.r)(t) === e && n.apply(void 0, arguments)
             }
         }
 
-        function ac(e, t, n) {
+        function lc(e, t, n) {
             var i = Object(a.r)(n);
-            return $s(.01, "im_search_stat", 1, "search_start"), Object(r.bd)(i), n.setState({
+            return rc(.01, "im_search_stat", 1, "search_start"), Object(r.bd)(i), n.setState({
                 recentSearch: !1
             }), e().toggleSettingsButton(n, !!i), i ? (n.get().dialog_search_going = !0, function(e, t, n) {
-                var i = ic(e, n, t().appendFastDialogs.bind(null, n));
+                var i = cc(e, n, t().appendFastDialogs.bind(null, n));
                 return Object(r.ic)(e, n.get()).then(function(e) {
                     return i(e), e
                 })
@@ -8821,28 +8831,28 @@
             }).catch(function() {})) : (e().restoreDialogs(n, !1, !0), Promise.resolve(!1))
         }
 
-        function oc(e, t, n, a) {
+        function uc(e, t, n, a) {
             var o = a.get(),
-                s = ic(e, a, t().appendDialogs.bind(null, a)),
-                c = ic(e, a, t().appendSearch);
+                s = cc(e, a, t().appendDialogs.bind(null, a)),
+                c = cc(e, a, t().appendSearch);
             return Object(i.xb)(a) ? Object(r.cc)(e, n, "all", {}, o).then(s) : Promise.all([Object(r.cc)(e, n, "all", {}, o).then(s), Object(r.gc)(e, o)]).then(function(e) {
-                var t = Zs(e, 2),
-                    n = Zs(t[1], 2),
+                var t = nc(e, 2),
+                    n = nc(t[1], 2),
                     r = n[0],
                     i = n[1];
                 c(a, r, i, !0)
             })
         }
 
-        function sc(e, t, n, r) {
+        function dc(e, t, n, r) {
             cancelStackFilter("im_search");
-            var i = nc(t);
+            var i = oc(t);
             uiSearch.reset(i), e.setState({
                 recentSearch: !1
-            }), rc(e, r, t, i, n, i.value)
+            }), sc(e, r, t, i, n, i.value)
         }
 
-        function cc(e, t) {
+        function mc(e, t) {
             return showTooltip(t, {
                 appendEl: bodyNode,
                 text: function() {
@@ -8854,16 +8864,16 @@
             })
         }
 
-        function lc(e, t, n) {
+        function fc(e, t, n) {
             var i = n.target;
             e.set(r.Hc.bind(null, t)).then(function() {
-                toggleClass(i, "im-page--gim-mute_muted", e.get().mute), t && uc(e, {
+                toggleClass(i, "im-page--gim-mute_muted", e.get().mute), t && pc(e, {
                     target: i
                 })
             })
         }
 
-        function uc(e, t) {
+        function pc(e, t) {
             var n = t.target;
             return showTooltip(n, {
                 text: function() {
@@ -8875,10 +8885,10 @@
             })
         }
 
-        function dc(e, t, n, r, i, a) {
+        function gc(e, t, n, r, i, a) {
             return {
                 focusInput: function(t) {
-                    uiSearch.focus(nc(e).parentNode)
+                    uiSearch.focus(oc(e).parentNode)
                 },
                 createCanceled: function(e, n) {
                     removeClass(t, "im-dialog-select_rotated")
@@ -8889,16 +8899,16 @@
                 setSearch: function(t, n) {
                     var i = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
                     ! function(e, t, n, r, i) {
-                        var a = nc(t);
-                        a.value = i, rc(e, r, t, a, n, a.value)
+                        var a = oc(t);
+                        a.value = i, sc(e, r, t, a, n, a.value)
                     }(t, e, r, i ? a : function() {}, n)
                 },
                 clearSearch: function(t) {
-                    sc(t, e, r, function() {})
+                    dc(t, e, r, function() {})
                 },
                 updateImportantCnt: function(t) {
                     var n = t.get().important_cnt,
-                        r = geByClass1(ec, e);
+                        r = geByClass1(ic, e);
                     toggleClass(r, "im-page--stars_hidden", 0 === n), r.innerHTML = "<i></i> " + n
                 },
                 unmount: function() {
@@ -8907,16 +8917,16 @@
             }
         }
 
-        function mc(e, t, n) {
+        function hc(e, t, n) {
             var o = geByClass1("_im_search_croll", e),
-                l = nc(e),
-                u = Gs("im_search", ["_im_search_croll", "_im_page_dcontent", "_im_d_search", "_im_dialog"]),
-                d = Object(mt.b)(oc, 300),
-                m = ac.bind(null, n, d),
-                f = rc.bind(null, t, m, e, l, u),
+                l = oc(e),
+                u = $s("im_search", ["_im_search_croll", "_im_page_dcontent", "_im_d_search", "_im_dialog"]),
+                d = Object(mt.b)(uc, 300),
+                m = lc.bind(null, n, d),
+                f = sc.bind(null, t, m, e, l, u),
                 p = function(e, t, n, r, i, o) {
-                    Object(a.L)(e) ? (sc(e, t, i, n), setTimeout(function() {
-                        return cc(e, o)
+                    Object(a.L)(e) ? (dc(e, t, i, n), setTimeout(function() {
+                        return mc(e, o)
                     }, 10)) : (window.tooltips && tooltips.hide(o, {
                         showsp: 0
                     }), function(e, t, n) {
@@ -8924,14 +8934,14 @@
                     }(e, 0, r))
                 }.bind(null, t, e, m, n, u, o),
                 g = function(e, t, n, r, a) {
-                    return Object(i.oc)(e, n, Ys, r)
+                    return Object(i.oc)(e, n, tc, r)
                 }.bind(null, t, e, n),
                 h = geByClass1("_im_dialogs_search_input", e);
             uiSearch.init(h, {
                 onChange: f
             });
-            var b = cc.bind(null, t, o),
-                _ = geByClass1(tc, e);
+            var b = mc.bind(null, t, o),
+                _ = geByClass1(ac, e);
             l.value && f(l.value);
             var v = Object(s.a)({
                 handlers: function(s, d) {
@@ -8941,9 +8951,9 @@
                                 dir: geByClass1("_im_top_notice") || geByClass1("im-page--dialogs--group-status") ? "down" : "up",
                                 shift: [0, 8]
                             })
-                        }), s(o, "click", p), s(o, "mouseover", b), s(geByClass1(ec, e), "click", g), Object(i.ib)(t)) {
-                        var m = lc.bind(null, t, !0),
-                            f = uc.bind(null, t);
+                        }), s(o, "click", p), s(o, "mouseover", b), s(geByClass1(ic, e), "click", g), Object(i.ib)(t)) {
+                        var m = fc.bind(null, t, !0),
+                            f = pc.bind(null, t);
                         s(_, "click", m), s(_, "mouseover", f)
                     }
                     s(l, "focus", function() {
@@ -8956,7 +8966,7 @@
                                     if (0 !== c.length || Object(a.c)(e)) {
                                         e.setState({
                                             recentSearch: !0
-                                        }), rc(e, function() {
+                                        }), sc(e, function() {
                                             Object(a.L)(e) || (o.stop(), s().toggleSettingsButton(e, !1), s().restoreDialogs(e, !1, !0))
                                         }, t, n, o, "");
                                         var l = c.filter(function(t) {
@@ -8989,11 +8999,11 @@
                     })
                 }
             });
-            return Object(i.ib)(t) && lc(t, !1, {
+            return Object(i.ib)(t) && fc(t, !1, {
                 target: _
-            }), dc(e, o, h, u, v, m)
+            }), gc(e, o, h, u, v, m)
         }
-        var fc = function() {
+        var bc = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -9017,10 +9027,10 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            pc = "_im_spam_not_spam",
-            gc = "_im_spam_spam";
+            _c = "_im_spam_not_spam",
+            vc = "_im_spam_spam";
 
-        function hc(e, t) {
+        function yc(e, t) {
             var n = t.get().selectedMessages,
                 r = geByClass1("_im_spam_box", e.bodyNode),
                 a = geByClass1("ui_tab_sel", e.bodyNode);
@@ -9028,17 +9038,17 @@
                 var o = getLang("mail_selected", n.length);
                 o = o.replace("{count}", n.length), val(a, o + '<button aria-label="' + getLang("mail_deselect_all") + '" type="button" class="im-deselect ' + i.k + '"></button>')
             } else val(a, getLang("mail_spam"));
-            0 === n.length ? removeClass(r, "im-important-box_with-sel") : (addClass(r, "im-important-box_with-sel"), val(geByClass1(pc), getLang("mail_im_mark_notspam", n.length)), val(geByClass1(gc), getLang("mail_im_mark_delspam", n.length)))
+            0 === n.length ? removeClass(r, "im-important-box_with-sel") : (addClass(r, "im-important-box_with-sel"), val(geByClass1(_c), getLang("mail_im_mark_notspam", n.length)), val(geByClass1(vc), getLang("mail_im_mark_delspam", n.length)))
         }
 
-        function bc(e, t, n) {
+        function jc(e, t, n) {
             var i = e.get().selectedMessages;
             e.set(r.t).then(n.cleanSelection.bind(null, i)).then(function(n) {
-                return hc(t, e)
+                return yc(t, e)
             })
         }
 
-        function _c(e, t) {
+        function Oc(e, t) {
             return {
                 unmount: function() {
                     t.unmount(), Object(s.c)(e)
@@ -9046,9 +9056,9 @@
             }
         }
 
-        function vc(e, t, n) {
+        function wc(e, t, n) {
             var a = ge("box_layer_wrap"),
-                o = Object(s.b)(_c),
+                o = Object(s.b)(Oc),
                 l = o.callMutations,
                 u = o.bindMutations,
                 d = g({
@@ -9061,7 +9071,7 @@
                     if (!e.loading && !e.all && n.scrollTop + window.innerHeight - n.scrollHeight > -300) {
                         var o = geByClass1("_im_peer_history", t.bodyNode);
                         e.loading = !0, Object(i.Lc)(o)(Object(r.tb)(e.offset, a.get().gid).then(function(t) {
-                            var n = fc(t, 4),
+                            var n = bc(t, 4),
                                 s = (n[0], n[1]),
                                 c = (n[2], n[3]);
                             e.all = c.all, e.offset = c.offset, e.all ? addClass(o, "im-important_all") : e.loading = !1, a.set(r.yb.bind(null, Object(i.Ec)(c.msgs, c.hash)));
@@ -9094,7 +9104,7 @@
                         bodyStyle: "padding: 20px; line-height: 160%;"
                     }, getLang("mail_delete_all_spam"), getLang("mail_delete"), function() {
                         Object(r.J)(e, i).then(function(e) {
-                            var t = fc(e, 2),
+                            var t = bc(e, 2),
                                 n = (t[0], t[1]);
                             showDoneBox(n)
                         }), a.hide(), t.hide(), n().unmount()
@@ -9104,12 +9114,12 @@
                 }.bind(null, n.hash, e, l, t.get().gid),
                 b = uo(e.bodyNode, d, function(t) {
                     return {
-                        changedMessageSelection: hc.bind(null, e)
+                        changedMessageSelection: yc.bind(null, e)
                     }
                 }),
                 _ = function(e, t, n) {
                     var a = e.get().selectedMessages;
-                    Object(r.Lb)(a, 0, e.get().tabs[0].hash, "delete", e.get()), Object(i.Nb)(a, 0, "delete", t), bc(e, t, n)
+                    Object(r.Lb)(a, 0, e.get().tabs[0].hash, "delete", e.get()), Object(i.Nb)(a, 0, "delete", t), jc(e, t, n)
                 }.bind(null, d, e.bodyNode, b),
                 v = function(e, t, n) {
                     var a = e.get().selectedMessages;
@@ -9121,35 +9131,35 @@
                         var t = intval(domData(e, "peer")),
                             n = intval(domData(e, "msgid"));
                         val(e, Object(i.Ub)(t, n)), addClass(e, "im-mess_light")
-                    }), bc(e, t, n)
+                    }), jc(e, t, n)
                 }.bind(null, d, e.bodyNode, b),
-                y = bc.bind(null, d, e, b);
+                y = jc.bind(null, d, e, b);
             return Object(i.K)(e.bodyNode), u(Object(s.a)({
                 handlers: function(t, n) {
-                    t(a, "scroll", m), t(geByClass1(gc, e.bodyNode), "click", _), t(geByClass1(pc, e.bodyNode), "click", v), t(geByClass1("_im_spam_flush", e.bodyNode), "click", h), n(e.bodyNode, "click", "_im_mess_restore", f), n(e.bodyNode, "click", "_im_go_to", p), n(e.bodyNode, "click", i.k, y)
+                    t(a, "scroll", m), t(geByClass1(vc, e.bodyNode), "click", _), t(geByClass1(_c, e.bodyNode), "click", v), t(geByClass1("_im_spam_flush", e.bodyNode), "click", h), n(e.bodyNode, "click", "_im_mess_restore", f), n(e.bodyNode, "click", "_im_go_to", p), n(e.bodyNode, "click", i.k, y)
                 }
             }), b)
         }
-        var yc = "_im_dialogs_cog_settings",
-            jc = "_im_settings_action",
-            wc = "_im_to_unread";
+        var kc = "_im_dialogs_cog_settings",
+            Cc = "_im_settings_action",
+            Sc = "_im_to_unread";
 
-        function Oc() {
+        function Ec() {
             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "im_settings";
             return getTemplate(e, {
                 sound: ls.get("sound_notify_off") ? getLang("mail_im_sound_off") : getLang("mail_im_sound_on"),
-                browser: kc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off")
+                browser: xc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off")
             })
         }
 
-        function kc() {
+        function xc() {
             return DesktopNotifications.supported() && !DesktopNotifications.checkPermission() && !ls.get("im_ui_notify_off")
         }
 
-        function Cc(e, t, n) {
+        function Ic(e, t, n) {
             var o = function(e, t) {
                     showTooltip(t.target, {
-                        content: Oc("im_settings_pop"),
+                        content: Ec("im_settings_pop"),
                         dir: "down",
                         shift: [220, 9],
                         hasover: !0,
@@ -9162,15 +9172,15 @@
                         c = hasClass(s, "_im_settings_popup") ? "im_settings_pop" : "im_settings";
                     switch (o) {
                         case "spam":
-                            Object(i.wc)(e, vc, r);
+                            Object(i.wc)(e, wc, r);
                             break;
                         case "sound":
-                            ls.get("sound_notify_off") ? ls.set("sound_notify_off", 0) : ls.set("sound_notify_off", 1), s.outerHTML = Oc(c);
+                            ls.get("sound_notify_off") ? ls.set("sound_notify_off", 0) : ls.set("sound_notify_off", 1), s.outerHTML = Ec(c);
                             break;
                         case "browser":
-                            kc() ? (ls.set("im_ui_notify_off", 1), s.outerHTML = Oc(c), Object(ye.a)()) : DesktopNotifications.checkPermission() ? DesktopNotifications.requestPermission(function() {
-                                s.parentNode && (s.outerHTML = Oc(c))
-                            }) : (ls.set("im_ui_notify_off", 0), s.outerHTML = Oc(c), Object(ye.b)())
+                            xc() ? (ls.set("im_ui_notify_off", 1), s.outerHTML = Ec(c), Object(ye.a)()) : DesktopNotifications.checkPermission() ? DesktopNotifications.requestPermission(function() {
+                                s.parentNode && (s.outerHTML = Ec(c))
+                            }) : (ls.set("im_ui_notify_off", 0), s.outerHTML = Ec(c), Object(ye.b)())
                     }
                 }.bind(null, t, n, e),
                 l = function(e, a) {
@@ -9183,7 +9193,7 @@
                 },
                 u = Object(s.a)({
                     handlers: function(t, n) {
-                        n(e, "mouseover", yc, o), n(e, "click", jc, c), n(e, "click", wc, l)
+                        n(e, "mouseover", kc, o), n(e, "click", Cc, c), n(e, "click", Sc, l)
                     }
                 });
             return function(e, t) {
@@ -9192,7 +9202,7 @@
                         var n = t.get().active_tab === m.m,
                             r = void 0,
                             i = [];
-                        Object(a.L)(t) && i.push("im-page--dialogs-filter_hidden"), t.get().unread_cnt > 0 ? r = n ? getLang("mail_to_all_dialogs") : getLang("mail_to_unread") : (r = getLang("mail_all_dialogs"), i.push("im-page--dialogs-filter_disabled")), val(geByClass1(wc, e), getTemplate("im_filter", {
+                        Object(a.L)(t) && i.push("im-page--dialogs-filter_hidden"), t.get().unread_cnt > 0 ? r = n ? getLang("mail_to_all_dialogs") : getLang("mail_to_unread") : (r = getLang("mail_all_dialogs"), i.push("im-page--dialogs-filter_disabled")), val(geByClass1(Sc, e), getTemplate("im_filter", {
                             filter: r,
                             cls: i.join(" ")
                         }))
@@ -9202,11 +9212,11 @@
                         toggleClass(r, "im-page--dialogs-filter_hidden", n)
                     },
                     toggleLoader: function(t, n) {
-                        var r = geByClass1(yc, e);
+                        var r = geByClass1(kc, e);
                         toggleClass(r, "im-page--dialogs-settings_loading", n)
                     },
                     updateSettings: function(t) {
-                        geByClass1("_im_settings_menu", e).outerHTML = Oc()
+                        geByClass1("_im_settings_menu", e).outerHTML = Ec()
                     },
                     unmount: function() {
                         Object(s.c)(t)
@@ -9214,31 +9224,31 @@
                 }
             }(e, u)
         }
-        var Sc = "_ui_multiselect_cancel";
+        var Tc = "_ui_multiselect_cancel";
 
-        function Ec(e) {
+        function Pc(e) {
             return e.selection = [], Promise.resolve(e)
         }
 
-        function xc(e, t) {
+        function Mc(e, t) {
             return t.selection = t.selection.filter(function(t) {
                 return t.id !== e
             }), Promise.resolve(t)
         }
 
-        function Ic(e, t, n, r) {
-            e.set(Ec).then(Tc.bind(null, t, n, e, r))
+        function Lc(e, t, n, r) {
+            e.set(Pc).then(Bc.bind(null, t, n, e, r))
         }
 
-        function Tc(e, t, n, r) {
+        function Bc(e, t, n, r) {
             var i = n.get().selection,
                 a = uiSearch.getFieldEl(e);
             uiSearch.focus(e), i.length > 0 ? attr(a, "placeholder", "") : attr(a, "placeholder", unclean(getLang("mail_search_creation"))), t.innerHTML = i.map(function(e) {
-                return '<div class="token">\n      <div class="token_title">' + e.name + '</div>\n      <div data-peer="' + e.id + '" class="token_del ' + Sc + '"></div>\n    </div>'
+                return '<div class="token">\n      <div class="token_title">' + e.name + '</div>\n      <div data-peer="' + e.id + '" class="token_del ' + Tc + '"></div>\n    </div>'
             }).join(""), toggleClass(e, "ui_multiselect_has_selection", i.length > 0), domFC(e).scrollTop += 50, r()
         }
 
-        function Pc(e, t) {
+        function Dc(e, t) {
             return showTooltip(t, {
                 text: getLang("mail_create_chat_remove_user"),
                 black: 1,
@@ -9247,7 +9257,7 @@
             })
         }
 
-        function Mc(e, t, n) {
+        function Nc(e, t, n) {
             uiSearch.init(e, {
                 onChange: function(e, t, n, i) {
                     e.set(r.rc.bind(null, n, !1)).then(t().onChange)
@@ -9270,11 +9280,11 @@
                     width: e
                 })
             });
-            t.set(Ec);
+            t.set(Pc);
             var u = function(e, t, n, r, i, a, o) {
                     var s = intval(domData(o, "peer"));
-                    tooltips.hide(o), t.set(xc.bind(null, s)).then(function(a) {
-                        Tc(e, r, t, i), n().selectionDeleted(t, s)
+                    tooltips.hide(o), t.set(Mc.bind(null, s)).then(function(a) {
+                        Bc(e, r, t, i), n().selectionDeleted(t, s)
                     })
                 }.bind(null, e, t, n, a, l),
                 d = function(t) {
@@ -9282,7 +9292,7 @@
                 },
                 m = Object(s.a)({
                     handlers: function(t, n) {
-                        n(e, "click", Sc, u), n(e, "mouseover", Sc, Pc), t(e, "click", d)
+                        n(e, "click", Tc, u), n(e, "mouseover", Tc, Dc), t(e, "click", d)
                     }
                 });
             return {
@@ -9292,57 +9302,57 @@
                     }.bind(null, {
                         id: n,
                         name: r
-                    })).then(Tc.bind(null, e, a, t, l))
+                    })).then(Bc.bind(null, e, a, t, l))
                 },
                 removeSelection: function(n) {
-                    return t.set(xc.bind(null, n)).then(Tc.bind(null, e, a, t, l))
+                    return t.set(Mc.bind(null, n)).then(Bc.bind(null, e, a, t, l))
                 },
                 resetSelection: function() {
-                    Ic(t, e, a, l)
+                    Lc(t, e, a, l)
                 },
                 focus: function() {
                     uiSearch.focus(e)
                 },
                 save: function() {
-                    t.stash(), Tc(e, a, t, l)
+                    t.stash(), Bc(e, a, t, l)
                 },
                 restore: function() {
-                    t.pop(), Tc(e, a, t, l)
+                    t.pop(), Bc(e, a, t, l)
                 },
                 unmount: function() {
                     uiSearch.destroy(e), Object(s.c)(m)
                 }
             }
         }
-        var Lc = "_im_create_cancel",
-            Bc = "_im_create_list",
-            Dc = "_im_dialog",
-            Nc = "_im_create_tab",
-            Ac = "_im_dialogs_creation_name",
-            Hc = "_im_create_select",
-            Rc = "_im_create_avatar",
-            Fc = "_im_create_remove_avatar",
-            qc = "_im_confirm_creation",
-            Uc = "_im_cancel_creation",
-            zc = "_im_avatar_img",
-            Wc = ["im-creation--item_hovered"],
-            Kc = "olist_item_wrap_on",
-            Vc = "ui_search_reset",
-            Qc = 100;
+        var Ac = "_im_create_cancel",
+            Hc = "_im_create_list",
+            Rc = "_im_dialog",
+            Fc = "_im_create_tab",
+            qc = "_im_dialogs_creation_name",
+            Uc = "_im_create_select",
+            zc = "_im_create_avatar",
+            Wc = "_im_create_remove_avatar",
+            Kc = "_im_confirm_creation",
+            Vc = "_im_cancel_creation",
+            Qc = "_im_avatar_img",
+            Xc = ["im-creation--item_hovered"],
+            Gc = "olist_item_wrap_on",
+            Jc = "ui_search_reset",
+            Yc = 100;
 
-        function Xc(e, t, n, i, a, o) {
-            Object(r.Ic)(!1), removeClass(t, "im-create_shown"), removeClass(t, "im-create_photo-attached"), setTimeout(Jc.bind(null, t, !1), 100), el(o).map(function(e) {
+        function Zc(e, t, n, i, a, o) {
+            Object(r.Ic)(!1), removeClass(t, "im-create_shown"), removeClass(t, "im-create_photo-attached"), setTimeout(el.bind(null, t, !1), 100), il(o).map(function(e) {
                 return geByClass1("_im_dialog" + e)
             }).forEach(function(e) {
-                removeClass(e, Kc)
+                removeClass(e, Gc)
             }), n().createCanceled(e, i), a.resetSelection(), "add_member" === e.get().creationType && e.set(r.qc.bind(null, "chat", [])), e.set(r.Db.bind(null, !1));
-            var s = geByClass1(zc, t);
-            Yc(e, o, t), uiSearch.reset(geByClass1(Ac, t)), uiSearch.reset(geByClass1(Hc, t)), s && s.parentNode.removeChild(s), Yc(e, o, t), cancelStackFilter("im_search");
+            var s = geByClass1(Qc, t);
+            tl(e, o, t), uiSearch.reset(geByClass1(qc, t)), uiSearch.reset(geByClass1(Uc, t)), s && s.parentNode.removeChild(s), tl(e, o, t), cancelStackFilter("im_search");
             var l = 0 === e.get().peer ? "search" : "default";
             e.get().longpoll.push([Object(c.Eb)(l)]), attr(t, "aria-hidden", "true")
         }
 
-        function Gc(e, t, n) {
+        function $c(e, t, n) {
             return t && (n.current_create_peer_ids = {}, n.current_create_peers = []), n.current_create_peer_ids || (n.current_create_peer_ids = {}), n.current_create_peers || (n.current_create_peers = []), e.forEach(function(e) {
                 e.then(function(e) {
                     e = e.filter(function(e) {
@@ -9354,59 +9364,59 @@
             }), Promise.resolve(n)
         }
 
-        function Jc(e, t) {
+        function el(e, t) {
             toggleClass(e, "im-create_material", t)
         }
 
-        function Yc(e, t, n) {
-            var r = geByClass1(qc, n),
+        function tl(e, t, n) {
+            var r = geByClass1(Kc, n),
                 i = t.get().selection.length,
                 a = "add_member" === e.get().creationType,
                 o = i > 0,
-                s = uiSearch.getFieldEl(geByClass1(Ac, n)).value.length > 0,
+                s = uiSearch.getFieldEl(geByClass1(qc, n)).value.length > 0,
                 c = !o && (a || !s),
                 l = a ? 1 === i ? getLang("mail_append_chat") : getLang("mail_im_create_chat_with") : s || i > 1 ? getLang("mail_im_create_chat") : getLang("mail_im_go_to_dialog");
             val(r, l), toggleClass(r, "button_disabled", c)
         }
 
-        function Zc(e, t, n, r, i, a, o) {
+        function nl(e, t, n, r, i, a, o) {
             if (o) {
                 var s = intval(domData(o, "list-id")),
-                    c = el(a),
+                    c = il(a),
                     l = trim(o.textContent),
-                    u = geByClass1(Hc, t),
+                    u = geByClass1(Uc, t),
                     d = getSize(u)[1],
                     m = void 0;
-                inArray(s, c) ? (m = r.removeSelection(s, l), removeClass(o, Kc)) : (m = r.addSelection(s, l), addClass(o, Kc)), m.then(function() {
+                inArray(s, c) ? (m = r.removeSelection(s, l), removeClass(o, Gc)) : (m = r.addSelection(s, l), addClass(o, Gc)), m.then(function() {
                     var e = d - getSize(u)[1],
                         t = i.scrollTop();
                     i.scrollTop(t - e)
-                }), Yc(e, a, t);
-                var f = geByClass1(Hc, t);
+                }), tl(e, a, t);
+                var f = geByClass1(Uc, t);
                 uiSearch.reset(f)
             }
         }
 
-        function $c(e) {
+        function rl(e) {
             return Object(a.r)(e) || !1
         }
 
-        function el(e) {
+        function il(e) {
             return e.get().selection.map(function(e) {
                 return e.id
             })
         }
 
-        function tl(e, t, n, r) {
+        function al(e, t, n, r) {
             toggleClass(e, "im-create_chat", "chat" === r.get().creationType), toggleClass(e, "im-create_invite", "add_member" === r.get().creationType);
             var a = "chat" === r.get().creationType ? getLang("mail_im_group_dialog") : getLang("mail_im_friends_tab"),
                 o = geByClass1("_im_create_title", e);
-            val(o, a), val(geByClass1(qc, e), "add_member" === r.get().creationType ? getLang("mail_im_create_chat_with") : getLang("mail_im_create_chat")), rl(e, r, t, !1, n.get().selection.map(function(e) {
+            val(o, a), val(geByClass1(Kc, e), "add_member" === r.get().creationType ? getLang("mail_im_create_chat_with") : getLang("mail_im_create_chat")), sl(e, r, t, !1, n.get().selection.map(function(e) {
                 return e.id
             })), Object(i.L)("_im_create_wrap_safe", e)
         }
 
-        function nl(e, t, n) {
+        function ol(e, t, n) {
             return e.then(function(e) {
                 return e.filter(function(e) {
                     return e.is_friend && !inArray(e.peerId, n.get().creationFilter)
@@ -9414,41 +9424,41 @@
             })
         }
 
-        function rl(e, t, n, i, a) {
-            var o = geByClass1(Hc, e),
+        function sl(e, t, n, i, a) {
+            var o = geByClass1(Uc, e),
                 s = void 0,
                 c = void 0,
                 l = Object(r.fc)(i, t.get()),
-                u = n.hoverFirstElement.bind(n, Wc, ol(t));
-            t.get().creation_shown_all = !1, n.reset(), n.pipe(nl(l, 0, t), i), n.toTop(), i ? (c = Object(r.ic)(i, t.get()), s = Object(r.dc)(i, [], "friends", t.get()), n.pipe(nl(s, 0, t), i).then(u), n.pipe(nl(c, 0, t), i).then(u)) : (s = Promise.resolve([]), c = Promise.resolve([])), t.set(Gc.bind(null, [l, c, s], !0)), uiSearch.showProgress(o), Promise.all([l, s, c]).then(function() {
+                u = n.hoverFirstElement.bind(n, Xc, ul(t));
+            t.get().creation_shown_all = !1, n.reset(), n.pipe(ol(l, 0, t), i), n.toTop(), i ? (c = Object(r.ic)(i, t.get()), s = Object(r.dc)(i, [], "friends", t.get()), n.pipe(ol(s, 0, t), i).then(u), n.pipe(ol(c, 0, t), i).then(u)) : (s = Promise.resolve([]), c = Promise.resolve([])), t.set($c.bind(null, [l, c, s], !0)), uiSearch.showProgress(o), Promise.all([l, s, c]).then(function() {
                 return uiSearch.hideProgress(o)
             })
         }
 
-        function il(e, t, n, r, i, a) {
-            el(t).map(function(e) {
+        function cl(e, t, n, r, i, a) {
+            il(t).map(function(e) {
                 return geByClass1("_im_dialog" + e)
             }).forEach(function(e) {
-                return removeClass(e, Kc)
-            }), t.reset(), rl(n, e, r, !1, el(t)), i.resetSelection(), Xc(e, n, a, !1, i, t)
+                return removeClass(e, Gc)
+            }), t.reset(), sl(n, e, r, !1, il(t)), i.resetSelection(), Zc(e, n, a, !1, i, t)
         }
 
-        function al(e, t, n, i, o, s, l) {
-            var u = el(t),
+        function ll(e, t, n, i, o, s, l) {
+            var u = il(t),
                 d = e.get(),
-                m = geByClass1(qc, n),
-                f = uiSearch.getFieldEl(geByClass1(Ac, n)).value,
+                m = geByClass1(Kc, n),
+                f = uiSearch.getFieldEl(geByClass1(qc, n)).value,
                 p = "add_member" === e.get().creationType,
                 g = !p && (f.length || u.length > 1);
             if (p) return e.set(r.i.bind(null, d.peer, u)).catch(function(e) {
                 return showFastBox(getLang("global_error"), e)
-            }), Xc(e, n, s, "", o, t);
+            }), Zc(e, n, s, "", o, t);
             if (lockButton(m), !g) return h(u[0]);
 
             function h(r) {
-                il(e, t, n, i, o, s),
+                cl(e, t, n, i, o, s),
                     function(e, t, n, r, i, a) {
-                        Xc(e, t, n, !1, i, a), e.get().longpoll.push([Object(c.bb)(r, !1, !1, !1, "create_conversation")])
+                        Zc(e, t, n, !1, i, a), e.get().longpoll.push([Object(c.bb)(r, !1, !1, !1, "create_conversation")])
                     }(e, n, s, r, o, t), unlockButton(m), Object(a.L)(e) ? s().cancelSearch(e) : s().restoreDialogs(e)
             }
             e.set(r.w.bind(null, d.next_chat_avatar, u, f)).then(function() {
@@ -9458,7 +9468,7 @@
             })
         }
 
-        function ol(e, t) {
+        function ul(e, t) {
             var n = t && t.get().selection.length;
             return {
                 top: -1,
@@ -9466,15 +9476,15 @@
             }
         }
 
-        function sl(e, t, n) {
+        function dl(e, t, n) {
             var a = g({
                     selection: []
                 }),
-                o = M(geByClass1(Bc, e), g({
+                o = M(geByClass1(Hc, e), g({
                     offset: 0,
-                    limit: Qc,
+                    limit: Yc,
                     elements: [],
-                    elCls: Dc
+                    elCls: Rc
                 }), function() {
                     return {
                         idFn: function(e) {
@@ -9484,10 +9494,10 @@
                             return hasClass(e, "_im_dialog")
                         },
                         renderFn: function(e, t) {
-                            var n = el(e),
+                            var n = il(e),
                                 r = ["_im_dialog", "_im_dialog" + t.peerId, "im-creation--item"],
                                 i = [];
-                            return t.online && i.push("online"), mobPlatforms[t.online] && i.push("mobile"), inArray(t.peerId, n) && r.push(Kc), getTemplate("im_owner_item", {
+                            return t.online && i.push("online"), mobPlatforms[t.online] && i.push("mobile"), inArray(t.peerId, n) && r.push(Gc), getTemplate("im_owner_item", {
                                 owner_id: t.peerId,
                                 cls: " " + r.join(" "),
                                 photo: t.photo,
@@ -9498,29 +9508,29 @@
                         }.bind(null, a),
                         more: function(e, n) {
                             var i = void 0;
-                            return t.get().shown ? (t.get().creation_shown_all || !1 !== $c(a) ? i = Promise.resolve([]) : (t.get().creation_shown_all = !0, i = Object(r.ic)($c(a), t.get())), t.set(Gc.bind(null, [i], !1)), nl(i, $c(a), t)) : Promise.resolve(!1)
+                            return t.get().shown ? (t.get().creation_shown_all || !1 !== rl(a) ? i = Promise.resolve([]) : (t.get().creation_shown_all = !0, i = Object(r.ic)(rl(a), t.get())), t.set($c.bind(null, [i], !1)), ol(i, rl(a), t)) : Promise.resolve(!1)
                         },
                         onClick: function(n, r) {
-                            checkEvent(n) || (Zc(t, e, 0, l, o, a, r), cancelEvent(n))
+                            checkEvent(n) || (nl(t, e, 0, l, o, a, r), cancelEvent(n))
                         }
                     }
                 });
             t.get().creationQuery = !1, t.get().creationType = "chat";
-            var l = Mc(geByClass1(Hc, e), a, function() {
+            var l = Nc(geByClass1(Uc, e), a, function() {
                     return {
                         selectionDeleted: function(n, r) {
-                            Yc(t, n, e), removeClass(geByClass1("_im_dialog" + r), Kc)
+                            tl(t, n, e), removeClass(geByClass1("_im_dialog" + r), Gc)
                         },
                         onChange: function(e, t, n, r) {
                             var i = r.get(),
-                                a = $c(i);
+                                a = rl(i);
                             i.selection.map(function(e) {
                                 return e.id
-                            }), n.unhoverElements(Wc), e.get().creationQuery = a, rl(t, e, n, a)
+                            }), n.unhoverElements(Xc), e.get().creationQuery = a, sl(t, e, n, a)
                         }.bind(null, t, e, o)
                     }
                 }),
-                u = Xc.bind(null, t, e, n, "cross", l, a),
+                u = Zc.bind(null, t, e, n, "cross", l, a),
                 d = function(e, t, n, i, a, o, s, c) {
                     uiTabs.switchTab(c.firstElementChild);
                     var l = domData(c, "type");
@@ -9528,30 +9538,30 @@
                         case "chat":
                             o.restore()
                     }
-                    e.set(r.qc.bind(null, l, [])).then(tl.bind(null, t, i, a))
+                    e.set(r.qc.bind(null, l, [])).then(al.bind(null, t, i, a))
                 }.bind(null, t, e, n, o, a, l),
                 m = function(e, t, n, i) {
                     var a = 2e9 + Math.round(rand(1e6, 2e6));
                     cur.recieveCropResult = function(n) {
                         cur.recieveCropResult = !1, curBox() && curBox().hide(), e.set(r.Db.bind(null, n)), Object(r.P)(n, a).then(function(e) {
-                            geByClass1(Rc, t).appendChild(ce("img", {
-                                className: "im-chat-placeholder--img " + zc,
+                            geByClass1(zc, t).appendChild(ce("img", {
+                                className: "im-chat-placeholder--img " + Qc,
                                 src: e
                             }))
                         }), addClass(t, "im-create_photo-attached")
                     }, Page.ownerPhoto(a)
                 }.bind(null, t, e),
                 f = function(e, t) {
-                    geByClass1(Rc, t).innerHTML = "", e.set(r.Db.bind(null, !1)), removeClass(t, "im-create_photo-attached")
+                    geByClass1(zc, t).innerHTML = "", e.set(r.Db.bind(null, !1)), removeClass(t, "im-create_photo-attached")
                 }.bind(null, t, e),
-                p = il.bind(null, t, a, e, o, l, n),
-                h = al.bind(null, t, a, e, o, l, n),
+                p = cl.bind(null, t, a, e, o, l, n),
+                h = ll.bind(null, t, a, e, o, l, n),
                 b = function(e, t, n) {
-                    Yc(e, t, n)
+                    tl(e, t, n)
                 }.bind(null, t, a, e),
-                _ = geByClass1(Lc, e),
-                v = geByClass1(Ac, e),
-                y = v.querySelector("." + Vc),
+                _ = geByClass1(Ac, e),
+                v = geByClass1(qc, e),
+                y = v.querySelector("." + Jc),
                 j = Object(s.a)({
                     handlers: function(t, n) {
                         t(_, "click", u), t(_, "mouseover", function(e, t) {
@@ -9562,7 +9572,7 @@
                                 shift: [3, -2],
                                 appendCls: "js-im-page"
                             })
-                        }.bind(null, _)), t(geByClass1(Rc, e), "click", m), t(geByClass1(Fc, e), "click", f), t(geByClass1(Uc, e), "click", p), t(v, "change", b), t(v, "input", b), t(v, "paste", b), t(y, "click", b), t(geByClass1(qc, e), "click", h), t(e, "mouseover", throttle(o.unhoverElements.bind(o, Wc), 100)), n(e, "click", Nc, d)
+                        }.bind(null, _)), t(geByClass1(zc, e), "click", m), t(geByClass1(Wc, e), "click", f), t(geByClass1(Vc, e), "click", p), t(v, "change", b), t(v, "input", b), t(v, "paste", b), t(y, "click", b), t(geByClass1(Kc, e), "click", h), t(e, "mouseover", throttle(o.unhoverElements.bind(o, Xc), 100)), n(e, "click", Fc, d)
                     }
                 });
             return function(e, t, n, r, a, o, l, u) {
@@ -9571,16 +9581,16 @@
                         var i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
                         t.setState({
                             shown: !0
-                        }), Jc(e, !0), cancelStackPush("im_create", l), addClass(e, "im-create_shown");
+                        }), el(e, !0), cancelStackPush("im_create", l), addClass(e, "im-create_shown");
                         var o = r.get().selection.reduce(function(e, t) {
                             return e[t.id] = !0, e
                         }, {});
                         i && i.forEach(function(t) {
                             if (!o[t[0]]) {
                                 var n = e.querySelector("._im_dialog" + t[0]);
-                                a.addSelection(t[0], t[1]), n && !n.classList.contains(Kc) && n.classList.add(Kc)
+                                a.addSelection(t[0], t[1]), n && !n.classList.contains(Gc) && n.classList.add(Gc)
                             }
-                        }), tl(e, n, r, t), setTimeout(function() {
+                        }), al(e, n, r, t), setTimeout(function() {
                             t.get().longpoll.push([Object(c.Eb)("create")]), attr(e, "aria-hidden", "false"), a.focus()
                         }, 1)
                     },
@@ -9591,7 +9601,7 @@
                         u()
                     },
                     hide: function(n) {
-                        n.get().shown = !1, Xc(n, e, t, !1, a, r)
+                        n.get().shown = !1, Zc(n, e, t, !1, a, r)
                     },
                     scroll: function(e) {
                         n.scrollPage(e, !0)
@@ -9600,13 +9610,13 @@
                         Object(i.L)("_im_create_wrap_safe", e), n.updateScroll()
                     },
                     selectElement: function(t) {
-                        Zc(t, e, 0, a, n, r, n.getHoveredElement())
+                        nl(t, e, 0, a, n, r, n.getHoveredElement())
                     },
                     hoverPrevElement: function(e) {
-                        n.hoverPrevElement(Wc, null, ol(e, r))
+                        n.hoverPrevElement(Xc, null, ul(e, r))
                     },
                     hoverNextElement: function(e) {
-                        n.hoverNextElement(Wc, null, ol(e, r))
+                        n.hoverNextElement(Xc, null, ul(e, r))
                     },
                     unmount: function() {
                         Object(s.c)(o), n.unmount(), a.unmount(), cancelStackFilter("im_create"), cur.recieveCropResult = void 0
@@ -9614,9 +9624,8 @@
                 }
             }(e, n, o, a, l, j, u, h)
         }
-        var cl = n("p3re");
 
-        function ll(e, t, n, r, a) {
+        function ml(e, t, n, r, a) {
             switch (t) {
                 case m.b:
                     Object(i.mb)() || (r.scroll(a, "up"), cancelEvent(n));
@@ -9641,7 +9650,7 @@
             }
         }
 
-        function ul(e, t, n, r, a, o) {
+        function fl(e, t, n, r, a, o) {
             var s = g({
                 state: t || "default"
             });
@@ -9649,7 +9658,7 @@
                 signal: function(t, c) {
                     if (!(cur.storyLayer || cur.articleEditorLayer || window.isArticleLayerOpen())) switch (s.get().state) {
                         case "default":
-                            return ll(s, t, c, r, e);
+                            return ml(s, t, c, r, e);
                         case "fwd":
                         case "search":
                             return function(e, t, n, r, a, o) {
@@ -9694,11 +9703,11 @@
                                 switch (t) {
                                     case m.o:
                                     case m.d:
-                                        r.isEmpty(i) && ll(e, t, n, r, i);
+                                        r.isEmpty(i) && ml(e, t, n, r, i);
                                         break;
                                     case m.v:
                                     case m.u:
-                                        ll(e, t, n, r, i)
+                                        ml(e, t, n, r, i)
                                 }
                             }(s, t, c, r, e);
                         default:
@@ -9712,10 +9721,10 @@
                 }
             }
         }
-        var dl = n("BxOC"),
-            ml = n("iN1s"),
-            fl = n("EUzL"),
-            pl = function() {
+        var pl = n("BxOC"),
+            gl = n("iN1s"),
+            hl = n("EUzL"),
+            bl = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -9739,21 +9748,21 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            gl = 202,
-            hl = 4,
-            bl = 5,
-            _l = 3e4,
-            vl = {},
-            yl = Date.now();
+            _l = 202,
+            vl = 4,
+            yl = 5,
+            jl = 3e4,
+            Ol = {},
+            wl = Date.now();
 
-        function jl(e, t) {
+        function kl(e, t) {
             var n = Math.floor(t.status / 100);
-            t.status && e.stat && (t.status >= 500 && t.status < 600 && statlogsValueEvent("im_longpoll", 1, n + "0x", t.getResponseHeader("x-frontend")), vl[n] = vl[n] ? vl[n] + 1 : 1, Date.now() - yl >= _l && (Object.keys(vl).forEach(function(e) {
-                statlogsValueEvent("im_longpoll", vl[e], e + "0x", t.getResponseHeader("x-frontend"))
-            }), vl = {}, yl = Date.now()))
+            t.status && e.stat && (t.status >= 500 && t.status < 600 && statlogsValueEvent("im_longpoll", 1, n + "0x", t.getResponseHeader("x-frontend")), Ol[n] = Ol[n] ? Ol[n] + 1 : 1, Date.now() - wl >= jl && (Object.keys(Ol).forEach(function(e) {
+                statlogsValueEvent("im_longpoll", Ol[e], e + "0x", t.getResponseHeader("x-frontend"))
+            }), Ol = {}, wl = Date.now()))
         }
 
-        function wl(e) {
+        function Cl(e) {
             return e.updates.map(function(e) {
                 switch (e[0]) {
                     case 0:
@@ -9810,31 +9819,31 @@
             })
         }
 
-        function Ol(e, t) {
+        function Sl(e, t) {
             return Promise.resolve(extend({}, t, {
                 timeout: e < 64 ? 2 * e : e
             }))
         }
 
-        function kl(e, t) {
+        function El(e, t) {
             return t.pauses || (t.pauses = []), t.pauses.push(e), Promise.resolve(t)
         }
 
-        function Cl(e) {
+        function xl(e) {
             return e.pauses || (e.pauses = []), Object(h.i)("Aborting all pauses", "error"), e.pauses.forEach(function(e) {
                 return e()
             }), e.pauses = [], Promise.resolve(e)
         }
 
-        function Sl(e, t, n, i) {
-            var a = i.failed ? Object(mt.a)(hl, e) : {},
+        function Il(e, t, n, i) {
+            var a = i.failed ? Object(mt.a)(vl, e) : {},
                 o = a.abort,
                 s = a.pause;
             switch (i.failed) {
                 case 1:
-                    return Object(h.i)("Old timestamp, init resync", "error"), e.set(kl.bind(null, o)), n([c.Bb()]), e.set(r.ob).then(s).then(El.bind(null, e, t, n));
+                    return Object(h.i)("Old timestamp, init resync", "error"), e.set(El.bind(null, o)), n([c.Bb()]), e.set(r.ob).then(s).then(Tl.bind(null, e, t, n));
                 case 2:
-                    return Object(h.i)("Key is incorrect", "error"), e.set(kl.bind(null, o)), e.set(r.nb).then(s).then(El.bind(null, e, t, n));
+                    return Object(h.i)("Key is incorrect", "error"), e.set(El.bind(null, o)), e.set(r.nb).then(s).then(Tl.bind(null, e, t, n));
                 case 3:
                     throw Object(f.b)("im_longpoll_force_reload", i, !1), nav.reload({
                         force: !0
@@ -9850,17 +9859,17 @@
             }
         }
 
-        function El(e, t, n) {
+        function Tl(e, t, n) {
             if (e.get().stopped) return Promise.resolve({
                 updates: []
             });
             if (t()) return Promise.reject(new Error("pause"));
             var r = e.get(),
                 i = r.imUrl + "/" + r.imPart,
-                a = Object(dl.a)(i, {
+                a = Object(pl.a)(i, {
                     act: "a_check",
                     key: r.imKey,
-                    version: bl,
+                    version: yl,
                     ts: r.imTs,
                     wait: 25,
                     mode: r.mode
@@ -9872,18 +9881,18 @@
             }.bind(null, s)).then(function() {
                 return o
             }).then(function(t) {
-                var n = pl(t, 2),
+                var n = bl(t, 2),
                     i = n[0],
                     a = n[1];
-                return a && jl(r, a), e.set(Ol.bind(null, 1)), JSON.parse(i)
+                return a && kl(r, a), e.set(Sl.bind(null, 1)), JSON.parse(i)
             }).catch(function(e) {
-                var t = pl(e, 2),
+                var t = bl(e, 2),
                     n = (t[0], t[1]);
-                throw n && jl(r, n), ""
-            }).then(Sl.bind(null, e, t, n))
+                throw n && kl(r, n), ""
+            }).then(Il.bind(null, e, t, n))
         }
 
-        function xl(e) {
+        function Pl(e) {
             var t = e.id,
                 n = e.gid,
                 r = e.key,
@@ -9893,7 +9902,7 @@
                 s = e.lpstat,
                 c = new EventEmitter,
                 l = window.vk.lpConfig && window.vk.lpConfig.enabled && window.longpollTesting_onImEvents,
-                u = wi(function(e, t) {
+                u = Oi(function(e, t) {
                     return l && window.longpollTesting_onImEvents(t), c.trigger("data", t), Promise.resolve({})
                 }),
                 d = u.pause,
@@ -9904,7 +9913,7 @@
                 _ = g({
                     id: t,
                     gid: n,
-                    mode: gl,
+                    mode: _l,
                     timeout: 1,
                     imKey: r,
                     imTs: i,
@@ -9914,14 +9923,14 @@
                     stat: s
                 });
             return function e(t, n, r) {
-                t.get().stopped || (Object(h.i)("New request"), El(t, r, n).then(wl).then(function(e) {
+                t.get().stopped || (Object(h.i)("New request"), Tl(t, r, n).then(Cl).then(function(e) {
                     return Object(h.i)("Request success", "success"), e
                 }).then(n).catch(function(e) {
-                    if (!t.get().stopped) return Object(h.i)("Error, waiting: " + (e.message || "no message (probably browser reset)"), "error"), t.set(Ol.bind(null, r() ? hl / 2 : t.get().timeout)).then(function() {
+                    if (!t.get().stopped) return Object(h.i)("Error, waiting: " + (e.message || "no message (probably browser reset)"), "error"), t.set(Sl.bind(null, r() ? vl / 2 : t.get().timeout)).then(function() {
                         var e = Object(mt.a)(t.get().timeout, t),
                             n = e.abort,
                             r = e.pause;
-                        return t.set(kl.bind(null, n)).then(r)
+                        return t.set(El.bind(null, n)).then(r)
                     });
                     Object(h.i)("Stopped longpoll")
                 }).then(e.bind(null, t, n, r)))
@@ -9933,7 +9942,7 @@
                     return c.off("data", e)
                 },
                 abortWaiting: function() {
-                    return _.set(Cl)
+                    return _.set(xl)
                 },
                 stop: function(e) {
                     e.set(function(e) {
@@ -9955,9 +9964,9 @@
                 }
             }
         }
-        var Il = n("1+Fu");
+        var Ml = n("1+Fu");
 
-        function Tl(e) {
+        function Ll(e) {
             var t = e.get().tabbedPeers.map(function(t) {
                 return e.get().tabs[t.peer] || e.get().mapped_index && e.get().mapped_index[t.peer]
             }).filter(function(e) {
@@ -9975,11 +9984,11 @@
             }].concat(t)), t
         }
 
-        function Pl(e, t) {
-            return e.pipeReplace(Promise.resolve(Tl(t)))
+        function Bl(e, t) {
+            return e.pipeReplace(Promise.resolve(Ll(t)))
         }
 
-        function Ml(e, t, n, r) {
+        function Dl(e, t, n, r) {
             return {
                 updateMenu: function(t) {
                     ! function(e, t) {
@@ -9989,7 +9998,7 @@
                         })
                     }(e, t);
                     var r = gpeByClass("_im_right_menu", e);
-                    Pl(n, t).then(function() {
+                    Bl(n, t).then(function() {
                         var e = void 0;
                         (e = t.get().peer ? ge("ui_rmenu_peer_" + t.get().peer) : ge("ui_rmenu_" + t.get().active_tab)) && uiRightMenu.switchMenu(e, !0), uiRightMenu.hideProgress(r)
                     })
@@ -10016,12 +10025,12 @@
             }
         }
 
-        function Ll(e, t, n) {
+        function Nl(e, t, n) {
             var a = M(e, g({
                     limit: 50,
                     offset: 0,
                     noScroll: !0,
-                    elements: Tl(t)
+                    elements: Ll(t)
                 }), function() {
                     return {
                         idFn: function(e) {
@@ -10052,7 +10061,7 @@
                             return e.peer !== o
                         });
                     return e.set(r.cd.bind(null, s, !0)).then(function() {
-                        if (Pl(t, e), o === e.get().peer) e.get().longpoll.push([Object(c.Ab)()]);
+                        if (Bl(t, e), o === e.get().peer) e.get().longpoll.push([Object(c.Ab)()]);
                         else if (0 !== e.get().peer) {
                             var n = gpeByClass("_im_right_menu", i);
                             uiRightMenu.hideSliding(n)
@@ -10073,13 +10082,13 @@
                         })
                     }
                 });
-            return Ml(e, 0, a, l)
+            return Dl(e, 0, a, l)
         }
-        var Bl = 5e3,
-            Dl = 54e6,
-            Nl = 72e5;
+        var Al = 5e3,
+            Hl = 54e6,
+            Rl = 72e5;
 
-        function Al(e) {
+        function Fl(e) {
             var t = setInterval(function(e) {
                 var t = e.get().tabs,
                     n = e.get().peer,
@@ -10089,15 +10098,15 @@
                         return t[e]
                     });
                 a.filter(function(e) {
-                    return Date.now() - e.last_visited > Dl
+                    return Date.now() - e.last_visited > Hl
                 }).forEach(function(t) {
                     return e.set(r.u.bind(null, t.peerId))
                 }), a.filter(function(t) {
-                    return Object(i.ob)(e, t.peerId) && "string" != typeof t.history && Date.now() - t.last_touched > Nl
+                    return Object(i.ob)(e, t.peerId) && "string" != typeof t.history && Date.now() - t.last_touched > Rl
                 }).forEach(function(t) {
                     return e.set(r.Cc.bind(null, t.peerId))
                 })
-            }.bind(null, e), Bl);
+            }.bind(null, e), Al);
             return {
                 unmount: function() {
                     clearInterval(t)
@@ -10105,12 +10114,12 @@
             }
         }
 
-        function Hl(e) {
+        function ql(e) {
             return e.which || e.keyCode
         }
 
-        function Rl(e, t, n, r) {
-            var a = Hl(r);
+        function Ul(e, t, n, r) {
+            var a = ql(r);
             if (!layers.visible) {
                 if (a >= 49 && a <= 57 && (r.ctrlKey || r.metaKey && browser.mac) && Object(i.ib)(t)) return function(e, t) {
                     var n = e.get().tabbedPeers[t];
@@ -10120,17 +10129,17 @@
             }
         }
 
-        function Fl(e, t) {
+        function zl(e, t) {
             var n = browser.mozilla ? "keydown" : "keypress",
                 a = g({
                     signalTimer: !1
                 }),
                 o = function(e, t, n) {
-                    !n || inArray(Hl(n), m.z) || Object(r.Y)(e.get().peer, e.get()) || Object(i.mb)() || n.ctrlKey || browser.mac && n.metaKey || n.key && 1 !== n.key.length || t.signal("printable", n)
+                    !n || inArray(ql(n), m.z) || Object(r.Y)(e.get().peer, e.get()) || Object(i.mb)() || n.ctrlKey || browser.mac && n.metaKey || n.key && 1 !== n.key.length || t.signal("printable", n)
                 }.bind(null, e, t),
-                c = Rl.bind(null, t, e, a),
+                c = Ul.bind(null, t, e, a),
                 l = function(e, t, n) {
-                    Hl(n) === m.e && e.signal(Hl(n), n)
+                    ql(n) === m.e && e.signal(ql(n), n)
                 }.bind(null, t, a),
                 u = Object(s.a)({
                     handlers: function(e, t) {
@@ -10144,19 +10153,19 @@
             }
         }
 
-        function ql(e, t) {
+        function Wl(e, t) {
             return -1 === (e ? e.indexOf(t) : 0) && (e.push(t), !0)
         }
 
-        function Ul(e, t) {
+        function Kl(e, t) {
             var n = e ? e.indexOf(t) : -1;
             return -1 !== n && (e.splice(n, 1), !0)
         }
 
-        function zl(e, t, n) {
+        function Vl(e, t, n) {
             if (Object(i.Bb)(n.get(), e)) {
                 var o = Object(a.t)(n, e);
-                ql(o.memberIds, t) && o.membersCount++, -1 === o.data.active.indexOf(t) && o.data.active.push(t), t === vk.id && (o.data.kicked = 0, o.data.closed = 0)
+                Wl(o.memberIds, t) && o.membersCount++, -1 === o.data.active.indexOf(t) && o.data.active.push(t), t === vk.id && (o.data.kicked = 0, o.data.closed = 0)
             }
             return n.set(r.hb.bind(null, (s = {}, c = e, l = [t], c in s ? Object.defineProperty(s, c, {
                 value: l,
@@ -10169,32 +10178,32 @@
             var s, c, l
         }
 
-        function Wl(e, t, n, o, s, l) {
+        function Ql(e, t, n, o, s, l) {
             var u = Object(a.t)(e, t);
             switch (n) {
                 case c.t:
                 case c.u:
-                    return n === c.t ? ql(u.adminIds, o) : Ul(u.adminIds, o), Kl(e, t, s), !0;
+                    return n === c.t ? Wl(u.adminIds, o) : Kl(u.adminIds, o), Xl(e, t, s), !0;
                 case c.x:
-                    return u.data.flags = o, Kl(e, t, s), !0;
+                    return u.data.flags = o, Xl(e, t, s), !0;
                 case c.A:
                     return delete u.pinHideId, cur.imDb.update(xo.a, [u.peerId, void 0]), !1;
                 case c.C:
-                    return zl(t, o, e).then(function() {
-                        return Vl(e, t, s, l), s.fixKeyboard()
+                    return Vl(t, o, e).then(function() {
+                        return Gl(e, t, s, l), s.fixKeyboard()
                     }), !0;
                 case c.E:
                 case c.D:
                     return function(e, t, n, o, s) {
                         if (Object(i.Bb)(o.get(), e)) {
                             var c = Object(a.t)(o, e);
-                            Ul(c.memberIds, t) && c.membersCount--, c.data.active = c.data.active.filter(function(e) {
+                            Kl(c.memberIds, t) && c.membersCount--, c.data.active = c.data.active.filter(function(e) {
                                 return e !== t
                             }), t === vk.id && (n ? c.data.kicked = 1 : c.data.closed = 1)
                         }
                         return t === vk.id && o.get().peer === e ? (s.cancelEditing(), o.set(r.Oc.bind(null, e))) : Promise.resolve()
                     }(t, o, n === c.D, e, s).then(function() {
-                        return Vl(e, t, s, l)
+                        return Gl(e, t, s, l)
                     }), e.get().id !== o && (Object(a.j)(e, t) || {}).author_id !== o || e.set(r.z.bind(null, t)).then(function() {
                         return s.fixKeyboard()
                     }), !0;
@@ -10210,14 +10219,14 @@
             }
         }
 
-        function Kl(e, t, n) {
+        function Xl(e, t, n) {
             e.get().peer === t && (Object(r.oc)(e.get()), n.updateActions(e))
         }
 
-        function Vl(e, t, n, i) {
+        function Gl(e, t, n, i) {
             e.get().peer === t && (Object(r.oc)(e.get()), n.updateChat(e, t), i.updateDialog(t, e))
         }
-        var Ql = function() {
+        var Jl = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -10242,7 +10251,7 @@
             }
         }();
 
-        function Xl(e, t, n) {
+        function Yl(e, t, n) {
             return t in e ? Object.defineProperty(e, t, {
                 value: n,
                 enumerable: !0,
@@ -10250,20 +10259,20 @@
                 writable: !0
             }) : e[t] = n, e
         }
-        var Gl = 30,
-            Jl = 400,
-            Yl = 250,
-            Zl = 32,
-            $l = 5 * Zl + 24 + 52,
-            eu = 3 * Zl + 24,
-            tu = 10,
-            nu = "._im_aside_notice";
+        var Zl = 30,
+            $l = 400,
+            eu = 250,
+            tu = 32,
+            nu = 5 * tu + 24 + 52,
+            ru = 3 * tu + 24,
+            iu = 10,
+            au = "._im_aside_notice";
 
-        function ru(e, t) {
-            "spam" === t ? Object(i.wc)(e, vc, {}) : "fav" === t && Object(i.oc)(e, {}, Ys, {})
+        function ou(e, t) {
+            "spam" === t ? Object(i.wc)(e, wc, {}) : "fav" === t && Object(i.oc)(e, {}, tc, {})
         }
 
-        function iu(e, t) {
+        function su(e, t) {
             if (e.get().gid) {
                 var n = t.parentNode,
                     r = geByClass("_im_right_menu_counter", n),
@@ -10275,7 +10284,7 @@
             }
         }
 
-        function au(e, t, n, a, o) {
+        function cu(e, t, n, a, o) {
             e.forEach(function(e) {
                 switch (e.kludges.source_act) {
                     case i.d:
@@ -10290,7 +10299,7 @@
             })
         }
 
-        function ou(e, t) {
+        function lu(e, t) {
             var n = e.get().longpoll.push.bind(null, [c.Ab()]);
             cancelStackPush("im_peer", function r() {
                 var i = e.get().selectedMessages;
@@ -10304,23 +10313,23 @@
             })
         }
 
-        function su(e) {
+        function uu(e) {
             var t = e.attaches.filter(function(e) {
                 return "sticker" !== e.type
             });
             return Object(o.l)(e) || 0 === t.length
         }
 
-        function cu(e, t, n) {
+        function du(e, t, n) {
             addClass(n, "im-page_history-show"), t.loadingPeer(e)
         }
 
-        function lu(e, t) {
+        function mu(e, t) {
             var n = function(e, t) {
-                var n = document.querySelector(nu),
-                    r = Object(i.jb)(e) ? $l : eu,
+                var n = document.querySelector(au),
+                    r = Object(i.jb)(e) ? nu : ru,
                     a = n ? n.offsetHeight : 0;
-                return r += tu, r += a, Math.floor((t.offsetHeight - r) / Zl)
+                return r += iu, r += a, Math.floor((t.offsetHeight - r) / tu)
             }(e, t);
             if (e.get().tabbedPeers.length > n) {
                 var a = e.get().tabbedPeers.filter(function(t) {
@@ -10345,14 +10354,14 @@
             return Promise.resolve(e)
         }
 
-        function uu() {
+        function fu() {
             for (var e = curBox(); e;) e.hide(), e = curBox()
         }
 
-        function du(e, t, n, o, s, c, l, u, d) {
+        function pu(e, t, n, o, s, c, l, u, d) {
             e.get().audio_msg.isRecording && e.set(r.l).then(function() {
                 o.cancelRecording()
-            }), AudioMessagePlayer.detachPlayer(), Object(a.x)(e) && o.cancelEditing(), Object(a.L)(e) && t.cancelSearch && (s.clearSearch(e), n.restoreDialogs(e), d().toggleSettingsButton(e, !1)), mu(e, u, d), cu(e, o, c);
+            }), AudioMessagePlayer.detachPlayer(), Object(a.x)(e) && o.cancelEditing(), Object(a.L)(e) && t.cancelSearch && (s.clearSearch(e), n.restoreDialogs(e), d().toggleSettingsButton(e, !1)), gu(e, u, d), du(e, o, c);
             var m = e.get().peer;
             Object(r.Zc)(e.get()), Object(r.gd)(), Object(i.ob)(e, t.peerId) && (t.msgid && !Object(a.m)(e, t.peerId, t.msgid) || !t.msgid && !Object(a.m)(e, t.peerId, Object(a.t)(e, t.peerId).lastmsg) || Object(a.t)(e, t.peerId).skipped) && e.mutate(function(e) {
                 return Object(a.O)(e, t.peerId)
@@ -10365,7 +10374,7 @@
                 n.selectPeer(t.msgid, e),
                     function(e, t) {
                         Object(i.xb)(e) && (cancelStackFilter("forward"), e.set(r.K.bind(null, e.get().pendingForward, Object(a.u)(Object(a.t)(e, t)), !1)))
-                    }(e, e.get().peer), window.tooltips && tooltips.hideAll(), uu(), o.preparePeer(e), ou(e, o), Object(i.ib)(e) && (n.deactivate(), lu(e, c).then(function() {
+                    }(e, e.get().peer), window.tooltips && tooltips.hideAll(), fu(), o.preparePeer(e), lu(e, o), Object(i.ib)(e) && (n.deactivate(), mu(e, c).then(function() {
                         return l.updateMenu(e)
                     }))
             });
@@ -10386,25 +10395,25 @@
             })
         }
 
-        function mu(e, t, n) {
+        function gu(e, t, n) {
             t && e.get().shown && (t.hide(e), n().createCanceled(e))
         }
 
-        function fu(e, t, n) {
+        function hu(e, t, n) {
             Object(a.L)(e) && (t.clearSearch(e), n.restoreDialogs(e))
         }
 
-        function pu(e, t, n, a, o, s, c) {
+        function bu(e, t, n, a, o, s, c) {
             Object(i.ib)(e) && (o.saveScroll(e), s.saveScroll(e)), a.rotateCross(e), addClass(c, "im-page_creating"), e.setState({
                 isCreating: !0
             }), n && n.show(e, t), Object(i.ib)(e) && (setStyle(c, {
-                height: bu(c, e).page
+                height: yu(c, e).page
             }), setTimeout(function() {
                 addClass(c, "im-page_cropped")
             }, 200)), Object(r.Ic)(!0)
         }
 
-        function gu(e, t, n, a, o) {
+        function _u(e, t, n, a, o) {
             a.activityType || (a.activityType = o);
             var s = function(e) {
                 return function(e, t, n, r) {
@@ -10414,16 +10423,16 @@
             Object(i.Ab)(a.peerId, e.get().gid) || (e.set(r.pc.bind(null, a, o)).then(s), e.set(r.hd.bind(null, a, o)).then(s))
         }
 
-        function hu(e, t, n, l, u, d, f, p, g, h, b, _, v, y, j, w, O, k, C, S, E) {
+        function vu(e, t, n, l, u, d, f, p, g, h, b, _, v, y, j, O, w, k, C, S, E) {
             return {
                 changePeer: function(e, n) {
                     t.selectPeer(e, n)
                 },
                 cancelSearch: function(e) {
-                    fu(e, l, t)
+                    hu(e, l, t)
                 },
                 loadingPeer: function(e) {
-                    cu(e, n, u)
+                    du(e, n, u)
                 },
                 restoreDialogs: function(e, n, r) {
                     t.restoreDialogs(e, n, r)
@@ -10441,7 +10450,7 @@
                     t.appendDialogs(e, n)
                 },
                 showCreation: function(e, r) {
-                    pu(e, r, h, l, t, n, u)
+                    bu(e, r, h, l, t, n, u)
                 },
                 updateState: function(e, r) {
                     t.updateDialog(e, r), r.get().peer === e && n.updateChat(r, e)
@@ -10461,7 +10470,7 @@
                     })
                 },
                 updateMenu: function(e) {
-                    w && w.updateMenu(e)
+                    O && O.updateMenu(e)
                 },
                 goToHistoryEnd: function() {
                     n.goToEnd()
@@ -10473,9 +10482,9 @@
                     n.focustTxt(e)
                 },
                 resync: function(e) {
-                    Object(a.L)(e) && l.clearSearch(e), t.restoreDialogs(e, !0, !0), t.focusOnSelected(e), h && h.hide(e), Object(i.jb)(e) && iu(e, u), Object(i.ib)(e) && e.get().tabbedPeers.forEach(function(t) {
+                    Object(a.L)(e) && l.clearSearch(e), t.restoreDialogs(e, !0, !0), t.focusOnSelected(e), h && h.hide(e), Object(i.jb)(e) && su(e, u), Object(i.ib)(e) && e.get().tabbedPeers.forEach(function(t) {
                         var n = t.peer;
-                        w.updateCounter(e, n), w.updateName(n, e)
+                        O.updateCounter(e, n), O.updateName(n, e)
                     }), n.cleanSelection(e.get().selectedMessages || []), n.cancelSearch(e, !0), Object(i.yb)(e.get().peer) || n.changePeer(e, !1);
                     var r = e.get().gid ? "l_mgid" + e.get().gid : "msg";
                     handlePageCount(r, e.get().unread_cnt)
@@ -10516,12 +10525,12 @@
                                 }(_);
                                 break;
                             case "tab":
-                                mu(_, h, g), d = !0;
+                                gu(_, h, g), d = !0;
                                 var b = o.tab || m.h;
                                 _.get().longpoll.push([c.cb(b)]);
                                 break;
                             case "act":
-                                o.act && "create" === o.act ? pu(_, [], h, l, t, n, u) : function(e, t, n, r) {
+                                o.act && "create" === o.act ? bu(_, [], h, l, t, n, u) : function(e, t, n, r) {
                                     n && n.hide(e, t)
                                 }(_, [], h);
                                 break;
@@ -10532,15 +10541,15 @@
                                 o.q ? (curBox() && curBox().hide(), l.setSearch(_, o.q, !0)) : l.clearSearch(_);
                                 break;
                             case "box":
-                                ru(_, o.box)
+                                ou(_, o.box)
                         }
-                    }), Object(i.ib)(_) && void 0 === e.sel && w.updateMenu(_), d && fu(_, l, t), !1)
+                    }), Object(i.ib)(_) && void 0 === e.sel && O.updateMenu(_), d && hu(_, l, t), !1)
                 },
                 updateDialogFilters: function(e) {
                     Object(a.L)(e) || t.restoreDialogs(e), b.updateFilter(e)
                 },
                 removePeer: function(e, n) {
-                    t.removeDialog(e, n), t.saveScroll(e), e.get().peer === n && e.get().longpoll.push([c.Ab()]), Object(i.ib)(e) && w.updateMenu(e)
+                    t.removeDialog(e, n), t.saveScroll(e), e.get().peer === n && e.get().longpoll.push([c.Ab()]), Object(i.ib)(e) && O.updateMenu(e)
                 },
                 newMessage: function(e) {
                     Object(i.ib)(e) || t.scrollUp(!0)
@@ -10556,10 +10565,10 @@
                         y = s.filter(function(e) {
                             return e.type === c.a
                         });
-                    au(_, e, t, n);
+                    cu(_, e, t, n);
                     var j = Object(r.s)(_, y, e),
-                        O = Promise.resolve();
-                    j.shouldLoad && (O = e.set(r.rb.bind(null, j, f))), O.then(function() {
+                        w = Promise.resolve();
+                    j.shouldLoad && (w = e.set(r.rb.bind(null, j, f))), w.then(function() {
                         d.forEach(function(s) {
                             switch (s.type) {
                                 case c.a:
@@ -10570,17 +10579,17 @@
                                     if (!e.get().isIncomingMessageRequestsAllowed && Object(a.Q)(d)) break;
                                     var j = null;
                                     if (s.kludges.keyboard) {
-                                        var O = Object.assign(s.kludges.keyboard, {
+                                        var w = Object.assign(s.kludges.keyboard, {
                                             author_id: s.userId
                                         });
-                                        j = e.set(r.wc.bind(null, s.peerId, O))
+                                        j = e.set(r.wc.bind(null, s.peerId, w))
                                     } else {
                                         var k = Object(a.j)(e, s.peerId);
                                         k && k.one_time && k.author_id !== Object(o.a)(e, s) && (j = e.set(r.z.bind(null, s.peerId)))
                                     }
                                     if (s.peerId === Object(a.o)(e) && j && j.then(function() {
                                             return n.fixKeyboard()
-                                        }), 0 === _) e.set(r.h.bind(null, s)), lu(e, u),
+                                        }), 0 === _) e.set(r.h.bind(null, s)), mu(e, u),
                                         function(e, t) {
                                             var n = e.get().tabs[t.peerId],
                                                 i = e.get().active_tab;
@@ -10603,7 +10612,7 @@
                                                 if (t.kludges && t.kludges.source_act && (l = stripHTML(Object(i.bc)(e, t, p, !1))), (!e.get().notify_msg && !Object(i.hb)(d) || o && !e.get().mute) && window.Notifier && Notifier.playSound({
                                                         author_id: d
                                                     }), !Object(i.hb)(d)) return;
-                                                l = trim(replaceEntities(stripHTML(l.replace(/<br>/g, "\n").replace(/<\*>.*$/, "")))), l = Object(cl.f)(l, function(e, t, n, r, i) {
+                                                l = trim(replaceEntities(stripHTML(l.replace(/<br>/g, "\n").replace(/<\*>.*$/, "")))), l = Object(Io.f)(l, function(e, t, n, r, i) {
                                                     return i
                                                 }), Object(i.hb)(d) ? (m = Object(B.c)(e, u).name, p.tab && (m += " » " + p.tab), f = Object(B.c)(e, u).photo) : (m = p.tab, f = p.photo);
                                                 var g = t.attaches[0];
@@ -10620,10 +10629,10 @@
                                                     author_photo: f
                                                 })
                                             }
-                                        }(e, s), t.updateTyping(s.peerId, e), Object(a.L)(e) ? t.updateDialog(s.peerId, e) : t.promoteDialog(e, s.peerId)), !1 === Object(a.A)(e, s.peerId) && !0 === y && n.updateActions(e), Object(i.ib)(e) && (w.updateCounter(e, s.peerId), w.updateMenu(e)), n.updateTyping(s.peerId, e), n.addMessage(e, s), Object(i.ib)(e) || b.updateFilter(e), su(s) || !Object(i.ob)(e, s.peerId) || s.local || e.set(r.pb.bind(null, s)).then(function(e) {
+                                        }(e, s), t.updateTyping(s.peerId, e), Object(a.L)(e) ? t.updateDialog(s.peerId, e) : t.promoteDialog(e, s.peerId)), !1 === Object(a.A)(e, s.peerId) && !0 === y && n.updateActions(e), Object(i.ib)(e) && (O.updateCounter(e, s.peerId), O.updateMenu(e)), n.updateTyping(s.peerId, e), n.addMessage(e, s), Object(i.ib)(e) || b.updateFilter(e), uu(s) || !Object(i.ob)(e, s.peerId) || s.local || e.set(r.pb.bind(null, s)).then(function(e) {
                                             n.replaceAttachmentPlaceholders(e, s), Object(r.gd)()
                                         }), Object(ye.m)(e, s, "send", "opt_to_lp");
-                                    else 2 === _ ? (su(s) || e.set(r.pb.bind(null, s)).then(function(e) {
+                                    else 2 === _ ? (uu(s) || e.set(r.pb.bind(null, s)).then(function(e) {
                                         n.replaceAttachmentPlaceholders(e, s)
                                     }), e.set(r.Pb.bind(null, s)), n.replaceMessageAttrs(s, e), t.updateDialog(s.peerId, e), s.randomId && Object(ye.l)(e, s, "send", "opt_to_lp")) : Object(a.L)(e) || t.promoteDialog(e, s.peerId);
                                     d && f && d.peerId === Object(a.o)(e) && S();
@@ -10631,14 +10640,14 @@
                                 case c.g:
                                 case c.N:
                                     e.set(r.F.bind(null, s)).then(function(e) {
-                                        t.updateDialog(s.peerId, e), n.updateTyping(s.peerId, e), n.editMessage(e, s), su(s) || !Object(i.ob)(e, s.peerId) || s.local || e.set(r.pb.bind(null, s)).then(function(e) {
+                                        t.updateDialog(s.peerId, e), n.updateTyping(s.peerId, e), n.editMessage(e, s), uu(s) || !Object(i.ob)(e, s.peerId) || s.local || e.set(r.pb.bind(null, s)).then(function(e) {
                                             n.replaceAttachmentPlaceholders(e, s)
                                         })
                                     });
                                     break;
                                 case c.H:
                                     e.set(r.wb.bind(null, s)).then(function(e) {
-                                        t.updateCounter(e, s.peerId), n.updateGoToEnd(e, !0), Object(i.ib)(e) && w.updateCounter(e, s.peerId), Object(a.L)(e) || t.restoreDialogs(e), b.updateFilter(e)
+                                        t.updateCounter(e, s.peerId), n.updateGoToEnd(e, !0), Object(i.ib)(e) && O.updateCounter(e, s.peerId), Object(a.L)(e) || t.restoreDialogs(e), b.updateFilter(e)
                                     });
                                     break;
                                 case c.I:
@@ -10649,7 +10658,7 @@
                                 case c.X:
                                     e.set(r.ed.bind(null, s.count)).then(function() {
                                         var t = e.get().gid ? "l_mgid" + e.get().gid : "msg";
-                                        handlePageCount(t, s.count), b.updateFilter(e), Object(i.ib)(e) && iu(e, u)
+                                        handlePageCount(t, s.count), b.updateFilter(e), Object(i.ib)(e) && su(e, u)
                                     });
                                     break;
                                 case c.s:
@@ -10672,10 +10681,10 @@
                                     }
                                     break;
                                 case c.J:
-                                    gu(e, n, t, s, r.c);
+                                    _u(e, n, t, s, r.c);
                                     break;
                                 case c.W:
-                                    gu(e, n, t, s, r.d);
+                                    _u(e, n, t, s, r.d);
                                     break;
                                 case c.G:
                                     ! function(e, t, n, i) {
@@ -10706,11 +10715,11 @@
                                         }), AudioMessagePlayer.detachPlayer(), t.removeSelection(e), removeClass(o, "im-page_history-show"), n.stopLoading(), Object(a.x)(e) && n.cancelEditing();
                                         var s = e.get().peer;
                                         e.set(r.p.bind(null, 0, !1, !1)).then(function() {
-                                            window.tooltips && window.tooltips.hideAll(), uu(), Object(i.ib)(e) && t.activate(), n.changePeer(e), Object(i.ib)(e) && t.restoreScroll(e), setTimeout(function() {
+                                            window.tooltips && window.tooltips.hideAll(), fu(), Object(i.ib)(e) && t.activate(), n.changePeer(e), Object(i.ib)(e) && t.restoreScroll(e), setTimeout(function() {
                                                 e.get().longpoll.push([c.Eb("search")])
                                             }, 13), Object(i.rb)(e) && Object(i.wb)(s, e) && e.set(r.Hb.bind(null, s))
                                         })
-                                    }(e, t, n, u), s.cancelSearch && fu(e, l, t), Object(i.ib)(e) && w.updateMenu(e), l.focusInput(e);
+                                    }(e, t, n, u), s.cancelSearch && hu(e, l, t), Object(i.ib)(e) && O.updateMenu(e), l.focusInput(e);
                                     break;
                                 case c.c:
                                     Object(i.C)(s.tab, e, g, r.o).then(function(e) {
@@ -10722,7 +10731,7 @@
                                 case c.L:
                                     if (s.mask === c.p) break;
                                     e.set(r.Vc.bind(null, s.peerId, s.mask, s.type, s.local)).then(function(e) {
-                                        Object(a.L)(e) || s.type === c.P && s.mask === c.q || s.type === c.L || t.restoreDialogs(e), t.updateDialog(s.peerId, e), iu(e, u), e.get().peer === s.peerId && n.changedMessageSelection(e)
+                                        Object(a.L)(e) || s.type === c.P && s.mask === c.q || s.type === c.L || t.restoreDialogs(e), t.updateDialog(s.peerId, e), su(e, u), e.get().peer === s.peerId && n.changedMessageSelection(e)
                                     });
                                     break;
                                 case c.f:
@@ -10731,10 +10740,10 @@
                                     });
                                     break;
                                 case c.b:
-                                    du(e, s, t, n, l, u, w, h, g);
+                                    pu(e, s, t, n, l, u, O, h, g);
                                     break;
                                 case c.F:
-                                    var I = Xl({}, s.peerId, s),
+                                    var I = Yl({}, s.peerId, s),
                                         T = Object(i.vb)(s.peerId, e);
                                     e.set(r.Pc.bind(null, I)).then(function() {
                                         t.updateDialog(s.peerId, e);
@@ -10754,7 +10763,7 @@
                                     });
                                     break;
                                 case c.e:
-                                    if (Object(i.Bb)(e.get(), s.peerId)) Wl(e, s.peerId, s.updateType, s.updateArg, n, t) || g().reloadChatInfo(s.peerId)
+                                    if (Object(i.Bb)(e.get(), s.peerId)) Ql(e, s.peerId, s.updateType, s.updateArg, n, t) || g().reloadChatInfo(s.peerId)
                             }
                         })
                     })
@@ -10766,7 +10775,7 @@
                     Object(i.Bb)(_.get(), e) && _.set(r.gb.bind(null, e)).then(function() {
                         return function(e, t, n, a, o) {
                             a.updateChatTopic(t, e), Object(i.ib)(e) && o.updateName(t, e), e.get().peer == t && (Object(r.oc)(e.get()), a.updateActions(e))
-                        }(_, e, 0, n, w)
+                        }(_, e, 0, n, O)
                     })
                 },
                 cancelRecording: function() {
@@ -10780,33 +10789,33 @@
                 unmount: function() {
                     Object(s.c)(e), clearInterval(_.get().update_title_to), d.stop(), E(), t.unmount();
                     var a = window.devicePixelRatio >= 2 ? "_2x" : "";
-                    setFavIcon("/images/icons/favicons/fav_logo" + a + ".ico"), n.unmount(), l.unmount(), cancelStackFilter("im_peer"), b.unmount(), h && h.unmount(), w && w.unmount(), O && O(), y && y(), Object(i.rb)(_) && _.get().peer && _.set(r.Hb.bind(null, _.get().peer)), k.unmount(), w && w.unmount(), C.unmount(), clearInterval(j), cur.imDb.unmount(), cur.imDb = !1
+                    setFavIcon("/images/icons/favicons/fav_logo" + a + ".ico"), n.unmount(), l.unmount(), cancelStackFilter("im_peer"), b.unmount(), h && h.unmount(), O && O.unmount(), w && w(), y && y(), Object(i.rb)(_) && _.get().peer && _.set(r.Hb.bind(null, _.get().peer)), k.unmount(), O && O.unmount(), C.unmount(), clearInterval(j), cur.imDb.unmount(), cur.imDb = !1
                 }
             }
         }
 
-        function bu(e, t) {
+        function yu(e, t) {
             var n = ge("page_header"),
                 r = geByClass1("_im_page_history", e),
-                a = window.clientHeight() - n.offsetHeight - Gl - 2,
-                o = Object(i.ib)(t) ? Yl : Jl,
+                a = window.clientHeight() - n.offsetHeight - Zl - 2,
+                o = Object(i.ib)(t) ? eu : $l,
                 s = {
                     page: Math.max(a, o)
                 };
             if (Object(i.ib)(t)) {
                 var c = Object(i.U)();
-                c = c > 0 ? Math.min(c - n.offsetHeight - Gl - 2, a) : a;
+                c = c > 0 ? Math.min(c - n.offsetHeight - Zl - 2, a) : a;
                 var l = hasClass(r, "im-page--history_empty-hist") ? c : a;
                 s.history = Math.max(c, o), s.chat = Math.max(l, o)
             }
             return s
         }
 
-        function _u(e, t, n, a, o) {
+        function ju(e, t, n, a, o) {
             var s = !(arguments.length > 5 && void 0 !== arguments[5]) || arguments[5],
                 c = arguments.length > 6 && void 0 !== arguments[6] && arguments[6];
             if (!isFullScreen()) {
-                var l = bu(e, t);
+                var l = yu(e, t);
                 if (setStyle(e, {
                         minHeight: l.page
                     }), Object(i.ib)(t) && (void 0 === t.get().chatResizeInitialized && t.set(r.U), setStyle(e, {
@@ -10829,12 +10838,12 @@
                     n.scrollFix(t, t.get().peer, u)
                 }
                 s && setTimeout(function() {
-                    return _u(e, t, n, a, o, !1)
+                    return ju(e, t, n, a, o, !1)
                 }, 100)
             }
         }
 
-        function vu() {
+        function Ou() {
             ! function(e) {
                 var t = "safari-repaint";
                 e.forEach(function(e) {
@@ -10847,21 +10856,21 @@
             }([geByClass1("_im_dialog_actions"), geByClass1("_im_chat_input_w"), ge("side_bar"), geByClass1("_im_right_menu"), geByClass1("_im_dialogs_settings"), geByClass1("_im_dialogs_search")])
         }
 
-        function yu(e, t) {
+        function wu(e, t) {
             var n = t.get(),
                 o = void 0,
                 l = window.devicePixelRatio >= 2 ? "_2x" : "";
-            setFavIcon("/images/icons/favicons/fav_im" + l + ".ico"), _u(e, t, !1, !1, !1, !0), show(e), Object(ye.c)();
-            var u = Object(s.b)(hu),
+            setFavIcon("/images/icons/favicons/fav_im" + l + ".ico"), ju(e, t, !1, !1, !1, !0), show(e), Object(ye.c)();
+            var u = Object(s.b)(vu),
                 d = u.callMutations,
                 m = u.bindMutations,
                 p = n.useFcLongpoll && vk.lpConfig.enabled && Notifier.getLpInstance && Notifier.getLpInstance(),
                 g = p ? Notifier.getLpInstance() : t.get().gid ? function(e) {
                     Object(f.b)("im_start_longpoll_group", {}, !1);
-                    var t = Object(fl.a)(e.ts, function(e) {
+                    var t = Object(hl.a)(e.ts, function(e) {
                             r.trigger("data", e)
                         }),
-                        n = Object(ml.a)(e, t.onLp),
+                        n = Object(gl.a)(e, t.onLp),
                         r = new window.EventEmitter;
                     return {
                         onData: function(e) {
@@ -10882,7 +10891,7 @@
                             return !(!n || n.isStopped())
                         }
                     }
-                }(n.lpConfig) : xl(n);
+                }(n.lpConfig) : Pl(n);
 
             function _() {
                 for (var e = arguments.length, n = Array(e), r = 0; r < e; r++) n[r] = arguments[r];
@@ -10892,13 +10901,13 @@
             var v = geByClass1("_im_dialogs_search", e),
                 y = geByClass1("_im_dialogs_settings", e),
                 j = ve(geByClass1("_im_page_dcontent", e), t, d),
-                w = mc(v, t, d),
-                O = Cc(y, t, d),
-                k = Al(t);
-            cur.imDb = Object(xo.c)(t.get().gid ? -t.get().gid : vk.id), t.set(r.Bb.bind(null, cur.imDb)), Object(i.ib)(t) && O.updateSettings(t);
+                O = hc(v, t, d),
+                w = Ic(y, t, d),
+                k = Fl(t);
+            cur.imDb = Object(xo.c)(t.get().gid ? -t.get().gid : vk.id), t.set(r.Bb.bind(null, cur.imDb)), Object(i.ib)(t) && w.updateSettings(t);
             var C = void 0,
                 S = void 0;
-            Object(i.ib)(t) && (C = Ll(geByClass1("_im_ui_peers_list", e.parentNode), t), S = function(e, t, n, r) {
+            Object(i.ib)(t) && (C = Nl(geByClass1("_im_ui_peers_list", e.parentNode), t), S = function(e, t, n, r) {
                 if (browser.mobile) return !1;
                 var i = [t, n, geByClass1("_im_chat_input_w", r), geByClass1("_im_dialog_actions", r)],
                     a = null,
@@ -10911,7 +10920,7 @@
                         r = [];
                     a !== t ? r = i.slice().concat([e]) : n !== o && (r = [e]), a = t, o = n, r.length > 0 && r.forEach(function(r) {
                         var i = e === r && n ? 0 : -t;
-                        setStyle(r, Xl({}, cssTransformProp, 0 === i ? "unset" : "translateX(" + i + "px)"))
+                        setStyle(r, Yl({}, cssTransformProp, 0 === i ? "unset" : "translateX(" + i + "px)"))
                     })
                 }
                 return s && i.push(s), i = i.concat(geByClass("_im_aside_notice"), geByClass("_im_aside_promo_block")), addEvent(window, "scroll", c), c(),
@@ -10919,20 +10928,20 @@
                         removeEvent(window, "scroll", c)
                     }
             }(v, y, geByClass1("_im_right_menu", e.parentNode), e));
-            Object(i.ib)(t) && n.peer && j.deactivate(), n.gid || (o = sl(geByClass1("_im_dialogs_creation", e), t, d));
-            var E = zs(geByClass1("_im_page_history", e), t, j, C, d),
+            Object(i.ib)(t) && n.peer && j.deactivate(), n.gid || (o = dl(geByClass1("_im_dialogs_creation", e), t, d));
+            var E = Qs(geByClass1("_im_page_history", e), t, j, C, d),
                 x = n.isCreating,
                 I = x ? "create" : 0 === n.peer ? "search" : "default";
             x && o.show(t, []);
-            var T = ul(t, I, j, E, w, o),
-                P = Fl(t, T);
+            var T = fl(t, I, j, E, O, o),
+                P = zl(t, T);
             E.updateScroll();
             var M = function(e, t, n, a) {
                 var o = t.get();
                 Object(i.yb)(o.peer) || e().onUserActions(t, a), o.update_old_title && t.set(r.Sc.bind(null, !1, !1))
             }.bind(null, d, t, T);
             Object(i.yb)(n.peer) || setTimeout(function() {
-                return ou(t, E)
+                return lu(t, E)
             }, 10);
             var L = new IdleManager({
                     id: "im",
@@ -10940,22 +10949,22 @@
                     focusElement: window,
                     triggerEvents: "mouseover mousedown keypress"
                 }),
-                B = debounce(vu, 300),
-                D = _u.bind(null, e, t, E, j, o, !1, B);
+                B = debounce(Ou, 300),
+                D = ju.bind(null, e, t, E, j, o, !1, B);
             t.setState({
                 longpoll: g
             }), t.set(r.uc.bind(null, [])), L.on("unidle", function() {
                 g.abortWaiting(), M()
-            }), L.start(), nav.objLoc.box && (ru(t, nav.objLoc.box), Object(Eo.b)({
+            }), L.start(), nav.objLoc.box && (ou(t, nav.objLoc.box), Object(Eo.b)({
                 box: null
             }));
             var N = function(e) {
                     var t = e.get();
-                    return Object(i.rb)(e) ? Object(Il.a)(t.mutex_key, function(e) {
+                    return Object(i.rb)(e) ? Object(Ml.a)(t.mutex_key, function(e) {
                         t.longpoll.push([c.nb(e)])
                     }, function(e, n) {
                         return Object(r.O)(t.gid).then(function(e) {
-                            return Ql(e, 1)[0]
+                            return Jl(e, 1)[0]
                         })
                     }).stop : null
                 }(t),
@@ -10985,73 +10994,73 @@
                 F = i.ab.bind(null, t);
             return m(Object(s.a)({
                 handlers: function(t, n) {
-                    t(document, "mousemove mousedown keypress", M), t(window, "resize", D), n(e, "click", i.o, R), n(gpeByClass("_im-page-wrap", e), "click", i.m, F), n(gpeByClass("_im-page-wrap", e), "click", i.n, i.bb), n(gpeByClass("_im-page-wrap", e), "click", i.p, i.db), browser.safari && t(document, "visibilitychange", vu)
+                    t(document, "mousemove mousedown keypress", M), t(window, "resize", D), n(e, "click", i.o, R), n(gpeByClass("_im-page-wrap", e), "click", i.m, F), n(gpeByClass("_im-page-wrap", e), "click", i.n, i.bb), n(gpeByClass("_im-page-wrap", e), "click", i.p, i.db), browser.safari && t(document, "visibilitychange", Ou)
                 }
-            }), j, E, w, e, L, g, H, d, o, O, t, T, N, A, C, S, k, P, D, function() {
+            }), j, E, O, e, L, g, H, d, o, w, t, T, N, A, C, S, k, P, D, function() {
                 p ? g.offData(_) : g.stop()
             })
         }
-        var ju = window,
-            wu = ju.nav,
-            Ou = ju.setStyle,
-            ku = ju.getLang,
-            Cu = "._im_sick_reload",
-            Su = "._im_sick_timer",
-            Eu = 5e3,
-            xu = 6e5,
-            Iu = 30,
-            Tu = 400,
-            Pu = void 0,
-            Mu = void 0;
+        var ku = window,
+            Cu = ku.nav,
+            Su = ku.setStyle,
+            Eu = ku.getLang,
+            xu = "._im_sick_reload",
+            Iu = "._im_sick_timer",
+            Tu = 5e3,
+            Pu = 6e5,
+            Mu = 30,
+            Lu = 400,
+            Bu = void 0,
+            Du = void 0;
 
-        function Lu(e) {
+        function Nu(e) {
             var t = ge("page_header"),
-                n = window.clientHeight() - t.offsetHeight - Iu - 2,
-                r = Tu;
-            Ou(e, {
+                n = window.clientHeight() - t.offsetHeight - Mu - 2,
+                r = Lu;
+            Su(e, {
                 height: Math.max(n, r)
             })
         }
 
-        function Bu(e) {
+        function Au(e) {
             var t = Object(i.N)(Math.floor(Math.max(e, 0) / 1e3), !0);
-            return t ? ku("mail_sick_timer").replace(/{timer}/gi, t) : ""
+            return t ? Eu("mail_sick_timer").replace(/{timer}/gi, t) : ""
         }
 
-        function Du() {
-            wu.reload({
+        function Hu() {
+            Cu.reload({
                 force: !0
             })
         }
 
-        function Nu(e) {
+        function Ru(e) {
             return {
                 unmount: function() {
-                    clearInterval(Mu), clearTimeout(Pu), Object(s.c)(e)
+                    clearInterval(Du), clearTimeout(Bu), Object(s.c)(e)
                 }
             }
         }
 
-        function Au(e, t, n) {
-            Lu(e);
-            var r, i, a = (0, Object(s.b)(Nu).bindMutations)(Object(s.a)({
+        function Fu(e, t, n) {
+            Nu(e);
+            var r, i, a = (0, Object(s.b)(Ru).bindMutations)(Object(s.a)({
                     handlers: function(t, n) {
-                        t(e.querySelector(Cu), "click", Du), t(window, "resize", Lu.bind(null, e))
+                        t(e.querySelector(xu), "click", Hu), t(window, "resize", Nu.bind(null, e))
                     }
                 })),
-                o = (r = localStorage.getItem("im_sick_timer"), i = r ? Math.min(2 * parseInt(r), xu) : Eu, localStorage.setItem("im_sick_timer", i), i),
-                c = e.querySelector(Su),
+                o = (r = localStorage.getItem("im_sick_timer"), i = r ? Math.min(2 * parseInt(r), Pu) : Tu, localStorage.setItem("im_sick_timer", i), i),
+                c = e.querySelector(Iu),
                 l = +new Date;
-            return c.innerHTML = Bu(o), Mu = setInterval(function() {
-                c.innerHTML = Bu(l + o - new Date)
-            }, 500), Pu = setTimeout(Du, o), a
+            return c.innerHTML = Au(o), Du = setInterval(function() {
+                c.innerHTML = Au(l + o - new Date)
+            }, 500), Bu = setTimeout(Hu, o), a
         }
-        var Hu = n("E2g8"),
-            Ru = n("f4YT"),
-            Fu = Hu.Promise;
+        var qu = n("E2g8"),
+            Uu = n("f4YT"),
+            zu = qu.Promise;
         window.IM = {
             init: function(e) {
-                if (window.imwl = e.imwl, Object(f.d)(), addTemplates(Ru), window.Promise || (window.Promise = Fu), window.cur.lang.dont_attach = getLang("mail_dont_add_media"), e.failed) return Au(geByClass1("im-sick", ge("page_body")));
+                if (window.imwl = e.imwl, Object(f.d)(), addTemplates(Uu), window.Promise || (window.Promise = zu), window.cur.lang.dont_attach = getLang("mail_dont_add_media"), e.failed) return Fu(geByClass1("im-sick", ge("page_body")));
                 localStorage.removeItem("im_sick_timer"), e.tabbedPeers = (e.tabbedPeers || []).map(function(e) {
                     return {
                         peer: e,
@@ -11069,7 +11078,7 @@
                 a.forEach(function(e) {
                     return Object(B.a)(o, e)
                 }), a = void 0, Object(i.Lb)(o, o.get().tabs), cur.imClassicInterface = Object(i.ib)(o);
-                var s = yu(geByClass1("js-im-page", ge("page_body")), o);
+                var s = wu(geByClass1("js-im-page", ge("page_body")), o);
                 Object(r.Zc)(o.get()), window.IMBRIDGE = {
                     chatPhotoSaved: function(e) {
                         curBox() && curBox().hide();
@@ -11977,9 +11986,9 @@
         }), n.d(t, "wb", function() {
             return jn
         }), n.d(t, "z", function() {
-            return wn
-        }), n.d(t, "wc", function() {
             return On
+        }), n.d(t, "wc", function() {
+            return wn
         }), n.d(t, "W", function() {
             return kn
         }), n.d(t, "V", function() {
@@ -12083,7 +12092,7 @@
         }), n.d(t, "yb", function() {
             return l.c
         });
-        var w = function() {
+        var O = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -12107,7 +12116,7 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            O = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            w = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
@@ -12172,8 +12181,8 @@
             ve = X.setStyle,
             ye = X.val,
             je = X.getTemplate,
-            we = X.getLang,
-            Oe = X.langSex,
+            Oe = X.getLang,
+            we = X.langSex,
             ke = X.langDate,
             Ce = X.langNumeric,
             Se = X.getDateText,
@@ -12320,7 +12329,7 @@
                         var i = t.kludges.ref_source,
                             a = {};
                         try {
-                            (a = JSON.parse(Object(j.I)(i))).link && a.info && (a.link = Object(c.e)(Object(j.c)(a.link), c.b.bind(null, !1)), a = Object(j.c)(langStr(we("mail_source_info"), "link", a.link, "info", Object(j.c)(a.info))), n += je("sImLblWasSourceInfo", {
+                            (a = JSON.parse(Object(j.I)(i))).link && a.info && (a.link = Object(c.e)(Object(j.c)(a.link), c.b.bind(null, !1)), a = Object(j.c)(langStr(Oe("mail_source_info"), "link", a.link, "info", Object(j.c)(a.info))), n += je("sImLblWasSourceInfo", {
                                 source: a
                             }))
                         } catch (e) {}
@@ -12342,8 +12351,8 @@
                 from_id: t.peerId,
                 aria_hidden: t.local && !t.failed ? "true" : "false",
                 ts: t.date,
-                marker_params: t.failed ? 'aria-label="' + we("mail_send_message_error") + '" role="link"' : "",
-                unread_params: r ? 'aria-label="' + we("mail_unread_message") + '"' : "",
+                marker_params: t.failed ? 'aria-label="' + Oe("mail_send_message_error") + '" role="link"' : "",
+                unread_params: r ? 'aria-label="' + Oe("mail_unread_message") + '"' : "",
                 cls: n.join(" ")
             }).replace("%text%", function() {
                 return f
@@ -12369,24 +12378,24 @@
                 f = void 0;
             switch (d) {
                 case "reached":
-                    f = we(c === u ? "mail_call_outgoing" : "mail_call_incoming");
+                    f = Oe(c === u ? "mail_call_outgoing" : "mail_call_incoming");
                     var p = t ? "" : (r = l.duration, i = Math.floor(r / 3600), a = Math.floor(r / 60) - 60 * i, o = !1, s = !1, [i, a, r - 3600 * i - 60 * a].reduce(function(e, t) {
                         return 0 !== t || s ? (o && (t = t < 10 ? "0" + t : t), o = !0, s = !0, e + ("" !== e ? ":" : "") + t) : (s = !0, e)
                     }, ""));
                     f = f.replace("{duration}", p);
                     break;
                 case "canceled_by_initiator":
-                    f = we(c === u ? "mail_call_canceled" : "mail_call_missed");
+                    f = Oe(c === u ? "mail_call_canceled" : "mail_call_missed");
                     break;
                 case "canceled_by_receiver":
                     if (c === u) {
-                        if (t) return we("mail_call_declined");
+                        if (t) return Oe("mail_call_declined");
                         var g = Object(h.c)(n, m);
-                        return g ? Oe(g.sex, we("mail_call_declined_by", "raw")).replace("{user_name}", g.first_name) : we("mail_call_declined")
+                        return g ? we(g.sex, Oe("mail_call_declined_by", "raw")).replace("{user_name}", g.first_name) : Oe("mail_call_declined")
                     }
-                    return we("mail_call_canceled");
+                    return Oe("mail_call_canceled");
                 default:
-                    f = we("mail_added_call")
+                    f = Oe("mail_added_call")
             }
             return je("im_calls_link", {
                 text: f
@@ -12412,17 +12421,17 @@
             for (var f = Object(o.k)(e, t.peerId, t.messageId); t.peerId === e.peer && f && !me("_im_mess_" + f.messageId);) f = Object(o.k)(e, t.peerId, f.messageId);
             var p = me("_im_unread_bar_row", n),
                 b = Object(s.b)(t),
-                _ = f ? wt(f.date, e) : 0;
-            if (!f || Ot(c, f, t, e, i)) {
+                _ = f ? Ot(f.date, e) : 0;
+            if (!f || wt(c, f, t, e, i)) {
                 var v = "",
                     y = !1;
                 if (p && Object(s.k)(t) && Ln(e, n, t.peerId), 1 === c.unread && !Object(s.k)(t) && i && (v += je("im_mess_bar", {}), y = !0, Ln(e, n, t.peerId)), !Te(new Date(_))) {
                     var j = new Date,
-                        w = y ? "im-page--history-new-bar_hide _im_invisible_bar" : "";
+                        O = y ? "im-page--history-new-bar_hide _im_invisible_bar" : "";
                     v += je("im_day_bar", {
-                        day: xe(t.date, e.timeshift, !0, we("months_of", "raw"), !0),
+                        day: xe(t.date, e.timeshift, !0, Oe("months_of", "raw"), !0),
                         date: t.date,
-                        day_class: j.getDate() + j.getMonth() + j.getFullYear() + " " + w
+                        day_class: j.getDate() + j.getMonth() + j.getFullYear() + " " + O
                     })
                 }
                 if (Object(s.l)(t)) v += je("im_service_row", {
@@ -12440,8 +12449,8 @@
                     message_id: t.messageId
                 });
                 else {
-                    var O = e.gid && Object(s.k)(t) ? ne(t.kludges.from_admin) || -e.gid : 0,
-                        k = Object(h.c)(e, O ? -e.gid : b) || c,
+                    var w = e.gid && Object(s.k)(t) ? ne(t.kludges.from_admin) || -e.gid : 0,
+                        k = Object(h.c)(e, w ? -e.gid : b) || c,
                         S = Object(l.b)(t.peerId) ? k.name : k.first_name,
                         E = k.link || c.href,
                         x = je("im_mess_stack_name", {
@@ -12450,21 +12459,21 @@
                             class: Object(s.i)(t) ? " im-mess-stack--lnk-money-transfer" : ""
                         });
                     if (Object(s.f)(t)) {
-                        var I = we("mail_gift_message_sent", "raw");
-                        x += ' <span class="im-mess-stack--gift">' + Oe(k.sex || 0, I) + "</span>"
+                        var I = Oe("mail_gift_message_sent", "raw");
+                        x += ' <span class="im-mess-stack--gift">' + we(k.sex || 0, I) + "</span>"
                     }
                     if (Object(s.i)(t)) {
-                        var T = Object(s.j)(t) ? we("mail_money_request_message_sent", "raw") : we("mail_money_tranfer_message_sent", "raw");
-                        x += ' <span class="im-mess-stack--money-transfer">' + Oe(k.sex || 0, T) + "</span>"
+                        var T = Object(s.j)(t) ? Oe("mail_money_request_message_sent", "raw") : Oe("mail_money_tranfer_message_sent", "raw");
+                        x += ' <span class="im-mess-stack--money-transfer">' + we(k.sex || 0, T) + "</span>"
                     }
                     var P = e.gid ? "/gim" + e.gid : "/im",
                         M = void 0;
                     if (M = t.local ? kt(t.date, e.timeshift) : je("im_stack_date", {
                             date: kt(t.date, e.timeshift),
                             link: P + "?sel=" + t.peerId + "&msgid=" + t.messageId
-                        }), O && e.admins[O]) {
-                        var L = e.admins[O],
-                            B = O === G.id ? we("mail_by_you") : L[0];
+                        }), w && e.admins[w]) {
+                        var L = e.admins[w],
+                            B = w === G.id ? Oe("mail_by_you") : L[0];
                         M = M + " " + je("im_admin_link", {
                             name: B,
                             href: L[1]
@@ -12498,7 +12507,7 @@
 
         function pt(e, t, n) {
             var r = void 0;
-            return (r = "object" === (void 0 === e ? "undefined" : O(e)) ? e : t.imQueue(e, !1)).length > 0 && r.map(function(e) {
+            return (r = "object" === (void 0 === e ? "undefined" : w(e)) ? e : t.imQueue(e, !1)).length > 0 && r.map(function(e) {
                 return e.mess.failed = !!e.failed, e.mess
             }).filter(function(e) {
                 return Object(o.m)(t, e.peerId, e.messageId)
@@ -12546,14 +12555,14 @@
             return !!yt(e, t) && null !== e.tabs[t].lastmsg
         }
 
-        function wt(e, t) {
+        function Ot(e, t) {
             return 1e3 * e + 1e3 * t.timeshift
         }
 
-        function Ot(e, t, n, r, i) {
+        function wt(e, t, n, r, i) {
             if (Object(s.b)(t) !== Object(s.b)(n)) return !0;
-            var a = wt(t.date, r),
-                c = wt(n.date, r);
+            var a = Ot(t.date, r),
+                c = Ot(n.date, r);
             return !Ie(a, c) || (!(!Object(o.B)(r) || ne(t.kludges.from_admin) === ne(n.kludges.from_admin)) || (n.date - t.date > 300 || (!(!Object(s.l)(t) && !Object(s.l)(n)) || (!(!Object(s.e)(n) && !Object(s.e)(t)) || (!(!Object(s.f)(t) && !Object(s.f)(n)) || (!(!Object(s.g)(t) && !Object(s.g)(n)) || (!!Object(s.c)(n) || !(Object(s.n)(e, t) === Object(s.n)(e, n) || !i || Object(s.k)(n) || tn(n.peerId, r.gid)))))))))
         }
 
@@ -12604,80 +12613,80 @@
         function It(e, t) {
             return {
                 search: {
-                    name: we("mail_im_peer_search"),
+                    name: Oe("mail_im_peer_search"),
                     icon: "search"
                 },
                 block_community: {
                     icon: "block",
-                    name: we("mail_block_comm_messages")
+                    name: Oe("mail_block_comm_messages")
                 },
                 allow_community: {
                     icon: "unblock",
-                    name: we("mail_allow_comm_messages")
+                    name: Oe("mail_allow_comm_messages")
                 },
                 clear: {
-                    name: e.peer < -2e9 ? we("mail_im_delete_email_contact") : we("mail_im_delete_all_history"),
+                    name: e.peer < -2e9 ? Oe("mail_im_delete_email_contact") : Oe("mail_im_delete_all_history"),
                     icon: "clear"
                 },
                 chat: {
-                    name: we("mail_im_create_chat_with"),
+                    name: Oe("mail_im_create_chat_with"),
                     icon: "invite"
                 },
                 mute: {
-                    name: we("mail_im_mute"),
+                    name: Oe("mail_im_mute"),
                     icon: "mute"
                 },
                 unmute: {
-                    name: we("mail_im_unmute"),
+                    name: Oe("mail_im_unmute"),
                     icon: "unmute"
                 },
                 photos: {
-                    name: e.gid ? we("mail_im_show_media_history_group") : we("mail_im_show_media_history"),
+                    name: e.gid ? Oe("mail_im_show_media_history_group") : Oe("mail_im_show_media_history"),
                     icon: "media"
                 },
                 avatar: {
                     icon: "avatar",
-                    name: we("mail_update_photo_red")
+                    name: Oe("mail_update_photo_red")
                 },
                 block: {
                     icon: "block",
-                    name: we("mail_block_user")
+                    name: Oe("mail_block_user")
                 },
                 invite: {
                     icon: "invite",
-                    name: we("mail_im_create_chat_with")
+                    name: Oe("mail_im_create_chat_with")
                 },
                 invite_link: {
                     icon: "invite-link",
-                    name: we(t ? "mail_vkcomgroup_invite_link" : "mail_chat_invite_link")
+                    name: Oe(t ? "mail_vkcomgroup_invite_link" : "mail_chat_invite_link")
                 },
                 leave: {
                     icon: "leave",
-                    name: we(t ? "mail_leave_channel" : "mail_leave_chat")
+                    name: Oe(t ? "mail_leave_channel" : "mail_leave_chat")
                 },
                 topic: {
                     icon: "topic",
-                    name: we("mail_change_topic")
+                    name: Oe("mail_change_topic")
                 },
                 return: {
                     icon: "return",
-                    name: we(t ? "mail_return_to_vkcomgroup" : "mail_return_to_chat")
+                    name: Oe(t ? "mail_return_to_vkcomgroup" : "mail_return_to_chat")
                 },
                 pin_hide: {
                     icon: "pin_hide",
-                    name: we("mail_menu_pin_hide")
+                    name: Oe("mail_menu_pin_hide")
                 },
                 pin_unhide: {
                     icon: "pin_unhide",
-                    name: we("mail_menu_pin_show")
+                    name: Oe("mail_menu_pin_show")
                 },
                 unpin: {
                     icon: "unpin",
-                    name: we("mail_menu_unpin")
+                    name: Oe("mail_menu_unpin")
                 },
                 settings: {
                     icon: "settings",
-                    name: we(t ? "mail_vkcomgroup_settings" : "mail_settings")
+                    name: Oe(t ? "mail_vkcomgroup_settings" : "mail_settings")
                 }
             }
         }
@@ -12732,24 +12741,24 @@
         }
 
         function Bt(e) {
-            var t = e.get().gid ? we("mail_search_only_messages_comm") : we("mail_search_only_messages");
+            var t = e.get().gid ? Oe("mail_search_only_messages_comm") : Oe("mail_search_only_messages");
             return '<li class="im-page--mess-search-w">\n    <div class="im-page--mess-search ' + V + '">\n      <button type="button" class="im-i--messages-search"></button>' + t + "\n    </div>\n  </li>"
         }
 
         function Dt() {
-            return '<li class="im-search-results-head">' + we("mail_search_messages") + "</li>"
+            return '<li class="im-search-results-head">' + Oe("mail_search_messages") + "</li>"
         }
 
         function Nt() {
-            return '<li class="im-search-results-head">' + we("mail_search_conversations_sep") + "</li>"
+            return '<li class="im-search-results-head">' + Oe("mail_search_conversations_sep") + "</li>"
         }
 
         function At() {
-            return '<li class="im-search-results-head">' + we("mail_search_dialogs_sep") + "</li>"
+            return '<li class="im-search-results-head">' + Oe("mail_search_dialogs_sep") + "</li>"
         }
 
         function Ht() {
-            return '<li class="im-search-results-head _im_recent_bar">\n    ' + we("mail_recent_searches") + '\n    <button type="button" class="' + W + ' im-page--clear-recent">' + we("mail_clear_recent") + "</button>\n  </li>"
+            return '<li class="im-search-results-head _im_recent_bar">\n    ' + Oe("mail_recent_searches") + '\n    <button type="button" class="' + W + ' im-page--clear-recent">' + Oe("mail_clear_recent") + "</button>\n  </li>"
         }
 
         function Rt(e) {
@@ -12771,7 +12780,7 @@
             if (r) {
                 _e(r, "aria-hidden", "false"), pe(r, "im-mess_failed " + S);
                 var i = me("_im_mess_marker", r);
-                _e(i, "aria-label", we("mail_send_message_error")), _e(i, "role", "link")
+                _e(i, "aria-label", Oe("mail_send_message_error")), _e(i, "role", "link")
             }
             return n
         }
@@ -12831,7 +12840,7 @@
             }).forEach(function(e) {
                 ye(e, function(e, t, n) {
                     var r = t.innerHTML;
-                    return '<div class="im-mess--text">\n    ' + we("delete" === n ? "mail_deleted_stop" : "mail_marked_as_spam") + ' <button type="button" data-peer="' + e + '" class="' + x + ' im-mess--btn">' + we("mail_restore") + '</button>\n    <div class="' + E + ' im-mess--original">' + r + "</div>\n  </div>"
+                    return '<div class="im-mess--text">\n    ' + Oe("delete" === n ? "mail_deleted_stop" : "mail_marked_as_spam") + ' <button type="button" data-peer="' + e + '" class="' + x + ' im-mess--btn">' + Oe("mail_restore") + '</button>\n    <div class="' + E + ' im-mess--original">' + r + "</div>\n  </div>"
                 }(t, e, n)), pe(e, "im-mess_light")
             }), r
         }
@@ -12890,7 +12899,7 @@
             var c = Object(l.d)(t) || Object(o.C)(t) ? "first_name" : i ? "short_name" : "name",
                 d = Xt(e),
                 m = "";
-            d === u.c ? m = we("mail_recording_audio_several", s.length) : d === u.d && (m = we("mail_typing_several", s.length));
+            d === u.c ? m = Oe("mail_recording_audio_several", s.length) : d === u.d && (m = Oe("mail_typing_several", s.length));
             var f = s.slice(0, Math.min(s.length - 1, a)),
                 p = f.map(function(e) {
                     return Object(h.c)(r, e)[c]
@@ -12905,16 +12914,16 @@
                         })
                     }), Object.keys(t).length
                 }(e);
-                p += " " + we("mail_and_peer").replace("{count}", g - a).replace("{typing}", m)
+                p += " " + Oe("mail_and_peer").replace("{count}", g - a).replace("{typing}", m)
             } else {
-                if (s.length > 1 && (p += " " + we("mail_and_peer_one")), !Object(l.b)(t) && n) p += " " + m;
+                if (s.length > 1 && (p += " " + Oe("mail_and_peer_one")), !Object(l.b)(t) && n) p += " " + m;
                 else p += " " + Object(h.c)(r, s[f.length])[c] + " " + m
             }
             return p.trim()
         }
 
         function Jt() {
-            return '<div class="im-page--chat-search-empty">\n    ' + we("mail_im_search_empty") + "\n  </div>"
+            return '<div class="im-page--chat-search-empty">\n    ' + Oe("mail_im_search_empty") + "\n  </div>"
         }
 
         function Yt(e, t, n) {
@@ -12962,7 +12971,7 @@
                 default:
                     return "mail_no_support"
             }
-            if (l = (l = Oe(c.sex, we(l, "raw"))).replace("{from}", Yt(c.link, c.name, r)), o && o !== s) {
+            if (l = (l = we(c.sex, Oe(l, "raw"))).replace("{from}", Yt(c.link, c.name, r)), o && o !== s) {
                 var d = i.source_email;
                 if (d) l = l.replace("{user}", Yt("/im?email=" + encodeURIComponent(d), "email", r));
                 else {
@@ -13076,49 +13085,49 @@
         }
 
         function sn(e, t) {
-            return '<div class="im-mess--text">\n      <span>' + we("mail_restored") + '</span>\n      <a class="_im_go_to" href="/im?sel=' + St(e) + "&msgid=" + t + '">' + we("mail_im_goto_conversation") + "</a>\n    </div>"
+            return '<div class="im-mess--text">\n      <span>' + Oe("mail_restored") + '</span>\n      <a class="_im_go_to" href="/im?sel=' + St(e) + "&msgid=" + t + '">' + Oe("mail_im_goto_conversation") + "</a>\n    </div>"
         }
 
         function cn(e, t, n) {
-            var r = we("mail_deleteall1"),
-                i = we("mail_sure_to_delete_all"),
-                a = we("mail_delete");
-            return Object(l.b)(t) && (Object(y.m)(e, 1024) ? (r = we("mail_leave_channel"), i = we("mail_unfollow_channel_confirmation"), a = we("mail_unfollow_channel")) : i = we("mail_chat_sure_to_delete_all")), Object(o.C)(t) && (i = we("mail_group_sure_to_delete_all")), Le(r, i, a, n, we("global_cancel"))
+            var r = Oe("mail_deleteall1"),
+                i = Oe("mail_sure_to_delete_all"),
+                a = Oe("mail_delete");
+            return Object(l.b)(t) && (Object(y.m)(e, 1024) ? (r = Oe("mail_leave_channel"), i = Oe("mail_unfollow_channel_confirmation"), a = Oe("mail_unfollow_channel")) : i = Oe("mail_chat_sure_to_delete_all")), Object(o.C)(t) && (i = Oe("mail_group_sure_to_delete_all")), Le(r, i, a, n, Oe("global_cancel"))
         }
 
         function ln(e, t, n) {
             var r = Object(o.t)(e, t),
                 i = Object(l.b)(t),
                 a = i && Object(y.m)(r, 1024),
-                s = we("mail_deleteall1"),
-                c = we("mail_sure_to_delete_all"),
-                u = we("mail_delete");
+                s = Oe("mail_deleteall1"),
+                c = Oe("mail_sure_to_delete_all"),
+                u = Oe("mail_delete");
             if (i) {
                 if (r.data.closed || r.data.kicked) return cn(r, t, n.bind(null, !0));
-                a ? (s = we("mail_leave_channel"), c = we("mail_vkcomgroup_leave_confirm"), u = we("mail_leave_channel")) : (s = we("mail_leave_chat"), c = we("mail_chat_leave_confirm"), u = we("mail_leave_chat"))
+                a ? (s = Oe("mail_leave_channel"), c = Oe("mail_vkcomgroup_leave_confirm"), u = Oe("mail_leave_channel")) : (s = Oe("mail_leave_chat"), c = Oe("mail_chat_leave_confirm"), u = Oe("mail_leave_chat"))
             }
-            Object(o.C)(t) && (c = we("mail_group_sure_to_delete_all"));
+            Object(o.C)(t) && (c = Oe("mail_group_sure_to_delete_all"));
             var d = new MessageBox({
                 title: s,
                 width: a ? 450 : 500
             }).content(c).setButtons(u, function() {
                 return n(!!isChecked(me("_check_is_delete")) || !i)
-            }, we("global_cancel")).show();
-            return i && !a && d.setControlsText('<div class="checkbox im-delete-forall-checkbox _check_is_delete" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + we("mail_deleteall1") + "</div>"), d
+            }, Oe("global_cancel")).show();
+            return i && !a && d.setControlsText('<div class="checkbox im-delete-forall-checkbox _check_is_delete" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + Oe("mail_deleteall1") + "</div>"), d
         }
 
         function un(e) {
-            return Le(we("mail_unpin_title"), we("mail_unpin_text"), we("mail_unpin"), e, we("global_cancel"))
+            return Le(Oe("mail_unpin_title"), Oe("mail_unpin_text"), Oe("mail_unpin"), e, Oe("global_cancel"))
         }
 
         function dn(e, t, n, r) {
-            var i = we("mail_dialog_msg_delete_N", t),
-                a = Le(we("mail_dialog_msg_delete_title"), i, we("mail_delete"), function() {
+            var i = Oe("mail_dialog_msg_delete_N", t),
+                a = Le(Oe("mail_dialog_msg_delete_title"), i, Oe("mail_delete"), function() {
                     return r(isChecked(me("_check_forall")))
-                }, we("global_cancel")),
+                }, Oe("global_cancel")),
                 o = "",
                 s = !1;
-            return n && (o = '<div class="checkbox im-delete-forall-checkbox _check_forall" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + we("mail_delete_for_all") + "</div>", s = cur.imDb.selectByKey("del_forall_checked")), a.setControlsText(o), s && checkbox(me("_check_forall")), a
+            return n && (o = '<div class="checkbox im-delete-forall-checkbox _check_forall" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + Oe("mail_delete_for_all") + "</div>", s = cur.imDb.selectByKey("del_forall_checked")), a.setControlsText(o), s && checkbox(me("_check_forall")), a
         }
 
         function mn(e, t, n, r, i) {
@@ -13182,14 +13191,14 @@
             return (t.get().block_states[e] || {}).who === G.id
         }
 
-        function wn(e, t) {
+        function On(e, t) {
             var n = e.get().block_states;
             Object.keys(n).forEach(function(i) {
                 n[i].time ? !1 === n[i].free && Date.now() - n[i].time >= 5e4 && t.push([r.nb([, 1, "gim" + e.get().gid, i, 0, ""])]) : n[i].time = Date.now()
             })
         }
 
-        function On(e, t, n) {
+        function wn(e, t, n) {
             var r = void 0;
             return !Be("al_im.php", {
                 act: "a_spam",
@@ -13213,10 +13222,10 @@
         }
 
         function Cn(e, t, n, r) {
-            if (n[0]) return we("mail_header_online_status") + (Ne[n[0]] ? Sn(t, !1, !1, !0) : "");
+            if (n[0]) return Oe("mail_header_online_status") + (Ne[n[0]] ? Sn(t, !1, !1, !0) : "");
             if (!n[1]) return "";
             var i = Se(n[1], e.timeshift),
-                a = Oe(Object(h.c)(e, t).sex, we("mail_last_activity_tip", "raw")).replace("{user}", "").replace("{time}", i);
+                a = we(Object(h.c)(e, t).sex, Oe("mail_last_activity_tip", "raw")).replace("{user}", "").replace("{time}", i);
             return n[2] && (a += Sn(t, !1, !1, r)), a
         }
 
@@ -13300,7 +13309,7 @@
             var u = ue(l, "msgid"),
                 d = Object(o.q)(e, n, u),
                 m = Object(o.m)(e, n, u);
-            if (!d || Ot(e.tabs[n], d, m, e)) return t;
+            if (!d || wt(e.tabs[n], d, m, e)) return t;
             var f = me("_im_stack_messages", a),
                 p = me("_im_stack_messages", s).children;
             return Object(g.p)(p).forEach(function(e) {
@@ -13378,15 +13387,15 @@
 
         function Fn(e, t) {
             var n = {
-                photo: we("mail_added_photos", "raw"),
-                video: we("mail_added_videos", "raw"),
-                audio: we("mail_added_audios", "raw")
+                photo: Oe("mail_added_photos", "raw"),
+                video: Oe("mail_added_videos", "raw"),
+                audio: Oe("mail_added_audios", "raw")
             };
             switch (e.type) {
                 case "mail":
                 case "respond":
                     var r = e.object ? e.object.fwd_count : e.id.split(";").length;
-                    return Ce(r, we("mail_fwd_msgs", "raw"), !0);
+                    return Ce(r, Oe("mail_fwd_msgs", "raw"), !0);
                 case "photo":
                 case "video":
                 case "audio":
@@ -13395,52 +13404,52 @@
                     }).length;
                     return Ce(i, n[e.type], !0);
                 case "audio_playlist":
-                    return "audio_album" === e.kind ? we("mail_added_audio_album") : we("mail_added_audio_playlist");
+                    return "audio_album" === e.kind ? Oe("mail_added_audio_album") : Oe("mail_added_audio_playlist");
                 case "artist":
-                    return we("mail_added_artist");
+                    return Oe("mail_added_artist");
                 case "doc":
                     switch (e.kind) {
                         case "graffiti":
-                            return we("mail_added_graffiti");
+                            return Oe("mail_added_graffiti");
                         case "audiomsg":
-                            return we("mail_added_audiomsg");
+                            return Oe("mail_added_audiomsg");
                         default:
-                            return we("mail_added_docs")
+                            return Oe("mail_added_docs")
                     }
                 case "geo":
                 case "map":
-                    return we("mail_added_geo");
+                    return Oe("mail_added_geo");
                 case "wall":
-                    return we("mail_added_wall");
+                    return Oe("mail_added_wall");
                 case "wall_reply":
-                    return we("mail_added_wall_reply");
+                    return Oe("mail_added_wall_reply");
                 case "gift":
-                    return we("mail_added_gift");
+                    return Oe("mail_added_gift");
                 case "link":
                 case "share":
-                    return we("mail_added_link");
+                    return Oe("mail_added_link");
                 case "sticker":
-                    return we("mail_added_sticker");
+                    return Oe("mail_added_sticker");
                 case "market":
-                    return we("mail_added_market_item");
+                    return Oe("mail_added_market_item");
                 case "money_transfer":
-                    return we("mail_added_money_transfer");
+                    return Oe("mail_added_money_transfer");
                 case "money_request":
-                    return we("mail_added_money_request");
+                    return Oe("mail_added_money_request");
                 case "story":
-                    return we("mail_added_story");
+                    return Oe("mail_added_story");
                 case "mask":
-                    return we("mail_added_mask");
+                    return Oe("mail_added_mask");
                 case "article":
-                    return we("mail_added_article");
+                    return Oe("mail_added_article");
                 case "call":
-                    return we("mail_added_call");
+                    return Oe("mail_added_call");
                 case "poll":
-                    return we("mail_added_poll");
+                    return Oe("mail_added_poll");
                 case "podcast":
-                    return we("mail_added_podcast");
+                    return Oe("mail_added_podcast");
                 default:
-                    return we("mail_added_" + e.type)
+                    return Oe("mail_added_" + e.type)
             }
             return ""
         }
@@ -13463,17 +13472,17 @@
                 var n = "";
                 if (t && Object(s.j)(t) && void 0 !== t.kludges.attach1_tr_amount) {
                     var r = "%s " + t.kludges.attach1_currency;
-                    if ("RUB" === t.kludges.attach1_currency && (r = we("mail_money_amount_rub", "raw")), t.kludges.attach1_total_amount) {
+                    if ("RUB" === t.kludges.attach1_currency && (r = Oe("mail_money_amount_rub", "raw")), t.kludges.attach1_total_amount) {
                         var i = Ce(t.kludges.attach1_tr_amount / 1e3, "%s", !0),
                             a = Ce(t.kludges.attach1_total_amount / 1e3, r, !0);
-                        n = we("mail_money_request_collected_amount_from").replace("{amount}", i).replace("{total_amount}", a)
+                        n = Oe("mail_money_request_collected_amount_from").replace("{amount}", i).replace("{total_amount}", a)
                     } else {
                         var o = Ce(t.kludges.attach1_tr_amount / 1e3, r, !0);
-                        n = we("mail_money_request_collected_amount").replace("{amount}", o)
+                        n = Oe("mail_money_request_collected_amount").replace("{amount}", o)
                     }
                     if (ne(t.kludges.attach1_held_amount)) {
                         var c = Ce(t.kludges.attach1_held_amount / 1e3, r, !0);
-                        n += " " + we("mail_money_request_held_amount").replace("{amount}", c)
+                        n += " " + Oe("mail_money_request_held_amount").replace("{amount}", c)
                     }
                     t.text && (n += '<span class="divider"></span>' + Ct(e, t.text, t.kludges)), t.kludges.attach1_total_amount && (n += je("im_pinned_message_media_bar", {
                         percent: Math.min(100, Math.floor(t.kludges.attach1_tr_amount / t.kludges.attach1_total_amount * 100))
@@ -13506,7 +13515,7 @@
         function Kn(e, t, n) {
             var r = +n.getAttribute("data-time");
             r && De(n, {
-                text: we("mail_message_edited") + " " + Ee(r, e.get().timeshift),
+                text: Oe("mail_message_edited") + " " + Ee(r, e.get().timeshift),
                 className: "_im_history_tooltip",
                 appendParentCls: "_im_mess_stack",
                 black: 1,
@@ -13632,7 +13641,7 @@
                 },
                 onFail: function(e) {
                     return setTimeout(function() {
-                        return Le(we("global_error"), e)
+                        return Le(Oe("global_error"), e)
                     }, 0), !0
                 },
                 onDone: function(t, n) {
@@ -13642,7 +13651,7 @@
         }
 
         function rr() {
-            Le(we("global_error"), we("mail_message_wait_until_uploaded"))
+            Le(Oe("global_error"), Oe("mail_message_wait_until_uploaded"))
         }
 
         function ir(e, t) {
@@ -13668,15 +13677,15 @@
             var n, r = e,
                 i = [];
             if ([
-                    [31536e3, we(t ? "global_years_accusative" : "global_age_years", "raw")],
-                    [2592e3, we(t ? "global_months_accusative" : "global_age_months", "raw")],
-                    [604800, we(t ? "global_weeks_accusative" : "global_age_weeks", "raw")],
-                    [86400, we(t ? "global_days_accusative" : "global_age_days", "raw")],
-                    [3600, we(t ? "global_hours_accusative" : "global_hours", "raw")],
-                    [60, we(t ? "global_minutes_accusative" : "global_minutes", "raw")],
-                    [1, we(t ? "global_seconds_accusative" : "global_age_seconds", "raw")]
+                    [31536e3, Oe(t ? "global_years_accusative" : "global_age_years", "raw")],
+                    [2592e3, Oe(t ? "global_months_accusative" : "global_age_months", "raw")],
+                    [604800, Oe(t ? "global_weeks_accusative" : "global_age_weeks", "raw")],
+                    [86400, Oe(t ? "global_days_accusative" : "global_age_days", "raw")],
+                    [3600, Oe(t ? "global_hours_accusative" : "global_hours", "raw")],
+                    [60, Oe(t ? "global_minutes_accusative" : "global_minutes", "raw")],
+                    [1, Oe(t ? "global_seconds_accusative" : "global_age_seconds", "raw")]
                 ].forEach(function(e) {
-                    var t = w(e, 2),
+                    var t = O(e, 2),
                         n = t[0],
                         a = t[1],
                         o = Math.floor(r / n);
@@ -13684,7 +13693,7 @@
                 }), 1 === (n = i.length)) return i.pop();
             var a = i.slice(0, n - 1).join(", "),
                 o = i.pop();
-            return we("global_and").replace(/{before}/gi, a).replace(/{after}/gi, o)
+            return Oe("global_and").replace(/{before}/gi, a).replace(/{after}/gi, o)
         }
 
         function sr(e, t, n, i) {
@@ -14634,9 +14643,9 @@
         }), n.d(t, "h", function() {
             return j
         }), n.d(t, "P", function() {
-            return w
-        }), n.d(t, "L", function() {
             return O
+        }), n.d(t, "L", function() {
+            return w
         }), n.d(t, "T", function() {
             return k
         }), n.d(t, "S", function() {
@@ -14740,9 +14749,9 @@
         }), n.d(t, "eb", function() {
             return je
         }), n.d(t, "Fb", function() {
-            return we
-        }), n.d(t, "rb", function() {
             return Oe
+        }), n.d(t, "rb", function() {
+            return we
         }), n.d(t, "Hb", function() {
             return ke
         }), n.d(t, "Gb", function() {
@@ -14816,8 +14825,8 @@
             v = "event_unread_count",
             y = "event_notify_settings_changed",
             j = "event_empty",
-            w = "event_reset_directories",
-            O = "event_replace_directories",
+            O = "event_reset_directories",
+            w = "event_replace_directories",
             k = "event_set_directories",
             C = "event_resync",
             S = "event_refresh_lp_key",
@@ -15004,7 +15013,7 @@
                 r = t[2],
                 a = t[3];
             return {
-                type: w,
+                type: O,
                 peerId: n,
                 mask: r,
                 local: void 0 !== a && a
@@ -15016,7 +15025,7 @@
                 n = t[1],
                 r = t[2];
             return {
-                type: O,
+                type: w,
                 peerId: n,
                 mask: r
             }
@@ -15070,7 +15079,7 @@
             }
         }
 
-        function we(e) {
+        function Oe(e) {
             var t = i(e, 5),
                 n = t[1],
                 r = t[2],
@@ -15085,7 +15094,7 @@
             }
         }
 
-        function Oe(e) {
+        function we(e) {
             var t = i(e, 5),
                 n = t[1],
                 r = t[2],
@@ -15417,9 +15426,9 @@
         }), n.d(t, "h", function() {
             return j
         }), n.d(t, "n", function() {
-            return w
-        }), n.d(t, "i", function() {
             return O
+        }), n.d(t, "i", function() {
+            return w
         }), n.d(t, "k", function() {
             return k
         }), n.d(t, "l", function() {
@@ -15456,12 +15465,12 @@
             v = "printable",
             y = "unread",
             j = "all",
-            w = "unrespond",
-            O = "important",
+            O = "unrespond",
+            w = "important",
             k = "mr",
             C = "mr_rejected",
-            S = [j, y, w, O, k],
-            E = (i(r = {}, w, 2), i(r, O, 1), i(r, k, 256), i(r, C, 512), r),
+            S = [j, y, O, w, k],
+            E = (i(r = {}, O, 2), i(r, w, 1), i(r, k, 256), i(r, C, 512), r),
             x = [].concat("aaa,aarp,abarth,abb,abbott,abbvie,abc,able,abogado,abudhabi,ac,academy,accenture,accountant,accountants,aco,active,actor,ad,adac,ads,adult,ae,aeg,aero,aetna,af,afamilycompany,afl,africa,ag,agakhan,agency,ai,aig,aigo,airbus,airforce,airtel,akdn,al,alfaromeo,alibaba,alipay,allfinanz,allstate,ally,alsace,alstom,am,americanexpress,americanfamily,amex,amfam,amica,amsterdam,an,analytics,android,anquan,anz,ao,aol,apartments,app,apple,aq,aquarelle,ar,aramco,archi,army,arpa,art,arte,as,asda,asia,associates,at,athleta,attorney,au,auction,audi,audible,audio,auspost,author,auto,autos,avianca,aw,aws,ax,axa,az,azure,ba,baby,baidu,banamex,bananarepublic,band,bank,bar,barcelona,barclaycard,barclays,barefoot,bargains,baseball,basketball,bauhaus,bayern,bb,bbc,bbt,bbva,bcg,bcn,bd,be,beats,beauty,beer,bentley,berlin,best,bestbuy,bet,bf,bg,bh,bharti,bi,bible,bid,bike,bing,bingo,bio,biz,bj,bl,black,blackfriday,blanco,blockbuster,blog,bloomberg,blue,bm,bms,bmw,bn,bnl,bnpparibas,bo,boats,boehringer,bofa,bom,bond,boo,book,booking,boots,bosch,bostik,boston,bot,boutique,box,bq,br,bradesco,bridgestone,broadway,broker,brother,brussels,bs,bt,budapest,bugatti,build,builders,business,buy,buzz,bv,bw,by,bz,bzh,ca,cab,cafe,cal,call,calvinklein,cam,camera,camp,cancerresearch,canon,capetown,capital,capitalone,car,caravan,cards,care,career,careers,cars,cartier,casa,case,caseih,cash,casino,cat,catering,catholic,cba,cbn,cbre,cbs,cc,cd,ceb,center,ceo,cern,cf,cfa,cfd,cg,ch,chanel,channel,chase,chat,cheap,chintai,chloe,christmas,chrome,chrysler,church,ci,cipriani,circle,cisco,citadel,citi,citic,city,cityeats,ck,cl,claims,cleaning,click,clinic,clinique,clothing,cloud,club,clubmed,cm,cn,co,coach,codes,coffee,college,cologne,com,comcast,commbank,community,company,compare,computer,comsec,condos,construction,consulting,contact,contractors,cooking,cookingchannel,cool,coop,corsica,country,coupon,coupons,courses,cr,credit,creditcard,creditunion,cricket,crown,crs,cruise,cruises,csc,cu,cuisinella,cv,cw,cx,cy,cymru,cyou,cz,dabur,dad,dance,data,date,dating,datsun,day,dclk,dds,de,deal,dealer,deals,degree,delivery,dell,deloitte,delta,democrat,dental,dentist,desi,design,dev,dhl,diamonds,diet,digital,direct,directory,discount,discover,dish,diy,dj,dk,dm,dnp,do,docs,doctor,dodge,dog,doha,domains,dot,download,drive,dtv,dubai,duck,dunlop,duns,dupont,durban,dvag,dvr,dz,earth,eat,ec,eco,edeka,edu,education,ee,eg,eh,email,emerck,energy,engineer,engineering,enterprises,epost,epson,equipment,er,ericsson,erni,es,esq,estate,esurance,et,eu,eurovision,eus,events,everbank,exchange,expert,exposed,express,extraspace,fage,fail,fairwinds,faith,family,fan,fans,farm,farmers,fashion,fast,fedex,feedback,ferrari,ferrero,fi,fiat,fidelity,fido,film,final,finance,financial,fire,firestone,firmdale,fish,fishing,fit,fitness,fj,fk,flickr,flights,flir,florist,flowers,fly,fm,fo,foo,food,foodnetwork,football,ford,forex,forsale,forum,foundation,fox,fr,free,fresenius,frl,frogans,frontdoor,frontier,ftr,fujitsu,fujixerox,fun,fund,furniture,futbol,fyi,ga,gal,gallery,gallo,gallup,game,games,gap,garden,gb,gbiz,gd,gdn,ge,gea,gent,genting,george,gf,gg,ggee,gh,gi,gift,gifts,gives,giving,gl,glade,glass,gle,global,globo,gm,gmail,gmbh,gmo,gmx,gn,godaddy,gold,goldpoint,golf,goo,goodhands,goodyear,goog,google,gop,got,gov,gp,gq,gr,grainger,graphics,gratis,green,gripe,group,gs,gt,gu,guardian,gucci,guge,guide,guitars,guru,gw,gy,hair,hamburg,hangout,haus,hbo,hdfc,hdfcbank,health,healthcare,help,helsinki,here,hermes,hgtv,hiphop,hisamitsu,hitachi,hiv,hk,hkt,hm,hn,hockey,holdings,holiday,homedepot,homegoods,homes,homesense,honda,honeywell,horse,hospital,host,hosting,hot,hoteles,hotmail,house,how,hr,hsbc,ht,htc,hu,hughes,hyatt,hyundai,ibm,icbc,ice,icu,id,ie,ieee,ifm,ikano,il,im,imamat,imdb,immo,immobilien,in,industries,infiniti,info,ing,ink,institute,insurance,insure,int,intel,international,intuit,investments,io,ipiranga,iq,ir,irish,is,iselect,ismaili,ist,istanbul,it,itau,itv,iveco,iwc,jaguar,java,jcb,jcp,je,jeep,jetzt,jewelry,jio,jlc,jll,jm,jmp,jnj,jo,jobs,joburg,jot,joy,jp,jpmorgan,jprs,juegos,juniper,kaufen,kddi,ke,kerryhotels,kerrylogistics,kerryproperties,kfh,kg,kh,ki,kia,kim,kinder,kindle,kitchen,kiwi,km,kn,koeln,komatsu,kosher,kp,kpmg,kpn,kr,krd,kred,kuokgroup,kw,ky,kyoto,kz,la,lacaixa,ladbrokes,lamborghini,lamer,lancaster,lancia,lancome,land,landrover,lanxess,lasalle,lat,latino,latrobe,law,lawyer,lb,lc,lds,lease,leclerc,lefrak,legal,lego,lexus,lgbt,li,liaison,lidl,life,lifeinsurance,lifestyle,lighting,like,lilly,limited,limo,lincoln,linde,link,lipsy,live,living,lixil,lk,loan,loans,local,locker,locus,loft,lol,london,lotte,lotto,love,lpl,lplfinancial,lr,ls,lt,ltd,ltda,lu,lundbeck,lupin,luxe,luxury,lv,ly,ma,macys,madrid,maif,maison,makeup,man,management,mango,market,marketing,markets,marriott,marshalls,maserati,mattel,mba,mc,mcd,mcdonalds,mckinsey,md,me,med,media,meet,melbourne,meme,memorial,men,menu,meo,metlife,mf,mg,mh,miami,microsoft,mil,mini,mint,mit,mitsubishi,mk,ml,mlb,mls,mm,mma,mn,mo,mobi,mobile,mobily,moda,moe,moi,mom,monash,money,monster,montblanc,mopar,mormon,mortgage,moscow,moto,motorcycles,mov,movie,movistar,mp,mq,mr,ms,msd,mt,mtn,mtpc,mtr,mu,museum,mutual,mv,mw,mx,my,mz,na,nab,nadex,nagoya,name,nationwide,natura,navy,nba,nc,ne,nec,net,netbank,netflix,network,neustar,new,newholland,news,next,nextdirect,nexus,nf,nfl,ng,ngo,nhk,ni,nico,nike,nikon,ninja,nissan,nissay,nl,no,nokia,northwesternmutual,norton,now,nowruz,nowtv,np,nr,nra,nrw,ntt,nu,nyc,nz,obi,observer,off,office,okinawa,olayan,olayangroup,oldnavy,ollo,om,omega,one,ong,onl,online,onyourside,ooo,open,oracle,orange,org,organic,orientexpress,origins,osaka,otsuka,ott,ovh,pa,page,pamperedchef,panasonic,panerai,paris,pars,partners,parts,party,passagens,pay,pccw,pe,pet,pf,pfizer,pg,ph,pharmacy,philips,phone,photo,photography,photos,physio,piaget,pics,pictet,pictures,pid,pin,ping,pink,pioneer,pizza,pk,pl,place,play,playstation,plumbing,plus,pm,pn,pnc,pohl,poker,politie,porn,post,pr,pramerica,praxi,press,prime,pro,prod,productions,prof,progressive,promo,properties,property,protection,pru,prudential,ps,pt,pub,pw,pwc,py,qa,qpon,quebec,quest,qvc,racing,radio,raid,re,read,realestate,realtor,realty,recipes,red,redstone,redumbrella,rehab,reise,reisen,reit,reliance,ren,rent,rentals,repair,report,republican,rest,restaurant,review,reviews,rexroth,rich,richardli,ricoh,rightathome,ril,rio,rip,rmit,ro,rocher,rocks,rodeo,rogers,room,rs,rsvp,ru,ruhr,run,rw,rwe,ryukyu,sa,saarland,safe,safety,sakura,sale,salon,samsclub,samsung,sandvik,sandvikcoromant,sanofi,sap,sapo,sarl,sas,save,saxo,sb,sbi,sbs,sc,sca,scb,schaeffler,schmidt,scholarships,school,schule,schwarz,science,scjohnson,scor,scot,sd,se,seat,secure,security,seek,select,sener,services,ses,seven,sew,sex,sexy,sfr,sg,sh,shangrila,sharp,shaw,shell,shia,shiksha,shoes,shop,shopping,shouji,show,showtime,shriram,si,silk,sina,singles,site,sj,sk,ski,skin,sky,skype,sl,sling,sm,smart,smile,sn,sncf,so,soccer,social,softbank,software,sohu,solar,solutions,song,sony,soy,space,spiegel,spot,spreadbetting,sr,srl,srt,ss,st,stada,staples,star,starhub,statebank,statefarm,statoil,stc,stcgroup,stockholm,storage,store,stream,studio,study,style,su,sucks,supplies,supply,support,surf,surgery,suzuki,sv,swatch,swiftcover,swiss,sx,sy,sydney,symantec,systems,sz,tab,taipei,talk,taobao,target,tatamotors,tatar,tattoo,tax,taxi,tc,tci,td,tdk,team,tech,technology,tel,telecity,telefonica,temasek,tennis,teva,tf,tg,th,thd,theater,theatre,tiaa,tickets,tienda,tiffany,tips,tires,tirol,tj,tjmaxx,tjx,tk,tkmaxx,tl,tm,tmall,tn,to,today,tokyo,tools,top,toray,toshiba,total,tours,town,toyota,toys,tp,tr,trade,trading,training,travel,travelchannel,travelers,travelersinsurance,trust,trv,tt,tube,tui,tunes,tushu,tv,tvs,tw,tz,ua,ubank,ubs,uconnect,ug,uk,um,unicom,university,uno,uol,ups,us,uy,uz,va,vacations,vana,vanguard,vc,ve,vegas,ventures,verisign,vermögensberater,vermögensberatung,versicherung,vet,vg,vi,viajes,video,vig,viking,villas,vin,vip,virgin,visa,vision,vista,vistaprint,viva,vivo,vlaanderen,vn,vodka,volkswagen,volvo,vote,voting,voto,voyage,vu,vuelos,wales,walmart,walter,wang,wanggou,warman,watch,watches,weather,weatherchannel,webcam,weber,website,wed,wedding,weibo,weir,wf,whoswho,wien,wiki,williamhill,win,windows,wine,winners,wme,wolterskluwer,woodside,work,works,world,wow,ws,wtc,wtf,xbox,xerox,xfinity,xihuan,xin,xperia,xxx,xyz,yachts,yahoo,yamaxun,yandex,ye,yodobashi,yoga,yokohama,you,youtube,yt,yu,yun,za,zappos,zara,zero,zip,zippo,zm,zone,zuerich,zw".split(","), "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр".split(","), "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e".split(",").map(function(e) {
                 return "xn--" + e
             })),
@@ -15756,8 +15765,8 @@
         function _(e, t) {
             return f(e, {
                 onEvents: t,
-                onData: w,
-                onRequestError: O,
+                onData: O,
+                onRequestError: w,
                 onHistoryLost: k,
                 onKeyExpired: C,
                 onLpBroken: S
@@ -15770,7 +15779,7 @@
             y = {},
             j = Date.now();
 
-        function w(e, t) {
+        function O(e, t) {
             if (t && t.status && e.lpstat) {
                 var n = t.status;
                 t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, n, t.getResponseHeader("x-frontend")), y[n] = n in y ? y[n] + 1 : 1, Date.now() - j >= v && (Object.keys(y).forEach(function(e) {
@@ -15779,7 +15788,7 @@
             }
         }
 
-        function O(e) {
+        function w(e) {
             Object(h.b)("red", "LP error", e.message || "no message (probably browser reset)")
         }
 
@@ -15816,9 +15825,9 @@
         }), n.d(t, "f", function() {
             return j
         }), n.d(t, "e", function() {
-            return w
-        }), n.d(t, "h", function() {
             return O
+        }), n.d(t, "h", function() {
+            return w
         }), n.d(t, "i", function() {
             return k
         }), n.d(t, "j", function() {
@@ -15865,12 +15874,12 @@
             return x(e, f, t, n)
         }
 
-        function w(e, t, n, r) {
+        function O(e, t, n, r) {
             var o = Object(a.r)(e);
             return !P(Object(i.t)(o, n || o.peer), t) && x(e, b, n, r)
         }
 
-        function O(e, t, n) {
+        function w(e, t, n) {
             return x(e, p, t, n)
         }
 
@@ -16584,9 +16593,9 @@
         }), n.d(t, "l", function() {
             return j
         }), n.d(t, "k", function() {
-            return w
-        }), n.d(t, "P", function() {
             return O
+        }), n.d(t, "P", function() {
+            return w
         }), n.d(t, "d", function() {
             return k
         }), n.d(t, "m", function() {
@@ -16735,7 +16744,7 @@
             return void 0 !== r ? 2e9 + r : t
         }
 
-        function w(e, t, n) {
+        function O(e, t, n) {
             var r = g(e, t),
                 a = C(e, t, n),
                 o = Object.keys(r.msgs).filter(function(n) {
@@ -16746,7 +16755,7 @@
             return o ? C(e, t, o) : null
         }
 
-        function O(e) {
+        function w(e) {
             return e && e.length > 0 ? i.Z([0].concat(e)) : e
         }
 
@@ -16760,7 +16769,7 @@
         function C(e, t, n) {
             var r = g(e, t),
                 i = r && r.msgs && r.msgs[n];
-            return i ? O(i) : null
+            return i ? w(i) : null
         }
 
         function S(e, t, n) {
@@ -16861,7 +16870,7 @@
 
         function V(e) {
             var t = h(e);
-            return t && t.pinned && O(t.pinned)
+            return t && t.pinned && w(t.pinned)
         }
 
         function Q(e) {
@@ -17513,9 +17522,9 @@
         }), n.d(t, "D", function() {
             return je
         }), n.d(t, "C", function() {
-            return we
-        }), n.d(t, "j", function() {
             return Oe
+        }), n.d(t, "j", function() {
+            return we
         }), n.d(t, "t", function() {
             return ke
         }), n.d(t, "E", function() {
@@ -17613,9 +17622,9 @@
         }), n.d(t, "Lc", function() {
             return jt
         }), n.d(t, "yc", function() {
-            return wt
-        }), n.d(t, "uc", function() {
             return Ot
+        }), n.d(t, "uc", function() {
+            return wt
         }), n.d(t, "G", function() {
             return kt
         }), n.d(t, "Tc", function() {
@@ -17717,9 +17726,9 @@
         }), n.d(t, "Oc", function() {
             return jn
         }), n.d(t, "zb", function() {
-            return wn
-        }), n.d(t, "Nc", function() {
             return On
+        }), n.d(t, "Nc", function() {
+            return wn
         }), n.d(t, "Q", function() {
             return kn
         }), n.d(t, "N", function() {
@@ -17818,7 +17827,7 @@
                 }
             }();
 
-        function w(e, t, n) {
+        function O(e, t, n) {
             return t in e ? Object.defineProperty(e, t, {
                 value: n,
                 enumerable: !0,
@@ -17827,7 +17836,7 @@
             }) : e[t] = n, e
         }
 
-        function O(e) {
+        function w(e) {
             if (Array.isArray(e)) {
                 for (var t = 0, n = Array(e.length); t < e.length; t++) n[t] = e[t];
                 return n
@@ -17877,7 +17886,7 @@
             return function(e) {
                 return e.resync_in_process ? e.resync_in_process : Promise.resolve(!1)
             }(e).then(function(r) {
-                return r ? t.apply(void 0, O(n)) : function(e) {
+                return r ? t.apply(void 0, w(n)) : function(e) {
                     if (!e.renew_hashes) {
                         var t = e.last_hashes_update || 0;
                         if (Date.now() - t < 1e4) return Promise.resolve();
@@ -17895,7 +17904,7 @@
                     }
                     return e.renew_hashes
                 }(e).then(function(e) {
-                    return t.apply(void 0, O(n))
+                    return t.apply(void 0, w(n))
                 })
             })
         }
@@ -17904,7 +17913,7 @@
             return function() {
                 var t = arguments,
                     n = t[t.length - 1];
-                return e.apply(void 0, O(t)).catch(function(r) {
+                return e.apply(void 0, w(t)).catch(function(r) {
                     if (r && r.match && r.match(/1001;/)) return B(n, e, t);
                     throw r
                 })
@@ -18228,7 +18237,7 @@
                 r = e.peerId;
             if (Object(l.Bb)(t, r)) {
                 var i = t.tabs[r];
-                if (i.deletedDialog = !1, !t.msg_local_ids_sort && e.local ? t.msg_local_ids_sort = w({}, e.messageId, 0) : e.local && (t.msg_local_ids_sort[e.messageId] = Object.keys(t.msg_local_ids_sort).length), n ? i.unread = 0 : (i.lastmsg == e.messageId && i.unread ? le(t, 1, e.peerId) : (!i.unread && le(t, 1, e.peerId), i.unread++), ie(e.peerId, t)), Object(l.ob)(t, r)) {
+                if (i.deletedDialog = !1, !t.msg_local_ids_sort && e.local ? t.msg_local_ids_sort = O({}, e.messageId, 0) : e.local && (t.msg_local_ids_sort[e.messageId] = Object.keys(t.msg_local_ids_sort).length), n ? i.unread = 0 : (i.lastmsg == e.messageId && i.unread ? le(t, 1, e.peerId) : (!i.unread && le(t, 1, e.peerId), i.unread++), ie(e.peerId, t)), Object(l.ob)(t, r)) {
                     var o = N(i.history);
                     i.skipped > 0 && i.skipped++, i.offset++, i.msgs[e.messageId] = extend(!0, {}, e), i.history = Object(l.x)(t, e, o, !0, !0, !0), Object(m.k)(e) && (i.blocked_community = 0, X(t))
                 }
@@ -18288,7 +18297,7 @@
                 var i = e[0],
                     a = Object(d.m)(n, t, i),
                     o = Object(d.d)(n, t, i);
-                return !1 === o ? n.set(pt.bind(null, w({}, t, [a.userId]))).then(function(n) {
+                return !1 === o ? n.set(pt.bind(null, O({}, t, [a.userId]))).then(function(n) {
                     var o = Object(d.d)(n, t, i);
                     return {
                         msgIds: e,
@@ -18402,7 +18411,7 @@
                     hash: i.hash
                 }, n), r)
             }),
-            we = D(function(e, t, n) {
+            Oe = D(function(e, t, n) {
                 var i = t.attaches.length > 0,
                     a = Object(b.k)(n, "edit", "server", i);
                 return Object(r.b)(k, Object.assign({
@@ -18423,7 +18432,7 @@
                 })
             });
 
-        function Oe(e, t) {
+        function we(e, t) {
             if (t.selectedMessages || (t.selectedMessages = []), 1 === e.length && inArray(e[0], t.selectedMessages)) t.selectedMessages = t.selectedMessages.filter(function(t) {
                 return t !== e[0]
             });
@@ -19031,17 +19040,17 @@
                         act: r,
                         peer: e
                     }), n
-                }).then(wt.bind(null, e, t))
+                }).then(Ot.bind(null, e, t))
             });
 
-        function wt(e, t, n) {
+        function Ot(e, t, n) {
             var r = n.mutedPeers.filter(function(t) {
                 return t !== e
             });
             return t && r.push(e), n.mutedPeers = r, cur.mutedPeers = n.mutedPeers, X(n)
         }
 
-        function Ot(e, t) {
+        function wt(e, t) {
             return t.stack = e, Promise.resolve(t)
         }
         var kt = D(function(e, t, n, i) {
@@ -19167,10 +19176,10 @@
                 if (Object(l.yb)(p)) g = Promise.resolve(!1);
                 else {
                     var h = {
-                        tabs: w({}, p, e.tabs[p]),
+                        tabs: O({}, p, e.tabs[p]),
                         oCache: {}
                     };
-                    g = pe(w({}, p, a[p]), h)
+                    g = pe(O({}, p, a[p]), h)
                 }
                 return g.then(function(n) {
                     e.tabs = a, e.admins = extend(e.admins, d), n && (e.tabs[p] = n.tabs[p], e.tabs[p].history = Object(l.hc)(p, e, N(e.tabs[p].history))), e.loadingDialogs = !1, e.mutedPeers = c.mutedPeers, e.lastDialogsOptions = {
@@ -19337,7 +19346,7 @@
         }
 
         function Xt(e, t) {
-            return H(w({}, e, {
+            return H(O({}, e, {
                 free: !0
             }), t), Object(r.b)(k, {
                 act: "a_block_release",
@@ -19548,7 +19557,7 @@
         function jn(e, t) {
             return t.tabs[e].pinned = null, Promise.resolve(t)
         }
-        var wn = D(function(e, t, n) {
+        var On = D(function(e, t, n) {
                 var i = n.tabs[t];
                 return i.data.kicked || i.data.closed ? Promise.resolve(n) : Object(r.b)(k, {
                     act: "a_pin_message",
@@ -19561,7 +19570,7 @@
                     return n.tabs[t] = Object.assign({}, i, r), n
                 })
             }),
-            On = D(function(e, t) {
+            wn = D(function(e, t) {
                 var n = t.tabs[e];
                 return n.data.kicked || n.data.closed ? Promise.resolve(t) : Object(r.b)(k, {
                     act: "a_unpin_message",
@@ -19696,7 +19705,7 @@
 
         function Bn(e, t, n, r) {
             var i = Object(d.m)(e, n, t).userId;
-            return Object(f.c)(r, i) ? Promise.resolve(r) : pt(w({}, n, [i]), r)
+            return Object(f.c)(r, i) ? Promise.resolve(r) : pt(O({}, n, [i]), r)
         }
 
         function Dn() {
@@ -19751,7 +19760,7 @@
         }
 
         function Un(e, t, n, r) {
-            return ((r.tabs || {})[e] || {}).keyboard && (r.tabs[e].keyboard.hide = t, n && ls.set("is_keyboards_hide", Object.assign(ls.get("is_keyboards_hide") || {}, w({}, e, t)))), Promise.resolve(r)
+            return ((r.tabs || {})[e] || {}).keyboard && (r.tabs[e].keyboard.hide = t, n && ls.set("is_keyboards_hide", Object.assign(ls.get("is_keyboards_hide") || {}, O({}, e, t)))), Promise.resolve(r)
         }
         var zn = D(function(e, t) {
             var n = t.tabs[e];
