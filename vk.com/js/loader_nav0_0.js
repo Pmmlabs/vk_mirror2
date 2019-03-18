@@ -241,7 +241,7 @@ var stVersions = {
     'module.css': 21059159979,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 18487321623,
-    'page.js': 4222755959,
+    'page.js': 3599173908,
     'page.css': 81267384657,
     'page_help.css': 22886521978,
     'public.css': 26790273584,
@@ -716,7 +716,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4917;
+var _rnd = 1157;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

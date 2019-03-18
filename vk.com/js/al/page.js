@@ -11649,8 +11649,10 @@ var Wall = {
         radiobtn(el, pos, 'post_replies_reorder' + postId);
 
         var reorderEl = ge('post_replies_reorder' + postId);
+        var label = domData(el, 'label') || val(el);
 
-        val(reorderEl, val(el));
+        val(reorderEl, label);
+        reorderEl.setAttribute('aria-label', label);
         domData(reorderEl, 'order', pos);
 
         if (pageCur['postRepliesReorderTT' + postId]) {
