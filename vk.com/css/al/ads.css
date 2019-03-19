@@ -256,30 +256,31 @@
     user-select: none
 }
 
-.static-ranges {
+.StaticRanges {
     min-width: 185px;
     padding: 0;
     margin: 0;
     border-right: 1px solid #ebecef
 }
 
-.static-ranges_item {
+.StaticRanges__item {
     list-style: none;
     cursor: pointer;
     padding: 0
 }
 
-.static-ranges_item:first-of-type {
-    margin-top: 7px
+.StaticRanges__item:first-of-type {
+    margin-top: 5px
 }
 
-.static-range_radio {
+.StaticRanges__radio {
     display: none
 }
 
-.static-ranges_label {
+.StaticRanges__label {
     display: -ms-flexbox;
     display: flex;
+    height: 15px;
     font-size: 12.5px;
     color: #2a5885;
     position: relative;
@@ -287,81 +288,90 @@
     cursor: inherit
 }
 
-.static-range_radio:checked+.static-ranges_label {
-    background: #f0f2f5
+.StaticRanges__radio:checked+.StaticRanges__label {
+    background: #f0f2f5;
+    font-weight: 500
 }
 
-.static-range_radio:checked+.static-ranges_label:before {
+.StaticRanges__radio:checked+.StaticRanges__label:before {
     display: block;
     content: ' ';
     height: 15px;
     width: 11px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2011%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eadded%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22added%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-2%22%20opacity%3D%220.5%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2211%22%20height%3D%2211%22%20rx%3D%220.89%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-4%22%20stroke%3D%22%232A5885%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20points%3D%222.29166667%205.95833333%204.125%207.79166667%208.70833333%203.20833333%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
     position: absolute;
-    left: 12px
+    left: 12px;
+    top: 6px
 }
 
-.static-ranges_label:hover {
+.StaticRanges__label:hover {
     background-color: #f0f2f5
 }
 
-.date-picker_inputs {
+.Inputs {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center
 }
 
-.date-picker_input {
-    border: 1px solid #d3d9de;
-    border-radius: 2px;
+.Inputs__input {
+    width: 100px;
     padding: 5px 10px;
     margin: 0 5px;
-    width: 90px;
-    font-size: 13px
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    font-size: 13px;
+    box-sizing: border-box
 }
 
-.date-picker_input:focus,
-.date-picker_input__focused {
-    border: 2px solid #5181b8;
+.Inputs__input--focused,
+.Inputs__input:focus {
+    border: 1px solid #5181b8;
+    box-shadow: 0 0 0 1px #5181b8;
     outline: none
 }
 
-.date-picker_input-label {
-    color: #656565
+.Inputs__label {
+    color: #656565;
+    margin-right: 10px;
+    font-size: 12.5px
 }
 
-.date-picker_input-delimeter {
+.Inputs__delimiter {
     display: inline-block;
     width: 7px;
     height: 1px;
     background: #000
 }
 
-.date-picker_panel {
+.DatePicker__panel {
     position: relative;
     border-bottom: 1px solid #ebecef;
     padding: 12px
 }
 
-.panel_button-month-offset_minus,
-.panel_button-month-offset_plus {
+.Panel__arrow--minus,
+.Panel__arrow--plus {
     position: absolute;
-    bottom: -29px;
-    height: 10px;
-    width: 6px;
-    margin: 3px;
+    bottom: -43px;
+    padding: 20px 19px;
     border: none;
-    cursor: pointer
+    cursor: pointer;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 10px
 }
 
-.panel_button-month-offset_minus {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+.Panel__arrow--minus {
+    left: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E')
 }
 
-.panel_button-month-offset_plus {
-    right: 12px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+.Panel__arrow--plus {
+    right: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
 }
 
 .Button {
@@ -531,57 +541,39 @@
     text-overflow: ellipsis
 }
 
-.date-picker_footer {
-    position: absolute;
+.DatePicker__footer {
     bottom: 0;
     box-sizing: border-box;
     height: 58px;
     width: 100%;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-pack: end;
     justify-content: flex-end;
     -ms-flex-align: center;
     align-items: center;
     border-top: 1px solid #ebecef;
-    padding: 0 10px
+    padding: 0 20px 0 10px
 }
 
-.date-picker_footer__close,
-.date-picker_footer__done {
-    padding: 7px 16px;
-    border-radius: 4px;
-    margin: 14px 10px 14px 0;
-    border: none
-}
-
-.date-picker_footer__close {
-    background: #e5ebf1;
-    color: #55677d
-}
-
-.date-picker_footer__done {
-    background-color: #5181b8;
-    color: #fff
-}
-
-.date-picker {
+.DatePicker__footer,
+.DatePicker {
     position: absolute;
-    padding-bottom: 57px;
-    border-radius: 4px;
-    border: 1px solid #ebecef;
-    background: #fff;
-    z-index: 100
-}
-
-.date-picker,
-.rdrMonths {
     display: -ms-flexbox;
     display: flex
 }
 
+.DatePicker {
+    padding-bottom: 57px;
+    border-radius: 4px;
+    border: 1px solid #ebecef;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .08)
+}
+
 .rdrMonths {
-    margin: 12px
+    display: -ms-flexbox;
+    display: flex;
+    margin: 14px 12px 12px
 }
 
 .rdrMonthsVertical {
@@ -5190,15 +5182,20 @@ td.ads_settings_notifications_label {
     background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2215px%22%20height%3D%2211px%22%20viewBox%3D%220%200%2015%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eico%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22Date-picker%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22%D0%92%D1%8B%D0%B1%D0%BE%D1%80-%D0%B4%D0%B0%D1%82%D1%8B%22%20transform%3D%22translate(-7270.000000%2C%20-333.000000)%22%20fill%3D%22%2391989E%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Select%2FNormal%22%20transform%3D%22translate(7199.000000%2C%20324.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22ico%22%20transform%3D%22translate(71.000000%2C%209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%224%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%2212%22%20y%3D%224%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%228%22%20y%3D%228%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%220.3%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px bottom 50%;
-    padding: 5px 33px 5px 10px;
+    padding: 6px 33px 6px 10px;
     cursor: pointer
+}
+
+.ads_stat_date_range:first-letter {
+    text-transform: uppercase
 }
 
 .ads_stat_date_range:hover {
     background-color: #f0f2f5
 }
 
-.ads_stat_date_range:active {
+.ads_stat_date_range:active,
+.ads_stat_date_range_pressed {
     color: #000;
     background-color: #eceef2
 }

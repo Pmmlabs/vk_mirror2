@@ -959,20 +959,18 @@ Ads.createStaticDateRange = function(elem, containerID) {
     function getStrRange(range) {
         var startDate = range.startDate;
         var endDate = range.endDate;
-        var startShort = langDate(startDate, getLang('global_short_date', 'raw'), 0, months, false);
-        var endShort = langDate(endDate, getLang('global_short_date', 'raw'), 0, months, false);
         var startYears = langDate(startDate, ["", "{day} {month} {year}"], 0, months, false);
         var endYears = langDate(endDate, ["", "{day} {month} {year}"], 0, months, false);
         var start = langDate(startDate, ["", "{day} {month}"], 0, months, false);
         var end = langDate(endDate, ["", "{day} {month}"], 0, months, false);
-        if (/\d/.test(startShort[0]) || /\d/.test(endShort[0])) {
-            if (startDate.getYear() !== endDate.getYear()) {
-                return startYears === endYears ? startYears : (startYears + ' � ' + endYears);
-            }
-            return start === end ? start : (start + ' � ' + end);
+        if (startDate.getFullYear() !== endDate.getFullYear()) {
+            return startYears === endYears ? startYears : (startYears + ' � ' + endYears);
         }
-        return startShort === endShort ? startShort : (startShort + ' � ' + endShort);
-    };
+        if (new Date().getFullYear() !== startDate.getFullYear() || new Date().getFullYear() !== startDate.getFullYear()) {
+            return startYears === endYears ? startYears : (startYears + ' � ' + endYears);
+        }
+        return start === end ? start : (start + ' � ' + end);
+    }
 
     var dateRange = {
         startDate: new Date(new Date().getFullYear(), new Date().getMonth()),
@@ -1008,6 +1006,10 @@ Ads.createStaticDateRange = function(elem, containerID) {
         AdsComponents.unmountDatePicker(container);
     }
 
+    function unmountCallback() {
+        elem.className = elem.className.replace(/ads_stat_date_range_pressed/, "");
+    }
+
     function render(event) {
         var height = elem.getBoundingClientRect().height;
         var left = elem.getBoundingClientRect().left - globalWrapper.getBoundingClientRect().left;
@@ -1015,6 +1017,7 @@ Ads.createStaticDateRange = function(elem, containerID) {
         container.style.top = top + height + 'px';
         container.style.left = left + 'px';
         if (!container.firstChild) {
+            elem.className += ' ads_stat_date_range_pressed';
             AdsComponents.renderDatePicker(container, {
                 onClose: onClose,
                 onDone: onDone,
@@ -1022,8 +1025,9 @@ Ads.createStaticDateRange = function(elem, containerID) {
                     range1: dateRange
                 },
                 minDate: new Date(2005, 0)
-            });
+            }, unmountCallback);
         } else {
+            unmountCallback();
             AdsComponents.unmountDatePicker(container);
         }
 

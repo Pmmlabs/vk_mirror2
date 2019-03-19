@@ -354,8 +354,7 @@ var Page = {
                 cur.viewAsBox();
                 return cancelEvent(ev);
             }
-            return !showBox('al_video.php', {
-                act: 'a_choose_video_box',
+            return !showBox('al_video.php?act=a_choose_video_box', {
                 review: 1,
                 to_id: oid
             }, {
@@ -4311,7 +4310,7 @@ var Wall = {
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {}),
-            submitFromPoster = !!posterSendParams,
+            submitFromPoster = cur.poster && !!posterSendParams,
             msg = submitFromPoster ? posterSendParams.text : (trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field')))),
             postponePost = false,
             isAnon = Wall.isAnonPost(),
@@ -4681,9 +4680,16 @@ var Wall = {
         hide('submit_post_error');
 
         cur.postSent = true;
+        const isShownAdminTip = window.GroupsAdminTips &&
+            window.GroupsAdminTips.isShownSection() ? 1 : 0 &&
+            window.GroupsAdminTips.isShownItem(window.GroupsAdminTips.ITEM_MAKE_POST);
+        params.update_admin_tips = isShownAdminTip;
         setTimeout(function() {
             ajax.post('al_wall.php', Wall.fixPostParams(params), {
-                onDone: function(rows, names) {
+                onDone: function(rows, names, adminTipsSection) {
+                    if (!isString(adminTipsSection)) {
+                        adminTipsSection = null;
+                    }
                     if (cur.poster && submitFromPoster) {
                         cur.poster.unlockEditPoster();
                         cur.poster.closeEditor();
@@ -4766,6 +4772,9 @@ var Wall = {
 
                     if (cur.onWallSendPost) {
                         cur.onWallSendPost();
+                    }
+                    if (isShownAdminTip && adminTipsSection !== null && window.GroupsAdminTips) {
+                        window.GroupsAdminTips.refreshSection(adminTipsSection);
                     }
                 },
                 onFail: function(msg) {
@@ -11832,7 +11841,7 @@ WallUpload = {
 
     initVideoUploader: function() {
         var data = cur.wallUploadVideoOpts;
-        if (!data || !data.vars.is_wall_upload_allowed) {
+        if (!data) {
             return;
         }
         var uploadHolder = ge('post_field_upload_video');

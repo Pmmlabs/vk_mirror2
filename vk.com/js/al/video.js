@@ -2037,11 +2037,6 @@ var Video = {
             }), {
                 cache: 1,
                 dark: 1,
-                onDone: function() {
-                    if (!cur.videoUploadParams.vars.is_wall_upload_allowed) {
-                        re('video_choose_upload_area_wrap');
-                    }
-                },
             });
         }
 

@@ -10740,8 +10740,8 @@
                         onFail: function(e) {
                             return e && new MessageBox({
                                 title: getLang("global_error")
-                            }).content(e).setButtons("Ok", function() {
-                                curBox().hide()
+                            }).content(e).setButtons(getLang("global_close"), function() {
+                                return curBox().hide()
                             }).show(), Object(o.hb)(t, "audio_row__added"), i(!1), !0
                         }
                     }), Object(o.a)(t, "audio_row__added"), u && Object(o.a)(u, "audio_row__added"), getAudioPlayer().notify(AudioPlayer.EVENT_ADDED, e.fullId), r && c && r.onUserAction(e, c))

@@ -3,6 +3,7 @@
 }
 
 #groups_edit_request_type_progress,
+#ui_admin_tips_load_more:after,
 .ErrorPlug .ErrorPlug--emote,
 .gedit_import_box_icon,
 .gedit_servers_menu .page_actions_btn,
@@ -363,9 +364,15 @@ a.group_ad_post_stats {
     }
 }
 
+#admin_tips {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
 #admin_tips #gtop_admin_tips.gtop_complex_message {
-    padding: 15px 15px 16px;
+    padding: 16px 20px;
     background-color: #fafbfc;
+    border-radius: 4px 4px 0 0;
     box-shadow: inset 0 -1px 0 0 #e7e8ec
 }
 
@@ -373,16 +380,26 @@ a.group_ad_post_stats {
     min-height: 0
 }
 
+#admin_tips #gtop_admin_tips.gtop_complex_message .gtop_content .ui_actions_menu {
+    min-width: 120px
+}
+
 #admin_tips #gtop_admin_tips.gtop_complex_message .gtop_content .gtop_header {
-    margin-top: 3px;
+    margin-top: 0;
+    margin-bottom: 5px;
     font-size: 19px;
-    font-weight: 500
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 1.26;
+    letter-spacing: -0.04px
 }
 
 #admin_tips #gtop_admin_tips.gtop_complex_message .gtop_content .gtop_message {
     color: #4e5966;
     font-size: 12.5px;
-    line-height: 1.28
+    line-height: 1.28;
+    letter-spacing: 0.06px
 }
 
 #admin_tips .module_body {
@@ -390,19 +407,60 @@ a.group_ad_post_stats {
 }
 
 #admin_tips .admin_tips_section_actions {
-    width: 21px
+    width: 21px;
+    margin-right: -4.5px;
+    margin-top: 4px
 }
 
 #admin_tips .admin_tips_section_actions .admin_tips_section_more_icon {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23C1C5CC%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.875%22%20d%3D%22M6.5%2010l5.5%204.5%205.5-4.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') no-repeat 50% 50%;
     width: 18px;
     height: 13px;
-    cursor: pointer;
-    opacity: 0.75;
-    filter: alpha(opacity=75)
+    cursor: pointer
+}
+
+#ui_admin_tips_load_more {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding: 12px 0 14px;
+    border-radius: 0 0 4px 4px
+}
+
+#ui_admin_tips_load_more .ui_load_more_btn_label {
+    letter-spacing: 0.3px;
+    line-height: 1.23
+}
+
+#ui_admin_tips_load_more:after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    margin-left: 1px;
+    height: 11px;
+    vertical-align: middle;
+    background: url(/images/icons/search_arrow.png) no-repeat;
+    -o-transition: transform 70ms linear, -o-transform 70ms linear;
+    transition: transform 70ms linear;
+    transition: transform 70ms linear, -o-transform 70ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #ui_admin_tips_load_more:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
+#ui_admin_tips_load_more:hover:after {
+    -o-transform: translateX(3px);
+    transform: translateX(3px)
 }
 
 #gtop_admin_tips_cancel {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     padding: 15px 20px
 }
 
@@ -422,36 +480,43 @@ a.group_ad_post_stats {
 #gtop_admin_tips_cancel .gtop_content .gtop_message {
     line-height: 1.46;
     font-size: 13px;
-    font-family: SF Pro Text, sans-serif;
     letter-spacing: -0.1px;
     color: #000
 }
 
-#gtop_admin_tips_admin {
+#group_edit_admin_tips {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    height: 366px
+}
+
+#group_edit_admin_tips #gtop_admin_tips_admin {
     padding: 48px
 }
 
-#gtop_admin_tips_admin .gtop_content {
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_content {
     text-align: center;
     min-height: 0
 }
 
-#gtop_admin_tips_admin .gtop_content .gtop_header {
-    font-family: SFProDisplay, sans-serif;
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_content .gtop_header {
     font-size: 22px;
     font-weight: 500;
-    margin-top: 3px
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin-top: 3px;
+    letter-spacing: 0.1px
 }
 
-#gtop_admin_tips_admin .gtop_content .gtop_counter {
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_content .gtop_counter {
     color: #939393
 }
 
-#gtop_admin_tips_admin .gtop_content :not(:last-child) {
-    margin-bottom: 16px
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_content :not(:last-child) {
+    margin-bottom: 17px
 }
 
-#gtop_admin_tips_admin .gtop_image {
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_image {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%20width%3D%22120%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h120v120h-120z%22%2F%3E%3Cg%20transform%3D%22translate(9%2013)%22%3E%3Cpath%20d%3D%22m2.88437085%2070h6.2312583c1.00295855%200%201.36665555.1044288%201.73332225.3005243s.6544288.4838576.8505243.8505243.3005243.7303637.3005243%201.7333222v18.2312584c0%201.0029585-.1044288%201.3666555-.3005243%201.7333222s-.4838576.6544288-.8505243.8505243-.7303637.3005243-1.73332225.3005243h-6.2312583c-1.00295858%200-1.3666556-.1044288-1.73332227-.3005243-.36666666-.1960955-.65442881-.4838576-.85052429-.8505243s-.30052429-.7303637-.30052429-1.7333222v-18.2312584c0-1.0029585.10442881-1.3666555.30052429-1.7333222s.48385763-.6544288.85052429-.8505243c.36666667-.1960955.73036369-.3005243%201.73332227-.3005243zm35.99999995%200h6.2312584c1.0029585%200%201.3666555.1044288%201.7333222.3005243s.6544288.4838576.8505243.8505243.3005243.7303637.3005243%201.7333222v18.2312584c0%201.0029585-.1044288%201.3666555-.3005243%201.7333222s-.4838576.6544288-.8505243.8505243-.7303637.3005243-1.7333222.3005243h-6.2312584c-1.0029585%200-1.3666555-.1044288-1.7333222-.3005243s-.6544288-.4838576-.8505243-.8505243-.3005243-.7303637-.3005243-1.7333222v-18.2312584c0-1.0029585.1044288-1.3666555.3005243-1.7333222s.4838576-.6544288.8505243-.8505243.7303637-.3005243%201.7333222-.3005243zm36-31h6.2312584c1.0029585%200%201.3666555.1044288%201.7333222.3005243s.6544288.4838576.8505243.8505243.3005243.7303637.3005243%201.7333222v49.2312584c0%201.0029585-.1044288%201.3666555-.3005243%201.7333222s-.4838576.6544288-.8505243.8505243-.7303637.3005243-1.7333222.3005243h-6.2312584c-1.0029585%200-1.3666555-.1044288-1.7333222-.3005243s-.6544288-.4838576-.8505243-.8505243-.3005243-.7303637-.3005243-1.7333222v-49.2312584c0-1.0029585.1044288-1.3666555.3005243-1.7333222s.4838576-.6544288.8505243-.8505243.7303637-.3005243%201.7333222-.3005243z%22%20fill%3D%22%23e5e9f0%22%2F%3E%3Cpath%20d%3D%22m20.8843708%2057h6.2312584c1.0029585%200%201.3666555.1044288%201.7333222.3005243s.6544288.4838576.8505243.8505243.3005243.7303637.3005243%201.7333222v31.2312584c0%201.0029585-.1044288%201.3666555-.3005243%201.7333222s-.4838576.6544288-.8505243.8505243-.7303637.3005243-1.7333222.3005243h-6.2312584c-1.0029585%200-1.3666555-.1044288-1.7333222-.3005243s-.6544288-.4838576-.8505243-.8505243-.3005243-.7303637-.3005243-1.7333222v-31.2312584c0-1.0029585.1044288-1.3666555.3005243-1.7333222s.4838576-.6544288.8505243-.8505243.7303637-.3005243%201.7333222-.3005243zm36%200h6.2312584c1.0029585%200%201.3666555.1044288%201.7333222.3005243s.6544288.4838576.8505243.8505243.3005243.7303637.3005243%201.7333222v31.2312584c0%201.0029585-.1044288%201.3666555-.3005243%201.7333222s-.4838576.6544288-.8505243.8505243-.7303637.3005243-1.7333222.3005243h-6.2312584c-1.0029585%200-1.3666555-.1044288-1.7333222-.3005243s-.6544288-.4838576-.8505243-.8505243-.3005243-.7303637-.3005243-1.7333222v-31.2312584c0-1.0029585.1044288-1.3666555.3005243-1.7333222s.4838576-.6544288.8505243-.8505243.7303637-.3005243%201.7333222-.3005243zm36-36h6.2312584c1.0029588%200%201.3666558.1044288%201.7333218.3005243.366667.1960955.654429.4838576.850525.8505243.196095.3666667.300524.7303637.300524%201.7333222v67.2312584c0%201.0029585-.104429%201.3666555-.300524%201.7333222-.196096.3666667-.483858.6544288-.850525.8505243-.366666.1960955-.730363.3005243-1.7333218.3005243h-6.2312584c-1.0029585%200-1.3666555-.1044288-1.7333222-.3005243s-.6544288-.4838576-.8505243-.8505243-.3005243-.7303637-.3005243-1.7333222v-67.2312584c0-1.0029585.1044288-1.3666555.3005243-1.7333222s.4838576-.6544288.8505243-.8505243.7303637-.3005243%201.7333222-.3005243z%22%20fill%3D%22%23a5abb8%22%2F%3E%3Cpath%20d%3D%22m3%2060%2021-21%2018%2018%2057-57%22%20fill-rule%3D%22nonzero%22%20stroke%3D%22%235c9ce6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%226%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
     width: 100%;
     height: 120px;
@@ -460,24 +525,21 @@ a.group_ad_post_stats {
     margin-bottom: 20px
 }
 
-#gtop_admin_tips_admin .gtop_message {
-    line-height: 1.38;
-    color: #000
+#group_edit_admin_tips #gtop_admin_tips_admin .gtop_message {
+    line-height: 18px;
+    color: #000;
+    padding: 0 10px
+}
+
+.group_edit.group_edit_admin_tips .group_edit_admin_tips_item:last-child {
+    border-radius: 0 0 4px 4px
 }
 
 #page_block_group_admin_tips,
 .group_edit.group_edit_admin_tips {
-    font-family: SF Pro Text, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     padding: 0
-}
-
-#page_block_group_admin_tips .group_edit_admin_tips_category_name,
-.group_edit.group_edit_admin_tips .group_edit_admin_tips_category_name {
-    background-color: #fafbfc;
-    padding: 18px 20px 17px;
-    font-size: 16px;
-    border-radius: 2px;
-    box-shadow: inset 0 -1px 0 0 #e7e8ec
 }
 
 #page_block_group_admin_tips a,
@@ -508,9 +570,14 @@ a.group_ad_post_stats {
     text-decoration: none
 }
 
+#page_block_group_admin_tips .group_edit_admin_tips_item:hover .gtop_content .gtop_message,
+.group_edit.group_edit_admin_tips .group_edit_admin_tips_item:hover .gtop_content .gtop_message {
+    color: #4e5966
+}
+
 #page_block_group_admin_tips .group_edit_admin_tips_item .gtop_content,
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item .gtop_content {
-    min-height: unset;
+    min-height: 0;
     padding: 15px;
     padding-left: 45px
 }
@@ -519,24 +586,26 @@ a.group_ad_post_stats {
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header {
     font-size: 13px;
     font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     position: relative;
     margin: 0;
-    margin-bottom: 5px
+    margin-bottom: 4px
 }
 
 #page_block_group_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header :not(:last-child),
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header :not(:last-child) {
-    margin-right: 5px
+    margin-right: 6px
 }
 
 #page_block_group_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header:after,
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header:after {
     content: '';
     display: block;
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m12%204c4.418278%200%208%203.581722%208%208s-3.581722%208-8%208-8-3.581722-8-8%203.581722-8%208-8zm2.7196699%205.21966991-4.2196699%204.21966989-1.21966991-1.2196699c-.29289322-.2928932-.76776696-.2928932-1.06066018%200-.29289321.2928932-.29289321.767767%200%201.0606602l1.75%201.75c.29289319.2928932.76776699.2928932%201.06066019%200l4.75-4.75c.2928932-.29289323.2928932-.76776697%200-1.06066019-.2928932-.29289321-.767767-.29289321-1.0606602%200z%22%20fill%3D%22%23a5abb4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m12%204c4.418278%200%208%203.581722%208%208s-3.581722%208-8%208-8-3.581722-8-8%203.581722-8%208-8zm2.7196699%205.21966991-4.2196699%204.21966989-1.21966991-1.2196699c-.29289322-.2928932-.76776696-.2928932-1.06066018%200-.29289321.2928932-.29289321.767767%200%201.0606602l1.75%201.75c.29289319.2928932.76776699.2928932%201.06066019%200l4.75-4.75c.2928932-.29289323.2928932-.76776697%200-1.06066019-.2928932-.29289321-.767767-.29289321-1.0606602%200z%22%20fill%3D%22%23D2D5DA%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
     position: absolute;
-    left: -30px;
-    top: 0;
+    left: -28px;
+    top: -1px;
     width: 16px;
     height: 16px
 }
@@ -550,7 +619,9 @@ a.group_ad_post_stats {
     text-align: center;
     display: inline-block;
     font-size: 11px;
-    padding-top: 1px
+    padding-top: 1px;
+    position: absolute;
+    top: -1px
 }
 
 #page_block_group_admin_tips .group_edit_admin_tips_item .gtop_content .gtop_header .new .new_text,
@@ -571,11 +642,6 @@ a.group_ad_post_stats {
     color: #656565
 }
 
-#page_block_group_admin_tips .group_edit_admin_tips_item.group_edit_admin_tips_item_completed:hover,
-.group_edit.group_edit_admin_tips .group_edit_admin_tips_item.group_edit_admin_tips_item_completed:hover {
-    cursor: default
-}
-
 #page_block_group_admin_tips .group_edit_admin_tips_item.group_edit_admin_tips_item_completed .gtop_header:after,
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item.group_edit_admin_tips_item_completed .gtop_header:after {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m12%204c4.418278%200%208%203.581722%208%208s-3.581722%208-8%208-8-3.581722-8-8%203.581722-8%208-8zm2.7196699%205.21966991-4.2196699%204.21966989-1.21966991-1.2196699c-.29289322-.2928932-.76776696-.2928932-1.06066018%200-.29289321.2928932-.29289321.767767%200%201.0606602l1.75%201.75c.29289319.2928932.76776699.2928932%201.06066019%200l4.75-4.75c.2928932-.29289323.2928932-.76776697%200-1.06066019-.2928932-.29289321-.767767-.29289321-1.0606602%200z%22%20fill%3D%22%23528bcc%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
@@ -585,7 +651,15 @@ a.group_ad_post_stats {
 .group_edit.group_edit_admin_tips .group_edit_admin_tips_item:hover .group_edit_admin_tips_item_actions_wrap {
     opacity: 1;
     filter: none;
-    visibility: visible
+    visibility: visible;
+    margin-right: -7px;
+    margin-top: 1px
+}
+
+#page_block_group_admin_tips .group_edit_admin_tips_item:hover .group_edit_admin_tips_item_actions_wrap .ui_actions_menu,
+.group_edit.group_edit_admin_tips .group_edit_admin_tips_item:hover .group_edit_admin_tips_item_actions_wrap .ui_actions_menu {
+    margin-right: -7px;
+    margin-top: 1px
 }
 
 #page_block_group_admin_tips .group_edit_admin_tips_item .group_edit_admin_tips_item_actions_wrap,
@@ -617,6 +691,16 @@ a.group_ad_post_stats {
     filter: alpha(opacity=75)
 }
 
+.mac .group_edit_admin_tips_item .new .new_text {
+    position: relative;
+    top: -1px
+}
+
+#ui_rmenu_admin_tips {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
 #ui_rmenu_admin_tips .ui_rmenu_extra_label {
     line-height: 19px
 }
@@ -629,10 +713,16 @@ a.group_ad_post_stats {
     margin: 7px 0 7px 7px;
     text-align: center;
     color: #fff;
-    font-family: SF UI Text, sans-serif;
     font-size: 11px;
     font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     letter-spacing: -0.1px
+}
+
+.mac #ui_rmenu_admin_tips .ui_rmenu_extra_label>* {
+    line-height: 18px;
+    height: auto
 }
 
 #test_admin_tips_panel {
@@ -643,6 +733,23 @@ a.group_ad_post_stats {
 
 #test_admin_tips_panel button {
     height: 30px
+}
+
+.eltt.feature_intro_tt.group_edit_admin_tip_show {
+    width: auto!important;
+    min-width: 120px;
+    max-width: 280px;
+    padding: 7px 12px 9px;
+    line-height: 19px
+}
+
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_bottom .eltt_arrow_back,
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_top .eltt_arrow_back {
+    margin-left: 41px!important
+}
+
+.eltt.feature_intro_tt.group_edit_admin_tip_show.group_edit_admin_tip_show_comments_filter {
+    width: 220px!important
 }
 
 .group_edit.group_edit_addresses {
@@ -1266,30 +1373,31 @@ a.group_ad_post_stats {
     margin-top: 1px
 }
 
-.static-ranges {
+.StaticRanges {
     min-width: 185px;
     padding: 0;
     margin: 0;
     border-right: 1px solid #ebecef
 }
 
-.static-ranges_item {
+.StaticRanges__item {
     list-style: none;
     cursor: pointer;
     padding: 0
 }
 
-.static-ranges_item:first-of-type {
-    margin-top: 7px
+.StaticRanges__item:first-of-type {
+    margin-top: 5px
 }
 
-.static-range_radio {
+.StaticRanges__radio {
     display: none
 }
 
-.static-ranges_label {
+.StaticRanges__label {
     display: -ms-flexbox;
     display: flex;
+    height: 15px;
     font-size: 12.5px;
     color: #2a5885;
     position: relative;
@@ -1297,81 +1405,90 @@ a.group_ad_post_stats {
     cursor: inherit
 }
 
-.static-range_radio:checked+.static-ranges_label {
-    background: #f0f2f5
+.StaticRanges__radio:checked+.StaticRanges__label {
+    background: #f0f2f5;
+    font-weight: 500
 }
 
-.static-range_radio:checked+.static-ranges_label:before {
+.StaticRanges__radio:checked+.StaticRanges__label:before {
     display: block;
     content: ' ';
     height: 15px;
     width: 11px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2011%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eadded%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22added%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-2%22%20opacity%3D%220.5%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2211%22%20height%3D%2211%22%20rx%3D%220.89%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-4%22%20stroke%3D%22%232A5885%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20points%3D%222.29166667%205.95833333%204.125%207.79166667%208.70833333%203.20833333%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
     position: absolute;
-    left: 12px
+    left: 12px;
+    top: 6px
 }
 
-.static-ranges_label:hover {
+.StaticRanges__label:hover {
     background-color: #f0f2f5
 }
 
-.date-picker_inputs {
+.Inputs {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center
 }
 
-.date-picker_input {
-    border: 1px solid #d3d9de;
-    border-radius: 2px;
+.Inputs__input {
+    width: 100px;
     padding: 5px 10px;
     margin: 0 5px;
-    width: 90px;
-    font-size: 13px
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    font-size: 13px;
+    box-sizing: border-box
 }
 
-.date-picker_input:focus,
-.date-picker_input__focused {
-    border: 2px solid #5181b8;
+.Inputs__input--focused,
+.Inputs__input:focus {
+    border: 1px solid #5181b8;
+    box-shadow: 0 0 0 1px #5181b8;
     outline: none
 }
 
-.date-picker_input-label {
-    color: #656565
+.Inputs__label {
+    color: #656565;
+    margin-right: 10px;
+    font-size: 12.5px
 }
 
-.date-picker_input-delimeter {
+.Inputs__delimiter {
     display: inline-block;
     width: 7px;
     height: 1px;
     background: #000
 }
 
-.date-picker_panel {
+.DatePicker__panel {
     position: relative;
     border-bottom: 1px solid #ebecef;
     padding: 12px
 }
 
-.panel_button-month-offset_minus,
-.panel_button-month-offset_plus {
+.Panel__arrow--minus,
+.Panel__arrow--plus {
     position: absolute;
-    bottom: -29px;
-    height: 10px;
-    width: 6px;
-    margin: 3px;
+    bottom: -43px;
+    padding: 20px 19px;
     border: none;
-    cursor: pointer
+    cursor: pointer;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 10px
 }
 
-.panel_button-month-offset_minus {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+.Panel__arrow--minus {
+    left: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E')
 }
 
-.panel_button-month-offset_plus {
-    right: 12px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20id%3D%22arrow%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+.Panel__arrow--plus {
+    right: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
 }
 
 .Button {
@@ -1541,57 +1658,39 @@ a.group_ad_post_stats {
     text-overflow: ellipsis
 }
 
-.date-picker_footer {
-    position: absolute;
+.DatePicker__footer {
     bottom: 0;
     box-sizing: border-box;
     height: 58px;
     width: 100%;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-pack: end;
     justify-content: flex-end;
     -ms-flex-align: center;
     align-items: center;
     border-top: 1px solid #ebecef;
-    padding: 0 10px
+    padding: 0 20px 0 10px
 }
 
-.date-picker_footer__close,
-.date-picker_footer__done {
-    padding: 7px 16px;
-    border-radius: 4px;
-    margin: 14px 10px 14px 0;
-    border: none
-}
-
-.date-picker_footer__close {
-    background: #e5ebf1;
-    color: #55677d
-}
-
-.date-picker_footer__done {
-    background-color: #5181b8;
-    color: #fff
-}
-
-.date-picker {
+.DatePicker__footer,
+.DatePicker {
     position: absolute;
-    padding-bottom: 57px;
-    border-radius: 4px;
-    border: 1px solid #ebecef;
-    background: #fff;
-    z-index: 100
-}
-
-.date-picker,
-.rdrMonths {
     display: -ms-flexbox;
     display: flex
 }
 
+.DatePicker {
+    padding-bottom: 57px;
+    border-radius: 4px;
+    border: 1px solid #ebecef;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .08)
+}
+
 .rdrMonths {
-    margin: 12px
+    display: -ms-flexbox;
+    display: flex;
+    margin: 14px 12px 12px
 }
 
 .rdrMonthsVertical {

@@ -3752,7 +3752,7 @@ function InlineDropdown(el, opts) {
 
     this._title = opts.keepTitle ? (opts.title || el.innerHTML) : '';
     this._selectable = opts.keepTitle ? opts.keepSelected : true;
-
+    this._disableCancelClickEvent = opts.disableCancelClickEvent ? !!opts.disableCancelClickEvent : false;
     // build
     this._iddEl = se('<div class="idd_wrap" id="' + el.id + '">' +
         '<div class="idd_selected_value ' + (opts.withArrow ? 'idd_arrow' : '') + '" tabindex="0" role="link">' + el.innerHTML + '</div>' +
@@ -4017,8 +4017,10 @@ InlineDropdown.prototype._onClick = function(event) {
 
     this._opts.onShow && this._opts.onShow(this.ddEl);
 
-    cancelEvent(event);
-}
+    if (!this._disableCancelClickEvent) {
+        cancelEvent(event);
+    }
+};
 
 InlineDropdown.prototype._hide = function() {
     re(this._els.popupEl);

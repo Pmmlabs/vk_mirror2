@@ -832,14 +832,25 @@
                 }
             }
         }
+
+        function s(e) {
+            return function() {
+                for (var t = arguments.length, n = Array(t), r = 0; r < t; r++) n[r] = arguments[r];
+                return new Promise(function(t) {
+                    return e.apply(void 0, n.concat([t]))
+                })
+            }
+        }
         n.d(t, "c", function() {
             return r
-        }), n.d(t, "d", function() {
+        }), n.d(t, "e", function() {
             return i
         }), n.d(t, "b", function() {
             return a
         }), n.d(t, "a", function() {
             return o
+        }), n.d(t, "d", function() {
+            return s
         })
     },
     ERyv: function(e, t, n) {
@@ -883,7 +894,7 @@
 
         function u(e, t) {
             var n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2];
-            l() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.d)(r.b, 3, function() {
+            l() && (n && window.console && (console.error(e, t), console.trace && console.trace()), Object(i.e)(r.b, 3, function() {
                 return 2
             })("al_im.php", {
                 act: "a_weird_log",
@@ -6964,35 +6975,38 @@
                 });
             toggle(geByClass1("ms_item_poll", e), Object(i.hb)(Object(a.o)(t))),
                 function(e, t) {
-                    var n = geByClass1("_im_text", e);
-                    Wall.initComposer(n, {
-                        lang: {
-                            introText: getLang("profile_mention_start_typing"),
-                            noResult: getLang("profile_mention_not_found")
-                        },
-                        toup: !0,
-                        getValue: function() {
-                            return t.get().peer > 2e9 ? (window.Emoji && Emoji.editableVal || val)(n) : ""
-                        },
-                        onShow: function() {
-                            addClass(e, "im_mention_shown");
-                            var t = data(n, "composer");
-                            if (t && t.wdd && t.wdd.shown) {
-                                var r = 0,
-                                    i = !1,
-                                    a = function() {
-                                        t.ignoredTerm = t.curTerm, t.curTerm = !1, val(t.wddInput, ""), Composer.toggleSelectList(t)
-                                    };
-                                each(t.wdd.shown, function() {
-                                    this[0] && (r++, "@" + t.curTerm == this[2] && (i = !0))
-                                }), !r || i && 1 == r ? a() : cancelStackPush("im_mention", a)
-                            }
-                        },
-                        onHide: function() {
-                            removeClass(e, "im_mention_shown"), cancelStackFilter("im_mention")
-                        },
-                        searchKeys: [1, 7],
-                        wddOpts: {}
+                    var n = geByClass1("_im_text", e),
+                        r = Object(mt.d)(stManager.add);
+                    (Wall ? Promise.resolve() : r(["page.js"])).then(function() {
+                        Wall.initComposer(n, {
+                            lang: {
+                                introText: getLang("profile_mention_start_typing"),
+                                noResult: getLang("profile_mention_not_found")
+                            },
+                            toup: !0,
+                            getValue: function() {
+                                return t.get().peer > 2e9 ? (window.Emoji && Emoji.editableVal || val)(n) : ""
+                            },
+                            onShow: function() {
+                                addClass(e, "im_mention_shown");
+                                var t = data(n, "composer");
+                                if (t && t.wdd && t.wdd.shown) {
+                                    var r = 0,
+                                        i = !1,
+                                        a = function() {
+                                            t.ignoredTerm = t.curTerm, t.curTerm = !1, val(t.wddInput, ""), Composer.toggleSelectList(t)
+                                        };
+                                    each(t.wdd.shown, function() {
+                                        this[0] && (r++, "@" + t.curTerm == this[2] && (i = !0))
+                                    }), !r || i && 1 == r ? a() : cancelStackPush("im_mention", a)
+                                }
+                            },
+                            onHide: function() {
+                                removeClass(e, "im_mention_shown"), cancelStackFilter("im_mention")
+                            },
+                            searchKeys: [1, 7],
+                            wddOpts: {}
+                        })
                     })
                 }(e, t), t.get().textMediaSelector = C, t.set(r.T.bind(null, _, v, y, j));
             var P = geByClass1("_im_text", e);
@@ -17933,7 +17947,7 @@
         }
 
         function R(e, t, n, i, a) {
-            return a.tabHistoryNotChanged = !1, Object(o.d)(r.b, 3, function(e) {
+            return a.tabHistoryNotChanged = !1, Object(o.e)(r.b, 3, function(e) {
                 return e - 1
             })(k, {
                 act: "a_start",
@@ -18471,7 +18485,7 @@
                     id: e.messageId,
                     gid: t.gid
                 };
-            return Object(o.d)(r.b, 3, function(e) {
+            return Object(o.e)(r.b, 3, function(e) {
                 return e * e
             })(k, i).then(function(r) {
                 return n(), xe(e, r, t)
@@ -18591,7 +18605,7 @@
                 a = e
             });
             var s = e.select(c.b);
-            return Object(o.d)(r.b, 1, function() {
+            return Object(o.e)(r.b, 1, function() {
                 return 4
             })(k, {
                 act: "a_dialogs_preload",
