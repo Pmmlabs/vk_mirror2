@@ -69,9 +69,9 @@
     a.push = e, a = a.slice();
     for (var l = 0; l < a.length; l++) e(a[l]);
     var d = c;
-    s.push([124, "common", "bundles/vendors"]), r()
+    s.push([122, "common", "bundles/vendors"]), r()
 }({
-    124: function(t, e, r) {
+    122: function(t, e, r) {
         t.exports = r("EJ7F")
     },
     "16Al": function(t, e, r) {
@@ -497,7 +497,7 @@
                 }, e.prototype._renderLink = function() {
                     var t = this,
                         e = this.props.story.getCurStoryData().link;
-                    if (!M(e)) return "";
+                    if (!(M(e) && e.key && e.text)) return "";
                     var r = "stories_link";
                     return e.object_type && (r += " story_link_object_" + e.object_type), this.state.linkObjectAudioPlaying && (r += " story_link_object_audio_playing"), o.createElement("div", {
                         className: "stories_link_wrap"
@@ -1121,7 +1121,10 @@
                             break
                         }
                     var i = L();
-                    !r && i && i.activeStory && rt(ct("#feed_story_" + this.layer.getBlockKey(this.data), i.activeStory.wrapEl)[0], "story_feed_new_item")
+                    if (!r && i && i.activeStory) {
+                        var s = ct("#feed_story_" + this.layer.getBlockKey(this.data), i.activeStory.wrapEl)[0];
+                        rt(s, "story_feed_new_item"), rt(s, "story_feed_new_item_promo")
+                    }
                 }, t.prototype._destroyTimeLine = function() {
                     for (var t = st("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) Z(t[e])
                 }, t.prototype.getOwnerId = function() {
@@ -2340,7 +2343,7 @@
                         o.forEach(function(t) {
                             var e = t.answers || {};
                             n += e.new_count || 0, t.unread && (s = !1)
-                        }), n > 0 ? val(r, n) : (val(r, ""), s && removeClass(e, "story_feed_new_item"))
+                        }), n > 0 ? val(r, n) : (val(r, ""), s && (removeClass(e, "story_feed_new_item"), removeClass(e, "story_feed_new_item_promo")))
                     }
                 }, t.prototype._onPlayStory = function(t) {
                     var e = this._getStoryInstanceByIndex(t);

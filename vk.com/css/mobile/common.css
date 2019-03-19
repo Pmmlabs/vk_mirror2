@@ -43769,6 +43769,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .StoriesFeedBlock__avatarWrap {
+    position: relative;
     margin: auto;
     width: 60px;
     height: 60px;
@@ -43778,8 +43779,84 @@ body.apps_settingsPageBody .basis__content {
     border: 2px solid transparent
 }
 
+.StoriesFeedBlock__item_promo .StoriesFeedBlock__avatarWrap:after {
+    content: '';
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    left: 50%;
+    background-repeat: no-repeat;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-animation: stories_promo_animation 6s steps(72) 3 both;
+    -moz-animation: stories_promo_animation 6s steps(72) 3 both;
+    -o-animation: stories_promo_animation 6s steps(72) 3 both;
+    animation: stories_promo_animation 6s steps(72) 3 both;
+    background-image: url("/images/mobile/stories_promo_animation.png");
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0)
+}
+
+.vk_2x .StoriesFeedBlock__item_promo .StoriesFeedBlock__avatarWrap:after {
+    background-image: url('/images/mobile/stories_promo_animation_2x.png')
+}
+
+.StoriesFeedBlock_been-open .StoriesFeedBlock__item_promo .StoriesFeedBlock__avatarWrap:after {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -o-animation: none;
+    animation: none
+}
+
+@-webkit-keyframes stories_promo_animation {
+    0% {
+        background-position-y: 0px
+    }
+    50%,
+    to {
+        background-position-y: -4608px
+    }
+}
+
+@-moz-keyframes stories_promo_animation {
+    0% {
+        background-position-y: 0px
+    }
+    50%,
+    to {
+        background-position-y: -4608px
+    }
+}
+
+@-o-keyframes stories_promo_animation {
+    0% {
+        background-position-y: 0px
+    }
+    50%,
+    to {
+        background-position-y: -4608px
+    }
+}
+
+@keyframes stories_promo_animation {
+    0% {
+        background-position-y: 0px
+    }
+    50%,
+    to {
+        background-position-y: -4608px
+    }
+}
+
 .StoriesFeedBlock__item_new .StoriesFeedBlock__avatarWrap {
     border-color: #5181b8
+}
+
+.StoriesFeedBlock__item_promo .StoriesFeedBlock__avatarWrap {
+    border-color: transparent
 }
 
 .StoriesFeedBlock__avatar {
