@@ -460,16 +460,22 @@
 .feed_search_shown .feed_search_wrap+.feed_app_widget,
 .feed_search_shown .feed_search_wrap+.feed_app_widget:empty+.feed_empty,
 .feed_search_shown .feed_search_wrap+.feed_empty,
-.feed_search_shown .feed_found_photos,
-.feed_search_shown .feed_row:first-child .post {
+.feed_search_shown .feed_search_wrap+.stories_feed_wrap+.feed_app_widget:empty+.feed_empty,
+.feed_search_shown:not(.feed_submit_shown_stories) .feed_found_photos,
+.feed_search_shown:not(.feed_submit_shown_stories) .feed_row:first-child .post {
     margin-top: 0;
     border-radius: 0 0 4px 4px
 }
 
 .feed_submit_only_shown .feed_post_field_wrap,
 .feed_submit_shown .feed_post_field_wrap,
-.feed_submit_shown .stories_feed_wrap {
+.feed_submit_shown .stories_feed_wrap,
+.feed_submit_shown_stories .stories_feed_wrap {
     display: block
+}
+
+.feed_submit_shown_stories .feed_search_wrap {
+    border-radius: 4px
 }
 
 .feed_empty {

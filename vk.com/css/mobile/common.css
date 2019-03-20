@@ -25572,6 +25572,7 @@ figure[data-type="102"] .article_object_video_play {
 .pageMoneyTransfer,
 .recommends_link,
 .StoriesFeedBlock,
+.StoriesSearchBlock,
 .upanel.thumbs_list,
 .vk__page_mail .basis,
 .wall_item {
@@ -25601,6 +25602,7 @@ figure[data-type="102"] .article_object_video_play {
     .pageMoneyTransfer,
     .recommends_link,
     .StoriesFeedBlock,
+    .StoriesSearchBlock,
     .upanel.thumbs_list,
     .vk__page_mail .basis,
     .wall_item {
@@ -25632,6 +25634,7 @@ figure[data-type="102"] .article_object_video_play {
     .pageMoneyTransfer .head_panel,
     .recommends_link .head_panel,
     .StoriesFeedBlock .head_panel,
+    .StoriesSearchBlock .head_panel,
     .upanel.thumbs_list .head_panel,
     .vk__page_mail .basis .head_panel,
     .wall_item .head_panel {
@@ -25679,6 +25682,8 @@ figure[data-type="102"] .article_object_video_play {
     .recommends_link.BookmarksItem_compact,
     .StoriesFeedBlock .al_loading,
     .StoriesFeedBlock.BookmarksItem_compact,
+    .StoriesSearchBlock .al_loading,
+    .StoriesSearchBlock.BookmarksItem_compact,
     .upanel.thumbs_list .al_loading,
     .upanel.thumbs_list.BookmarksItem_compact,
     .vk__page_mail .basis .al_loading,
@@ -25695,11 +25700,15 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .PageBlock_feed .head_panel {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0
 }
 
+.PageBlock_feed .upanel .StoriesSearchBlock,
 .PageBlock_feed .upanel a[name]+.wall_item {
     margin-top: 0;
     -webkit-border-radius: 0 0 4px 4px;
@@ -25710,6 +25719,13 @@ figure[data-type="102"] .article_object_video_play {
 .PageBlock_comments .upanel a[name]+.wall_item,
 .vk__page_feed .upanel a[name]+.wall_item {
     margin-top: 0
+}
+
+.vk__page_feed .upanel .StoriesSearchBlock+a[name]+.wall_item {
+    margin: 10px 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px
 }
 
 .basisGroup>.PageBlock:first-child,
@@ -43878,6 +43894,118 @@ body.apps_settingsPageBody .basis__content {
     white-space: nowrap
 }
 
+.StoriesSearchBlock {
+    position: relative;
+    padding-top: 12px;
+    margin: 10px 0
+}
+
+.StoriesSearchBlock,
+.StoriesSearchBlock__title {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.StoriesSearchBlock__title {
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 1.54;
+    letter-spacing: -0.2px;
+    color: #909499;
+    text-transform: uppercase;
+    padding: 0 12px 12px
+}
+
+.StoriesSearchBlock__wrap {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch
+}
+
+.StoriesSearchBlock__scroll {
+    padding: 0 12px;
+    font-size: 0
+}
+
+.StoriesSearchBlock__item {
+    position: relative;
+    display: inline-block;
+    width: 84px;
+    height: 149px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 0 4px 12px 0;
+    font-size: 0;
+    color: #fff;
+    padding: 6px;
+    background-position: 50%;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .08);
+    cursor: pointer;
+    overflow: hidden
+}
+
+.StoriesSearchBlock__item,
+.StoriesSearchBlock__item:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.StoriesSearchBlock__item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .15)), to(rgba(0, 0, 0, .6)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, .15), rgba(0, 0, 0, .6));
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6))
+}
+
+.StoriesSearchBlock__item:last-of-type {
+    margin-right: 0
+}
+
+.StoriesSearchBlock__name {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding: 6px;
+    line-height: 1.17;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .32);
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.StoriesSearchBlock__label {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
 .Stories {
     position: fixed;
     top: 0;
@@ -44019,6 +44147,110 @@ body.apps_settingsPageBody .basis__content {
 
 .Stories__swipeText_top {
     top: -65px
+}
+
+.StoriesTooltip {
+    position: absolute;
+    max-width: 250px;
+    font-size: 13px;
+    text-align: center;
+    border: none;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #fff;
+    -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .12);
+    -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .12);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.35;
+    color: #19191a;
+    z-index: 1000;
+    cursor: pointer;
+    -webkit-transition: opacity 0.4s ease;
+    -moz-transition: opacity 0.4s ease;
+    -o-transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease
+}
+
+.StoriesTooltip__arrow {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 16px;
+    height: 8px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.StoriesTooltip__arrow:after,
+.StoriesTooltip__arrow:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 8px solid transparent
+}
+
+.StoriesTooltip__arrow:before {
+    border-top: 8px solid #c5d0db
+}
+
+.StoriesTooltip__arrow:after {
+    border-top: 7px solid #fff
+}
+
+.StoriesTooltip:hover {
+    opacity: .9
+}
+
+.Stories__tooltip-link {
+    display: block;
+    padding: 8px 16px;
+    color: #19191a;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    white-space: nowrap
+}
+
+.Stories__tooltip-link:after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    margin-left: 3px;
+    height: 9px;
+    vertical-align: middle;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%2288%204%208%208%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%2288%22%20y%3D%224%22%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpath%20d%3D%22M90.2%2010.8C90%2011.1%2090%2011.5%2090.3%2011.7%2090.6%2011.9%2091%2011.9%2091.2%2011.6L93.8%208.4C94%208.2%2094%207.8%2093.8%207.6L91.2%204.4C91%204.1%2090.6%204.1%2090.3%204.3%2090%204.5%2090%204.9%2090.2%205.2L92.5%208%2090.2%2010.8Z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat;
+    -webkit-transition: -webkit-transform 70ms ease-out;
+    transition: -webkit-transform 70ms ease-out;
+    -moz-transition: transform 70ms ease-out, -moz-transform 70ms ease-out;
+    -o-transition: transform 70ms ease-out, -o-transform 70ms ease-out;
+    transition: transform 70ms ease-out;
+    transition: transform 70ms ease-out, -webkit-transform 70ms ease-out, -moz-transform 70ms ease-out, -o-transform 70ms ease-out
+}
+
+.Stories__tooltip-link:hover:after {
+    -webkit-transform: translateX(1px);
+    -moz-transform: translateX(1px);
+    -ms-transform: translateX(1px);
+    -o-transform: translateX(1px);
+    transform: translateX(1px)
 }
 
 @-webkit-keyframes lds-rolling {
@@ -44228,7 +44460,7 @@ body.apps_settingsPageBody .basis__content {
     -moz-border-radius: 16px;
     border-radius: 16px;
     background: #fff;
-    z-index: 53;
+    z-index: 56;
     padding: 8px 10px 8px 34px
 }
 
@@ -44401,7 +44633,7 @@ body.apps_settingsPageBody .basis__content {
     transform: translateZ(0);
     color: #fff;
     margin-bottom: env(safe-area-inset-bottom);
-    pointer-events: all
+    pointer-events: none
 }
 
 .Story__footer>.Story__table>.Story__cell {
@@ -44471,6 +44703,7 @@ body.apps_settingsPageBody .basis__content {
     margin: auto;
     position: relative;
     cursor: pointer;
+    pointer-events: auto;
     width: 100%;
     max-width: 350px;
     -webkit-box-sizing: border-box;
@@ -44523,7 +44756,8 @@ body.apps_settingsPageBody .basis__content {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .08);
     border: solid 1px hsla(0, 0%, 100%, .48);
     color: #fff;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, .12)
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .12);
+    pointer-events: auto
 }
 
 .Story__share {
@@ -44551,7 +44785,8 @@ body.apps_settingsPageBody .basis__content {
     -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .08);
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .08);
     border: solid 1px hsla(0, 0%, 100%, .48);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, .12)
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .12);
+    pointer-events: auto
 }
 
 .Story__moreLink .Story__icon_topArrow {
@@ -44576,7 +44811,7 @@ body.apps_settingsPageBody .basis__content {
     top: 24px;
     left: 12px;
     right: 12px;
-    z-index: 52;
+    z-index: 56;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -44673,6 +44908,36 @@ body.apps_settingsPageBody .basis__content {
     z-index: 50;
     display: block;
     pointer-events: none
+}
+
+.Story__stickers {
+    position: absolute;
+    z-index: 55;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none
+}
+
+.StoryAuthor_error .Story__stickers {
+    display: none
+}
+
+.Story__sticker {
+    position: absolute;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 100;
+    cursor: pointer;
+    -o-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    pointer-events: all;
+    -webkit-tap-highlight-color: transparent
 }
 
 .Story__content_video {
@@ -45678,6 +45943,10 @@ body.apps_settingsPageBody .basis__content {
 
 .Views__viewersHeader {
     padding: 19px 12px 13px
+}
+
+.StoryMenu {
+    pointer-events: auto
 }
 
 .StoryMenu__button {

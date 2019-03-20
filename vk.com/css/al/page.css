@@ -2860,6 +2860,11 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     float: left
 }
 
+.deep_active .post_replies_header .post_replies_reorder_wrap .eltt_fancy_action,
+.deep_active.wall_module .post_replies_header .post_replies_reorder_wrap .eltt_fancy_action {
+    line-height: 16px
+}
+
 .deep_active .post_replies_header .post_replies_reorder,
 .deep_active.wall_module .post_replies_header .post_replies_reorder {
     cursor: pointer;

@@ -170,7 +170,8 @@
 }
 
 .employee_info_module .option {
-    padding: 8px 0
+    padding: 8px 0;
+    line-height: 16px
 }
 
 .employee_info_module .option .option_key {
@@ -183,6 +184,11 @@
 
 .employee_info_module .option .employee_busyness {
     color: #e64646;
+    font-weight: 500
+}
+
+.employee_info_module .option .employee_busyness_soon {
+    color: #9f9f9f;
     font-weight: 500
 }
 
