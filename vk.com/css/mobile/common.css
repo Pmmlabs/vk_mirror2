@@ -1973,6 +1973,10 @@ input.wide_button {
     background-position: 0 0px
 }
 
+.mmi_recommended .i_icon {
+    background-position: 0 -240px
+}
+
 .mmi_answers .i_icon {
     background-position: 0 -48px
 }
@@ -2015,6 +2019,16 @@ input.wide_button {
 
 .mmi_apps .i_icon {
     background-position: 0 -192px
+}
+
+.mmi_recommended {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .mmi_recommended {
+        display: block
+    }
 }
 
 .mmi_app .i_icon,
@@ -25563,6 +25577,7 @@ figure[data-type="102"] .article_object_video_play {
 .GroupsNear,
 .GroupsSearch,
 .LikesPhotoBlock,
+.MainMenu__splashScreen,
 .new_post_container,
 .Pad,
 .pageAttachMoney,
@@ -25593,6 +25608,7 @@ figure[data-type="102"] .article_object_video_play {
     .GroupsNear,
     .GroupsSearch,
     .LikesPhotoBlock,
+    .MainMenu__splashScreen,
     .new_post_container,
     .Pad,
     .pageAttachMoney,
@@ -25625,6 +25641,7 @@ figure[data-type="102"] .article_object_video_play {
     .GroupsNear .head_panel,
     .GroupsSearch .head_panel,
     .LikesPhotoBlock .head_panel,
+    .MainMenu__splashScreen .head_panel,
     .new_post_container .head_panel,
     .Pad .head_panel,
     .pageAttachMoney .head_panel,
@@ -25664,6 +25681,8 @@ figure[data-type="102"] .article_object_video_play {
     .GroupsSearch.BookmarksItem_compact,
     .LikesPhotoBlock .al_loading,
     .LikesPhotoBlock.BookmarksItem_compact,
+    .MainMenu__splashScreen .al_loading,
+    .MainMenu__splashScreen.BookmarksItem_compact,
     .new_post_container .al_loading,
     .new_post_container.BookmarksItem_compact,
     .Pad .al_loading,
@@ -50253,6 +50272,43 @@ a .BookmarkListItem__subtitle:hover {
     margin: auto
 }
 
+.MainMenu__splashScreen {
+    display: none;
+    height: 600px;
+    height: 100vh;
+    width: 100%;
+    text-align: center
+}
+
+@media (min-width: 882px) {
+    .MainMenu__splashScreen {
+        display: table
+    }
+}
+
+.MainMenu__splashScreenContainer {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.MainMenu__splashScreenLogo {
+    height: 56px;
+    width: 56px;
+    display: block;
+    margin: 13px auto;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2256%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.04%22%20d%3D%22M0%200H56V56H0z%22%2F%3E%3Cg%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%223%22%3E%3Cpath%20stroke%3D%22%2399A2AD%22%20d%3D%22M16.692%209h22.616c2.675%200%203.645.278%204.623.801a5.452%205.452%200%200%201%202.268%202.268c.523.978.801%201.948.801%204.623v22.616c0%202.675-.278%203.645-.801%204.623a5.452%205.452%200%200%201-2.268%202.268c-.978.523-1.948.801-4.623.801H16.692c-2.675%200-3.645-.278-4.623-.801a5.452%205.452%200%200%201-2.268-2.268C9.278%2042.953%209%2041.983%209%2039.308V16.692c0-2.675.278-3.645.801-4.623a5.452%205.452%200%200%201%202.268-2.268C13.047%209.278%2014.017%209%2016.692%209z%22%2F%3E%3Cpath%20stroke%3D%22%23A4ABB3%22%20d%3D%22M10%2020h36%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.MainMenu__splashScreenTitle {
+    color: #818c99;
+    line-height: 20px;
+    font-size: 16px
+}
+
+.MainMenu__splashScreenLink {
+    color: #5181b8
+}
+
 .uMailWrite {
     position: relative;
     z-index: 0;
@@ -53104,14 +53160,11 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 
 @media (min-width: 882px) {
     .vk_js_yes .vk_custom_scroll:not(.vk__page_mail) .basis__content {
-        position: static;
-        padding: 0!important
-    }
-}
-
-@media (min-width: 882px) {
-    .vk_js_yes .vk_custom_scroll:not(.vk__page_mail) {
-        position: static
+        left: 276px;
+        top: 48px;
+        bottom: 0;
+        margin: 10px auto 0!important;
+        max-width: 604px
     }
 }
 
@@ -57843,7 +57896,7 @@ img.wk_photo_right {
     ._lm.lm_opened #m .mhead .mhb_back,
     ._lm.lm_opened #m .mhead .mhb_logo {
         position: absolute;
-        z-index: 7;
+        z-index: 8;
         -webkit-backface-visibility: hidden;
         width: 330px
     }
@@ -57876,19 +57929,6 @@ img.wk_photo_right {
     }
     .qs_opened #l .m_search_items {
         z-index: 7
-    }
-    .n #mcont.ScrollView {
-        overflow: visible!important;
-        -webkit-overflow-scrolling: unset!important;
-        -webkit-transform: none!important;
-        -moz-transform: none!important;
-        -ms-transform: none!important;
-        -o-transform: none!important;
-        transform: none!important
-    }
-    .n #mcont.ScrollView:after,
-    .n #mcont.ScrollView:before {
-        content: none!important
     }
 }
 

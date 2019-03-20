@@ -1960,6 +1960,10 @@ input.wide_button {
     background-position: 0 0px
 }
 
+.mmi_recommended .i_icon {
+    background-position: 0 -240px
+}
+
 .mmi_answers .i_icon {
     background-position: 0 -48px
 }
@@ -2002,6 +2006,16 @@ input.wide_button {
 
 .mmi_apps .i_icon {
     background-position: 0 -192px
+}
+
+.mmi_recommended {
+    display: none
+}
+
+@media (min-width: 882px) {
+    .mmi_recommended {
+        display: block
+    }
 }
 
 .mmi_app .i_icon,

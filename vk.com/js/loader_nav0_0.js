@@ -470,7 +470,7 @@ var stVersions = {
     'market_adm.js': 3358188559,
     'stories_admin.css': 19224028071,
     'stories_admin.js': 1129028316,
-    'biz.css': 17689707351,
+    'biz.css': 21078918802,
     'landings/common.css': 21174723810,
     'landings/community_message.css': 16624290486,
     'landings/wdsd.css': 17003291111,
@@ -494,7 +494,7 @@ var stVersions = {
     'landings/vkvalentine.css': 17848085668,
     'landings/vkvalentine.js': 3463861529,
     'landings/calls.js': 1624757932,
-    'landings/businesspages.css': 5930489095,
+    'landings/businesspages.css': 5853506694,
     'landings/businesspages.js': 3384934990,
     'landings/ads.css': 20087662225,
     'landing_aes.js': "114d9f69058a4e2199723",
@@ -715,7 +715,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9482;
+var _rnd = 9638;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
