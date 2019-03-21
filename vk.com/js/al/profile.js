@@ -1055,6 +1055,77 @@ var Profile = {
                     unlockButton(btn)
                 }
             });
+        },
+        initShowAsDropDown: function(friendsList, selected, langUnknownUserAs) {
+            var pageBodyNode = ge('page_body');
+            var notNode = ge('profile_view_as');
+            cur.destroy.push(function() {
+                if (!nav.objLoc.no_as_init) {
+                    re(notNode);
+                    window.viewAsDD = null;
+                }
+            });
+
+            if (!window.viewAsDD) {
+                pageBodyNode.insertBefore(notNode, pageBodyNode.firstChild);
+
+                window.viewAsDD = window.WideDropdown.init('view_as_dd', {
+                    defaultItems: friendsList,
+                    chosen: selected,
+                    width: 280,
+                    url: 'hints.php',
+                    params: {
+                        act: 'a_json_friends',
+                        from: 'viewas'
+                    },
+                    noResult: langUnknownUserAs,
+                    introText: langUnknownUserAs,
+                    noMultiSelect: 1,
+                    custom: function(q) {
+                        return q.match(/^(https?:\/\/)?vk\.com\/[\w.]{2,32}$/) ? [
+                                [clean(q), clean(q), langUnknownUserAs, '/images/camera_c.gif', '', 0, 0, '', 1]
+                            ] :
+                            false;
+                    },
+                    onChange: function(actionId) {
+                        var dd = cur.wdd['view_as_dd'];
+                        if (actionId !== 1 || !dd.chosen) {
+                            return; // only 'added' event is interesting
+                        }
+                        var value = dd.chosen[0] + '';
+                        if (value.match(/^-?\d+$/) && intval(value)) {
+                            cur._leave = true;
+                            nav.go(Object.assign(nav.objLoc, {
+                                as: intval(value),
+                                no_as_init: 1
+                            }));
+                            return;
+                        }
+                        ajax.post('al_profile.php', {
+                            act: 'get_profile_uid',
+                            link: value
+                        }, {
+                            onDone: function(data) {
+                                cur._leave = true;
+                                var mid = data[0];
+                                if (mid && mid !== vk.id) {
+                                    WideDropdown.choose('view_as_dd', false, data);
+                                }
+                            }
+                        });
+                    }
+                });
+                show(notNode);
+            } else {
+                cur.wdd = Object.assign(cur.wdd || {}, {
+                    view_as_dd: window.viewAsDD
+                });
+
+            }
+        },
+        leaveAsMode: function(el, event) {
+            cur._leave = true;
+            return nav.go(el, event);
         }
     },
     profile = Profile;

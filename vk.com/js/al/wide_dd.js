@@ -45,6 +45,7 @@
 
                 case 'keydown':
                 case 'keypress':
+                case 'paste':
                     clearTimeout(dd.updateTimer);
                     dd.updateTimer = setTimeout(wdd._updateList.pbind(dd, false), 0);
 
@@ -526,7 +527,7 @@
             if (!browser.opera_mobile) {
                 dd.text.active = val(dd.text) ? 1 : '';
                 dd.text.getValue = wdd._getTextValue.bind(dd.text);
-                addEvent(dd.text, 'focus blur ' + (browser.opera ? 'keypress' : 'keydown'), wdd._textEvent)
+                addEvent(dd.text, 'focus blur paste ' + (browser.opera ? 'keypress' : 'keydown'), wdd._textEvent)
             }
 
             setTimeout(wdd._afterInit.pbind(dd), 0);

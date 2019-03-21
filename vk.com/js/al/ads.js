@@ -903,6 +903,9 @@ Ads.createStaticDatePicker = function(elem, bindingId, classid, defaultDate, mod
         mode = 'd';
     }
 
+    cur.exportUi = cur.exportUi || {};
+    cur.exportUi.mode = mode;
+
     var params = {
         mode: mode,
         day: defaultDate.day,
@@ -1328,12 +1331,11 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePi
                 toggle(geByClass1('grouping_ads_promoted_row_' + bindingId), promoted_posts_mode);
                 toggle(geByClass1('stats_type_row_' + bindingId), !promoted_posts_mode);
                 toggle(geByClass1('client_choose_row_' + bindingId), promoted_posts_mode || (geByClass1('grouping_ads_' + bindingId).uiDropdown.value == 2));
-                if (isNewDatePicker) {
-                    toggle(geByClass1('date_range_' + bindingId), !promoted_posts_mode);
-                } else {
-                    toggle(geByClass1('start_time_row_' + bindingId), !promoted_posts_mode);
-                    toggle(geByClass1('stop_time_row_' + bindingId), !promoted_posts_mode);
-                }
+                var isSelectedByDays = cur.exportUi.mode === 'd';
+                toggle(geByClass1('date_range_' + bindingId), !promoted_posts_mode && isSelectedByDays && isNewDatePicker);
+                var isShowOldPicker = !promoted_posts_mode && (isNewDatePicker && !isSelectedByDays || !isNewDatePicker);
+                toggle(geByClass1('start_time_row_' + bindingId), isShowOldPicker);
+                toggle(geByClass1('stop_time_row_' + bindingId), isShowOldPicker);
 
                 if (promoted_posts_mode) {
                     var grouping_ads_promoted_el = geByClass1('grouping_ads_promoted_' + bindingId);
@@ -1348,6 +1350,7 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePi
                 //
                 if (elem.className.substring(0, 'grouping_time'.length) == 'grouping_time') {
                     var modes = ['d', 'm', 'h'];
+                    cur.exportUi.mode = modes[i];
                     cur.exportUi['start_time'].setMode(modes[i]);
                     cur.exportUi['stop_time'].setMode(modes[i]);
                     if (geByClass('ads_export_date_range').length) {

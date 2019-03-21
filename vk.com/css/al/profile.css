@@ -306,7 +306,7 @@
 }
 
 .profile_can_view_as_dd .wdd_text {
-    width: 241px
+    width: 241px!important
 }
 
 .profile_can_view_as_btn {

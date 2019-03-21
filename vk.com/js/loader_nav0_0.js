@@ -257,8 +257,8 @@ var stVersions = {
     'cmodules/web/GroupsEdit.js': "14ead160a5f6fcd2830300b6864181b350",
     'groups_edit.css': 75955863886,
     'cmodules/web/groups_edit.js': "2649c1f247df4cb3916643f59edeadf06",
-    'profile.css': 21030083978,
-    'profile.js': 1981575243,
+    'profile.css': 20504692203,
+    'profile.js': 4004375664,
     'calendar.css': 22802903925,
     'calendar.js': 79178639,
     'wk.css': 24478038177,
@@ -274,13 +274,11 @@ var stVersions = {
     'thumbs_edit.css': 15780848921,
     'cmodules/web/thumbs_edit.js': "269e56acd2e9f97ad9fed",
     'mail.css': 2042965398,
-    'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 216736185505,
     'imn.js': "438e2be35149598c662ab0d4e58dad806e3",
-    'im.js': 1322065008,
     'wide_dd.css': 18627979227,
-    'wide_dd.js': 452755344,
+    'wide_dd.js': 888577038,
     'writebox.css': 19054578202,
     'writebox.js': "5355bd7df8f786b5903dae3a947d5b5cce",
     'sharebox.js': 2986783760,
@@ -392,7 +390,7 @@ var stVersions = {
     'aes_light.js': 4212813824,
     'ads.css': 64118339086,
     'ads_bonus.css': 1294533291,
-    'ads.js': 3084613790,
+    'ads.js': 563115186,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 115897510513,
     'ads_edit.js': 821946354,
@@ -715,7 +713,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2651;
+var _rnd = 1570;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
