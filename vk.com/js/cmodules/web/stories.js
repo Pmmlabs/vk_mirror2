@@ -326,13 +326,14 @@
                     n = r.can_remove,
                     a = r.can_share,
                     c = r.narrative,
-                    l = t.data.can_blacklist,
-                    d = o.split("_").map(function(t) {
+                    l = r.is_ads,
+                    d = t.data.can_blacklist,
+                    h = o.split("_").map(function(t) {
                         return intval(t)
                     }),
-                    h = B(d, 1)[0],
-                    p = c && !c.is_cover;
-                l && !p && e.push({
+                    p = B(h, 1)[0],
+                    u = c && !c.is_cover;
+                !d || u || l || e.push({
                     label: Object(x.b)("stories_add_blacklist_button"),
                     onClick: function() {
                         return t._addToBlacklist()
@@ -374,7 +375,7 @@
                         return t.report()
                     }
                 });
-                h === vk.id || p || e.push({
+                p === vk.id || u || e.push({
                     label: Object(x.b)("stories_settings"),
                     onClick: function() {
                         return window.Stories.showBlackList()
@@ -426,7 +427,7 @@
             return o.createElement("div", {
                 className: "stories_button views _views_button",
                 onClick: function(t) {
-                    e.showFeedbackTooltip(), t.stopPropagation()
+                    e._hideTooltip(), e.showFeedbackTooltip(), t.stopPropagation()
                 }
             }, d && o.createElement("div", {
                 className: "stories_button_views"
@@ -438,8 +439,8 @@
             }))
         }
         var N = window,
-            O = N.getLang,
-            F = N.showTooltip,
+            F = N.getLang,
+            O = N.showTooltip,
             I = N.trim,
             D = N.addEvent,
             A = N.removeEvent,
@@ -520,11 +521,11 @@
                     return this.props.story.getCurStoryData().mask_id ? o.createElement("div", {
                         className: "stories_button mask _mask_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: O("stories_mask_tooltip")
+                                text: F("stories_mask_tooltip")
                             })
                         },
                         onClick: this._maskButtonDidPress.bind(this)
@@ -533,11 +534,11 @@
                     return !0 !== this.props.story.getCurStoryData().can_share ? "" : o.createElement("div", {
                         className: "stories_button share _share_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: O("stories_share")
+                                text: F("stories_share")
                             })
                         },
                         onClick: this._shareButtonDidPress.bind(this)
@@ -547,11 +548,11 @@
                     return !t.getCurStoryData().can_remove || t.getOwnerId() < 0 ? "" : o.createElement("div", {
                         className: "stories_button remove _remove_button",
                         onMouseOver: function(t) {
-                            return F(t.target, {
+                            return O(t.target, {
                                 black: 1,
                                 center: 1,
                                 shift: [1, 13, 0],
-                                text: O("global_delete")
+                                text: F("global_delete")
                             })
                         },
                         onClick: this._removeButtonDidPress.bind(this)
@@ -573,7 +574,7 @@
                         contentEditable: !0,
                         ref: "messageInput",
                         className: "stories_send_form_text",
-                        placeholder: O("stories_answer_placeholder"),
+                        placeholder: F("stories_answer_placeholder"),
                         onFocus: this._sendFormDidFocus.bind(this),
                         onBlur: this._sendFormDidBlur.bind(this),
                         onKeyUp: function() {
@@ -1358,7 +1359,7 @@
                         inArray(e.type, [Y, X]) && t.stickers[r] && _t(t.stickers[r], t._getStickerStyle(e, t.contWrap))
                     }), this._hideTooltip()
                 }, t.prototype._onClickHandle = function(t) {
-                    hasClass(t.target, "stories_sticker") && (this.tooltip ? this._hideTooltip() : this._showTooltip(t, this._createStickerLink(t.target)))
+                    hasClass(t.target, "stories_sticker") && (this.hideFeedbackTooltip(), this.tooltip ? this._hideTooltip() : this._showTooltip(t, this._createStickerLink(t.target)))
                 }, t.prototype._createStickerLink = function(t) {
                     var e = this,
                         r = intval(domData(t, "type"));

@@ -1247,7 +1247,7 @@ Ads.makeDDScrollable = function(dd, threshold) {
 }
 
 // params must be ready to go to contructor
-Ads.createStaticDropdown = function(elem, bindingId, values, params) {
+Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePicker) {
     elem = ge(elem);
     if (params.classname) elem.className = params.classname + '_' + bindingId;
     elem.className = elem.className + ' dd_link';
@@ -1328,8 +1328,12 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
                 toggle(geByClass1('grouping_ads_promoted_row_' + bindingId), promoted_posts_mode);
                 toggle(geByClass1('stats_type_row_' + bindingId), !promoted_posts_mode);
                 toggle(geByClass1('client_choose_row_' + bindingId), promoted_posts_mode || (geByClass1('grouping_ads_' + bindingId).uiDropdown.value == 2));
-                toggle(geByClass1('start_time_row_' + bindingId), !promoted_posts_mode);
-                toggle(geByClass1('stop_time_row_' + bindingId), !promoted_posts_mode);
+                if (isNewDatePicker) {
+                    toggle(geByClass1('date_range_' + bindingId), !promoted_posts_mode);
+                } else {
+                    toggle(geByClass1('start_time_row_' + bindingId), !promoted_posts_mode);
+                    toggle(geByClass1('stop_time_row_' + bindingId), !promoted_posts_mode);
+                }
 
                 if (promoted_posts_mode) {
                     var grouping_ads_promoted_el = geByClass1('grouping_ads_promoted_' + bindingId);

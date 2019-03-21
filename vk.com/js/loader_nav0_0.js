@@ -392,7 +392,7 @@ var stVersions = {
     'aes_light.js': 4212813824,
     'ads.css': 64118339086,
     'ads_bonus.css': 1294533291,
-    'ads.js': 327301852,
+    'ads.js': 3084613790,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 115897510513,
     'ads_edit.js': 821946354,
@@ -539,8 +539,8 @@ var stVersions = {
     'voice_message_player.js': "19c9d714c23db1c2f4765",
     'cmodules/web/speech_worker_mp3.js': "1752a4c0d63c7d8aaa980",
     'cmodules/web/speech_worker_opus.js': "10c77cd7cf3cfe66b616effaa1c330b8e",
-    'stories.js': "6f8aa39e0219223b1e76ac6bf895ca21b",
-    'stories.css': 19943308657,
+    'stories.js': "6498ad52b7e7705b6a279e367902338b1",
+    'stories.css': 20760282584,
     'cmodules/web/stories_manage.js': "2707268be19ebbf28de1b04f3585c29e1",
     'stories_manage.css': 81959711655,
     'article.css': 32777318659,
@@ -608,7 +608,7 @@ var stVersions = {
     'lang': 6959,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': 'd23fa71be2c549d751ba',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': '519c4960dc339b55efe0',
-    'cmodules/bundles/4e9ebb028b98a4976ef0fa54cb4e993f.js': 'b2864f8965e4dee69975',
+    'cmodules/bundles/4e9ebb028b98a4976ef0fa54cb4e993f.js': 'e0fb071feeb20f280bfe',
     'cmodules/bundles/5998114349ee818e3bac70caa8176b9d.js': '7cb53097d27420ed431b',
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': 'a8a511d45bf780a8cd9f',
     'cmodules/bundles/6d669e070da493537223b2032427707c.js': '0230a53ec49445f28474',
@@ -626,7 +626,7 @@ var stVersions = {
     'cmodules/web/audio.js': '91a4d9db3f4b9d5802a39dcd6653d4d3',
     'cmodules/web/audioplayer.js': '50552896ec4437228dddbd2a6dd759a6',
     'cmodules/web/bugtracker_testrun.js': '53c56b2c9e29b5bdd9a6ec3687769d5c',
-    'cmodules/web/checklists.js': 'b1abc9882b1d8426413ddb83f94f1b69',
+    'cmodules/web/checklists.js': '14218b8cfba265989b405c4094a804da',
     'cmodules/web/clipboard.js': 'c0225d1ac8e21b7d43d2da4076177c17',
     'cmodules/web/fifa2018.js': 'b6d00306233c87f79d63',
     'cmodules/web/geodb_requests.js': '37840c01b6bd3f6ab5a7',
@@ -649,7 +649,7 @@ var stVersions = {
     'cmodules/web/playground.js': 'b035c363afe1e3ffd423',
     'cmodules/web/rich_dropdown.js': '291da68bd9211cc9f58a',
     'cmodules/web/speech.js': 'ef73917d61c611f73af9ae663587e952',
-    'cmodules/web/stories.js': 'f8aa39e0219223b1e76ac6bf895ca21b',
+    'cmodules/web/stories.js': '498ad52b7e7705b6a279e367902338b1',
     'cmodules/web/text_editor.js': '2f3d30bfcb3c86619c64',
     'cmodules/web/ugcform.js': '8aba69f339948915d24a',
     'cmodules/web/video_upload.js': '86145d5da03f0d044c7f',
@@ -715,7 +715,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9638;
+var _rnd = 2651;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
