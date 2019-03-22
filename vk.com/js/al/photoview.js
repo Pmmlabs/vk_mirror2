@@ -432,7 +432,7 @@ var Photoview = {
             var isFAQ = nav.objLoc[0].match(/^faq(\d)+$/);
             var isBug = nav.objLoc[0].match(/^bug(\d)+$/);
             var isTranslationBox = cur.translationBoxOpened;
-            cur.pvIsLightMode = isBug || nav.objLoc[0].indexOf('blog/') == 0 || isFAQ || inArray(nav.objLoc[0], ['blog', 'about', 'support', 'helpdesk', 'market', 'bugs', 'translation']) || isTranslationBox;
+            cur.pvIsLightMode = isBug || nav.objLoc[0].indexOf('blog/') == 0 || isFAQ || inArray(nav.objLoc[0], ['blog', 'about', 'support', 'helpdesk', 'market', 'bugs', 'translation', 'restore2']) || isTranslationBox;
             cur.pvShowBottomActions = !cur.pvIsLightMode || isFAQ || inArray(nav.objLoc[0], ['helpdesk', 'support']);
 
             var DISPLAY_NONE = 'display: none';

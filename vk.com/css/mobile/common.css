@@ -25986,7 +25986,12 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .GlobalSearchHeader .qs_submit {
-    display: none
+    visibility: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 0;
+    right: 0
 }
 
 .GlobalSearchHeader .row_table_main_column {
@@ -31918,6 +31923,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .apps_gameSettingsPage__btn {
+    display: block;
     padding: 10px 32px;
     font-size: 16px;
     font-weight: 500;
@@ -32188,7 +32194,7 @@ body.apps_settingsPageBody .basis__content {
         position: absolute;
         top: 0;
         right: 276px;
-        z-index: 7
+        z-index: 8
     }
     ._hfixed .header__gear,
     ._hfixed .mhi_create {
@@ -32400,7 +32406,8 @@ body.apps_settingsPageBody .basis__content {
         -webkit-flex-shrink: 0;
         -ms-flex-negative: 0;
         flex-shrink: 0;
-        min-width: 31px
+        min-width: 31px;
+        float: left
     }
     .vk .header__center {
         height: 48px;
@@ -52374,9 +52381,13 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 @media (min-width: 400px) {
     .vk__page_publish .create_post_extra {
         padding-left: 15px;
-        padding-right: 15px;
-        background: #fff;
-        border-bottom: 1px solid #ebedf0
+        padding-right: 15px
+    }
+}
+
+@media (min-width: 882px) {
+    .vk__page_publish .create_post_extra {
+        background: #fff
     }
 }
 
