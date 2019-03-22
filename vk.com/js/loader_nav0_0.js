@@ -65,7 +65,7 @@ var navMap = {
     'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'sorter.js']],
     'duty_tt($|/)': ['duty_timetable.php', ['duty_timetable.css', 'duty_timetable.js']],
     '(support($|/)|tutorial($|/)|faq\\d+)': ['al_tickets.php', ['tickets.css', 'cmodules/web/support.js']],
-    'aovk($|/)': ['al_helpdesk.php', ['tickets.css', 'tickets.js', 'helpdesk.css', 'cmodules/internal/helpdesk.js']],
+    'aovk($|/)': ['al_helpdesk.php', ['tickets.css', 'cmodules/web/support.js', 'helpdesk.css', 'cmodules/internal/helpdesk.js']],
     'helpdesk($|/)': ['al_helpdesk.php', ['tickets.css', 'cmodules/web/support.js', 'helpdesk.css', 'cmodules/internal/helpdesk.js']],
     'helpdesk_mng($|/)': ['al_helpdesk_mng.php', ['internal/helpdesk_mng.css', 'internal/helpdesk_mng.js']],
     'offersdesk($|/)': ['offers.php', ['offers.css', 'offers.js']],
@@ -156,7 +156,7 @@ var navMap = {
 var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2660709036,
-    'common.css': 65963950592,
+    'common.css': 66369121761,
     'cmodules/web/common_web.js': 38,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -212,7 +212,7 @@ var stVersions = {
     'wkview.css': 28409652122,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
-    'video.js': 4244322734,
+    'video.js': 659898721,
     'video.css': 25614790274,
     'videocat.js': 3590298689,
     'videocat.css': 20105220790,
@@ -256,7 +256,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': "636c180b438fb596b7571c49e0a09c7cf3",
     'cmodules/web/GroupsEdit.js': "14ead160a5f6fcd2830300b6864181b350",
     'groups_edit.css': 75955863886,
-    'cmodules/web/groups_edit.js': "2649c1f247df4cb3916643f59edeadf06",
+    'cmodules/web/groups_edit.js': "2631b932923c586dc3cd4076a4266ce0a",
     'profile.css': 20504692203,
     'profile.js': 4004375664,
     'calendar.css': 22802903925,
@@ -290,7 +290,7 @@ var stVersions = {
     'privacy.js': 711405089,
     'privacy.css': 16853053896,
     'apps.css': 56634785532,
-    'apps.js': "2942d1dfe39427143952a6a97c549beff33",
+    'apps.js': "29404c230cf064728704692554900143c17",
     'apps_edit.js': "117bde061f6b84cca853928d8f56d973c2a",
     'apps_edit.css': 103549881599,
     'apps_check.js': 3204387834,
@@ -354,8 +354,7 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 17930587605,
     'helpdesk.css': 29892623477,
-    'cmodules/web/support.js': "19cc1e21f8617b154350a85fab47e0918",
-    'tickets.js': 676094159,
+    'cmodules/web/support.js': "1594113e892f61a0013eec3fd0ccde55c",
     'tickets.css': 29281797663,
     'faq.css': 23024330140,
     'agents.js': 2789926745,
@@ -611,12 +610,12 @@ var stVersions = {
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': 'fc4f3751c29d332cd4cb',
     'cmodules/bundles/6d669e070da493537223b2032427707c.js': '0230a53ec49445f28474',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.js': '9c65d67e5e1be9cb16ac',
-    'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': '2e27ac5e54275a48cbc1',
+    'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': '8fe101371f7ceffaef8f',
     'cmodules/bundles/a81cf41ddc395f6c399315bd508b7abf.js': 'c1f1df5e3498ce929e3a',
     'cmodules/bundles/vendors.js': 'aeccf1eb258460e8cbbc',
     'cmodules/bundles/common.js': '4834158c32274df6d67f',
     'cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.js': '21512de761e9a49b5567',
-    'cmodules/web/apps.js': '2d1dfe39427143952a6a97c549beff33',
+    'cmodules/web/apps.js': '04c230cf064728704692554900143c17',
     'cmodules/web/apps_connect.js': '8cf1d61467e8670cd11cc2fdae0ca9b1',
     'cmodules/web/apps_edit.js': 'bde061f6b84cca853928d8f56d973c2a',
     'cmodules/web/article_editor_layer.js': '9471e3bc371ae2613041010521122b24',
@@ -713,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6244;
+var _rnd = 7668;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
