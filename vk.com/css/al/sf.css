@@ -1528,3 +1528,14 @@ body.sf .mention_tt_actions {
 .avatar_tooltip {
     width: 200px
 }
+
+.spamfeed_search_checkbox {
+    line-height: 12px
+}
+
+.spamfeed_digest_end {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #828282
+}

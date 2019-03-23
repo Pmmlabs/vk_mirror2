@@ -736,16 +736,25 @@ a.group_ad_post_stats {
 }
 
 .eltt.feature_intro_tt.group_edit_admin_tip_show {
-    width: auto!important;
     min-width: 120px;
-    max-width: 280px;
     padding: 7px 12px 9px;
     line-height: 19px
+}
+
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_bottom,
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_top {
+    max-width: 280px;
+    width: auto!important
 }
 
 .eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_bottom .eltt_arrow_back,
 .eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_top .eltt_arrow_back {
     margin-left: 41px!important
+}
+
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_left,
+.eltt.feature_intro_tt.group_edit_admin_tip_show.eltt_right {
+    max-width: 240px
 }
 
 .eltt.feature_intro_tt.group_edit_admin_tip_show.group_edit_admin_tip_show_comments_filter {

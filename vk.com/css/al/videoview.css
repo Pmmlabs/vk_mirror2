@@ -220,6 +220,19 @@ body.mobfixed #mv_layer_wrap {
     margin-right: 240px
 }
 
+.mv_title .mv_subtitle {
+    margin-left: 4px;
+    color: #939393
+}
+
+.mv_title .mv_explicit {
+    display: inline-block;
+    margin-left: 9px;
+    width: 13px;
+    height: 13px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EExplicit_13%3C%2Ftitle%3E%3Cpath%20d%3D%22M1%202.841v7.318C1%2011.173%201.816%2012%202.823%2012h7.354A1.828%201.828%200%200%200%2012%2010.159V2.84A1.834%201.834%200%200%200%2010.177%201H2.823A1.828%201.828%200%200%200%201%202.841zm-1%20.121A2.95%202.95%200%200%201%202.944%200h7.112A2.955%202.955%200%200%201%2013%202.962v7.076A2.95%202.95%200%200%201%2010.056%2013H2.944A2.955%202.955%200%200%201%200%2010.038V2.962zM6%206v1h2V6H6zm0-2v1h2V4H6zm0%204v1h2V8H6zM5%204v5h1V4H5z%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%20fill-opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
 .mv_title_block {
     padding: 15px 20px
 }
@@ -510,15 +523,18 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_author_photo_wrap {
     display: block;
+    overflow: hidden
+}
+
+.mv_author_photo_wrap,
+.mv_author_photo {
     height: 50px;
-    width: 50px
+    width: 50px;
+    border-radius: 50%
 }
 
 .mv_author_photo {
     position: relative;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc
 }

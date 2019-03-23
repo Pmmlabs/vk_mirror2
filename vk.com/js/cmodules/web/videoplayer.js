@@ -4964,7 +4964,7 @@
                         backgroundSize: e
                     })
                 }
-                if (this.updateTitle(t.md_title), toggleClass(this.titleLink, "_right_offset", !t.nolikes), toggleClass(this.titleLink, "_clickable", !!t.is_embed), t.live && this.onLivePhaseChange(t.live), t.stickers_promo && this.buildStickersPromo.apply(this, me(t.stickers_promo.split("|"))), this._mouseInside = isHover(this.el), this._lastUserActivity = Date.now(), this.updateWaiting(), this.player.isAutoplay()) {
+                if (this.updateTitle(t.md_title, t.explicit), toggleClass(this.titleLink, "_right_offset", !t.nolikes), toggleClass(this.titleLink, "_clickable", !!t.is_embed), t.live && this.onLivePhaseChange(t.live), t.stickers_promo && this.buildStickersPromo.apply(this, me(t.stickers_promo.split("|"))), this._mouseInside = isHover(this.el), this._lastUserActivity = Date.now(), this.updateWaiting(), this.player.isAutoplay()) {
                     var i = this.player.isActiveLive() ? '<span class="videoplayer_autoplay_timer_live_icon"></span>' : formatTime(this.player.getDuration());
                     val(this.autoplayTimerText, i), toggleClass(this.autoplayTimer, "_live", this.player.isActiveLive()), t.ads_snippet_video || val(this.autoplayHint, this.getLang("autoplay_expand_hint")), this._mouseInside || this.player.getState() !== a.PLAYING || this.hideUI({
                         noTransition: !0
@@ -5082,14 +5082,14 @@
                 var t = this.player,
                     e = (!t.isInited() || t.isBuffering() || t.isLoadingAds()) && !t.isPlayingLinearAd() && this.player.getState() !== a.ERROR && t.getLivePhase() !== lt;
                 toggle(this.waiting, e), attr(this.player.el, "aria-busy", e ? "true" : "false")
-            }, e.prototype.updateTitle = function(t) {
-                void 0 !== t && (val(this.titleLink, t), attr(this.titleLink, "href", "/video" + this.player.getVideoId()));
-                var e = this.player.isInited(),
-                    i = this.player.isPlayingLinearAd(),
-                    n = this.player.isFullscreen(),
-                    r = this.getVar("is_embed") || this.getVar("is_inline") && "videocat" == this.getVar("module"),
-                    o = e && !this.getVar("no_title") && !i && !this.endScreen && (n || r);
-                toggle(this.title, !!o)
+            }, e.prototype.updateTitle = function(t, e) {
+                void 0 !== t && (toggleClass(this.title, "videoplayer_title_explicit", Boolean(e)), val(this.titleLink, t), attr(this.titleLink, "href", "/video" + this.player.getVideoId()));
+                var i = this.player.isInited(),
+                    n = this.player.isPlayingLinearAd(),
+                    r = this.player.isFullscreen(),
+                    o = this.getVar("is_embed") || this.getVar("is_inline") && "videocat" == this.getVar("module"),
+                    s = i && !this.getVar("no_title") && !n && !this.endScreen && (r || o);
+                toggle(this.title, !!s)
             }, e.prototype.showError = function(t) {
                 var e = t.message,
                     i = t.waiting,

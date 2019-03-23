@@ -18683,6 +18683,175 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     height: 100%
 }
 
+.ArtistPage_videos .dvd,
+.ArtistPage_videos_slider .dvd,
+.AudioMusicVideoSlider .dvd,
+.music_video_dvd,
+.music_video_meta .dvd,
+.PageBlock .dvd {
+    vertical-align: baseline;
+    padding: 0
+}
+
+.ArtistPage_videos .dvd:before,
+.ArtistPage_videos_slider .dvd:before,
+.AudioMusicVideoSlider .dvd:before,
+.music_video_dvd:before,
+.music_video_meta .dvd:before,
+.PageBlock .dvd:before {
+    content: "\00b7";
+    display: inline;
+    pointer-events: none;
+    padding: 0 5px
+}
+
+.AudioMusicVideoSlider .video_item {
+    width: 240px;
+    padding: 0;
+    border: none
+}
+
+.AudioMusicVideoSlider .video_item .video_thumb {
+    width: 240px;
+    height: 135px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    float: none
+}
+
+.AudioMusicVideoSlider .video_item .thumb_label {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 8px
+}
+
+.AudioMusicVideoSlider .video_item .vi_body {
+    margin: 0;
+    min-height: auto
+}
+
+.AudioMusicVideoSlider .video_item .vi_title {
+    margin-top: 8px
+}
+
+.AudioMusicVideoSlider .video_item .vi_title a,
+.AudioMusicVideoSlider .video_item .vi_values {
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 240px;
+    display: block
+}
+
+.AudioMusicVideoSlider .video_item .vi_values a {
+    color: #909499
+}
+
+@media (max-width: 374px) {
+    .AudioMusicVideoSlider .video_item,
+    .AudioMusicVideoSlider .video_item .video_thumb {
+        width: 200px
+    }
+    .AudioMusicVideoSlider .video_item .vi_values {
+        max-width: 200px
+    }
+}
+
+@media (max-width: 400px) {
+    .AudioMusicVideoSlider .video_item,
+    .AudioMusicVideoSlider .video_item .video_thumb {
+        width: 220px
+    }
+    .AudioMusicVideoSlider .video_item .vi_values {
+        max-width: 220px
+    }
+}
+
+.ArtistPage_videos .video_item .video_thumb,
+.ArtistPage_videos_slider .video_item .video_thumb {
+    width: 128px;
+    height: 72px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px
+}
+
+.ArtistPage_videos .video_item .thumb_label,
+.ArtistPage_videos_slider .video_item .thumb_label {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 8px
+}
+
+.ArtistPage_videos .video_item .vi_body,
+.ArtistPage_videos_slider .video_item .vi_body {
+    margin-left: 140px
+}
+
+.ArtistPage_videos .video_item .vi_title a,
+.ArtistPage_videos .video_item .vi_values,
+.ArtistPage_videos_slider .video_item .vi_title a,
+.ArtistPage_videos_slider .video_item .vi_values {
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    display: block
+}
+
+.ArtistPage_videos .video_item .vi_values a,
+.ArtistPage_videos_slider .video_item .vi_values a {
+    color: #909499
+}
+
+.ArtistPage_videos .video_item .vi_title,
+.ArtistPage_videos .video_item .vi_values,
+.ArtistPage_videos_slider .video_item .vi_title,
+.ArtistPage_videos_slider .video_item .vi_values {
+    margin: 2px 0
+}
+
+.ArtistPage_videos .video_item:last-child,
+.ArtistPage_videos_slider .video_item:last-child {
+    border: none
+}
+
+.music_video_meta__title {
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    display: block
+}
+
+.music_video_meta__title_explicit:after {
+    top: -2px!important
+}
+
+.music_video_meta__name,
+.music_video_meta__name .mv_feat,
+.music_video_meta__name a,
+.music_video_meta__subtitle {
+    color: #76787a
+}
+
+.music_video_meta__name,
+.music_video_meta__subtitle,
+.music_video_meta__title {
+    margin: 2px 0
+}
+
+.PageBlock .video_item .vi_values a,
+.mv_feat {
+    color: #909499
+}
+
 .PodcastPage,
 .PodcastPage__actions {
     display: -webkit-box;
@@ -24390,11 +24559,23 @@ figure[data-type="102"] .article_object_video_play {
     padding: 10px 12px;
     border-bottom: 1px solid rgba(0, 0, 0, .08);
     display: block;
-    overflow: hidden
+    overflow: hidden;
+    position: relative
 }
 
 ._hover .video_item:hover {
     text-decoration: none
+}
+
+.video_item .video_href {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-indent: -9999px;
+    overflow: hidden;
+    z-index: 1
 }
 
 .video_item .video_thumb {
@@ -24482,7 +24663,9 @@ figure[data-type="102"] .article_object_video_play {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    padding: 0
+    padding: 0;
+    position: relative;
+    z-index: 2
 }
 
 .video_item .vi_values b {
@@ -32646,7 +32829,10 @@ body.apps_settingsPageBody .basis__content {
 
 ._Audio__icon,
 .ArtistCover__playAll:after,
+.ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
+.ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .Audio__menuButton,
+.AudioMusicVideoSlider .video_item.video_item_explicit .vi_title a:after,
 .audioPlaylist__add:before,
 .audioPlaylist__play:before,
 .audioPlaylist__subtitle:after,
@@ -32658,6 +32844,9 @@ body.apps_settingsPageBody .basis__content {
 .audioPlaylistSnippet__link:before,
 .audioPlaylistSnippet__play:before,
 .audioPlaylistSnippet__subtitle:after,
+.BookmarksVideo__title.BookmarksVideo__title_explicit:after,
+.music_video_meta__title_explicit:after,
+.PageBlock .video_item.video_item_explicit .vi_title a:after,
 .r .ai_menu_toggle_button,
 .r .audio_item_explicit .ai_title:after,
 .r .audioPlaylist .wi_actions_btn .i_icon {
@@ -32671,7 +32860,10 @@ body.apps_settingsPageBody .basis__content {
 ._Audio__icon_2x,
 .r.vk_2x .audioPlaylist .wi_actions_btn .i_icon,
 .vk_2x .ArtistCover__playAll:after,
+.vk_2x.ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
+.vk_2x.ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .vk_2x .Audio__menuButton,
+.vk_2x.AudioMusicVideoSlider .video_item.video_item_explicit .vi_title a:after,
 .vk_2x .audioPlaylist__add:before,
 .vk_2x .audioPlaylist__play:before,
 .vk_2x .audioPlaylist__subtitle:after,
@@ -32683,6 +32875,9 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .audioPlaylistSnippet__link:before,
 .vk_2x .audioPlaylistSnippet__play:before,
 .vk_2x .audioPlaylistSnippet__subtitle:after,
+.vk_2x.BookmarksVideo__title.BookmarksVideo__title_explicit:after,
+.vk_2x.music_video_meta__title_explicit:after,
+.vk_2x.PageBlock .video_item.video_item_explicit .vi_title a:after,
 .vk_2x.r .ai_menu_toggle_button,
 .vk_2x.r .audio_item_explicit .ai_title:after {
     background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
@@ -33020,8 +33215,14 @@ body.apps_settingsPageBody .basis__content {
     }
 }
 
+.ArtistPage_videos .video_item.video_item_explicit .vi_title a,
+.ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a,
 .Audio__title_explicit,
+.AudioMusicVideoSlider .video_item.video_item_explicit .vi_title a,
 .audioPlaylists__item_explicit .audioPlaylists__itemTitle,
+.BookmarksVideo__title.BookmarksVideo__title_explicit,
+.music_video_meta__title_explicit,
+.PageBlock .video_item.video_item_explicit .vi_title a,
 .r .audio_item_explicit .ai_title {
     padding: 0 24px 0 0;
     position: relative;
@@ -33033,8 +33234,14 @@ body.apps_settingsPageBody .basis__content {
     box-sizing: border-box
 }
 
+.ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
+.ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .Audio__title_explicit:after,
+.AudioMusicVideoSlider .video_item.video_item_explicit .vi_title a:after,
 .audioPlaylists__item_explicit .audioPlaylists__itemTitle:after,
+.BookmarksVideo__title.BookmarksVideo__title_explicit:after,
+.music_video_meta__title_explicit:after,
+.PageBlock .video_item.video_item_explicit .vi_title a:after,
 .r .audio_item_explicit .ai_title:after {
     content: "";
     position: absolute;
@@ -35884,6 +36091,13 @@ body.apps_settingsPageBody .basis__content {
     .PostHeader__texts_wall {
         padding-right: 40px
     }
+}
+
+.r .cp_attached_post .pic_header.pic_header_empty,
+.r .e .pic_header.pic_header_empty,
+.r .wall_item .pic_header.pic_header_empty,
+.r .wi_head.pic_header_empty {
+    display: none
 }
 
 .r .BookmarksItem__header .pi_author,
@@ -46509,6 +46723,15 @@ a.BookmarksTags__item {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis
+}
+
+.BookmarksVideo__title.BookmarksVideo__title_explicit {
+    padding-top: 12px;
+    padding-bottom: 12px
+}
+
+.BookmarksVideo__title.BookmarksVideo__title_explicit:after {
+    top: 11px
 }
 
 .BookmarkListItem {
