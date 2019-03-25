@@ -242,7 +242,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 18487321623,
     'page.js': 1353396062,
-    'page.css': 84084588392,
+    'page.css': 85771733477,
     'page_help.css': 23482703816,
     'public.css': 27386455422,
     'cmodules/web/public.js': "29ab1f5dc534e8b47aecd8cf2acba5b20",
@@ -292,7 +292,7 @@ var stVersions = {
     'apps.css': 56634785532,
     'apps.js': "29404c230cf064728704692554900143c17",
     'apps_edit.js': "117bde061f6b84cca853928d8f56d973c2a",
-    'apps_edit.css': 103549881599,
+    'apps_edit.css': 106565386996,
     'apps_check.js': 3204387834,
     'apps_check.css': 27266833994,
     'settings.js': 2482491077,
@@ -385,7 +385,7 @@ var stVersions = {
     'offers.js': 2030679272,
     'call.js': 4217435992,
     'call.css': 3256039661,
-    'aes_light.css': 29474803616,
+    'aes_light.css': 27566361758,
     'aes_light.js': 4212813824,
     'ads.css': 64118339086,
     'ads_bonus.css': 1294533291,
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4003;
+var _rnd = 5084;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
