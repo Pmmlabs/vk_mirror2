@@ -5329,7 +5329,7 @@ AdsViewEditor.prototype.triggerAudienceNotify = function(data, result) {
         return false;
     }
 
-    const ConstDataForComponent = {
+    var ConstDataForComponent = {
         budget: this.userData.budget,
         userName: this.userData.userName ? this.userData.userName : '',
         budgetMin: this.userData.budgetMin ? this.userData.budgetMin : false,
@@ -5338,7 +5338,7 @@ AdsViewEditor.prototype.triggerAudienceNotify = function(data, result) {
         audienceCountMax: this.userData.audienceCountMax ? this.userData.audienceCountMax : false,
     };
 
-    const LetDataForComponent = {
+    var LetDataForComponent = {
         sex: data.sex,
         geo: {
             cities: data.cities,
@@ -5349,14 +5349,11 @@ AdsViewEditor.prototype.triggerAudienceNotify = function(data, result) {
             ageTo: data.age_to
         },
         audienceCount: result.audience_count,
-    }
+    };
 
     if (!cur.AdsEditAudienceCountNotifyContainer) {
         var audienceNotifyEl = ge('ads_edit_panel_notify');
-        AdsEditComponents.renderNotify(audienceNotifyEl, {
-            ...ConstDataForComponent,
-            ...LetDataForComponent,
-        });
+        AdsEditComponents.renderNotify(audienceNotifyEl, extend({}, ConstDataForComponent, LetDataForComponent));
         return false;
     }
 

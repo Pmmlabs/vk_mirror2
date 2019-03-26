@@ -19273,7 +19273,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    z-index: 10
+    z-index: 200
 }
 
 .author-page-nav_shown {
@@ -19485,7 +19485,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-transition: all 0.2s ease-out;
     -o-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
-    z-index: 1
+    z-index: 100
 }
 
 .author-page__inner.loading:before {
@@ -19638,6 +19638,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     color: inherit
 }
 
+.author-page-article:hover {
+    z-index: 10
+}
+
 .author-page-article:after {
     content: "";
     position: absolute;
@@ -19769,12 +19773,36 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-size: cover
 }
 
+.author-page-article__menu {
+    position: absolute!important;
+    top: 0;
+    right: 0;
+    z-index: 1
+}
+
 .author-page-article .author-page-article__cell:not(.author-page-article__cell_preview) .Icon_bookmark:before {
     background-position: 0 -1632px
 }
 
 .author-page-article .author-page-article__cell:not(.author-page-article__cell_preview) .Icon_bookmarked:before {
     background-position: 0 -1656px
+}
+
+.author-page-article .author-page-article__cell_preview .BookmarksItem_article .ai_menu_toggle_button:before,
+.author-page-article .author-page-article__cell_preview .BookmarksItem_narrative .ai_menu_toggle_button:before,
+.author-page-article .author-page-article__cell_preview .BookmarksItem_post .ai_menu_toggle_button:before,
+.author-page-article .author-page-article__cell_preview .BookmarksItem_video .ai_menu_toggle_button:before,
+.author-page-article .author-page-article__cell_preview .Icon_more:before {
+    background-position: 0;
+    background-image: url('/images/mobile/skins/icon/more_24.png')
+}
+
+.vk_2x .author-page-article .author-page-article__cell_preview .BookmarksItem_article .ai_menu_toggle_button:before,
+.vk_2x .author-page-article .author-page-article__cell_preview .BookmarksItem_narrative .ai_menu_toggle_button:before,
+.vk_2x .author-page-article .author-page-article__cell_preview .BookmarksItem_post .ai_menu_toggle_button:before,
+.vk_2x .author-page-article .author-page-article__cell_preview .BookmarksItem_video .ai_menu_toggle_button:before,
+.vk_2x .author-page-article .author-page-article__cell_preview .Icon_more:before {
+    background-image: url('/images/mobile/skins/icon/more_24_x2.png')
 }
 
 .appHeader {
@@ -22428,7 +22456,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article>figure .article_object_video,
-.article>figure video,
+.article>figure video {
+    height: 100%;
+    width: 100%
+}
+
 .article>figure .article_ed__video_img {
     width: 100%
 }
@@ -24071,6 +24103,30 @@ figure[data-type="102"] .article_object_video_play {
     padding: 8px 15px 9px
 }
 
+.article_dark .article_object_audioplaylist_webview {
+    border: 1px solid hsla(0, 0%, 100%, .18);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px
+}
+
+.article_dark .article_object_audioplaylist_webview .article_object_audioplaylist_title {
+    color: #a3a3a3
+}
+
+.article_dark .article_object_audioplaylist_webview .article_object_audioplaylist_author {
+    color: #909499
+}
+
+.article_dark .article_object_audioplaylist_webview .article_object_audioplaylist_open {
+    background-color: #a3a3a3;
+    color: #fff
+}
+
+.article_dark .article_object_audioplaylist_webview .article_object_audioplaylist_play {
+    background-image: url('/images/mobile/icons/dark_audio_play_2x.png')
+}
+
 .article_audio_not_available {
     margin: 5px 0;
     height: 30px;
@@ -24096,7 +24152,7 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .article_dark .article_audio_not_available:before {
-    background-position: 0px -60px
+    background-image: url('/images/mobile/icons/dark_audio_play_2x.png')
 }
 
 .article_anchor_button {
@@ -33214,12 +33270,21 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/audio_icons_2x.png?12')
 }
 
-.article_dark .i_play:after {
+.article_dark .article_dark .i_play:after {
     background-position: 0 -64px!important
 }
 
-.article_dark .ai_playing .i_play:after {
+.article_dark .article_dark .ai_playing .i_play:after {
     background-position: 0 -96px!important
+}
+
+.article_dark .article_webview .i_play:after {
+    background-position: 0 0!important;
+    background-image: url('/images/mobile/icons/dark_audio_play_2x.png')!important
+}
+
+.article_dark .article_webview .ai_playing .i_play:after {
+    background-position: 0 -32px!important
 }
 
 .Audio__texts,

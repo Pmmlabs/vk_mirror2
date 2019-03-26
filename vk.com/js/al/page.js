@@ -9628,7 +9628,7 @@ var Wall = {
         }
     },
 
-    checkAttachesForPoster(attaches) {
+    checkAttachesForPoster: function(attaches) {
         if (!isArray(attaches)) {
             return false;
         }

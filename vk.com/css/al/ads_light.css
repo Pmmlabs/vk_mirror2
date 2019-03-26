@@ -947,14 +947,25 @@ a.ads_ad_box2:hover {
     position: relative;
     margin: 15px 0 0;
     padding: 0;
-    border: 1px solid rgba(0, 20, 51, .12);
-    border-radius: 4px;
     background-color: #fff;
     display: none
 }
 
 .ads_ad_text_box.adaptive_ad .ads_ad_snippet {
     display: block
+}
+
+.ads_ad_snippet:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border: 1px solid rgba(0, 20, 51, .12);
+    border-radius: 4px;
+    box-sizing: border-box
 }
 
 .ads_ad_nested_link_clear {
@@ -995,13 +1006,12 @@ a.ads_ad_box2:hover {
 .ads_ad_snippet_top:after {
     content: '';
     position: absolute;
-    width: 100%;
+    width: calc(100% - 4px);
     height: 100%;
     top: 0;
-    left: 0;
-    z-index: 2;
-    outline: 1px solid rgba(0, 20, 51, .12);
-    outline-offset: -1px
+    left: 2px;
+    border-bottom: 1px solid rgba(0, 20, 51, .12);
+    box-sizing: border-box
 }
 
 .ads_ad_snippet_img {

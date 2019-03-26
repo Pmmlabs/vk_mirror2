@@ -489,7 +489,11 @@
 }
 
 .article>figure .article_object_video,
-.article>figure video,
+.article>figure video {
+    height: 100%;
+    width: 100%
+}
+
 .article>figure .article_ed__video_img {
     width: 100%
 }

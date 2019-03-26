@@ -6977,7 +6977,7 @@
                 function(e, t) {
                     var n = geByClass1("_im_text", e),
                         r = Object(mt.d)(stManager.add);
-                    (Wall ? Promise.resolve() : r(["page.js"])).then(function() {
+                    (window.Wall ? Promise.resolve() : r(["page.js"])).then(function() {
                         Wall.initComposer(n, {
                             lang: {
                                 introText: getLang("profile_mention_start_typing"),

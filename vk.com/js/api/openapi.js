@@ -3132,8 +3132,12 @@ if (!VK.Retargeting) {
             if (!this.pixelCode) {
                 return;
             }
+            var pData = VK.Util.getPageData();
+            var metatagUrl = pData.url.substr(0, 500);
 
-            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + (event ? ('&event=' + encodeURIComponent(event)) : '');
+            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode +
+                (event ? ('&event=' + encodeURIComponent(event)) : '') +
+                (metatagUrl ? ('&metatag_url=' + encodeURIComponent(metatagUrl)) : '');
         },
         Hit: function() {
             this.Event();

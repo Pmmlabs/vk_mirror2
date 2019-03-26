@@ -2215,7 +2215,17 @@ textarea.EditableLabel__textarea {
 }
 
 .SureBox .SureBox__content .SureBox__content__title {
-    margin-bottom: 10px
+    margin-bottom: 8px
+}
+
+.SureBox .SureBox__content .SureBox__content__comment {
+    margin-bottom: 8px;
+    margin-top: 16px;
+    font-weight: 500
+}
+
+.SureBox .SureBox__box-controls .SureBox__box-controls__sure-button {
+    margin-left: 10px
 }
 
 .uploaded_stories_rows {
