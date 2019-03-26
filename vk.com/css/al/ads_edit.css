@@ -2832,6 +2832,127 @@ textarea.EditableLabel__textarea {
     overflow: hidden
 }
 
+.ads_edit_panel_notify {
+    width: 200px;
+    position: relative;
+    margin-top: 15px;
+    padding: 15px 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .12);
+    background: #fff no-repeat center 15px;
+    background-size: 90px 90px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.14px;
+    -o-transition: opacity ease-out 0.5s;
+    transition: opacity ease-out 0.5s
+}
+
+@media (max-height: 560px) {
+    .ads_edit_panel_notify .ads_edit_panel_notify_example {
+        display: none
+    }
+}
+
+@media (max-height: 490px) {
+    #ads_edit_audience .ads_edit_panel_notify {
+        background-image: none
+    }
+    #ads_edit_audience .ads_edit_panel_notify_p:first-of-type {
+        margin-top: 0
+    }
+    #ads_edit_audience .ads_edit_panel_notify_close {
+        width: auto;
+        height: auto;
+        position: static;
+        margin: 0 0 0 10px;
+        background-image: none;
+        color: silver;
+        cursor: pointer
+    }
+    #ads_edit_audience .ads_edit_panel_notify_success .ads_edit_panel_notify_close {
+        margin: 12px 0 0
+    }
+}
+
+.ads_edit_panel_notify {
+    background-image: url(/images/ads/ads_audience_size_notify.png)
+}
+
+.is_2x .ads_edit_panel_notify {
+    background-image: url(/images/ads/ads_audience_size_notify_2x.png)
+}
+
+.ads_edit_panel_notify_success {
+    background-image: url(/images/ads/ads_audience_size_notify_ok.png)
+}
+
+.is_2x .ads_edit_panel_notify_success {
+    background-image: url(/images/ads/ads_audience_size_notify_ok_2x.png)
+}
+
+.ads_edit_panel_notify_p:first-of-type {
+    margin-top: 100px
+}
+
+.ads_edit_panel_notify_success .ads_edit_panel_notify_p {
+    margin-bottom: 0
+}
+
+.ads_edit_panel_notify_bold {
+    font-weight: 600
+}
+
+.ads_edit_panel_notify_p {
+    margin: 0 0 12px;
+    display: block
+}
+
+.ads_edit_panel_notify_close {
+    border: none;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    padding: 0;
+    margin-top: -3px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22506%20120%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cg%20opacity%3D%22.5%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M506%20120h24v24h-24z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M512%20126l12%2012M524%20126l-12%2012%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-color: inherit;
+    opacity: 0.8;
+    color: transparent;
+    font-size: 13px;
+    line-height: 1.52;
+    letter-spacing: -0.1px;
+    -o-transition: opacity ease-out 0.5s;
+    transition: opacity ease-out 0.5s;
+    cursor: pointer
+}
+
+.ads_edit_panel_notify_close:focus,
+.ads_edit_panel_notify_close:hover {
+    opacity: 1
+}
+
+.ads_edit_panel_dissolution_normal {
+    opacity: 0;
+    -o-transition: opacity ease-out 0.5s;
+    transition: opacity ease-out 0.5s
+}
+
+.ads_edit_panel_dissolution_fast {
+    opacity: 0;
+    -o-transition: opacity ease-out 0.25s;
+    transition: opacity ease-out 0.25s
+}
+
+.ads_edit_panel_dissolution_slow {
+    opacity: 0;
+    -o-transition: opacity ease-out 2s;
+    transition: opacity ease-out 2s
+}
+
 .ads_edit_page_wrap3 {
     background-color: #f9f9f9;
     padding: 20px
@@ -3078,9 +3199,10 @@ textarea.EditableLabel__textarea {
     padding-top: 5px
 }
 
-#ads_edit_audience {
+.ads_edit_audience_count_panel {
     padding: 20px;
     background-color: #edf0f2;
+    border-radius: 4px;
     width: 160px
 }
 

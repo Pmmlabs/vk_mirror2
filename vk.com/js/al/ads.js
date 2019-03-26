@@ -256,14 +256,14 @@ Ads.processNotices = function() {
     }
 }
 
-Ads.initFixed = function(elemWrap) {
+Ads.initFixed = function(elemWrap, customPositionTop) {
     elemWrap = ge(elemWrap);
     if (!elemWrap) return;
     var elemFixed = elemWrap.firstChild;
     if (!elemFixed) return;
 
     var inited = elemWrap.getAttribute('fixed_inited');
-    var positionTop = 66;
+    var positionTop = customPositionTop || 66;
 
     if (inited) {
         setStyle(elemWrap, {

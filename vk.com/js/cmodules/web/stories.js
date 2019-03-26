@@ -1366,26 +1366,27 @@
                     if (r) {
                         var o = void 0,
                             i = void 0,
-                            s = {
+                            s = void 0,
+                            n = {
                                 type: r,
                                 style: domData(t, "style")
                             };
                         switch (r) {
                             case Y:
-                                var n = domData(t, "hashtag") || "";
-                                o = "/feed?q=" + n.replace("#", "%23") + "&section=search", i = $("stories_show_hashtag_link"), s.text = n;
+                                var a = domData(t, "hashtag") || "";
+                                o = "/feed?q=" + a.replace("#", "%23") + "&section=search", i = $("stories_show_hashtag_link"), s = "search", n.text = a;
                                 break;
                             case X:
-                                var a = (domData(t, "mention") || "").slice(1, -1).split("|");
-                                o = "/" + a[0], i = a[0].startsWith("id") ? $("stories_go_to_profile") : $("stories_go_to_group")
+                                var c = (domData(t, "mention") || "").slice(1, -1).split("|");
+                                o = "/" + c[0], i = c[0].startsWith("id") ? $("stories_go_to_profile") : $("stories_go_to_group"), s = "profile"
                         }
-                        return this._sendStatStickerEvent("click", s), ce("a", {
+                        return this._sendStatStickerEvent("click", n), ce("a", {
                             href: o,
                             innerHTML: i,
                             className: "stories_tooltip_link",
                             target: "_blank",
                             onclick: function() {
-                                e._sendStatStickerEvent("search", s)
+                                e._sendStatStickerEvent(s, n)
                             }
                         })
                     }

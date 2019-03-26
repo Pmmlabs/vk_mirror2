@@ -96,7 +96,7 @@ AdsEdit.init = function() {
         tagsElem.value = AdsEdit.unescapeValueInit(tagsElem.innerHTML);
     }
 
-    Ads.initFixed('ads_edit_audience_wrap');
+    Ads.initFixed('ads_edit_audience_wrap', 59);
 }
 
 AdsEdit.destroy = function() {
@@ -2406,8 +2406,11 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         },
         weekly_schedule: {
             value: ''
-        }
-    }
+        },
+        audience_notify: {
+            value: 0
+        },
+    };
 
     // Init "format photo size"-specific keys
     {
@@ -2458,6 +2461,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
 
     this.help = {};
 
+    this.userData = {};
+
     if (params)
         for (var i in params) {
             if (params[i] && (i in this.params)) {
@@ -2495,6 +2500,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     this.cur = {
         destroy: []
     };
+
+    this.updateNeeded.need_user_data = true;
 
     this.initPreview();
     this.initHelp();
@@ -5081,9 +5088,37 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         this.updateUiParam('cost_per_click');
     }
 
+    if (isObject(result)) {
+        if ('show_audience_notify' in result) {
+            this.userData.showNotify = result['show_audience_notify'];
+        }
+
+        if ('user_name' in result) {
+            this.userData.userName = result['user_name'];
+        }
+
+        if ('budget_min' in result) {
+            this.userData.budgetMin = result['budget_min'];
+        }
+
+        if ('budget' in result) {
+            this.userData.budget = result['budget'];
+        }
+
+        if ('audience_count_max' in result) {
+            this.userData.audienceCountMax = result['audience_count_max'];
+        }
+
+        if ('notify_close_hash' in result) {
+            this.userData.notifyCloseHash = result['notify_close_hash'];
+        }
+    }
+
     if (isObject(result) && 'audience_count_text' in result) {
         var targetElem = ge('ads_edit_audience_text');
         targetElem.innerHTML = result.audience_count_text;
+
+        this.triggerAudienceNotify(data, result);
     }
 
     // Temporary disabled
@@ -5283,6 +5318,53 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     }
 
     return setResult;
+}
+
+AdsViewEditor.prototype.triggerAudienceNotify = function(data, result) {
+    if (!data || !result || !Object.keys(this.userData).length) {
+        return false;
+    }
+
+    if (!this.userData.showNotify) {
+        return false;
+    }
+
+    const ConstDataForComponent = {
+        budget: this.userData.budget,
+        userName: this.userData.userName ? this.userData.userName : '',
+        budgetMin: this.userData.budgetMin ? this.userData.budgetMin : false,
+        closeHash: this.userData.notifyCloseHash,
+        clientId: this.params.client_id.value,
+        audienceCountMax: this.userData.audienceCountMax ? this.userData.audienceCountMax : false,
+    };
+
+    const LetDataForComponent = {
+        sex: data.sex,
+        geo: {
+            cities: data.cities,
+            geoNear: data.geo_near
+        },
+        age: {
+            ageFrom: data.age_from,
+            ageTo: data.age_to
+        },
+        audienceCount: result.audience_count,
+    }
+
+    if (!cur.AdsEditAudienceCountNotifyContainer) {
+        var audienceNotifyEl = ge('ads_edit_panel_notify');
+        AdsEditComponents.renderNotify(audienceNotifyEl, {
+            ...ConstDataForComponent,
+            ...LetDataForComponent,
+        });
+        return false;
+    }
+
+    cur.AdsEditAudienceCountNotifyContainer.handleAudienceCountChange(LetDataForComponent)
+}
+
+AdsViewEditor.prototype.setAudienceNotifyKey = function() {
+    this.onParamUpdate('audience_notify', 1);
 }
 
 AdsViewEditor.prototype.replaceValueNewLines = function(value, maxNewLines) {
@@ -5954,7 +6036,7 @@ AdsViewEditor.prototype.completeLink = function() {
     ajaxParams.format_type = this.params.format_type.value;
     ajax.post('/adsedit?act=collect_click_stat', ajaxParams);
 
-    Ads.initFixed('ads_edit_audience_wrap');
+    Ads.initFixed('ads_edit_audience_wrap', 59);
 
     addClass('ads_edit_error_link_msg', 'unshown');
 

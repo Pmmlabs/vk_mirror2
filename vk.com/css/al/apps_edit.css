@@ -5765,7 +5765,7 @@ input.execute_field_input {
 
 .app_stat_main_block_delimiter {
     font-size: 16px;
-    margin-right: 17px;
+    margin-right: 10px;
     margin-left: 1px;
     opacity: 0.85
 }
@@ -6260,6 +6260,64 @@ body .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div {
     margin-bottom: 0
 }
 
+.apps_catalog_label,
+.apps_label_widget {
+    display: inline-block;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 7px;
+    border-radius: 13px;
+    line-height: 12px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.mac .apps_catalog_label {
+    padding-top: 1px
+}
+
+.apps_label_widget {
+    background-color: #5c9ce6
+}
+
+.apps_edit_up_tt {
+    bottom: 0;
+    opacity: 0;
+    -o-transform: scale(0);
+    transform: scale(0);
+    -o-transition: opacity 0.3s ease-in-out, bottom 0.3s ease;
+    transition: opacity 0.3s ease-in-out, bottom 0.3s ease
+}
+
+#vk_app_type_radio td {
+    padding: 0
+}
+
+#vk_app_type_radio .tt .bottom_sh {
+    margin-top: -1px;
+    background: #fff;
+    box-shadow: 0 1px 3px 0 #000
+}
+
+#vk_app_type_radio .tt .bottom_pointer {
+    top: -2px
+}
+
+#vk_app_type_radio .tt_text {
+    border-radius: 4px
+}
+
+#vk_app_type_radio:hover .apps_edit_up_tt {
+    bottom: 19px;
+    opacity: 1;
+    -o-transform: scale(1);
+    transform: scale(1)
+}
+
 .app_snippet_preview {
     position: relative;
     display: -ms-flexbox;
@@ -6399,4 +6457,61 @@ body .tickets_new_wrap_vk_app .tickets_new_extra_field_note+div+div {
         background-image: url(/images/icons/bookmarks_filled_24_2x.png);
         background-size: 24px 24px
     }
+}
+
+.appMainStats {
+    padding-top: 18px;
+    padding-bottom: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.appMainStats__counter {
+    display: none;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 135px;
+    margin-right: 8px;
+    margin-left: 8px
+}
+
+.appMainStats__counter--active {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.appMainStats__counter--retention {
+    width: 175px
+}
+
+.appMainStats__count {
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: center;
+    color: #000
+}
+
+.appMainStats__desc {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.38;
+    color: #939393
+}
+
+.appMainStats__retentions {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 175px
+}
+
+.appMainStats--withMobile .appMainStats__retentions {
+    width: 365px
 }

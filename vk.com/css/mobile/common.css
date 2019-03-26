@@ -18746,8 +18746,17 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     display: block
 }
 
+.AudioMusicVideoSlider .video_item .vi_values,
 .AudioMusicVideoSlider .video_item .vi_values a {
     color: #909499
+}
+
+.AudioMusicVideoSlider .video_item .vi_values.main {
+    display: none
+}
+
+.AudioShowcase .AudioMusicVideoSlider .video_item .vi_values.main {
+    display: block
 }
 
 @media (max-width: 374px) {
@@ -24140,8 +24149,8 @@ figure[data-type="102"] .article_object_video_play {
     z-index: 16
 }
 
-.vk_tabbar_static #m .mhead,
-.vk_tabbar_top._hfixed #m .mhead {
+.n .vk_tabbar_static #m .mhead,
+.n .vk_tabbar_top._hfixed #m .mhead {
     top: 48px
 }
 
@@ -32822,6 +32831,12 @@ body.apps_settingsPageBody .basis__content {
     }
     .n.vk__page_feed .header__title.header__title.header__title {
         padding-left: 0!important
+    }
+}
+
+@media (max-width: 881px) {
+    .vk.vk_flex_no .basis__header {
+        display: block
     }
 }
 
