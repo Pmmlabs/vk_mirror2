@@ -5040,12 +5040,18 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     color: #656565
 }
 
-.post_top_info_wall_reply_icon,
-.post_top_info_wall_group_icon {
+.post_top_info_wall_reply_icon {
     margin: 1px 0px -1px;
     width: 13px;
     height: 13px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%2215%2014%2013%2013%22%3E%0A%20%20%3Cpath%20d%3D%22M18.4%2025.3C16.4%2024.4%2015%2022.6%2015%2020.5%2015%2017.5%2017.9%2015%2021.5%2015%2025.1%2015%2028%2017.5%2028%2020.5%2028%2023.5%2025.1%2026%2021.5%2026%2021.1%2026%2020.8%2026%2020.4%2025.9%2019.8%2026.6%2018.8%2027%2017%2027%2017.5%2026.5%2018.1%2025.9%2018.4%2025.3Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%3C%2Fsvg%3E")
+}
+
+.post_top_info_wall_group_icon {
+    margin: 1px 0px -1px;
+    width: 13px;
+    height: 13px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200H13V13H0z%22%2F%3E%3Cpath%20d%3D%22M0%2010c0%20.569.275%201%201.25%201H7c.975%200%201-.431%201-1%200-1.137-.344-3-4-3s-4%201.781-4%203zm11.5-5.5c0-.169-.188-2-1.813-2C8.063%202.5%208%204.5%208%204.5s.063%202%201.688%202c1.624%200%201.812-1.831%201.812-2zm-2.9%203c.488.975.4%202.188.4%203v.5h3c.894%200%201-.412%201-.819%200-.975-.25-2.681-3.5-2.681h-.9zM6.5%203s.031-2-2-2-2.063%202-2.063%202.031C2.438%203.062%202.47%206%204.5%206s2-3%202-3z%22%20fill%3D%22%23A5ABB4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .post_top_info_wall_share_icon {

@@ -417,7 +417,8 @@
 .settings_privacy_control {
     display: inline-block;
     vertical-align: middle;
-    line-height: 18px
+    line-height: 18px;
+    max-width: 100%
 }
 
 .settings_privacy_control .group1,
@@ -431,6 +432,19 @@
 .settings_privacy_control .group9,
 .settings_privacy_control .group10 {
     font-size: 12.5px
+}
+
+.settings_privacy_control .privacy_friends_list {
+    max-width: 100%
+}
+
+.settings_privacy_control .privacy_friends_list a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 98%;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box
 }
 
 .settings_privacy_disabled {

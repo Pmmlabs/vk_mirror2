@@ -82,9 +82,9 @@
 .group8,
 .group9,
 .group10 {
-    margin: 0;
-    padding: 1px 3px;
-    line-height: 160%;
+    margin: 1px 0;
+    padding: 0 3px;
+    line-height: 140%;
     white-space: nowrap
 }
 
@@ -490,6 +490,7 @@
     position: absolute;
     cursor: pointer;
     border: 1px solid #c5d0db;
+    max-width: 267px;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     z-index: 100;
@@ -629,6 +630,15 @@
     background: #fff;
     color: #2a5885;
     clear: both
+}
+
+.privacy_dropdown .l_item .l_item_text,
+.privacy_dropdown .l_item_sel .l_item_text {
+    width: 237px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .privacy_dropdown .l_item_sel {

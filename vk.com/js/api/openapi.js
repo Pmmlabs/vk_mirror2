@@ -3165,6 +3165,8 @@ if (!VK.Retargeting) {
                 errorsIgnore = opts.errors_ignore ? '1' : '0';
             }
 
+            var pData = VK.Util.getPageData();
+            var metatagUrl = pData.url.substr(0, 500);
             var url = 'https://vk.com/rtrg';
             var productParams = params ? JSON.stringify(params) : '';
             var requestParams = {
@@ -3172,7 +3174,8 @@ if (!VK.Retargeting) {
                 'products_event': event,
                 'price_list_id': priceListID,
                 'e': '1',
-                'i': errorsIgnore
+                'i': errorsIgnore,
+                'metatag_url': metatagUrl
             };
             if (productParams) {
                 requestParams.products_params = productParams;

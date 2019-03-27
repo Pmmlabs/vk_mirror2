@@ -846,7 +846,7 @@ var Privacy = {
             for (var i in lists) {
                 var _i = parseInt(i);
                 var sel = hideLists ? '' : (inArray(-_i, p[2]) ? '_sel' : '');
-                html.push('<div class="l_item' + sel + '" id="privacy_l_item' + _i + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ', ' + _i + ')"><div class="privacy_item_icon"></div>' + lists[i] + '</div>');
+                html.push('<div class="l_item' + sel + '" id="privacy_l_item' + _i + '" onclick="Privacy.choose(event, ' + Privacy.listsType + ', ' + _i + ')"><div class="privacy_item_icon"></div><span class="l_item_text">' + lists[i] + '</span></div>');
             }
             html.push('</div>');
         }
