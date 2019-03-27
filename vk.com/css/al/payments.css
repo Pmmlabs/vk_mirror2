@@ -7,6 +7,7 @@
 .nim-peer.nim-peer_search.online:after,
 .nim-peer.nim-peer_smaller.online:after,
 .payments_box_close_lnk,
+.payments_box_gray_x_button,
 .payments_box_spinner,
 .payments_box_wide .payments_box_promo_descr,
 .payments_getvotes_method_img,
@@ -22,6 +23,8 @@
 .payments_logo_webmoney,
 .payments_logo_yandexmoney,
 .payments_money_transfer_mc_info_msg,
+.payments_vkpay_promo_banner_container,
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block,
 .payments_warning {
     -ms-high-contrast-adjust: none
 }
@@ -2109,6 +2112,120 @@ h2.payments_getvotes_title {
 .payments_getvotes_phone .payments_form_row,
 .payments_getvotes_phone .payments_form_row input {
     width: 200px
+}
+
+.payments_vkpay_votes_buy_promo_container {
+    width: 400px;
+    height: 428px;
+    text-align: center
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_success_block {
+    height: 248px
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_success_block h2 {
+    font-size: 16px;
+    margin: 20px 0 10px
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_success_block .payments_vkpay_votes_buy_promo_success_image {
+    margin: 0 164px;
+    padding-top: 56px;
+    width: 72px;
+    height: 72px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2272%22%20height%3D%2272%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Ccircle%20stroke%3D%22%23528BCC%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2226.5%22%2F%3E%3Cpath%20d%3D%22M46.44%2029.44a1.5%201.5%200%200%201%202.12%202.12l-14.5%2014.5a1.5%201.5%200%200%201-2.12%200l-7.5-7.5a1.5%201.5%200%200%201%202.12-2.12L33%2042.878l13.44-13.44z%22%20fill%3D%22%23528BCC%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') bottom no-repeat
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block {
+    height: 180px;
+    background: url(/images/payments/vkpay_promo_votes_buy_400.png);
+    border-radius: 0 0 8px 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block {
+        background-image: url(/images/payments/vkpay_promo_votes_buy_400_2x.png);
+        background-size: 400px 180px
+    }
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block .payments_vkpay_votes_buy_promo_info_inner_block {
+    padding-top: 4px
+}
+
+.payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block .payments_vkpay_votes_buy_promo_info_inner_block .payments_vkpay_votes_buy_promo_try_btn {
+    width: 114px;
+    height: 30px;
+    margin: 118px 0 10px;
+    background-color: #fff;
+    color: #000
+}
+
+.payments_box_gray_x_button {
+    background: url(/images/pics/cross.png) no-repeat 50%;
+    width: 16px;
+    height: 16px;
+    margin: 20px;
+    padding: 6px;
+    display: block;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    text-indent: 9999px;
+    opacity: 0.75;
+    filter: alpha(opacity=75);
+    cursor: pointer;
+    -o-transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_box_gray_x_button {
+        background-image: url(/images/pics/cross_2x.png);
+        background-size: 14px 14px
+    }
+}
+
+.payments_box_gray_x_button:hover {
+    opacity: 1
+}
+
+.payments_vkpay_promo_banner_container {
+    width: 430px;
+    height: 130px;
+    text-align: center;
+    background: url(/images/payments/vkpay_promo_votes_banner_430.png);
+    border-radius: 4px;
+    margin: 20px 25px 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_vkpay_promo_banner_container {
+        background-image: url(/images/payments/vkpay_promo_votes_banner_430_2x.png);
+        background-size: 430px 130px
+    }
+}
+
+.payments_vkpay_promo_banner_container:hover {
+    cursor: pointer
+}
+
+.payments_vkpay_promo_banner_try_btn.flat_button {
+    width: 102px;
+    height: 30px;
+    margin: 84px 0 16px;
+    padding: 0;
+    background-color: #fff;
+    color: #000
 }
 
 .payments_gift_order_confirm {

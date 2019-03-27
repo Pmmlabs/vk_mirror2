@@ -4388,6 +4388,10 @@ var Wall = {
 
                 params.poster_photo_hash = posterSendParams.fallbackObj.post_hash;
             }
+
+            if (params.poster_bkg_id !== cur.posterCtaBkgId) {
+                params.poster_author_bkg_check = true;
+            }
         }
 
         hide('submit_post_error');
@@ -4690,10 +4694,15 @@ var Wall = {
                     if (!isString(adminTipsSection)) {
                         adminTipsSection = null;
                     }
+
                     if (cur.poster && submitFromPoster) {
                         cur.poster.unlockEditPoster();
                         cur.poster.closeEditor();
                         cur.poster.resetPoster();
+
+                        if (cur.posterCtaBkgId) {
+                            cur.posterCtaBkgId = null;
+                        }
                     }
 
                     cur.posterFeatureTT && cur.posterFeatureTT.hide();
@@ -9720,6 +9729,17 @@ var Wall = {
         return postBlock;
     },
 
+    changeAuthorInPoster: function(authorData) {
+        if (!cur.poster || !authorData) {
+            return;
+        }
+
+        cur.poster.changeBkgAuthor({
+            authorName: authorData.authorName,
+            authorUrl: authorData.authorUrl
+        });
+    },
+
     sendInsertBeforeError: function() {
         ajax.post('al_page.php', {
             act: 'insert_before_error',
@@ -9801,8 +9821,13 @@ var Wall = {
             return false;
         }
 
-        if (!wrap && cur.poster && domClosest('poster', el)) {
-            wrap = ge('submit_post_box');
+        var mainSubmitPostBox = ge('submit_post_box');
+
+        var isPosterEditor = !wrap && cur.poster && domClosest('poster', el);
+        var isMainPostBlock = (wrap === mainSubmitPostBox);
+
+        if (isPosterEditor) {
+            wrap = mainSubmitPostBox;
             signed = ge('signed');
             markAsAds = ge('mark_as_ads');
             closeComments = ge('close_comments');
@@ -9812,6 +9837,13 @@ var Wall = {
 
         domData(wrap, 'from-oid', from);
         wall.replyAsAnimate(wrap, fromData[2], fromData[1]);
+
+        if (cur.poster && (isMainPostBlock || isPosterEditor)) { // if it's main post block in the wall
+            Wall.changeAuthorInPoster({
+                authorName: fromData[3],
+                authorUrl: fromData[2]
+            });
+        }
 
         if (ttChooser && ttChooser.rows) {
             each(ttChooser.rows, function() {

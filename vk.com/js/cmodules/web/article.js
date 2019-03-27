@@ -1,8 +1,8 @@
 ﻿! function(t) {
     function e(e) {
-        for (var i, n, s = e[0], c = e[1], l = e[2], h = 0, _ = []; h < s.length; h++) n = s[h], a[n] && _.push(a[n][0]), a[n] = 0;
+        for (var i, n, s = e[0], c = e[1], l = e[2], p = 0, h = []; p < s.length; p++) n = s[p], a[n] && h.push(a[n][0]), a[n] = 0;
         for (i in c) Object.prototype.hasOwnProperty.call(c, i) && (t[i] = c[i]);
-        for (d && d(e); _.length;) _.shift()();
+        for (d && d(e); h.length;) h.shift()();
         return o.push.apply(o, l || []), r()
     }
 
@@ -221,26 +221,94 @@
                         c = n(o.endContainer);
                     return s && c
                 }, t
-            }(),
-            l = r("sWID");
-        var d = {};
+            }();
+        var l = {};
 
-        function h(t) {
+        function d(t) {
             return (t = t.split("_"))[0] + "_" + t[1]
         }
-        var _ = function() {
+        var p = function() {
                 function t() {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
                     }(this, t)
                 }
                 return t.add = function(t, e, r) {
-                    d[t] = d[t] || {}, d[t][h(e)] = r
+                    l[t] = l[t] || {}, l[t][d(e)] = r
                 }, t.get = function(t, e, r) {
-                    return void 0 !== r && (e = (e = e.split(","))[r]), d[t] = d[t] || {}, d[t][h(e)]
+                    return void 0 !== r && (e = (e = e.split(","))[r]), l[t] = l[t] || {}, l[t][d(e)]
                 }, t
             }(),
-            p = function() {
+            h = r("sWID"),
+            _ = function() {
+                return function(t, e) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return function(t, e) {
+                        var r = [],
+                            i = !0,
+                            a = !1,
+                            o = void 0;
+                        try {
+                            for (var n, s = t[Symbol.iterator](); !(i = (n = s.next()).done) && (r.push(n.value), !e || r.length !== e); i = !0);
+                        } catch (t) {
+                            a = !0, o = t
+                        } finally {
+                            try {
+                                !i && s.return && s.return()
+                            } finally {
+                                if (a) throw o
+                            }
+                        }
+                        return r
+                    }(t, e);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        var u = function(t) {
+                function e(r, i) {
+                    return function(t, e) {
+                            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                        }(this, e),
+                        function(t, e) {
+                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                            return !e || "object" != typeof e && "function" != typeof e ? t : e
+                        }(this, t.call(this, r, i, !0))
+                }
+                return function(t, e) {
+                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                    t.prototype = Object.create(e && e.prototype, {
+                        constructor: {
+                            value: t,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0
+                        }
+                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                }(e, t), e.prototype.render = function() {
+                    var t = this;
+                    this._el = se('\n      <div class="article_object_audio"></div>\n    ');
+                    var e = p.get(h.b.ObjectAudioPlaylist, this.getMediaId());
+                    if (e.snippet) this._el.innerHTML = e.snippet;
+                    else {
+                        var r = this.getMediaId().split("_"),
+                            i = _(r, 2),
+                            a = i[0],
+                            o = i[1];
+                        this.setLoadingState(!0), ajax.post("al_articles.php", {
+                            act: "get_audioplaylist_snippet",
+                            pl_owner_id: a,
+                            pl_id: o,
+                            pl_access_hash: e.accessHash
+                        }, {
+                            onDone: function(e) {
+                                t.setLoadingState(!1), t._el.appendChild(se(e))
+                            }
+                        })
+                    }
+                    return this._el.appendChild(se('<div class="article_ed__audioplaylist_play_note" contenteditable="false">' + getLang("pages_articles_editor_audio_play_note") + "</div>")), this._el
+                }, e
+            }(c),
+            f = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -265,10 +333,10 @@
                 }
             }();
 
-        function u(t, e) {
+        function g(t, e) {
             return t ? '<div class="article_ed__caredit_item article_ed__caredit_item_photo" data-media-id="' + e + '">\n      <div class="article_ed__caredit_photo" style="background-image: url(' + t + ')"></div>\n      <div class="article_ed__caredit_remove"><div class="article_ed__caredit_remove_icon"></div></div>\n    </div>' : '<button class="article_ed__caredit_item article_ed__caredit_item_add" nodrag="1">\n      <div class="article_ed__caredit_add"></div>\n      <div class="article_ed__caredit_item_text">' + getLang("pages_article_ed_carousel_add") + "</div>\n    </button>"
         }
-        var f = function() {
+        var v = function() {
                 function t(e, r, i, a) {
                     var o = this;
                     ! function(t, e) {
@@ -276,11 +344,11 @@
                     }(this, t);
                     var n = '<div class="article_ed__caredit">\n                  <div class="article_ed__caredit_inner">\n    ';
                     n += '\n      <div class="article_ed__caredit_header">\n        <div class="article_ed__caredit_container">\n          ' + getLang("pages_article_ed_carousel_title") + '\n          <div class="article_ed__caredit_header_controls">\n            <div class="article_ed__caredit_header_counter"></div>\n            <button class="flat_button article_ed__caredit_save">' + getLang("global_save") + '</button>\n            <button class="flat_button article_ed__caredit_cancel">' + getLang("global_cancel") + "</button>\n          </div>\n         </div>\n      </div>\n    ", n += '\n      <div class="article_ed__caredit_items_wrap article_ed__caredit_container">\n        <div class="article_ed__caredit_items">\n    ', r.getMediaId().split(",").forEach(function(t) {
-                        var e = _.get(l.b.ObjectPhoto, t),
-                            r = Object(l.d)(e.sizes, 251),
-                            i = p(r, 1)[0];
-                        n += u(i, t)
-                    }), n += u(), n += "  </div>", n += "</div>", n += '</div>\n             <div class="article_ed__caredit_loading" style="display: none"></div>\n           </div>', this._els = {}, this._els.editor = se(n), this._els.itemsWrap = geByClass1("article_ed__caredit_items_wrap", this._els.editor), this._els.items = geByClass1("article_ed__caredit_items", this._els.editor), this._els.addButton = geByClass1("article_ed__caredit_item_add", this._els.editor), this._els.saveButton = geByClass1("article_ed__caredit_save", this._els.editor), this._els.cancelButton = geByClass1("article_ed__caredit_cancel", this._els.editor), this._els.loading = geByClass1("article_ed__caredit_loading", this._els.editor), this._els.counter = geByClass1("article_ed__caredit_header_counter", this._els.editor), this._els.addButton.addEventListener("click", function() {
+                        var e = p.get(h.b.ObjectPhoto, t),
+                            r = Object(h.d)(e.sizes, 251),
+                            i = f(r, 1)[0];
+                        n += g(i, t)
+                    }), n += g(), n += "  </div>", n += "</div>", n += '</div>\n             <div class="article_ed__caredit_loading" style="display: none"></div>\n           </div>', this._els = {}, this._els.editor = se(n), this._els.itemsWrap = geByClass1("article_ed__caredit_items_wrap", this._els.editor), this._els.items = geByClass1("article_ed__caredit_items", this._els.editor), this._els.addButton = geByClass1("article_ed__caredit_item_add", this._els.editor), this._els.saveButton = geByClass1("article_ed__caredit_save", this._els.editor), this._els.cancelButton = geByClass1("article_ed__caredit_cancel", this._els.editor), this._els.loading = geByClass1("article_ed__caredit_loading", this._els.editor), this._els.counter = geByClass1("article_ed__caredit_header_counter", this._els.editor), this._els.addButton.addEventListener("click", function() {
                         showBox("al_photos.php", {
                             to_id: r.getEditor().getArticleOwnerId(),
                             act: "choose_photo",
@@ -325,13 +393,13 @@
                     }), this._medias = this._medias.slice(0, this._limit), this._medias
                 }, t.prototype.onPhotoAdd = function(t, e, r, a) {
                     if (!inArray(e, this._medias) && this._medias.length < this._limit) {
-                        _.add(l.b.ObjectPhoto, e, {
+                        p.add(h.b.ObjectPhoto, e, {
                             size: Object(i.t)(r.editable.sizes),
                             sizes: r.editable.sizes
                         });
-                        var o = Object(l.d)(r.editable.sizes, 251),
-                            n = p(o, 1)[0];
-                        domInsertBefore(se(u(n, e)), this._els.addButton)
+                        var o = Object(h.d)(r.editable.sizes, 251),
+                            n = f(o, 1)[0];
+                        domInsertBefore(se(g(n, e)), this._els.addButton)
                     }
                     return void 0 === a && (curBox() && curBox().hide(), this._initSorter(), this._scroll.update()), this._collectMediaIds(), this._toggleAddButton(), this._updateCounter(), !1
                 }, t.prototype._initSorter = function() {
@@ -345,7 +413,7 @@
                     })
                 }, t
             }(),
-            g = function() {
+            b = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -369,8 +437,8 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
-        var v = void 0,
-            b = function(t) {
+        var y = void 0,
+            m = function(t) {
                 function e(r, i, a) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -406,7 +474,7 @@
                         };
                     return o(), r.addEventListener("click", function(r) {
                         var i = t.getEditor();
-                        return i.closeAllCarouselEditors(), i._resizeTooltip && i._resizeTooltip.hide(), addClass(t._objectEl, "article_ed__carousel_edit_open"), t._carouselEditor = new f(e, t, function(r) {
+                        return i.closeAllCarouselEditors(), i._resizeTooltip && i._resizeTooltip.hide(), addClass(t._objectEl, "article_ed__carousel_edit_open"), t._carouselEditor = new v(e, t, function(r) {
                             r ? (delete t._fixedImageSize, t.setMediaId(r), t.appendObjectInnerEl(), t.getEditor().saveUndoStateAndDraft(), o(), t._setImageIndex(0, e), removeClass(t._objectEl, "article_ed__carousel_edit_open"), delete t._carouselEditor) : t.getEditor().removeObject(t)
                         }, t.getEditor().getLimits().maxCarouselItems), cancelEvent(r)
                     }), i.addEventListener("click", function() {
@@ -429,7 +497,7 @@
                     this._isCarousel() ? (setStyle(r, "display", "inline-block"), r.innerHTML = getLang("pages_article_ed_carousel_counter").replace("{counter}", this._currentImageIndex + 1).replace("{total}", this.getMediaIdsCount())) : hide(r), this._drawImage(), this.highlight()
                 }, e.prototype.render = function() {
                     this._el = se('\n      <div class="article_ed__img_content">\n        <img contenteditable="false" class="article_ed__img"/>\n      </div>\n    ');
-                    var t = _.get(l.b.ObjectPhoto, this.getMediaId(), 0);
+                    var t = p.get(h.b.ObjectPhoto, this.getMediaId(), 0);
                     return t && t.sizes ? (this.setLoadingState(!1), this._drawImage()) : this.setLoadingState(!0), this._el
                 }, e.prototype._initUpload = function() {
                     var t = this;
@@ -451,7 +519,7 @@
                                     act: "choose_uploaded"
                                 }, r), {
                                     onDone: function(e, r) {
-                                        t._mediaId = e, _.add(l.b.ObjectPhoto, e, {
+                                        t._mediaId = e, p.add(h.b.ObjectPhoto, e, {
                                             size: Object(i.t)(r.editable.sizes),
                                             sizes: r.editable.sizes
                                         }), t._drawImage(), t._onUploadCallback && t._onUploadCallback(), t.getEditor().saveUndoStateAndDraft()
@@ -483,7 +551,7 @@
                     }, i.readAsDataURL(t)
                 }, e.prototype._updateSize = function() {}, e.prototype._drawImage = function() {
                     var t = this,
-                        e = _.get(l.b.ObjectPhoto, this.getMediaId(), this.getImageIndex()),
+                        e = p.get(h.b.ObjectPhoto, this.getMediaId(), this.getImageIndex()),
                         r = 720;
                     switch (parseInt(this.paragraph.mode)) {
                         case 1:
@@ -496,13 +564,13 @@
                             r = window.innerWidth
                     }
                     if (e) {
-                        var i = Object(l.d)(e.sizes, r),
-                            a = g(i, 1)[0],
+                        var i = Object(h.d)(e.sizes, r),
+                            a = b(i, 1)[0],
                             o = this._getImageEl(),
                             n = !1;
                         o.onload = function() {
-                            clearTimeout(v), n = !0, setStyle(o, "visibility", "visible"), show(o), t.setLoadingState(!1), t._isCarousel() && t._fixSize()
-                        }, o.src = a, clearTimeout(v), n || (v = setTimeout(function() {
+                            clearTimeout(y), n = !0, setStyle(o, "visibility", "visible"), show(o), t.setLoadingState(!1), t._isCarousel() && t._fixSize()
+                        }, o.src = a, clearTimeout(y), n || (y = setTimeout(function() {
                             n || (setStyle(o, "visibility", "hidden"), t.setLoadingState(!0, t._isCarousel()))
                         }, 10)), this._updateSize()
                     }
@@ -516,11 +584,11 @@
                         "max-height": this._fixedImageSize[1]
                     })
                 }, e.prototype._isSmallPhotoSize = function() {
-                    var t = _.get(l.b.ObjectPhoto, this.getMediaId(), 0);
+                    var t = p.get(h.b.ObjectPhoto, this.getMediaId(), 0);
                     return !(!t && !t.size) && t.size[0] >= 720
                 }, e
             }(c);
-        var y = function(t) {
+        var O = function(t) {
             function e(r, i) {
                 return function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -542,11 +610,11 @@
                 }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
             }(e, t), e.prototype.render = function() {
                 this._el = se('\n      <div class="article_object_video"></div>\n    ');
-                var t = _.get(l.b.ObjectVideo, this.getMediaId());
+                var t = p.get(h.b.ObjectVideo, this.getMediaId());
                 if (t && (t.editable || t.thumb)) {
                     var e = void 0;
                     if (t.thumb) e = t.thumb;
-                    else e = Object(l.d)(t.editable.sizes, this.getEditor().getWidth(!0))[0];
+                    else e = Object(h.d)(t.editable.sizes, this.getEditor().getWidth(!0))[0];
                     this._el.appendChild(se('<div class="article_object_video_play"></div>')), this._el.appendChild(se(rs(this.getEditor().getOptions().videoLabelTemplate, {
                         duration: t.duration || 0,
                         platform: t.platform || ""
@@ -555,73 +623,7 @@
                 return this._el
             }, e.prototype.onViewport = function(t) {}, e.prototype.onRender = function() {}, e
         }(c);
-        var m = function(t) {
-            function e(r, i) {
-                return function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e),
-                    function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, r, i, !0))
-            }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.render = function() {
-                var t = this;
-                this._el = se('\n      <div class="article_ed__gif_content"></div>\n    ');
-                var e = _.get(l.b.ObjectGIF, this.getMediaId());
-                if (e)
-                    if (e.video) {
-                        if (this._videoEl = ce("video", {
-                                autoplay: !0,
-                                loop: "loop",
-                                muted: !0,
-                                src: e.video + "&mp4=1"
-                            }), e.size) {
-                            var r = e.size[0] < e.size[1],
-                                i = !this._isSmallGifSize();
-                            (r || i) && setStyle(this._videoEl, {
-                                width: e.size[0]
-                            })
-                        }
-                        this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
-                    } else if (e.href) {
-                    var a = e.href + "&wnd=1&module=" + cur.module;
-                    this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
-                        showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), t._editor.removeObject(t)
-                    }), this._imgEl.src = a, this._el.appendChild(this._imgEl)
-                }
-                return this._el
-            }, e.prototype.onViewport = function(t) {
-                if (this._imgEl) setStyle(this._imgEl, "visibility", t ? "visible" : "hidden");
-                else if (t) {
-                    var e = this._videoEl.play();
-                    e && e.catch(function() {})
-                } else this._videoEl.pause()
-            }, e.prototype.onRender = function() {
-                var t = this;
-                setTimeout(function() {
-                    var e = t._videoEl && t._videoEl.play();
-                    if (e && e.catch(function() {}), browser.msie && t._videoEl) {
-                        var r = t._videoEl.src;
-                        t._videoEl.src = "", t._videoEl.src = r
-                    }
-                })
-            }, e.prototype._isSmallGifSize = function() {
-                var t = _.get(l.b.ObjectGIF, this.getMediaId());
-                return !(!t && !t.size) && t.size[0] > this.getEditor().getOptions().minGifWidthExpand
-            }, e
-        }(c);
-        var C = function(t) {
+        var j = function(t) {
                 function e(r, i) {
                     return function(t, e) {
                             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -642,9 +644,49 @@
                         }
                     }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
                 }(e, t), e.prototype.render = function() {
-                    var t = _.get(l.b.ObjectAudio, this.getMediaId()).audio,
-                        e = AudioUtils.drawAudio(t);
-                    return this._el = se('\n      <div class="article_object_audio">' + e + "</div>\n    "), this._el
+                    var t = this;
+                    this._el = se('\n      <div class="article_ed__gif_content"></div>\n    ');
+                    var e = p.get(h.b.ObjectGIF, this.getMediaId());
+                    if (e)
+                        if (e.video) {
+                            if (this._videoEl = ce("video", {
+                                    autoplay: !0,
+                                    loop: "loop",
+                                    muted: !0,
+                                    src: e.video + "&mp4=1"
+                                }), e.size) {
+                                var r = e.size[0] < e.size[1],
+                                    i = !this._isSmallGifSize();
+                                (r || i) && setStyle(this._videoEl, {
+                                    width: e.size[0]
+                                })
+                            }
+                            this._el.appendChild(this._videoEl), this._el.appendChild(se('<span class="article_ed__select_dummy">&nbsp;</span>'))
+                        } else if (e.href) {
+                        var a = e.href + "&wnd=1&module=" + cur.module;
+                        this._imgEl = ce("img"), this._imgEl.addEventListener("error", function() {
+                            showFastBox(getLang("pages_article_error_box_title"), getLang("pages_article_error_box_text")), t._editor.removeObject(t)
+                        }), this._imgEl.src = a, this._el.appendChild(this._imgEl)
+                    }
+                    return this._el
+                }, e.prototype.onViewport = function(t) {
+                    if (this._imgEl) setStyle(this._imgEl, "visibility", t ? "visible" : "hidden");
+                    else if (t) {
+                        var e = this._videoEl.play();
+                        e && e.catch(function() {})
+                    } else this._videoEl.pause()
+                }, e.prototype.onRender = function() {
+                    var t = this;
+                    setTimeout(function() {
+                        var e = t._videoEl && t._videoEl.play();
+                        if (e && e.catch(function() {}), browser.msie && t._videoEl) {
+                            var r = t._videoEl.src;
+                            t._videoEl.src = "", t._videoEl.src = r
+                        }
+                    })
+                }, e.prototype._isSmallGifSize = function() {
+                    var t = p.get(h.b.ObjectGIF, this.getMediaId());
+                    return !(!t || !t.size) && t.size[0] > this.getEditor().getOptions().minGifWidthExpand
                 }, e
             }(c),
             E = function() {
@@ -671,7 +713,50 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
-        var O = function(t) {
+        var C = function(t) {
+            function e(r, i) {
+                return function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                    }(this, e),
+                    function(t, e) {
+                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                        return !e || "object" != typeof e && "function" != typeof e ? t : e
+                    }(this, t.call(this, r, i, !0))
+            }
+            return function(t, e) {
+                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                t.prototype = Object.create(e && e.prototype, {
+                    constructor: {
+                        value: t,
+                        enumerable: !1,
+                        writable: !0,
+                        configurable: !0
+                    }
+                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+            }(e, t), e.prototype.render = function() {
+                var t = this;
+                this._el = se('\n      <div class="article_object_audio"></div>\n    ');
+                var e = p.get(h.b.ObjectPodcast, this.getMediaId());
+                if (e.snippet) this._el.innerHTML = e.snippet;
+                else {
+                    var r = this.getMediaId().split("_"),
+                        i = E(r, 2),
+                        a = i[0],
+                        o = i[1];
+                    this.setLoadingState(!0), ajax.post("al_articles.php", {
+                        act: "get_podcast_snippet",
+                        owner_id: a,
+                        podcast_id: o
+                    }, {
+                        onDone: function(e) {
+                            t.setLoadingState(!1), t._el.appendChild(se(e))
+                        }
+                    })
+                }
+                return this._el.appendChild(se('<div class="article_ed__audioplaylist_play_note" contenteditable="false">' + getLang("pages_articles_editor_audio_play_note") + "</div>")), this._el
+            }, e
+        }(c);
+        var w = function(t) {
                 function e(r, i) {
                     return function(t, e) {
                             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -692,30 +777,12 @@
                         }
                     }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
                 }(e, t), e.prototype.render = function() {
-                    var t = this;
-                    this._el = se('\n      <div class="article_object_audio"></div>\n    ');
-                    var e = _.get(l.b.ObjectAudioPlaylist, this.getMediaId());
-                    if (e.snippet) this._el.innerHTML = e.snippet;
-                    else {
-                        var r = this.getMediaId().split("_"),
-                            i = E(r, 2),
-                            a = i[0],
-                            o = i[1];
-                        this.setLoadingState(!0), ajax.post("al_articles.php", {
-                            act: "get_audioplaylist_snippet",
-                            pl_owner_id: a,
-                            pl_id: o,
-                            pl_access_hash: e.accessHash
-                        }, {
-                            onDone: function(e) {
-                                t.setLoadingState(!1), t._el.innerHTML = e
-                            }
-                        })
-                    }
-                    return this._el.appendChild(se('<div class="article_ed__audioplaylist_play_note" contenteditable="false">' + getLang("pages_articles_editor_audio_play_note") + "</div>")), this._el
+                    var t = p.get(h.b.ObjectAudio, this.getMediaId()).audio,
+                        e = AudioUtils.drawAudio(t);
+                    return this._el = se('\n      <div class="article_object_audio">' + e + "</div>\n    "), this._el
                 }, e
             }(c),
-            j = [{
+            P = [{
                 pattern: /\s-\s$/,
                 substitution: " — "
             }, {
@@ -813,23 +880,23 @@
                 substitution: "≥"
             }];
 
-        function P(t) {
+        function x(t) {
             return JSON.parse(JSON.stringify(t))
         }
 
-        function w(t, e, r) {
+        function T(t, e, r) {
             var a = [];
             return t.forEach(function(t, o) {
-                r && !Object(i.D)(t) && Object(i.H)(t) && 0 != o && t.type != l.b.Code || a.push(function(t, e) {
+                r && !Object(i.D)(t) && Object(i.H)(t) && 0 != o && t.type != h.b.Code || a.push(function(t, e) {
                     var r = {};
                     for (var a in t) {
                         if (!t.hasOwnProperty(a)) return;
                         if (!a.startsWith("_") || "_uuid" === a && e) {
                             var o = t[a];
-                            r[a] = isObject(o) || isArray(o) ? P(o) : o
+                            r[a] = isObject(o) || isArray(o) ? x(o) : o
                         }
                     }
-                    return Object(i.D)(t) && t._object && (r.mediaId = t._object.getMediaId()), t.sep && (r.sep = 1), r.type == l.b.Text && delete r.type, r.lines.forEach(function(t) {
+                    return Object(i.D)(t) && t._object && (r.mediaId = t._object.getMediaId()), t.sep && (r.sep = 1), r.type == h.b.Text && delete r.type, r.lines.forEach(function(t) {
                         if (t) {
                             if (void 0 !== t.decorations) {
                                 var e = !0;
@@ -841,31 +908,285 @@
                         }
                     }), r
                 }(t, e))
-            }), P(a)
+            }), x(a)
         }
 
-        function x(t) {
+        function I(t) {
             return t.forEach(function(t) {
-                t.type = t.type || l.b.Text, t.lines.forEach(function(t) {
+                t.type = t.type || h.b.Text, t.lines.forEach(function(t) {
                     t.brs = t.brs || [], t.decorations = t.decorations || {}
                 })
             }), t
         }
-        var T = void 0;
+        var S = function(t) {
+                function e(r, i) {
+                    return function(t, e) {
+                            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                        }(this, e),
+                        function(t, e) {
+                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                            return !e || "object" != typeof e && "function" != typeof e ? t : e
+                        }(this, t.call(this, r, i, !0))
+                }
+                return function(t, e) {
+                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                    t.prototype = Object.create(e && e.prototype, {
+                        constructor: {
+                            value: t,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0
+                        }
+                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                }(e, t), e.prototype.render = function() {
+                    var t = this;
+                    return this._el = se('<div class="article_object_embed"></div>'), this.setLoadingState(!0), loadScript("https://platform.twitter.com/widgets.js", {
+                        onLoad: function() {
+                            t.setLoadingState(!1), twttr.widgets.createTweet(t.getMediaId(), t._el, {
+                                align: "center",
+                                lang: window.vk && 0 == window.vk.lang ? "ru" : "en",
+                                dnt: !0
+                            }).then(function() {})
+                        }
+                    }), this._el
+                }, e
+            }(c),
+            k = function() {
+                return function(t, e) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return function(t, e) {
+                        var r = [],
+                            i = !0,
+                            a = !1,
+                            o = void 0;
+                        try {
+                            for (var n, s = t[Symbol.iterator](); !(i = (n = s.next()).done) && (r.push(n.value), !e || r.length !== e); i = !0);
+                        } catch (t) {
+                            a = !0, o = t
+                        } finally {
+                            try {
+                                !i && s.return && s.return()
+                            } finally {
+                                if (a) throw o
+                            }
+                        }
+                        return r
+                    }(t, e);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        var L = function(t) {
+            function e(r, i) {
+                return function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                    }(this, e),
+                    function(t, e) {
+                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                        return !e || "object" != typeof e && "function" != typeof e ? t : e
+                    }(this, t.call(this, r, i, !0))
+            }
+            return function(t, e) {
+                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                t.prototype = Object.create(e && e.prototype, {
+                    constructor: {
+                        value: t,
+                        enumerable: !1,
+                        writable: !0,
+                        configurable: !0
+                    }
+                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+            }(e, t), e.prototype.render = function() {
+                var t = this,
+                    e = this.getMediaId().split("_"),
+                    r = k(e, 2),
+                    i = r[0],
+                    a = r[1];
+                this._el = se('<div class="article_object_embed fb-post" data-href="https://www.facebook.com/' + i + "/posts/" + a + '/" data-width="auto"></div>'), this.setLoadingState(!0);
+                var o = window.vk && 0 == window.vk.lang ? "ru_RU" : "en_US";
+                return loadScript("https://connect.facebook.net/" + o + "/all.js#xfbml=1&amp;version=v2.8", {
+                    onLoad: function() {
+                        setTimeout(function() {
+                            FB.XFBML.parse(window.bodyNode, function() {
+                                t.setLoadingState(!1)
+                            })
+                        }, 0)
+                    }
+                }), this._el
+            }, e
+        }(c);
+        var M = function(t) {
+                function e(r, i) {
+                    return function(t, e) {
+                            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                        }(this, e),
+                        function(t, e) {
+                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                            return !e || "object" != typeof e && "function" != typeof e ? t : e
+                        }(this, t.call(this, r, i, !0))
+                }
+                return function(t, e) {
+                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                    t.prototype = Object.create(e && e.prototype, {
+                        constructor: {
+                            value: t,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0
+                        }
+                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                }(e, t), e.prototype.render = function() {
+                    var t = this;
+                    return this._el = se('\n      <blockquote class="article_object_embed article_embed_spacer instagram-media" data-instgrm-version="7">\n        <a href="https://instagram.com/p/' + this.getMediaId() + '/embed"></a>\n      </blockquote>\n    '), this.setLoadingState(!0), loadScript("https://www.instagram.com/embed.js", {
+                        onLoad: function() {
+                            setTimeout(function() {
+                                window.instgrm.Embeds.process(), t.setLoadingState(!1)
+                            }, 0)
+                        }
+                    }), this._el
+                }, e
+            }(c),
+            A = function() {
+                return function(t, e) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return function(t, e) {
+                        var r = [],
+                            i = !0,
+                            a = !1,
+                            o = void 0;
+                        try {
+                            for (var n, s = t[Symbol.iterator](); !(i = (n = s.next()).done) && (r.push(n.value), !e || r.length !== e); i = !0);
+                        } catch (t) {
+                            a = !0, o = t
+                        } finally {
+                            try {
+                                !i && s.return && s.return()
+                            } finally {
+                                if (a) throw o
+                            }
+                        }
+                        return r
+                    }(t, e);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        var D = function(t) {
+                function e(r, i) {
+                    return function(t, e) {
+                            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                        }(this, e),
+                        function(t, e) {
+                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                            return !e || "object" != typeof e && "function" != typeof e ? t : e
+                        }(this, t.call(this, r, i, !0))
+                }
+                return function(t, e) {
+                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                    t.prototype = Object.create(e && e.prototype, {
+                        constructor: {
+                            value: t,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0
+                        }
+                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                }(e, t), e.prototype.render = function() {
+                    var t = this;
+                    return this._el = se('<div class="article_object_embed"></div>'), setTimeout(function() {
+                        var e = t.getMediaId().split("_"),
+                            r = A(e, 2),
+                            i = r[0],
+                            a = r[1],
+                            o = domData(t._objectEl, "uuid"),
+                            n = "vk_post_" + t.getMediaId() + "_" + o;
+                        t._el.setAttribute("id", n), t.setLoadingState(!0), loadScript("https://vk.com/js/api/openapi.js", {
+                            onLoad: function() {
+                                ajax.post("dev.php", {
+                                    act: "a_get_post_hash",
+                                    post: t.getMediaId()
+                                }, {
+                                    onDone: function(e) {
+                                        e && (t.setLoadingState(!1), window.VK && window.VK.Widgets && window.VK.Widgets.Post("" + n, i, a, e, {
+                                            base_domain: location.origin
+                                        }))
+                                    }
+                                })
+                            }
+                        })
+                    }, 0), this._el
+                }, e
+            }(c),
+            N = function() {
+                return function(t, e) {
+                    if (Array.isArray(t)) return t;
+                    if (Symbol.iterator in Object(t)) return function(t, e) {
+                        var r = [],
+                            i = !0,
+                            a = !1,
+                            o = void 0;
+                        try {
+                            for (var n, s = t[Symbol.iterator](); !(i = (n = s.next()).done) && (r.push(n.value), !e || r.length !== e); i = !0);
+                        } catch (t) {
+                            a = !0, o = t
+                        } finally {
+                            try {
+                                !i && s.return && s.return()
+                            } finally {
+                                if (a) throw o
+                            }
+                        }
+                        return r
+                    }(t, e);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }();
+        var B = function(t) {
+                function e(r, i) {
+                    return function(t, e) {
+                            if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
+                        }(this, e),
+                        function(t, e) {
+                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                            return !e || "object" != typeof e && "function" != typeof e ? t : e
+                        }(this, t.call(this, r, i, !0))
+                }
+                return function(t, e) {
+                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
+                    t.prototype = Object.create(e && e.prototype, {
+                        constructor: {
+                            value: t,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0
+                        }
+                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
+                }(e, t), e.prototype.render = function() {
+                    var t = this,
+                        e = this.getMediaId().split("_"),
+                        r = N(e, 2),
+                        i = r[0],
+                        a = r[1];
+                    return this._el = se('<div class="article_object_embed"><blockquote class="telegram-post" data-telegram-post="' + i + "/" + a + '" data-width="100%" data-userpic="true"></div>'), this.setLoadingState(!0), loadScript("https://telegram.org/js/telegram-widget.js?5", {
+                        onLoad: function() {
+                            t.setLoadingState(!1)
+                        }
+                    }), this._el
+                }, e
+            }(c),
+            H = void 0;
 
-        function I(t) {
+        function U(t) {
             var e = [];
-            t.length > T.maxParagraphs && e.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", t.length).replace("{limit}", T.maxParagraphs));
+            t.length > H.maxParagraphs && e.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", t.length).replace("{limit}", H.maxParagraphs));
             var r = 0,
                 a = 0;
             return t.forEach(function(t) {
                 var o = 0;
                 t.lines.forEach(function(t) {
                     t && (r += t.text.length, o += t.text.length)
-                }), Object(i.D)(t) && a++, o > T.maxSymbolsPerParagraph && e.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", o).replace("{limit}", T.maxSymbolsPerParagraph))
-            }), r > T.maxSymbols && e.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", T.maxSymbols)), a > T.maxObjects && e.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", T.maxObjects)), e.length && e.push(getLang("pages_article_ed_limit")), e.join("<br>")
+                }), Object(i.D)(t) && a++, o > H.maxSymbolsPerParagraph && e.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", o).replace("{limit}", H.maxSymbolsPerParagraph))
+            }), r > H.maxSymbols && e.push(getLang("pages_article_ed_limit_symbols").replace("{count}", r).replace("{limit}", H.maxSymbols)), a > H.maxObjects && e.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", H.maxObjects)), e.length && e.push(getLang("pages_article_ed_limit")), e.join("<br>")
         }
-        var k = function() {
+        var z = function() {
                 function t() {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -904,21 +1225,21 @@
                         }
                     })
                 }, t.save = function(e, r, i, a, o, n, s, c, l, d) {
-                    var h = [],
-                        _ = [],
-                        p = 0;
+                    var p = [],
+                        h = [],
+                        _ = 0;
                     if (i.forEach(function(t) {
                             var e = 0;
                             t.lines.forEach(function(t) {
                                 e += t.text.length, t.decorations && t.decorations.link && t.decorations.link.forEach(function(t) {
                                     e += (t[2] || "").length
                                 })
-                            }), (p += e) >= c && (h.push(_), p = e, _ = []), _.push(t)
-                        }), _.length && h.push(_), h.length > 1) {
+                            }), (_ += e) >= c && (p.push(h), _ = e, h = []), h.push(t)
+                        }), h.length && p.push(h), p.length > 1) {
                         var u = new CallHub(function() {
-                            t._saveFinally(e, r, a, o, n, l, s, h.length, !1, d)
-                        }, h.length);
-                        h.forEach(function(r, i) {
+                            t._saveFinally(e, r, a, o, n, l, s, p.length, !1, d)
+                        }, p.length);
+                        p.forEach(function(r, i) {
                             t._saveChunk(e, r, i, s, function(t) {
                                 t ? showFastBox(getLang("global_error"), getLang("pages_articles_save_fail")) : u.done()
                             })
@@ -926,8 +1247,9 @@
                     } else t._saveFinally(e, r, a, o, n, l, s, 0, i, d)
                 }, t
             }(),
-            S = r("zxIV"),
-            L = function() {
+            F = r("zxIV"),
+            R = r("8+we"),
+            W = function() {
                 return function(t, e) {
                     if (Array.isArray(t)) return t;
                     if (Symbol.iterator in Object(t)) return function(t, e) {
@@ -951,49 +1273,49 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
-        var D = window,
-            M = D.cur,
-            A = D.browser,
-            N = D.each,
-            B = D.addClass,
-            H = D.geByTag1,
-            U = D.geByClass1,
-            z = D.extractUrls,
-            F = D.removeClass,
-            R = D.domClosestByTag,
-            W = D.hasClass,
-            G = D.domData,
-            Q = D.getSize,
-            J = D.getXY,
-            Y = D.re,
-            V = D.se,
-            $ = D.domInsertBefore,
-            X = D.traverseParent,
-            q = D.extend,
-            K = D.toggleClass,
-            Z = D.trim,
-            tt = D.domInsertAfter,
-            et = D.gpeByClass,
-            rt = D.clean,
-            it = D.domReplaceEl,
-            at = D.isObject,
-            ot = D.ge,
-            nt = D.domChildIndex,
-            st = D.domNS,
-            ct = (D.lineHtml, 65),
-            lt = 66,
-            dt = 67,
-            ht = 73,
-            _t = 83,
-            pt = 89,
-            ut = 90,
-            ft = 8,
-            gt = 13,
-            vt = 38,
-            bt = 40,
-            yt = 46,
-            mt = 9,
-            Ct = [{
+        var G = window,
+            Q = G.cur,
+            V = G.browser,
+            J = G.each,
+            Y = G.addClass,
+            K = G.geByTag1,
+            $ = G.geByClass1,
+            X = G.extractUrls,
+            q = G.removeClass,
+            Z = G.domClosestByTag,
+            tt = G.hasClass,
+            et = G.domData,
+            rt = G.getSize,
+            it = G.getXY,
+            at = G.re,
+            ot = G.se,
+            nt = G.domInsertBefore,
+            st = G.traverseParent,
+            ct = G.extend,
+            lt = G.toggleClass,
+            dt = G.trim,
+            pt = G.domInsertAfter,
+            ht = G.gpeByClass,
+            _t = G.clean,
+            ut = G.domReplaceEl,
+            ft = G.isObject,
+            gt = G.ge,
+            vt = G.domChildIndex,
+            bt = G.domNS,
+            yt = (G.lineHtml, 65),
+            mt = 66,
+            Ot = 67,
+            jt = 73,
+            Et = 83,
+            Ct = 89,
+            wt = 90,
+            Pt = 8,
+            xt = 13,
+            Tt = 38,
+            It = 40,
+            St = 46,
+            kt = 9,
+            Lt = [{
                 type: "strong",
                 tag: "strong"
             }, {
@@ -1009,54 +1331,54 @@
                 type: "code",
                 tag: "code"
             }],
-            Et = Ct.slice().reverse(),
-            Ot = {};
-        N(Ct, function(t, e) {
-            Ot[e.tag] = e
+            Mt = Lt.slice().reverse(),
+            At = {};
+        J(Lt, function(t, e) {
+            At[e.tag] = e
         });
-        var jt = {};
-        N(Ct, function(t, e) {
-            jt[e.type] = e
+        var Dt = {};
+        J(Lt, function(t, e) {
+            Dt[e.type] = e
         });
-        var Pt = 1;
+        var Nt = 1;
 
-        function wt() {
-            return Pt++ + "-" + Date.now() % 1e6 + "-" + irand(0, 99999)
+        function Bt() {
+            return Nt++ + "-" + Date.now() % 1e6 + "-" + irand(0, 99999)
         }
-        var xt = function() {
+        var Ht = function() {
             function t(e, r, a) {
                 var o, n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, t), this._id = wt(), M.lang = M.lang || {}, q(M.lang, n.lang), this._options = n, this._els = {
-                    editor: ot(e),
-                    canvas: V('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
-                }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = V('<div class="article_photo_upload"></div>')), B(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [], o = n.limits, T = o;
+                }(this, t), this._id = Bt(), Q.lang = Q.lang || {}, ct(Q.lang, n.lang), this._options = n, this._els = {
+                    editor: gt(e),
+                    canvas: ot('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
+                }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = ot('<div class="article_photo_upload"></div>')), Y(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [], o = n.limits, H = o;
                 var s = a || [];
                 if (n.postData) {
                     var c = n.postData.text || "";
                     c = (c = c.replace(/❤/g, "❤️")).split("\n");
-                    var d = [];
-                    d.push(Object(i.e)({
-                        type: l.b.Header1,
+                    var l = [];
+                    l.push(Object(i.e)({
+                        type: h.b.Header1,
                         lines: [{
                             text: ""
                         }]
                     })), c.forEach(function(t) {
-                        Z(t) && d.push(Object(i.e)({
+                        dt(t) && l.push(Object(i.e)({
                             lines: [{
-                                text: rt(t)
+                                text: _t(t)
                             }]
                         }))
-                    }), s = d.concat(s)
+                    }), s = l.concat(s)
                 }
                 s && 0 != s.length || (s = [Object(i.e)({
-                    type: this._options.noTitle ? l.b.Text : l.b.Header1
+                    type: this._options.noTitle ? h.b.Text : h.b.Header1
                 })]), (s = s.filter(function(t) {
                     return !1 !== t
                 })).forEach(function(t) {
                     t.lines.forEach(function(t) {
-                        t.text = Object(i.R)(t.text), t.brs && at(t.brs) && (t.brs = Object(i.j)(t.brs))
+                        t.text = Object(i.R)(t.text), t.brs && ft(t.brs) && (t.brs = Object(i.j)(t.brs))
                     })
                 }), n.needIndexCorrection && Object(i.k)(s, 1), this.initParagraphs(s), this._updateTextPlaceholders(), this._initObjectDrag(), n.postData ? Object(i.o)(this._getParagraphElByIndex(0)) : this._restoreLastCursor(), this.saveDraft(!1, !0), n.coverPhoto && this.setCoverPhoto(n.coverPhoto, !1), (this._options.isPublished || this._options.wasPublished) && this.setPublishName(r.name), this.updateWarnInfos(), this._publishNameCandidate = n.name || this._getName(), this._saveUndoState(), stManager.add("audio.js")
             }
@@ -1076,11 +1398,11 @@
             }, t.prototype.getFirstCoverPhotoFromParagraphs = function() {
                 var t = !1;
                 return this._ps.forEach(function(e) {
-                    if (!t && e.type == l.b.ObjectPhoto) {
+                    if (!t && e.type == h.b.ObjectPhoto) {
                         var r = e._object.getMediaId(0);
                         t = {
                             id: r,
-                            data: _.get(l.b.ObjectPhoto, r)
+                            data: p.get(h.b.ObjectPhoto, r)
                         }
                     }
                 }), t
@@ -1090,111 +1412,137 @@
                 this._publishName = t, this._options.isPublished || this.saveDraft(!0)
             }, t.prototype._updateTextPlaceholders = function() {
                 if (!this._options.noTitle) {
-                    this._els.placeholders || (this._els.placeholders = V('<div class="article_ed__text_placeholders"></div>'), this._els.placeholderTitle = V("<h1>" + this.getOptions().placeholderTitle + "</h1>"), this._els.placeholderFirstParagraph = V("<p>" + this.getOptions().placeholderParagraph + "</p>"), this._els.placeholders.appendChild(this._els.placeholderTitle), this._els.placeholders.appendChild(this._els.placeholderFirstParagraph), this._els.editor.appendChild(this._els.placeholders)), Object(i.H)(this._ps[0]) ? F(this._els.placeholderTitle, "article_ed__text_placeholder_hidden") : B(this._els.placeholderTitle, "article_ed__text_placeholder_hidden");
+                    this._els.placeholders || (this._els.placeholders = ot('<div class="article_ed__text_placeholders"></div>'), this._els.placeholderTitle = ot("<h1>" + this.getOptions().placeholderTitle + "</h1>"), this._els.placeholderFirstParagraph = ot("<p>" + this.getOptions().placeholderParagraph + "</p>"), this._els.placeholders.appendChild(this._els.placeholderTitle), this._els.placeholders.appendChild(this._els.placeholderFirstParagraph), this._els.editor.appendChild(this._els.placeholders)), Object(i.H)(this._ps[0]) ? q(this._els.placeholderTitle, "article_ed__text_placeholder_hidden") : Y(this._els.placeholderTitle, "article_ed__text_placeholder_hidden");
                     var t = this._ps[1],
                         e = !!t && t.sep,
                         r = this._getCurrentParagraphIndex(),
-                        a = L(r, 1)[0];
-                    Object(i.H)(t) && (!t || t.type != l.b.Code) && a < 2 && this._ps.length <= 2 && !e ? F(this._els.placeholderFirstParagraph, "article_ed__text_placeholder_hidden") : B(this._els.placeholderFirstParagraph, "article_ed__text_placeholder_hidden")
+                        a = W(r, 1)[0];
+                    Object(i.H)(t) && (!t || t.type != h.b.Code) && a < 2 && this._ps.length <= 2 && !e ? q(this._els.placeholderFirstParagraph, "article_ed__text_placeholder_hidden") : Y(this._els.placeholderFirstParagraph, "article_ed__text_placeholder_hidden")
                 }
             }, t.prototype.destroy = function() {
-                this._els.editor.innerHTML = "", F(this._els.editor, "article_editor"), this._formatTooltip && this._formatTooltip.destroy(), this._resizeTooltip && this._resizeTooltip.destroy(), this._objectPickerTooltip && this._objectPickerTooltip.destroy(), this._events = this._events || [], this._events.forEach(function(t) {
+                this._els.editor.innerHTML = "", q(this._els.editor, "article_editor"), this._formatTooltip && this._formatTooltip.destroy(), this._resizeTooltip && this._resizeTooltip.destroy(), this._objectPickerTooltip && this._objectPickerTooltip.destroy(), this._events = this._events || [], this._events.forEach(function(t) {
                     t.el.removeEventListener(t.event, t.handler)
-                }), delete M.docsCurFilter
+                }), delete Q.docsCurFilter
             }, t.prototype.getLimits = function() {
                 return this._options.limits
             }, t.prototype.getOptions = function() {
                 return this._options
             }, t.prototype.getWidth = function() {
                 var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-                return Q(this._els.canvas)[0] + (t ? 2 * this._options.figureSideMargin : 0)
+                return rt(this._els.canvas)[0] + (t ? 2 * this._options.figureSideMargin : 0)
             }, t.prototype.getPhotoUploadOptions = function() {
                 return this._options.photoUploadOptions
             }, t.prototype.getPhotoUploadEl = function() {
                 return this._photoUploadEl
             }, t.prototype.removeObject = function(t) {
                 var e = this;
-                N(this._ps, function(r, a) {
+                J(this._ps, function(r, a) {
                     if (a._object == t) {
                         var o = e._getParagraphElByIndex(r + 1);
-                        return Object(i.o)(o), Y(e._getParagraphElByIndex(r)), e._setAllParagraphsDirty(), e._triggerInputEvent(), !1
+                        return Object(i.o)(o), at(e._getParagraphElByIndex(r)), e._setAllParagraphsDirty(), e._triggerInputEvent(), !1
                     }
                 })
             }, t.prototype._processPastedUrl = function(t, e) {
                 var r = this,
                     a = this._getParagraph(t);
-                a && a.type == l.b.Text && (Y(this._els.shareParseForm), Y(this._els.shareIFrame), this._els.shareIFrame = this._els.editor.appendChild(V('<iframe class="editor__share_parse_iframe" name="editor__share_parse_iframe"></iframe>')), this._els.shareParseForm = this._els.editor.appendChild(ce("form", {
-                    action: "share.php?act=url_attachment",
-                    method: "post",
-                    target: "editor__share_parse_iframe"
-                })), this._els.shareParseForm.appendChild(ce("input", {
-                    type: "hidden",
-                    name: "hash",
-                    value: this._options.shareHash
-                })), this._els.shareParseForm.appendChild(ce("input", {
-                    type: "hidden",
-                    name: "url",
-                    value: e
-                })), this._els.shareParseForm.appendChild(ce("input", {
-                    type: "hidden",
-                    name: "index",
-                    value: 1
-                })), this._els.shareParseForm.appendChild(ce("input", {
-                    type: "hidden",
-                    name: "force_media",
-                    value: 1
-                })), window.onUploadFail = function() {}, window.onUploadDone = function(e) {
-                    if (e) {
-                        var a = e[2];
-                        if (a) {
-                            var o, n = void 0,
-                                s = {};
-                            switch (e[0]) {
-                                case "audio_playlist":
-                                    n = l.b.ObjectAudioPlaylist, s = {
-                                        accessHash: a.accessHash
-                                    }, e[1] = a.ownerId + "_" + a.id + (a.accessHash ? "_" + a.accessHash : "");
-                                    break;
-                                case "doc":
-                                    "gif" == a.ext && (n = l.b.ObjectGIF, s = {
-                                        size: a.video_preview_size,
-                                        video: a.video_preview,
-                                        href: a.href
-                                    });
-                                    break;
-                                case "photo":
-                                    n = l.b.ObjectPhoto, s = {
-                                        size: Object(i.t)(a.editable.sizes),
-                                        sizes: a.editable.sizes
-                                    };
-                                    break;
-                                case "video":
-                                    n = l.b.ObjectVideo, s = {
-                                        editable: a.editable,
-                                        duration: a.editable.duration,
-                                        platform: a.editable.platform
-                                    }
-                            }
-                            if (n) {
-                                var c = Object(i.w)(r._ps[t]),
-                                    d = {
-                                        mediaId: e[1],
-                                        type: n,
-                                        sep: c,
-                                        fromExtPage: intval(a.from_ext_page)
-                                    };
-                                _.add(n, d.mediaId, s), r._linkTooltip && r._linkTooltip.hide(), d = Object(i.e)(d), (o = r._getParagraph(t + 1)) && o._object && o._object._mediaId === d.mediaId || (r._getOrCreateParagraphObject(d), r._insertParagraphAt(t + 1, d), r._els.canvas.normalize(), r._redraw(!0, !0), r._saveUndoState(), setTimeout(function() {
-                                    r.onObjectStateLoaded()
-                                }, 10))
+                a && a.type == h.b.Text && setTimeout(function() {
+                    r._processMatchingEmbeds(t, e) || (at(r._els.shareParseForm), at(r._els.shareIFrame), r._els.shareIFrame = r._els.editor.appendChild(ot('<iframe class="editor__share_parse_iframe" name="editor__share_parse_iframe"></iframe>')), r._els.shareParseForm = r._els.editor.appendChild(ce("form", {
+                        action: "share.php?act=url_attachment",
+                        method: "post",
+                        target: "editor__share_parse_iframe"
+                    })), r._els.shareParseForm.appendChild(ce("input", {
+                        type: "hidden",
+                        name: "hash",
+                        value: r._options.shareHash
+                    })), r._els.shareParseForm.appendChild(ce("input", {
+                        type: "hidden",
+                        name: "url",
+                        value: e
+                    })), r._els.shareParseForm.appendChild(ce("input", {
+                        type: "hidden",
+                        name: "index",
+                        value: 1
+                    })), r._els.shareParseForm.appendChild(ce("input", {
+                        type: "hidden",
+                        name: "force_media",
+                        value: 1
+                    })), window.onUploadFail = function() {}, window.onUploadDone = function(e) {
+                        if (e) {
+                            var a = e[2];
+                            if (a) {
+                                var o, n = void 0,
+                                    s = {};
+                                switch (e[0]) {
+                                    case "audio_playlist":
+                                        n = h.b.ObjectAudioPlaylist, s = {
+                                            accessHash: a.accessHash
+                                        }, e[1] = a.ownerId + "_" + a.id + (a.accessHash ? "_" + a.accessHash : "");
+                                        break;
+                                    case "podcast":
+                                        Object(R.a)("article_podcasts") && (n = h.b.ObjectPodcast, s = {});
+                                        break;
+                                    case "doc":
+                                        "gif" == a.ext && (n = h.b.ObjectGIF, s = {
+                                            size: a.video_preview_size,
+                                            video: a.video_preview,
+                                            href: a.href
+                                        });
+                                        break;
+                                    case "photo":
+                                        n = h.b.ObjectPhoto, s = {
+                                            size: Object(i.t)(a.editable.sizes),
+                                            sizes: a.editable.sizes
+                                        };
+                                        break;
+                                    case "video":
+                                        n = h.b.ObjectVideo, s = {
+                                            editable: a.editable,
+                                            duration: a.editable.duration,
+                                            platform: a.editable.platform
+                                        }
+                                }
+                                if (n) {
+                                    var c = Object(i.w)(r._ps[t]),
+                                        l = {
+                                            mediaId: e[1],
+                                            type: n,
+                                            sep: c,
+                                            fromExtPage: intval(a.from_ext_page)
+                                        };
+                                    p.add(n, l.mediaId, s), r._linkTooltip && r._linkTooltip.hide(), l = Object(i.e)(l), (o = r._getParagraph(t + 1)) && o._object && o._object._mediaId === l.mediaId || (r._getOrCreateParagraphObject(l), r._insertParagraphAt(t + 1, l), r._els.canvas.normalize(), r._redraw(!0, !0), r._saveUndoState(), setTimeout(function() {
+                                        r.onObjectStateLoaded()
+                                    }, 10))
+                                }
                             }
                         }
-                    }
-                }, this._els.shareParseForm.submit())
+                    }, r._els.shareParseForm.submit())
+                }, 0)
+            }, t.prototype._processMatchingEmbeds = function(t, e) {
+                var r = void 0,
+                    a = void 0,
+                    o = void 0;
+                if (!Object(R.a)("article_embeds")) return !1;
+                if (r = e.match(/^https?:\/\/(?:www.)?twitter\.com\/(?:#!\/)?(?:\w+)\/status(?:es)?\/(\d+)$/)) a = h.b.ObjectTwitter, o = r[1];
+                else if (r = e.match(/^https?:\/\/(?:www.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)(?:\/embed)?(?:\/)?/)) a = h.b.ObjectInstagram, o = r[1];
+                else if (r = e.match(/^https?:\/\/(?:www.)?facebook\.com\/(\w.+)\/posts\/(\d+)\/?$/)) a = h.b.ObjectFacebook, o = r[1] + "_" + r[2];
+                else if (r = e.match(/^https?:\/\/(?:www.)?vk\.com\/wall(-?\d+)_(\d+)/) || e.match(/\?w=wall(-?\d+)_(\d+)$/)) a = h.b.ObjectVK, o = r[1] + "_" + r[2];
+                else if (r = e.match(/^https?:\/\/(?:www.)?t\.me\/(\w.+)\/(\d+)/)) {
+                    if (gt("telegram-post-" + r[1] + "-" + r[2])) return !1;
+                    a = h.b.ObjectTelegram, o = r[1] + "_" + r[2]
+                }
+                if (!a || !o) return !1;
+                var n = Object(i.e)({
+                        _uuid: Bt(),
+                        type: a,
+                        mediaId: o
+                    }),
+                    s = this._getParagraph(t + 1);
+                return s && s._object && s._object._mediaId === n.mediaId ? void 0 : (this._getOrCreateParagraphObject(n), this._insertParagraphAt(t + 1, n), this._els.canvas.normalize(), this._redraw(!0, !0), this._saveUndoState(), !0)
             }, t.prototype._handleObjectPaste = function(t) {
                 var e = (t.clipboardData || t.originalEvent.clipboardData).getData("text/plain");
                 if (e) {
                     var r = e.split(":"),
-                        i = L(r, 2),
+                        i = W(r, 2),
                         a = i[0],
                         o = i[1];
                     if ("uuid" == a && o) {
@@ -1203,8 +1551,8 @@
                             var s = n.cloneNode(!0);
                             s.setAttribute("data-force-update", "1");
                             var c = this._getCurrentParagraphIndex(),
-                                l = L(c, 1)[0];
-                            tt(s, this._getParagraphElByIndex(l)), t.preventDefault(), this._setAllParagraphsDirty(), this._triggerInputEvent()
+                                l = W(c, 1)[0];
+                            pt(s, this._getParagraphElByIndex(l)), t.preventDefault(), this._setAllParagraphsDirty(), this._triggerInputEvent()
                         }
                     }
                 }
@@ -1216,14 +1564,14 @@
                         var o = r[a];
                         "string" === o.kind && function() {
                             var t = e._getCurrentParagraphIndex(),
-                                r = L(t, 1)[0];
+                                r = W(t, 1)[0];
                             o.getAsString(function(t) {
-                                var a = z(t, !0);
+                                var a = X(t, !0);
                                 if (1 === a.length) {
                                     var o = a[0].url,
                                         n = e._getParagraphElByIndex(r);
                                     e._processPastedUrl(r, o), Object(i.T)(n, function(t) {
-                                        if (t.nodeType == Node.TEXT_NODE && t.textContent.indexOf(o) >= 0 && !X(t, function(t) {
+                                        if (t.nodeType == Node.TEXT_NODE && t.textContent.indexOf(o) >= 0 && !st(t, function(t) {
                                                 return t.tagName && "a" == t.tagName.toLowerCase()
                                             }, 3)) {
                                             e._saveCursorMarker();
@@ -1251,10 +1599,10 @@
                             r.onload = function() {
                                 e._photoPasteUploadingProcess = !1;
                                 var a = e._getCurrentParagraphIndex(),
-                                    o = L(a, 1)[0];
+                                    o = W(a, 1)[0];
                                 o = o || 0;
                                 var n = Object(i.e)({
-                                    type: l.b.ObjectPhoto
+                                    type: h.b.ObjectPhoto
                                 });
                                 e._getOrCreateParagraphObject(n).setBLOB(t);
                                 var s = void 0;
@@ -1268,7 +1616,7 @@
                     }
             }, t.prototype._getCurrentSelectionState = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 2),
+                    e = W(t, 2),
                     r = e[0],
                     a = e[1];
                 if (!1 === r || !1 === a) return !1;
@@ -1282,34 +1630,34 @@
                         quote: !0,
                         list: !1,
                         justHeaders: !0
-                    }, n = {}, s = 0, c = void 0, d = void 0, h = r; h <= a && h < this._ps.length; h++) {
-                    var _ = Object(i.D)(this._ps[h]) ? this._ps[h]._object.getCaptionEl() : this._getParagraphElByIndex(h);
+                    }, n = {}, s = 0, c = void 0, l = void 0, d = r; d <= a && d < this._ps.length; d++) {
+                    var p = Object(i.D)(this._ps[d]) ? this._ps[d]._object.getCaptionEl() : this._getParagraphElByIndex(d);
                     if (void 0 === c) {
-                        var p = getCaretCharacterOffsetWithin(_),
-                            u = L(p, 2);
-                        c = u[0], d = u[1]
+                        var _ = getCaretCharacterOffsetWithin(p),
+                            u = W(_, 2);
+                        c = u[0], l = u[1]
                     }
-                    this._ps[h].lines.forEach(function(t) {
+                    this._ps[d].lines.forEach(function(t) {
                         var e = t.decorations;
-                        Ct.forEach(function(r) {
+                        Lt.forEach(function(r) {
                             var i = e[r.type];
                             i && !isEmpty(i) && i.forEach(function(e) {
                                 var i = [e[0] + s, e[1] + s];
-                                if ("link" == r.type) c < i[1] && d > i[0] && (n[r.type] = 1, o.decorations[r.type] = !0);
+                                if ("link" == r.type) c < i[1] && l > i[0] && (n[r.type] = 1, o.decorations[r.type] = !0);
                                 else if (1 == n[r.type]) {
-                                    d > i[1] || (d >= i[0] && d <= i[1] ? e[0] > 0 ? n[r.type] = -1 : (n[r.type] = 2, o.decorations[r.type] = !0) : n[r.type] = -1)
+                                    l > i[1] || (l >= i[0] && l <= i[1] ? e[0] > 0 ? n[r.type] = -1 : (n[r.type] = 2, o.decorations[r.type] = !0) : n[r.type] = -1)
                                 } else if (!n[r.type]) {
                                     var a = c >= i[0] && c <= i[1];
-                                    a && (d >= i[0] && d <= i[1]) ? (n[r.type] = 2, o.decorations[r.type] = !0) : a && (t.text.length > i[1] ? n[r.type] = -1 : n[r.type] = 1)
+                                    a && (l >= i[0] && l <= i[1]) ? (n[r.type] = 2, o.decorations[r.type] = !0) : a && (t.text.length > i[1] ? n[r.type] = -1 : n[r.type] = 1)
                                 }
                             })
                         }), s += t.text.length
                     })
                 }
-                for (var f = r; f <= a && f < this._ps.length; f++) Object(i.D)(this._ps[f]) && (o.captionFocused = o.captionFocused || this._ps[f]._object.isCaptionFocused(), o.object = !0), this._ps[f].type == l.b.Header1 && (o.header1 = !0), this._ps[f].type != l.b.Header2 && (o.header2 = !1), this._ps[f].type != l.b.Header3 && (o.header3 = !1), inArray(this._ps[f].type, [l.b.Header1, l.b.Header2, l.b.Header3]) ? o.header = !0 : o.justHeaders = !1, inArray(this._ps[f].type, [l.b.Quote, l.b.Quote2]) || (o.quote = !1), inArray(this._ps[f].type, [l.b.BulletList, l.b.NumericList]) && (o.list = !0);
+                for (var f = r; f <= a && f < this._ps.length; f++) Object(i.D)(this._ps[f]) && (o.captionFocused = o.captionFocused || this._ps[f]._object.isCaptionFocused(), o.object = !0), this._ps[f].type == h.b.Header1 && (o.header1 = !0), this._ps[f].type != h.b.Header2 && (o.header2 = !1), this._ps[f].type != h.b.Header3 && (o.header3 = !1), inArray(this._ps[f].type, [h.b.Header1, h.b.Header2, h.b.Header3]) ? o.header = !0 : o.justHeaders = !1, inArray(this._ps[f].type, [h.b.Quote, h.b.Quote2]) || (o.quote = !1), inArray(this._ps[f].type, [h.b.BulletList, h.b.NumericList]) && (o.list = !0);
                 var g = Object(i.u)(),
-                    v = L(g, 1)[0];
-                return !(v && v.startContainer && W(v.startContainer, "article_ed__noconteditable")) && (o.multiline = r != a, o)
+                    v = W(g, 1)[0];
+                return !(v && v.startContainer && tt(v.startContainer, "article_ed__noconteditable")) && (o.multiline = r != a, o)
             }, t.prototype._hideFormatTooltip = function() {
                 this._formatTooltip && this._formatTooltip.isShown() && this._formatTooltip.hide()
             }, t.prototype._showFormatTooltip = function() {
@@ -1317,7 +1665,7 @@
                     clearTimeout(this._doShowFormatTooltipTO);
                     try {
                         var t = window.getSelection();
-                        if (t.focusNode && (W(t.focusNode, "article_set_link") || "input" == t.focusNode.nodeName.toLowerCase())) return;
+                        if (t.focusNode && (tt(t.focusNode, "article_set_link") || "input" == t.focusNode.nodeName.toLowerCase())) return;
                         var e = !t.isCollapsed;
                         this._doShowFormatTooltipTO = setTimeout(this._doShowFormatTooltip.bind(this, e), 1)
                     } catch (t) {}
@@ -1325,7 +1673,7 @@
             }, t.prototype._doShowFormatTooltip = function(t) {
                 var e = this;
                 if (!this._formatTooltip) {
-                    var r = V('\n        <div>\n          <div class="article_format_btns clear_fix"></div>\n          <div class="article_set_link"><input type="text" placeholder="' + getLang("pages_articles_enter_link") + '"/><div class="article_set_link_delete"></div></div>\n        </div>'),
+                    var r = ot('\n        <div>\n          <div class="article_format_btns clear_fix"></div>\n          <div class="article_set_link"><input type="text" placeholder="' + getLang("pages_articles_enter_link") + '"/><div class="article_set_link_delete"></div></div>\n        </div>'),
                         a = void 0;
                     this._formatTooltip = new ElementTooltip(this._els.editor, {
                         cls: "article_format_tt",
@@ -1336,26 +1684,26 @@
                             var t = e._getCurrentSelectionState(),
                                 i = [];
                             if (!t || t.header1 || t.object && !t.captionFocused || (t.justHeaders || i.push(["strong", "cur.articleEditor.setStrong()", !!t.decorations.strong]), t.quote || t.justHeaders || i.push(["em", "cur.articleEditor.setEm()", !!t.decorations.em]), i.push(["strike", "cur.articleEditor.setStrike()", !!t.decorations.strike]), t.decorations.link ? i.push(["link", "cur.articleEditor.clearLink()", t.decorations.link]) : i.push(["link", "cur.articleEditor.setLinkMode(true)", t.decorations.link]), t.object || t.header1 || t.list || (i.push(["header1", "cur.articleEditor.setHeader1(" + intval(t.header2) + ")", t.header2]), i.push(["header2", "cur.articleEditor.setHeader2(" + intval(t.header3) + ")", t.header3]), i.push(["quote", "cur.articleEditor.setQuote()", t.quote]))), 0 != i.length) {
-                                var a = U("article_format_btns", r);
+                                var a = $("article_format_btns", r);
                                 a.innerHTML = "", i.forEach(function(t, e) {
-                                    e > 0 && inArray(t[0], ["header1"]) && a.appendChild(V('<div class="article_format_divider"></div>'));
+                                    e > 0 && inArray(t[0], ["header1"]) && a.appendChild(ot('<div class="article_format_divider"></div>'));
                                     var r = t[2] ? "article_format_btn_active" : "";
-                                    a.appendChild(V('<button class="article_format_btn ' + r + '" id="article_format_btn_' + t[0] + '" onclick="' + t[1] + '"></button>'))
+                                    a.appendChild(ot('<button class="article_format_btn ' + r + '" id="article_format_btn_' + t[0] + '" onclick="' + t[1] + '"></button>'))
                                 }), e.setLinkMode(!1)
                             } else e._formatTooltip.hide()
                         },
                         getTargetBoundingBox: function() {
                             if (e._formatTooltip.linkMode) return a;
                             var t = Object(i.u)(),
-                                r = L(t, 3),
+                                r = W(t, 3),
                                 o = r[0],
                                 n = r[2];
                             if (!n || !n.rangeCount) return a;
                             var s = o.getBoundingClientRect();
                             if (!s.left) {
                                 var c = o.startContainer.nodeType == Node.ELEMENT_NODE ? o.startContainer : domPN(o.startContainer),
-                                    l = J(c),
-                                    d = Q(c);
+                                    l = it(c),
+                                    d = rt(c);
                                 return a = {
                                     top: l[1] + scrollGetY(),
                                     left: l[0] + d[0] / 2,
@@ -1371,10 +1719,10 @@
                             }
                         }
                     }), this._formatTooltip.linkMode = !1;
-                    var o = H("input", r);
+                    var o = K("input", r);
                     o.addEventListener("keypress", function(t) {
-                        if (t.keyCode == gt) return e._setLinkToSelectedText(o.value.trim()), e._formatTooltip.hide(), cancelEvent(t)
-                    }), U("article_set_link_delete", r).addEventListener("click", function(t) {
+                        if (t.keyCode == xt) return e._setLinkToSelectedText(o.value.trim()), e._formatTooltip.hide(), cancelEvent(t)
+                    }), $("article_set_link_delete", r).addEventListener("click", function(t) {
                         return e._setLinkToSelectedText(), cancelEvent(t)
                     })
                 }
@@ -1384,81 +1732,81 @@
                     if (!(t = (t = t.substr(0, 1500)).replace(/%E2%80%AE/i, "").replace("&#8238;", "").replace(/&#x202E;/i, "")).match("^https?://")) t = (Object(i.K)(t) ? "https" : "http") + "://" + t;
                     t = encodeURIComponent(t)
                 }
-                this.setLinkMode(!1, !1), this._restoreCursor(this._linkSelectedCursor), this._setAllParagraphsDirty(), t && document.execCommand("createLink", !1, t), !A.msie && t || this._triggerInputEvent(), t ? this._restoreCursor(this._linkSelectedCursor) : this._restoreCursor(this._linkCursor)
+                this.setLinkMode(!1, !1), this._restoreCursor(this._linkSelectedCursor), this._setAllParagraphsDirty(), t && document.execCommand("createLink", !1, t), !V.msie && t || this._triggerInputEvent(), t ? this._restoreCursor(this._linkSelectedCursor) : this._restoreCursor(this._linkCursor)
             }, t.prototype.clearLink = function() {
                 this.setLinkMode(!1);
                 var t = Object(i.u)(),
-                    e = L(t, 3),
+                    e = W(t, 3),
                     r = e[0],
                     a = e[2],
-                    o = R("a", r.startContainer),
-                    n = R("a", r.endContainer) || o;
+                    o = Z("a", r.startContainer),
+                    n = Z("a", r.endContainer) || o;
                 o && (this._saveCursorMarker(), a.setBaseAndExtent(o, 0, n, Math.max(1, n.children.length))), this._setCurrentParagraphDirty(), document.execCommand("unlink", !1)
             }, t.prototype.setLinkMode = function(t, e) {
                 var r = void 0;
-                t && (r = this._getCursor(), A.msie || document.execCommand("superscript", !1, !0));
+                t && (r = this._getCursor(), V.msie || document.execCommand("superscript", !1, !0));
                 var i = this._formatTooltip.getContent();
                 if (this._formatTooltip.linkMode != !!t)
                     if (t) {
-                        var a = H("input", i);
-                        a.value = "", B(i, "article_editor_format_tt_set_link"), this._linkCursor = r, this._linkSelectedCursor = this._getCursor(), a.focus(), this._formatTooltip.linkMode = !0, this._formatTooltip.updatePosition()
+                        var a = K("input", i);
+                        a.value = "", Y(i, "article_editor_format_tt_set_link"), this._linkCursor = r, this._linkSelectedCursor = this._getCursor(), a.focus(), this._formatTooltip.linkMode = !0, this._formatTooltip.updatePosition()
                     } else setStyle(i, {
                         width: null
-                    }), F(i, "article_editor_format_tt_set_link"), this._formatTooltip.linkMode = !1, e && (this._saveCursorMarker(), this._setAllParagraphsDirty(), this._triggerInputEvent())
+                    }), q(i, "article_editor_format_tt_set_link"), this._formatTooltip.linkMode = !1, e && (this._saveCursorMarker(), this._setAllParagraphsDirty(), this._triggerInputEvent())
             }, t.prototype.setHeader1 = function(t) {
-                this._setHeader(l.b.Header2, !t)
+                this._setHeader(h.b.Header2, !t)
             }, t.prototype.setHeader2 = function(t) {
-                this._setHeader(l.b.Header3, !t)
+                this._setHeader(h.b.Header3, !t)
             }, t.prototype.setQuote = function() {
                 var t = this._getCursor(),
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 2),
+                    r = W(e, 2),
                     a = r[0],
                     o = r[1];
                 if (!1 !== a) {
                     o || (o = a);
-                    for (var n = l.b.Text, s = a; s <= o; s++)
-                        if (h(this._ps[s])) {
-                            n = this._ps[s].type == l.b.Quote ? l.b.Quote2 : this._ps[s].type == l.b.Quote2 ? l.b.Text : l.b.Quote;
+                    for (var n = h.b.Text, s = a; s <= o; s++)
+                        if (d(this._ps[s])) {
+                            n = this._ps[s].type == h.b.Quote ? h.b.Quote2 : this._ps[s].type == h.b.Quote2 ? h.b.Text : h.b.Quote;
                             break
                         }
                     for (var c = a; c <= o; c++) {
-                        var d = this._ps[c];
-                        h(d) && (this._ps[c] = Object(i.e)({
+                        var l = this._ps[c];
+                        d(l) && (this._ps[c] = Object(i.e)({
                             type: n,
-                            lines: [d.lines[0]],
+                            lines: [l.lines[0]],
                             sep: Object(i.w)(this._ps[c])
                         }), this._setParagraphDirty(c))
                     }
                     this._redraw(!0), this._updateTextPlaceholders(), this._restoreCursor(t), this._saveUndoState(), this.saveDraft()
                 }
 
-                function h(t) {
+                function d(t) {
                     return !Object(i.D)(t) && !Object(i.C)(t)
                 }
             }, t.prototype._setHeader = function(t, e) {
                 var r = this._getCursor(),
                     a = this._getCurrentParagraphIndex(),
-                    o = L(a, 2),
+                    o = W(a, 2),
                     n = o[0],
                     s = o[1];
                 if (!1 !== n) {
                     s || (s = n);
                     for (var c = n; c <= s; c++) {
-                        d(this._ps[c]) && (this._ps[c].type = e ? t : l.b.Text, this._setParagraphDirty(c))
+                        l(this._ps[c]) && (this._ps[c].type = e ? t : h.b.Text, this._setParagraphDirty(c))
                     }
                     this._redraw(!0), this._updateTextPlaceholders(), this._restoreCursor(r), this._saveUndoState(), this.saveDraft()
                 }
 
-                function d(t) {
+                function l(t) {
                     return !Object(i.D)(t) && !Object(i.C)(t)
                 }
             }, t.prototype.setStrong = function() {
-                this._setAllParagraphsDirty(), document.execCommand("bold"), A.msie && this._triggerInputEvent()
+                this._setAllParagraphsDirty(), document.execCommand("bold"), V.msie && this._triggerInputEvent()
             }, t.prototype.setEm = function() {
-                this._setAllParagraphsDirty(), document.execCommand("italic"), A.msie && this._triggerInputEvent()
+                this._setAllParagraphsDirty(), document.execCommand("italic"), V.msie && this._triggerInputEvent()
             }, t.prototype.setStrike = function() {
-                this._setCurrentParagraphDirty(), document.execCommand("strikeThrough"), A.msie && this._triggerInputEvent()
+                this._setCurrentParagraphDirty(), document.execCommand("strikeThrough"), V.msie && this._triggerInputEvent()
             }, t.prototype.saveUndoStateAndDraft = function() {
                 this._saveUndoState(), this.saveDraft()
             }, t.prototype._saveUndoStateDelayed = function() {
@@ -1468,7 +1816,7 @@
                 }, 1e3)
             }, t.prototype._saveUndoState = function() {
                 clearTimeout(this._saveUndoDelayedTO), this._saveUndoDelayedTO = !1;
-                var t = w(this._ps, !0);
+                var t = T(this._ps, !0);
                 if (this._undoCurrentState) {
                     if (JSON.stringify(t) == JSON.stringify(this._undoCurrentState)) return;
                     this._undos.push({
@@ -1484,7 +1832,7 @@
                         cursor: this._undoCurrentStateCursor
                     });
                     var t = this._undos.pop();
-                    this._ps = x(t.ps), this._undoCurrentState = w(this._ps), this._undoCurrentStateCursor = t.cursor, this._redraw(!0), t.cursor && this._restoreCursor(t.cursor), this._updateTextPlaceholders(), 0 == this._undos.length && (this._undoable = !1)
+                    this._ps = I(t.ps), this._undoCurrentState = T(this._ps), this._undoCurrentStateCursor = t.cursor, this._redraw(!0), t.cursor && this._restoreCursor(t.cursor), this._updateTextPlaceholders(), 0 == this._undos.length && (this._undoable = !1)
                 }
                 this._options.onUndoRedo && this._options.onUndoRedo()
             }, t.prototype.redo = function() {
@@ -1494,7 +1842,7 @@
                         cursor: this._undoCurrentStateCursor
                     });
                     var t = this._redos.pop();
-                    this._ps = x(t.ps), this._undoCurrentState = w(this._ps), this._undoCurrentStateCursor = t.cursor, this._redraw(!0), t.cursor && this._restoreCursor(t.cursor), this._updateTextPlaceholders(), this._options.onUndoRedo && this._options.onUndoRedo()
+                    this._ps = I(t.ps), this._undoCurrentState = T(this._ps), this._undoCurrentStateCursor = t.cursor, this._redraw(!0), t.cursor && this._restoreCursor(t.cursor), this._updateTextPlaceholders(), this._options.onUndoRedo && this._options.onUndoRedo()
                 }
             }, t.prototype.canUndo = function() {
                 return this._undoable || this._undos.length > 0
@@ -1503,9 +1851,9 @@
             }, t.prototype.initParagraphs = function(t) {
                 t.forEach(function(t) {
                     t._preparedData && (t.mediaId.split(",").forEach(function(e, r) {
-                        _.add(t.type, e, t._preparedData[r])
+                        p.add(t.type, e, t._preparedData[r])
                     }), delete t._preparedData)
-                }), this._ps = x(t), this._cleanParagraphsBRs(), this._ensureDummyParagraphs(), this._init()
+                }), this._ps = I(t), this._cleanParagraphsBRs(), this._ensureDummyParagraphs(), this._init()
             }, t.prototype._getParagraphFromHTML = function(t, e) {
                 var r = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
 
@@ -1514,7 +1862,7 @@
                         var o = e.data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
                         r.text += "pre" == t ? o : Object(i.i)(o)
                     } else Object(i.y)(e) && r.text.length > 0 && r.brs.push(r.text.length);
-                    N(e.childNodes, function(t, e) {
+                    J(e.childNodes, function(t, e) {
                         var o = [r.text.length];
                         a(e, r), o.push(r.text.length);
                         var n = (e.tagName || "").toLowerCase();
@@ -1523,29 +1871,29 @@
                         switch (n) {
                             case "b":
                             case "strong":
-                                s = jt.strong;
+                                s = Dt.strong;
                                 break;
                             case "em":
                             case "i":
-                                s = jt.em;
+                                s = Dt.em;
                                 break;
                             case "s":
                             case "strike":
                             case "del":
-                                s = jt.strike;
+                                s = Dt.strike;
                                 break;
                             case "a":
-                                s = jt.link;
+                                s = Dt.link;
                                 var c = e.getAttribute("href") || "",
-                                    l = "";
-                                l = c.match(/app-?\d+_-?\d+/) ? Object(i.m)(c).replace("%23", "#") : Object(i.m)(c).replace("#", "%23"), o.push(l);
+                                    l = Object(i.m)(c);
+                                Object(i.K)(c) && (l = c.match(/app-?\d+_-?\d+/) ? l.replace("%23", "#") : l.replace("#", "%23")), o.push(l);
                                 break;
                             case "code":
-                                s = jt.code;
+                                s = Dt.code;
                                 break;
                             case "font":
                                 var d = e.getAttribute("face");
-                                "monospace" === d ? s = jt.code : "times" === d && (s = jt.code)
+                                "monospace" === d ? s = Dt.code : "times" === d && (s = Dt.code)
                         }
                         s && (r.decorations[s.type] = r.decorations[s.type] || [], o[0] < o[1] && r.decorations[s.type].push(o), r.decorations[s.type] = Object(i.N)(r.decorations[s.type]))
                     })
@@ -1558,56 +1906,56 @@
                 if ("ol" == t || "ul" == t) {
                     switch (t) {
                         case "ol":
-                            s = l.b.NumericList;
+                            s = h.b.NumericList;
                             break;
                         case "ul":
-                            s = l.b.BulletList
+                            s = h.b.BulletList
                     }
-                    for (var d = 0, h = o.children.length; d < h; d++) {
-                        var _ = {
+                    for (var l = 0, d = o.children.length; l < d; l++) {
+                        var p = {
                             text: "",
                             decorations: {},
                             brs: []
                         };
-                        a(o.children[d], _), _.brs = Object(i.g)(_.brs), n.push(_)
+                        a(o.children[l], p), p.brs = Object(i.g)(p.brs), n.push(p)
                     }
                 } else {
                     switch (t) {
                         case "h1":
-                            s = l.b.Header1;
+                            s = h.b.Header1;
                             break;
                         case "h2":
                         case "header":
-                            s = l.b.Header2;
+                            s = h.b.Header2;
                             break;
                         case "h3":
                         case "h4":
-                            s = l.b.Header3;
+                            s = h.b.Header3;
                             break;
                         case "blockquote":
-                            s = l.b.Quote;
+                            s = h.b.Quote;
                             break;
                         case "cite":
-                            s = l.b.Quote2;
+                            s = h.b.Quote2;
                             break;
                         case "pre":
-                            s = l.b.Code;
+                            s = h.b.Code;
                             break;
                         default:
-                            s = l.b.Text
+                            s = h.b.Text
                     }
-                    var p = o.firstElementChild;
-                    if (Object(i.E)(p)) {
-                        var u = G(p, "type"),
-                            f = G(p, "media-id");
-                        u && f && (o = H("figure", p), s = u, c.mediaId = f)
+                    var _ = o.firstElementChild;
+                    if (Object(i.E)(_)) {
+                        var u = et(_, "type"),
+                            f = et(_, "media-id");
+                        u && f && (o = K("figure", _), s = u, c.mediaId = f)
                     }
                     var g = {
                         text: "",
                         decorations: {},
                         brs: []
                     };
-                    a(o, g), g.brs = Object(i.g)(g.brs, g.text.length), n.push(g), s == l.b.Code && delete g.decorations.code, r || s != l.b.Text || "```" != g.text || 0 != g.brs.length || (g.text = "", s = l.b.Code), Object(i.A)(s) || (0 == g.text.indexOf("1. ") ? (s = l.b.NumericList, this._removeParagraphLineTextPart(g, 0, "1. ".length)) : 0 == g.text.indexOf("* ") && (s = l.b.BulletList, this._removeParagraphLineTextPart(g, 0, "* ".length))), g.brs = g.brs.filter(function(t) {
+                    a(o, g), g.brs = Object(i.g)(g.brs, g.text.length), n.push(g), s == h.b.Code && delete g.decorations.code, r || s != h.b.Text || "```" != g.text || 0 != g.brs.length || (g.text = "", s = h.b.Code), Object(i.A)(s) || (0 == g.text.indexOf("1. ") ? (s = h.b.NumericList, this._removeParagraphLineTextPart(g, 0, "1. ".length)) : 0 == g.text.indexOf("* ") && (s = h.b.BulletList, this._removeParagraphLineTextPart(g, 0, "* ".length))), g.brs = g.brs.filter(function(t) {
                         return t > 0
                     })
                 }
@@ -1620,7 +1968,7 @@
                 }
                 t.brs = t.brs.filter(function(t) {
                     return void 0 !== t
-                }), N(t.decorations, function(a, o) {
+                }), J(t.decorations, function(a, o) {
                     o.forEach(function(t) {
                         t[0] <= e && t[1] <= e || (t[0] <= e && t[1] <= r ? t[1] = e : t[0] >= e && t[1] <= r ? t[0] = t[1] = void 0 : t[0] >= e && t[1] > r ? (t[0] = e, t[1] -= i) : (t[0] -= i, t[1] -= i))
                     }), t.decorations[a] = t.decorations[a].filter(function(t) {
@@ -1632,7 +1980,7 @@
                     a = r.el();
                 r.onRender && r.onRender();
                 var o = 0;
-                return isString(e) && (e = [e]), t.type == l.b.ObjectPhoto ? (o = r.getImageIndex(), r.setCaptionElHtml(e[o] || "")) : r.setCaptionElHtml(e[0] || ""), G(a, "paragraph-lines", JSON.stringify(t.lines)), G(a, "uuid", t._uuid), G(a, "type", t.type), G(a, "media-id", t._object.getMediaId()), G(a, "mode", parseInt(t.mode) || 0), B(a, i.a), a
+                return isString(e) && (e = [e]), t.type == h.b.ObjectPhoto ? (o = r.getImageIndex(), r.setCaptionElHtml(e[o] || "")) : r.setCaptionElHtml(e[0] || ""), et(a, "paragraph-lines", JSON.stringify(t.lines)), et(a, "uuid", t._uuid), et(a, "type", t.type), et(a, "media-id", t._object.getMediaId()), et(a, "mode", parseInt(t.mode) || 0), Y(a, i.a), a
             }, t.prototype._renderParagraphLines = function(t, e) {
                 if (!t.lines) return ["", ""];
                 var r = "",
@@ -1640,28 +1988,28 @@
                     o = "",
                     n = parseInt(t.type);
                 switch (n) {
-                    case l.b.NumericList:
+                    case h.b.NumericList:
                         r = "ol", a = "li";
                         break;
-                    case l.b.BulletList:
+                    case h.b.BulletList:
                         r = "ul", a = "li";
                         break;
-                    case l.b.Header1:
+                    case h.b.Header1:
                         a = "h1";
                         break;
-                    case l.b.Header2:
+                    case h.b.Header2:
                         a = "h2";
                         break;
-                    case l.b.Header3:
+                    case h.b.Header3:
                         a = "h3";
                         break;
-                    case l.b.Quote:
+                    case h.b.Quote:
                         a = "blockquote";
                         break;
-                    case l.b.Quote2:
+                    case h.b.Quote2:
                         a = "cite";
                         break;
-                    case l.b.Code:
+                    case h.b.Code:
                         a = "pre";
                         break;
                     default:
@@ -1671,25 +2019,25 @@
                 return t.lines.forEach(function(r) {
                     if (r) {
                         var c = r.text,
-                            d = r.decorations,
-                            h = [];
-                        N(Ct, function(t, e) {
-                            if (!Object(i.A)(n) && n != l.b.Code || "code" != e.type) {
-                                var r = d[e.type];
+                            l = r.decorations,
+                            d = [];
+                        J(Lt, function(t, e) {
+                            if (!Object(i.A)(n) && n != h.b.Code || "code" != e.type) {
+                                var r = l[e.type];
                                 if (r)
                                     for (var a = function(t, i) {
                                             var a = r[i];
-                                            (h[a[0]] = h[a[0]] || {
+                                            (d[a[0]] = d[a[0]] || {
                                                 open: {},
                                                 close: {}
                                             }).open[e.type] = f(a);
-                                            var o = h[a[1]] = h[a[1]] || {
+                                            var o = d[a[1]] = d[a[1]] || {
                                                     open: {},
                                                     close: {}
                                                 },
                                                 n = function(t, e) {
                                                     for (var r = []; t > 0;) {
-                                                        var i = h[--t];
+                                                        var i = d[--t];
                                                         if (i)
                                                             for (var a in i.open)
                                                                 if (i.open.hasOwnProperty(a)) {
@@ -1707,24 +2055,24 @@
                                         }, o = 0, s = r.length; o < s; o++) a(0, o)
                             }
                         });
-                        var _ = 0,
-                            p = [];
-                        h.forEach(function(e, a) {
+                        var p = 0,
+                            _ = [];
+                        d.forEach(function(e, a) {
                             if (e) {
                                 var o = !1,
                                     n = e.close.link && 1 == Object.keys(e.close).length;
-                                a > 0 && (o = Object(i.P)(c, _, a, r.brs, t.type == l.b.Code), n || p.push(o));
+                                a > 0 && (o = Object(i.P)(c, p, a, r.brs, t.type == h.b.Code), n || _.push(o));
                                 var s = 0;
-                                n && (o && o.endsWith("<br/>") && (s++, o = o.replace(/<br\/>$/, "")), o && o.endsWith("<br/>") && (s++, o = o.replace(/<br\/>$/, "")), !1 !== o && p.push(o)), N(Et, function(t, r) {
-                                    void 0 !== e.close[r.type] && p.push("</" + r.tag + ">")
-                                }), p.push("<br/>".repeat(s)), N(Ct, function(t, r) {
+                                n && (o && o.endsWith("<br/>") && (s++, o = o.replace(/<br\/>$/, "")), o && o.endsWith("<br/>") && (s++, o = o.replace(/<br\/>$/, "")), !1 !== o && _.push(o)), J(Mt, function(t, r) {
+                                    void 0 !== e.close[r.type] && _.push("</" + r.tag + ">")
+                                }), _.push("<br/>".repeat(s)), J(Lt, function(t, r) {
                                     var i = e.open[r.type];
-                                    void 0 !== e.open[r.type] && (!0 === i ? p.push("<" + r.tag + ">") : p.push("<" + r.tag + ' href="' + rt(i) + '">'))
-                                }), _ = a
+                                    void 0 !== e.open[r.type] && (!0 === i ? _.push("<" + r.tag + ">") : _.push("<" + r.tag + ' href="' + _t(i) + '">'))
+                                }), p = a
                             }
-                        }), p.push(Object(i.P)(c, _, void 0, r.brs, t.type == l.b.Code));
+                        }), _.push(Object(i.P)(c, p, void 0, r.brs, t.type == h.b.Code));
                         var u = "";
-                        a && (u += "<" + a + (o = o ? " " + o : "") + ">"), inArray(n, [l.b.Quote, l.b.Quote2]) && (u += "<p>"), u += p.join("") || (e ? "" : "<br/>"), inArray(n, [l.b.Quote, l.b.Quote2]) && (u += "</p>"), a && (u += "</" + a + ">"), s.push(u)
+                        a && (u += "<" + a + (o = o ? " " + o : "") + ">"), inArray(n, [h.b.Quote, h.b.Quote2]) && (u += "<p>"), u += _.join("") || (e ? "" : "<br/>"), inArray(n, [h.b.Quote, h.b.Quote2]) && (u += "</p>"), a && (u += "</" + a + ">"), s.push(u)
                     }
 
                     function f(t) {
@@ -1734,16 +2082,16 @@
             }, t.prototype._renderParagraph = function(t) {
                 var e = Object(i.D)(t),
                     r = this._renderParagraphLines(t, e),
-                    a = L(r, 2),
+                    a = W(r, 2),
                     o = a[0],
                     n = a[1],
                     s = void 0;
                 if (e) s = this._renderObjectParagraph(t, n);
                 else {
                     var c = n.join("");
-                    s = V(o ? "<" + o + ">" + c + "</" + o + ">" : c)
+                    s = ot(o ? "<" + o + ">" + c + "</" + o + ">" : c)
                 }
-                return Object(i.w)(t) ? G(s, "sep", Object(i.p)()) : G(s, "sep", null), B(s, i.a), B(s, "article_paragraph"), s
+                return Object(i.w)(t) ? et(s, "sep", Object(i.p)()) : et(s, "sep", null), Y(s, i.a), Y(s, "article_paragraph"), s
             }, t.prototype._getParagraphElByIndex = function(t) {
                 return !1 === t ? null : this._els.canvas.childNodes[t] || null
             }, t.prototype.getObjectParagraphIndex = function(t) {
@@ -1760,9 +2108,9 @@
                         o = !1,
                         n = !1,
                         s = !1;
-                    r && i.type == r.type || (o = !0), a && i.type == a.type || (n = !0), (l.c.includes(+a.type) || a.sep) && (s = !0);
+                    r && i.type == r.type || (o = !0), a && i.type == a.type || (n = !0), (h.c.includes(+a.type) || a.sep) && (s = !0);
                     var c = this._getParagraphElByIndex(t);
-                    K(c, "article_decoration_first", o), K(c, "article_decoration_last", n), K(c, "article_decoration_before", s)
+                    lt(c, "article_decoration_first", o), lt(c, "article_decoration_last", n), lt(c, "article_decoration_before", s)
                 }
             }, t.prototype.redraw = function() {
                 var t = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0];
@@ -1776,7 +2124,7 @@
                     if (!(t >= r._ps.length)) {
                         var e = r._getParagraphElByIndex(t),
                             i = r._renderParagraph(r._ps[t]);
-                        e ? i.outerHTML != e.outerHTML && it(e, i) : r._els.canvas.appendChild(i)
+                        e ? i.outerHTML != e.outerHTML && ut(e, i) : r._els.canvas.appendChild(i)
                     }
                 }), e && this._restoreCursor(i), this._decorateParagraphEls(), this._dirty = []
             }, t.prototype._getContainingParagraphEl = function(t) {
@@ -1789,22 +2137,22 @@
                     var e = t.getRangeAt(0);
                     if (e.startContainer == this._els.canvas) return [e.startOffset, e.endOffset];
                     var r = this._getContainingParagraphEl(e.startContainer),
-                        a = L(r, 2)[1],
+                        a = W(r, 2)[1],
                         o = e.endContainer;
                     if (0 === e.endOffset && (this._isParagraphEl(o) || this._isParagraphEl(domPN(o)) && 0 == Object(i.f)(o))) {
                         var n = this._getContainingParagraphEl(o),
-                            s = L(n, 1)[0];
-                        o = Object(S.A)(s) || s
+                            s = W(n, 1)[0];
+                        o = Object(F.A)(s) || s
                     }
                     var c = this._getContainingParagraphEl(o),
-                        l = L(c, 2)[1];
+                        l = W(c, 2)[1];
                     return [a, Math.max(a, l)]
                 }
                 return [0, !1]
             }, t.prototype._saveCursorMarker = function() {
                 if (!this._markerCursorSet) {
                     var t = Object(i.u)(),
-                        e = L(t, 2),
+                        e = W(t, 2),
                         r = e[0],
                         a = e[1];
                     if (!r) return [0, 0];
@@ -1862,7 +2210,7 @@
                                 if (r >= 0) {
                                     t.text = t.text.replace(e, "");
                                     for (var i = 0, a = 0; a < t.brs.length; a++) t.brs[a] > r && (i = 1), t.brs[a] -= i;
-                                    N(Ct, function(e, i) {
+                                    J(Lt, function(e, i) {
                                         var a = t.decorations[i.type];
                                         if (a)
                                             for (var o = 0, n = a.length; o < n; o++) {
@@ -1882,7 +2230,7 @@
                 this._ps = []
             }, t.prototype._setCurrentParagraphDirty = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 2),
+                    e = W(t, 2),
                     r = e[0],
                     i = e[1];
                 this._setParagraphDirty(r, i)
@@ -1914,10 +2262,10 @@
                     else {
                         var n = o.lines[0];
                         if (!n || !n.brs.length) continue;
-                        for (var s = n.brs, c = [], l = 0, d = 0, h = s.length; d < h; d++)
+                        for (var s = n.brs, c = [], l = 0, d = 0, p = s.length; d < p; d++)
                             if (l != s[d] && d > 0 && s[d - 1] == s[d]) {
-                                var _ = t(o, l, s[d]);
-                                Object(i.H)(_) || c.push(_), l = s[d]
+                                var h = t(o, l, s[d]);
+                                Object(i.H)(h) || c.push(h), l = s[d]
                             }
                         c.push(t(o, l)), c.length > 1 && (Array.prototype.splice.apply(this._ps, [r, 1].concat(c)), r = r + c.length - 1, e = !0)
                     }
@@ -1930,52 +2278,52 @@
                         if (!Object(i.E)(r) || !this._isTrackedObjectEl(r))
                             for (var a = Array.prototype.slice.call(geByTag("img", r)), o = void 0, n = function() {
                                     if (!o.src || !domPN(r) || !isVisible(o)) return "continue";
-                                    var e = X(o, function(e) {
+                                    var e = st(o, function(e) {
                                             return e == t._els.canvas || "FIGURE" == e.tagName
                                         }, 10),
-                                        a = !(!e || e == t._els.canvas) && H("figcaption", e),
+                                        a = !(!e || e == t._els.canvas) && K("figcaption", e),
                                         n = Object(i.e)({
-                                            type: l.b.ObjectPhoto
+                                            type: h.b.ObjectPhoto
                                         }),
                                         s = t._renderObjectParagraph(n, a ? a.innerHTML : "");
-                                    Object(i.M)(r.textContent) ? (it(r, s), Y(o), tt(V("<p>" + i.c + "</p>"), s)) : (tt(s, domPN(o)), Y(a), Y(o)), X(s, function(e) {
+                                    Object(i.M)(r.textContent) ? (ut(r, s), at(o), pt(ot("<p>" + i.c + "</p>"), s)) : (pt(s, domPN(o)), at(a), at(o)), st(s, function(e) {
                                         if (e == t._els.canvas) return !0;
-                                        F(e, i.a)
+                                        q(e, i.a)
                                     }), Object(i.Q)(o.src, function(e, r, i) {
-                                        e ? (Y(s), t._forgetObject(n._uuid), t._setAllParagraphsDirty(), t._triggerInputEvent(), i()) : t._getOrCreateParagraphObject(n).setBLOB(r, i)
+                                        e ? (at(s), t._forgetObject(n._uuid), t._setAllParagraphsDirty(), t._triggerInputEvent(), i()) : t._getOrCreateParagraphObject(n).setBLOB(r, i)
                                     })
                                 }; o = a.shift();) n()
             }, t.prototype._flattenAlienParagraphs = function() {
                 var t = this;
                 if (this._fromPasteEvent) {
-                    for (var e = Array.prototype.slice.call(this._els.canvas.children), r = void 0, a = this._fromPasteEvent, o = this._pasteCurrentIndex, n = this._getCurrentParagraphIndex(), s = L(n, 1)[0], c = -1, l = function() {
-                            if (c++, a && !Z(r.textContent) && c > o && c <= s) return Y(r), "continue";
+                    for (var e = Array.prototype.slice.call(this._els.canvas.children), r = void 0, a = this._fromPasteEvent, o = this._pasteCurrentIndex, n = this._getCurrentParagraphIndex(), s = W(n, 1)[0], c = -1, l = function() {
+                            if (c++, a && !dt(r.textContent) && c > o && c <= s) return at(r), "continue";
                             var e = r;
                             Object(i.J)(r) && !Object(i.x)(r) && (e = r.firstChild);
                             var n = !1;
                             (function t(a) {
                                 if (a && a.nodeType != Node.TEXT_NODE && !Object(i.y)(a))
                                     if (Object(i.v)(a))
-                                        if (this._isTrackedObjectEl(a)) a != e && ($(a, r), n = !0);
+                                        if (this._isTrackedObjectEl(a)) a != e && (nt(a, r), n = !0);
                                         else
                                             for (var o = Array.prototype.slice.call(a.childNodes), s = void 0; s = o.shift();) t.call(this, s);
-                                else a != e && (Z(a.innerHTML) && $(a, r), n = !0)
-                            }).call(t, e, !0), n && Y(r)
+                                else a != e && (dt(a.innerHTML) && nt(a, r), n = !0)
+                            }).call(t, e, !0), n && at(r)
                         }; r = e.shift();) l();
                     this._setAllParagraphsDirty()
                 }
             }, t.prototype._correctCaptionSelection = function() {
                 var t = Object(i.u)(),
-                    e = L(t, 3),
+                    e = W(t, 3),
                     r = e[0],
                     a = e[1],
                     o = e[2];
                 if (r && !a) {
-                    var n = X(r.startContainer, function(t) {
+                    var n = st(r.startContainer, function(t) {
                         return "FIGCAPTION" == t.tagName
                     }, 5);
                     if (n && r.endContainer != r.startContainer && r.endContainer.nodeType == Node.ELEMENT_NODE && Object(i.G)(r.endContainer) && 0 == r.endOffset && 0 == r.startOffset) {
-                        var s = U("article_ed__figcaption_edit", n),
+                        var s = $("article_ed__figcaption_edit", n),
                             c = r.cloneRange();
                         c.selectNodeContents(s), o.removeAllRanges(), o.addRange(c)
                     }
@@ -1987,11 +2335,11 @@
                 if (!this.isLocked()) {
                     clearTimeout(this._draftSaveTO);
                     var a = JSON.stringify({
-                        paragraphs: w(this._ps)
+                        paragraphs: T(this._ps)
                     });
                     e ? this._lastSavedDraft = a : this._lastSavedDraft != a || t ? (this._options.onDraftNotSaved && this._options.onDraftNotSaved(), this._draftSaveTO = setTimeout(function() {
                         if (i._lastSavedDraft = a, 0 != i._ps.length) {
-                            var t = I(i._ps);
+                            var t = U(i._ps);
                             t ? i._options.onDraftNotSaved && i._options.onDraftNotSaved(t) : i.save(!1, function(t, e, r) {
                                 i._initDraftSave = !0, i._options.onDraftSaved && i._options.onDraftSaved(t, e, r)
                             })
@@ -2000,23 +2348,23 @@
                 }
             }, t.prototype._getName = function() {
                 if (this._publishName) return this._publishName;
-                var t = w(this._ps),
+                var t = T(this._ps),
                     e = t.length ? t[0].lines[0].text : "";
                 return Object(i.q)(e, this._options.maxNameLength)
             }, t.prototype.getTitle = function() {
                 var t = this._ps[0];
                 return t ? t.lines[0].text : ""
             }, t.prototype.isLimitsExceeded = function() {
-                return !!I(this._ps)
+                return !!U(this._ps)
             }, t.prototype.save = function(t, e, r) {
                 var a = this,
-                    o = w(this._ps, !1, !0);
+                    o = T(this._ps, !1, !0);
                 t && Object(i.k)(o, -1);
                 var n = this._getName(),
                     s = this.getCoverPhoto();
-                void 0 === s && t && (s = this.getFirstCoverPhotoFromParagraphs()), this.getOptions().postData && ((r = r || {}).from_post_convert = 1), k.save(this.getArticleOwnerId(), this.getArticleId(), o, t, n, s ? s.id : "", this._getSaveDraftHash(), this._options.limits.maxSymbolsPerChunk, r, function(r, i, o, s, c, l) {
+                void 0 === s && t && (s = this.getFirstCoverPhotoFromParagraphs()), this.getOptions().postData && ((r = r || {}).from_post_convert = 1), z.save(this.getArticleOwnerId(), this.getArticleId(), o, t, n, s ? s.id : "", this._getSaveDraftHash(), this._options.limits.maxSymbolsPerChunk, r, function(r, i, o, s, c, l) {
                     if (isString(r) && r.startsWith("locked ")) return a.getOptions().editLockMessage = r.slice("locked ".length), a.showEditLockInfo(), void(e && e(!0));
-                    r || (i && (a._options.articleId = i), "al_articles.php" != nav.objLoc[0] || nav.objLoc.article_id || nav.setLoc(q({}, nav.objLoc, {
+                    r || (i && (a._options.articleId = i), "al_articles.php" != nav.objLoc[0] || nav.objLoc.article_id || nav.setLoc(ct({}, nav.objLoc, {
                         article_id: a.getArticleOwnerId() + "_" + a.getArticleId()
                     })), a._publishNameCandidate = n, t && (a._options.isPublished = !0), a._options.monetizationAllowed = l, a._replaceVideos(c)), e && e(r, i, o, s)
                 })
@@ -2026,18 +2374,18 @@
                     r = !1;
                 try {
                     e.forEach(function(e) {
-                        var i = L(e, 4),
+                        var i = W(e, 4),
                             a = i[0],
                             o = i[1],
                             n = i[2],
                             s = i[3];
                         t._ps.forEach(function(e, i) {
-                            if (e.type == l.b.ObjectVideo) {
+                            if (e.type == h.b.ObjectVideo) {
                                 var c = e.mediaId.split("_"),
-                                    d = L(c, 3),
-                                    h = d[0],
-                                    _ = d[1];
-                                d[2] || h != a || _ != o || (e.mediaId = n + "_" + s, t._setParagraphDirty(i), r = !0)
+                                    l = W(c, 3),
+                                    d = l[0],
+                                    p = l[1];
+                                l[2] || d != a || p != o || (e.mediaId = n + "_" + s, t._setParagraphDirty(i), r = !0)
                             }
                         })
                     })
@@ -2060,15 +2408,15 @@
                             o = Array.prototype.slice.call(r.children),
                             n = o[0];
                         if (1 == o.length && n && n.tagName && inArray(n.tagName, ["H1", "H2", "H3"])) {
-                            it(r, n);
+                            ut(r, n);
                             continue
                         }
                         if (o.shift(), o.length)
                             for (var s = void 0; s = o.shift();) {
-                                if (this._saveCursorMarker(), t) tt(s, r);
+                                if (this._saveCursorMarker(), t) pt(s, r);
                                 else {
-                                    var c = V("<" + a + "></" + a + ">");
-                                    c.appendChild(s), tt(c, r)
+                                    var c = ot("<" + a + "></" + a + ">");
+                                    c.appendChild(s), pt(c, r)
                                 }
                                 this._restoreCursorFromMarker()
                             }
@@ -2077,25 +2425,25 @@
                 if (this._els.canvas) {
                     var t = this._els.canvas.lastChild;
                     if (t)
-                        if (Z(t.innerHTML) && "<br>" != t.innerHTML && "&nbsp;" != t.innerHTML || "H1" == t.tagName) {
+                        if (dt(t.innerHTML) && "<br>" != t.innerHTML && "&nbsp;" != t.innerHTML || "H1" == t.tagName) {
                             var e = Object(i.e)({});
                             this._els.canvas.appendChild(this._renderParagraph(e)), this._ps.push(e), this._updateTextPlaceholders()
                         }
                 }
             }, t.prototype._ensureAtLeastOneParagraph = function() {
                 0 == this._ps.length && (this._ps = [Object(i.e)({
-                    type: l.b.Text
+                    type: h.b.Text
                 })])
             }, t.prototype._ensureTitleParagraph = function() {
                 var t = this;
                 if (!this._options.noTitle) {
                     var e = this._ps[0];
                     Object(i.D)(e) && (this._ps[0] = Object(i.e)({
-                        type: l.b.Header1
-                    })), e.type = l.b.Header1, e.lines[0].decorations = {}, e.lines[0].brs = [], delete e.sep
+                        type: h.b.Header1
+                    })), e.type = h.b.Header1, e.lines[0].decorations = {}, e.lines[0].brs = [], delete e.sep
                 }
                 this._ps.forEach(function(e, r) {
-                    (t._options.noTitle || 0 != r) && (1 == r && e.type == l.b.Header1 && (e.type = l.b.Text), e.type == l.b.Header1 && (e.type = l.b.Header2))
+                    (t._options.noTitle || 0 != r) && (1 == r && e.type == h.b.Header1 && (e.type = h.b.Text), e.type == h.b.Header1 && (e.type = h.b.Header2))
                 })
             }, t.prototype._insertParagraphAt = function(t, e) {
                 this._ps.splice(t, 0, e)
@@ -2110,16 +2458,16 @@
             }, t.prototype.addObjectAudio = function() {
                 var t = this,
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 1)[0];
-                this.getArticleOwnerId() < 0 && (M.audioAttachOriginalOwnerId = this.getArticleOwnerId(), M.audioAttachSwitchOwnerId = vk.id), AudioPage.showAttachBox(this.getArticleOwnerId(), {
+                    r = W(e, 1)[0];
+                this.getArticleOwnerId() < 0 && (Q.audioAttachOriginalOwnerId = this.getArticleOwnerId(), Q.audioAttachSwitchOwnerId = vk.id), AudioPage.showAttachBox(this.getArticleOwnerId(), {
                     canPlaylistAttach: !0,
                     onAudioChoose: function(e, a, o, n) {
                         Object(i.H)(t._ps[r]) || t._insertParagraphAt(r, Object(i.e)());
                         var s = Object(i.e)({
-                            type: l.b.ObjectAudio,
+                            type: h.b.ObjectAudio,
                             mediaId: o.fullId
                         });
-                        _.add(l.b.ObjectAudio, o.fullId, {
+                        p.add(h.b.ObjectAudio, o.fullId, {
                             audio: n
                         }), t._getOrCreateParagraphObject(s), t._ps[r] = s, e.shiftKey || curBox().hide(), t._redrawModel();
                         var c = t._getParagraphElByIndex(r);
@@ -2128,10 +2476,10 @@
                     onPlaylistChoose: function(e, a) {
                         var o = a.getOwnerId() + "_" + a.getPlaylistId() + (a.getAccessHash() ? "_" + a.getAccessHash() : ""),
                             n = Object(i.e)({
-                                type: l.b.ObjectAudioPlaylist,
+                                type: h.b.ObjectAudioPlaylist,
                                 mediaId: o
                             });
-                        _.add(l.b.ObjectAudioPlaylist, o, {
+                        p.add(h.b.ObjectAudioPlaylist, o, {
                             accessHash: a.getAccessHash()
                         }), t._getOrCreateParagraphObject(n), t._ps[r] = n, curBox().hide(), t._redrawModel();
                         var s = t._getParagraphElByIndex(r);
@@ -2140,16 +2488,16 @@
                 })
             }, t.prototype.closeAllCarouselEditors = function() {
                 this._ps.forEach(function(t) {
-                    t.type == l.b.ObjectPhoto && t._object.cancelCarouselEditor && t._object.cancelCarouselEditor()
+                    t.type == h.b.ObjectPhoto && t._object.cancelCarouselEditor && t._object.cancelCarouselEditor()
                 })
             }, t.prototype.setMediaUploadMode = function(t) {
-                this._isUploading = !!t, K(this._els.editor, "article_ed__uploading", this._isUploading)
+                this._isUploading = !!t, lt(this._els.editor, "article_ed__uploading", this._isUploading)
             }, t.prototype.isMediaUploadMode = function() {
                 return this._isUploading
             }, t.prototype.addObjectVideo = function() {
                 var t = this,
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 1)[0],
+                    r = W(e, 1)[0],
                     a = this._getParagraph(r),
                     o = Object(i.w)(a);
                 delete a.sep;
@@ -2158,30 +2506,30 @@
                     from: "article",
                     to_id: this.getArticleOwnerId()
                 });
-                M.chooseMedia = function(e, a, n, s, c) {
-                    var d = Object(l.d)(n.editable.sizes, t.getWidth()),
-                        h = L(d, 1)[0],
-                        p = Object(i.e)({
-                            type: l.b.ObjectVideo,
+                Q.chooseMedia = function(e, a, n, s, c) {
+                    var l = Object(h.d)(n.editable.sizes, t.getWidth()),
+                        d = W(l, 1)[0],
+                        _ = Object(i.e)({
+                            type: h.b.ObjectVideo,
                             mediaId: a,
                             sep: o
                         });
-                    o = !1, _.add(l.b.ObjectVideo, a, {
+                    o = !1, p.add(h.b.ObjectVideo, a, {
                         editable: n.editable,
-                        thumb: h,
+                        thumb: d,
                         duration: n.editable.duration,
                         platform: n.editable.platform
-                    }), t._getOrCreateParagraphObject(p), 0 == s ? t._ps[r] = p : t._ps.splice(r + s, 0, p), t._redrawModel(), t._saveUndoState();
+                    }), t._getOrCreateParagraphObject(_), 0 == s ? t._ps[r] = _ : t._ps.splice(r + s, 0, _), t._redrawModel(), t._saveUndoState();
                     var u = t._getParagraphElByIndex(r);
                     Object(i.o)(u), !c && curBox() && curBox().hide(), t.saveDraft()
                 }
             }, t.prototype.addObjectDoc = function() {
                 var t = this,
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 1)[0],
+                    r = W(e, 1)[0],
                     a = this._getParagraph(r),
                     o = Object(i.w)(a);
-                delete a.sep, M.docsCurFilter = "gif";
+                delete a.sep, Q.docsCurFilter = "gif";
                 var n = showBox("docs.php", {
                     act: "a_choose_doc_box",
                     from: "article",
@@ -2190,23 +2538,23 @@
                 }, {
                     stat: ["docs.css"]
                 });
-                M.chooseMedia = function(e, a, s) {
+                Q.chooseMedia = function(e, a, s) {
                     n.hide();
                     var c = Object(i.e)({
-                        type: l.b.ObjectGIF,
+                        type: h.b.ObjectGIF,
                         mediaId: a,
                         sep: o
                     });
-                    o = !1, _.add(l.b.ObjectGIF, a, {
+                    o = !1, p.add(h.b.ObjectGIF, a, {
                         video: s.video_preview,
                         size: s.video_preview_size,
                         href: s.href
                     }), t._getOrCreateParagraphObject(c), t._insertParagraphAt(r, c), t._redrawModel(), t._saveUndoState(), t.saveDraft(), t._updateTextPlaceholders()
-                }, M.showMediaProgress = function() {}
+                }, Q.showMediaProgress = function() {}
             }, t.prototype.addObjectPhoto = function() {
                 var t = this,
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 1)[0],
+                    r = W(e, 1)[0],
                     a = this._getParagraph(r) || Object(i.e)(),
                     o = showBox("al_photos.php", {
                         to_id: this.getArticleOwnerId(),
@@ -2219,35 +2567,35 @@
                         dark: 1
                     }),
                     n = void 0;
-                M.onMediaUploadStarted = function() {
+                Q.onMediaUploadStarted = function() {
                     var e = Object(i.e)({
-                            type: l.b.ObjectPhoto
+                            type: h.b.ObjectPhoto
                         }),
                         a = t._renderObjectParagraph(e, ""),
                         o = t._getParagraphElByIndex(r);
-                    $(a, o), Object(i.o)(o), n = a, t.setMediaUploadMode(!0)
-                }, M.onMediaUploadFail = function() {
-                    delete M.onMediaUploadStarted, n && Y(n), t.setMediaUploadMode(!1)
+                    nt(a, o), Object(i.o)(o), n = a, t.setMediaUploadMode(!0)
+                }, Q.onMediaUploadFail = function() {
+                    delete Q.onMediaUploadStarted, n && at(n), t.setMediaUploadMode(!1)
                 };
                 var s = void 0,
                     c = -1;
-                M.chooseMedia = function(e, d, h, p) {
-                    void 0 === p ? c++ : c = intval(p), delete M.onMediaUploadStarted, t.setMediaUploadMode(!1), n && Y(n);
+                Q.chooseMedia = function(e, l, d, _) {
+                    void 0 === _ ? c++ : c = intval(_), delete Q.onMediaUploadStarted, t.setMediaUploadMode(!1), n && at(n);
                     var u = Object(i.e)({
-                        type: l.b.ObjectPhoto,
-                        mediaId: d,
+                        type: h.b.ObjectPhoto,
+                        mediaId: l,
                         sep: a.sep
                     });
-                    return _.add(l.b.ObjectPhoto, d, {
-                        size: Object(i.t)(h.editable.sizes),
-                        sizes: h.editable.sizes
-                    }), t._getOrCreateParagraphObject(u), c ? t._ps.splice(r + c, 0, u) : t._ps[r] = u, void 0 === p && o.hide(), clearTimeout(s), s = setTimeout(function() {
+                    return p.add(h.b.ObjectPhoto, l, {
+                        size: Object(i.t)(d.editable.sizes),
+                        sizes: d.editable.sizes
+                    }), t._getOrCreateParagraphObject(u), c ? t._ps.splice(r + c, 0, u) : t._ps[r] = u, void 0 === _ && o.hide(), clearTimeout(s), s = setTimeout(function() {
                         t._redrawModel(), t._focusParagraph(r + c), t._updateTextPlaceholders(), t.saveUndoStateAndDraft()
                     }, 10), !1
-                }, M.showMediaProgress = function() {}
+                }, Q.showMediaProgress = function() {}
             }, t.prototype.addSeparator = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 1)[0],
+                    e = W(t, 1)[0],
                     r = Object(i.w)(this._getParagraph(e)),
                     a = Object(i.w)(this._getParagraph(e + 1));
                 !r && !a && e < this._ps.length - 1 && this._ps.splice(e, 1), this._getParagraph(e).sep = 1;
@@ -2260,8 +2608,8 @@
             }, t.prototype._showObjectPicker = function() {
                 if (!this.isLocked()) {
                     if (!this._objectPickerEl) {
-                        this._objectPickerEl = V('<div class="article_editor_object_picker"><div class="article_editor_object_picker_icon"></div></div>'), this._els.editor.appendChild(this._objectPickerEl);
-                        var t = V('<div class="article_editor_object_picker_btns_wrap clear_fix">\n        <button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_photo" onclick="cur.articleEditor.addObjectPhoto()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_video" onclick="cur.articleEditor.addObjectVideo()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_audio" onclick="cur.articleEditor.addObjectAudio()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_doc" onclick="cur.articleEditor.addObjectDoc()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_sep" onclick="cur.articleEditor.addSeparator()">\n        </button>\n      </div>');
+                        this._objectPickerEl = ot('<div class="article_editor_object_picker"><div class="article_editor_object_picker_icon"></div></div>'), this._els.editor.appendChild(this._objectPickerEl);
+                        var t = ot('<div class="article_editor_object_picker_btns_wrap clear_fix">\n        <button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_photo" onclick="cur.articleEditor.addObjectPhoto()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_video" onclick="cur.articleEditor.addObjectVideo()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_audio" onclick="cur.articleEditor.addObjectAudio()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_doc" onclick="cur.articleEditor.addObjectDoc()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_sep" onclick="cur.articleEditor.addSeparator()">\n        </button>\n      </div>');
                         this._objectPickerTooltip = new ElementTooltip(this._objectPickerEl, {
                             content: t,
                             forceSide: "right",
@@ -2274,19 +2622,19 @@
                         })
                     }
                     var e = this._getCurrentParagraphIndex(),
-                        r = L(e, 2),
+                        r = W(e, 2),
                         a = r[0],
                         o = r[1];
-                    if (!this.isMediaUploadMode() && !1 !== a && a == o && Object(i.H)(this._ps[a], !0) && this._ps[a] && inArray(this._ps[a].type, [l.b.Text, l.b.Header2, l.b.Header3])) {
+                    if (!this.isMediaUploadMode() && !1 !== a && a == o && Object(i.H)(this._ps[a], !0) && this._ps[a] && inArray(this._ps[a].type, [h.b.Text, h.b.Header2, h.b.Header3])) {
                         show(this._objectPickerEl);
                         var n = this._getParagraphElByIndex(a),
-                            s = J(this._els.editor),
-                            c = J(n)[1] - s[1],
-                            d = !1;
+                            s = it(this._els.editor),
+                            c = it(n)[1] - s[1],
+                            l = !1;
                         this._uploadFloatList(), this._floatedObjects.forEach(function(t) {
-                            t.startY <= c + 15 && t.endY + 30 >= c && (d = !0)
+                            t.startY <= c + 15 && t.endY + 30 >= c && (l = !0)
                         }), setStyle(this._objectPickerEl, {
-                            left: d ? 355 : -40,
+                            left: l ? 355 : -40,
                             top: c
                         })
                     } else hide(this._objectPickerEl)
@@ -2302,12 +2650,12 @@
                         Object(i.K)(a) || (a = "/away.php?to=" + encodeURIComponent(a) + "&utf=1"), t._linkTooltip = new ElementTooltip(r, {
                             cls: "article_editor_link_show_tt",
                             appendTo: t._els.editor,
-                            content: V('<a target="_blank" rel="noopener" href="' + a + '" class="article_editor_link">' + o + "</a>")
+                            content: ot('<a target="_blank" rel="noopener" href="' + a + '" class="article_editor_link">' + o + "</a>")
                         })
                     }
                 })
             }, t.prototype._isTrackedObjectEl = function(t) {
-                var e = G(t, "uuid");
+                var e = et(t, "uuid");
                 return !!e && !!this._getObject(e)
             }, t.prototype._cloneObjectParagraphs = function() {
                 for (var t = Array.prototype.slice.call(this._els.canvas.children), e = void 0, r = {}; e = t.shift();)
@@ -2316,17 +2664,17 @@
                             o = parseInt(e.getAttribute("data-type"));
                         if (r[a]) {
                             var n = this._getObject(a);
-                            a = wt(), this._getOrCreateParagraphObject({
+                            a = Bt(), this._getOrCreateParagraphObject({
                                 type: o,
                                 _uuid: a,
                                 mediaId: n.getMediaId()
-                            }), G(e, "uuid", a)
+                            }), et(e, "uuid", a)
                         }
                         r[a] = !0
                     }
             }, t.prototype._correctCursorToBeWithinCanvas = function() {
                 var t = Object(i.u)(),
-                    e = L(t, 2),
+                    e = W(t, 2),
                     r = e[0];
                 e[1] && r.startContainer == this._els.canvas && this._focusParagraph(0)
             }, t.prototype._triggerInputEvent = function() {
@@ -2336,7 +2684,7 @@
             }, t.prototype._getCursor = function() {
                 var t = this._els.canvas,
                     e = Object(i.u)(),
-                    r = L(e, 2),
+                    r = W(e, 2),
                     a = r[0],
                     o = r[1];
                 if (!a) return !1;
@@ -2354,12 +2702,14 @@
                 };
 
                 function s(e, r, a) {
-                    r.nodeType == Node.TEXT_NODE ? e.textOffset = a : e.nodeOffset = a, X(r, function(r) {
+                    r.nodeType == Node.TEXT_NODE ? e.textOffset = a : e.nodeOffset = a, st(r, function(r) {
                         if (r == t) return !0;
                         Object(i.J)(r) && r.firstChild && r.firstChild.nodeType == Node.ELEMENT_NODE && "p" == r.firstChild.tagName.toLowerCase() && e.path.pop(), e.path.push(Object(i.f)(r))
                     }, 10), e.path = e.path.slice().reverse()
                 }
-                return s(n.start, a.startContainer, a.startOffset), o ? delete n.end : s(n.end, a.endContainer, a.endOffset), n
+                return s(n.start, a.startContainer, a.startOffset), o ? delete n.end : s(n.end, a.endContainer, a.endOffset), n.isEmpty = function() {
+                    return !n.end && 0 == n.start.nodeOffset && 0 == n.start.path.length && 0 == n.start.path[0]
+                }, n
             }, t.prototype.restoreCursor = function(t) {
                 this._restoreCursor(t)
             }, t.prototype._restoreCursor = function(t) {
@@ -2384,7 +2734,7 @@
                 var a = document.createRange();
                 try {
                     var o = r(t.start),
-                        n = L(o, 2),
+                        n = W(o, 2),
                         s = n[0],
                         c = n[1];
                     if (Object(i.y)(s) && 0 == c) {
@@ -2393,10 +2743,10 @@
                     }
                     if (a.setStart(s, c), t.end) {
                         var d = r(t.end),
-                            h = L(d, 2),
-                            _ = h[0],
-                            p = h[1];
-                        a.setEnd(_, p)
+                            p = W(d, 2),
+                            h = p[0],
+                            _ = p[1];
+                        a.setEnd(h, _)
                     }
                     window.getSelection().setBaseAndExtent(a.startContainer, a.startOffset, a.endContainer, a.endOffset)
                 } catch (t) {
@@ -2405,19 +2755,19 @@
             }, t.prototype._saveLastCursor = function() {
                 var t = this._getCursor(),
                     e = "article_cursor_" + this.getArticleOwnerId() + "_" + (this.getArticleId() || 0);
-                t ? ls.set(e, JSON.stringify(t)) : ls.remove(e)
+                t && !t.isEmpty() ? ls.set(e, JSON.stringify(t)) : ls.remove(e)
             }, t.prototype._restoreLastCursor = function() {
                 var t = ls.get("article_cursor_" + this.getArticleOwnerId() + "_" + (this.getArticleId() || 0));
                 t ? (t = JSON.parse(t), this._restoreCursor(t)) : Object(i.o)(this._els.canvas.firstChild)
             }, t.prototype._toggleCodeBlocks = function() {
-                for (var t = void 0, e = this._getCurrentParagraphIndex(), r = L(e, 2), i = r[0], a = r[1], o = i; o <= a; o++) void 0 === t && (t = this._ps[o].type != l.b.Code), this._ps[o].type = t ? l.b.Code : l.b.Text;
+                for (var t = void 0, e = this._getCurrentParagraphIndex(), r = W(e, 2), i = r[0], a = r[1], o = i; o <= a; o++) void 0 === t && (t = this._ps[o].type != h.b.Code), this._ps[o].type = t ? h.b.Code : h.b.Text;
                 var n = this._getCursor();
                 this._redraw(!0), this._restoreCursor(n), this._updateTextPlaceholders()
             }, t.prototype._removeExtraSeparators = function() {
                 for (var t = this._els.canvas.children, e = void 0, r = 0; r < t.length; r++) {
                     var i = t[r],
-                        a = G(i, "sep");
-                    a && (void 0 !== e && a == e && G(i, "sep", null), e = a)
+                        a = et(i, "sep");
+                    a && (void 0 !== e && a == e && et(i, "sep", null), e = a)
                 }
             }, t.prototype._replaceAlienInlineTags = function() {
                 var t = !1,
@@ -2432,7 +2782,7 @@
                         var o = ce(e[a], {
                             innerHTML: i.innerHTML
                         });
-                        it(i, o)
+                        ut(i, o)
                     } else
                         for (var n = Array.prototype.slice.call(i.childNodes), s = void 0; s = n.shift();) s.nodeType == Node.ELEMENT_NODE && r.call(this, s)
                 }.call(this, this._els.canvas), t && this._restoreCursorFromMarker(), t
@@ -2449,8 +2799,8 @@
                         t._ps.forEach(function(a, o) {
                             if (Object(i.D)(a)) {
                                 var n = t._getParagraphElByIndex(o),
-                                    s = Q(n),
-                                    c = J(n),
+                                    s = rt(n),
+                                    c = it(n),
                                     l = c[1] < e + r && c[1] + s[1] > e;
                                 a._object.onViewport && a._object.onViewport(l)
                             }
@@ -2459,27 +2809,27 @@
                     var e = 0;
                     this._setEventListener(document, "selectionchange", function() {
                         var r = Object(i.u)(),
-                            a = L(r, 2),
+                            a = W(r, 2),
                             n = a[0],
                             s = a[1];
-                        if (n && !X(n.commonAncestorContainer, function(e) {
+                        if (n && !st(n.commonAncestorContainer, function(e) {
                                 return e == t._els.canvas
                             })) return;
                         var c = t._getCurrentParagraphIndex(),
-                            d = L(c, 1)[0];
-                        if (!1 !== d) {
-                            if (!s && W(n.startContainer, "article")) {
-                                var h = t._ps[e];
-                                if (Object(i.D)(h)) return void Object(i.o)(h._object.getCaptionEl())
+                            l = W(c, 1)[0];
+                        if (!1 !== l) {
+                            if (!s && tt(n.startContainer, "article")) {
+                                var d = t._ps[e];
+                                if (Object(i.D)(d)) return void Object(i.o)(d._object.getCaptionEl())
                             }
-                            var _ = n.startContainer;
-                            if (A.msie && s && et("article_ed__extra_controls", _) && "BUTTON" != _.tagName) {
-                                var p = t._ps[d];
-                                if (Object(i.D)(p)) return void p._object.getCaptionEl().focus()
+                            var p = n.startContainer;
+                            if (V.msie && s && ht("article_ed__extra_controls", p) && "BUTTON" != p.tagName) {
+                                var _ = t._ps[l];
+                                if (Object(i.D)(_)) return void _._object.getCaptionEl().focus()
                             }
-                            e = d, t._highlightObjectsInCurrentSelection(), t._showObjectPicker(), t._correctCaptionSelection(), t._ensureDummyParagraphs(), 0 == o && t._showFormatTooltip(), t._saveLastCursor();
-                            var u = t._getParagraph(d);
-                            if (Object(i.D)(u) && l.c.includes(parseInt(u.type))) {
+                            e = l, t._highlightObjectsInCurrentSelection(), t._showObjectPicker(), t._correctCaptionSelection(), t._ensureDummyParagraphs(), 0 == o && t._showFormatTooltip(), t._saveLastCursor();
+                            var u = t._getParagraph(l);
+                            if (Object(i.D)(u) && h.c.includes(parseInt(u.type))) {
                                 if (t._resizeTooltip) {
                                     clearTimeout(f);
                                     var f = setTimeout(function() {
@@ -2502,16 +2852,16 @@
                         t._hideFormatTooltip()
                     }), this._els.canvas.addEventListener("copy", function(e) {
                         var r = Object(i.u)(),
-                            a = L(r, 2),
+                            a = W(r, 2),
                             o = a[0];
                         if (a[1]) {
                             var n = t._getContainingParagraphEl(o.commonAncestorContainer),
-                                s = L(n, 1)[0];
+                                s = W(n, 1)[0];
                             Object(i.E)(s) && (e.clipboardData.setData("text/plain", "uuid:" + s.getAttribute("data-uuid")), e.preventDefault())
                         }
                     }), this._els.canvas.addEventListener("paste", function(e) {
                         var r = t._getCurrentParagraphIndex(),
-                            i = L(r, 1)[0];
+                            i = W(r, 1)[0];
                         i && (t._handleObjectPaste(e), t._handleLinkPaste(e), t._handlePhotoPaste(e), t._fromPasteEvent = !0, t._pasteCurrentIndex = i)
                     }), this._els.canvas.addEventListener("click", function(t) {
                         if (t.target.nodeType == Node.ELEMENT_NODE && "A" == t.target.tagName) return cancelEvent(t)
@@ -2520,7 +2870,7 @@
                     this._els.canvas.addEventListener("input", function() {
                         t._hideObjectPicker(), t._expandBlockquoteParagraphs(c), t._removeExtraSeparators();
                         var e = t._replaceAlienInlineTags();
-                        A.safari || t._els.canvas.normalize();
+                        V.safari || t._els.canvas.normalize();
                         var i = void 0;
                         t._fromPasteEvent || e || t._markerCursorSet ? t._saveCursorMarker() : i = t._getCursor(), t._processAlienPhotos(), t._flattenAlienParagraphs(), t._cloneObjectParagraphs(), t._ps.length > 0 && t._els.canvas.children.length !== t._ps.length && t._setAllParagraphsDirty(), t._dirty.forEach(t._updateLineData.bind(t)), n && (t._cleanParagraphsBRs(), n = !1), t._ensureAtLeastOneParagraph(), t._ensureTitleParagraph();
                         var o = !1;
@@ -2533,184 +2883,184 @@
                     });
                     var s = !1,
                         c = !1,
-                        d = 1,
-                        h = void 0;
+                        l = 1,
+                        d = void 0;
                     this._els.canvas.addEventListener("keydown", function(e) {
                         var o = e.keyCode,
-                            _ = e.metaKey || e.ctrlKey,
-                            p = e.shiftKey,
+                            p = e.metaKey || e.ctrlKey,
+                            _ = e.shiftKey,
                             u = Object(i.u)(),
-                            f = L(u, 2),
+                            f = W(u, 2),
                             g = f[0],
                             v = f[1];
                         if (g) {
                             var b = t._getCurrentParagraphIndex(),
-                                y = L(b, 2),
+                                y = W(b, 2),
                                 m = y[0],
-                                C = y[1],
-                                E = t._getParagraph(m),
-                                O = !1;
-                            if (Object(i.D)(E))
-                                if (E._object.isCaptionFocused()) O = 0 == g.startOffset && v;
+                                O = y[1],
+                                j = t._getParagraph(m),
+                                E = !1;
+                            if (Object(i.D)(j))
+                                if (j._object.isCaptionFocused()) E = 0 == g.startOffset && v;
                                 else {
-                                    var P = t._getContainingParagraphEl(g.startContainer);
-                                    O = L(P, 1)[0] == E._object.el()
+                                    var C = t._getContainingParagraphEl(g.startContainer);
+                                    E = W(C, 1)[0] == j._object.el()
                                 }
-                            if (O && v && A.mozilla) {
-                                if (o == vt) return t._focusParagraph(m - 1, !0), cancelEvent(e);
-                                if (o == bt) return t._focusParagraph(m + 1, !0), cancelEvent(e)
+                            if (E && v && V.mozilla) {
+                                if (o == Tt) return t._focusParagraph(m - 1, !0), cancelEvent(e);
+                                if (o == It) return t._focusParagraph(m + 1, !0), cancelEvent(e)
                             }
-                            if ((o == yt || o == ft) && t._resizeTooltip && t._resizeTooltip.isShown() && t._resizeTooltip.hide(), o == mt && v && 0 == m) return Object(i.o)(t._getParagraphElByIndex(1)), cancelEvent(e);
-                            if (_ && o == ct && Object(i.D)(E) && E._object.isCaptionFocused()) {
-                                var w = E._object.getCaptionEl();
+                            if ((o == St || o == Pt) && t._resizeTooltip && t._resizeTooltip.isShown() && t._resizeTooltip.hide(), o == kt && v && 0 == m) return Object(i.o)(t._getParagraphElByIndex(1)), cancelEvent(e);
+                            if (p && o == yt && Object(i.D)(j) && j._object.isCaptionFocused()) {
+                                var w = j._object.getCaptionEl();
                                 return Object(i.S)(w), cancelEvent(e)
                             }
-                            if (_) switch (o) {
-                                case lt:
+                            if (p) switch (o) {
+                                case mt:
                                     return t._setCurrentParagraphDirty(), document.execCommand("Bold", !1, null), cancelEvent(e);
-                                case ht:
+                                case jt:
                                     return t._setCurrentParagraphDirty(), document.execCommand("Italic", !1, null), cancelEvent(e);
-                                case _t:
+                                case Et:
                                     return t.saveDraft(!1, !1, !0), cancelEvent(e);
-                                case ut:
-                                    return p ? t.redo() : t.undo(), cancelEvent(e);
-                                case pt:
+                                case wt:
+                                    return _ ? t.redo() : t.undo(), cancelEvent(e);
+                                case Ct:
                                     return t.redo(), cancelEvent(e)
                             }
-                            var x = o == dt && e.altKey,
-                                T = E ? E.type : l.b.Text,
-                                I = Object(S.U)("pre", g.startContainer),
-                                k = !!(I || Object(S.U)("pre", g.endContainer) || g.startContainer.nodeType == Node.ELEMENT_NODE && "PRE" == g.startContainer.tagName);
+                            var x = o == Ot && e.altKey,
+                                T = j ? j.type : h.b.Text,
+                                I = Object(F.U)("pre", g.startContainer),
+                                S = !!(I || Object(F.U)("pre", g.endContainer) || g.startContainer.nodeType == Node.ELEMENT_NODE && "PRE" == g.startContainer.tagName);
                             if (x) {
-                                if (T === l.b.Header1) return cancelEvent(e);
+                                if (T === h.b.Header1) return cancelEvent(e);
                                 if (v) return t._toggleCodeBlocks(), cancelEvent(e);
-                                if (!k && inArray(T, [l.b.Text, l.b.NumericList, l.b.BulletList])) {
+                                if (!S && inArray(T, [h.b.Text, h.b.NumericList, h.b.BulletList])) {
                                     t._setCurrentParagraphDirty();
-                                    var D = Object(S.U)("code", g.startContainer) || Object(S.U)("code", g.endContainer);
-                                    if (D) {
+                                    var k = Object(F.U)("code", g.startContainer) || Object(F.U)("code", g.endContainer);
+                                    if (k) {
                                         t._saveCursorMarker();
-                                        var M = V("<span></span>");
-                                        M.innerHTML = D.innerHTML, it(D, M), t._triggerInputEvent()
-                                    } else document.execCommand("fontName", !1, "monospace"), A.msie && t._triggerInputEvent();
+                                        var L = ot("<span></span>");
+                                        L.innerHTML = k.innerHTML, ut(k, L), t._triggerInputEvent()
+                                    } else document.execCommand("fontName", !1, "monospace"), V.msie && t._triggerInputEvent();
                                     return cancelEvent(e)
                                 }
                             }
-                            if (o == mt && k && T == l.b.Code) return document.execCommand("insertText", !1, "  "), cancelEvent(e);
-                            var B = !1;
-                            if (o == ft) {
+                            if (o == kt && S && T == h.b.Code) return document.execCommand("insertText", !1, "  "), cancelEvent(e);
+                            var M = !1;
+                            if (o == Pt) {
                                 if (s) return s[0].textContent = s[1], t._restoreCursor(s[2]), s = !1, cancelEvent(e);
-                                if (O) {
-                                    var H = t._getParagraphElByIndex(m),
-                                        U = Object(i.l)("", Object(i.w)(E));
-                                    return t._correctEmptyParagraphAfterFloatObjects(), it(H, U), Object(i.o)(U), t._setAllParagraphsDirty(), t._triggerInputEvent(), cancelEvent(e)
+                                if (E) {
+                                    var A = t._getParagraphElByIndex(m),
+                                        D = Object(i.l)("", Object(i.w)(j));
+                                    return t._correctEmptyParagraphAfterFloatObjects(), ut(A, D), Object(i.o)(D), t._setAllParagraphsDirty(), t._triggerInputEvent(), cancelEvent(e)
                                 }
                                 if (g && 0 == g.startOffset && g.collapsed) {
-                                    var z = Object(S.U)("li", g.startContainer),
-                                        F = Object(i.r)(z);
-                                    if (z) {
-                                        var W = t._ps[m],
-                                            G = clone(W),
-                                            Q = clone(W);
-                                        G.lines = G.lines.slice(0, F);
-                                        var J = Object(i.e)({
-                                            lines: [clone(W.lines[F])]
+                                    var N = Object(F.U)("li", g.startContainer),
+                                        B = Object(i.r)(N);
+                                    if (N) {
+                                        var H = t._ps[m],
+                                            U = clone(H),
+                                            z = clone(H);
+                                        U.lines = U.lines.slice(0, B);
+                                        var R = Object(i.e)({
+                                            lines: [clone(H.lines[B])]
                                         });
-                                        Q.lines = Q.lines.slice(F + 1), t._ps.splice(m, 1, G, J, Q), t._redraw(!0);
-                                        var Y = t._getParagraphElByIndex(m + 1);
-                                        return Object(i.o)(Y), t._saveUndoState(), cancelEvent(e)
+                                        z.lines = z.lines.slice(B + 1), t._ps.splice(m, 1, U, R, z), t._redraw(!0);
+                                        var G = t._getParagraphElByIndex(m + 1);
+                                        return Object(i.o)(G), t._saveUndoState(), cancelEvent(e)
                                     }
                                 }
                                 if (g && v && 0 == g.startOffset && "LI" !== g.startContainer.nodeName) {
-                                    var X = t._getCurrentParagraphIndex(),
-                                        q = L(X, 1)[0],
-                                        K = q > 0 && t._ps[q - 1];
+                                    var Q = t._getCurrentParagraphIndex(),
+                                        Y = W(Q, 1)[0],
+                                        K = Y > 0 && t._ps[Y - 1];
                                     if (Object(i.D)(K)) {
-                                        Object(i.H)(t._ps[q]) && (t._ps.splice(q, 1), t._redraw(!0));
-                                        var Z = t._getParagraphElByIndex(q - 1);
-                                        return Object(i.o)(Z), cancelEvent(e)
+                                        Object(i.H)(t._ps[Y]) && (t._ps.splice(Y, 1), t._redraw(!0));
+                                        var $ = t._getParagraphElByIndex(Y - 1);
+                                        return Object(i.o)($), cancelEvent(e)
                                     }
                                 }
-                                t._setAllParagraphsDirty(), A.msie && setTimeout(function() {
+                                t._setAllParagraphsDirty(), V.msie && setTimeout(function() {
                                     t._triggerInputEvent()
                                 })
                             }
-                            if (o == yt) {
-                                var et = t._ps[m],
-                                    rt = t._ps[m + 1],
-                                    at = getCaretCharacterOffsetWithin(g.startContainer),
-                                    ot = L(at, 1)[0],
-                                    Ct = g.startContainer.textContent.length == ot;
-                                if (O)
-                                    if (!(et._object.isCaptionFocused() && !!et.lines[0].text)) {
-                                        var Et = t._getParagraphElByIndex(m),
-                                            Ot = Object(i.l)();
-                                        return it(Et, Ot), Object(i.o)(Ot), t._setAllParagraphsDirty(), t._triggerInputEvent(), cancelEvent(e)
+                            if (o == St) {
+                                var X = t._ps[m],
+                                    q = t._ps[m + 1],
+                                    tt = getCaretCharacterOffsetWithin(g.startContainer),
+                                    et = W(tt, 1)[0],
+                                    rt = g.startContainer.textContent.length == et;
+                                if (E)
+                                    if (!(X._object.isCaptionFocused() && !!X.lines[0].text)) {
+                                        var it = t._getParagraphElByIndex(m),
+                                            at = Object(i.l)();
+                                        return ut(it, at), Object(i.o)(at), t._setAllParagraphsDirty(), t._triggerInputEvent(), cancelEvent(e)
                                     }
-                                if (v && Object(i.w)(rt) && Ct) return t._setParagraphDirty(m + 1), delete rt.sep, t._redraw(!1, !0), cancelEvent(e);
-                                if (v && Ct && Object(i.D)(rt)) return Object(i.H)(et) && et.type != l.b.Header1 && (t._ps.splice(m, 1), t._redraw(!0, !0)), Object(i.o)(rt._object.getCaptionEl()), cancelEvent(e);
-                                rt && Object(i.H)(et) && inArray(rt.type, [l.b.Header2, l.b.Header3]) && (et.type = rt.type, t._setParagraphDirty(m), t._redraw()), t._setAllParagraphsDirty(), (A.msie && 0 == g.startOffset && 0 == m || p) && setTimeout(function() {
+                                if (v && Object(i.w)(q) && rt) return t._setParagraphDirty(m + 1), delete q.sep, t._redraw(!1, !0), cancelEvent(e);
+                                if (v && rt && Object(i.D)(q)) return Object(i.H)(X) && X.type != h.b.Header1 && (t._ps.splice(m, 1), t._redraw(!0, !0)), Object(i.o)(q._object.getCaptionEl()), cancelEvent(e);
+                                q && Object(i.H)(X) && inArray(q.type, [h.b.Header2, h.b.Header3]) && (X.type = q.type, t._setParagraphDirty(m), t._redraw()), t._setAllParagraphsDirty(), (V.msie && 0 == g.startOffset && 0 == m || _) && setTimeout(function() {
                                     t._setCurrentParagraphDirty(), t._triggerInputEvent()
                                 })
-                            } else if (o == gt) {
-                                if (k && I && T == l.b.Code && v) {
-                                    var jt = I.textContent.search(/[^\s]/);
-                                    return -1 == jt && (jt = I.textContent.length), document.execCommand("insertText", !1, "\n" + " ".repeat(jt)), cancelEvent(e)
+                            } else if (o == xt) {
+                                if (S && I && T == h.b.Code && v) {
+                                    var st = I.textContent.search(/[^\s]/);
+                                    return -1 == st && (st = I.textContent.length), document.execCommand("insertText", !1, "\n" + " ".repeat(st)), cancelEvent(e)
                                 }
                                 if (t._isWithinObjectParagraphEl(Object(i.s)())) {
-                                    var Pt = t._getContainingParagraphEl(Object(i.s)()),
-                                        wt = L(Pt, 2),
-                                        xt = wt[0],
-                                        Tt = wt[1],
-                                        It = Object(i.l)(),
-                                        kt = t._ps[Tt]._object;
-                                    return !kt.isCaptioned() || kt.isCaptionFocused() ? tt(It, xt) : $(It, xt), t._setAllParagraphsDirty(), Object(i.o)(It), t._triggerInputEvent(), cancelEvent(e)
+                                    var ct = t._getContainingParagraphEl(Object(i.s)()),
+                                        lt = W(ct, 2),
+                                        dt = lt[0],
+                                        ht = lt[1],
+                                        _t = Object(i.l)(),
+                                        ft = t._ps[ht]._object;
+                                    return !ft.isCaptioned() || ft.isCaptionFocused() ? pt(_t, dt) : nt(_t, dt), t._setAllParagraphsDirty(), Object(i.o)(_t), t._triggerInputEvent(), cancelEvent(e)
                                 }
-                                var St = t._getContainingParagraphEl(Object(i.s)()),
-                                    Lt = L(St, 3),
-                                    Dt = Lt[0],
-                                    Mt = (Lt[1], Lt[2]),
-                                    At = getCaretCharacterOffsetWithin(Dt),
-                                    Nt = L(At, 2)[1];
-                                if (e.shiftKey || e.ctrlKey && A.safari) {
-                                    var Bt = getCaretCharacterOffsetWithin(Dt),
-                                        Ht = L(Bt, 2)[1],
-                                        Ut = R("li", g.startContainer),
+                                var gt = t._getContainingParagraphEl(Object(i.s)()),
+                                    Lt = W(gt, 3),
+                                    Mt = Lt[0],
+                                    At = (Lt[1], Lt[2]),
+                                    Dt = getCaretCharacterOffsetWithin(Mt),
+                                    Nt = W(Dt, 2)[1];
+                                if (e.shiftKey || e.ctrlKey && V.safari) {
+                                    var Bt = getCaretCharacterOffsetWithin(Mt),
+                                        Ht = W(Bt, 2)[1],
+                                        Ut = Z("li", g.startContainer),
                                         zt = 0;
-                                    Ut && (zt = nt(Ut));
+                                    Ut && (zt = vt(Ut));
                                     var Ft = !1;
-                                    if (N(Mt.lines, function(t, e) {
+                                    if (J(At.lines, function(t, e) {
                                             var r = e.brs,
                                                 i = e.text.length;
                                             return 0 == Ht || Ht <= i && inArray(Ht, r) ? (Ft = !0, !1) : !((Ht -= i) <= 0 && t == zt) && void 0
                                         }), Ft) {
-                                        n = !0, t._setParagraphDirty(m, C), document.execCommand("insertParagraph");
-                                        var Rt = st(Dt);
+                                        n = !0, t._setParagraphDirty(m, O), document.execCommand("insertParagraph");
+                                        var Rt = bt(Mt);
                                         return Rt && (Object(i.o)(Rt), Rt.focus()), t._triggerInputEvent(), cancelEvent(e)
                                     }
-                                    A.msie && 0 == Ht && g.insertNode(V("<br>"))
+                                    V.msie && 0 == Ht && g.insertNode(ot("<br>"))
                                 }
-                                var Wt = v && g.startContainer.nodeType == Node.TEXT_NODE && !g.startContainer.nextSibling && Nt == Dt.textContent.length;
-                                c = Wt && !Object(i.C)(t._ps[m]) && !e.shiftKey && inArray(Mt.type, [l.b.Quote, l.b.Quote2]), window.browser && window.browser.msie && setTimeout(t._triggerInputEvent.bind(t)), t._setParagraphDirty(m, C)
-                            } else e.key && 1 == e.key.length ? (t._setParagraphDirty(m), t._setParagraphDirty(C), e.metaKey || (B = !0, e.key && (Object(i.z)(e.key) ? d += 1 : Object(i.B)(e.key) && (d -= 1), d = Math.min(Math.max(d, -5), 5))), r = Object(i.L)(e.key), B && !r && (a = !0), setTimeout(function() {
+                                var Wt = v && g.startContainer.nodeType == Node.TEXT_NODE && !g.startContainer.nextSibling && Nt == Mt.textContent.length;
+                                c = Wt && !Object(i.C)(t._ps[m]) && !e.shiftKey && inArray(At.type, [h.b.Quote, h.b.Quote2]), window.browser && window.browser.msie && setTimeout(t._triggerInputEvent.bind(t)), t._setParagraphDirty(m, O)
+                            } else e.key && 1 == e.key.length ? (t._setParagraphDirty(m), t._setParagraphDirty(O), e.metaKey || (M = !0, e.key && (Object(i.z)(e.key) ? l += 1 : Object(i.B)(e.key) && (l -= 1), l = Math.min(Math.max(l, -5), 5))), r = Object(i.L)(e.key), M && !r && (a = !0), setTimeout(function() {
                                 var e = Object(i.u)(),
-                                    r = L(e, 2),
+                                    r = W(e, 2),
                                     a = r[0],
                                     o = r[1],
                                     n = t._getParagraph(m);
-                                if (n && (n.type != l.b.Code && !!!(Object(S.U)("code", a.startContainer) || a.startContainer.nodeType == Node.ELEMENT_NODE && "CODE" == a.startContainer.tagName) && (h = h || d > 0, o && a))) {
+                                if (n && (n.type != h.b.Code && !!!(Object(F.U)("code", a.startContainer) || a.startContainer.nodeType == Node.ELEMENT_NODE && "CODE" == a.startContainer.tagName) && (d = d || l > 0, o && a))) {
                                     var c = a.startContainer;
                                     if (c.nodeType == Node.TEXT_NODE && a.startOffset > 0)
-                                        for (var _ = c.textContent.substring(a.startOffset - 5, a.startOffset), p = 0, u = j.length; p < u; p++) {
-                                            var f = j[p];
-                                            if (void 0 === f.cyrillic || f.cyrillic === h)
+                                        for (var p = c.textContent.substring(a.startOffset - 5, a.startOffset), _ = 0, u = P.length; _ < u; _++) {
+                                            var f = P[_];
+                                            if (void 0 === f.cyrillic || f.cyrillic === d)
                                                 if (f.pattern instanceof RegExp) {
-                                                    var g = _.match(f.pattern);
+                                                    var g = p.match(f.pattern);
                                                     if (g) {
                                                         var v = f.substitution;
                                                         g.length > 1 && (v = v.replace("$1", g[1])), b.call(t, a.startOffset, c, g[0], v, f.noUndo);
                                                         break
                                                     }
-                                                } else if (_.endsWith(f.pattern)) {
+                                                } else if (p.endsWith(f.pattern)) {
                                                 b.call(t, a.startOffset, c, f.pattern, f.substitution, f.noUndo);
                                                 break
                                             }
@@ -2731,14 +3081,14 @@
                     })
                 }
             }, t.prototype._isParagraphEl = function(t) {
-                return t && W(t, i.a)
+                return t && tt(t, i.a)
             }, t.prototype._isWithinObjectParagraphEl = function(t) {
                 var e = this._getContainingParagraphEl(t),
-                    r = L(e, 1)[0];
+                    r = W(e, 1)[0];
                 return r && Object(i.E)(r)
             }, t.prototype._highlightObjectsInCurrentSelection = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 2),
+                    e = W(t, 2),
                     r = e[0],
                     i = e[1];
                 !1 !== r && !1 !== i && this._ps.forEach(function(t, e) {
@@ -2748,25 +3098,43 @@
                     }
                 })
             }, t.prototype._getOrCreateParagraphObject = function(t) {
-                t._uuid || (t._uuid = wt());
+                t._uuid || (t._uuid = Bt());
                 var e = this._getObject(t._uuid);
                 if (!e) {
                     var r = t.mediaId || "";
                     switch (parseInt(t.type)) {
-                        case l.b.ObjectPhoto:
-                            e = new b(r, this, t);
+                        case h.b.ObjectPhoto:
+                            e = new m(r, this, t);
                             break;
-                        case l.b.ObjectVideo:
-                            e = new y(r, this);
+                        case h.b.ObjectVideo:
+                            e = new O(r, this);
                             break;
-                        case l.b.ObjectGIF:
-                            e = new m(r, this);
+                        case h.b.ObjectGIF:
+                            e = new j(r, this);
                             break;
-                        case l.b.ObjectAudio:
+                        case h.b.ObjectAudio:
+                            e = new w(r, this);
+                            break;
+                        case h.b.ObjectAudioPlaylist:
+                            e = new u(r, this);
+                            break;
+                        case h.b.ObjectPodcast:
                             e = new C(r, this);
                             break;
-                        case l.b.ObjectAudioPlaylist:
-                            e = new O(r, this)
+                        case h.b.ObjectTwitter:
+                            e = new S(r, this);
+                            break;
+                        case h.b.ObjectInstagram:
+                            e = new M(r, this);
+                            break;
+                        case h.b.ObjectFacebook:
+                            e = new L(r, this);
+                            break;
+                        case h.b.ObjectVK:
+                            e = new D(r, this);
+                            break;
+                        case h.b.ObjectTelegram:
+                            e = new B(r, this)
                     }
                     this._setObject(t._uuid, e)
                 }
@@ -2782,38 +3150,38 @@
                 if (e) {
                     if (this._isWithinObjectParagraphEl(e)) {
                         var r = Object(i.O)(e),
-                            a = L(r, 3),
+                            a = W(r, 3),
                             o = a[0],
                             n = a[1],
                             s = a[2],
                             c = this._getObject(n);
                         if (!c) return;
-                        var d = Object(i.e)();
+                        var l = Object(i.e)();
                         if (c.getCaptionEl()) {
-                            var h = this._getParagraphFromHTML("", c.getCaptionEl().innerHTML, !0);
-                            if (o == l.b.ObjectPhoto) {
-                                var _ = G(c.el(), "paragraph-lines");
-                                _ && (d.lines = JSON.parse(_));
-                                var p = c.getImageIndex();
-                                d.lines[p] = h.lines[0];
-                                for (var u = 0; u < d.lines.length; u++) d.lines[u] = d.lines[u] || {
+                            var d = this._getParagraphFromHTML("", c.getCaptionEl().innerHTML, !0);
+                            if (o == h.b.ObjectPhoto) {
+                                var p = et(c.el(), "paragraph-lines");
+                                p && (l.lines = JSON.parse(p));
+                                var _ = c.getImageIndex();
+                                l.lines[_] = d.lines[0];
+                                for (var u = 0; u < l.lines.length; u++) l.lines[u] = l.lines[u] || {
                                     text: "",
                                     decorations: {}
                                 }
-                            } else d.lines[0] = h.lines[0]
+                            } else l.lines[0] = d.lines[0]
                         }
-                        d.type = o, d.mode = s, d._uuid = n, d._object = c, this._ps[t] = d
+                        l.type = o, l.mode = s, l._uuid = n, l._object = c, this._ps[t] = l
                     } else if (e.nodeType == Node.ELEMENT_NODE) {
                         var f = e.tagName.toLowerCase();
                         this._ps[t] = this._getParagraphFromHTML(f, e.innerHTML)
                     } else this._ps[t] = this._getParagraphFromHTML("p", e.textContent);
-                    e.nodeType == Node.ELEMENT_NODE && G(e, "sep") && (this._ps[t].sep = !0)
+                    e.nodeType == Node.ELEMENT_NODE && et(e, "sep") && (this._ps[t].sep = !0)
                 }
             }, t.prototype.onDragEnd = function() {
                 this._dragEnterEventsHandler && (this._els.canvas.removeEventListener("dragenter", this._dragEnterEventsHandler), delete this._dragEnterEventsHandler), this._dragLeaveEventsHandler && (this._els.canvas.removeEventListener("dragleave", this._dragLeaveEventsHandler), delete this._dragLeaveEventsHandler), this._dragDropEventsHandler && (this._els.canvas.removeEventListener("drop", this._dragDropEventsHandler), delete this._dragDropEventsHandler), this._dragEndEventsHandler && (this._els.canvas.removeEventListener("dragend", this._dragEndEventsHandler), delete this._dragEndEventsHandler)
             }, t.prototype.getCurrentParagraphs = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 2),
+                    e = W(t, 2),
                     r = e[0],
                     i = e[1];
                 return [this._getParagraphElByIndex(r), this._getParagraphElByIndex(i)]
@@ -2828,48 +3196,48 @@
                     c = void 0;
 
                 function l(t) {
-                    c != t && (N(geByClass("article_ed__drag_hovered"), function(t, e) {
-                        F(e, "article_ed__drag_hovered")
-                    }), t && B(t, "article_ed__drag_hovered"), c = t)
+                    c != t && (J(geByClass("article_ed__drag_hovered"), function(t, e) {
+                        q(e, "article_ed__drag_hovered")
+                    }), t && Y(t, "article_ed__drag_hovered"), c = t)
                 }
 
                 function d() {
-                    window.removeEventListener("mousemove", e), window.removeEventListener("mouseup", r), n = !1, F(s.canvas, "no_select"), clearInterval(o), l(!1), Y(a), a = !1
+                    window.removeEventListener("mousemove", e), window.removeEventListener("mouseup", r), n = !1, q(s.canvas, "no_select"), clearInterval(o), l(!1), at(a), a = !1
                 }
                 this._els.canvas.addEventListener("mousedown", function(s) {
-                    if (a && Y(a), 2 == s.button) return d(), cancelEvent(s);
-                    var c = Q(t._els.canvas)[1];
-                    F(t._els.canvas, "no_select"), l(!1);
-                    var h = t._getContainingParagraphEl(s.target),
-                        _ = L(h, 3),
-                        p = _[0],
-                        u = _[1],
-                        f = _[2];
+                    if (a && at(a), 2 == s.button) return d(), cancelEvent(s);
+                    var c = rt(t._els.canvas)[1];
+                    q(t._els.canvas, "no_select"), l(!1);
+                    var p = t._getContainingParagraphEl(s.target),
+                        h = W(p, 3),
+                        _ = h[0],
+                        u = h[1],
+                        f = h[2];
                     if (Object(i.D)(f)) {
                         var g = s.pageY,
                             v = void 0,
                             b = void 0,
                             y = void 0,
                             m = void 0,
-                            C = void 0;
+                            O = void 0;
                         window.addEventListener("mousemove", e = function(e) {
                             if (a || !(Math.abs(g - e.pageY) < 10)) {
-                                a || (a = V('<div class="article_ed__drag_shadow"></div>'), t._els.editor.appendChild(a), (v = J(t._els.canvas))[1] -= scrollGetY(), b = Q(p), y = J(p), m = e.pageX - y[0], C = e.pageY - y[1] + t._options.layer.scrollTop, setStyle(a, {
+                                a || (a = ot('<div class="article_ed__drag_shadow"></div>'), t._els.editor.appendChild(a), (v = it(t._els.canvas))[1] -= scrollGetY(), b = rt(_), y = it(_), m = e.pageX - y[0], O = e.pageY - y[1] + t._options.layer.scrollTop, setStyle(a, {
                                     width: b[0],
                                     height: b[1]
-                                }), t._focusParagraph(u)), B(t._els.canvas, "no_select"), v || d(), setStyle(a, {
+                                }), t._focusParagraph(u)), Y(t._els.canvas, "no_select"), v || d(), setStyle(a, {
                                     left: e.pageX - v[0] - m,
-                                    top: e.pageY - scrollGetY() - C - v[1] + t._options.layer.scrollTop
+                                    top: e.pageY - scrollGetY() - O - v[1] + t._options.layer.scrollTop
                                 }), clearInterval(o), e.pageY - scrollGetY() < 200 ? o = setInterval(function() {
                                     t._options.layer.scrollTop -= 10
                                 }, 10) : e.pageY - scrollGetY() > window.innerHeight - 200 && (o = setInterval(function() {
                                     t._options.layer.scrollTop + window.innerHeight > c + 300 ? clearInterval(o) : t._options.layer.scrollTop += 10
                                 }, 10));
                                 var r = t._getContainingParagraphEl(e.target),
-                                    i = L(r, 2),
+                                    i = W(r, 2),
                                     s = i[0],
-                                    h = i[1];
-                                s && s != p && s != Object(S.A)(p) ? (l(s), n = h) : (l(!1), n = !1)
+                                    p = i[1];
+                                s && s != _ && s != Object(F.A)(_) ? (l(s), n = p) : (l(!1), n = !1)
                             }
                         }), window.addEventListener("mouseup", r = function() {
                             !1 !== n && u && (t._ps.splice(u, 1), Object(i.w)(f) && (t._ps[u].sep = 1, delete f.sep), t._ps.splice(n + 1, 0, f), t._redraw(!0, !0), t.saveUndoStateAndDraft(), t._resizeTooltip && t._resizeTooltip.isShown() && t._resizeTooltip.hide()), d()
@@ -2883,11 +3251,11 @@
             }, t.prototype.showRevEditInfo = function() {
                 nav.objLoc.from_rev && this.showWarningInfo(getLang("pages_article_rev_edit"))
             }, t.prototype.showWarningInfo = function(t) {
-                var e = U("article_ed__warn_info", this._els.editor);
-                e && !t && (F(this._els.editor, "article_ed__warn_shown"), Y(e)), e || t && (e = V('<div class="article_ed__warn_info">' + t + "</div>"), this._els.editor.appendChild(e), B(this._els.editor, "article_ed__warn_shown"))
+                var e = $("article_ed__warn_info", this._els.editor);
+                e && !t && (q(this._els.editor, "article_ed__warn_shown"), at(e)), e || t && (e = ot('<div class="article_ed__warn_info">' + t + "</div>"), this._els.editor.appendChild(e), Y(this._els.editor, "article_ed__warn_shown"))
             }, t.prototype._initResizeTooltip = function() {
                 var t = this,
-                    e = V('<div class="resize-tooltip__btns article_format_btns clear_fix"></div>');
+                    e = ot('<div class="resize-tooltip__btns article_format_btns clear_fix"></div>');
                 this._resizeTooltip = new ElementTooltip(this._els.editor.parentNode, {
                     content: e,
                     autoShow: !1,
@@ -2902,72 +3270,79 @@
                 })
             }, t.prototype._showResizeTooltip = function() {
                 var t = this._getCurrentParagraphIndex(),
-                    e = L(t, 1)[0],
+                    e = W(t, 1)[0],
                     r = this._getParagraphElByIndex(e),
                     i = this._getParagraph(e),
                     a = intval(i.type);
-                if (l.c.includes(a))
-                    if (this._resizeTooltip && !this._resizeTooltip.isShown() && this._resizeTooltip.show(), W(r, "article_ed__carousel_edit_open")) this._resizeTooltip.hide();
+                if (h.c.includes(a))
+                    if (this._resizeTooltip && !this._resizeTooltip.isShown() && this._resizeTooltip.show(), tt(r, "article_ed__carousel_edit_open")) this._resizeTooltip.hide();
                     else if (i._object.isLoading()) this._resizeTooltip.hide();
                 else {
                     var o = [{
-                            id: l.a.Float,
+                            id: h.a.Float,
                             type: "inline"
                         }, {
-                            id: l.a.Normal,
+                            id: h.a.Normal,
                             type: "text"
                         }, {
-                            id: l.a.Medium,
+                            id: h.a.Medium,
                             type: "bigger"
                         }, {
-                            id: l.a.Large,
+                            id: h.a.Large,
                             type: "cover"
                         }],
-                        n = U("resize-tooltip__btns"),
+                        n = $("resize-tooltip__btns"),
                         s = [1, 1, 1, 1];
                     switch (a) {
-                        case l.b.ObjectPhoto:
+                        case h.b.ObjectPhoto:
                             i._object._isCarousel() ? s = [0, 1, 1, 0] : i._object._isSmallPhotoSize() || (s = [1, 1, 0, 0]);
                             break;
-                        case l.b.ObjectGIF:
-                            i._object._isSmallGifSize() || (s = [1, 1, 0, 0])
+                        case h.b.ObjectGIF:
+                            i._object._isSmallGifSize() || (s = [1, 1, 0, 0]);
+                            break;
+                        case h.b.ObjectTwitter:
+                        case h.b.ObjectFacebook:
+                        case h.b.ObjectInstagram:
+                        case h.b.ObjectVK:
+                        case h.b.ObjectTelegram:
+                            s = [1, 1, 0, 0]
                     }
                     n.innerHTML = "", o.forEach(function(t, e) {
-                        s[e] && n.appendChild(V('\n          <button class="article_format_btn' + (i.mode == t.id || !i.mode && !t.id ? " article_format_btn_active" : "") + '" id="article_format_btn_' + t.type + '"  data-mode=' + t.id + " ></button>\n        "))
+                        s[e] && n.appendChild(ot('\n          <button class="article_format_btn' + (i.mode == t.id || !i.mode && !t.id ? " article_format_btn_active" : "") + '" id="article_format_btn_' + t.type + '"  data-mode=' + t.id + " ></button>\n        "))
                     }), this._updatePositionResizeTooltip()
                 }
             }, t.prototype._updatePositionResizeTooltip = function() {
                 var t = this._resizeTooltip,
-                    e = J(this._els.editor),
-                    r = L(e, 2)[1],
+                    e = it(this._els.editor),
+                    r = W(e, 2)[1],
                     i = this._getCurrentParagraphIndex(),
-                    a = L(i, 1)[0],
+                    a = W(i, 1)[0],
                     o = this._getParagraphElByIndex(a).getBoundingClientRect(),
                     n = o.top,
                     s = o.left,
                     c = o.width,
-                    l = Q(t._ttel)[0] / 2;
+                    l = rt(t._ttel)[0] / 2;
                 setStyle(t._ttel, {
                     top: n - r - 60 + window.scrollY + 140,
                     left: s + c / 2 - l
                 })
             }, t.prototype.setModeObject = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : l.a.Normal,
+                var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : h.a.Normal,
                     r = this._getParagraph(t);
                 Object(i.D)(r) && (r.mode = e, this._correctEmptyParagraphAfterFloatObjects(), this._redraw(!0, !0), this.saveUndoStateAndDraft())
             }, t.prototype.setModeCurrentObject = function() {
-                var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : l.a.Normal,
+                var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : h.a.Normal,
                     e = this._getCurrentParagraphIndex(),
-                    r = L(e, 1)[0];
+                    r = W(e, 1)[0];
                 this.setModeObject(r, t)
             }, t.prototype._uploadFloatList = function() {
                 var t = this,
-                    e = J(this._els.editor);
+                    e = it(this._els.editor);
                 this._floatedObjects = [], this._ps.forEach(function(r, i) {
-                    if (r.mode && parseInt(r.mode) === l.a.Float) {
+                    if (r.mode && parseInt(r.mode) === h.a.Float) {
                         var a = t._getParagraphElByIndex(i),
                             o = a.getBoundingClientRect().height,
-                            n = J(a);
+                            n = it(a);
                         t._floatedObjects.push({
                             startY: n[1] - e[1],
                             endY: n[1] - e[1] + o
@@ -2986,6 +3361,6 @@
                 }
             }, t
         }();
-        window.ArticleEditor = xt, stManager.done(jsc("web/article.js"))
+        window.ArticleEditor = Ht, stManager.done(jsc("web/article.js"))
     }
 });

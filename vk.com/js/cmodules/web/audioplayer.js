@@ -10569,7 +10569,7 @@
                                     }
                                     t(i)
                                 }
-                            })), boxRefreshCoords(cur.apLayer), getAudioPlayer().updateCurrentPlaying(), layers.fullhide = u, cur.apLayerPlaylistId = [t, e], a && a(), cur.articleLayer && cur.articleLayer.audioPlaylistOpened()
+                            })), boxRefreshCoords(cur.apLayer), getAudioPlayer().updateCurrentPlaying(), layers.fullhide = u, cur.apLayerPlaylistId = [t, e], a && a()
                         });
                         var n = void 0,
                             d = void 0;

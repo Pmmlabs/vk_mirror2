@@ -32,6 +32,7 @@
 .settings_otp_box_step3_en,
 .settings_payments_subscriptions .settings_subscription_cancel,
 .settings_transfer_action,
+.settings_vkpay_promo_big_banner_container,
 .ui_actions_menu_item.feedback_new_source {
     -ms-high-contrast-adjust: none
 }
@@ -2427,4 +2428,35 @@ span.page_block_header_group_notify_settings a {
 
 .settings_replies_order {
     text-transform: lowercase
+}
+
+.settings_vkpay_promo_big_banner_container {
+    width: 550px;
+    height: 130px;
+    text-align: center;
+    margin: 0;
+    background: url(/images/payments/vkpay_promo_votes_banner_550.png);
+    border-radius: 4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_vkpay_promo_big_banner_container {
+        background-image: url(/images/payments/vkpay_promo_votes_banner_550_2x.png);
+        background-size: 550px 130px
+    }
+}
+
+.settings_vkpay_promo_big_banner_container:hover {
+    cursor: pointer
+}
+
+.settings_vkpay_promo_banner_try_btn.flat_button {
+    width: 102px;
+    height: 30px;
+    margin: 84px 0 16px;
+    padding: 0;
+    background-color: #fff;
+    color: #000
 }
