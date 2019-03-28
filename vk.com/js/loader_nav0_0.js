@@ -173,7 +173,7 @@ var stVersions = {
     'audioplayer.css': 21024272237,
     'audio_html5.js': 287741914,
     'audio.js': "2694550607e9aae5ce91284950182fee3fd",
-    'audio.css': 27212234547,
+    'audio.css': 27737279854,
     'audio_admins.css': 20567690361,
     'gifts.css': 20588768243,
     'gifts.js': 2251554329,
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7798;
+var _rnd = 7048;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

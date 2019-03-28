@@ -328,6 +328,7 @@
 }
 
 .audio_pl_item2 .audio_pl__subtitle,
+.audio_pl_item2 .audio_pl__title,
 .audio_pl_item2 .audio_pl__year_subtitle {
     overflow: hidden;
     text-overflow: ellipsis
