@@ -335,7 +335,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .tickets_all_search .ui_search {
-    border: 1px solid #e7e8ec
+    border: 1px solid #e7e8ec;
+    z-index: 1
 }
 
 .tickets_all_search_bar {
@@ -481,7 +482,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .tickets_all_selected .ui_search {
-    border: 1px solid #e7e8ec
+    border: 1px solid #e7e8ec;
+    z-index: 1
 }
 
 .tickets_all_selected .flat_button {
@@ -2981,4 +2983,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
     display: inline-block;
     cursor: pointer;
     border-bottom: 1px dashed #939393
+}
+
+.ento_revert_button {
+    display: none
 }

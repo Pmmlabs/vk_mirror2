@@ -902,7 +902,7 @@ var MoneyTransfer = {
                         cur.autoacceptCardDD.setItems(cur.paymentsOptions.cards);
                         cur.autoacceptCardDD.select(card.bindingId);
                     }
-                } else if (result == 2) { // failed
+                } else if (result == 2 || result == 10) { // failed
                     MoneyTransfer.showError(text);
                 }
                 clearInterval(cur.moneyTranferCheckInt);

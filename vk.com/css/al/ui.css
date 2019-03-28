@@ -129,7 +129,11 @@
 
 .ui_table th.ui_table_cell.sortable .ui_table_header_name {
     display: inline-block;
-    position: relative
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ui_table th.ui_table_cell.sortable.sort.ta_c .ui_table_header_name,

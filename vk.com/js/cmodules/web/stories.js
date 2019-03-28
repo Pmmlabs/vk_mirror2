@@ -1283,7 +1283,8 @@
                 }, t.prototype.stop = function() {
                     this._destroyFeedBackTT(), this.isActive = !1, this._destroyStory(), this._stopLoader(), val(nt("stories_send_form_text", this.wrapEl), ""), this._unlockSendForm(), it(this.wrapEl, "autoplay_failed")
                 }, t.prototype.getCurStoryData = function() {
-                    return this.data.items[this.index]
+                    var t = this.data.items[this.index];
+                    return t || {}
                 }, t.prototype.isActiveLive = function() {
                     return "live" === this.getCurStoryData().type
                 }, t.prototype.isLiveEnded = function() {
@@ -2279,7 +2280,7 @@
                 }, t.prototype.show = function() {
                     onBodyResize()
                 }, t.prototype.hide = function(t) {
-                    addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && k(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close"), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close"), !0 !== t && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(t), removeClass(this.layerEl, "shown"), this.activeStory && (this.activeStory.pauseStory(), this.activeStory._hideTooltip())
+                    addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && k(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close"), !0 !== t && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(t), removeClass(this.layerEl, "shown"), this.activeStory && (this.activeStory.pauseStory(), this.activeStory._hideTooltip(), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close"))
                 }, t.prototype.doHide = function(t) {
                     this._readStories(), this.destroy(), !t && (b.pop(), cur.storyLayer = b[b.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (layerQueue.hide(), layerQueue.clear())), "group_stories" === this.list && Stories.groupStoriesBlockUpdate()
                 }, t.prototype.back = function() {

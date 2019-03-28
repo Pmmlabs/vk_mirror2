@@ -263,6 +263,8 @@
                             redirectDone: !0
                         })), 1e3);
                         break;
+                    case 10:
+                        n = getLang("payments_ads_fraud_control_msg"), i = getLang("payments_ads_fraud_control_title");
                     case 2:
                     default:
                         this.onPaymentFailed(n, i)
