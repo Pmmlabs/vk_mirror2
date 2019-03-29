@@ -11470,6 +11470,25 @@ img[src^="/images/mobile/places/"] {
     background-image: none!important
 }
 
+.special_event_highlight {
+    text-decoration: underline
+}
+
+.special_event_frame {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+    width: 231px;
+    height: 204px;
+    z-index: 1000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none
+}
+
 .blog_body .zpv_bottom_body {
     display: none
 }
@@ -15119,6 +15138,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background: #001433
 }
 
+.ArtistCover.groupCover {
+    padding: 0
+}
+
 .ArtistCover__container {
     display: table;
     width: 100%;
@@ -15126,6 +15149,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative
 }
 
+.ArtistCover__content,
 .ArtistCover__image {
     width: 100%;
     background-position: 50%;
@@ -15148,12 +15172,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .ArtistCover__content {
     background-color: rgba(0, 20, 51, .5);
     color: #fff;
-    height: 180px;
-    padding: 24px 0 0;
+    padding: 12px 0 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    position: relative;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;

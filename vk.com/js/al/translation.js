@@ -1665,9 +1665,16 @@ var TR_ADDRESS = 'translation';
     }
 
     function showDescriptionTooltip(el, type) {
+        var message;
         switch (type) {
             case 'export':
-                var message = getLang('tran_export_js_tooltip_msg');
+                message = getLang('tran_export_js_tooltip_msg');
+                break;
+            case 'do_not_translate':
+                message = getLang('tran_do_not_translate_js_tooltip_msg');
+                break;
+            case 'vk_apps':
+                message = getLang('tran_vk_apps_js_tooltip_msg');
                 break;
             default:
                 return false;

@@ -709,7 +709,10 @@
                             eval(act[1])
                         }, act[2]])
                     });
-                    var ap = getAudioPlayer();
+                    var ap = getAudioPlayer(),
+                        currentAudioPage = window.currentAudioPage && window.currentAudioPage(audioEl),
+                        isInLayer = currentAudioPage && currentAudioPage.isLayer() || !currentAudioPage,
+                        shouldShowEdit = !isInLayer && audioObject.canEdit && !vk.widget && (AudioUtils.isPodcast(audioObject) || inArray(contextSection, ["my", "group_list", "search_owned_audios"]));
                     each(actionsList, function(t, e) {
                         switch (e) {
                             case "next":
@@ -734,7 +737,7 @@
                                 }, getLang("global_audio_replace")]);
                                 break;
                             case "edit":
-                                audioObject.canEdit && !vk.widget && (AudioUtils.isPodcast(audioObject) || inArray(contextSection, ["my", "group_list", "search_owned_audios"])) && actions.push(["edit", AudioUtils.isPodcast(audioObject) ? AudioUtils.editEpisode : AudioUtils.editAudio, "", 'onmouseover="audioShowActionTooltip(this)"']);
+                                shouldShowEdit && actions.push(["edit", AudioUtils.isPodcast(audioObject) ? AudioUtils.editEpisode : AudioUtils.editAudio, "", 'onmouseover="audioShowActionTooltip(this)"']);
                                 break;
                             case "delete":
                                 !audioObject.canDelete || audioObject.isInRecomsBlock || vk.widget || actions.push(["delete", AudioUtils.isPodcast(audioObject) ? AudioUtils.deleteEpisode : AudioUtils.deleteAudio, "", 'onmouseover="audioShowActionTooltip(this)"']);
@@ -769,11 +772,13 @@
                     var actionsEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<div class="_audio_row__actions audio_row__actions"></div>');
                     each(actions, function(t, e) {
                         var i = AudioUtils.getRowActionName(e[0], audioObject, audioEl),
-                            r = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<button aria-label="' + i + '" data-action="' + e[0] + '" class="audio_row__action audio_row__action_' + e[0] + " _audio_row__action_" + e[0] + (e[4] || "") + '" ' + (e[3] || "") + ">" + (e[2] || "") + "</button>");
+                            r = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<button aria-label="' + i + '" data-action="' + e[0] + '" class="audio_row__action audio_row__action_' + e[0] + " _audio_row__action_" + e[0] + (" " + e[4] || !1) + '" ' + (e[3] || "") + ">" + (e[2] || "") + "</button>");
                         r.addEventListener("click", function(t) {
                             return e[1] && e[1].call(window, audioEl, audioObject, audio), Object(_lib_dom_events__WEBPACK_IMPORTED_MODULE_1__.c)(t)
                         }), actionsEl.appendChild(r)
                     });
+                    var audioRestorationInfo = AudioUtils.getAddRestoreInfo()[audioObject.fullId];
+                    audioRestorationInfo && "added" === audioRestorationInfo.state && addClass(audioEl, "audio_row__added");
                     var rowInfoEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__info", audioEl),
                         rowDurationEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__duration", audioEl),
                         rowAlreadyActionsEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__actions", audioEl);
@@ -6701,13 +6706,7 @@
                 }, t.prototype._setAudioNodeUrl = function(t, e) {
                     var i = f(e),
                         r = i === h;
-                    if (Object(n.i)(t, "setUrlTime", r ? 0 : vkNow()), this._currentHls && (t === this._currentAudioEl || r)) {
-                        var o = this._currentHls;
-                        d(function() {
-                            return o && o.destroy()
-                        }), this._currentHls = null
-                    }
-                    this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
+                    Object(n.i)(t, "setUrlTime", r ? 0 : vkNow()), this._currentHls && (t === this._currentAudioEl || r) && (this._currentHls.destroy(), this._currentHls = null), this._isHlsUrl(i) ? this._initHls(t, i) : t.src = i
                 }, t.prototype._isHlsUrl = function(t) {
                     return /\.m3u8/.test(f(t))
                 }, t.prototype._initHls = function(t, e) {
@@ -7477,19 +7476,22 @@
             this._impl && this._impl.destroy();
             var i = 0,
                 n = function(t) {
+                    var e = this;
                     if (-1 != i) {
                         if (t && (i++, this._implSetDelay(200), i > 3)) {
                             i = -1;
-                            var e = new MessageBox({
+                            var n = new MessageBox({
                                 title: getLang("global_error")
                             }).content(getLang("audio_error_loading")).setButtons("Ok", function() {
                                 i = 0, curBox().hide()
                             });
-                            return e.show(), d(function() {
-                                i = 0, e.hide()
+                            return n.show(), d(function() {
+                                i = 0, n.hide()
                             }, 3e3), this.notify(AudioPlayer.EVENT_ENDED), void this.notify(AudioPlayer.EVENT_FAILED)
                         }
-                        r.a.isPodcast(this.getCurrentAudio()) ? (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.stop()) : this._repeatCurrent ? (this._autoNext = !0, this.notify(AudioPlayer.EVENT_ENDED), this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._implSeekImmediate(0), this._impl && this._impl.clearAudioNode && (this._impl.clearAudioNode(), this._implSetUrl(this.getCurrentAudio())), this._implPlay()) : (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.playNext(!0)), this._sendListenedData()
+                        r.a.isPodcast(this.getCurrentAudio()) ? (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.stop()) : this._repeatCurrent ? (this._autoNext = !0, this.notify(AudioPlayer.EVENT_ENDED), this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._implSeekImmediate(0), d(function() {
+                            e._impl && e._impl.clearAudioNode && (e._impl.clearAudioNode(), e._implSetUrl(e.getCurrentAudio())), e._implPlay()
+                        })) : (this._isPlaying = !1, this.notify(AudioPlayer.EVENT_PAUSE), this.notify(AudioPlayer.EVENT_ENDED), this.playNext(!0)), this._sendListenedData()
                     }
                 }.bind(this),
                 o = {

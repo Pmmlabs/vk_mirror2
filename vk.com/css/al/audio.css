@@ -2375,10 +2375,6 @@
     top: 67px
 }
 
-[data-useragent=safari] .audio_layer_container .audio_friends_fixed {
-    top: 109px
-}
-
 .audio_layer_container .audio_friend:hover {
     background-color: #f0f2f5
 }

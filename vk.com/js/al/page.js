@@ -732,7 +732,7 @@ var Page = {
                         viewportHeight: window.clientHeight(),
                         session_id: cur.feed_session_id ? cur.feed_session_id : 'na'
                     };
-                    Wall.triggerAdStat(j, 'impression');
+                    Wall.triggerAdStat(j, posts[i].long ? 'impression_long' : 'impression');
                 }
             }
             if (ch) {
@@ -7043,7 +7043,7 @@ var Wall = {
         while (pixels) {
             var adBlockUID = domData(el, 'ad-block-uid');
             var isUniqueEvent = inArray(event, [
-                'load', 'impression',
+                'load', 'impression', 'impression_long',
                 'video_start', 'video_play_3s', 'video_play_25', 'video_play_50', 'video_play_75', 'video_play_95', 'video_play_100'
             ]);
             if (isUniqueEvent) {

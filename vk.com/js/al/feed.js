@@ -18,7 +18,7 @@ var Feed = {
             }
 
             elem.longViewRegistered = true;
-            elem.longViewTracking = longView.isAutoplayAd(elem);
+            elem.longViewTracking = longView.isAutoplayAd(elem) || longView.isAdWithLongImpression(elem);
 
             if (elem.longViewTracking) {
                 longView.tracking.push(elem);
@@ -66,7 +66,9 @@ var Feed = {
                         elem.longViewStartedAt = Date.now();
                     } else if (now - elem.longViewStartedAt >= DURATION_MS) {
                         viewed[viewedKey] = true;
-                        posts.push(feed.postsGetRaws(elem));
+                        posts.push(extend({}, feed.postsGetRaws(elem), {
+                            long: 1
+                        }));
                     }
                 } else {
                     elem.longViewStartedAt = null;
@@ -79,6 +81,11 @@ var Feed = {
         isAutoplayAd: function(elem) {
             var firstChild = elem && domFC(elem);
             return firstChild && firstChild.hasAttribute('data-ad-video-autoplay');
+        },
+
+        isAdWithLongImpression: function(elem) {
+            var firstChild = elem && domFC(elem);
+            return firstChild && (firstChild.hasAttribute('data-ad-stat-impression_long'));
         },
 
         isElemViewable: function(elem, percent, scrollY, windowHeight) {
@@ -2483,7 +2490,11 @@ var Feed = {
             ntop = nel ? nel.offsetTop : top + el.offsetHeight;
             if (ntop < st && nel) cur.topRow = nel;
             LongView && LongView.register(el, 'feed');
-            if (longView.registerElement(el)) continue;
+            if (longView.registerElement(el)) {
+                if (!longView.isAdWithLongImpression(el)) {
+                    continue;
+                }
+            };
 
             bits = el.bits || 0;
             if (bits >= 3) continue;

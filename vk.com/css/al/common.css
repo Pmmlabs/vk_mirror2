@@ -9140,6 +9140,10 @@ button.ui_load_more_btn {
     opacity: 0.9
 }
 
+.audio_promo .round_button:active {
+    padding: 11px 24px
+}
+
 .audio_promo__close {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2234%22%20height%3D%2234%22%20viewBox%3D%220%200%2034%2034%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h34v34H0z%22%2F%3E%3Cg%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.75%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M13%2021l8-8M21%2021l-8-8%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     width: 34px;
@@ -12052,5 +12056,25 @@ button.ui_load_more_btn {
 }
 
 .uppercase {
-    text-transform: uppercase
+    text-transform: uppercase;
+    cursor: pointer
+}
+
+.special_event_highlight {
+    text-decoration: underline
+}
+
+.special_event_frame {
+    position: fixed;
+    bottom: 0;
+    right: 72px;
+    display: none;
+    width: 231px;
+    height: 204px;
+    z-index: 10002;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none
 }

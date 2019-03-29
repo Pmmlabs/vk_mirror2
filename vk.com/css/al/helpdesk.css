@@ -2985,6 +2985,17 @@ body.body_helpdesk_small_sb .left_menu_nav {
     border-bottom: 1px dashed #939393
 }
 
+.search2_info_msg {
+    padding: 7px 7px 0px;
+    margin-bottom: -18px
+}
+
+.search2_info_msg .info_msg {
+    min-height: 40px;
+    line-height: 43px
+}
+
 .ento_revert_button {
-    display: none
+    display: none;
+    margin-top: 10px
 }

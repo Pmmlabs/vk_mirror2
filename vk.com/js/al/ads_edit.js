@@ -2313,6 +2313,12 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         stats_url2: {
             value: ''
         },
+        stats_url_long: {
+            value: ''
+        },
+        stats_url_long2: {
+            value: ''
+        },
         disclaimer_medical: {
             value: 0,
             may_be_any: false
@@ -3163,6 +3169,8 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             break;
         case 'stats_url':
         case 'stats_url2':
+        case 'stats_url_long':
+        case 'stats_url_long2':
             targetElem = ge(this.options.targetIdPrefix + paramName);
             placeholderSetup(targetElem, {
                 back: true,
@@ -4128,6 +4136,8 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             break;
         case 'stats_url':
         case 'stats_url2':
+        case 'stats_url_long':
+        case 'stats_url_long2':
             this.initUiParam(paramName);
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
             break;
@@ -4337,6 +4347,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.disclaimer_finance.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_finance.allow);
                 this.params.stats_url.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.stats_url.allow_adaptive_ad || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY && this.params.stats_url.allow_story);
                 this.params.stats_url2.hidden = !(!this.params.stats_url.hidden && this.params.stats_url2.allow);
+                this.params.stats_url_long.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url_long.allow_promoted_post);
+                this.params.stats_url_long2.hidden = !(!this.params.stats_url_long.hidden && this.params.stats_url_long2.allow_promoted_post);
                 this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.view_retargeting_group_id.value);
                 this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
                 this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
@@ -4412,6 +4424,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParamVisibility('age_restriction');
                 this.updateUiParamVisibility('stats_url');
                 this.updateUiParamVisibility('stats_url2');
+                this.updateUiParamVisibility('stats_url_long');
+                this.updateUiParamVisibility('stats_url_long2');
                 this.updateUiParamVisibility('view_retargeting_group_id');
                 this.updateUiParamVisibility('cost_type');
                 this.updateUiParamVisibility('platform_no_wall');
@@ -4913,6 +4927,8 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
         case 'link_domain':
         case 'stats_url':
         case 'stats_url2':
+        case 'stats_url_long':
+        case 'stats_url_long2':
             // setTimeout at least for IE
             setTimeout(function() {
                 var targetElem = ge(this.options.targetIdPrefix + paramName);

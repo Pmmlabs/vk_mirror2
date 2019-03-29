@@ -555,7 +555,8 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    cursor: default
+    cursor: default;
+    will-change: opacity
 }
 
 .videoplayer_ui._fullscreen .videoplayer_time {
