@@ -9784,16 +9784,7 @@ button.ui_load_more_btn {
 
 .audio_recoms_block .video_item .video_item_info .video_item_author,
 .audio_section__recoms_block .video_item .video_item_info .video_item_author,
-.audio_section__search_block .video_item .video_item_info .video_item_author {
-    color: #000
-}
-
-.audio_artist_page .audio_recoms_block .video_item .video_item_info .video_item_author,
-.audio_artist_page .audio_section__recoms_block .video_item .video_item_info .video_item_author,
-.audio_artist_page .audio_section__search_block .video_item .video_item_info .video_item_author {
-    display: none
-}
-
+.audio_section__search_block .video_item .video_item_info .video_item_author,
 .audio_recoms_block .video_item .video_item_info .video_item_author a,
 .audio_section__recoms_block .video_item .video_item_info .video_item_author a,
 .audio_section__search_block .video_item .video_item_info .video_item_author a {

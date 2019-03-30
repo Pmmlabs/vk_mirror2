@@ -437,6 +437,10 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     text-overflow: ellipsis
 }
 
+.video_item_info .video_item_title .mv_subtitle {
+    color: #939393
+}
+
 .video_item_info .video_item_updated {
     padding: 2px 0 3px
 }

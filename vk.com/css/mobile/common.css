@@ -18705,6 +18705,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     height: 100%
 }
 
+.ArtistPage_artist_videos .dvd,
 .ArtistPage_videos .dvd,
 .ArtistPage_videos_slider .dvd,
 .AudioMusicVideoSlider .dvd,
@@ -18715,6 +18716,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding: 0
 }
 
+.ArtistPage_artist_videos .dvd:before,
 .ArtistPage_videos .dvd:before,
 .ArtistPage_videos_slider .dvd:before,
 .AudioMusicVideoSlider .dvd:before,
@@ -18801,6 +18803,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     }
 }
 
+.ArtistPage_artist_videos .video_item .video_thumb,
 .ArtistPage_videos .video_item .video_thumb,
 .ArtistPage_videos_slider .video_item .video_thumb {
     width: 128px;
@@ -18810,6 +18813,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     border-radius: 6px
 }
 
+.ArtistPage_artist_videos .video_item .thumb_label,
 .ArtistPage_videos .video_item .thumb_label,
 .ArtistPage_videos_slider .video_item .thumb_label {
     -webkit-border-radius: 4px;
@@ -18818,11 +18822,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin: 8px
 }
 
+.ArtistPage_artist_videos .video_item .vi_body,
 .ArtistPage_videos .video_item .vi_body,
 .ArtistPage_videos_slider .video_item .vi_body {
     margin-left: 140px
 }
 
+.ArtistPage_artist_videos .video_item .vi_title a,
+.ArtistPage_artist_videos .video_item .vi_values,
 .ArtistPage_videos .video_item .vi_title a,
 .ArtistPage_videos .video_item .vi_values,
 .ArtistPage_videos_slider .video_item .vi_title a,
@@ -18835,11 +18842,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     display: block
 }
 
+.ArtistPage_artist_videos .video_item .vi_values a,
 .ArtistPage_videos .video_item .vi_values a,
 .ArtistPage_videos_slider .video_item .vi_values a {
     color: #909499
 }
 
+.ArtistPage_artist_videos .video_item .vi_title,
+.ArtistPage_artist_videos .video_item .vi_values,
 .ArtistPage_videos .video_item .vi_title,
 .ArtistPage_videos .video_item .vi_values,
 .ArtistPage_videos_slider .video_item .vi_title,
@@ -18847,6 +18857,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin: 2px 0
 }
 
+.ArtistPage_artist_videos .video_item:last-child,
 .ArtistPage_videos .video_item:last-child,
 .ArtistPage_videos_slider .video_item:last-child {
     border: none
@@ -25002,6 +25013,10 @@ figure[data-type="102"] .article_object_video_play {
 
 .video_item .vi_title a {
     color: #000
+}
+
+.video_item .vi_title .vi_subtitle {
+    color: #76787a
 }
 
 .video_item .vi_values {
@@ -33184,6 +33199,7 @@ body.apps_settingsPageBody .basis__content {
 
 ._Audio__icon,
 .ArtistCover__playAll:after,
+.ArtistPage_artist_videos .video_item.video_item_explicit .vi_title a:after,
 .ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
 .ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .Audio__menuButton,
@@ -33215,6 +33231,7 @@ body.apps_settingsPageBody .basis__content {
 ._Audio__icon_2x,
 .r.vk_2x .audioPlaylist .wi_actions_btn .i_icon,
 .vk_2x .ArtistCover__playAll:after,
+.vk_2x.ArtistPage_artist_videos .video_item.video_item_explicit .vi_title a:after,
 .vk_2x.ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
 .vk_2x.ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .vk_2x .Audio__menuButton,
@@ -33579,6 +33596,7 @@ body.apps_settingsPageBody .basis__content {
     }
 }
 
+.ArtistPage_artist_videos .video_item.video_item_explicit .vi_title a,
 .ArtistPage_videos .video_item.video_item_explicit .vi_title a,
 .ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a,
 .Audio__title_explicit,
@@ -33598,6 +33616,7 @@ body.apps_settingsPageBody .basis__content {
     box-sizing: border-box
 }
 
+.ArtistPage_artist_videos .video_item.video_item_explicit .vi_title a:after,
 .ArtistPage_videos .video_item.video_item_explicit .vi_title a:after,
 .ArtistPage_videos_slider .video_item.video_item_explicit .vi_title a:after,
 .Audio__title_explicit:after,

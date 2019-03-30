@@ -346,6 +346,10 @@
     background: #ebf1f8
 }
 
+.UnblockForm__content__inputs .input.phone_number_input .prefix_input_wrap.finished .prefix_input_prefix {
+    padding-top: 5.5px
+}
+
 .UnblockForm__content__inputs .input.phone_number_input .prefix_input_wrap .prefix_input {
     font-size: 13px
 }
@@ -425,6 +429,12 @@
 
 .UnblockForm .submit_error {
     line-height: 20px
+}
+
+.UnblockForm .DelayedRequestFinished__button,
+.UnblockForm .DelayedWaitExplanation .DelayedWaitExplanation__progressWrap {
+    text-align: center;
+    margin-top: 40px
 }
 
 .page_section {

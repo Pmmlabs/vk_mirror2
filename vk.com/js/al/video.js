@@ -1460,12 +1460,12 @@ var Video = {
         var meta = video[VideoConstants.VIDEO_ITEM_INDEX_MUSIC_VIDEO_META];
 
         if (meta) {
-            var featured = meta['featured'] ? meta['featured'] + ' ' : '';
-            var main = featured ? meta['main'] : '';
+            var subtitle = meta['subtitle'] ? ' <span class="mv_subtitle">' + meta['subtitle'] + '</span>' : '';
 
-            video[VideoConstants.VIDEO_ITEM_INDEX_OWNER] = meta['name'] ? meta['main'] : '';
+            video[VideoConstants.VIDEO_ITEM_INDEX_TITLE] = meta['title'] + subtitle;
+            video[VideoConstants.VIDEO_ITEM_INDEX_OWNER] = meta['main'] + meta['featured'];
             video[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = meta['release_date'];
-            video[VideoConstants.VIDEO_ITEM_INDEX_DATE] = main + featured + meta['subtitle'];
+            video[VideoConstants.VIDEO_ITEM_INDEX_DATE] = meta['genre'];
         } else {
             video[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = langNumeric(video[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], cur.lang.video_N_views_list, true);
             video[VideoConstants.VIDEO_ITEM_INDEX_DATE] = Video.getFormattedUpdatedTime(video[VideoConstants.VIDEO_ITEM_INDEX_DATE]);

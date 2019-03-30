@@ -393,6 +393,10 @@
     width: 563px
 }
 
+.restore_page_section.page_section.restore_page_section--cancel {
+    margin-top: 52px
+}
+
 .page_section .error.restore_error {
     margin-top: 60px;
     display: block
