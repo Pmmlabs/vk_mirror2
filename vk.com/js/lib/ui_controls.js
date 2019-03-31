@@ -3633,8 +3633,9 @@ createChildClass('InlineEdit', UiControl, {
         this.target = target;
     },
     initDOM: function(target, options) {
+        className = options.className ? ' ' + options.className : '';
         this.container = ce('div', {
-            className: 'inlContainer',
+            className: 'inlContainer' + className,
             id: 'container' + this.guid,
             innerHTML: '<table class="inlMainTable">' + this.options.mainTableHTML.replace('{content_table}', '<table class="inlContentTable">' + this.options.contentTableHTML.replace('{content}', this.options.contentHTML).replace('{nolabel}', this.options.cancelLabel).replace('{yeslabel}', this.options.confirmLabel) + '</table>') + '</table>'
         });

@@ -1754,7 +1754,7 @@ Ads.onInlineEditClick = function(elem, callback, rown, coln) {
     ret.obj.show();
 }
 
-Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valueType, initValue, hash, additionalParams) {
+Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valueType, initValue, hash, additionalParams, callback, spinnerCallback, className) {
     editElem = ge(editElem);
     progressElem = ge(progressElem);
     var defaultValue = initValue;
@@ -1793,11 +1793,18 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             if ((!isRemoveValue && defaultValue == newValue) || (isRemoveValue && defaultValue == 0)) {
                 if (isRemoveValue) {
                     this.hide();
+
+                    if (spinnerCallback) {
+                        spinnerCallback(false);
+                    }
                 }
                 return;
             }
         } else {
             if (defaultValue == newValue) {
+                if (spinnerCallback) {
+                    spinnerCallback(false);
+                }
                 return;
             }
         }
@@ -1829,13 +1836,13 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                     showLongError.call(self, response.error);
                 } else if (!response.not_changed) {
                     if ((valueType + '_value') in response) {
-                        applyNewValue.call(self, response[valueType + '_value'], response[valueType + '_text']);
+                        applyNewValue.call(self, response[valueType + '_value'], response[valueType + '_text'], callback);
                     } else if (response[valueType + '_value_day']) {
                         var newValue = {};
                         newValue.day = response[valueType + '_value_day'];
                         newValue.month = response[valueType + '_value_month'];
                         newValue.hour = response[valueType + '_value_hour'];
-                        applyNewValue.call(self, newValue, response[valueType + '_text']);
+                        applyNewValue.call(self, newValue, response[valueType + '_text'], callback);
                     } else {
                         showLongError.call(self, unknownError);
                     }
@@ -1847,21 +1854,32 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             hide(progressElem);
             show(editElem);
 
+            if (spinnerCallback) {
+                spinnerCallback(false);
+            }
+
             return true;
         }
+
+        if (spinnerCallback) {
+            spinnerCallback(true);
+        }
+
         ajax.post('/ads?act=a_unions_general_info_save', params, {
             onDone: onAjaxComplete,
             onFail: onAjaxComplete
         });
 
-        hide(editElem);
-        show(progressElem);
+        if (!callback) {
+            hide(editElem);
+            show(progressElem);
+        }
         if (isRemoveValue) {
             this.hide();
         }
     }
 
-    function applyNewValue(newValue, newText) {
+    function applyNewValue(newValue, newText, callback) {
         if (valueType == 'name') {
             Ads.updateUnionName(unionId, newText);
         }
@@ -1872,8 +1890,12 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             } else {
                 eval('(function(v, t){' + additionalParams.valCallback + '(v, t);})(' + newValue + ',\'' + newText + '\')');
             }
-        } else {
+        } else if (!callback) {
             editElem.innerHTML = newText;
+        }
+
+        if (callback) {
+            callback(unionId, valueType, newValue);
         }
     }
 
@@ -2180,6 +2202,10 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         onShow: onShow,
         onConfirm: onConfirm
     };
+
+    if (className) {
+        options.className = className;
+    }
 
     switch (valueGeneralType) {
         case 'cost_per_click':
