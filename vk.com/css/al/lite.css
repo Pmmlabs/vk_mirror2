@@ -4756,7 +4756,8 @@ div.top_result_baloon a {
     padding: 0 24px 0 30px;
     position: relative;
     vertical-align: middle;
-    outline: none
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .audio_pl_snippet2 .audio_pl_snippet__action_btn:before {

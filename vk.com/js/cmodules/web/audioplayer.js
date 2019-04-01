@@ -69,7 +69,7 @@
     s.push = e, s = s.slice();
     for (var u = 0; u < s.length; u++) e(s[u]);
     var c = d;
-    o.push([61, "common"]), i()
+    o.push([62, "common"]), i()
 }({
     "+qE3": function(t, e) {
         function i() {
@@ -197,7 +197,7 @@
             throw new Error("Not implemented yet")
         });
         else try {
-            var o = i(65);
+            var o = i(66);
             if ("function" != typeof o.randomBytes) throw new Error("Not supported");
             n.prototype._rand = function(t) {
                 return o.randomBytes(t)
@@ -785,59 +785,56 @@
                     if (!rowInfoEl) return;
                     Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.fb)(rowAlreadyActionsEl), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.qb)(rowDurationEl, "visibility", "hidden"), rowInfoEl.appendChild(actionsEl);
                     var moreActionsBtnEl = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.H)("_audio_row__action_more", actionsEl);
-                    if (moreActions.length && moreActionsBtnEl) {
-                        var classicImEl = gpeByClass("im-page_classic", audioEl),
-                            imWEl = gpeByClass("_im_peer_history_w", audioEl),
-                            imEl = gpeByClass("_im_peer_history", audioEl),
-                            imWrapEl = gpeByClass("_im_chat_body_abs", audioEl),
-                            moreActionsContentEls = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
-                            extendedOptions = imEl ? {
-                                getWrapEl: function() {
-                                    return classicImEl ? null : imWrapEl
-                                },
-                                appendTo: imEl
-                            } : {
-                                appendToParent: !0
-                            },
-                            tooltipGap = 150,
-                            moreTooltip = new ElementTooltip(moreActionsBtnEl, extend({
-                                cls: "_audio_row__tt",
-                                defaultSide: "bottom",
-                                rightShift: 20,
-                                content: moreActionsContentEls,
-                                bottomGap: classicImEl && imWEl ? parseInt(getStyle(imWEl, "border-bottom-width")) + 30 + tooltipGap : tooltipGap,
-                                preventSideChange: !0,
-                                autoShow: !0,
-                                onFirstTimeShow: function(t, e) {
-                                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.s)(e, "nodrag", 1), setTimeout(function() {
-                                        this.getOptions().bottomGap = 0
-                                    }.bind(this))
-                                },
-                                onHide: function() {
-                                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(audioEl, "leaved") && AudioUtils.onRowLeave(audioEl)
-                                }
-                            }, extendedOptions));
-                        each(moreActions, function(t, e) {
-                            var i = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)(Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, e));
-                            if ("add_to_playlist" == e[0]) {
-                                var r = void 0,
-                                    n = void 0;
-                                i.addEventListener("mouseenter", r = function() {
-                                    clearTimeout(n), n = setTimeout(function() {
-                                        i.removeEventListener("mouseenter", r), AudioUtils.initRowPlaylistsChooser(audio, i, moreTooltip)
-                                    }, 150)
-                                }), i.addEventListener("mouseleave", function() {
-                                    clearTimeout(n)
-                                })
-                            } else i.addEventListener("click", function(t) {
-                                return e[1].call(window, audioEl, audioObject), Object(_lib_dom_events__WEBPACK_IMPORTED_MODULE_1__.c)(t)
-                            });
-                            moreActionsContentEls.appendChild(i)
-                        }), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(audioEl, "tt", moreTooltip)
-                    }
-                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(audioEl, "actions", 1)
+                    moreActions.length && moreActionsBtnEl && setMoreAction(audioEl, audio, audioObject, moreActions, moreActionsBtnEl), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(audioEl, "actions", 1)
                 }
             }, forceRedraw ? 0 : 10)))
+        }
+
+        function setMoreAction(t, e, i, r, n) {
+            var o = gpeByClass("im-page_classic", t),
+                a = gpeByClass("_im_peer_history_w", t),
+                s = gpeByClass("_im_peer_history", t),
+                d = gpeByClass("_im_chat_body_abs", t),
+                u = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)('<div class="_audio_row__more_actions audio_row__more_actions"></div>'),
+                c = gpeByClass("wk_history_audio_content", t),
+                f = {};
+            s ? (f.getWrapEl = function() {
+                return o ? null : d
+            }, f.appendTo = s) : c ? f.appendTo = c : f.appendToParent = !0;
+            var l = new ElementTooltip(n, extend({
+                cls: "_audio_row__tt",
+                defaultSide: "bottom",
+                rightShift: 20,
+                content: u,
+                bottomGap: o && a ? parseInt(getStyle(a, "border-bottom-width")) + 30 + 150 : 150,
+                preventSideChange: !0,
+                autoShow: !0,
+                onFirstTimeShow: function(t, e) {
+                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.s)(e, "nodrag", 1), setTimeout(function() {
+                        this.getOptions().bottomGap = 0
+                    }.bind(this))
+                },
+                onHide: function() {
+                    Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(t, "leaved") && AudioUtils.onRowLeave(t)
+                }
+            }, f));
+            each(r, function(r, n) {
+                var o = Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.mb)(Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.lb)(AudioUtils.AUDIO_ROW_ACTION_ROW_ITEM, n));
+                if ("add_to_playlist" == n[0]) {
+                    var a = void 0,
+                        s = void 0;
+                    o.addEventListener("mouseenter", a = function() {
+                        clearTimeout(s), s = setTimeout(function() {
+                            o.removeEventListener("mouseenter", a), AudioUtils.initRowPlaylistsChooser(e, o, l)
+                        }, 150)
+                    }), o.addEventListener("mouseleave", function() {
+                        clearTimeout(s)
+                    })
+                } else o.addEventListener("click", function(e) {
+                    return n[1].call(window, t, i), Object(_lib_dom_events__WEBPACK_IMPORTED_MODULE_1__.c)(e)
+                });
+                u.appendChild(o)
+            }), Object(_lib_dom__WEBPACK_IMPORTED_MODULE_0__.i)(t, "tt", l)
         }
     },
     "4dMO": function(t, e, i) {
@@ -997,13 +994,13 @@
         }();
         __webpack_exports__.a = AudioLayer
     },
-    61: function(t, e, i) {
+    62: function(t, e, i) {
         t.exports = i("cul0")
     },
-    62: function(t, e) {},
     63: function(t, e) {},
     64: function(t, e) {},
     65: function(t, e) {},
+    66: function(t, e) {},
     "6F8h": function(t) {
         t.exports = {
             "aes-128-ecb": {
@@ -3560,7 +3557,7 @@
                 var a;
                 "object" == typeof t ? t.exports = o : e.BN = o, o.BN = o, o.wordSize = 26;
                 try {
-                    a = i(64).Buffer
+                    a = i(65).Buffer
                 } catch (t) {}
 
                 function s(t, e, i) {
@@ -5906,7 +5903,7 @@
     Xhqo: function(t, e, i) {
         "use strict";
         var r = i("hwdV").Buffer,
-            n = i(63);
+            n = i(64);
         t.exports = function() {
             function t() {
                 ! function(t, e) {
@@ -10725,7 +10722,8 @@
                         track_code: e.trackCode
                     }, {
                         onDone: function() {
-                            r && getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, n ? -n : vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID).removeAudio(d.addedFullId), i(!1)
+                            var t = window.getAudioPlayer && window.getAudioPlayer();
+                            t && t.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, n ? -n : vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID).removeAudio(d.addedFullId), i(!1)
                         }
                     }), Object(o.hb)(t, "audio_row__added"), u && Object(o.hb)(u, "audio_row__added"), delete a[e.fullId], getAudioPlayer().notify(AudioPlayer.EVENT_REMOVED, e.fullId, d.addedFullId)) : (ajax.post("al_audio.php", h, {
                         onDone: function(t) {
@@ -11304,7 +11302,7 @@
                 c = e.Uint8Array || function() {};
             var f = i("Onz0");
             f.inherits = i("P7XM");
-            var l = i(62),
+            var l = i(63),
                 h = void 0;
             h = l && l.debuglog ? l.debuglog("stream") : function() {};
             var p, _ = i("Xhqo"),

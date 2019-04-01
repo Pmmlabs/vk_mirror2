@@ -69,7 +69,7 @@
     c.push = t, c = c.slice();
     for (var s = 0; s < c.length; s++) t(c[s]);
     var w = d;
-    r.push([74, "common"]), n()
+    r.push([75, "common"]), n()
 }({
     "4O8T": function(e, t, n) {
         var o;
@@ -171,7 +171,7 @@
             }.call(t, n, t, e)) || (e.exports = o)
         }(this || {})
     },
-    74: function(e, t, n) {
+    75: function(e, t, n) {
         e.exports = n("g42W")
     },
     T39b: function(e, t, n) {
@@ -312,8 +312,8 @@
             for (var n in e) e.hasOwnProperty(n) && t.push(n);
             return t
         });
-        var _ = n("ryw6"),
-            g = n("kMSP"),
+        var g = n("ryw6"),
+            _ = n("kMSP"),
             O = n("Kngp"),
             y = n("gdug"),
             j = n("k487"),
@@ -671,7 +671,7 @@
                     n = t[0],
                     i = t[1];
                 return r.events.push([i, n, cur.module, o, window.vk.rv])
-            }), Object(g.d)(Y, JSON.stringify(r), .01)
+            }), Object(_.d)(Y, JSON.stringify(r), .01)
         }
 
         function ie() {
@@ -759,7 +759,9 @@
                         needLeft: !0,
                         forcetodown: n
                     };
-                Object(k.T)("_im_mess_stack", e) ? (c.appendParentCls = "_im_mess_stack", c.shift = [7, 10, 0], c.noZIndex = !0) : Object(k.T)("top_notify_wrap", e) ? c.appendParentCls = "top_notify_wrap" : Object(k.T)("_ape_audio_item", e) && (c.appendParentCls = "_ape_audio_item"), Object(ue.c)(e, c)
+                each(["_im_mess_stack", "top_notify_wrap", "_ape_audio_item", "wk_history_audio_content"], function(t, n) {
+                    if (Object(k.T)(n, e)) return c.appendParentCls = n, !1
+                }), Object(k.T)("_im_mess_stack", e) && (c.shift = [7, 10, 0], c.noZIndex = !0), Object(ue.c)(e, c)
             }
         }
 
@@ -796,7 +798,7 @@
             })
         }
         var ve = n("Ieup"),
-            _e = function() {
+            ge = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -820,17 +822,17 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
-        var ge = {
+        var _e = {
             maxHeight: 300,
             tabs: {},
             counters: {},
             showFriends: function() {
-                curFastChat.clistBox.visible ? curFastChat.clistBox.options.fixed ? FastChat.clistHide() : curFastChat.clistBox.show() : (FastChat.clistShow(), ge.cont.tt && ge.cont.tt.destroy && ge.cont.tt.destroy())
+                curFastChat.clistBox.visible ? curFastChat.clistBox.options.fixed ? FastChat.clistHide() : curFastChat.clistBox.show() : (FastChat.clistShow(), _e.cont.tt && _e.cont.tt.destroy && _e.cont.tt.destroy())
             },
             showTT: function() {
-                if (!Object(k.V)(ge.wrap, "chat_active") && !Object(k.V)(ge.wrap, "chat_expand")) {
+                if (!Object(k.V)(_e.wrap, "chat_active") && !Object(k.V)(_e.wrap, "chat_expand")) {
                     var e = y.a.mac ? "Cmd" : "Ctrl";
-                    Object(ue.c)(ge.cont, {
+                    Object(ue.c)(_e.cont, {
                         text: Object(P.d)("head_fr_online_tip") + " (" + e + "+?)",
                         shift: [-2, 4, 0],
                         showdt: 0,
@@ -839,11 +841,11 @@
                 }
             },
             init: function() {
-                ge.wrap = Object(k.e)("div", {
+                _e.wrap = Object(k.e)("div", {
                     id: "chat_onl_wrap",
                     className: "chat_onl_wrap",
                     innerHTML: '\n<div class="chat_tt_wrap"></div>\n<div class="chat_onl_inner">\n  <div class="chat_cont_scrolling"><div class="chat_onl_height"></div></div>\n  <div class="chat_cont_sh_top"></div>\n  <div class="chat_cont_sh_bottom"></div>\n  <a class="chat_tab_wrap" id="chat_tab_wrap" onclick="Chat.showFriends()" onmouseover="Chat.showTT();">\n    <div class="chat_onl_cont">\n      <div class="chat_onl" id="chat_onl"></div>\n    </div>\n  </a>\n</div>'
-                }), utilsNode.appendChild(ge.wrap), ge.scrollNode = Object(k.H)("chat_cont_scrolling", ge.wrap), ge.ttNode = Object(k.H)("chat_tt_wrap", ge.wrap), ge.itemsCont = ge.scrollNode.firstChild, ge.onl = Object(k.F)("chat_onl"), ge.cont = ge.onl.parentNode.parentNode, Object(k.W)(ge.wrap), ge.inited = !0, stManager._addCss(".layers_shown .chat_onl_wrap {margin-right: " + Object(z.t)() + "px;}")
+                }), utilsNode.appendChild(_e.wrap), _e.scrollNode = Object(k.H)("chat_cont_scrolling", _e.wrap), _e.ttNode = Object(k.H)("chat_tt_wrap", _e.wrap), _e.itemsCont = _e.scrollNode.firstChild, _e.onl = Object(k.F)("chat_onl"), _e.cont = _e.onl.parentNode.parentNode, Object(k.W)(_e.wrap), _e.inited = !0, stManager._addCss(".layers_shown .chat_onl_wrap {margin-right: " + Object(z.t)() + "px;}")
             }
         };
 
@@ -896,7 +898,7 @@
             }
             return a.processLoad = function() {
                 if (Object(E.f)(n, function(e, t) {
-                        var o = _e(t, 2),
+                        var o = ge(t, 2),
                             i = o[0],
                             r = o[1];
                         (r.width || r.height || Object(E.L)() - i > 2e4) && n[e] && c.call(r, e, !0)
@@ -925,7 +927,7 @@
                         }
                     }
                     Object(E.f)(s, function(e, t) {
-                        var i = _e(t, 2),
+                        var i = ge(t, 2),
                             d = i[0],
                             s = i[1];
                         a.iloader && a.iloader.add(s, c, d), d.src = s, d.removeAttribute("data-src"), Object(k.hb)(d, r.need_load_class), n[s] || (o++, n[s] = [Object(E.L)(), d])
@@ -998,7 +1000,7 @@
                                 n.push([this, this.src]), this.src = "", Object(k.W)(this)
                             }), setTimeout(function() {
                                 Object(E.f)(n, function(e, t) {
-                                    var n = _e(t, 2),
+                                    var n = ge(t, 2),
                                         o = n[0],
                                         i = n[1];
                                     o.src = i, Object(k.tb)(o)
@@ -1216,12 +1218,12 @@
             mt = null,
             vt = {};
 
-        function _t() {
+        function gt() {
             var e = Ht();
             e.length && (Ft(e), Dt())
         }
 
-        function gt() {
+        function _t() {
             ct.forEach(function(e) {
                 e[$e] = !1
             })
@@ -1550,21 +1552,21 @@
                         }), n),
                         v = Object(k.u)(m);
                     Object(k.qb)(v, r);
-                    var _ = Xt.pbind(n, o),
-                        g = y.a.mobile ? _ : function(e, t) {
-                            return setTimeout(_.pbind(e, t), 0)
+                    var g = Xt.pbind(n, o),
+                        _ = y.a.mobile ? g : function(e, t) {
+                            return setTimeout(g.pbind(e, t), 0)
                         };
                     y.a.msie && y.a.version < 8 && Object(k.qb)(v, {
                         marginTop: 1
                     }), n.phonfocus = function(e) {
                         a || (n.focused = !0, cur.__focused = n, !0 === e && (Object(k.qb)(n, {
                             backgroundColor: "#FFF"
-                        }), Object(k.W)(v)), g(!0, !1))
+                        }), Object(k.W)(v)), _(!0, !1))
                     }, n.phonblur = function() {
-                        a || (cur.__focused = n.focused = !1, Object(k.tb)(v), g(!1, !0))
+                        a || (cur.__focused = n.focused = !1, Object(k.tb)(v), _(!1, !0))
                     }, n.phshown = !0, n.phanim = null, (n.value || o.editable && ((void 0 !== n.textContent ? n.textContent : n.innerText) || Object(k.I)("img", n).length)) && (n.phshown = !1, Object(k.W)(m)), y.a.opera_mobile || (Object(L.b)(m, "focus click", function(e) {
                         a || (o.editableFocus ? (setTimeout(o.editableFocus.pbind(n), 0), n.phonfocus()) : (n.blur(), n.focus()))
-                    }), Object(L.b)(n, "focus" + (o.editable ? " click" : ""), n.phonfocus), Object(L.b)(n, "keydown paste cut input", g)), Object(L.b)(n, "blur", n.phonblur), n.check = g, n.getValue = function() {
+                    }), Object(L.b)(n, "focus" + (o.editable ? " click" : ""), n.phonfocus), Object(L.b)(n, "keydown paste cut input", _)), Object(L.b)(n, "blur", n.phonblur), n.check = _, n.getValue = function() {
                         return o.editable ? n.innerHTML : n.value
                     }, n.setPlaceholder = function(e) {
                         return Object(k.H)("input_back_content", m).textContent = e
@@ -1686,7 +1688,7 @@
                 n = !1;
             window.audioPlayer && (t.push(L.a.LEFT), t.push(L.a.RIGHT)), Object(E.f)(t, function(t, o) {
                 if (e.keyCode === o) return n = !0, !1
-            }), n && Object(M.j)().onMediaKeyPressedEvent(e), ge.inited && 191 === e.keyCode && (e.ctrlKey || e.metaKey && y.a.mac) && ge.showFriends()
+            }), n && Object(M.j)().onMediaKeyPressedEvent(e), _e.inited && 191 === e.keyCode && (e.ctrlKey || e.metaKey && y.a.mac) && _e.showFriends()
         }
         var nn = n("i6oL"),
             on = n("m0N1"),
@@ -1747,7 +1749,7 @@
             window.NextPageID = 1, window.__debugMode = !0, window.__dev = /[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+/i.test(locHost), window.__dev || (window.__debugMode = !1), window._wf = 0, window.cur = {
                 destroy: [],
                 nav: []
-            }, cn.width = 960, cn.started = Object(E.L)(), cn.counts = {}, y.a.android && (Object(g.d)("remixscreen_width", window.screen.width, 365), Object(g.d)("remixscreen_height", window.screen.height, 365), Object(g.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(g.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(g.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(X.f)(), Object(q.b)(), Object(L.b)(window, "unload", function() {
+            }, cn.width = 960, cn.started = Object(E.L)(), cn.counts = {}, y.a.android && (Object(_.d)("remixscreen_width", window.screen.width, 365), Object(_.d)("remixscreen_height", window.screen.height, 365), Object(_.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(_.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(_.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(X.f)(), Object(q.b)(), Object(L.b)(window, "unload", function() {
                 for (var e in vkCache) vkCache[e].handle && vkCache[e].handle.elem !== window && Object(L.h)(vkCache[e].handle.elem)
             }), Object(L.b)(window, "DOMContentLoaded load", function() {
                 cn.loaded || (cn.loaded = !0, Object(z.y)()), Object(se.c)()
@@ -1823,7 +1825,7 @@
         }
         window.constants = {
             Groups: re
-        }, window.partConfigEnabled = ce.a, Object(k.X)(), window.ge = k.F, window.geByTag = k.I, window.geByTag1 = k.J, window.geByClass = k.G, window.geByClass1 = k.H, window.gpeByClass = k.T, window.domQuery = k.B, window.domQuery1 = k.C, window.domClosest = k.n, window.ce = k.e, window.cf = k.f, window.re = k.fb, window.se = k.mb, window.sech = k.nb, window.rs = k.lb, window.psr = k.eb, window.domReplaceEl = k.D, window.domEL = k.t, window.domNS = k.y, window.domPS = k.A, window.domFC = k.u, window.domLC = k.x, window.domPN = k.z, window.domChildren = k.m, window.domInsertBefore = k.w, window.domInsertAfter = k.v, window.domByClass = k.j, window.domData = k.s, window.domChildIndex = k.l, window.domCA = k.k, window.domClosestSibling = k.r, window.matchesSelector = k.db, window.isHover = k.Z, window.isAncestor = k.Y, window.getScroll = k.M, window.domClosestPositioned = k.q, window.domClosestOverflowHidden = k.p, window.show = k.tb, window.hide = k.W, window.isVisible = k.ab, window.clientHeight = k.h, window.getClientRectOffsetY = k.K, window.toggle = k.ub, window.boundingRectEnabled = k.d, window.getXYRect = k.R, window.getXY = k.Q, window.isWindow = k.bb, window.getSize = k.N, window.hasClass = k.V, window.addClass = k.a, window.addClassDelayed = k.b, window.removeClass = k.hb, window.removeClassDelayed = k.ib, window.toggleClass = k.vb, window.toggleClassDelayed = k.wb, window.replaceClass = k.kb, window.getStyle = k.O, window.setStyle = k.qb, window.setStyleDelayed = k.rb, window.setPseudoStyle = k.pb, window.data = k.i, window.attr = k.c, window.removeAttr = k.gb, window.removeData = k.jb, window.cleanElems = k.g, window.setTitle = k.sb, window.getZoom = k.S, window.val = k.yb, window.elfocus = k.E, window.traverseParent = k.xb, window.getH = k.L, window.getW = k.P, window.domClosestByTag = k.o, window.setDocumentTitle = k.ob, window.lockDocumentTitle = k.cb, window.KEY = L.a, window.addEvent = L.b, window.removeEvent = L.h, window.triggerEvent = L.j, window.cancelEvent = L.c, window.stopEvent = L.i, window.normEvent = L.g, window.checkEvent = L.d, window.checkKeyboardEvent = L.e, window.checkOver = L.f, Object(E.q)(), window.isRetina = E.y, window.extractUrls = E.j, window.serializeForm = E.F, window.addTemplates = E.a, window.getTemplate = E.n, window.rand = E.D, window.irand = E.s, window.isUndefined = E.A, window.isFunction = E.v, window.isArray = E.t, window.isString = E.z, window.isObject = E.x, window.isEmpty = E.u, window.vkNow = E.L, window.vkImage = E.J, window.trim = E.H, window.stripHTML = E.G, window.escapeRE = E.h, window.intval = E.r, window.floatval = E.k, window.positive = E.C, window.isNumeric = E.w, window.winToUtf = E.M, window.replaceEntities = E.E, window.clean = E.c, window.unclean = E.I, window.each = E.f, window.indexOf = E.p, window.inArray = E.o, window.clone = E.d, window.arrayKeyDiff = E.b, window.extend = E.i, window.vkLocal = E.K, window.lTimeout = E.B, window.getCaretCharacterOffsetWithin = E.m, window.formatCount = E.l, window.encodeHtml = E.g, window.decodeHtml = E.e, Object(O.c)(), window.ajx2q = O.b, window.q2ajx = O.f, window.requestBox = O.g, window.activateMobileBox = O.a, window.validateMobileBox = O.h, window.validatePassBox = O.i, window.photoCaptchaBox = O.e, Object(g.c)(), window.getCookie = g.a, window.setCookie = g.d, window.hideCookiesPolicy = g.b, Object(de.c)(), window.debugLog = de.b, window.debugEl = de.a, window.isToday = ae.c, window.isYesterday = ae.e, window.isTomorrow = ae.d, window.isSameDate = ae.b, window.leadingZero = ae.f, window.formatTime = ae.a, window.parseLatin = P.o, window.parseCyr = P.m, window.parseLatKeys = P.n, window.langNumeric = P.i, window.langSex = P.j, window.langStr = P.k, window.addLangKeys = P.a, window.getLang = P.d, window.langDate = P.h, window.getShortDate = P.e, window.getShortDateOrTime = P.f, window.langWordNumeric = P.l, window.getDateText = P.c, window.getBigDateNew = P.b, window.getSmDate = P.g, window.scrollToY = B.g, window.scrollToTop = B.f, window.scrollGetX = B.d, window.scrollGetY = B.e, window.disableBodyScroll = B.a, window.enableBodyScroll = B.b, window.Chat = ge, window.__qlTimer = null, window.__qlClear = Le, window.onLoginDone = Ae, window.onLoginFailed = Se, window.onLoginCaptcha = Pe, window.onLoginReCaptcha = Be, window.storePasswordCredential = Ee, window.cssAnim = Oe, window.imagesLoader = je, window.nodeUpdated = Fe, window.hideNewsAnnounce = ke, window.leftAdBlockClose = Te, window.leftBlockToggleFriend = xe, window.leftBlockFriendTooltip = Ce, window.fifaReplaceText = ye, window.placeholderSetup = Jt, window.placeholderInit = Yt, window.isInputActive = Qt, window.showTooltip = ue.c, window.showTitle = ue.b, window.showHint = ue.a, window.topMsg = _.d, window.showMsg = _.b, window.topError = _.c, window.showGlobalPrg = _.a, window.checkTextLength = Ne.b, window.getSelectionText = Ne.d, window.goAway = Ne.e, window.debounce = Ne.c, window.hashCode = Ne.g, window.isFullScreen = Ne.h, window.parallel = Ne.k, window.parseJSON = Ne.l, window.shuffle = Ne.m, window.throttle = Ne.n, window.toggleOnline = Ne.q, window.updateMoney = Ne.s, window.onlinePlatformClass = Ne.j, window.Fx = C.a, window.fx = C.a, window.animate = C.b, window.cubicBezier = C.d, window.fadeTo = C.g, window.genFx = C.i, window.getRGB = C.k, window.getColor = C.j, window.slideDown = C.l, window.slideUp = C.n, window.slideToggle = C.m, window.fadeIn = C.e, window.fadeOut = C.f, window.fadeToggle = C.h, window.animateCount = C.c, window.updateAriaElements = Gt.c, window.updateAriaCheckboxes = Gt.b, window.hasAccessibilityMode = Gt.a, window.cancelStackFilter = I.a, window.cancelStackPush = I.c, window.cancelStackPop = I.b, window.ElementTooltip = j.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = T, 1 === cn.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== cn.al || history.pushState || (cn.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), cn.version = !1), Object(q.c)(), window.stManager = q.d, Object(y.c)(), window.browser = y.a, window.mobPlatforms = y.d, window.browserFeatures = y.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, dn(), window.updateHeaderStyles = X.j, window.updateNarrow = se.m, window.checkPageBlocks = se.c, window.redraw = se.l, window.onBodyResize = se.j, window.onBodyScroll = se.k, window.leftBlockOver = se.i, window.leftBlockOut = se.h, window.leftBlockHide = se.g, window.onDocumentClick = $t, window.onEnter = Zt, window.onCtrlEnter = en, window.autosizeSetup = se.b, window.getProgressBarEl = se.e, window.getProgressHtml = se.f, Object(on.b)(), ie(), window.onDomReady = function(e) {
+        }, window.partConfigEnabled = ce.a, Object(k.X)(), window.ge = k.F, window.geByTag = k.I, window.geByTag1 = k.J, window.geByClass = k.G, window.geByClass1 = k.H, window.gpeByClass = k.T, window.domQuery = k.B, window.domQuery1 = k.C, window.domClosest = k.n, window.ce = k.e, window.cf = k.f, window.re = k.fb, window.se = k.mb, window.sech = k.nb, window.rs = k.lb, window.psr = k.eb, window.domReplaceEl = k.D, window.domEL = k.t, window.domNS = k.y, window.domPS = k.A, window.domFC = k.u, window.domLC = k.x, window.domPN = k.z, window.domChildren = k.m, window.domInsertBefore = k.w, window.domInsertAfter = k.v, window.domByClass = k.j, window.domData = k.s, window.domChildIndex = k.l, window.domCA = k.k, window.domClosestSibling = k.r, window.matchesSelector = k.db, window.isHover = k.Z, window.isAncestor = k.Y, window.getScroll = k.M, window.domClosestPositioned = k.q, window.domClosestOverflowHidden = k.p, window.show = k.tb, window.hide = k.W, window.isVisible = k.ab, window.clientHeight = k.h, window.getClientRectOffsetY = k.K, window.toggle = k.ub, window.boundingRectEnabled = k.d, window.getXYRect = k.R, window.getXY = k.Q, window.isWindow = k.bb, window.getSize = k.N, window.hasClass = k.V, window.addClass = k.a, window.addClassDelayed = k.b, window.removeClass = k.hb, window.removeClassDelayed = k.ib, window.toggleClass = k.vb, window.toggleClassDelayed = k.wb, window.replaceClass = k.kb, window.getStyle = k.O, window.setStyle = k.qb, window.setStyleDelayed = k.rb, window.setPseudoStyle = k.pb, window.data = k.i, window.attr = k.c, window.removeAttr = k.gb, window.removeData = k.jb, window.cleanElems = k.g, window.setTitle = k.sb, window.getZoom = k.S, window.val = k.yb, window.elfocus = k.E, window.traverseParent = k.xb, window.getH = k.L, window.getW = k.P, window.domClosestByTag = k.o, window.setDocumentTitle = k.ob, window.lockDocumentTitle = k.cb, window.KEY = L.a, window.addEvent = L.b, window.removeEvent = L.h, window.triggerEvent = L.j, window.cancelEvent = L.c, window.stopEvent = L.i, window.normEvent = L.g, window.checkEvent = L.d, window.checkKeyboardEvent = L.e, window.checkOver = L.f, Object(E.q)(), window.isRetina = E.y, window.extractUrls = E.j, window.serializeForm = E.F, window.addTemplates = E.a, window.getTemplate = E.n, window.rand = E.D, window.irand = E.s, window.isUndefined = E.A, window.isFunction = E.v, window.isArray = E.t, window.isString = E.z, window.isObject = E.x, window.isEmpty = E.u, window.vkNow = E.L, window.vkImage = E.J, window.trim = E.H, window.stripHTML = E.G, window.escapeRE = E.h, window.intval = E.r, window.floatval = E.k, window.positive = E.C, window.isNumeric = E.w, window.winToUtf = E.M, window.replaceEntities = E.E, window.clean = E.c, window.unclean = E.I, window.each = E.f, window.indexOf = E.p, window.inArray = E.o, window.clone = E.d, window.arrayKeyDiff = E.b, window.extend = E.i, window.vkLocal = E.K, window.lTimeout = E.B, window.getCaretCharacterOffsetWithin = E.m, window.formatCount = E.l, window.encodeHtml = E.g, window.decodeHtml = E.e, Object(O.c)(), window.ajx2q = O.b, window.q2ajx = O.f, window.requestBox = O.g, window.activateMobileBox = O.a, window.validateMobileBox = O.h, window.validatePassBox = O.i, window.photoCaptchaBox = O.e, Object(_.c)(), window.getCookie = _.a, window.setCookie = _.d, window.hideCookiesPolicy = _.b, Object(de.c)(), window.debugLog = de.b, window.debugEl = de.a, window.isToday = ae.c, window.isYesterday = ae.e, window.isTomorrow = ae.d, window.isSameDate = ae.b, window.leadingZero = ae.f, window.formatTime = ae.a, window.parseLatin = P.o, window.parseCyr = P.m, window.parseLatKeys = P.n, window.langNumeric = P.i, window.langSex = P.j, window.langStr = P.k, window.addLangKeys = P.a, window.getLang = P.d, window.langDate = P.h, window.getShortDate = P.e, window.getShortDateOrTime = P.f, window.langWordNumeric = P.l, window.getDateText = P.c, window.getBigDateNew = P.b, window.getSmDate = P.g, window.scrollToY = B.g, window.scrollToTop = B.f, window.scrollGetX = B.d, window.scrollGetY = B.e, window.disableBodyScroll = B.a, window.enableBodyScroll = B.b, window.Chat = _e, window.__qlTimer = null, window.__qlClear = Le, window.onLoginDone = Ae, window.onLoginFailed = Se, window.onLoginCaptcha = Pe, window.onLoginReCaptcha = Be, window.storePasswordCredential = Ee, window.cssAnim = Oe, window.imagesLoader = je, window.nodeUpdated = Fe, window.hideNewsAnnounce = ke, window.leftAdBlockClose = Te, window.leftBlockToggleFriend = xe, window.leftBlockFriendTooltip = Ce, window.fifaReplaceText = ye, window.placeholderSetup = Jt, window.placeholderInit = Yt, window.isInputActive = Qt, window.showTooltip = ue.c, window.showTitle = ue.b, window.showHint = ue.a, window.topMsg = g.d, window.showMsg = g.b, window.topError = g.c, window.showGlobalPrg = g.a, window.checkTextLength = Ne.b, window.getSelectionText = Ne.d, window.goAway = Ne.e, window.debounce = Ne.c, window.hashCode = Ne.g, window.isFullScreen = Ne.h, window.parallel = Ne.k, window.parseJSON = Ne.l, window.shuffle = Ne.m, window.throttle = Ne.n, window.toggleOnline = Ne.q, window.updateMoney = Ne.s, window.onlinePlatformClass = Ne.j, window.Fx = C.a, window.fx = C.a, window.animate = C.b, window.cubicBezier = C.d, window.fadeTo = C.g, window.genFx = C.i, window.getRGB = C.k, window.getColor = C.j, window.slideDown = C.l, window.slideUp = C.n, window.slideToggle = C.m, window.fadeIn = C.e, window.fadeOut = C.f, window.fadeToggle = C.h, window.animateCount = C.c, window.updateAriaElements = Gt.c, window.updateAriaCheckboxes = Gt.b, window.hasAccessibilityMode = Gt.a, window.cancelStackFilter = I.a, window.cancelStackPush = I.c, window.cancelStackPop = I.b, window.ElementTooltip = j.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = T, 1 === cn.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== cn.al || history.pushState || (cn.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), cn.version = !1), Object(q.c)(), window.stManager = q.d, Object(y.c)(), window.browser = y.a, window.mobPlatforms = y.d, window.browserFeatures = y.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, dn(), window.updateHeaderStyles = X.j, window.updateNarrow = se.m, window.checkPageBlocks = se.c, window.redraw = se.l, window.onBodyResize = se.j, window.onBodyScroll = se.k, window.leftBlockOver = se.i, window.leftBlockOut = se.h, window.leftBlockHide = se.g, window.onDocumentClick = $t, window.onEnter = Zt, window.onCtrlEnter = en, window.autosizeSetup = se.b, window.getProgressBarEl = se.e, window.getProgressHtml = se.f, Object(on.b)(), ie(), window.onDomReady = function(e) {
             return e()
         }, window.currentModule = function() {
             return cur.currentModule ? cur.currentModule() : cur.module
@@ -1839,18 +1841,18 @@
                 var r = Math.round(3600 * (t - 3)),
                     a = Math.abs(n - r);
                 a < i && (i = a, o = r)
-            }), cn.dt = o, Object(g.a)("remixdt") !== cn.dt && Object(g.d)("remixdt", cn.dt, 365);
-            var r = Object(E.r)(Object(g.a)("remixrt"));
-            window.devicePixelRatio >= 2 && (!y.a.iphone || Object(g.a)("remixme")) ? 1 & r || (Object(g.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
+            }), cn.dt = o, Object(_.a)("remixdt") !== cn.dt && Object(_.d)("remixdt", cn.dt, 365);
+            var r = Object(E.r)(Object(_.a)("remixrt"));
+            window.devicePixelRatio >= 2 && (!y.a.iphone || Object(_.a)("remixme")) ? 1 & r || (Object(_.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
                 q.d.add(["retina.css"]), Object(k.a)(document.body, "is_2x")
-            }, sn && window._retinaInit()) : 1 & r && Object(g.d)("remixrt", 1 ^ r, 365)
+            }, sn && window._retinaInit()) : 1 & r && Object(_.d)("remixrt", 1 ^ r, 365)
         }, 0), window.boxQueue = Object(le.c)(), window.__bq = boxQueue, window.curBox = le.b, Object(le.d)(), window.boxRefreshCoords = le.a, window.MessageBox = we.a, window.showBox = we.b, window.showTabbedBox = we.f, window.showFastBox = we.d, window.showCaptchaBox = we.c, window.showReCaptchaBox = we.e, window.showDoneBox = le.e, window.TopMenu = se.a, window.TopSearch = K.a, window.handleScroll = Ne.f, window.loadScript = U.a, window.SpecialEvent = an, Object(z.j)(), window.notaBene = z.q, window.updSideTopLink = z.y, window.createButton = z.d, window.actionsMenuItemLocked = z.a, window.lockActionsMenuItem = z.n, window.unlockActionsMenuItem = z.v, window.linkLocked = z.m, window.lockLink = z.p, window.unlockLink = z.x, window.lockButton = z.o, window.unlockButton = z.w, window.buttonLocked = z.b, window.isButtonLocked = z.k, window.disableButton = z.f, window.sbWidth = z.t, window.isChecked = z.l, window.checkbox = z.c, window.disable = z.e, window.radioval = z.s, window.radiobtn = z.r, window.showProgress = z.u, window.hideProgress = z.i, window.disableEl = z.g, window.enableEl = z.h, Object(F.d)(), window.VideoConstants = F.a, window.showVideo = F.j, window.showInlineVideo = F.i, window.loadInlineVideo = F.e, window.revertLastInlineVideo = F.h, window.destroyInlineVideoPlayer = F.c, window.pauseLastInlineVideo = F.f, window.playLastInlineVideo = F.g, window.checkMp4 = F.b, window.performance && window.performance.memory && Object(E.D)(0, 100) < 5 && Object(Kt.a)(), at ? (Object(L.b)(window, "blur", kt), Object(L.b)(window, "focus", Tt), onDomReady(function() {
-            return setTimeout(_t, 500)
+            return setTimeout(gt, 500)
         }), window.LongView = {
             register: Ot,
             onScroll: Object(Ne.n)(yt, 50),
             onBeforePageChange: xt,
-            clearElemsCache: gt,
+            clearElemsCache: _t,
             _debug: function() {
                 return {
                     started: dt,

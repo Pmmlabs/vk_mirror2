@@ -2094,7 +2094,8 @@ a.tickets_question_row_tt_unread {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    opacity: 0.7
+    opacity: 0.7;
+    display: none
 }
 
 .tickets_similar_full_text {

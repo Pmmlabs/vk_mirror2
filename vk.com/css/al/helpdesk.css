@@ -2986,7 +2986,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .search2_info_msg {
-    padding: 7px 7px 0px;
+    padding: 10px 10px 1px;
     margin-bottom: -18px
 }
 
@@ -2998,4 +2998,9 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .ento_revert_button {
     display: none;
     margin-top: 10px
+}
+
+.tickets_ento_feed_user_comment {
+    display: block;
+    line-height: 25px
 }
