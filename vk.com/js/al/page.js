@@ -10051,8 +10051,7 @@ var Wall = {
             ownerName = domData(postBox, 'owner-name');
         }
 
-        return oid && ownerPhoto && ownerHref && ownerName &&
-            [oid, ownerPhoto, ownerHref, clean(unclean(ownerName))] || cur.wallTpl && cur.wallTpl.ownerData || false;
+        return oid && ownerPhoto && ownerHref && ownerName && [oid, ownerPhoto, ownerHref, clean(unclean(ownerName))] || cur.wallTpl && cur.wallTpl.ownerData || false;
     },
     isWallReply: function(obj) {
         var ttChooser = data(obj, 'tt'),
