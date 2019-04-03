@@ -1614,3 +1614,8 @@
     background-size: 12px;
     filter: hue-rotate(145deg) saturate(1500%)
 }
+
+.abuse_no_arrow_tooltip:before,
+.abuse_no_arrow_tooltip:after {
+    display: none
+}

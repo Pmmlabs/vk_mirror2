@@ -69,12 +69,12 @@
     a.push = e, a = a.slice();
     for (var u = 0; u < a.length; u++) e(a[u]);
     var h = l;
-    o.push([141, "common"]), i()
+    o.push([142, "common"]), i()
 }({
     "+SFK": function(t, e, i) {
         i("AUvm"), i("wgeU"), t.exports = i("WEpk").Symbol
     },
-    141: function(t, e, i) {
+    142: function(t, e, i) {
         t.exports = i("bvfi")
     },
     "29s/": function(t, e, i) {
@@ -4866,8 +4866,7 @@
                                 this._linkTitle = this.getLang("action_button_open_link")
                         }
                         val(this.el, this._linkTitle), this.el.setAttribute("href", t.url), show(this.el), this.player.trigger(Z, {
-                            data: t,
-                            layout: "button"
+                            data: t
                         })
                     } else hide(this.el)
                 }, e.prototype._onLinkOpened = function() {
@@ -5550,12 +5549,10 @@
                 }, e.prototype._onActionButtonClicked = function() {
                     this.trackLiveAction("open_link")
                 }, e.prototype._onActionButtonShown = function(t) {
-                    var e = t.data,
-                        i = t.layout;
+                    var e = t.data;
                     this.trackLiveAction("show_link", {
                         link: e.url,
-                        link_type: e.type,
-                        link_design: i
+                        link_type: e.type
                     })
                 }, e.prototype.trackVideoPlay = function(t) {
                     var e = {

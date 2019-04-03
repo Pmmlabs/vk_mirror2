@@ -69,7 +69,7 @@
     s.push = e, s = s.slice();
     for (var u = 0; u < s.length; u++) e(s[u]);
     var c = d;
-    o.push([62, "common"]), i()
+    o.push([63, "common"]), i()
 }({
     "+qE3": function(t, e) {
         function i() {
@@ -197,7 +197,7 @@
             throw new Error("Not implemented yet")
         });
         else try {
-            var o = i(66);
+            var o = i(67);
             if ("function" != typeof o.randomBytes) throw new Error("Not supported");
             n.prototype._rand = function(t) {
                 return o.randomBytes(t)
@@ -994,13 +994,13 @@
         }();
         __webpack_exports__.a = AudioLayer
     },
-    62: function(t, e, i) {
+    63: function(t, e, i) {
         t.exports = i("cul0")
     },
-    63: function(t, e) {},
     64: function(t, e) {},
     65: function(t, e) {},
     66: function(t, e) {},
+    67: function(t, e) {},
     "6F8h": function(t) {
         t.exports = {
             "aes-128-ecb": {
@@ -3557,7 +3557,7 @@
                 var a;
                 "object" == typeof t ? t.exports = o : e.BN = o, o.BN = o, o.wordSize = 26;
                 try {
-                    a = i(65).Buffer
+                    a = i(66).Buffer
                 } catch (t) {}
 
                 function s(t, e, i) {
@@ -5903,7 +5903,7 @@
     Xhqo: function(t, e, i) {
         "use strict";
         var r = i("hwdV").Buffer,
-            n = i(64);
+            n = i(65);
         t.exports = function() {
             function t() {
                 ! function(t, e) {
@@ -7204,14 +7204,16 @@
                     return Boolean(ls.get(AudioPlayer.LS_PREFIX + "stats_debug"))
                 }, e.prototype.sendListenedData = function(t) {
                     var e = this,
-                        i = extend({
-                            act: "listened_data",
-                            impl: this.getType(),
-                            hash: this.player.getListenedHash(),
-                            v: 5,
-                            loc: nav.strLoc
-                        }, t);
-                    isArray(cur.audioLoadTimings) && (i.timings = cur.audioLoadTimings.join(","), cur.audioLoadTimings = []), ajax.post("al_audio.php", i, {
+                        i = this.player.getListenedHash();
+                    !i && window.cur && cur.audioPage && (i = cur.audioPage._data.listenedHash);
+                    var r = extend({
+                        act: "listened_data",
+                        impl: this.getType(),
+                        hash: i,
+                        v: 5,
+                        loc: nav.strLoc
+                    }, t);
+                    isArray(cur.audioLoadTimings) && (r.timings = cur.audioLoadTimings.join(","), cur.audioLoadTimings = []), ajax.post("al_audio.php", r, {
                         onDone: function(t) {
                             e.player._adsConfig = t
                         }
@@ -11302,7 +11304,7 @@
                 c = e.Uint8Array || function() {};
             var f = i("Onz0");
             f.inherits = i("P7XM");
-            var l = i(63),
+            var l = i(64),
                 h = void 0;
             h = l && l.debuglog ? l.debuglog("stream") : function() {};
             var p, _ = i("Xhqo"),
