@@ -23,7 +23,6 @@
 .payments_logo_webmoney,
 .payments_logo_yandexmoney,
 .payments_money_transfer_mc_info_msg,
-.payments_vkpay_promo_banner_container,
 .payments_vkpay_votes_buy_promo_container .payments_vkpay_votes_buy_promo_info_block,
 .payments_warning {
     -ms-high-contrast-adjust: none
@@ -2198,34 +2197,32 @@ h2.payments_getvotes_title {
 }
 
 .payments_vkpay_promo_banner_container {
+    position: relative;
     width: 430px;
     height: 130px;
     text-align: center;
-    background: url(/images/payments/vkpay_promo_votes_banner_430.png);
     border-radius: 4px;
     margin: 20px 25px 0
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .payments_vkpay_promo_banner_container {
-        background-image: url(/images/payments/vkpay_promo_votes_banner_430_2x.png);
-        background-size: 430px 130px
-    }
 }
 
 .payments_vkpay_promo_banner_container:hover {
     cursor: pointer
 }
 
+.payments_vkpay_promo_banner_link_a {
+    position: absolute;
+    left: 0
+}
+
 .payments_vkpay_promo_banner_try_btn.flat_button {
+    position: relative;
     width: 102px;
     height: 30px;
     margin: 84px 0 16px;
     padding: 0;
     background-color: #fff;
-    color: #000
+    color: #000;
+    z-index: 1
 }
 
 .payments_gift_order_confirm {

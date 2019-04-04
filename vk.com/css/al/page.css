@@ -903,8 +903,8 @@
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
     margin-bottom: -1px;
-    -o-transition: background-color 0.2s ease, border-color 0.2s ease;
-    transition: background-color 0.2s ease, border-color 0.2s ease
+    -o-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease
 }
 
 .wall_module .reply .reply_wrap {
@@ -2298,13 +2298,47 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     top: -1000px
 }
 
-.deep_active .replies .replies_next+.reply .reply_wrap,
+.deep_active .replies .replies_next.replies_next_pre_deleted:first-child+.reply .reply_wrap,
+.deep_active.wall_module .replies .replies_next.replies_next_pre_deleted:first-child+.reply .reply_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .replies_next.replies_next_pre_deleted:first-child+.reply .reply_wrap,
+.deep_active .wl_replies_block_wrap .replies_next.replies_next_pre_deleted:first-child+.reply .reply_wrap {
+    border-top: none
+}
+
+.deep_active .replies .post_start_reply:first-child+.replies_next+.replies_next_loader:last-child,
+.deep_active .replies .post_start_reply:first-child+.replies_next:last-child,
+.deep_active .replies .replies_next:first-child+.replies_next_loader:last-child,
+.deep_active .replies .replies_next:only-child,
+.deep_active.wall_module .replies .post_start_reply:first-child+.replies_next+.replies_next_loader:last-child,
+.deep_active.wall_module .replies .post_start_reply:first-child+.replies_next:last-child,
+.deep_active.wall_module .replies .replies_next:first-child+.replies_next_loader:last-child,
+.deep_active.wall_module .replies .replies_next:only-child,
+.deep_active.wall_module .wl_replies_block_wrap .post_start_reply:first-child+.replies_next+.replies_next_loader:last-child,
+.deep_active.wall_module .wl_replies_block_wrap .post_start_reply:first-child+.replies_next:last-child,
+.deep_active.wall_module .wl_replies_block_wrap .replies_next:first-child+.replies_next_loader:last-child,
+.deep_active.wall_module .wl_replies_block_wrap .replies_next:only-child,
+.deep_active .wl_replies_block_wrap .post_start_reply:first-child+.replies_next+.replies_next_loader:last-child,
+.deep_active .wl_replies_block_wrap .post_start_reply:first-child+.replies_next:last-child,
+.deep_active .wl_replies_block_wrap .replies_next:first-child+.replies_next_loader:last-child,
+.deep_active .wl_replies_block_wrap .replies_next:only-child {
+    margin-bottom: 18px
+}
+
+.deep_active .replies .post_start_reply:first-child+.replies_next_pre_deleted+.reply .reply_wrap,
+.deep_active .replies .post_start_reply:first-child+.reply .reply_wrap,
+.deep_active.wall_module .replies .post_start_reply:first-child+.replies_next_pre_deleted+.reply .reply_wrap,
+.deep_active.wall_module .replies .post_start_reply:first-child+.reply .reply_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .post_start_reply:first-child+.replies_next_pre_deleted+.reply .reply_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .post_start_reply:first-child+.reply .reply_wrap,
+.deep_active .wl_replies_block_wrap .post_start_reply:first-child+.replies_next_pre_deleted+.reply .reply_wrap,
+.deep_active .wl_replies_block_wrap .post_start_reply:first-child+.reply .reply_wrap,
+.deep_active .replies .replies_next:not(.replies_next_pre_deleted)+.reply .reply_wrap,
 .deep_active .replies .replies_next_loader+.reply .reply_wrap,
-.deep_active.wall_module .replies .replies_next+.reply .reply_wrap,
+.deep_active.wall_module .replies .replies_next:not(.replies_next_pre_deleted)+.reply .reply_wrap,
 .deep_active.wall_module .replies .replies_next_loader+.reply .reply_wrap,
-.deep_active.wall_module .wl_replies_block_wrap .replies_next+.reply .reply_wrap,
+.deep_active.wall_module .wl_replies_block_wrap .replies_next:not(.replies_next_pre_deleted)+.reply .reply_wrap,
 .deep_active.wall_module .wl_replies_block_wrap .replies_next_loader+.reply .reply_wrap,
-.deep_active .wl_replies_block_wrap .replies_next+.reply .reply_wrap,
+.deep_active .wl_replies_block_wrap .replies_next:not(.replies_next_pre_deleted)+.reply .reply_wrap,
 .deep_active .wl_replies_block_wrap .replies_next_loader+.reply .reply_wrap {
     border-top: none
 }
@@ -14243,6 +14277,14 @@ button.wall_block_app_btn {
 
 .eltt.hot_feature_tooltip {
     width: 255px
+}
+
+.eltt.order_feature_tooltip {
+    width: 300px
+}
+
+.eltt.order_settings_feature_tooltip {
+    width: 320px
 }
 
 .post_suggestions {

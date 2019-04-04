@@ -2560,6 +2560,38 @@ var Settings = {
                 });
             }
         });
+
+        if (cur.options.order_settings_feature_tooltip) {
+            setTimeout(function() {
+                Settings.showOrderSettingsTooltip(cur.options.order_settings_feature_tooltip_hash);
+            }, 800);
+        }
+    },
+
+    showOrderSettingsTooltip: function(hash) {
+        var orderSettings = ge('settings_replies_order');
+
+        if (orderSettings) {
+            cur.orderSettingsFeatureTT = new ElementTooltip(orderSettings, {
+                content: '<div class="feature_tooltip__close" onclick="cur.orderSettingsFeatureTT.hide();"></div>' + getLang('wall_order_settings_feature_text'),
+                forceSide: 'top',
+                cls: 'feature_intro_tt feature_info_tooltip order_settings_feature_tooltip',
+                autoShow: false,
+                noHideOnClick: true,
+                noAutoHideOnWindowClick: true,
+                appendToParent: true,
+                offset: [0, -4],
+                onHide: function() {
+                    ajax.post('al_index.php', {
+                        act: 'hide_feature_tt',
+                        hash: hash,
+                        type: 'order_settings_web',
+                    });
+                },
+            });
+
+            cur.orderSettingsFeatureTT.show();
+        }
     },
 };
 

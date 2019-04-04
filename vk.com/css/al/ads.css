@@ -1432,11 +1432,15 @@
     float: left;
     padding: 4px 3px 5px;
     margin-right: 4px;
-    min-width: 15px;
+    min-width: 17px;
     height: 16px;
     cursor: pointer;
     border-radius: 4px;
     text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     background-color: transparent
 }
 
@@ -1444,8 +1448,14 @@
     background-color: #f0f2f5
 }
 
+.Table__PaginationItem:active {
+    -o-transform: translateY(1px);
+    transform: translateY(1px)
+}
+
 .Table__PaginationItem--current {
     cursor: default;
+    pointer-events: none;
     color: #fff;
     background-color: #9da7b5
 }
@@ -1456,6 +1466,7 @@
 
 .Table__PaginationArrow--disabled,
 .Table__PaginationItem--disabled {
+    pointer-events: none;
     cursor: default;
     background-color: transparent
 }
@@ -1499,7 +1510,7 @@
 
 .Table__PaginationArrow {
     background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%225px%22%20height%3D%229px%22%20viewBox%3D%220%200%205%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12.1269033%2C11.5%20L9.22724474%2C8.41097601%20C8.92425175%2C8.08819573%208.92425175%2C7.56486549%209.22724474%2C7.24208521%20C9.53023772%2C6.91930493%2010.0214864%2C6.91930493%2010.3244794%2C7.24208521%20L13.7727553%2C10.9155546%20C14.0757482%2C11.2383349%2014.0757482%2C11.7616651%2013.7727553%2C12.0844454%20L10.3244794%2C15.7579148%20C10.0214864%2C16.0806951%209.53023772%2C16.0806951%209.22724474%2C15.7579148%20C8.92425175%2C15.4351345%208.92425175%2C14.9118043%209.22724474%2C14.589024%20L12.1269033%2C11.5%20Z%22%20id%3D%22path-1%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Tables%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22translate(-1329.000000%2C%20-2606.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22screen%22%20transform%3D%22translate(200.000000%2C%202560.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22page-nav%22%20transform%3D%22translate(1122.000000%2C%2038.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22chevron%22%20transform%3D%22translate(10.500000%2C%2012.000000)%20rotate(-180.000000)%20translate(-10.500000%2C%20-12.000000)%20%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22%E2%86%B3-Icon-Color%22%20fill%3D%22%23656565%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
-    background-position: 8px 8px;
+    background-position: 9px 8px;
     background-size: 5px 9px;
     background-repeat: no-repeat
 }
@@ -2341,7 +2352,8 @@
     text-align: left;
     display: table;
     table-layout: fixed;
-    width: 100%
+    width: 100%;
+    border-collapse: collapse
 }
 
 .Table__Grid--fixed {
@@ -2387,7 +2399,7 @@
 .Table__Cell {
     position: relative;
     cursor: pointer;
-    padding: 12px 8px;
+    padding: 0 8px;
     box-sizing: border-box;
     border-bottom: 1px solid #e7e8ec;
     background: #fff;
@@ -2395,7 +2407,8 @@
     overflow: hidden;
     white-space: nowrap;
     display: table-cell;
-    vertical-align: middle
+    vertical-align: middle;
+    height: 40px
 }
 
 .Table__Cell--lastBodyRow {
@@ -2817,6 +2830,18 @@
 
 .Table__Row {
     display: table-row
+}
+
+.Table__Row--fake {
+    background-size: 1px 40px;
+    background-color: #fff;
+    background-image: -o-linear-gradient(transparent, transparent 39px, #e7e8ec 39px);
+    background-image: linear-gradient(transparent, transparent 39px, #e7e8ec 0);
+    background-repeat: repeat
+}
+
+.Table__Row--fake td {
+    padding: 0
 }
 
 .Table__Cell--twoStoried {

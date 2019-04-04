@@ -4735,7 +4735,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 suffixesAll += ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE) ? '_exclusive' : '');
                 suffixesAll += (isApp ? '_app' : '');
 
-                var multClick = this.params.cost_per_click.coeffs[auctionName];
+                var multClick = (this.params.cost_per_click.coeffs[auctionName] || this.params.cost_per_click.coeffs['site']);
                 var multExclusive = 2;
                 var multApp = 1 / 2;
 
