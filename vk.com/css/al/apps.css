@@ -7763,10 +7763,21 @@ td.apps_cat_new_h {
     max-width: 300px
 }
 
-.vk_app_modal_container--qr img {
+.vk_app_modal_container--qr>img {
     width: 164px;
     height: 164px;
     border-radius: 0
+}
+
+.vk_app_modal_container--qr>svg {
+    width: 120px;
+    height: 120px;
+    border-radius: 0
+}
+
+.vk_app_modal_container--qr .vk_app_modal_close_btn__icon {
+    width: 24px;
+    height: 24px
 }
 
 .vk_app_modal_close_btn {

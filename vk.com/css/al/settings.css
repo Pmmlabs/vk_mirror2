@@ -2451,6 +2451,10 @@ span.page_block_header_group_notify_settings a {
     border-radius: 4px
 }
 
+.settings_vkpay_promo_big_banner_container img {
+    border-radius: 4px
+}
+
 .settings_vkpay_promo_big_banner_container:hover {
     cursor: pointer
 }

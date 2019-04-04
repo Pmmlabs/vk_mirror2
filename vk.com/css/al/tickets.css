@@ -4410,7 +4410,7 @@ a.tickets_question_row_tt_unread {
 }
 
 .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_love .ui_actions_menu_icons {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20height%3D%22100%25%22%20width%3D%22100%25%22%3E%3Ctitle%3Elike_active_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9%2C5.7%2C5.7%2C0%2C0%2C1%2C12%2C6%2C5.7%2C5.7%2C0%2C0%2C1%2C17%2C2.9Z%22%20fill%3D%22%23ff3347%22%2F%3E%3C%2Fsvg%3E")
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Elike_active_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9%2C5.7%2C5.7%2C0%2C0%2C1%2C12%2C6%2C5.7%2C5.7%2C0%2C0%2C1%2C17%2C2.9Z%22%20fill%3D%22%23ff3347%22%2F%3E%3C%2Fsvg%3E')
 }
 
 .tickets_actions_bookmarks_menu .ui_actions_menu {

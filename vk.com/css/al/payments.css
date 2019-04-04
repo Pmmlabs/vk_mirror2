@@ -2205,6 +2205,10 @@ h2.payments_getvotes_title {
     margin: 20px 25px 0
 }
 
+.payments_vkpay_promo_banner_container img {
+    border-radius: 4px
+}
+
 .payments_vkpay_promo_banner_container:hover {
     cursor: pointer
 }
