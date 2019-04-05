@@ -1,8 +1,8 @@
 ﻿! function(e) {
     function t(t) {
-        for (var a, n, s = t[0], c = t[1], l = t[2], u = 0, f = []; u < s.length; u++) n = s[u], o[n] && f.push(o[n][0]), o[n] = 0;
+        for (var a, n, s = t[0], c = t[1], l = t[2], d = 0, f = []; d < s.length; d++) n = s[d], o[n] && f.push(o[n][0]), o[n] = 0;
         for (a in c) Object.prototype.hasOwnProperty.call(c, a) && (e[a] = c[a]);
-        for (d && d(t); f.length;) f.shift()();
+        for (u && u(t); f.length;) f.shift()();
         return r.push.apply(r, l || []), i()
     }
 
@@ -68,13 +68,10 @@
         c = s.push.bind(s);
     s.push = t, s = s.slice();
     for (var l = 0; l < s.length; l++) t(s[l]);
-    var d = c;
-    r.push([107, "common", "37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    var u = c;
+    r.push([109, "common", "37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
-    107: function(e, t, i) {
-        e.exports = i("8S/u")
-    },
-    "8S/u": function(e, t, i) {
+    "+iox": function(e, t, i) {
         "use strict";
 
         function a(e) {
@@ -87,8 +84,49 @@
                 idleTimeout: 3e4
             }, e)
         }
+        extend(a.prototype, EventEmitter.prototype), extend(a.prototype, {
+            stop: function() {
+                this.started = !1, removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), removeEvent(this.opts.focusElement, "focus", this.cbActiveB), removeEvent(this.opts.focusElement, "blur", this.cbInactiveB), clearTimeout(this.setIdleTo), clearTimeout(this.checkIdleCbTo), clearTimeout(this.sendCbTO), this.is_idle = !0, this.opts.parentManager && this.opts.parentManager.off("idle", this.cbInactiveB)
+            },
+            idle: function(e) {
+                this.is_idle = !0, e || this.opts.onIdleCb(), this.emit("idle")
+            },
+            unidle: function(e) {
+                this.is_idle = !1, e || this.opts.onUnIdleCb(), this.emit("unidle")
+            },
+            activate: function() {
+                this.is_idle = !1, this.is_activated = !0
+            },
+            start: function() {
+                this.started = !0, browser.mobile || (this.opts.parentManager && this.opts.parentManager.on("idle", this.cbInactiveB), addEvent(this.opts.focusElement, "focus", this.cbActiveB), addEvent(this.opts.focusElement, "blur", this.cbInactiveB), clearTimeout(this.checkIdleCbTo), this.checkIdleCb(), this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this), this.opts.idleTimeout))
+            },
+            checkIdleCb: function() {
+                this.started && (addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), clearTimeout(this.setIdleTo), this.setIdleTo = setTimeout(this.cbInactiveB, this.opts.idleTimeout))
+            },
+            cbActive: function() {
+                this.started && (this.activeTimeStart = (new Date).getTime(), clearTimeout(this.setIdleTo), this.is_idle && (this.is_idle = !1, clearTimeout(this.sendCbTO), this.sendCbTO = setTimeout(function() {
+                    this.emit("unidle"), this.opts.onUnIdleCb && this.opts.onUnIdleCb()
+                }.bind(this), 100)), removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), clearTimeout(this.checkIdleCbTo), this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this), this.opts.idleTimeout))
+            },
+            cbInactive: function() {
+                this.started && (this.activeTimeStart = null, this.is_idle || (this.is_idle = !0, clearTimeout(this.sendCbTO), this.sendCbTO = setTimeout(function() {
+                    this.emit("idle"), this.opts.onIdleCb && this.opts.onIdleCb()
+                }.bind(this), 100)), clearTimeout(this.checkIdleCbTo), removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), this.checkIdleCbTo = setTimeout(this.checkIdleCb, this.opts.idleTimeout))
+            },
+            getActiveTime: function() {
+                return !this.is_idle && this.activeTimeStart ? (new Date).getTime() - this.activeTimeStart : 0
+            }
+        }), window.IdleManager = a
+    },
+    109: function(e, t, i) {
+        e.exports = i("8S/u")
+    },
+    "8S/u": function(e, t, i) {
+        "use strict";
+        i.r(t);
+        i("+iox");
 
-        function o(e, t) {
+        function a(e, t) {
             var i = !1,
                 a = void 0,
                 o = void 0;
@@ -133,56 +171,24 @@
                         wmode: "opaque"
                     }, {})) {
                     var l = browser.msie ? window[c] : document[c],
-                        d = !1,
-                        u = setInterval(function() {
+                        u = !1,
+                        d = setInterval(function() {
                             if (l && l.paused) try {
                                 l.setVolume(1), l.loadAudio(r), l.pauseAudio()
                             } catch (e) {
                                 debugLog(e)
                             }
-                            d = !0, clearInterval(u)
+                            u = !0, clearInterval(d)
                         }, 300);
                     this.playSound = function() {
-                        d && l.playAudio(0)
+                        u && l.playAudio(0)
                     }, this.pauseSound = function() {
-                        d && l.pauseAudio()
+                        u && l.pauseAudio()
                     }
                 }
             }
         }
-        i.r(t), extend(a.prototype, EventEmitter.prototype), extend(a.prototype, {
-            stop: function() {
-                this.started = !1, removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), removeEvent(this.opts.focusElement, "focus", this.cbActiveB), removeEvent(this.opts.focusElement, "blur", this.cbInactiveB), clearTimeout(this.setIdleTo), clearTimeout(this.checkIdleCbTo), clearTimeout(this.sendCbTO), this.is_idle = !0, this.opts.parentManager && this.opts.parentManager.off("idle", this.cbInactiveB)
-            },
-            idle: function(e) {
-                this.is_idle = !0, e || this.opts.onIdleCb(), this.emit("idle")
-            },
-            unidle: function(e) {
-                this.is_idle = !1, e || this.opts.onUnIdleCb(), this.emit("unidle")
-            },
-            activate: function() {
-                this.is_idle = !1, this.is_activated = !0
-            },
-            start: function() {
-                this.started = !0, browser.mobile || (this.opts.parentManager && this.opts.parentManager.on("idle", this.cbInactiveB), addEvent(this.opts.focusElement, "focus", this.cbActiveB), addEvent(this.opts.focusElement, "blur", this.cbInactiveB), clearTimeout(this.checkIdleCbTo), this.checkIdleCb(), this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this), this.opts.idleTimeout))
-            },
-            checkIdleCb: function() {
-                this.started && (addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), clearTimeout(this.setIdleTo), this.setIdleTo = setTimeout(this.cbInactiveB, this.opts.idleTimeout))
-            },
-            cbActive: function() {
-                this.started && (this.activeTimeStart = (new Date).getTime(), clearTimeout(this.setIdleTo), this.is_idle && (this.is_idle = !1, clearTimeout(this.sendCbTO), this.sendCbTO = setTimeout(function() {
-                    this.emit("unidle"), this.opts.onUnIdleCb && this.opts.onUnIdleCb()
-                }.bind(this), 100)), removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), clearTimeout(this.checkIdleCbTo), this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this), this.opts.idleTimeout))
-            },
-            cbInactive: function() {
-                this.started && (this.activeTimeStart = null, this.is_idle || (this.is_idle = !0, clearTimeout(this.sendCbTO), this.sendCbTO = setTimeout(function() {
-                    this.emit("idle"), this.opts.onIdleCb && this.opts.onIdleCb()
-                }.bind(this), 100)), clearTimeout(this.checkIdleCbTo), removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB), this.checkIdleCbTo = setTimeout(this.checkIdleCb, this.opts.idleTimeout))
-            },
-            getActiveTime: function() {
-                return !this.is_idle && this.activeTimeStart ? (new Date).getTime() - this.activeTimeStart : 0
-            }
-        }), window.IdleManager = a, o.prototype = {
+        a.prototype = {
             play: function() {
                 try {
                     this.playSound()
@@ -193,14 +199,14 @@
                     this.pauseSound()
                 } catch (e) {}
             }
-        }, window.Sound = o, window.curRBox || (window.curRBox = {
+        }, window.Sound = a, window.curRBox || (window.curRBox = {
             guid: 0,
             active: !1,
             focused: [],
             tabs: {}
         });
 
-        function r(e, t) {
+        function o(e, t) {
             var i = this;
             i.options = t = extend({
                 minH: 50,
@@ -234,7 +240,7 @@
                 display: ""
             })) : i.show(!1, t.nofocus)
         }
-        extend(r.prototype, {
+        extend(o.prototype, {
             show: function(e) {
                 function t(t, i) {
                     return e.apply(this, arguments)
@@ -290,24 +296,24 @@
                         s = e.pageY,
                         c = e.pageX,
                         l = a.wrap.offsetHeight,
-                        d = a.wrap.offsetWidth,
-                        u = 0,
+                        u = a.wrap.offsetWidth,
+                        d = 0,
                         f = 0,
                         h = r[0] - l,
-                        p = r[1] - d,
+                        p = r[1] - u,
                         _ = browser.msie ? "selectstart" : "mousedown";
                     a.options.fixed && FastChat.pinTab(a.options.peer || -1, e, !0), n || a.focus(e), a.toBottom ? (a.toBottom = !1, t = r[0] - intval(getStyle(a.wrap, "bottom")) - l, setStyle(a.wrap, {
                         top: t,
                         bottom: "auto"
-                    }), removeClass(a.wrap, "fc_tobottom")) : t = intval(getStyle(a.wrap, "top")), a.toRight ? (a.toRight = !1, i = r[1] - intval(getStyle(a.wrap, "right")) - d, setStyle(a.wrap, {
+                    }), removeClass(a.wrap, "fc_tobottom")) : t = intval(getStyle(a.wrap, "top")), a.toRight ? (a.toRight = !1, i = r[1] - intval(getStyle(a.wrap, "right")) - u, setStyle(a.wrap, {
                         left: i,
                         right: "auto"
-                    })) : i = intval(getStyle(a.wrap, "left")), u = t, f = i, cur._fcdrag = 1;
+                    })) : i = intval(getStyle(a.wrap, "left")), d = t, f = i, cur._fcdrag = 1;
                     var v = function(e) {
-                        return u = Math.max(0, Math.min(h, t + e.pageY - s)), h - u < 10 ? u = h : u < 10 && (u = 0), a.wrap.style.top = u + "px", f = Math.max(0, Math.min(p, i + e.pageX - c)), p - f < 10 ? f = p : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
+                        return d = Math.max(0, Math.min(h, t + e.pageY - s)), h - d < 10 ? d = h : d < 10 && (d = 0), a.wrap.style.top = d + "px", f = Math.max(0, Math.min(p, i + e.pageX - c)), p - f < 10 ? f = p : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
                     };
                     return addEvent(document, "mousemove", v), addEvent(document, "mouseup", function e(t) {
-                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
+                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d >= h - 5) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
                         }), addClass(a.wrap, "fc_tobottom")), (a.toRight = f >= p - 5) && setStyle(a.wrap, {
@@ -316,7 +322,7 @@
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
                         }), a._update_pos();
                         var i = Math.abs(t.pageY - s) < 3 && Math.abs(t.pageX - c) < 3;
-                        cur._fcpromo > 0 ? cur._fcpromo = i ? 0 : -1 : a.options.minimizer && i ? !a.minimized && n ? a.minimize(!0) : a.minimized && a.unminimize(!0) : a.options.onDragEnd && a.options.onDragEnd(a.toBottom ? -1 : u / r[0], a.toRight ? -1 : f / r[1])
+                        cur._fcpromo > 0 ? cur._fcpromo = i ? 0 : -1 : a.options.minimizer && i ? !a.minimized && n ? a.minimize(!0) : a.minimized && a.unminimize(!0) : a.options.onDragEnd && a.options.onDragEnd(a.toBottom ? -1 : d / r[0], a.toRight ? -1 : f / r[1])
                     }), addEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", "move"), setStyle(o, "cursor", "move"), !1
                 }
             },
@@ -330,8 +336,8 @@
                         s = e.pageX,
                         c = a.wrap.offsetHeight,
                         l = a.wrap.offsetWidth,
-                        d = 0,
                         u = 0,
+                        d = 0,
                         f = a.resizeableH.clientHeight - intval(getStyle(a.resizeableH, "paddingBottom")) - intval(getStyle(a.resizeableH, "paddingTop")),
                         h = a.resizeableW.clientWidth - intval(getStyle(a.resizeableW, "paddingRight")) - intval(getStyle(a.resizeableW, "paddingLeft")),
                         p = browser.msie ? "selectstart" : "mousedown",
@@ -346,17 +352,17 @@
                     var v = f + r[0] - t - c,
                         m = h + r[1] - i - l,
                         g = function(e) {
-                            return d = Math.max(a.options.minH, Math.min(v, f + e.pageY - n)), v - d < 10 && (d = v), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(m, h + e.pageX - s)), m - u < 10 && (u = m), a.resizeableW.style.width = u + "px", _ && _(d, u), cancelEvent(e)
+                            return u = Math.max(a.options.minH, Math.min(v, f + e.pageY - n)), v - u < 10 && (u = v), a.resizeableH.style.height = u + "px", d = Math.max(a.options.minW, Math.min(m, h + e.pageX - s)), m - d < 10 && (d = m), a.resizeableW.style.width = d + "px", _ && _(u, d), cancelEvent(e)
                         };
                     return addEvent(document, "mousemove", g), addEvent(document, "mouseup", function e(t) {
-                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == v) && (setStyle(a.wrap, {
+                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u == v) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
-                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == m) && setStyle(a.wrap, {
+                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = d == m) && setStyle(a.wrap, {
                             left: "auto",
                             right: 0,
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
-                        }), a._update_pos(), a.options.onResizeEnd && a.options.onResizeEnd(d, u, r[0], r[1], a.toBottom, a.toRight)
+                        }), a._update_pos(), a.options.onResizeEnd && a.options.onResizeEnd(u, d, r[0], r[1], a.toBottom, a.toRight)
                     }), addEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", "move"), setStyle(o, "cursor", "move"), !1
                 }
             },
@@ -373,10 +379,10 @@
                     s = a.pos[0] + a.pos[2] - e,
                     c = a.pos[0],
                     l = a.resizeableH.clientHeight - a.options.minH,
-                    d = a.pos[1] + a.pos[3] - t,
-                    u = a.pos[1],
+                    u = a.pos[1] + a.pos[3] - t,
+                    d = a.pos[1],
                     f = !1 !== a.options.resize ? a.resizeableW.clientWidth - a.options.minW : 0;
-                i && (f < 0 && setStyle(a.resizeableW, a.options.minW), l < 0 && setStyle(a.resizeableH, a.options.minH)), (s <= 0 || c <= 0 && l <= 0) && (d <= 0 || u <= 0 && f <= 0) || (s > 0 && c > 0 && (s -= c = Math.min(s, c), o.top = a.pos[0] - c, o.bottom = ""), s > 0 && l > 0 && (l = Math.min(s, l), r = a.resizeableH.clientHeight - l), d > 0 && u > 0 && (d -= u = Math.min(d, u), o.left = a.pos[1] - u, o.right = ""), d > 0 && f > 0 && (f = Math.min(d, f), n = a.resizeableW.clientWidth - f), !1 !== n && setStyle(a.resizeableW, "width", n), !1 !== r && setStyle(a.resizeableH, "height", r), setStyle(a.wrap, o), a._update_pos(), a.options.onResize && a.options.onResize(a.resizeableH.clientHeight, a.resizeableW.clientWidth))
+                i && (f < 0 && setStyle(a.resizeableW, a.options.minW), l < 0 && setStyle(a.resizeableH, a.options.minH)), (s <= 0 || c <= 0 && l <= 0) && (u <= 0 || d <= 0 && f <= 0) || (s > 0 && c > 0 && (s -= c = Math.min(s, c), o.top = a.pos[0] - c, o.bottom = ""), s > 0 && l > 0 && (l = Math.min(s, l), r = a.resizeableH.clientHeight - l), u > 0 && d > 0 && (u -= d = Math.min(u, d), o.left = a.pos[1] - d, o.right = ""), u > 0 && f > 0 && (f = Math.min(u, f), n = a.resizeableW.clientWidth - f), !1 !== n && setStyle(a.resizeableW, "width", n), !1 !== r && setStyle(a.resizeableH, "height", r), setStyle(a.wrap, o), a._update_pos(), a.options.onResize && a.options.onResize(a.resizeableH.clientHeight, a.resizeableW.clientWidth))
             },
             _cont_mdown: function(e) {
                 if (curRBox.active != this.id && (this.focus(e), !hasClass(e.target, "fc_editable"))) return cancelEvent(e)
@@ -440,19 +446,19 @@
                     t = e.pos;
                 e._close(), isFunction(e.options.onClose) && e.options.onClose(t)
             }
-        }), window.RBox = r;
+        }), window.RBox = o;
         i("zNZe");
-        var n = i("uytb"),
-            s = i("rjmT"),
-            c = i("p3re"),
-            l = i("f01n"),
-            d = i("hOuX"),
+        var r = i("uytb"),
+            n = i("rjmT"),
+            s = i("p3re"),
+            c = i("f01n"),
+            l = i("hOuX"),
             u = i("BxOC"),
-            f = i("DM26"),
-            h = i("MhhX"),
-            p = i("P13b"),
-            _ = i("vT4u"),
-            v = function() {
+            d = i("DM26"),
+            f = i("MhhX"),
+            h = i("P13b"),
+            p = i("vT4u"),
+            _ = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -477,7 +483,7 @@
                 }
             }();
 
-        function m() {
+        function v() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
@@ -489,7 +495,7 @@
                     gotPeers: {},
                     needMedia: {},
                     gotMedia: {},
-                    ldb: Object(n.c)(vk.id),
+                    ldb: Object(r.c)(vk.id),
                     myTypingEvents: {},
                     typingEvents: {},
                     inited: !0,
@@ -503,49 +509,49 @@
                     (o.shouldLoad ? t.loadResources(o) : Promise.resolve()).then(function() {
                         i.forEach(function(e) {
                             switch (e.type) {
-                                case l.W:
+                                case c.W:
                                     var i = t.getTab(e.peerId);
                                     t.setTyping(e), i && (t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.blinkTyping(e.peerId);
                                     break;
-                                case l.a:
+                                case c.a:
                                     var a = t.getTab(e.peerId);
                                     t.setTyping(e), a && (t.addMessage(t.prepareMessageData(e)), t.scroll(e.peerId), t.blinkTab(e.peerId), t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.updateTabUnreadCounter(a, e);
                                     break;
-                                case l.g:
-                                case l.N:
+                                case c.g:
+                                case c.N:
                                     var o = e.peerId,
                                         r = e.messageId,
                                         n = t.getTab(o);
                                     n && n.msgs[r] && (delete curFastChat.gotMedia[r], t.editMessage(t.prepareMessageData(e)));
                                     break;
-                                case l.M:
-                                case l.U:
-                                case l.Q:
-                                    e.flags & l.j && t.deleteMessage(t.prepareMessageData(e));
+                                case c.M:
+                                case c.U:
+                                case c.Q:
+                                    e.flags & c.j && t.deleteMessage(t.prepareMessageData(e));
                                     break;
-                                case l.H:
-                                case l.I:
+                                case c.H:
+                                case c.I:
                                     t.markMessagesAsRead(e);
                                     break;
-                                case l.d:
-                                case l.e:
+                                case c.d:
+                                case c.e:
                                     var s = t.getTab(e.peerId);
                                     t.handleEventChatUpdated(s, e);
                                     break;
-                                case l.Y:
-                                case l.X:
-                                case l.G:
-                                case l.h:
-                                case l.S:
-                                case l.K:
-                                case l.V:
-                                case l.R:
-                                case l.F:
-                                case l.b:
-                                case l.c:
-                                case l.i:
-                                case l.O:
-                                case l.f:
+                                case c.Y:
+                                case c.X:
+                                case c.G:
+                                case c.h:
+                                case c.S:
+                                case c.K:
+                                case c.V:
+                                case c.R:
+                                case c.F:
+                                case c.b:
+                                case c.c:
+                                case c.i:
+                                case c.O:
+                                case c.f:
                             }
                         })
                     })
@@ -662,18 +668,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (m()) break;
+                        if (v()) break;
                         var i = t.id,
                             a = curFastChat.tabs[i],
                             o = !1,
@@ -705,18 +711,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (m()) break;
+                        if (v()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -747,9 +753,9 @@
                 var t = this,
                     i = {},
                     a = e.filter(function(e) {
-                        return e.type === l.a
+                        return e.type === c.a
                     }),
-                    o = e.filter(h.l),
+                    o = e.filter(f.l),
                     r = a.filter(function(e) {
                         return !t.isTabLoaded(e.peerId)
                     }).map(function(e) {
@@ -758,7 +764,7 @@
 
                 function n(e, t) {
                     var a = FastChat.getTab(e);
-                    Object(p.hb)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
+                    Object(h.hb)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
                 }
                 return a.forEach(function(e) {
                     t.isTabLoaded(e.peerId) && n(e.peerId, e.userId)
@@ -783,11 +789,11 @@
                 var i = Object.keys(e).map(function(t) {
                     return t + ":" + e[t].join(",")
                 }).join(";");
-                return Object(u.b)(_.e, {
+                return Object(u.b)(p.e, {
                     act: "a_load_member",
                     need: i
                 }).then(function(i) {
-                    var a = v(i, 1)[0];
+                    var a = _(i, 1)[0];
                     Object.keys(e).forEach(function(i) {
                         var o = t.getTab(i);
                         o && o.data && o.data.members && (o.data.members = e[i].reduce(function(e, t) {
@@ -805,22 +811,22 @@
             handleEventChatUpdated: function(e, t) {
                 var i = this;
                 switch (t.updateType) {
-                    case l.B:
-                    case l.v:
+                    case c.B:
+                    case c.v:
                         var a = [t.peerId, 0].join(",");
                         this.loadPeers(a, function(e) {
                             i.updateChatInfo(t.peerId, e)
                         });
                         break;
-                    case l.t:
-                    case l.x:
-                    case l.A:
-                    case l.C:
-                    case l.E:
-                    case l.D:
-                    case l.u:
-                    case l.w:
-                    case l.y:
+                    case c.t:
+                    case c.x:
+                    case c.A:
+                    case c.C:
+                    case c.E:
+                    case c.D:
+                    case c.u:
+                    case c.w:
+                    case c.y:
                 }
             },
             updateChatInfo: function(e, t) {
@@ -1171,10 +1177,10 @@
                     }, 0)
                 }, 0);
                 if (curFastChat.clSel) {
-                    (d = ge("fc_contact" + curFastChat.clSel)) ? FastChat.clistPeerOver(d, 1): curFastChat.clSel = !1
+                    (u = ge("fc_contact" + curFastChat.clSel)) ? FastChat.clistPeerOver(u, 1): curFastChat.clSel = !1
                 } else {
-                    var d = geByClass1("fc_contact", curFastChat.el.clist);
-                    FastChat.clistPeerOver(d, 1)
+                    var u = geByClass1("fc_contact", curFastChat.el.clist);
+                    FastChat.clistPeerOver(u, 1)
                 }
                 curFastChat.clistBoxScroll && curFastChat.clistBoxScroll.update()
             },
@@ -1278,9 +1284,9 @@
                     for (a in o = 0, c) o++;
                     return c._num = o, l
                 }
-                var d, u, f;
+                var u, d, f;
                 for (a in curFastChat.clistCache = {}, curFastChat.friends)
-                    for (d = curFastChat.friends[a][0], a = intval(a), u = 0; f = " " + d.charAt(u).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, -1 != (u = d.indexOf(" ", u + 1));) ++u
+                    for (u = curFastChat.friends[a][0], a = intval(a), d = 0; f = " " + u.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, -1 != (d = u.indexOf(" ", d + 1));) ++d
             },
             clistShowMore: function() {
                 if (curFastChat.clHasMore) {
@@ -1576,7 +1582,7 @@
                 var e = [],
                     t = {};
                 Object.keys(curFastChat.needPeers || {}).forEach(function(i) {
-                    var a = v(curFastChat.needPeers[i], 3),
+                    var a = _(curFastChat.needPeers[i], 3),
                         o = a[0],
                         r = a[2];
                     e.push(i, o), r && clearTimeout(r), t[i] = o
@@ -1585,7 +1591,7 @@
                 }))
             },
             gotPeers: function(e) {
-                m() || each(curFastChat.needPeers, function(t) {
+                v() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1638,7 +1644,7 @@
             },
             setTyping: function(e) {
                 var t = this.getTab(e.peerId),
-                    i = e.type === l.a;
+                    i = e.type === c.a;
                 if (t && t.typing && i) {
                     var a = t.typing.userIds.filter(function(t, i) {
                         return t !== e.userId
@@ -1654,9 +1660,9 @@
             },
             waitTyping: function(e) {
                 var t = this;
-                return Object(f.c)(_.b + 2).then(function() {
+                return Object(d.c)(p.b + 2).then(function() {
                     var i = t.getTab(e.peerId);
-                    i && i.typing && (Date.now() - 1e3 * i.typing.ts >= 1e3 * _.b && delete i.typing)
+                    i && i.typing && (Date.now() - 1e3 * i.typing.ts >= 1e3 * p.b && delete i.typing)
                 })
             },
             updateTypings: function() {
@@ -1681,13 +1687,13 @@
                     i = e.userIds,
                     a = this.getTab(t),
                     o = i[0],
-                    r = Object(p.hb)(t) ? a.data.members[o] : a,
+                    r = Object(h.hb)(t) ? a.data.members[o] : a,
                     n = function(e) {
                         return e.fname || e.name || ""
                     };
-                if (1 === i.length || !Object(p.hb)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
+                if (1 === i.length || !Object(h.hb)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
                 var s = i[i.length - 1],
-                    c = Object(p.hb)(t) ? a.data.members[s] : a;
+                    c = Object(h.hb)(t) ? a.data.members[s] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", n(r)).replace("{last_user}", n(c))
             },
             markMessagesAsRead: function(e) {
@@ -1696,7 +1702,7 @@
                     a = e.upToId,
                     o = e.unread,
                     r = this.getTab(i);
-                r && (t === l.H && (r.inUpTo = a), t === l.I && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === l.I)), this.updateTabUnreadCounterElement(r || {
+                r && (t === c.H && (r.inUpTo = a), t === c.I && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === c.I)), this.updateTabUnreadCounterElement(r || {
                     unread: 0
                 }, i)
             },
@@ -1748,7 +1754,7 @@
             },
             getMessageText: function(e, t) {
                 var i = e || "";
-                return i = Object(c.e)(i, c.b.bind(null, !1)), i = Object(c.f)(i), i = Object(c.c)(i), i = Object(c.d)(i, function(e) {
+                return i = Object(s.e)(i, s.b.bind(null, !1)), i = Object(s.f)(i), i = Object(s.c)(i), i = Object(s.d)(i, function(e) {
                     return '<a href="/im?sel=' + t + "&st=" + encodeURIComponent(e) + '">' + e + "</a>"
                 }), i = Emoji.emojiToHTML(i, 1)
             },
@@ -1869,7 +1875,7 @@
                     }), o.imMedia.onChange = setTimeout.pbind(function() {
                         if (curFastChat.sendOnUpload) FastChat.send(curFastChat.sendOnUpload), curFastChat.sendOnUpload = void 0;
                         else {
-                            var t = Object(s.b)(curFastChat.ldb, e);
+                            var t = Object(n.b)(curFastChat.ldb, e);
                             t.removeAllAttaches(), o.imMedia.getMedias().forEach(function(e) {
                                 return t.addAttach(e[0], e[1])
                             }), t.destroy()
@@ -1927,11 +1933,11 @@
                                         op: "hidden",
                                         peer: e
                                     }), o) {
-                                    var r, n, s, c, l, d = {},
-                                        u = [];
+                                    var r, n, s, c, l, u = {},
+                                        d = [];
                                     for (each(a, function() {
-                                            this.posSeq > o && (d[this.posSeq] = this, u.push(this.posSeq))
-                                        }), u.unshift(o), u.sort(), l = !browser.msie && u.length < 10, r = 1; r < u.length; r++) n = u[r], s = d[n].box, c = r > 1 ? d[u[r - 1]].box.pos : t, l ? animate(s.wrap, {
+                                            this.posSeq > o && (u[this.posSeq] = this, d.push(this.posSeq))
+                                        }), d.unshift(o), d.sort(), l = !browser.msie && d.length < 10, r = 1; r < d.length; r++) n = d[r], s = u[n].box, c = r > 1 ? u[d[r - 1]].box.pos : t, l ? animate(s.wrap, {
                                         left: c[1]
                                     }, 100, function(e) {
                                         e._update_pos()
@@ -1939,7 +1945,7 @@
                                         left: c[1]
                                     });
                                     if (!l)
-                                        for (r = 1; r < u.length; r++)(s = d[u[r]].box)._update_pos()
+                                        for (r = 1; r < d.length; r++)(s = u[d[r]].box)._update_pos()
                                 }
                             },
                             onMinimize: function(t) {
@@ -1983,14 +1989,14 @@
                     if (i && extend(s, i), void 0 === s.startLeft && void 0 === s.startRight) {
                         var c = [],
                             l = n[0] - 350,
-                            d = curFastChat.clistBox.pos,
-                            u = !1;
+                            u = curFastChat.clistBox.pos,
+                            d = !1;
                         if (window.Call && (Call.box || Call.invitation)) {
                             var f = Call.calcBoxPos();
-                            c.push([f.x, f.x + f.w]), u = !0
+                            c.push([f.x, f.x + f.w]), d = !0
                         }
-                        d[0] + d[2] > l && (curFastChat.clistBox.visible || !u) && c.push([d[1], d[1] + d[3]]), each(curFastChat.tabs, function(t) {
-                            (d = this.box && this.box.pos) && t != e && d[0] + d[2] > l && c.push([d[1], d[1] + d[3]])
+                        u[0] + u[2] > l && (curFastChat.clistBox.visible || !d) && c.push([u[1], u[1] + u[3]]), each(curFastChat.tabs, function(t) {
+                            (u = this.box && this.box.pos) && t != e && u[0] + u[2] > l && c.push([u[1], u[1] + u[3]])
                         });
                         var h, p, _, v = lastWindowWidth - 262 - sbWidth(),
                             m = !1,
@@ -2000,7 +2006,7 @@
                             for (p = 0, _ = 0; _ < c.length; _++) h > c[_][0] - 260 && h < c[_][1] && p++, h > c[_][0] - 10 && h < c[_][0] + 10 && (p += 1.1);
                             (!1 === m || p < g) && (m = h, g = p)
                         }
-                        u && g && (m = v), extend(s, {
+                        d && g && (m = v), extend(s, {
                             startBottom: 0,
                             startLeft: m
                         })
@@ -2171,8 +2177,8 @@
                     return FastChat.createProgress(c, e, c.lastChild), void(n.style.visibility = "hidden")
                 }
                 if (curFastChat.sendOnUpload = !1, FastChat.removeProgress(e), n.style.visibility = "visible", o || r.length) {
-                    var l = Object(d.a)(),
-                        u = {
+                    var u = Object(l.a)(),
+                        d = {
                             act: "a_send",
                             to: e,
                             hash: a.sendhash,
@@ -2180,17 +2186,17 @@
                             from: "fc",
                             entrypoint: curFastChat.tabs[e].entrypoint,
                             media: [],
-                            random_id: l
+                            random_id: u
                         };
-                    i && (u.sticker_referrer = i);
-                    for (var f, h = 0, p = r.length; h < p; ++h)(f = r[h]) && u.media.push(f[0] + ":" + f[1]);
-                    u.media = u.media.join(","), a.sending = !0, Emoji.ttHide(a.emojiId), curFastChat.tabs[e].entrypoint = !1, ajax.post("al_im.php", u, {
+                    i && (d.sticker_referrer = i);
+                    for (var f, h = 0, p = r.length; h < p; ++h)(f = r[h]) && d.media.push(f[0] + ":" + f[1]);
+                    d.media = d.media.join(","), a.sending = !0, Emoji.ttHide(a.emojiId), curFastChat.tabs[e].entrypoint = !1, ajax.post("al_im.php", d, {
                         onDone: function(t) {
-                            clearTimeout(a.saveDraftTO), FastChat.saveDraft(e), FastChat.sendOnResponse(t, l, a)
+                            clearTimeout(a.saveDraftTO), FastChat.saveDraft(e), FastChat.sendOnResponse(t, u, a)
                         },
                         onFail: function(t) {
                             FastChat.error(e, t || getLang("global_unknown_error")), elfocus(a.txt), val(a.txt, o), a.editable ? FastChat.checkEditable(a.emojiId, a.txt) : a.txt.autosize.update();
-                            var i = ge("fc_msg" + l);
+                            var i = ge("fc_msg" + u);
                             if (i) return i.appendChild(ce("span", {
                                 className: "fc_msg_error",
                                 innerHTML: getLang("global_error")
@@ -2198,19 +2204,19 @@
                         },
                         showProgress: function() {
                             a.sending = !0, a.sendProgressTO = setTimeout(function() {
-                                var e = ge("fc_msg" + l);
-                                e && FastChat.createProgress(e, l, e.firstChild)
+                                var e = ge("fc_msg" + u);
+                                e && FastChat.createProgress(e, u, e.firstChild)
                             }, 2e3)
                         },
                         hideProgress: function() {
-                            a.sending = !1, clearTimeout(a.sendProgressTO), FastChat.removeProgress(l)
+                            a.sending = !1, clearTimeout(a.sendProgressTO), FastChat.removeProgress(u)
                         }
                     }), re("fc_error" + e), t || (val(a.txt, ""), a.imMedia && a.imMedia.unchooseMedia()), FastChat.addMessage(FastChat.prepareMessageData({
-                        messageId: l,
+                        messageId: u,
                         text: clean(o).replace(/\n/g, "<br>"),
                         peerId: e,
                         flags: 3,
-                        randomId: u.random_id,
+                        randomId: d.random_id,
                         attaches: []
                     })), delete curFastChat.myTypingEvents[e], a.editable ? FastChat.checkEditable(a.emojiId, a.txt) : a.txt.autosize.update(!1, !0), elfocus(a.txt), FastChat.scroll(e)
                 } else a.editable ? Emoji.editableFocus(a.txt, !1, !0) : elfocus(a.txt)
@@ -2220,14 +2226,14 @@
                     i = (t || {}).txt;
                 if (i && t) {
                     var a = Emoji.editableVal(i),
-                        o = Object(s.b)(curFastChat.ldb, e);
+                        o = Object(n.b)(curFastChat.ldb, e);
                     o.setText(trim(a) || ""), o.destroy()
                 }
             },
             restoreDraft: function(e) {
                 var t = curFastChat.tabs[e],
                     i = t.txt,
-                    a = Object(s.b)(curFastChat.ldb, e);
+                    a = Object(n.b)(curFastChat.ldb, e);
                 return !(!i || !t || val(i).length > a.dData.txt.length && !a.hasAttaches()) && (t.editable ? i.innerHTML = Emoji.emojiToHTML(clean(a.dData.txt), 1) : val(i, clean(a.dData.txt)), setTimeout(function() {
                     for (var e = a.dData.attaches, i = 0; i < e.length; i++) t.imMedia && t.imMedia.chooseMedia(e[i].type, e[i].id, e[i].object || {});
                     a.destroy()
@@ -2265,39 +2271,39 @@
                     a = e.messageId,
                     o = e.text,
                     r = e.date,
-                    n = Object(h.b)(e),
+                    n = Object(f.b)(e),
                     s = this.getMessageMedia(e),
-                    c = v(s, 2),
+                    c = _(s, 2),
                     l = c[0],
-                    d = c[1],
-                    u = "",
-                    f = e.randomId;
-                return Object(h.l)(e) && (u = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (f = Number(a.slice(3))), Object.assign({
+                    u = c[1],
+                    d = "",
+                    h = e.randomId;
+                return Object(f.l)(e) && (d = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (h = Number(a.slice(3))), Object.assign({
                     id: a,
                     peer: t,
                     from_id: n,
-                    text: Object(h.l)(e) ? u : this.getMessageText(o, t) + l,
-                    out: Object(h.k)(e),
+                    text: Object(f.l)(e) ? d : this.getMessageText(o, t) + l,
+                    out: Object(f.k)(e),
                     unread: Boolean(1 & i),
                     date: r,
                     date_str: FastChat.mkdate(r),
-                    randomId: f,
-                    isServiceMessage: Object(h.l)(e)
-                }, this.getMessageAuthor(e), d)
+                    randomId: h,
+                    isServiceMessage: Object(f.l)(e)
+                }, this.getMessageAuthor(e), u)
             },
             getMessageAuthor: function(e) {
                 var t = e.peerId,
-                    i = Object(h.b)(e),
+                    i = Object(f.b)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
-                var o = Object(h.k)(e) ? curFastChat.me : Object(p.hb)(t) ? a.data.members[i] : a,
+                var o = Object(f.k)(e) ? curFastChat.me : Object(h.hb)(t) ? a.data.members[i] : a,
                     r = o.name,
                     n = o.link,
                     s = o.photo,
                     c = o.fname,
                     l = o.first_name;
                 return {
-                    fname: Object(p.hb)(t) ? c || l : "",
+                    fname: Object(h.hb)(t) ? c || l : "",
                     name: r,
                     link: n,
                     photo: s,
@@ -2310,7 +2316,7 @@
                     a = e.messageId,
                     o = "",
                     r = {};
-                return !Object(h.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(function(e) {
+                return !Object(f.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(function(e) {
                     switch (e.type) {
                         case "sticker":
                             o += a ? t.renderSticker(e.id, e.productId, e.kind, a) : t.renderSticker(e.id, e.productId), r.sticker = !0;
@@ -2319,7 +2325,7 @@
                             var n = e.object ? e.object.fwd_count : e.id.split(";").length;
                             o += rs(curFastChat.tpl.msg_fwd, {
                                 msg_id: a,
-                                peerId_nice: Object(p.H)(i),
+                                peerId_nice: Object(h.H)(i),
                                 label: getLang(n > 1 ? "mail_im_fwd_msgs" : "mail_im_fwd_msg")
                             });
                             break;
@@ -2364,66 +2370,66 @@
                     s = "",
                     c = a === r;
                 switch (o) {
-                    case p.j:
+                    case h.j:
                         s = "mail_im_chat_created";
                         break;
-                    case p.g:
+                    case h.g:
                         s = t.source_is_channel ? "mail_im_title_updated_channel" : "mail_im_title_updated_dot";
                         break;
-                    case p.b:
+                    case h.b:
                         s = c ? "mail_im_returned_to_chat" : "mail_im_invited";
                         break;
-                    case p.c:
+                    case h.c:
                         s = c ? "mail_im_left" : "mail_im_kicked_from_chat";
                         break;
-                    case p.e:
+                    case h.e:
                         s = "mail_im_photo_set";
                         break;
-                    case p.d:
+                    case h.d:
                         s = t.source_is_channel ? "mail_im_photo_removed_channel" : "mail_im_photo_removed";
                         break;
-                    case p.f:
+                    case h.f:
                         s = t.source_message ? "mail_im_pin_message" : "mail_im_pin_message_empty2";
                         break;
-                    case p.h:
+                    case h.h:
                         s = t.source_message ? "mail_im_unpin_message" : "mail_im_unpin_message_empty2";
                         break;
-                    case p.a:
+                    case h.a:
                         s = "mail_im_invite_by_link";
                         break;
                     default:
                         return "mail_no_support"
                 }
-                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(p.ic)(n.link, n.name, !0)), r && r !== a) {
+                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(h.ic)(n.link, n.name, !0)), r && r !== a) {
                     var l = t.source_email;
-                    if (l) s = s.replace("{user}", Object(p.ic)("/im?email=" + encodeURIComponent(l), "email", !0));
+                    if (l) s = s.replace("{user}", Object(h.ic)("/im?email=" + encodeURIComponent(l), "email", !0));
                     else {
-                        var d = this.getMember(i, r) || {
+                        var u = this.getMember(i, r) || {
                                 name_inv_case: "",
                                 name_kick_case: "",
                                 link: ""
                             },
-                            u = o === p.c ? d.name_kick_case : d.name_inv_case;
-                        s = s.replace("{user}", Object(p.ic)(d.link, u, !0))
+                            d = o === h.c ? u.name_kick_case : u.name_inv_case;
+                        s = s.replace("{user}", Object(h.ic)(u.link, d, !0))
                     }
                 }
                 if (t.source_text) {
                     var f = t.source_old_text ? '«<b class="im_srv_lnk">' + t.source_old_text + "</b>» &rarr; " : "";
                     s = s.replace("{title}", f + '«<b class="im_srv_lnk">' + t.source_text + "</b>»")
                 }
-                if (t.source_act === p.f || t.source_act === p.h)
+                if (t.source_act === h.f || t.source_act === h.h)
                     if (t.source_message) {
-                        var h = Object(p.fc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
-                            _ = Object(p.ic)("", h, !1, "im_srv_mess_link");
+                        var p = Object(h.fc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
+                            _ = Object(h.ic)("", p, !1, "im_srv_mess_link");
                         s = s.replace("{msg}", _)
                     } else s = s.replace(/{link}(.+){\/link}/i, function(e, t) {
-                        return Object(p.ic)("", t, !1, "im_srv_mess_link")
+                        return Object(h.ic)("", t, !1, "im_srv_mess_link")
                     });
                 return s
             },
             getMember: function(e, t) {
                 var i = this.getTab(e);
-                return Object(p.hb)(e) && i ? i.data.members[t] : i || null
+                return Object(h.hb)(e) && i ? i.data.members[t] : i || null
             },
             needMsgMedia: function(e, t) {
                 t <= 0 || (FastChat.lcSend("needMedia", {
@@ -2486,12 +2492,12 @@
                     c = geByClass1("fc_msgs_date", s),
                     l = geByClass1("fc_msg_last", s);
                 l && removeClass(l, "fc_msg_last");
-                var d = se(rs(curFastChat.tpl.msg, {
+                var u = se(rs(curFastChat.tpl.msg, {
                     msg_id: e.id,
                     classname: (e.unread ? "fc_msg_unread" : "") + (e.isServiceMessage ? " fc_srv_msg" : "") + " fc_msg_last",
                     text: FastChat.replaceSpecialSymbols(e.text)
                 }));
-                domFC(s) && "BR" == domFC(s).tagName && re(domFC(s)), c ? s.insertBefore(d, c) : s.appendChild(d), vk.id != e.from_id && (delete curFastChat.typingEvents[t], FastChat.updateTyping(t, 1)), i.scroll && i.scroll.update()
+                domFC(s) && "BR" == domFC(s).tagName && re(domFC(s)), c ? s.insertBefore(u, c) : s.appendChild(u), vk.id != e.from_id && (delete curFastChat.typingEvents[t], FastChat.updateTyping(t, 1)), i.scroll && i.scroll.update()
             },
             getTab: function(e) {
                 return curFastChat.tabs[e]
@@ -2532,7 +2538,7 @@
                         unread: a && Math.max(+a.innerHTML, 0) || 0
                     }
                 }
-                Object(h.k)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
+                Object(f.k)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
             },
             updateTabUnreadCounterElement: function(e, t) {
                 if (e) {
@@ -2711,12 +2717,12 @@
                     r > 0 && (r--, l())
                 },
                 onLp: function(e, t, r) {
-                    var d;
-                    c || (n >= e ? (n = t, (d = s).push.apply(d, o(r)), l()) : i && (c = !0, i(n).then(function(e) {
+                    var u;
+                    c || (n >= e ? (n = t, (u = s).push.apply(u, o(r)), l()) : i && (c = !0, i(n).then(function(e) {
                         var t, i = a(e, 3),
                             r = (i[0], i[1]),
-                            d = i[2];
-                        n = r, c = !1, (t = s).push.apply(t, o(d)), l()
+                            u = i[2];
+                        n = r, c = !1, (t = s).push.apply(t, o(u)), l()
                     })))
                 }
             }
@@ -2771,13 +2777,13 @@
             }, !1), window.lpWeird = [])
         }
 
-        function d() {
+        function u() {
             return "im" === window.cur.module && window.store && window.store.get().longpoll && !window.store.get().stopped
         }
 
-        function u() {
+        function d() {
             var e;
-            d() && (s().forEach(function(e) {
+            u() && (s().forEach(function(e) {
                 !n().find(function(t) {
                     return e.ev === t.ev
                 }) && e.time < Date.now() - 1e3 && !e.warned && (e.warned = !0, r("red", "im not fc", e.ev), Object(a.c)() && c("im not fc", e.ev))
@@ -2795,24 +2801,24 @@
 
         function f(e) {
             var t;
-            d() && ((t = n()).push.apply(t, o(e.map(function(e) {
+            u() && ((t = n()).push.apply(t, o(e.map(function(e) {
                 return {
                     time: Date.now(),
                     ev: JSON.stringify(e),
                     warned: !1
                 }
-            }))), setTimeout(u, 0));
+            }))), setTimeout(d, 0));
             r.apply(void 0, ["green", "fc"].concat(o(e)))
         }
         window.longpollTesting_onImEvents = function(e) {
             var t;
-            d() && ((t = s()).push.apply(t, o(e.map(function(e) {
+            u() && ((t = s()).push.apply(t, o(e.map(function(e) {
                 return {
                     time: Date.now(),
                     ev: JSON.stringify(e),
                     warned: !1
                 }
-            }))), setTimeout(u, 1100)), r.apply(void 0, ["blue", "im"].concat(o(e)))
+            }))), setTimeout(d, 1100)), r.apply(void 0, ["blue", "im"].concat(o(e)))
         }
     },
     gQAo: function(e, t, i) {
@@ -2834,11 +2840,11 @@
             c = window.lpConnect,
             l = window.lpInstance;
 
-        function d() {
+        function u() {
             return s.id > 0
         }
 
-        function u() {
+        function d() {
             return window.curNotifier && window.curNotifier.lp_connected
         }
 
@@ -2847,7 +2853,7 @@
         }
 
         function h(e, t, i) {
-            l.onLp(e, t, i), u() && f() && (e != t || i.length) && function(e, t, i) {
+            l.onLp(e, t, i), d() && f() && (e != t || i.length) && function(e, t, i) {
                 window.Notifier.lcSend("lp_data", {
                     tsOld: e,
                     tsNow: t,
@@ -2857,7 +2863,7 @@
         }
 
         function p() {
-            return d() ? (l || (s.lpConfig.id = s.id, window.lpConnect = c = Object(a.a)(s.lpConfig, h), e = Object(o.a)(s.lpConfig.ts, function(e) {
+            return u() ? (l || (s.lpConfig.id = s.id, window.lpConnect = c = Object(a.a)(s.lpConfig, h), e = Object(o.a)(s.lpConfig.ts, function(e) {
                 Object(r.a)(e), t.trigger("data", e)
             }, g), t = new window.EventEmitter, window.lpInstance = l = {
                 onData: function(e) {
@@ -2889,17 +2895,17 @@
         }
 
         function _() {
-            d() && (Object(r.b)("orange", "init longpoll connection on load"), p(), window.curNotifier.idle_manager.on("unidle", function() {
+            u() && (Object(r.b)("orange", "init longpoll connection on load"), p(), window.curNotifier.idle_manager.on("unidle", function() {
                 c.abortWaiting()
             }), v())
         }
 
         function v() {
-            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(n.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(n.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
+            u() && (d() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(n.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(n.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
         }
 
         function m(e) {
-            u() && !f() && d() && (Object(r.b)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
+            d() && !f() && u() && (Object(r.b)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
         }
 
         function g(e) {
@@ -2965,11 +2971,11 @@
             c = 6,
             l = 4;
 
-        function d(e, t) {
+        function u(e, t) {
             e.waitAbortFns.push(t)
         }
 
-        function u(e) {
+        function d(e) {
             if (e.isStoppedFn()) return Promise.resolve({
                 ts: 0,
                 updates: []
@@ -3000,7 +3006,7 @@
                         r = i.pause;
                     switch (t.failed) {
                         case 1:
-                            return d(e, o), e.onHistoryLost(e, t).then(function() {
+                            return u(e, o), e.onHistoryLost(e, t).then(function() {
                                 return e.onResult({
                                     ts: t.ts,
                                     updates: [
@@ -3008,10 +3014,10 @@
                                     ]
                                 })
                             }).then(r).then(function() {
-                                return u(e)
+                                return d(e)
                             });
                         case 2:
-                            return d(e, o), e.onKeyExpired(e, t).then(function(t) {
+                            return u(e, o), e.onKeyExpired(e, t).then(function(t) {
                                 var i = n(t, 4),
                                     a = i[0],
                                     o = i[1],
@@ -3025,7 +3031,7 @@
                                     ]
                                 })
                             }).then(r).then(function() {
-                                return u(e)
+                                return d(e)
                             });
                         case 3:
                             return e.onLpBroken(e, t);
@@ -3037,14 +3043,14 @@
         }
 
         function f(e) {
-            e.isStoppedFn() || u(e).then(e.onResult).catch(function(t) {
+            e.isStoppedFn() || d(e).then(e.onResult).catch(function(t) {
                 return function(e, t) {
                     if (e.isStoppedFn()) return;
                     e.onRequestError(t), e.waitTimeout = Math.min(64, 2 * e.waitTimeout);
                     var i = Object(a.a)(e.waitTimeout, null),
                         o = i.abort,
                         r = i.pause;
-                    return d(e, o), r()
+                    return u(e, o), r()
                 }(e, t)
             }).then(function() {
                 return f(e)
@@ -3303,22 +3309,22 @@
                             l = ce("span", {
                                 className: "top_notify_header_label_groups"
                             }),
-                            d = ce("a", {
+                            u = ce("a", {
                                 onmouseover: function(e) {
                                     TopNotifier.getSourcesTip(this, e)
                                 },
                                 className: "top_notify_header_label_groups_link",
                                 innerHTML: getLang("global_notifications_groups")
                             });
-                        if (l.appendChild(d), n = ce("span", {
+                        if (l.appendChild(u), n = ce("span", {
                                 className: "top_notify_header_label_groups_counter",
                                 innerHTML: ""
                             }), s.appendChild(c), cur.user_has_admined_groups > 0 && (s.appendChild(l), s.appendChild(n)), t.appendChild(s), o) {
-                            var u = ce("div", {
+                            var d = ce("div", {
                                 className: "top_notify_header_sub_label",
                                 innerHTML: getLang("global_viewed_notifications")
                             });
-                            t.appendChild(u)
+                            t.appendChild(d)
                         }
                     }
                 } else if (o) {
@@ -3578,9 +3584,9 @@
                         c = -1,
                         l = geByClass("feedback_row");
                     for (a = 0; a < n.length; ++a) {
-                        var d = n[a].match("feedback_(.+)_row");
-                        if (n[a] && d && d[1]) {
-                            s = d[1];
+                        var u = n[a].match("feedback_(.+)_row");
+                        if (n[a] && u && u[1]) {
+                            s = u[1];
                             break
                         }
                     }

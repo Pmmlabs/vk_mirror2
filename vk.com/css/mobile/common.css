@@ -4868,7 +4868,7 @@ input.wide_button {
     display: none;
     right: 0;
     top: 45px;
-    z-index: 3;
+    z-index: 6;
     width: 100%
 }
 
@@ -4925,6 +4925,29 @@ input.wide_button {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.wia_item--loading {
+    pointer-events: none;
+    position: relative
+}
+
+.wia_item--loading:before {
+    position: absolute;
+    right: 8px;
+    bottom: 13px;
+    content: '';
+    background-image: url('/images/mobile/oupload.gif');
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    width: 17px;
+    height: 5px;
+    background-position: 50%
+}
+
+.vk_2x .wia_item--loading:before {
+    background-image: url('/images/mobile/oupload_2x.gif')
 }
 
 ._hover .wia_item:hover,
@@ -35850,11 +35873,6 @@ body.apps_settingsPageBody .basis__content {
     border-bottom: 1px solid #dfe3e8!important
 }
 
-.r .single_wall_item .explain,
-.r .single_wall_item .wi_explain {
-    display: none
-}
-
 .r .cp_attached_post {
     padding-top: 0!important
 }
@@ -36517,6 +36535,9 @@ body.apps_settingsPageBody .basis__content {
         font-weight: 400;
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto
+    }
+    .r .wi_author .explain .divider {
+        padding: 0 4px
     }
 }
 

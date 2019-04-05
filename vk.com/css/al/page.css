@@ -6356,12 +6356,18 @@ div.submit_post_field font {
     background-repeat: no-repeat
 }
 
+.lnk_mail .medadd_c_linkwrap,
 .medadd_c_link_product .medadd_c_linkwrap,
 .wall_module .page_media_product .medadd_c_linkwrap,
 .wall_module .page_media_thumbed_link_product .medadd_c_linkwrap {
     border-left: 1px solid rgba(0, 20, 51, .12)
 }
 
+.lnk_mail .medadd_c_linkhead,
+.lnk_mail .microdata_price,
+.lnk_mail .microdata_price_old,
+.lnk_mail a.lnk_mail_title,
+.lnk_mail a.page_media_link_title,
 .medadd_c_link_product .medadd_c_linkhead,
 .medadd_c_link_product .microdata_price,
 .medadd_c_link_product .microdata_price_old,
@@ -6386,12 +6392,14 @@ div.submit_post_field font {
     margin: 0
 }
 
+.lnk_mail .page_microdata_stats,
 .medadd_c_link_product .page_microdata_stats,
 .wall_module .page_media_product .page_microdata_stats,
 .wall_module .page_media_thumbed_link_product .page_microdata_stats {
     margin: 4px 0
 }
 
+.lnk_mail .microdata_price,
 .medadd_c_link_product .microdata_price,
 .wall_module .page_media_product .microdata_price,
 .wall_module .page_media_thumbed_link_product .microdata_price {
@@ -6402,6 +6410,7 @@ div.submit_post_field font {
     -moz-osx-font-smoothing: auto
 }
 
+.lnk_mail .microdata_price.microdata_price_old,
 .medadd_c_link_product .microdata_price.microdata_price_old,
 .wall_module .page_media_product .microdata_price.microdata_price_old,
 .wall_module .page_media_thumbed_link_product .microdata_price.microdata_price_old {
@@ -6409,12 +6418,14 @@ div.submit_post_field font {
     margin-left: 6px
 }
 
+.lnk_mail .page_media_link_url,
 .medadd_c_link_product .page_media_link_url,
 .wall_module .page_media_product .page_media_link_url,
 .wall_module .page_media_thumbed_link_product .page_media_link_url {
     display: none
 }
 
+.lnk_mail .wall_postlink_preview_btn_label,
 .medadd_c_link_product .wall_postlink_preview_btn_label,
 .wall_module .page_media_product .wall_postlink_preview_btn_label,
 .wall_module .page_media_thumbed_link_product .wall_postlink_preview_btn_label {
@@ -6423,6 +6434,7 @@ div.submit_post_field font {
     -moz-osx-font-smoothing: auto
 }
 
+.lnk_mail .page_media_link_desc_td,
 .medadd_c_link_product .page_media_link_desc_td,
 .wall_module .page_media_product .page_media_link_desc_td,
 .wall_module .page_media_thumbed_link_product .page_media_link_desc_td {
@@ -6430,18 +6442,21 @@ div.submit_post_field font {
     padding-bottom: 15px
 }
 
+.lnk_mail .page_media_thumbed_table .page_media_link_thumb,
 .medadd_c_link_product .page_media_thumbed_table .page_media_link_thumb,
 .wall_module .page_media_product .page_media_thumbed_table .page_media_link_thumb,
 .wall_module .page_media_thumbed_link_product .page_media_thumbed_table .page_media_link_thumb {
     border-radius: 4px 0 0 4px
 }
 
+.lnk_mail .page_media_thumbed_table .page_media_link_desc_td,
 .medadd_c_link_product .page_media_thumbed_table .page_media_link_desc_td,
 .wall_module .page_media_product .page_media_thumbed_table .page_media_link_desc_td,
 .wall_module .page_media_thumbed_link_product .page_media_thumbed_table .page_media_link_desc_td {
     border-radius: 0 4px 4px 0
 }
 
+.lnk_mail.page_media_thumbed_link_product_single_line .page_media_link_title,
 .medadd_c_link_product.page_media_thumbed_link_product_single_line .page_media_link_title,
 .wall_module .page_media_product.page_media_thumbed_link_product_single_line .page_media_link_title,
 .wall_module .page_media_thumbed_link_product.page_media_thumbed_link_product_single_line .page_media_link_title {
