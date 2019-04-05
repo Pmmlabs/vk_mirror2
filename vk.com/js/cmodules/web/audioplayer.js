@@ -680,6 +680,7 @@
                     else if (contextSection) switch (contextSection) {
                         case "my":
                         case "search_owned_audios":
+                        case "module":
                         case "user_list":
                         case "group_list":
                             actionsList = ["recoms", "edit", "next", "add", "delete", "share", "open_album", "add_to_playlist"];
@@ -692,9 +693,6 @@
                             break;
                         case "recoms_recent_audios":
                             actionsList = ["recoms", "edit", "next", "add", "listened_delete", "share", "open_album", "add_to_playlist"];
-                            break;
-                        case "module":
-                            actionsList = [];
                             break;
                         case "attach":
                         case "attach_preview":

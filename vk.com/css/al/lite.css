@@ -6744,6 +6744,11 @@ div.top_result_baloon a {
     display: none!important
 }
 
+.audios_module .audio_row.audio_module_wide .audio_row__duration,
+.audios_module .audio_row.audio_module_wide .audio_row__info {
+    display: block!important
+}
+
 .audio_numeric {
     counter-reset: audios-counter
 }

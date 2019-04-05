@@ -2587,6 +2587,8 @@ var Settings = {
                         hash: hash,
                         type: 'order_settings_web',
                     });
+                    cur.orderSettingsFeatureTT.destroy();
+                    delete cur.orderSettingsFeatureTT;
                 },
             });
 

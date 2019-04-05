@@ -5044,6 +5044,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     line-height: 140%
 }
 
+.apps_top_tabs .ui_tab_group.shown {
+    z-index: 5
+}
+
 .apps_top_tabs .ui_tab_group_label {
     display: inline-block;
     max-width: 180px;

@@ -85,7 +85,7 @@ var Feed = {
 
         isAdWithLongImpression: function(elem) {
             var firstChild = elem && domFC(elem);
-            return firstChild && (firstChild.hasAttribute('data-ad-stat-impression_long'));
+            return firstChild && (firstChild.hasAttribute('data-ad-stat-impression_long') || firstChild.hasAttribute('data-ad-disabled-stat-impression_long'));
         },
 
         isElemViewable: function(elem, percent, scrollY, windowHeight) {

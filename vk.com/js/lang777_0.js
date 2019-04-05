@@ -195,6 +195,7 @@ captcha_enter_code = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï
 captcha_send = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 datepicker_date_format = "{day} {month} {year}";
 datepicker_month_format = "{month} {year}";
+developers_server_link_example = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:";
 events_fri = "ï¿½ï¿½";
 events_goto_search = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 events_mon = "ï¿½ï¿½";
