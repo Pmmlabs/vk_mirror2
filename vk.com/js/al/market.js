@@ -1864,6 +1864,12 @@ var Market = {
         return showWiki({
             w: page
         });
+    },
+    openMarketMyMallAppPage: function(url, itemRawId) {
+        statlogsValueEvent('market_mymall_item_buy', itemRawId);
+        return showWiki({
+            w: url
+        });
     }
 };
 
