@@ -704,7 +704,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7250;
+var _rnd = 6252;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
