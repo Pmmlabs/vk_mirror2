@@ -8284,6 +8284,30 @@ button.ui_load_more_btn {
     float: none
 }
 
+.top_notify_cont .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small {
+    width: calc(100% - 86px)
+}
+
+.feed_notifications .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small {
+    width: calc(100% - 92px)
+}
+
+.feed_notifications .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__actions,
+.top_notify_cont .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__actions {
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse
+}
+
+.feed_notifications .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_share,
+.top_notify_cont .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_share {
+    display: none
+}
+
+.feed_notifications .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_listen,
+.top_notify_cont .feedback_comment_unify_row .audio_pl_snippet2.audio_pl_snippet_small .audio_pl_snippet__action_btn_listen {
+    padding-right: 0
+}
+
 .audio_pl_snippet2.audio_pl_snippet_size_medium .audio_pl_snippet__action_btn {
     padding-right: 10px
 }
@@ -11851,6 +11875,15 @@ button.ui_load_more_btn {
 .audio_page_player2.audio_page_player_fixed_transition {
     -o-transition: top 150ms ease;
     transition: top 150ms ease
+}
+
+@media (max-width: 999px) {
+    .audio_page_player2.audio_page_player_fixed,
+    .audio_page_player2.audio_page_player_fixed_shown {
+        -o-transform: translate(0);
+        transform: translate(0);
+        top: -56px
+    }
 }
 
 .audio_page_player2 .audio_page_player__cover {

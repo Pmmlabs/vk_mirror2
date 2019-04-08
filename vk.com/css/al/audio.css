@@ -1539,6 +1539,15 @@
     overflow: auto
 }
 
+@media (max-width: 999px) {
+    .audio_page_layout .audio_friends_fixed {
+        position: static
+    }
+    .audio_layer_container .audio_page_layout .audio_friends_fixed {
+        position: fixed
+    }
+}
+
 .audio_page_layout .audio_friends_sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -2987,7 +2996,8 @@
     width: 100%;
     height: 100%;
     background: 50%;
-    background-size: cover
+    background-size: cover;
+    background-color: #001433
 }
 
 .audio_artist_block .audio_artist_block__cover.blur {
