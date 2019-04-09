@@ -15000,6 +15000,263 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative
 }
 
+.pi_medias .ProductSnippet,
+.ProductSnippet {
+    padding: 0;
+    position: relative;
+    background: #fff;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin: 12px 8px 0;
+    border: solid 1px #e1e3e6;
+    min-height: 120px
+}
+
+.msg__text .mi_forwarded .ProductSnippet .BookmarksStar,
+.pi_medias .ProductSnippet .BookmarksStar,
+.ProductSnippet .BookmarksStar,
+.msg__text .mi_forwarded .ProductSnippet .BookmarksStar .Icon_bookmark,
+.msg__text .mi_forwarded .ProductSnippet .BookmarksStar .Icon_bookmarked,
+.pi_medias .ProductSnippet .BookmarksStar .Icon_bookmark,
+.pi_medias .ProductSnippet .BookmarksStar .Icon_bookmarked,
+.ProductSnippet .BookmarksStar .Icon_bookmark,
+.ProductSnippet .BookmarksStar .Icon_bookmarked {
+    margin: 0
+}
+
+.msg__text .mi_forwarded .ProductSnippet .BookmarksStar .Icon_bookmark:before,
+.pi_medias .ProductSnippet .BookmarksStar .Icon_bookmark:before,
+.ProductSnippet .BookmarksStar .Icon_bookmark:before {
+    background-position: 0 -1632px
+}
+
+.msg__text .mi_forwarded .ProductSnippet .BookmarksStar .Icon_bookmarked:before,
+.pi_medias .ProductSnippet .BookmarksStar .Icon_bookmarked:before,
+.ProductSnippet .BookmarksStar .Icon_bookmarked:before {
+    background-position: 0 -1656px
+}
+
+.msg_item .ProductSnippet {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.ProductSnippet__thumb {
+    display: block;
+    float: none;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 50%;
+    width: 120px;
+    border-right: solid 1px #e1e3e6;
+    min-height: 0px
+}
+
+.ProductSnippet__title {
+    margin: 0;
+    position: relative;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #909499;
+    font-size: 13px;
+    padding: 13px 34px 0 133px
+}
+
+.ProductSnippet__microdataWrapper {
+    margin: 0;
+    position: relative;
+    padding-top: 3px;
+    padding-bottom: 0;
+    padding-left: 133px
+}
+
+.ProductSnippet__buttonWrapper {
+    margin: 0;
+    position: relative;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    clear: left;
+    padding-left: 133px
+}
+
+.ProductSnippet__discount {
+    color: #fff;
+    background-color: #3f8ae0;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 12px;
+    padding: 4px 6px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1
+}
+
+.ProductSnippet__filler {
+    top: 0;
+    left: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+.ProductSnippet.ProductSnippet--noPhoto {
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-left: 1px solid #e1e3e6
+}
+
+.ProductSnippet.ProductSnippet--noPhoto .ProductSnippet__title {
+    padding: 13px 25px 0 13px
+}
+
+.ProductSnippet.ProductSnippet--noPhoto .ProductSnippet__microdataWrapper {
+    padding-top: 3px;
+    padding-bottom: 0;
+    padding-left: 13px
+}
+
+.ProductSnippet.ProductSnippet--noPhoto .ProductSnippet__buttonWrapper {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    clear: left;
+    padding-left: 13px
+}
+
+.ProductSnippet.ProductSnippet--bigPhoto {
+    border: none;
+    margin: 0;
+    padding: 8px 8px 12px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+.ProductSnippet.ProductSnippet--bigPhoto .ProductSnippet__thumb {
+    position: relative;
+    width: 100%;
+    height: 330px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: 0
+}
+
+.ProductSnippet.ProductSnippet--bigPhoto .ProductSnippet__thumb:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .12)), to(rgba(0, 0, 0, .02)));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px
+}
+
+.ProductSnippet.ProductSnippet--bigPhoto .ProductSnippet__title {
+    padding: 13px 25px 0 0px
+}
+
+.ProductSnippet.ProductSnippet--bigPhoto .ProductSnippet__microdataWrapper,
+.ProductSnippet.ProductSnippet--bigPhoto .ProductSnippet__buttonWrapper {
+    padding-left: 0px
+}
+
+@media only screen and (max-width: 414px) {
+    .ProductSnippet--adaptiveButton .ProductSnippet__buttonWrapper {
+        display: none
+    }
+}
+
+.ProductMicrodata {
+    color: #909499;
+    font-size: 12.5px
+}
+
+.ProductMicrodata__rating {
+    float: left;
+    clear: left;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M7.624%203.76l2.151.21c.748.074.978.822.4%201.313L8.491%206.715l.625%202.333c.206.766-.431%201.23-1.07.769l-2.045-1.48-2.046%201.48c-.635.459-1.275-.003-1.07-.77l.626-2.332-1.684-1.432c-.58-.493-.352-1.239.4-1.312l2.15-.211.947-2.235c.297-.7%201.057-.7%201.353%200l.947%202.235z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22%2F%3E%3Cuse%20fill%3D%22%23ADADAD%22%20fill-rule%3D%22nonzero%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-position: 100% 1px;
+    -moz-background-size: 14px 14px;
+    -o-background-size: 14px 14px;
+    background-size: 14px 14px;
+    padding-right: 16px;
+    margin-top: 2px;
+    background-repeat: no-repeat
+}
+
+.ProductMicrodata__orders {
+    float: left;
+    padding-right: 4px;
+    white-space: nowrap;
+    margin-top: 2px
+}
+
+.ProductMicrodata__brandLogo {
+    float: left;
+    margin-top: 2px
+}
+
+.ProductMicrodata__brandLogo--aliexpress_colored {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2258%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20id%3D%22a%22%20d%3D%22M0%200h58v16H0z%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cmask%20id%3D%22b%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23b)%22%3E%3Cpath%20d%3D%22M15.4%203h5.3v1.125h-4.201V6.9h3.778v1.124h-3.778v2.826H21V12h-5.6V3zm11.076%209l-1.827-2.39L22.823%2012h-1.29l2.499-3.196L21.399%205.5h1.45l1.8%202.471L26.476%205.5h1.423l-2.498%203.304L27.765%2012h-1.29zm3.024%203.4h-1.1V8.848c0-1.67%201.27-3.448%203.254-3.448%202.011%200%203.52%201.273%203.52%203.369%200%202.042-1.535%203.448-3.282%203.448-.846%200-1.969-.395-2.392-1.217v4.4zm1.97-8.833c-.795.027-2.012.61-1.906%202.653.027.663.715%201.91%202.223%201.91%201.296%200%202.249-.743%202.249-2.361%200-1.433-.926-2.281-2.567-2.202zM36%205.5h1.125v.76c.53-.609%201.352-.81%202.225-.81V6.6c-.132-.026-1.431-.181-2.225%201.512v3.89H36V5.5zm6.776-.1c2.277%200%203.124%201.508%203.124%203.44v.535h-5.084c.08%201.217%201.165%201.846%202.172%201.82.74-.027%201.244-.239%201.773-.768l.715.74c-.662.636-1.509%201.06-2.541%201.06-1.933-.027-3.31-1.456-3.31-3.467%200-1.852%201.324-3.36%203.15-3.36zm-1.96%202.95h3.945c0-.952-.684-1.85-2.061-1.85-1.033%200-1.83.871-1.884%201.85zm5.684%202.73l.794-.715c-.027%200%20.397.424.45.45.185.16.37.266.608.319.688.185%201.932.132%202.037-.822.053-.53-.344-.823-.793-1.008-.582-.212-1.217-.292-1.8-.557-.661-.292-1.084-.796-1.084-1.538%200-1.936%202.751-2.254%203.995-1.353.053.053.661.61.635.61l-.794.637c-.397-.478-.767-.716-1.614-.716-.423%200-1.005.185-1.111.636-.159.637.556.875%201.032%201.008.635.159%201.323.265%201.878.61.768.477.953%201.511.662%202.307-.318.875-1.27%201.22-2.117%201.246-1.005.053-1.878-.265-2.593-.98-.053%200-.185-.133-.185-.133zm6.344-.715c-.027%200%20.397.424.45.45.185.16.37.266.608.319.688.185%201.932.132%202.037-.822.053-.53-.344-.823-.793-1.008-.582-.212-1.217-.292-1.8-.557-.661-.292-1.084-.796-1.084-1.538%200-1.936%202.751-2.254%203.995-1.353.053.053.661.61.635.61l-.794.637c-.397-.478-.767-.716-1.614-.716-.423%200-1.005.185-1.111.636-.159.637.556.875%201.032%201.008.635.159%201.323.265%201.878.61.768.477.953%201.511.662%202.307-.318.875-1.27%201.22-2.117%201.246-1.005.053-1.878-.265-2.593-.98-.053%200-.185-.133-.185-.133l.794-.716z%22%20fill%3D%22%23DC3E2A%22%2F%3E%3Cpath%20d%3D%22M8.101%2012l-.804-2.15h-4.34L2.151%2012H1l3.484-9h1.26L9.2%2012H8.101zM5.073%204.29L3.44%208.75h3.403L5.073%204.29zM9.9%2012V3H11v9H9.9zm2.6%200V5.75h1.1V12h-1.1zm2.2-8.322c-.839.027-1.52.72-1.546%201.572h-.158c-.026-.852-.707-1.545-1.546-1.572v-.053-.053c.839-.027%201.52-.72%201.546-1.572h.158c.026.852.707%201.545%201.546%201.572v.106z%22%20fill%3D%22%23EA882D%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    width: 58px;
+    height: 16px
+}
+
+.ProductMicrodata__price {
+    float: left;
+    clear: left;
+    color: #2c2d2e;
+    margin-top: 2px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.ProductMicrodata__priceOld {
+    padding-left: 7px;
+    float: left;
+    text-decoration: line-through;
+    margin-top: 2px
+}
+
+.msg_item .ProductMicrodata__brandLogo {
+    margin-top: 3px
+}
+
+.msg_item .ProductMicrodata__rating {
+    background-position: 100% 2px
+}
+
 .AudioBlock {
     border: 0
 }

@@ -2790,7 +2790,7 @@
     border: 1px solid #e7e8ec;
     border-radius: 4px;
     overflow: scroll;
-    max-height: 500px
+    max-height: 75vh
 }
 
 .Table__wrapper--scrolled .Table__Cell--fixedColumnLast {

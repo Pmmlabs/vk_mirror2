@@ -348,12 +348,12 @@ var Market = {
                 }
 
                 var searchParamsCount = 0;
-                each(query, function(k, v) {
-                    if (!inArray(k, ['id', 'load', 'sort', 'offset', 'disabled']) && v != '' || (k == 'sort' && v != 0)) {
+                each(query, function(key, value) {
+                    if (!inArray(key, ['id', 'load', 'sort', 'offset', 'disabled', 'aid']) && value != '' || (key == 'sort' && value != 0)) {
                         searchParamsCount++;
                     }
                 });
-                if (searchParamsCount) {
+                if (searchParamsCount || query.aid) {
                     addClass('market', 'market_search_section');
                 } else {
                     removeClass('market', 'market_search_section');

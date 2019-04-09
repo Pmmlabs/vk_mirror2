@@ -4656,6 +4656,7 @@
                 case "search":
                     t().showSearch(e);
                     break;
+                case "block_notify":
                 case "block_community":
                     e.set(r.Gc.bind(null, !1, f)).then(function() {
                         e.get().longpoll.push([Object(c.Ab)()]), showDoneBox(getLang("mail_community_was_blocked"))
@@ -12637,6 +12638,10 @@
                     icon: "block",
                     name: Oe("mail_block_comm_messages")
                 },
+                block_notify: {
+                    icon: "block",
+                    name: Oe("mail_block_notify_messages")
+                },
                 allow_community: {
                     icon: "unblock",
                     name: Oe("mail_allow_comm_messages")
@@ -17902,7 +17907,8 @@
             leave: 12,
             return: 12,
             block_community: 12,
-            allow_community: 12
+            allow_community: 12,
+            block_notify: 12
         };
 
         function L(e, t, n) {
@@ -18102,7 +18108,7 @@
                 r = [],
                 i = Object(l.hb)(t) && (n.data.closed || n.data.kicked),
                 a = Object(l.pb)(e, t);
-            n.offset && r.push("photos"), n.offset && r.push("search"), (t < -2e9 || n.offset) && !a && r.push("clear"), Object(l.jb)(e) && !a && r.push("block"), a && !i && r.push("settings"), Object(l.kb)(t) && (n.blocked_community ? r.push("allow_community") : r.push("block_community")), (Object(l.hb)(t) || Object(l.Fb)(t) || Object(l.kb)(t)) && !Object(l.jb)(e) && (Object(l.hb)(t) && (n.data.kicked || n.data.closed) || (inArray(t, e.mutedPeers) ? r.push("unmute") : r.push("mute"))), Object(l.Fb)(t) && !e.gid && !n.blacklisted && n.is_friend && r.push("invite"), Object(l.hb)(t) && !i && (Object(h.h)(e) && r.push("invite"), e.gid || r.push("leave")), Object(l.hb)(t) && n.data.closed && !n.data.kicked && r.push("return"), Object(l.hb)(t) && n.pinned && (r.push(Object(g.a)(e, t) ? "pin_hide" : "pin_unhide"), Object(h.j)(e) && r.push("unpin"));
+            n.offset && r.push("photos"), n.offset && r.push("search"), (t < -2e9 || n.offset) && !a && r.push("clear"), Object(l.jb)(e) && !a && r.push("block"), a && !i && r.push("settings"), Object(l.kb)(t) && (n.can_send_notify ? r.push("block_notify") : r.push(n.blocked_community ? "allow_community" : "block_community")), (Object(l.hb)(t) || Object(l.Fb)(t) || Object(l.kb)(t)) && !Object(l.jb)(e) && (Object(l.hb)(t) && (n.data.kicked || n.data.closed) || r.push(inArray(t, e.mutedPeers) ? "unmute" : "mute")), Object(l.Fb)(t) && !e.gid && !n.blacklisted && n.is_friend && r.push("invite"), Object(l.hb)(t) && !i && (Object(h.h)(e) && r.push("invite"), e.gid || r.push("leave")), Object(l.hb)(t) && n.data.closed && !n.data.kicked && r.push("return"), Object(l.hb)(t) && n.pinned && (r.push(Object(g.a)(e, t) ? "pin_hide" : "pin_unhide"), Object(h.j)(e) && r.push("unpin"));
             var o = Object(l.D)(e, a);
             return e.curActions = r.sort(function(e, t) {
                 return M[e] - M[t]
@@ -19477,7 +19483,7 @@
         function on(e, t, n) {
             if (!Object(l.kb)(t)) return Promise.resolve(n);
             var i = Object(d.t)(n, t);
-            return i.blocked_community = !e, Object(r.b)(k, {
+            return i.blocked_community = !e, !1 === e && (i.can_send_notify = !1), Object(r.b)(k, {
                 act: "a_toggle_community",
                 peer_id: t,
                 hash: i.hash,
