@@ -301,7 +301,7 @@
     padding: 17px 0 2px
 }
 
-.post_poster:not(.post_signed):not(.post_fr_likes):not(.post_btl):not(.wpe_wrap):not(.post_marked_as_ads) .like_cont {
+.post_poster:not(.Post--copyright):not(.post_signed):not(.post_fr_likes):not(.post_btl):not(.wpe_wrap):not(.post_marked_as_ads) .like_cont {
     border-top: 0
 }
 
@@ -5564,7 +5564,13 @@ h5.post_author {
 }
 
 .wall_module .post_poster .wall_text {
-    padding: 15px 20px 0
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.wall_module .post_poster:not(.Post--copyright) .wall_text {
+    padding-bottom: 0
 }
 
 .wall_module .post_poster:not(.im-mess--post) .wall_signed {
@@ -9011,12 +9017,11 @@ div.submit_post_field[contenteditable=true]>p {
 
 .post_settings .post_settings_tooltip .checkbox {
     white-space: nowrap;
-    margin-bottom: 14px;
     margin-top: -2px
 }
 
-.post_settings .post_settings_tooltip .checkbox:last-child {
-    margin-bottom: 0
+.post_settings .post_settings_tooltip .checkbox+.checkbox {
+    margin-top: 14px
 }
 
 .post_settings .post_settings_tooltip .checkbox:before {

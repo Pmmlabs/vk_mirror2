@@ -2732,7 +2732,8 @@ body.dev a.dev_search_match_row {
     padding: 4px 8px;
     margin: 15px 0 0 15px;
     background: #5e82a8;
-    color: #fff
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 #dev_upload_iframe_wrap {

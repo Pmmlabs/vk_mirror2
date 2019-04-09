@@ -226,7 +226,7 @@ ul {
 }
 
 .slim_header_label {
-    color: #657e9b
+    color: #909499
 }
 
 .slim_header_lnk {
@@ -797,7 +797,7 @@ select {
 }
 
 .near_btn .option_row {
-    padding: 0!important;
+    margin: 0!important;
     margin-bottom: -2px
 }
 
@@ -949,17 +949,18 @@ select {
 }
 
 .near_btn {
-    padding: 6px 10px
+    margin: 6px 10px;
+    position: relative
 }
 
 .small_button {
+    padding: 4px 7px;
     text-align: center;
     cursor: pointer
 }
 
-.small_button,
 .small_near_btn {
-    padding: 4px 7px
+    margin: 4px 7px
 }
 
 ._hover .button:hover,
@@ -1265,7 +1266,7 @@ input.wide_button {
 }
 
 .fit_box.new_form .near_btn {
-    padding: 6px 0
+    margin: 6px 0
 }
 
 .fit_box.new_form .fi_field_links,
@@ -3456,6 +3457,20 @@ input.wide_button {
 
 .pi_signed.ads_mark {
     color: #888
+}
+
+.pi_signed,
+.pi_signed .copyright_label {
+    font-size: 14px;
+    color: #909499
+}
+
+.pi_signed .copyright_label span,
+.pi_signed span {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .pi_signed .i_signed {
@@ -6910,15 +6925,15 @@ div.pm_item .pm_counter {
     padding: 0 0 2px
 }
 
-.create_post .post_timer {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    font-size: 15px;
-    z-index: 5
+.create_post .post__select {
+    display: inline-block;
+    margin: 12px 6px 6px 0;
+    z-index: 5;
+    padding-right: 16px;
+    font-size: 15px
 }
 
-.create_post .post_timer:after {
+.create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -6930,7 +6945,7 @@ div.pm_item .pm_counter {
     width: 20px
 }
 
-.vk_2x .create_post .post_timer:after {
+.vk_2x .create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
@@ -6965,6 +6980,7 @@ div.pm_item .pm_counter {
 }
 
 .cp_buttons_block .near_btn {
+    display: inline;
     padding-right: 0
 }
 
@@ -6995,10 +7011,15 @@ div.pm_item .pm_counter {
     border: 1px solid #d1d7de
 }
 
-.create_post_timer {
-    width: 100%;
-    height: 38px;
+.create_post__select {
+    max-width: 100%;
+    padding-left: 10px;
+    height: 44px;
     background-color: #fff
+}
+
+.create_post__select:first-child {
+    margin-left: 8px
 }
 
 .cp_attached_wrap .ph_img,
@@ -12732,7 +12753,7 @@ a.Popup__headerCorner {
 }
 
 .TextInput_error {
-    border-color: #f2ab99
+    border-color: #e64646
 }
 
 .TextInput__native,
@@ -12884,7 +12905,7 @@ a.Popup__headerCorner {
 .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:disabled,
 .GroupsNear .GroupsInvite__item .si_links .si_link:disabled {
     pointer-events: none;
-    opacity: 0.7
+    opacity: 0.4
 }
 
 .Btn__loader {
@@ -12904,7 +12925,8 @@ a.Popup__headerCorner {
     overflow: hidden;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
+    pointer-events: none
 }
 
 
@@ -13007,12 +13029,12 @@ a.Popup__headerCorner {
     background: transparent
 }
 
-._hover .Btn_theme_link:hover {
+._hover .Btn_theme_link:hover:enabled {
     color: #5b88bd
 }
 
-._hover .Btn_theme_link:active,
-._touch .Btn_theme_link.hover {
+._hover .Btn_theme_link:active:enabled,
+._touch .Btn_theme_link.hover:enabled {
     color: #4872a3
 }
 
@@ -31395,7 +31417,6 @@ a.feedBlocks__article:hover {
     width: auto;
     height: auto;
     padding: 4px 0;
-    margin-left: 8px;
     font-size: 12px!important;
     cursor: pointer
 }
@@ -31607,6 +31628,76 @@ a.feedBlocks__article:hover {
 .vk__page_newCreatePost #post_options_box #attached_flush {
     padding: 12px 0 4px;
     font-size: 14px
+}
+
+.create_post__source-option {
+    display: table;
+    width: 100%;
+    position: relative;
+    margin-top: 24px;
+    cursor: pointer
+}
+
+.create_post__source-option .BookmarksItem .ai_menu_toggle_button,
+.create_post__source-option .GlobalSearchHeader .i_search,
+.create_post__source-option .Icon,
+.create_post__source-option .m .vk__page_chatAdd .basis .lvi.mlvi,
+.create_post__source-option .m .vk__page_chatSettings .basis .lvi.mlvi,
+.create_post__source-option .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.create_post__source-option .OwnerColumn__online,
+.create_post__source-option .OwnerRow__online,
+.create_post__source-option .pm_item .i_gift.i_icon,
+.create_post__source-option .pm_item .i_money.i_icon,
+.create_post__source-option .vk__page_redesign .basis .ii_btn {
+    display: table-cell;
+    margin-left: -2px;
+    vertical-align: middle;
+    height: 28px;
+    -webkit-transition: opacity 0.2s ease;
+    -moz-transition: opacity 0.2s ease;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.create_post__source-option .Btn,
+.create_post__source-option .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.create_post__source-option .Groups .GroupsInvite__item .si_links .si_link,
+.create_post__source-option .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.create_post__source-option .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.create_post__source-option .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.create_post__source-option .GroupsNear .GroupsInvite__item .si_links .si_link {
+    display: table-cell;
+    text-align: left;
+    padding-left: 10px
+}
+
+.create_post__source-option:after {
+    content: '';
+    height: 1px;
+    background: rgba(0, 0, 0, .15);
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: -12px
+}
+
+.create_post__source-option--disabled .BookmarksItem .ai_menu_toggle_button,
+.create_post__source-option--disabled .GlobalSearchHeader .i_search,
+.create_post__source-option--disabled .Icon,
+.create_post__source-option--disabled .m .vk__page_chatAdd .basis .lvi.mlvi,
+.create_post__source-option--disabled .m .vk__page_chatSettings .basis .lvi.mlvi,
+.create_post__source-option--disabled .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.create_post__source-option--disabled .OwnerColumn__online,
+.create_post__source-option--disabled .OwnerRow__online,
+.create_post__source-option--disabled .pm_item .i_gift.i_icon,
+.create_post__source-option--disabled .pm_item .i_money.i_icon,
+.create_post__source-option--disabled .vk__page_redesign .basis .ii_btn {
+    opacity: 0.4
+}
+
+.create_post__flush {
+    margin-top: 8px;
+    padding-left: 10px
 }
 
 .post_suggest {
@@ -31857,7 +31948,6 @@ a.feedBlocks__article:hover {
 
 .te_i .ibwrap {
     margin-top: -8px;
-    background: #fff;
     padding: 0 0 10px!important;
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
@@ -42930,6 +43020,56 @@ body.apps_settingsPageBody .basis__content {
     }
 }
 
+.Tooltip {
+    position: absolute;
+    background: #fff;
+    padding: 9px 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    -webkit-box-shadow: 0 4px 32px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .04);
+    -moz-box-shadow: 0 4px 32px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .04);
+    box-shadow: 0 4px 32px 0 rgba(0, 0, 0, .16), 0 0 4px 0 rgba(0, 0, 0, .04);
+    width: 220px;
+    overflow-wrap: break-word;
+    z-index: 10;
+    cursor: default;
+    line-height: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #2c2d2e;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.Tooltip--top {
+    bottom: 36px
+}
+
+.Tooltip:after {
+    position: absolute;
+    content: '';
+    width: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fff;
+    bottom: -8px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
 .Voting {
     padding: 0 12px 4px;
     position: relative;
@@ -50882,6 +51022,43 @@ a .BookmarkListItem__subtitle:hover {
     margin: 0 6px
 }
 
+.CopyrightPopup .Popup__header {
+    font-size: 16px;
+    padding: 0 0 8px
+}
+
+.CopyrightPopup .Popup__content {
+    font-size: 15px
+}
+
+.CopyrightPopup .Popup__buttons {
+    margin-bottom: 0
+}
+
+.AddCopyrightPopup .Popup__header {
+    font-size: 16px;
+    padding: 0 0 8px
+}
+
+.AddCopyrightPopup .Popup__content {
+    font-size: 15px
+}
+
+.AddCopyrightPopup .Popup__buttons {
+    margin-bottom: 0
+}
+
+.AddCopyrightPopup__input {
+    margin-top: 12px
+}
+
+.AddCopyrightPopup__error {
+    display: block;
+    margin-top: 8px;
+    color: #e64646;
+    font-size: 15px
+}
+
 .MainMenu {
     margin: 0 0 12px
 }
@@ -54812,7 +54989,7 @@ body {
         padding: 6px 12px
     }
     .near_btn {
-        padding: 6px 10px
+        margin: 6px 10px
     }
     .small_button,
     .small_near_btn {
@@ -56128,7 +56305,7 @@ screen and (max-width: 240px) and only screen and (min-device-pixel-ratio: 2) {
         padding: 8px 16px
     }
     .near_btn {
-        padding: 8px 12px
+        margin: 8px 12px
     }
     .small_button {
         padding: 5px 8px
@@ -56246,10 +56423,10 @@ screen and (max-width: 240px) and only screen and (min-device-pixel-ratio: 2) {
 @media screen and (min-width: 241px) and only screen and (-webkit-min-device-pixel-ratio: 2),
 screen and (min-width: 241px) and only screen and (min-device-pixel-ratio: 2) {
     .near_btn {
-        padding-top: 7px
+        margin-top: 7px
     }
     .small_near_btn {
-        padding-top: 5px
+        margin-top: 5px
     }
 }
 

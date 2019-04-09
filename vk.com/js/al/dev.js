@@ -808,12 +808,54 @@ var Dev = {
                 debugLog('unknown type', typeof obj);
                 break;
         }
-        if (rootNode && obj.response && obj.response['upload_url'] && Dev.checkUploadUrl(obj.response['upload_url'])) {
-            html += '<div class="dev_upload_form"><form id="dev_file_submit" action="' + clean(obj.response['upload_url']) + '" target="dev_upload_iframe" enctype="multipart/form-data" method="post"><input type="file" name="file" onchange="this.parentNode.submit(); show(\'dev_upload_iframe_wrap\')" class="dev_upload_input" /></form></div><div id="dev_upload_iframe_wrap"><iframe id="dev_upload_iframe" name="dev_upload_iframe"></iframe></div>';
+        if (rootNode && obj.response) {
+            html += Dev.getResponseHelpers(obj.response);
         }
         return html;
     },
+    getResponseHelpers: function(response) {
+        // *.getUploadServer
+        if (response.upload_url && Dev.checkUploadUrl(response.upload_url)) {
+            return '<div class="dev_upload_form">' +
+                '<form id="dev_file_submit" action="' + clean(response.upload_url) + '" target="dev_upload_iframe" enctype="multipart/form-data" method="post">' +
+                '<input type="file" name="file" onchange="this.parentNode.submit(); show(\'dev_upload_iframe_wrap\')" class="dev_upload_input" />' +
+                '</form>' +
+                '</div>' +
+                '<div id="dev_upload_iframe_wrap">' +
+                '<iframe id="dev_upload_iframe" name="dev_upload_iframe"></iframe>' +
+                '</div>';
+        }
 
+        // groups.getLongPollServer / messages.getLongPollServer
+        if (/^[a-z0-9:/.]+$/.test(response.server) && /^[0-9a-f]+$/.test(response.key)) {
+            var link = response.server + '?act=a_check&key=' + response.key + '&wait=25&mode=2';
+            var version = val('dev_const_lp_version');
+
+            if (!/^https?:\/\//.test(link)) {
+                link = 'https://' + link;
+            }
+
+            if (/^\d+$/.test(response.ts)) {
+                link += '&ts=' + response.ts;
+            }
+
+            if (/^\d+$/.test(response.pts)) {
+                link += '&pts=' + response.pts;
+            }
+
+            if (version && /^\d+$/.test(version)) {
+                link += '&version=' + version;
+            }
+
+            return '<div class="dev_upload_form">' +
+                getLang('developers_server_link_example') +
+                '</div><div id="dev_upload_iframe_wrap" class="dev_req_result" style="display:block;">' +
+                '<a href="' + link + '" target="_blank" rel="noopener">' + link + '</a>' +
+                '</div>';
+        }
+
+        return '';
+    },
     showObjTooltip: function(el, content, onShowStart) {
         if (window.tooltips) {
             window.tooltips.hideAll();

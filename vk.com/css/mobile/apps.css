@@ -224,7 +224,7 @@ ul {
 }
 
 .slim_header_label {
-    color: #657e9b
+    color: #909499
 }
 
 .slim_header_lnk {
@@ -795,7 +795,7 @@ select {
 }
 
 .near_btn .option_row {
-    padding: 0!important;
+    margin: 0!important;
     margin-bottom: -2px
 }
 
@@ -947,17 +947,18 @@ select {
 }
 
 .near_btn {
-    padding: 6px 10px
+    margin: 6px 10px;
+    position: relative
 }
 
 .small_button {
+    padding: 4px 7px;
     text-align: center;
     cursor: pointer
 }
 
-.small_button,
 .small_near_btn {
-    padding: 4px 7px
+    margin: 4px 7px
 }
 
 ._hover .button:hover,
@@ -1263,7 +1264,7 @@ input.wide_button {
 }
 
 .fit_box.new_form .near_btn {
-    padding: 6px 0
+    margin: 6px 0
 }
 
 .fit_box.new_form .fi_field_links,
@@ -3441,6 +3442,20 @@ input.wide_button {
 
 .pi_signed.ads_mark {
     color: #888
+}
+
+.pi_signed,
+.pi_signed .copyright_label {
+    font-size: 14px;
+    color: #909499
+}
+
+.pi_signed .copyright_label span,
+.pi_signed span {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .pi_signed .i_signed {
@@ -6895,15 +6910,15 @@ div.pm_item .pm_counter {
     padding: 0 0 2px
 }
 
-.create_post .post_timer {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    font-size: 15px;
-    z-index: 5
+.create_post .post__select {
+    display: inline-block;
+    margin: 12px 6px 6px 0;
+    z-index: 5;
+    padding-right: 16px;
+    font-size: 15px
 }
 
-.create_post .post_timer:after {
+.create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -6915,7 +6930,7 @@ div.pm_item .pm_counter {
     width: 20px
 }
 
-.vk_2x .create_post .post_timer:after {
+.vk_2x .create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses_2x.png?14')
 }
 
@@ -6950,6 +6965,7 @@ div.pm_item .pm_counter {
 }
 
 .cp_buttons_block .near_btn {
+    display: inline;
     padding-right: 0
 }
 
@@ -6980,10 +6996,15 @@ div.pm_item .pm_counter {
     border: 1px solid #d1d7de
 }
 
-.create_post_timer {
-    width: 100%;
-    height: 38px;
+.create_post__select {
+    max-width: 100%;
+    padding-left: 10px;
+    height: 44px;
     background-color: #fff
+}
+
+.create_post__select:first-child {
+    margin-left: 8px
 }
 
 .cp_attached_wrap .ph_img,

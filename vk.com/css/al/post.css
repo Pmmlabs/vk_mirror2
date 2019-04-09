@@ -1422,3 +1422,90 @@ div.med_no_attach {
     float: right;
     line-height: 32px
 }
+
+.Post__copyright {
+    font-size: 12.5px;
+    line-height: 15px;
+    color: #939393;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-top: 8px
+}
+
+.Post__copyright:last-child {
+    margin-bottom: -4px
+}
+
+.Post__copyrightLink {
+    color: #939393
+}
+
+.Post__copyrightButton {
+    display: block;
+    white-space: nowrap;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 9px;
+    color: #2a5885;
+    outline: none;
+    margin: 0 -9px
+}
+
+.Post__copyrightButton:last-child {
+    margin-bottom: -4px
+}
+
+.Post__copyrightButton:first-child {
+    margin-top: -3px
+}
+
+.checkbox+.Post__copyrightButton {
+    margin-top: 20px
+}
+
+.checkbox+.Post__copyrightButton:after {
+    content: '';
+    display: block;
+    height: 1px;
+    left: 9px;
+    right: 9px;
+    top: -6px;
+    background: #dbe4ec;
+    position: absolute
+}
+
+.Post__copyrightButton:hover {
+    text-decoration: none;
+    background: #e4eaf0
+}
+
+.Post__copyrightButton:before {
+    content: '';
+    display: inline-block;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M7%205h4a1%201%200%200%201%200%202H7v4a1%201%200%200%201-2%200V7H1a1%201%200%201%201%200-2h4V1a1%201%200%201%201%202%200v4zM1.488%2020.119L3.49%2022.12l-.51.51-2.98%201%20.974-3%20.514-.512zm1.001-1l6.872-6.855a.895.895%200%200%201%201.269%200l.736.734a.889.889%200%200%201%200%201.266L4.49%2021.122l-2-2.002z%22%20fill%3D%22%237293B6%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') 0 0;
+    width: 12px;
+    height: 12px;
+    margin: 0 9px 0 2px;
+    vertical-align: -1px
+}
+
+.Post__copyrightButton--added:before {
+    background-position: 0 12px
+}
+
+.Post__copyrightButton--disabled {
+    pointer-events: none;
+    color: #000;
+    opacity: 0.5
+}
+
+.PostCopyrightBox__input.dark {
+    width: 100%;
+    margin-top: 16px
+}
+
+.PostCopyrightBox__error {
+    display: none
+}

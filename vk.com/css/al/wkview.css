@@ -1467,6 +1467,10 @@ span#wk_posts_reach_tooltip_link {
     border-radius: 4px
 }
 
+.wl_post_body_wrap .Post__copyright:last-child {
+    margin-bottom: 5px
+}
+
 .closed_comments .reply_link_wrap {
     display: none
 }
