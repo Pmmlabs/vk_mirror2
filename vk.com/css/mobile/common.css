@@ -40151,6 +40151,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_close16,
 .Icon_delete,
 .Icon_doc,
+.Icon_edit,
 .Icon_hide,
 .Icon_important,
 .Icon_info,
@@ -40212,6 +40213,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_close16:before,
 .Icon_delete:before,
 .Icon_doc:before,
+.Icon_edit:before,
 .Icon_hide:before,
 .Icon_important:before,
 .Icon_info:before,
@@ -40244,7 +40246,7 @@ body.apps_settingsPageBody .basis__content {
 .vk__page_redesign .basis .ii_btn:before {
     width: 24px;
     height: 24px;
-    background-image: url('/images/mobile/skins/icon/base.png?14')
+    background-image: url('/images/mobile/skins/icon/base.png?15')
 }
 
 .vk_2x #id_search_items .inline_item_reset .ii_body:before,
@@ -40275,6 +40277,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_close16:before,
 .vk_2x .Icon_delete:before,
 .vk_2x .Icon_doc:before,
+.vk_2x .Icon_edit:before,
 .vk_2x .Icon_hide:before,
 .vk_2x .Icon_important:before,
 .vk_2x .Icon_info:before,
@@ -40306,7 +40309,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"]:before,
 .vk_2x .ni_close:after,
 .vk_2x .vk__page_redesign .basis .ii_btn:before {
-    background-image: url('/images/mobile/skins/icon/base_2x.png?14')
+    background-image: url('/images/mobile/skins/icon/base_2x.png?15')
 }
 
 .Icon_news.Icon_active:before {
@@ -40556,6 +40559,10 @@ body.apps_settingsPageBody .basis__content {
 
 .Icon_info:before {
     background-position: 0 -1608px
+}
+
+.Icon_edit:before {
+    background-position: 0 -1680px
 }
 
 .Icon_attach_blue,

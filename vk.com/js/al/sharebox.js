@@ -192,6 +192,7 @@ var ShareBox = {
                         lnk: ge('like_share_add_media'),
                         preview: ge('like_share_media_preview'),
                         gearEl: ge('like_share_settings_btn'),
+                        actionsEl: false,
                         types: opts.shTypes,
                         options: {
                             limit: limit,

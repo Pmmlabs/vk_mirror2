@@ -548,8 +548,8 @@
                 }!1 === e[i] && Object(k.yb)(this, t)
             })
         }
-        var U = n("0gG3"),
-            W = n("XzvV"),
+        var W = n("0gG3"),
+            U = n("XzvV"),
             q = n("v+DW"),
             z = n("lkNA");
         var G = function() {
@@ -695,7 +695,7 @@
                 GROUPS_ADMIN_FLAG_ADS: 8
             },
             ae = n("1BRX"),
-            de = n("8+we"),
+            de = n("W9Tc"),
             we = n("98sY"),
             ce = n("El3O"),
             se = n("EasH"),
@@ -821,8 +821,8 @@
             Re = "_longViewTop",
             He = "_longViewBottom",
             Fe = "REGULAR",
-            Ue = "AUTOPLAY_AD",
-            We = "LongView.viewed",
+            We = "AUTOPLAY_AD",
+            Ue = "LongView.viewed",
             qe = "LongView.idled",
             ze = vk.longViewTestGroup,
             Ge = [],
@@ -856,7 +856,7 @@
                 return !(!t || "ads_feed_placeholder" === t.getAttribute("id") || Object(k.V)(e, "no_posts"))
             }(e) && (e[Pe] = function(e) {
                 var t = e && Object(k.u)(e);
-                return t && t.hasAttribute("data-ad-video-autoplay") ? Ue : Fe
+                return t && t.hasAttribute("data-ad-video-autoplay") ? We : Fe
             }(e), e[Ie] = t, Ge.push(e))
         }
 
@@ -950,7 +950,7 @@
         }
 
         function yt(e) {
-            _t(We, e)
+            _t(Ue, e)
         }
 
         function Ot(e) {
@@ -965,7 +965,7 @@
         function jt() {
             var e = jt,
                 t = [],
-                n = H.a.get(We) || {},
+                n = H.a.get(Ue) || {},
                 o = H.a.get(qe) || {};
             return e.iterator || (e.iterator = function(e) {
                 return function(n) {
@@ -976,13 +976,13 @@
 
         function kt() {
             var e = kt,
-                t = H.a.get(We) || {},
+                t = H.a.get(Ue) || {},
                 n = H.a.get(qe) || {};
             e.iterator || (e.iterator = function(e) {
                 return function(t) {
                     Lt(t) && delete e[t]
                 }
-            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), H.a.set(We, t), H.a.set(qe, n)
+            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), H.a.set(Ue, t), H.a.set(qe, n)
         }
 
         function Lt(e) {
@@ -1011,7 +1011,7 @@
         function Tt(e, t, n) {
             if (St(e)) return [];
             var o = Math.min(Le, Date.now() - e[Me]);
-            if (e[Pe] === Fe && o < je || e[Pe] === Ue && o < ke) return [];
+            if (e[Pe] === Fe && o < je || e[Pe] === We && o < ke) return [];
             n || (e[Ne] = !0);
             var i, r = function(e) {
                     var t = e[Ie];
@@ -1157,7 +1157,7 @@
             window.NextPageID = 1, window.__debugMode = !0, window.__dev = /[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+/i.test(locHost), window.__dev || (window.__debugMode = !1), window._wf = 0, window.cur = {
                 destroy: [],
                 nav: []
-            }, Rt.width = 960, Rt.started = Object(S.L)(), Rt.counts = {}, _.a.android && (Object(y.d)("remixscreen_width", window.screen.width, 365), Object(y.d)("remixscreen_height", window.screen.height, 365), Object(y.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(y.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(y.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(X.f)(), Object(U.b)(), Object(T.b)(window, "unload", function() {
+            }, Rt.width = 960, Rt.started = Object(S.L)(), Rt.counts = {}, _.a.android && (Object(y.d)("remixscreen_width", window.screen.width, 365), Object(y.d)("remixscreen_height", window.screen.height, 365), Object(y.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(y.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(y.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(X.f)(), Object(W.b)(), Object(T.b)(window, "unload", function() {
                 for (var e in vkCache) vkCache[e].handle && vkCache[e].handle.elem !== window && Object(T.h)(vkCache[e].handle.elem)
             }), Object(T.b)(window, "DOMContentLoaded load", function() {
                 Rt.loaded || (Rt.loaded = !0, Object(q.y)()), Object(ce.c)()
@@ -1167,9 +1167,9 @@
         }
         var Ft = 0;
 
-        function Ut() {
+        function Wt() {
             if (window.headNode = Object(k.J)("head"), window.icoNode = Object(k.J)("link", headNode), window.bodyNode = Object(k.J)("body"), window.htmlNode = Object(k.J)("html"), window.utilsNode = Object(k.F)("utils"), window._fixedNav = !1, window._tbLink = {}, Object(T.b)(bodyNode, "resize", ce.j.pbind(!1)), utilsNode) {
-                _.a.mozilla ? Object(k.a)(bodyNode, "firefox") : _.a.mobile && Object(k.a)(bodyNode, "mobfixed"), Object(ge.g)(), Object(U.a)();
+                _.a.mozilla ? Object(k.a)(bodyNode, "firefox") : _.a.mobile && Object(k.a)(bodyNode, "mobfixed"), Object(ge.g)(), Object(W.a)();
                 var e = Object(k.F)("layer_bg"),
                     t = e.nextSibling,
                     n = Object(k.F)("box_layer_bg"),
@@ -1187,7 +1187,7 @@
             }
         }
 
-        function Wt() {
+        function Ut() {
             if (utilsNode) {
                 window.AppUseTime && (window.appUseTime = new window.AppUseTime({
                     getModule: function() {
@@ -1203,7 +1203,7 @@
                     n = Object(S.r)((Rt.contlen || 1) / t * 1e3);
                 _.a.mozilla && _.a.version >= 4 ? n /= 2.5 : _.a.mozilla ? n *= 1.5 : _.a.msie && _.a.version >= 7 ? n /= 1.5 : _.a.msie && (n *= 2.5);
                 var o = Object(S.r)(150 * Math.max(2e6 / n, 1));
-                if (U.d.highlimit = 6 * o, U.d.lowlimit = Math.min(o, 600), Object(ce.j)(), setTimeout(ce.j.pbind(!1), 0), Object(At.c)(), window.addEventListener("scroll", ce.k, {
+                if (W.d.highlimit = 6 * o, W.d.lowlimit = Math.min(o, 600), Object(ce.j)(), setTimeout(ce.j.pbind(!1), 0), Object(At.c)(), window.addEventListener("scroll", ce.k, {
                         passive: !0
                     }), window.debuglogInit && debuglogInit(), !Rt.id && H.a.checkVersion() && H.a.get("last_reloaded")) try {
                     var i = {};
@@ -1237,11 +1237,11 @@
         }
         window.constants = {
             Groups: re
-        }, window.partConfigEnabled = de.a, Object(k.X)(), window.ge = k.F, window.geByTag = k.I, window.geByTag1 = k.J, window.geByClass = k.G, window.geByClass1 = k.H, window.gpeByClass = k.T, window.domQuery = k.B, window.domQuery1 = k.C, window.domClosest = k.n, window.ce = k.e, window.cf = k.f, window.re = k.fb, window.se = k.mb, window.sech = k.nb, window.rs = k.lb, window.psr = k.eb, window.domReplaceEl = k.D, window.domEL = k.t, window.domNS = k.y, window.domPS = k.A, window.domFC = k.u, window.domLC = k.x, window.domPN = k.z, window.domChildren = k.m, window.domInsertBefore = k.w, window.domInsertAfter = k.v, window.domByClass = k.j, window.domData = k.s, window.domChildIndex = k.l, window.domCA = k.k, window.domClosestSibling = k.r, window.matchesSelector = k.db, window.isHover = k.Z, window.isAncestor = k.Y, window.getScroll = k.M, window.domClosestPositioned = k.q, window.domClosestOverflowHidden = k.p, window.show = k.tb, window.hide = k.W, window.isVisible = k.ab, window.clientHeight = k.h, window.getClientRectOffsetY = k.K, window.toggle = k.ub, window.boundingRectEnabled = k.d, window.getXYRect = k.R, window.getXY = k.Q, window.isWindow = k.bb, window.getSize = k.N, window.hasClass = k.V, window.addClass = k.a, window.addClassDelayed = k.b, window.removeClass = k.hb, window.removeClassDelayed = k.ib, window.toggleClass = k.vb, window.toggleClassDelayed = k.wb, window.replaceClass = k.kb, window.getStyle = k.O, window.setStyle = k.qb, window.setStyleDelayed = k.rb, window.setPseudoStyle = k.pb, window.data = k.i, window.attr = k.c, window.removeAttr = k.gb, window.removeData = k.jb, window.cleanElems = k.g, window.setTitle = k.sb, window.getZoom = k.S, window.val = k.yb, window.elfocus = k.E, window.traverseParent = k.xb, window.getH = k.L, window.getW = k.P, window.domClosestByTag = k.o, window.setDocumentTitle = k.ob, window.lockDocumentTitle = k.cb, window.KEY = T.a, window.addEvent = T.b, window.removeEvent = T.h, window.triggerEvent = T.j, window.cancelEvent = T.c, window.stopEvent = T.i, window.normEvent = T.g, window.checkEvent = T.d, window.checkKeyboardEvent = T.e, window.checkOver = T.f, Object(S.q)(), window.isRetina = S.y, window.extractUrls = S.j, window.serializeForm = S.F, window.addTemplates = S.a, window.getTemplate = S.n, window.rand = S.D, window.irand = S.s, window.isUndefined = S.A, window.isFunction = S.v, window.isArray = S.t, window.isString = S.z, window.isObject = S.x, window.isEmpty = S.u, window.vkNow = S.L, window.vkImage = S.J, window.trim = S.H, window.stripHTML = S.G, window.escapeRE = S.h, window.intval = S.r, window.floatval = S.k, window.positive = S.C, window.isNumeric = S.w, window.winToUtf = S.M, window.replaceEntities = S.E, window.clean = S.c, window.unclean = S.I, window.each = S.f, window.indexOf = S.p, window.inArray = S.o, window.clone = S.d, window.arrayKeyDiff = S.b, window.extend = S.i, window.vkLocal = S.K, window.lTimeout = S.B, window.getCaretCharacterOffsetWithin = S.m, window.formatCount = S.l, window.encodeHtml = S.g, window.decodeHtml = S.e, Object(O.c)(), window.ajx2q = O.b, window.q2ajx = O.f, window.requestBox = O.g, window.activateMobileBox = O.a, window.validateMobileBox = O.h, window.validatePassBox = O.i, window.photoCaptchaBox = O.e, Object(y.c)(), window.getCookie = y.a, window.setCookie = y.d, window.hideCookiesPolicy = y.b, Object(we.c)(), window.debugLog = we.b, window.debugEl = we.a, window.isToday = ae.c, window.isYesterday = ae.e, window.isTomorrow = ae.d, window.isSameDate = ae.b, window.leadingZero = ae.f, window.formatTime = ae.a, window.parseLatin = P.o, window.parseCyr = P.m, window.parseLatKeys = P.n, window.langNumeric = P.i, window.langSex = P.j, window.langStr = P.k, window.addLangKeys = P.a, window.getLang = P.d, window.langDate = P.h, window.getShortDate = P.e, window.getShortDateOrTime = P.f, window.langWordNumeric = P.l, window.getDateText = P.c, window.getBigDateNew = P.b, window.getSmDate = P.g, window.scrollToY = B.g, window.scrollToTop = B.f, window.scrollGetX = B.d, window.scrollGetY = B.e, window.disableBodyScroll = B.a, window.enableBodyScroll = B.b, window.Chat = ge.a, window.__qlTimer = null, window.__qlClear = ge.b, window.onLoginDone = ge.n, window.onLoginFailed = ge.o, window.onLoginCaptcha = ge.m, window.onLoginReCaptcha = ge.p, window.storePasswordCredential = ge.q, window.cssAnim = ge.c, window.imagesLoader = ge.f, window.nodeUpdated = ge.l, window.hideNewsAnnounce = ge.e, window.leftAdBlockClose = ge.i, window.leftBlockToggleFriend = ge.k, window.leftBlockFriendTooltip = ge.j, window.fifaReplaceText = ge.d, window.placeholderSetup = Bt.c, window.placeholderInit = Bt.b, window.isInputActive = Bt.a, window.showTooltip = ue.c, window.showTitle = ue.b, window.showHint = ue.a, window.topMsg = g.d, window.showMsg = g.b, window.topError = g.c, window.showGlobalPrg = g.a, window.checkTextLength = ye.b, window.getSelectionText = ye.d, window.goAway = ye.e, window.debounce = ye.c, window.hashCode = ye.g, window.isFullScreen = ye.h, window.parallel = ye.k, window.parseJSON = ye.l, window.shuffle = ye.m, window.throttle = ye.n, window.toggleOnline = ye.q, window.updateMoney = ye.s, window.onlinePlatformClass = ye.j, window.Fx = E.a, window.fx = E.a, window.animate = E.b, window.cubicBezier = E.d, window.fadeTo = E.g, window.genFx = E.i, window.getRGB = E.k, window.getColor = E.j, window.slideDown = E.l, window.slideUp = E.n, window.slideToggle = E.m, window.fadeIn = E.e, window.fadeOut = E.f, window.fadeToggle = E.h, window.animateCount = E.c, window.updateAriaElements = At.c, window.updateAriaCheckboxes = At.b, window.hasAccessibilityMode = At.a, window.cancelStackFilter = N.a, window.cancelStackPush = N.c, window.cancelStackPop = N.b, window.ElementTooltip = j.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = L, 1 === Rt.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== Rt.al || history.pushState || (Rt.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), Rt.version = !1), Object(U.c)(), window.stManager = U.d, Object(_.c)(), window.browser = _.a, window.mobPlatforms = _.d, window.browserFeatures = _.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, Ht(), window.updateHeaderStyles = X.j, window.updateNarrow = ce.m, window.checkPageBlocks = ce.c, window.redraw = ce.l, window.onBodyResize = ce.j, window.onBodyScroll = ce.k, window.leftBlockOver = ce.i, window.leftBlockOut = ce.h, window.leftBlockHide = ce.g, window.onDocumentClick = It.c, window.onEnter = It.d, window.onCtrlEnter = It.b, window.autosizeSetup = ce.b, window.getProgressBarEl = ce.e, window.getProgressHtml = ce.f, Object(Nt.b)(), ie(), window.onDomReady = function(e) {
+        }, window.partConfigEnabled = de.a, Object(k.X)(), window.ge = k.F, window.geByTag = k.I, window.geByTag1 = k.J, window.geByClass = k.G, window.geByClass1 = k.H, window.gpeByClass = k.T, window.domQuery = k.B, window.domQuery1 = k.C, window.domClosest = k.n, window.ce = k.e, window.cf = k.f, window.re = k.fb, window.se = k.mb, window.sech = k.nb, window.rs = k.lb, window.psr = k.eb, window.domReplaceEl = k.D, window.domEL = k.t, window.domNS = k.y, window.domPS = k.A, window.domFC = k.u, window.domLC = k.x, window.domPN = k.z, window.domChildren = k.m, window.domInsertBefore = k.w, window.domInsertAfter = k.v, window.domByClass = k.j, window.domData = k.s, window.domChildIndex = k.l, window.domCA = k.k, window.domClosestSibling = k.r, window.matchesSelector = k.db, window.isHover = k.Z, window.isAncestor = k.Y, window.getScroll = k.M, window.domClosestPositioned = k.q, window.domClosestOverflowHidden = k.p, window.show = k.tb, window.hide = k.W, window.isVisible = k.ab, window.clientHeight = k.h, window.getClientRectOffsetY = k.K, window.toggle = k.ub, window.boundingRectEnabled = k.d, window.getXYRect = k.R, window.getXY = k.Q, window.isWindow = k.bb, window.getSize = k.N, window.hasClass = k.V, window.addClass = k.a, window.addClassDelayed = k.b, window.removeClass = k.hb, window.removeClassDelayed = k.ib, window.toggleClass = k.vb, window.toggleClassDelayed = k.wb, window.replaceClass = k.kb, window.getStyle = k.O, window.setStyle = k.qb, window.setStyleDelayed = k.rb, window.setPseudoStyle = k.pb, window.data = k.i, window.attr = k.c, window.removeAttr = k.gb, window.removeData = k.jb, window.cleanElems = k.g, window.setTitle = k.sb, window.getZoom = k.S, window.val = k.yb, window.elfocus = k.E, window.traverseParent = k.xb, window.getH = k.L, window.getW = k.P, window.domClosestByTag = k.o, window.setDocumentTitle = k.ob, window.lockDocumentTitle = k.cb, window.KEY = T.a, window.addEvent = T.b, window.removeEvent = T.h, window.triggerEvent = T.j, window.cancelEvent = T.c, window.stopEvent = T.i, window.normEvent = T.g, window.checkEvent = T.d, window.checkKeyboardEvent = T.e, window.checkOver = T.f, Object(S.q)(), window.isRetina = S.y, window.extractUrls = S.j, window.serializeForm = S.F, window.addTemplates = S.a, window.getTemplate = S.n, window.rand = S.D, window.irand = S.s, window.isUndefined = S.A, window.isFunction = S.v, window.isArray = S.t, window.isString = S.z, window.isObject = S.x, window.isEmpty = S.u, window.vkNow = S.L, window.vkImage = S.J, window.trim = S.H, window.stripHTML = S.G, window.escapeRE = S.h, window.intval = S.r, window.floatval = S.k, window.positive = S.C, window.isNumeric = S.w, window.winToUtf = S.M, window.replaceEntities = S.E, window.clean = S.c, window.unclean = S.I, window.each = S.f, window.indexOf = S.p, window.inArray = S.o, window.clone = S.d, window.arrayKeyDiff = S.b, window.extend = S.i, window.vkLocal = S.K, window.lTimeout = S.B, window.getCaretCharacterOffsetWithin = S.m, window.formatCount = S.l, window.encodeHtml = S.g, window.decodeHtml = S.e, Object(O.c)(), window.ajx2q = O.b, window.q2ajx = O.f, window.requestBox = O.g, window.activateMobileBox = O.a, window.validateMobileBox = O.h, window.validatePassBox = O.i, window.photoCaptchaBox = O.e, Object(y.c)(), window.getCookie = y.a, window.setCookie = y.d, window.hideCookiesPolicy = y.b, Object(we.c)(), window.debugLog = we.b, window.debugEl = we.a, window.isToday = ae.c, window.isYesterday = ae.e, window.isTomorrow = ae.d, window.isSameDate = ae.b, window.leadingZero = ae.f, window.formatTime = ae.a, window.parseLatin = P.o, window.parseCyr = P.m, window.parseLatKeys = P.n, window.langNumeric = P.i, window.langSex = P.j, window.langStr = P.k, window.addLangKeys = P.a, window.getLang = P.d, window.langDate = P.h, window.getShortDate = P.e, window.getShortDateOrTime = P.f, window.langWordNumeric = P.l, window.getDateText = P.c, window.getBigDateNew = P.b, window.getSmDate = P.g, window.scrollToY = B.g, window.scrollToTop = B.f, window.scrollGetX = B.d, window.scrollGetY = B.e, window.disableBodyScroll = B.a, window.enableBodyScroll = B.b, window.Chat = ge.a, window.__qlTimer = null, window.__qlClear = ge.b, window.onLoginDone = ge.n, window.onLoginFailed = ge.o, window.onLoginCaptcha = ge.m, window.onLoginReCaptcha = ge.p, window.storePasswordCredential = ge.q, window.cssAnim = ge.c, window.imagesLoader = ge.f, window.nodeUpdated = ge.l, window.hideNewsAnnounce = ge.e, window.leftAdBlockClose = ge.i, window.leftBlockToggleFriend = ge.k, window.leftBlockFriendTooltip = ge.j, window.fifaReplaceText = ge.d, window.placeholderSetup = Bt.c, window.placeholderInit = Bt.b, window.isInputActive = Bt.a, window.showTooltip = ue.c, window.showTitle = ue.b, window.showHint = ue.a, window.topMsg = g.d, window.showMsg = g.b, window.topError = g.c, window.showGlobalPrg = g.a, window.checkTextLength = ye.b, window.getSelectionText = ye.d, window.goAway = ye.e, window.debounce = ye.c, window.hashCode = ye.g, window.isFullScreen = ye.h, window.parallel = ye.k, window.parseJSON = ye.l, window.shuffle = ye.m, window.throttle = ye.n, window.toggleOnline = ye.q, window.updateMoney = ye.s, window.onlinePlatformClass = ye.j, window.Fx = E.a, window.fx = E.a, window.animate = E.b, window.cubicBezier = E.d, window.fadeTo = E.g, window.genFx = E.i, window.getRGB = E.k, window.getColor = E.j, window.slideDown = E.l, window.slideUp = E.n, window.slideToggle = E.m, window.fadeIn = E.e, window.fadeOut = E.f, window.fadeToggle = E.h, window.animateCount = E.c, window.updateAriaElements = At.c, window.updateAriaCheckboxes = At.b, window.hasAccessibilityMode = At.a, window.cancelStackFilter = N.a, window.cancelStackPush = N.c, window.cancelStackPop = N.b, window.ElementTooltip = j.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = L, 1 === Rt.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== Rt.al || history.pushState || (Rt.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), Rt.version = !1), Object(W.c)(), window.stManager = W.d, Object(_.c)(), window.browser = _.a, window.mobPlatforms = _.d, window.browserFeatures = _.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, Ht(), window.updateHeaderStyles = X.j, window.updateNarrow = ce.m, window.checkPageBlocks = ce.c, window.redraw = ce.l, window.onBodyResize = ce.j, window.onBodyScroll = ce.k, window.leftBlockOver = ce.i, window.leftBlockOut = ce.h, window.leftBlockHide = ce.g, window.onDocumentClick = It.c, window.onEnter = It.d, window.onCtrlEnter = It.b, window.autosizeSetup = ce.b, window.getProgressBarEl = ce.e, window.getProgressHtml = ce.f, Object(Nt.b)(), ie(), window.onDomReady = function(e) {
             return e()
         }, window.currentModule = function() {
             return cur.currentModule ? cur.currentModule() : cur.module
-        }, window.hab = A(), window.ls = H.a, window.shortCurrency = F, window.statlogsValueEvent = W.b, window.saveSearchAttemptStats = W.a, window.callHub = qt, window.CallHub = qt, window.gSearch = new G, window.zNav = X.m, window.handlePageView = X.e, window.handlePageParams = X.d, window.handlePageCount = X.c, window.comScoreUDM = X.a, window.updateOtherCounters = X.l, window.processDestroy = X.g, window.globalHistoryDestroy = X.b, window.showBackLink = X.i, window.nav = K.a, nav.init(), Rt.time && !window.browser.opera_mobile && setTimeout(function() {
+        }, window.hab = A(), window.ls = H.a, window.shortCurrency = F, window.statlogsValueEvent = U.b, window.saveSearchAttemptStats = U.a, window.callHub = qt, window.CallHub = qt, window.gSearch = new G, window.zNav = X.m, window.handlePageView = X.e, window.handlePageParams = X.d, window.handlePageCount = X.c, window.comScoreUDM = X.a, window.updateOtherCounters = X.l, window.processDestroy = X.g, window.globalHistoryDestroy = X.b, window.showBackLink = X.i, window.nav = K.a, nav.init(), Rt.time && !window.browser.opera_mobile && setTimeout(function() {
             var e = new Date,
                 t = [0, e.getMonth() + 1, e.getDate(), e.getHours(), e.getMinutes()];
             1 === t[1] && 12 === Rt.time[1] ? Rt.time[1] = 0 : 12 === t[1] && 1 === Rt.time[1] ? t[1] = 0 : (t[1] > Rt.time[1] + 1 || Rt.time[1] > t[1] + 1) && (t[1] = Rt.time[1] = t[2] = Rt.time[2] = 0), t[1] > Rt.time[1] && 1 === t[2] ? 31 === Rt.time[2] || (4 === Rt.time[1] || 6 === Rt.time[1] || 9 === Rt.time[1] || 11 === Rt.time[1]) && 30 === Rt.time[2] || 2 === Rt.time[1] && (29 === Rt.time[2] || 28 === Rt.time[2] && Rt.time[0] % 4) ? Rt.time[2] = 0 : Rt.time[2] = t[2] = 0 : Rt.time[1] > t[1] && 1 === Rt.time[2] && (31 === t[2] || (4 === t[1] || 6 === t[1] || 9 === t[1] || 11 === t[1]) && 30 === t[2] || 2 === t[1] && (29 === t[2] || 28 === t[2] && Rt.time[0] % 4) ? t[2] = 0 : t[2] = Rt.time[2] = 0), (t[2] > Rt.time[2] + 1 || Rt.time[2] > t[2] + 1) && (t[2] = Rt.time[2] = 0);
@@ -1256,7 +1256,7 @@
             }), Rt.dt = o, Object(y.a)("remixdt") !== Rt.dt && Object(y.d)("remixdt", Rt.dt, 365);
             var r = Object(S.r)(Object(y.a)("remixrt"));
             window.devicePixelRatio >= 2 && (!_.a.iphone || Object(y.a)("remixme")) ? 1 & r || (Object(y.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
-                U.d.add(["retina.css"]), Object(k.a)(document.body, "is_2x")
+                W.d.add(["retina.css"]), Object(k.a)(document.body, "is_2x")
             }, Ft && window._retinaInit()) : 1 & r && Object(y.d)("remixrt", 1 ^ r, 365)
         }, 0), window.boxQueue = Object(le.c)(), window.__bq = boxQueue, window.curBox = le.b, Object(le.d)(), window.boxRefreshCoords = le.a, window.MessageBox = se.a, window.showBox = se.b, window.showTabbedBox = se.f, window.showFastBox = se.d, window.showCaptchaBox = se.c, window.showReCaptchaBox = se.e, window.showDoneBox = le.e, window.TopMenu = ce.a, window.TopSearch = Q.a, window.handleScroll = ye.f, window.loadScript = z.a, window.SpecialEvent = Vt, Object(q.j)(), window.notaBene = q.q, window.updSideTopLink = q.y, window.createButton = q.d, window.actionsMenuItemLocked = q.a, window.lockActionsMenuItem = q.n, window.unlockActionsMenuItem = q.v, window.linkLocked = q.m, window.lockLink = q.p, window.unlockLink = q.x, window.lockButton = q.o, window.unlockButton = q.w, window.buttonLocked = q.b, window.isButtonLocked = q.k, window.disableButton = q.f, window.sbWidth = q.t, window.isChecked = q.l, window.checkbox = q.c, window.disable = q.e, window.radioval = q.s, window.radiobtn = q.r, window.showProgress = q.u, window.hideProgress = q.i, window.disableEl = q.g, window.enableEl = q.h, Object(I.d)(), window.VideoConstants = I.a, window.showVideo = I.j, window.showInlineVideo = I.i, window.loadInlineVideo = I.e, window.revertLastInlineVideo = I.h, window.destroyInlineVideoPlayer = I.c, window.pauseLastInlineVideo = I.f, window.playLastInlineVideo = I.g, window.checkMp4 = I.b, window.performance && window.performance.memory && Object(S.D)(0, 100) < 5 && Object(Pt.a)(), ze ? (Object(T.b)(window, "blur", ct), Object(T.b)(window, "focus", st), onDomReady(function() {
             return setTimeout(it, 500)
@@ -1280,6 +1280,6 @@
             onScroll: function() {},
             onBeforePageChange: function() {},
             clearElemsCache: function() {}
-        }, Object(ge.h)(), Gt(), window.onLoaded = zt, window.domStarted = Ut, window.domReady = Wt, Object(we.b)("common module enabled"), U.d.done(jsc("web/common_web.js"))
+        }, Object(ge.h)(), Gt(), window.onLoaded = zt, window.domStarted = Wt, window.domReady = Ut, Object(we.b)("common module enabled"), W.d.done(jsc("web/common_web.js"))
     }
 });

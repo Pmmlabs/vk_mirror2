@@ -364,10 +364,13 @@ var Profile = {
 
             if (friendsBlock) {
                 var gallery = geByClass1('ui_gallery', friendsBlock);
+                var containerEl = gpeByClass('page_block', friendsBlock);
                 var trackCode = domData(gallery, 'code') || '';
 
                 uiGetGallery(gallery).destroy();
                 Wall.friendsRecommLogSave(['hide_block', vkNow(), cur.module, trackCode], true);
+
+                re(containerEl);
             }
 
             return event && cancelEvent(event);
