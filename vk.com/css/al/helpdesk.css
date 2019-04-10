@@ -3019,6 +3019,88 @@ body.body_helpdesk_small_sb .left_menu_nav {
     border-radius: 2px
 }
 
+.no_display {
+    display: none
+}
+
+.alert_msg .info_msg {
+    min-height: 40px;
+    line-height: 43px;
+    margin-bottom: 0
+}
+
+.ento_operation {
+    background: #fafbfc;
+    border: 1px solid #e7e8ec;
+    border-radius: 2px;
+    margin-bottom: 10px
+}
+
+.ento_operation:last-child {
+    margin-bottom: 0
+}
+
+.ento_operation .operation_info {
+    padding: 15px;
+    cursor: default
+}
+
+.ento_operation .operation_info .collapse_button {
+    background: url(/images/icons/pe_icons.png?2) no-repeat -6px -226px;
+    float: right;
+    width: 21px;
+    height: 28px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: -5px;
+    margin-left: 15px;
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.ento_operation .operation_info .collapse_button.collapsed {
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg)
+}
+
+.ento_operation .operation_info .flat_btn_lock {
+    width: 50px!important;
+    height: 30px!important
+}
+
+.ento_operation .counter {
+    background: #5b88bd;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block
+}
+
+.ento_operation .operations_list {
+    border-top: 1px solid #e7e8ec;
+    cursor: default;
+    padding: 10px 15px
+}
+
+.ento_operation .operations_list ol {
+    margin: 0
+}
+
+.ento_operation .operations_list.collapsed {
+    display: none
+}
+
+.ento_operation .flat_button {
+    margin-top: -6px
+}
+
 .task_pin_button {
     position: absolute;
     right: 30px;
