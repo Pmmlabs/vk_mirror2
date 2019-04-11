@@ -17543,6 +17543,10 @@ div.chat_tab_img {
     font-size: 12.5px
 }
 
+.top_notify_empty.error_message button {
+    margin-top: 10px
+}
+
 .top_notify_show_all {
     display: block;
     padding: 10px 0 12px;

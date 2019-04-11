@@ -10131,7 +10131,7 @@
                 title: !1,
                 containerClass: "audio_restriction_box",
                 onHide: function() {
-                    Object(R.b)("audio_restriction_popup", "hide", t.restrictionStatus)
+                    Object(R.c)("audio_restriction_popup", "hide", t.restrictionStatus)
                 }
             }, '\n    <button class="audio_restriction_box__close" onclick="curBox().hide()">' + getLang("global_close") + '</button>\n    <div class="audio_restriction_box__icon audio_restriction_box__icon_pensive_face"></div>\n    <div class="audio_restriction_box__title">' + getLang("audio_restriction_title_claim") + '</div>\n    <div class="audio_restriction_box__controls">\n        <button class="flat_button" onclick="curBox().hide()">' + getLang("global_close") + "</button>\n    </div>\n  ")
         }
@@ -10985,7 +10985,7 @@
                 if (!t) return !1;
                 if ((t = b(t)).restrictionStatus) {
                     if (t.actionHash) {
-                        Object(R.b)("audio_restriction_popup", "show", t.restrictionStatus);
+                        Object(R.c)("audio_restriction_popup", "show", t.restrictionStatus);
                         var e = showBox("al_audio.php", {
                             act: "restriction_box",
                             audio_id: t.id,
@@ -10997,11 +10997,11 @@
                                 onShow: function() {
                                     var e = curBox();
                                     e && e.once("click:ok", function() {
-                                        Object(R.b)("audio_restriction_popup", "click", t.restrictionStatus)
+                                        Object(R.c)("audio_restriction_popup", "click", t.restrictionStatus)
                                     })
                                 },
                                 onHide: function(e) {
-                                    e || Object(R.b)("audio_restriction_popup", "hide", t.restrictionStatus)
+                                    e || Object(R.c)("audio_restriction_popup", "hide", t.restrictionStatus)
                                 }
                             },
                             containerClass: "audio_restriction_box audio_restriction_box_type_" + t.restrictionStatus,

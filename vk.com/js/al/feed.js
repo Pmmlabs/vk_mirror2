@@ -2850,7 +2850,7 @@ var Feed = {
                     }
                 }
 
-                if (params['c[q]']) {
+                if (cur.q) {
                     saveSearchAttemptStats(cur.section === 'photos_search' ? 'photos' : 'news', ts, cur.count);
                 }
                 setTimeout(feed.scrollCheck, 200);
@@ -2868,6 +2868,9 @@ var Feed = {
     },
 
     onFeedSearch: function(searchEl, q, ev, section) {
+        if (!q) {
+            removeSearchPositionTracker('photos');
+        }
         var curSection = section || cur.section,
             newSection, baseSection;
         if (!curSection.indexOf('photos')) {

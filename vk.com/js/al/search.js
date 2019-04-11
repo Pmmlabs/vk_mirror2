@@ -54,6 +54,14 @@ var searcher = {
         },
         switchSection: function(newSection, opts, event) {
             if (event && checkEvent(event)) return true;
+
+            removeSearchPositionTracker('search_video');
+            removeSearchPositionTracker('search_audio');
+            removeSearchPositionTracker('friends_find');
+            removeSearchPositionTracker('search_people');
+            removeSearchPositionTracker('search_communities');
+            removeSearchPositionTracker('search_auto');
+
             opts = opts || {};
             if (newSection == 'communities') {
                 val('c[category]', 0);

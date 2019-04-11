@@ -26,13 +26,13 @@
 }
 
 .translation_box {
-    text-align: center;
-    padding: 20px 0
+    padding: 20px 0;
+    text-align: center
 }
 
 .translation_box .flat_button {
     margin: 5px 0;
-    width: 190px
+    width: 235px
 }
 
 i.translated,

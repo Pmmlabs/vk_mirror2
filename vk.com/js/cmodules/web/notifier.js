@@ -3268,7 +3268,7 @@
                     } catch (e) {
                         Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__.d)(e, evalExpr)
                     }
-                    TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.trackViews(), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
+                    TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.trackViews(), show(geByClass1("top_notify_show_all")), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
                 }
             },
             trackViews: function() {
@@ -3535,13 +3535,14 @@
                 }))
             },
             refresh: function() {
-                TopNotifier.invalidate(), TopNotifierCur.wrapper && !TopNotifierCur.loading && (TopNotifierCur.loading = !0, re(geByClass1("_notify_header")), re(geByClass1("_top_notify_header")), TopNotifierCur.from = 0, ajax.post("/al_feed.php", TopNotifierCur._qParams, {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
+                null !== e && cancelEvent(e), TopNotifier.invalidate(), TopNotifierCur.wrapper && !TopNotifierCur.loading && (TopNotifierCur.loading = !0, re(geByClass1("_notify_header")), re(geByClass1("_top_notify_header")), TopNotifierCur.from = 0, ajax.post("/al_feed.php", TopNotifierCur._qParams, {
                     cache: 1,
                     onDone: TopNotifier.onLoad,
                     showProgress: TopNotifier.showProgress,
                     stat: ["feed.css"],
                     onFail: function() {
-                        TopNotifierCur.loading = !1, TopNotifier.hideProgress(), val(ge("top_notify_cont"), '<div class="top_notify_empty no_rows">' + getLang("global_error_occured") + "</div>")
+                        TopNotifierCur.loading = !1, hide(geByClass1("top_notify_show_all")), TopNotifier.hideProgress(), val(TopNotifier.getContentNode(), '<div class="top_notify_empty no_rows error_message"><div>' + getLang("global_notify_error_occured") + '</div><button class="flat_button button_small secondary" onclick="TopNotifier.refresh(event);">' + getLang("global_notify_refresh") + "</button></div>")
                     }
                 }))
             },

@@ -1199,10 +1199,14 @@
                 if (newBlockElem.previousSibling) {
                     var elem = newBlockElem;
                     while (elem = elem.previousSibling) {
-                        var callback = (elem.previousSibling ? null : removeOldBlock.pbind());
-                        animate(elem, {
-                            opacity: 0
-                        }, speed, callback);
+                        if (elem.nodeType === Node.ELEMENT_NODE) {
+                            var callback = (elem.previousSibling ? null : removeOldBlock.pbind());
+                            animate(elem, {
+                                opacity: 0
+                            }, speed, callback);
+                        } else {
+                            removeOldBlock();
+                        }
                     }
                 } else {
                     removeOldBlock();
