@@ -3759,14 +3759,14 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong];
             break;
         case '_platform':
-            this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
+            this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
             this.params.platform_no_wall.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || !this.params.platform_no_wall.allow);
             this.params.platform_no_ad_network.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || !this.params.platform_no_ad_network.allow);
             break;
         case 'platform':
             var isDisclaimers = (this.params.disclaimer_medical.value || this.params.disclaimer_specialist.value || this.params.disclaimer_supplements.value || this.params.disclaimer_finance.value);
             this.params[paramName].disabled_web = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_CLICK || isDisclaimers);
-            this.params[paramName].disabled = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params[paramName].disabled_web);
+            this.params[paramName].disabled = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && this.params[paramName].disabled_web);
 
             var formatType = this.params.format_type.value;
             if (this.params.platform.disabled) {

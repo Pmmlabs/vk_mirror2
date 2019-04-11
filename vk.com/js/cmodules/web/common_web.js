@@ -1,40 +1,40 @@
 ﻿! function(e) {
     function t(t) {
-        for (var o, a, d = t[0], w = t[1], c = t[2], l = 0, u = []; l < d.length; l++) a = d[l], i[a] && u.push(i[a][0]), i[a] = 0;
-        for (o in w) Object.prototype.hasOwnProperty.call(w, o) && (e[o] = w[o]);
+        for (var n, a, d = t[0], w = t[1], c = t[2], l = 0, u = []; l < d.length; l++) a = d[l], i[a] && u.push(i[a][0]), i[a] = 0;
+        for (n in w) Object.prototype.hasOwnProperty.call(w, n) && (e[n] = w[n]);
         for (s && s(t); u.length;) u.shift()();
-        return r.push.apply(r, c || []), n()
+        return r.push.apply(r, c || []), o()
     }
 
-    function n() {
+    function o() {
         for (var e, t = 0; t < r.length; t++) {
-            for (var n = r[t], o = !0, d = 1; d < n.length; d++) {
-                var w = n[d];
-                0 !== i[w] && (o = !1)
+            for (var o = r[t], n = !0, d = 1; d < o.length; d++) {
+                var w = o[d];
+                0 !== i[w] && (n = !1)
             }
-            o && (r.splice(t--, 1), e = a(a.s = n[0]))
+            n && (r.splice(t--, 1), e = a(a.s = o[0]))
         }
         return e
     }
-    var o = {},
+    var n = {},
         i = {
             "web/common_web": 0
         },
         r = [];
 
     function a(t) {
-        if (o[t]) return o[t].exports;
-        var n = o[t] = {
+        if (n[t]) return n[t].exports;
+        var o = n[t] = {
             i: t,
             l: !1,
             exports: {}
         };
-        return e[t].call(n.exports, n, n.exports, a), n.l = !0, n.exports
+        return e[t].call(o.exports, o, o.exports, a), o.l = !0, o.exports
     }
-    a.m = e, a.c = o, a.d = function(e, t, n) {
+    a.m = e, a.c = n, a.d = function(e, t, o) {
         a.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
-            get: n
+            get: o
         })
     }, a.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
@@ -45,15 +45,15 @@
     }, a.t = function(e, t) {
         if (1 & t && (e = a(e)), 8 & t) return e;
         if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (a.r(n), Object.defineProperty(n, "default", {
+        var o = Object.create(null);
+        if (a.r(o), Object.defineProperty(o, "default", {
                 enumerable: !0,
                 value: e
             }), 2 & t && "string" != typeof e)
-            for (var o in e) a.d(n, o, function(t) {
+            for (var n in e) a.d(o, n, function(t) {
                 return e[t]
-            }.bind(null, o));
-        return n
+            }.bind(null, n));
+        return o
     }, a.n = function(e) {
         var t = e && e.__esModule ? function() {
             return e.default
@@ -69,10 +69,10 @@
     d.push = t, d = d.slice();
     for (var c = 0; c < d.length; c++) t(d[c]);
     var s = w;
-    r.push([82, "common"]), n()
+    r.push([82, "common"]), o()
 }({
-    "4O8T": function(e, t, n) {
-        var o;
+    "4O8T": function(e, t, o) {
+        var n;
         ! function(t) {
             "use strict";
 
@@ -81,8 +81,8 @@
                 a = t.EventEmitter;
 
             function d(e, t) {
-                for (var n = e.length; n--;)
-                    if (e[n].listener === t) return n;
+                for (var o = e.length; o--;)
+                    if (e[o].listener === t) return o;
                 return -1
             }
 
@@ -92,25 +92,25 @@
                 }
             }
             r.getListeners = function(e) {
-                var t, n, o = this._getEvents();
+                var t, o, n = this._getEvents();
                 if (e instanceof RegExp)
-                    for (n in t = {}, o) o.hasOwnProperty(n) && e.test(n) && (t[n] = o[n]);
-                else t = o[e] || (o[e] = []);
+                    for (o in t = {}, n) n.hasOwnProperty(o) && e.test(o) && (t[o] = n[o]);
+                else t = n[e] || (n[e] = []);
                 return t
             }, r.flattenListeners = function(e) {
-                var t, n = [];
-                for (t = 0; t < e.length; t += 1) n.push(e[t].listener);
-                return n
+                var t, o = [];
+                for (t = 0; t < e.length; t += 1) o.push(e[t].listener);
+                return o
             }, r.getListenersAsObject = function(e) {
-                var t, n = this.getListeners(e);
-                return n instanceof Array && ((t = {})[e] = n), t || n
+                var t, o = this.getListeners(e);
+                return o instanceof Array && ((t = {})[e] = o), t || o
             }, r.addListener = function(e, t) {
                 if (! function e(t) {
                         return "function" == typeof t || t instanceof RegExp || !(!t || "object" != typeof t) && e(t.listener)
                     }(t)) throw new TypeError("listener must be a function");
-                var n, o = this.getListenersAsObject(e),
+                var o, n = this.getListenersAsObject(e),
                     i = "object" == typeof t;
-                for (n in o) o.hasOwnProperty(n) && -1 === d(o[n], t) && o[n].push(i ? t : {
+                for (o in n) n.hasOwnProperty(o) && -1 === d(n[o], t) && n[o].push(i ? t : {
                     listener: t,
                     once: !1
                 });
@@ -126,34 +126,34 @@
                 for (var t = 0; t < e.length; t += 1) this.defineEvent(e[t]);
                 return this
             }, r.removeListener = function(e, t) {
-                var n, o, i = this.getListenersAsObject(e);
-                for (o in i) i.hasOwnProperty(o) && -1 !== (n = d(i[o], t)) && i[o].splice(n, 1);
+                var o, n, i = this.getListenersAsObject(e);
+                for (n in i) i.hasOwnProperty(n) && -1 !== (o = d(i[n], t)) && i[n].splice(o, 1);
                 return this
             }, r.off = w("removeListener"), r.addListeners = function(e, t) {
                 return this.manipulateListeners(!1, e, t)
             }, r.removeListeners = function(e, t) {
                 return this.manipulateListeners(!0, e, t)
-            }, r.manipulateListeners = function(e, t, n) {
-                var o, i, r = e ? this.removeListener : this.addListener,
+            }, r.manipulateListeners = function(e, t, o) {
+                var n, i, r = e ? this.removeListener : this.addListener,
                     a = e ? this.removeListeners : this.addListeners;
                 if ("object" != typeof t || t instanceof RegExp)
-                    for (o = n.length; o--;) r.call(this, t, n[o]);
+                    for (n = o.length; n--;) r.call(this, t, o[n]);
                 else
-                    for (o in t) t.hasOwnProperty(o) && (i = t[o]) && ("function" == typeof i ? r.call(this, o, i) : a.call(this, o, i));
+                    for (n in t) t.hasOwnProperty(n) && (i = t[n]) && ("function" == typeof i ? r.call(this, n, i) : a.call(this, n, i));
                 return this
             }, r.removeEvent = function(e) {
-                var t, n = typeof e,
-                    o = this._getEvents();
-                if ("string" === n) delete o[e];
+                var t, o = typeof e,
+                    n = this._getEvents();
+                if ("string" === o) delete n[e];
                 else if (e instanceof RegExp)
-                    for (t in o) o.hasOwnProperty(t) && e.test(t) && delete o[t];
+                    for (t in n) n.hasOwnProperty(t) && e.test(t) && delete n[t];
                 else delete this._events;
                 return this
             }, r.removeAllListeners = w("removeEvent"), r.emitEvent = function(e, t) {
-                var n, o, i, r, a = this.getListenersAsObject(e);
+                var o, n, i, r, a = this.getListenersAsObject(e);
                 for (r in a)
                     if (a.hasOwnProperty(r))
-                        for (n = a[r].slice(0), i = 0; i < n.length; i++) !0 === (o = n[i]).once && this.removeListener(e, o.listener), o.listener.apply(this, t || []) === this._getOnceReturnValue() && this.removeListener(e, o.listener);
+                        for (o = a[r].slice(0), i = 0; i < o.length; i++) !0 === (n = o[i]).once && this.removeListener(e, n.listener), n.listener.apply(this, t || []) === this._getOnceReturnValue() && this.removeListener(e, n.listener);
                 return this
             }, r.trigger = w("emitEvent"), r.emit = function(e) {
                 var t = Array.prototype.slice.call(arguments, 1);
@@ -166,67 +166,67 @@
                 return this._events || (this._events = {})
             }, i.noConflict = function() {
                 return t.EventEmitter = a, i
-            }, void 0 === (o = function() {
+            }, void 0 === (n = function() {
                 return i
-            }.call(t, n, t, e)) || (e.exports = o)
+            }.call(t, o, t, e)) || (e.exports = n)
         }(this || {})
     },
-    82: function(e, t, n) {
-        e.exports = n("g42W")
+    82: function(e, t, o) {
+        e.exports = o("g42W")
     },
-    T39b: function(e, t, n) {
+    T39b: function(e, t, o) {
         "use strict";
-        var o = n("wmvG");
-        e.exports = n("4LiD")("Set", function(e) {
+        var n = o("wmvG");
+        e.exports = o("4LiD")("Set", function(e) {
             return function() {
                 return e(this, arguments.length > 0 ? arguments[0] : void 0)
             }
         }, {
             add: function(e) {
-                return o.def(this, e = 0 === e ? 0 : e, e)
+                return n.def(this, e = 0 === e ? 0 : e, e)
             }
-        }, o)
+        }, n)
     },
-    VXxg: function(e, t, n) {
-        n("Btvt"), n("XfO3"), n("rGqo"), n("T39b"), e.exports = n("g3g5").Set
+    VXxg: function(e, t, o) {
+        o("Btvt"), o("XfO3"), o("rGqo"), o("T39b"), e.exports = o("g3g5").Set
     },
-    g42W: function(e, t, n) {
+    g42W: function(e, t, o) {
         "use strict";
-        n.r(t);
-        var o, i, r, a, d = n("qKs0"),
-            w = n("VXxg");
-        String.fromCodePoint || (o = function() {
+        o.r(t);
+        var n, i, r, a, d = o("qKs0"),
+            w = o("VXxg");
+        String.fromCodePoint || (n = function() {
             try {
                 var e = {},
                     t = Object.defineProperty,
-                    n = t(e, e, e) && t
+                    o = t(e, e, e) && t
             } catch (e) {}
-            return n
+            return o
         }(), i = String.fromCharCode, r = Math.floor, a = function(e) {
-            var t, n, o = [],
+            var t, o, n = [],
                 a = -1,
                 d = arguments.length;
             if (!d) return "";
             for (var w = ""; ++a < d;) {
                 var c = Number(arguments[a]);
                 if (!isFinite(c) || c < 0 || c > 1114111 || r(c) != c) throw RangeError("Invalid code point: " + c);
-                c <= 65535 ? o.push(c) : (t = 55296 + ((c -= 65536) >> 10), n = c % 1024 + 56320, o.push(t, n)), (a + 1 == d || o.length > 16384) && (w += i.apply(null, o), o.length = 0)
+                c <= 65535 ? n.push(c) : (t = 55296 + ((c -= 65536) >> 10), o = c % 1024 + 56320, n.push(t, o)), (a + 1 == d || n.length > 16384) && (w += i.apply(null, n), n.length = 0)
             }
             return w
-        }, o ? o(String, "fromCodePoint", {
+        }, n ? n(String, "fromCodePoint", {
             value: a,
             configurable: !0,
             writable: !0
         }) : String.fromCodePoint = a), Array.prototype.findIndex || Object.defineProperty(Array.prototype, "findIndex", {
             value: function(e, t) {
-                for (var n = 0; n < this.length; ++n)
-                    if (e.call(t, this[n], n, this)) return n;
+                for (var o = 0; o < this.length; ++o)
+                    if (e.call(t, this[o], o, this)) return o;
                 return -1
             }
         }), Array.prototype.find || Object.defineProperty(Array.prototype, "find", {
             value: function(e, t) {
-                for (var n = 0; n < this.length; ++n)
-                    if (e.call(t, this[n], n, this)) return this[n]
+                for (var o = 0; o < this.length; ++o)
+                    if (e.call(t, this[o], o, this)) return this[o]
             }
         }), Array.from || (Array.from = function(e) {
             return [].slice.call(e)
@@ -236,16 +236,16 @@
             writable: !0,
             value: function(e, t) {
                 if (void 0 === e || null === e) throw new TypeError("Cannot convert first argument to object");
-                for (var n = Object(e), o = 1; o < arguments.length; o++) {
-                    var i = arguments[o];
+                for (var o = Object(e), n = 1; n < arguments.length; n++) {
+                    var i = arguments[n];
                     if (void 0 !== i && null !== i)
                         for (var r = Object.keys(Object(i)), a = 0, d = r.length; a < d; a++) {
                             var w = r[a],
                                 c = Object.getOwnPropertyDescriptor(i, w);
-                            void 0 !== c && c.enumerable && (n[w] = i[w])
+                            void 0 !== c && c.enumerable && (o[w] = i[w])
                         }
                 }
-                return n
+                return o
             }
         }), Number.isInteger = Number.isInteger || function(e) {
             return "number" == typeof e && isFinite(e) && Math.floor(e) === e
@@ -268,22 +268,29 @@
                 return !1
             }
         }(), f = c.BlobBuilder || c.WebKitBlobBuilder || c.MozBlobBuilder || c.MSBlobBuilder, h = /^data:((.*?)(;charset=.*?)?)(;base64)?,/, b = (l || f) && c.atob && c.ArrayBuffer && c.Uint8Array && function(e) {
-            var t, n, o, i, r, a, d, w, c;
+            var t, o, n, i, r, a, d, w, c;
             if (!(t = e.match(h))) throw new Error("invalid data URI");
-            for (n = t[2] ? t[1] : "text/plain" + (t[3] || ";charset=US-ASCII"), o = !!t[4], i = e.slice(t[0].length), r = o ? atob(i) : decodeURIComponent(i), a = new ArrayBuffer(r.length), d = new Uint8Array(a), w = 0; w < r.length; w += 1) d[w] = r.charCodeAt(w);
+            for (o = t[2] ? t[1] : "text/plain" + (t[3] || ";charset=US-ASCII"), n = !!t[4], i = e.slice(t[0].length), r = n ? atob(i) : decodeURIComponent(i), a = new ArrayBuffer(r.length), d = new Uint8Array(a), w = 0; w < r.length; w += 1) d[w] = r.charCodeAt(w);
             return l ? new Blob([u ? d : a], {
-                type: n
-            }) : ((c = new f).append(a), c.getBlob(n))
-        }, c.HTMLCanvasElement && !s.toBlob && (s.mozGetAsFile ? s.toBlob = function(e, t, n) {
-            e(n && s.toDataURL && b ? b(this.toDataURL(t, n)) : this.mozGetAsFile("blob", t))
-        } : s.toDataURL && b && (s.toBlob = function(e, t, n) {
-            e(b(this.toDataURL(t, n)))
+                type: o
+            }) : ((c = new f).append(a), c.getBlob(o))
+        }, c.HTMLCanvasElement && !s.toBlob && (s.mozGetAsFile ? s.toBlob = function(e, t, o) {
+            e(o && s.toDataURL && b ? b(this.toDataURL(t, o)) : this.mozGetAsFile("blob", t))
+        } : s.toDataURL && b && (s.toBlob = function(e, t, o) {
+            e(b(this.toDataURL(t, o)))
         })), "function" == typeof define && define.amd ? define(function() {
             return b
         }) : "object" == ("undefined" == typeof module ? "undefined" : p(module)) && module.exports ? module.exports = b : c.dataURLtoBlob = b;
-        var m = n("E2g8"),
-            v = n("4O8T");
+        var m = o("E2g8"),
+            v = o("4O8T");
         window.EventEmitter = v;
+
+        function g(e) {
+            e && !e.prototype.forEach && (Array.prototype.forEach ? e.prototype.forEach = Array.prototype.forEach : e.prototype.forEach = function(e, t) {
+                t = t || window;
+                for (var o = 0; o < this.length; o++) e.call(t, this[o], o, this)
+            })
+        }
         Function.prototype.pbind = function() {
             var e = Array.prototype.slice.call(arguments);
             return e.unshift(window), this.bind.apply(this, e)
@@ -293,123 +300,123 @@
         }, Function.prototype.rbind = function() {
             var e = this,
                 t = Array.prototype.slice.call(arguments),
-                n = t.shift(),
-                o = t.shift();
+                o = t.shift(),
+                n = t.shift();
             return function() {
                 var i = Array.prototype.slice.call(arguments);
-                return e.apply(n, t.concat(i)), o
+                return e.apply(o, t.concat(i)), n
             }
         }, Function.prototype.bind || (Function.prototype.bind = function() {
             var e = this,
                 t = Array.prototype.slice.call(arguments),
-                n = t.shift();
+                o = t.shift();
             return function() {
-                var o = Array.prototype.slice.call(arguments);
-                return e.apply(n, t.concat(o))
+                var n = Array.prototype.slice.call(arguments);
+                return e.apply(o, t.concat(n))
             }
         }), Object.keys || (Object.keys = function(e) {
             var t = [];
-            for (var n in e) e.hasOwnProperty(n) && t.push(n);
+            for (var o in e) e.hasOwnProperty(o) && t.push(o);
             return t
-        });
-        var g = n("ryw6"),
-            y = n("kMSP"),
-            O = n("Kngp"),
-            _ = n("gdug"),
-            j = n("k487"),
-            k = n("zxIV");
+        }), g(window.NodeList), g(window.HTMLCollection);
+        var y = o("ryw6"),
+            O = o("kMSP"),
+            _ = o("Kngp"),
+            j = o("gdug"),
+            k = o("k487"),
+            L = o("zxIV");
 
-        function L(e, t) {
+        function E(e, t) {
             if (window.icoNode && (e = e + "?" + ((stVersions || {}).favicon || ""), icoNode.getAttribute("href") !== e || t)) {
-                var n = Object(k.e)("link", {
+                var o = Object(L.e)("link", {
                     rel: "shortcut icon",
                     type: "image/gif",
                     href: e
                 });
-                headNode.replaceChild(n, icoNode), icoNode = n
+                headNode.replaceChild(o, icoNode), icoNode = o
             }
         }
-        var x = n("HhI8"),
-            E = n("7jxN"),
-            T = n("Egk5"),
-            S = n("t7n3"),
-            C = function() {
+        var x = o("HhI8"),
+            T = o("7jxN"),
+            S = o("Egk5"),
+            C = o("t7n3"),
+            A = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            o = !0,
+                        var o = [],
+                            n = !0,
                             i = !1,
                             r = void 0;
                         try {
-                            for (var a, d = e[Symbol.iterator](); !(o = (a = d.next()).done) && (n.push(a.value), !t || n.length !== t); o = !0);
+                            for (var a, d = e[Symbol.iterator](); !(n = (a = d.next()).done) && (o.push(a.value), !t || o.length !== t); n = !0);
                         } catch (e) {
                             i = !0, r = e
                         } finally {
                             try {
-                                !o && d.return && d.return()
+                                !n && d.return && d.return()
                             } finally {
                                 if (i) throw r
                             }
                         }
-                        return n
+                        return o
                     }(e, t);
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }();
 
-        function A() {
+        function P() {
             return new function(e) {
                 var t = function(e) {
                         var t = e.split("#"),
-                            n = C(t, 2),
-                            o = n[0],
-                            i = n[1],
-                            r = o.split("?"),
-                            a = C(r, 2),
+                            o = A(t, 2),
+                            n = o[0],
+                            i = o[1],
+                            r = n.split("?"),
+                            a = A(r, 2),
                             d = a[0],
                             w = a[1];
-                        return d + (w ? "?" + Object(O.b)(Object(O.f)(w)) : "") + (i ? "#" + i : "")
+                        return d + (w ? "?" + Object(_.b)(Object(_.f)(w)) : "") + (i ? "#" + i : "")
                     },
-                    n = Object(S.i)({
+                    o = Object(C.i)({
                         onLocChange: function() {}
                     }, e),
-                    o = function() {
+                    n = function() {
                         var e = "";
                         return 3 == vk.al ? e = (location.pathname || "") + (location.search || "") + (location.hash || "") : (e = (location.toString().match(/#(.*)/) || {})[1] || "").substr(0, 1) != vk.navPrefix && (e = (location.pathname || "") + (location.search || "") + (location.hash || "")), !e && vk.al > 1 && (e = (location.pathname || "") + (location.search || "")), t(e.replace(/^(\/|!)/, ""))
                     },
-                    i = o(),
+                    i = n(),
                     r = function(e) {
-                        var t = o();
-                        t === i && !0 !== e || (n.onLocChange(t), i = t)
+                        var t = n();
+                        t === i && !0 !== e || (o.onLocChange(t), i = t)
                     },
                     a = void 0;
                 return {
                     setLoc: function(e) {
                         i = t(e);
-                        var n = (location.toString().match(/#(.*)/) || {})[1] || "";
-                        if (!n && vk.al > 1 && (n = (location.pathname || "") + (location.search || "")), (n = (n = t(n)).replace(/^(\/|!)/, "")) !== i) {
+                        var o = (location.toString().match(/#(.*)/) || {})[1] || "";
+                        if (!o && vk.al > 1 && (o = (location.pathname || "") + (location.search || "")), (o = (o = t(o)).replace(/^(\/|!)/, "")) !== i) {
                             if (3 == vk.al) try {
                                 return window.saveScrollTopOnBack && (delete window.saveScrollTopOnBack, history.replaceState({
                                     scrollTop: window.lastScrollTop,
                                     preventScroll: window.preventLocationScroll
-                                }, "", "/" + n), window.preventLocationScroll && delete window.preventLocationScroll), void history.pushState({}, "", "/" + i)
+                                }, "", "/" + o), window.preventLocationScroll && delete window.preventLocationScroll), void history.pushState({}, "", "/" + i)
                             } catch (e) {}
                             window.chHashFlag = !0, location.hash = "#" + vk.navPrefix + i
                         }
                     },
-                    getLoc: o,
+                    getLoc: n,
                     init: function() {
-                        1 == vk.al && r(!0), 3 == vk.al ? (Object(T.b)(window, "popstate", r), _.a.safari && Object(T.b)(window, "hashchange", r)) : "onhashchange" in window ? Object(T.b)(window, "hashchange", function() {
+                        1 == vk.al && r(!0), 3 == vk.al ? (Object(S.b)(window, "popstate", r), j.a.safari && Object(S.b)(window, "hashchange", r)) : "onhashchange" in window ? Object(S.b)(window, "hashchange", function() {
                             window.chHashFlag ? window.chHashFlag = !1 : r()
                         }) : a = setInterval(r, 200)
                     },
                     setOptions: function(e) {
-                        n = Object(S.i)(n, e)
+                        o = Object(C.i)(o, e)
                     },
                     checker: r,
                     stop: function() {
-                        vk.al < 3 ? clearInterval(a) : 3 == vk.al && Object(T.h)(window, "popstate", r)
+                        vk.al < 3 ? clearInterval(a) : 3 == vk.al && Object(S.h)(window, "popstate", r)
                     }
                 }
             }({
@@ -418,42 +425,42 @@
                         back: !0,
                         hist: !0
                     };
-                    3 === vk.al && history.state && Object(S.x)(history.state) && (t.scrollTop = Object(S.r)(history.state.scrollTop)), nav.go("/" + e, void 0, t)
+                    3 === vk.al && history.state && Object(C.x)(history.state) && (t.scrollTop = Object(C.r)(history.state.scrollTop)), nav.go("/" + e, void 0, t)
                 }
             })
         }
-        var P = n("4+be"),
-            B = n("lXE5"),
-            I = n("Ia1d"),
-            M = n("XuKo"),
-            N = n("ErRf"),
-            D = n("/PiP"),
-            V = {
+        var B = o("4+be"),
+            I = o("lXE5"),
+            M = o("Ia1d"),
+            N = o("XuKo"),
+            D = o("ErRf"),
+            V = o("/PiP"),
+            R = {
                 sh: function(e, t) {
-                    Object(k.tb)(e), Object(S.v)(t) && t()
+                    Object(L.tb)(e), Object(C.v)(t) && t()
                 },
                 hd: function(e, t) {
-                    Object(k.W)(e), Object(S.v)(t) && t()
+                    Object(L.W)(e), Object(C.v)(t) && t()
                 },
                 visible: !1,
-                _show: function(e, t, n, o) {
+                _show: function(e, t, o, n) {
                     var i = "layers" + (boxQueue.count() + 1);
-                    Object(N.c)(i, function() {}), Object(k.qb)(e, {
-                        opacity: n || "",
-                        backgroundColor: o || ""
-                    }), V.visible || (Object(x.c)(), Object(B.a)()), V.visible || Object(I.f)(), V.visible = !0, Object(k.a)(bodyNode, "layers_shown"), t.visibilityHide ? Object(k.hb)(t, "box_layer_hidden") : Object(k.tb)(t), V.sh(e), window.updateWndVScroll && updateWndVScroll()
+                    Object(D.c)(i, function() {}), Object(L.qb)(e, {
+                        opacity: o || "",
+                        backgroundColor: n || ""
+                    }), R.visible || (Object(x.c)(), Object(I.a)()), R.visible || Object(M.f)(), R.visible = !0, Object(L.a)(bodyNode, "layers_shown"), t.visibilityHide ? Object(L.hb)(t, "box_layer_hidden") : Object(L.tb)(t), R.sh(e), window.updateWndVScroll && updateWndVScroll()
                 },
                 _hide: function(e, t) {
-                    V.hd(e, function() {
+                    R.hd(e, function() {
                         var e = "layers" + (boxQueue.count() + 1);
-                        Object(N.a)(e), t && t.visibilityHide ? Object(k.a)(t, "box_layer_hidden") : Object(k.W)(t), Object(k.ab)(layerWrap) || cur._inLayer || Object(k.ab)(boxLayerWrap) && !boxLayerWrap.visibilityHide || !(window.mvcur && mvcur.minimized || !Object(k.ab)(window.mvLayerWrap)) || Object(k.ab)(window.wkLayerWrap) || (V.visible = !1, Object(k.hb)(bodyNode, "layers_shown"), Object(x.c)(!0), Object(B.b)()), window.updateWndVScroll && updateWndVScroll()
-                    }), V.visible || Object(I.g)()
+                        Object(D.a)(e), t && t.visibilityHide ? Object(L.a)(t, "box_layer_hidden") : Object(L.W)(t), Object(L.ab)(layerWrap) || cur._inLayer || Object(L.ab)(boxLayerWrap) && !boxLayerWrap.visibilityHide || !(window.mvcur && mvcur.minimized || !Object(L.ab)(window.mvLayerWrap)) || Object(L.ab)(window.wkLayerWrap) || (R.visible = !1, Object(L.hb)(bodyNode, "layers_shown"), Object(x.c)(!0), Object(I.b)()), window.updateWndVScroll && updateWndVScroll()
+                    }), R.visible || Object(M.g)()
                 }
             },
-            R = {
+            H = {
                 push: function(e) {
                     var t = void 0,
-                        n = !!R.count() && R._layers[R._layers.length - 1];
+                        o = !!H.count() && H._layers[H._layers.length - 1];
                     if (cur.pvShown && "temp" != cur.pvListId) t = ["photo", cur.pvData[cur.pvListId][cur.pvIndex].id, cur.pvListId, {
                         onHide: cur.pvOptions.onHide,
                         scroll: cur.pvNarrowScrollbar ? cur.pvNarrowScrollbar.data.scrollTop : 0,
@@ -462,15 +469,15 @@
                         histLen: cur.pvHistoryLength
                     }];
                     else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
-                        var o = mvcur.options && (mvcur.options.autoplay || mvcur.options.focusPlay),
+                        var n = mvcur.options && (mvcur.options.autoplay || mvcur.options.focusPlay),
                             i = {
                                 scroll: mvLayerWrap.scrollTop,
                                 noHistory: !!mvcur.noHistory,
                                 nomin: 1,
-                                autoplay: o,
+                                autoplay: n,
                                 prevLoc: mvcur.mvPrevLoc
                             };
-                        VideoPlaylist.getCurListId() && (i = Object(S.i)(i, {
+                        VideoPlaylist.getCurListId() && (i = Object(C.i)(i, {
                             playlistId: VideoPlaylist.getCurListId(),
                             module: Videoview.getVideoModule(),
                             addParams: {
@@ -489,201 +496,201 @@
                         if (!cur.podcastEpisode || !cur.podcastEpisode.shown) return !1;
                         t = ["podcast", cur.podcastEpisode.getEpisodeId()]
                     }
-                    return n && t[0] == n[0] && t[1] == n[1] && t[2] == n[2] || R._layers.push(t), R.skipVideo = !1, !0
+                    return o && t[0] == o[0] && t[1] == o[1] && t[2] == o[2] || H._layers.push(t), H.skipVideo = !1, !0
                 },
                 noHistory: function() {
-                    for (var e = R._layers, t = e.length; t > 0; --t) "photo" === e[t - 1][0] ? e[t - 1][3].noHistory = 1 : "video" === e[t - 1][0] && (e[t - 1][3].noHistory = 1)
+                    for (var e = H._layers, t = e.length; t > 0; --t) "photo" === e[t - 1][0] ? e[t - 1][3].noHistory = 1 : "video" === e[t - 1][0] && (e[t - 1][3].noHistory = 1)
                 },
                 hide: function() {
-                    R._bl = !0, window.WkView && V.fullhide == WkView.hide ? (Object(k.W)(wkLayerWrap), clearTimeout(wkcur.showT)) : V.fullhide && V.fullhide(!0, !0), setTimeout(R.unblock, 5)
+                    H._bl = !0, window.WkView && R.fullhide == WkView.hide ? (Object(L.W)(wkLayerWrap), clearTimeout(wkcur.showT)) : R.fullhide && R.fullhide(!0, !0), setTimeout(H.unblock, 5)
                 },
                 unblock: function() {
-                    R._bl = !1
+                    H._bl = !1
                 },
                 pop: function() {
-                    if (R.count() && !R._bl) {
-                        var e = R._layers.pop();
-                        if (R.skipVideo && (R.skipVideo = !1, "video" == e[0])) return R._layers.push(e), void(R.skipVideo = !1);
-                        "photo" === e[0] ? (Object(S.i)(e[3], {
+                    if (H.count() && !H._bl) {
+                        var e = H._layers.pop();
+                        if (H.skipVideo && (H.skipVideo = !1, "video" == e[0])) return H._layers.push(e), void(H.skipVideo = !1);
+                        "photo" === e[0] ? (Object(C.i)(e[3], {
                             fromQueue: !0
-                        }), Object(D.x)(e[1], e[2], e[3], !1)) : "video" === e[0] ? (Object(S.i)(e[3], {
+                        }), Object(V.x)(e[1], e[2], e[3], !1)) : "video" === e[0] ? (Object(C.i)(e[3], {
                             fromQueue: !0
-                        }), Object(I.j)(e[1], e[2], e[3], !1)) : "wiki" === e[0] ? Object(D.B)({
+                        }), Object(M.j)(e[1], e[2], e[3], !1)) : "wiki" === e[0] ? Object(V.B)({
                             w: e[1]
-                        }, !1, !1, e[3]) : "stories" === e[0] ? Object(M.c)(e[1]) : "podcast" === e[0] && Object(D.z)(null, e[1], null, "layer_back")
+                        }, !1, !1, e[3]) : "stories" === e[0] ? Object(N.c)(e[1]) : "podcast" === e[0] && Object(V.z)(null, e[1], null, "layer_back")
                     }
                 },
-                back: function(e, t, n, o) {
-                    for (var i = R._layers, r = i.length; r > 0; --r)
-                        if (i[r - 1][0] == e && i[r - 1][1] == t || i[r - 1][0] == n && i[r - 1][1] == o) return R._layers = i.slice(0, r), R.pop(), !0;
+                back: function(e, t, o, n) {
+                    for (var i = H._layers, r = i.length; r > 0; --r)
+                        if (i[r - 1][0] == e && i[r - 1][1] == t || i[r - 1][0] == o && i[r - 1][1] == n) return H._layers = i.slice(0, r), H.pop(), !0;
                     return !1
                 },
                 count: function() {
-                    return R._layers.length
+                    return H._layers.length
                 },
                 clear: function() {
-                    R._layers = []
+                    H._layers = []
                 },
                 _layers: []
             };
-        var H = n("0DAA");
+        var F = o("0DAA");
 
-        function F() {
+        function W() {
             var e = {};
-            Object(S.f)(Object(k.G)("_short_currency"), function() {
-                var t = Object(k.s)(this, "short") || "";
+            Object(C.f)(Object(L.G)("_short_currency"), function() {
+                var t = Object(L.s)(this, "short") || "";
                 if (!t) return !0;
-                var n = this.innerHTML,
-                    o = Object(S.M)(n).length,
-                    i = Object(k.O)(this, "fontFamily") || "tahoma,arial,sans-serif";
+                var o = this.innerHTML,
+                    n = Object(C.M)(o).length,
+                    i = Object(L.O)(this, "fontFamily") || "tahoma,arial,sans-serif";
                 if (void 0 === e[i]) {
-                    for (var r = "", a = o - 1; a >= 0; a--) r += "&#8399;";
-                    var d = Object(k.e)("div", {
-                        innerHTML: "<b>" + n + "</b><b>" + r + "</b>"
+                    for (var r = "", a = n - 1; a >= 0; a--) r += "&#8399;";
+                    var d = Object(L.e)("div", {
+                        innerHTML: "<b>" + o + "</b><b>" + r + "</b>"
                     }, {
                         fontFamily: i,
                         fontSize: "24px"
                     });
-                    Object(k.F)("utils").appendChild(d), e[i] = Math.abs(d.firstChild.offsetWidth - d.lastChild.offsetWidth) >= 2 * o, Object(k.fb)(d)
-                }!1 === e[i] && Object(k.yb)(this, t)
+                    Object(L.F)("utils").appendChild(d), e[i] = Math.abs(d.firstChild.offsetWidth - d.lastChild.offsetWidth) >= 2 * n, Object(L.fb)(d)
+                }!1 === e[i] && Object(L.yb)(this, t)
             })
         }
-        var W = n("0gG3"),
-            U = n("XzvV"),
-            q = n("v+DW"),
-            z = n("lkNA");
-        var G = function() {
+        var U = o("0gG3"),
+            q = o("XzvV"),
+            z = o("v+DW"),
+            G = o("lkNA");
+        var Q = function() {
                 function e() {
                     var t = this;
                     ! function(e, t) {
                         if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
                     }(this, e);
-                    var n = window.CallHub;
-                    this.on = 0, this.hub = new n(function() {
+                    var o = window.CallHub;
+                    this.on = 0, this.hub = new o(function() {
                         t.onShow && t.onShow()
-                    }, 2), this.hintsHub = new n(function() {
+                    }, 2), this.hintsHub = new o(function() {
                         return t.showStartHints()
                     }, 2)
                 }
                 return e.prototype.load = function() {
                     var e = this;
-                    Object(k.F)("quick_search") && !this.loading && (this.loading = !0, stManager.add("qsearch.js", function() {
+                    Object(L.F)("quick_search") && !this.loading && (this.loading = !0, stManager.add("qsearch.js", function() {
                         return e.hub.done()
                     }), ajax.post("hints.php", {
                         act: "a_start_hints"
                     }, {
                         onDone: function(t) {
-                            e.startHintsText = Object(S.H)(t), e.hintsHub.done()
+                            e.startHintsText = Object(C.H)(t), e.hintsHub.done()
                         }
                     }))
                 }, e.prototype.show = function(e) {
                     var t = window.placeholderSetup;
-                    if (Object(k.F)("quick_search") && !this.on) return this.on = 1, Object(k.tb)(this.sCont), t("search_input"), Object(k.F)("search_input").setAttribute("autocomplete", "off"), Object(k.a)(Object(k.F)("qsearch_link"), "active"), this.prev_content = Object(k.F)("content"), this.qsearch_cont || (this.qsearch_cont = Object(k.e)("div", {
+                    if (Object(L.F)("quick_search") && !this.on) return this.on = 1, Object(L.tb)(this.sCont), t("search_input"), Object(L.F)("search_input").setAttribute("autocomplete", "off"), Object(L.a)(Object(L.F)("qsearch_link"), "active"), this.prev_content = Object(L.F)("content"), this.qsearch_cont || (this.qsearch_cont = Object(L.e)("div", {
                         id: "content",
                         innerHTML: '<div style="padding: 200px; text-align: center;"><img src="/images/progress7.gif"/></div>'
-                    })), this.prev_content.parentNode.replaceChild(this.qsearch_cont, this.prev_content), this.loading || this.load(), this.hub.done(), this.hintsHub.done(), e ? Object(T.c)(e) : void 0
+                    })), this.prev_content.parentNode.replaceChild(this.qsearch_cont, this.prev_content), this.loading || this.load(), this.hub.done(), this.hintsHub.done(), e ? Object(S.c)(e) : void 0
                 }, e.prototype.go = function(e) {
-                    var t = "/gsearch.php?section=" + (this.last_section || "people") + "&q=" + Object(S.H)(Object(k.F)("search_input").value) + "&name=1";
-                    return Object(T.c)(e || window.event), location.href = t, !1
+                    var t = "/gsearch.php?section=" + (this.last_section || "people") + "&q=" + Object(C.H)(Object(L.F)("search_input").value) + "&name=1";
+                    return Object(S.c)(e || window.event), location.href = t, !1
                 }, e.prototype.init = function(e) {
-                    this.sCont = Object(k.F)("quick_search"), this.opt = e || {}
+                    this.sCont = Object(L.F)("quick_search"), this.opt = e || {}
                 }, e.prototype.hide = function(e, t) {
-                    if (Object(k.F)("quick_search") && (!this.active || t) && this.on) {
-                        var n = window.toggleFlash;
-                        if (this.on = 0, n(), this.beforeHide && this.beforeHide()) return !0;
-                        Object(k.F)("search_input").setValue ? Object(k.F)("search_input").setValue("") : Object(k.F)("search_input").value = "", Object(k.W)(this.sCont), Object(k.hb)(Object(k.F)("qsearch_link"), "active"), this.qsearch_cont.parentNode.replaceChild(this.prev_content, this.qsearch_cont)
+                    if (Object(L.F)("quick_search") && (!this.active || t) && this.on) {
+                        var o = window.toggleFlash;
+                        if (this.on = 0, o(), this.beforeHide && this.beforeHide()) return !0;
+                        Object(L.F)("search_input").setValue ? Object(L.F)("search_input").setValue("") : Object(L.F)("search_input").value = "", Object(L.W)(this.sCont), Object(L.hb)(Object(L.F)("qsearch_link"), "active"), this.qsearch_cont.parentNode.replaceChild(this.prev_content, this.qsearch_cont)
                     }
                 }, e.prototype.preload = function() {}, e
             }(),
-            Q = n("Bszp"),
-            K = n("MSYF"),
-            X = n("kHqu"),
-            J = function() {
+            K = o("Bszp"),
+            X = o("MSYF"),
+            J = o("kHqu"),
+            Y = function() {
                 return function(e, t) {
                     if (Array.isArray(e)) return e;
                     if (Symbol.iterator in Object(e)) return function(e, t) {
-                        var n = [],
-                            o = !0,
+                        var o = [],
+                            n = !0,
                             i = !1,
                             r = void 0;
                         try {
-                            for (var a, d = e[Symbol.iterator](); !(o = (a = d.next()).done) && (n.push(a.value), !t || n.length !== t); o = !0);
+                            for (var a, d = e[Symbol.iterator](); !(n = (a = d.next()).done) && (o.push(a.value), !t || o.length !== t); n = !0);
                         } catch (e) {
                             i = !0, r = e
                         } finally {
                             try {
-                                !o && d.return && d.return()
+                                !n && d.return && d.return()
                             } finally {
                                 if (i) throw r
                             }
                         }
-                        return n
+                        return o
                     }(e, t);
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            Y = "remixjsp";
+            Z = "remixjsp";
 
-        function Z() {
+        function $() {
             var e;
             (e = window.performance) && e.getEntriesByType && e.getEntriesByType("paint").forEach(function(e) {
-                    "first-contentful-paint" === e.name && oe(e.startTime, "TTFCP")
+                    "first-contentful-paint" === e.name && ie(e.startTime, "TTFCP")
                 }),
                 function() {
                     var e = window.performance;
                     e && e.getEntriesByType && e.getEntriesByType("navigation").forEach(function(e) {
                         if ("navigation" === e.initiatorType) {
                             var t = e.domComplete,
-                                n = e.domContentLoadedEventEnd,
-                                o = e.loadEventEnd;
-                            oe(t, "domComplete"), oe(n, "domContentLoadedEventEnd"), oe(o, "loadEventEnd")
+                                o = e.domContentLoadedEventEnd,
+                                n = e.loadEventEnd;
+                            ie(t, "domComplete"), ie(o, "domContentLoadedEventEnd"), ie(n, "loadEventEnd")
                         }
                     })
-                }(), te()
+                }(), oe()
         }
-        var $ = [],
-            ee = !1;
+        var ee = [],
+            te = !1;
 
-        function te() {
-            if (ee) {
+        function oe() {
+            if (te) {
                 var e = window.performance,
-                    t = $[$.length - 1];
-                if (!t) return ee = !1, void oe(-1);
-                var n = t.startTime + t.duration;
-                e.now() - n >= 3e3 ? oe(n, "TTI") : setTimeout(te, 3e3)
+                    t = ee[ee.length - 1];
+                if (!t) return te = !1, void ie(-1);
+                var o = t.startTime + t.duration;
+                e.now() - o >= 3e3 ? ie(o, "TTI") : setTimeout(oe, 3e3)
             }
         }
         var ne = [];
 
-        function oe(e, t) {
-            var n = Math.floor(e);
-            if (-1 !== e && (ne.push([n, t]), !(ee ? "TTI" === t : ne.length > 2))) return;
-            var o = "unknown",
+        function ie(e, t) {
+            var o = Math.floor(e);
+            if (-1 !== e && (ne.push([o, t]), !(te ? "TTI" === t : ne.length > 2))) return;
+            var n = "unknown",
                 i = navigator.connection;
-            i && i.effectiveType && (o = i.effectiveType);
+            i && i.effectiveType && (n = i.effectiveType);
             var r = {
                 id: (isNaN(vk.id) ? 0 : vk.id + Date.now() + Math.random()).toString(36),
                 loc: location.href,
                 events: []
             };
             ne.forEach(function(e) {
-                var t = J(e, 2),
-                    n = t[0],
+                var t = Y(e, 2),
+                    o = t[0],
                     i = t[1];
-                return r.events.push([i, n, cur.module, o, window.vk.rv])
-            }), Object(y.d)(Y, JSON.stringify(r), .01)
+                return r.events.push([i, o, cur.module, n, window.vk.rv])
+            }), Object(O.d)(Z, JSON.stringify(r), .01)
         }
 
-        function ie() {
+        function re() {
             window.PerformanceLongTaskTiming && (new PerformanceObserver(function(e) {
-                $ = $.concat(e.getEntries())
+                ee = ee.concat(e.getEntries())
             }).observe({
                 entryTypes: ["longtask"]
-            }), ee = !0), "complete" !== document.readyState ? window.addEventListener("load", function() {
-                setTimeout(Z, 0)
-            }) : Z()
+            }), te = !0), "complete" !== document.readyState ? window.addEventListener("load", function() {
+                setTimeout($, 0)
+            }) : $()
         }
-        var re = {
+        var ae = {
                 GROUPS_ADMIN_LEVEL_USER: 0,
                 GROUPS_ADMIN_LEVEL_MODERATOR: 1,
                 GROUPS_ADMIN_LEVEL_EDITOR: 2,
@@ -694,18 +701,18 @@
                 GROUPS_ADMIN_PSEUDO_LEVEL_ADVERTISER: 100,
                 GROUPS_ADMIN_FLAG_ADS: 8
             },
-            ae = n("1BRX"),
-            de = n("W9Tc"),
-            we = n("98sY"),
-            ce = n("El3O"),
-            se = n("EasH"),
-            le = n("kcIO"),
-            ue = n("FWc3");
+            de = o("1BRX"),
+            we = o("W9Tc"),
+            ce = o("98sY"),
+            se = o("El3O"),
+            le = o("EasH"),
+            ue = o("kcIO"),
+            fe = o("FWc3");
 
-        function fe(e, t) {
-            var n = t.asrtl ? 0 : t.right ? 289 : 35,
-                o = t.asrtl ? " mobile_tt_asrtl" : t.right ? " mobile_tt_right" : "";
-            return Object(ue.c)(e, {
+        function he(e, t) {
+            var o = t.asrtl ? 0 : t.right ? 289 : 35,
+                n = t.asrtl ? " mobile_tt_asrtl" : t.right ? " mobile_tt_right" : "";
+            return Object(fe.c)(e, {
                 url: "al_login.php",
                 params: {
                     act: "mobile_tt",
@@ -721,13 +728,13 @@
                 dir: "auto",
                 asrtl: t.asrtl,
                 appendParentCls: t.appendParentCls,
-                shift: [n, 8, 7],
-                className: "mobile_tt" + o
+                shift: [o, 8, 7],
+                className: "mobile_tt" + n
             })
         }
 
-        function he(e, t) {
-            return Object(ue.c)(e, {
+        function be(e, t) {
+            return Object(fe.c)(e, {
                 url: "/al_page.php",
                 params: {
                     act: "verified_tt",
@@ -744,12 +751,12 @@
             })
         }
 
-        function be(e, t, n) {
+        function pe(e, t, o) {
             if (!cur._addRestoreInProgress) {
-                var o = Object(k.T)("_audio_row", e),
-                    i = AudioUtils.getAudioFromEl(o, !0),
-                    r = Object(k.s)(e, "action"),
-                    a = AudioUtils.getRowActionName(r, i, o),
+                var n = Object(L.T)("_audio_row", e),
+                    i = AudioUtils.getAudioFromEl(n, !0),
+                    r = Object(L.s)(e, "action"),
+                    a = AudioUtils.getRowActionName(r, i, n),
                     d = {
                         text: function() {
                             return a
@@ -757,17 +764,17 @@
                         black: 1,
                         shift: t || [7, 4, 0],
                         needLeft: !0,
-                        forcetodown: n
+                        forcetodown: o
                     };
-                each(["_im_mess_stack", "top_notify_wrap", "_ape_audio_item", "wk_history_audio_content"], function(t, n) {
-                    if (Object(k.T)(n, e)) return d.appendParentCls = n, !1
-                }), Object(k.T)("_im_mess_stack", e) && (d.shift = [7, 10, 0], d.noZIndex = !0), Object(ue.c)(e, d)
+                each(["_im_mess_stack", "top_notify_wrap", "_ape_audio_item", "wk_history_audio_content"], function(t, o) {
+                    if (Object(L.T)(o, e)) return d.appendParentCls = o, !1
+                }), Object(L.T)("_im_mess_stack", e) && (d.shift = [7, 10, 0], d.noZIndex = !0), Object(fe.c)(e, d)
             }
         }
 
-        function pe(e) {
+        function me(e) {
             var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-            Object(ue.c)(e, {
+            Object(fe.c)(e, {
                 url: "al_wall.php",
                 params: {
                     act: "mention_tt",
@@ -781,248 +788,248 @@
                 checkLeft: !0,
                 reverseOffset: t.reverseOffset || 112,
                 dir: "auto",
-                appendEl: Object(k.n)("im-page-history-w", e) || Object(k.n)("rb_box_wrap", e) || Object(k.n)("wk_cont", e) || Object(k.n)("scroll_fix_wrap", e)
+                appendEl: Object(L.n)("im-page-history-w", e) || Object(L.n)("rb_box_wrap", e) || Object(L.n)("wk_cont", e) || Object(L.n)("scroll_fix_wrap", e)
             })
         }
 
-        function me(e) {
+        function ve(e) {
             var t = "";
-            Object(k.T)("_im_mess_stack", e) && (t = "_im_mess_stack"), Object(ue.c)(e, {
+            Object(L.T)("_im_mess_stack", e) && (t = "_im_mess_stack"), Object(fe.c)(e, {
                 className: "bookmarks_tt ",
                 shift: [32, 8],
                 text: function() {
-                    return "1" === Object(k.s)(e, "state") ? Object(k.s)(e, "remove") : Object(k.s)(e, "add")
+                    return "1" === Object(L.s)(e, "state") ? Object(L.s)(e, "remove") : Object(L.s)(e, "add")
                 },
                 black: 1,
                 appendParentCls: t
             })
         }
-        var ve = n("Ieup"),
-            ge = n("t/FQ"),
-            ye = n("aong"),
-            Oe = .5,
-            _e = .25,
-            je = 300,
-            ke = 1e3,
-            Le = 3e5,
+        var ge = o("Ieup"),
+            ye = o("t/FQ"),
+            Oe = o("aong"),
+            _e = .5,
+            je = .25,
+            ke = 300,
+            Le = 1e3,
+            Ee = 3e5,
             xe = 2500,
-            Ee = 5e3,
-            Te = 6e3,
-            Se = 2e4,
-            Ce = 1e3,
-            Ae = 36e4,
-            Pe = "_longViewType",
-            Be = "_longViewIdled",
-            Ie = "_longViewModule",
-            Me = "_longViewStarted",
-            Ne = "_longViewProcessed",
-            De = "_longViewCached",
-            Ve = "_longViewHeight",
-            Re = "_longViewTop",
-            He = "_longViewBottom",
-            Fe = "REGULAR",
-            We = "AUTOPLAY_AD",
-            Ue = "LongView.viewed",
-            qe = "LongView.idled",
-            ze = vk.longViewTestGroup,
-            Ge = [],
+            Te = 5e3,
+            Se = 6e3,
+            Ce = 2e4,
+            Ae = 1e3,
+            Pe = 36e4,
+            Be = "_longViewType",
+            Ie = "_longViewIdled",
+            Me = "_longViewModule",
+            Ne = "_longViewStarted",
+            De = "_longViewProcessed",
+            Ve = "_longViewCached",
+            Re = "_longViewHeight",
+            He = "_longViewTop",
+            Fe = "_longViewBottom",
+            We = "REGULAR",
+            Ue = "AUTOPLAY_AD",
+            qe = "LongView.viewed",
+            ze = "LongView.idled",
+            Ge = vk.longViewTestGroup,
             Qe = [],
             Ke = [],
-            Xe = Date.now(),
-            Je = 0,
+            Xe = [],
+            Je = Date.now(),
             Ye = 0,
-            Ze = !1,
-            $e = null,
+            Ze = 0,
+            $e = !1,
             et = null,
             tt = null,
+            ot = null,
             nt = null,
-            ot = {};
-
-        function it() {
-            var e = jt();
-            e.length && (gt(e), kt())
-        }
+            it = {};
 
         function rt() {
-            Ge.forEach(function(e) {
-                e[De] = !1
+            var e = kt();
+            e.length && (yt(e), Lt())
+        }
+
+        function at() {
+            Qe.forEach(function(e) {
+                e[Ve] = !1
             })
         }
 
-        function at(e, t) {
-            "im" === t && !e[Pe] && function(e) {
-                if (Object(k.V)(e, "im-mess--post")) return !0;
-                var t = e && Object(k.u)(e);
-                return !(!t || "ads_feed_placeholder" === t.getAttribute("id") || Object(k.V)(e, "no_posts"))
-            }(e) && (e[Pe] = function(e) {
-                var t = e && Object(k.u)(e);
-                return t && t.hasAttribute("data-ad-video-autoplay") ? We : Fe
-            }(e), e[Ie] = t, Ge.push(e))
+        function dt(e, t) {
+            "im" === t && !e[Be] && function(e) {
+                if (Object(L.V)(e, "im-mess--post")) return !0;
+                var t = e && Object(L.u)(e);
+                return !(!t || "ads_feed_placeholder" === t.getAttribute("id") || Object(L.V)(e, "no_posts"))
+            }(e) && (e[Be] = function(e) {
+                var t = e && Object(L.u)(e);
+                return t && t.hasAttribute("data-ad-video-autoplay") ? Ue : We
+            }(e), e[Me] = t, Qe.push(e))
         }
 
-        function dt(e, t) {
-            var n = dt;
+        function wt(e, t) {
+            var o = wt;
             ! function(e, t) {
-                var n = [];
-                Ge.forEach(function(o) {
-                    St(o) ? n.push(o) : ! function(e, t, n) {
-                        return !e[Me] && xt(e, Oe, t, n)
-                    }(o, e, t) ? function(e, t, n) {
-                        return e[Me] && !xt(e, _e, t, n)
-                    }(o, e, t) && (o[Be] ? delete o[Be] : (Ct(Qe, o), Ke = Ke.concat(Tt(o))), delete o[Me]) : (o[Me] = Date.now(), Qe.push(o))
-                }), n.forEach(function(e) {
-                    Ct(Ge, e)
+                var o = [];
+                Qe.forEach(function(n) {
+                    Ct(n) ? o.push(n) : ! function(e, t, o) {
+                        return !e[Ne] && xt(e, _e, t, o)
+                    }(n, e, t) ? function(e, t, o) {
+                        return e[Ne] && !xt(e, je, t, o)
+                    }(n, e, t) && (n[Ie] ? delete n[Ie] : (At(Ke, n), Xe = Xe.concat(St(n))), delete n[Ne]) : (n[Ne] = Date.now(), Ke.push(n))
+                }), o.forEach(function(e) {
+                    At(Qe, e)
                 })
-            }(e || Object(B.e)(), t || window.innerHeight), Ze ? (clearTimeout(n.timer), n.timer = setTimeout(wt, 150)) : (Ze = !0, ft(), function() {
+            }(e || Object(I.e)(), t || window.innerHeight), $e ? (clearTimeout(o.timer), o.timer = setTimeout(ct, 150)) : ($e = !0, ht(), function() {
                 if ("/im" === location.pathname) {
-                    var e = Object(k.H)("im-page--chat-header"),
-                        t = Object(k.H)("im-page--chat-input");
-                    Je = e.getBoundingClientRect().top + e.offsetHeight, Ye = window.innerHeight - t.getBoundingClientRect().top
-                } else Je = Object(k.F)("page_header").offsetHeight, Ye = 0
+                    var e = Object(L.H)("im-page--chat-header"),
+                        t = Object(L.H)("im-page--chat-input");
+                    Ye = e.getBoundingClientRect().top + e.offsetHeight, Ze = window.innerHeight - t.getBoundingClientRect().top
+                } else Ye = Object(L.F)("page_header").offsetHeight, Ze = 0
             }())
         }
 
-        function wt() {
-            ft(), ut(), Ze = !1
-        }
-
         function ct() {
-            ft(), vt()
+            ht(), ft(), $e = !1
         }
 
         function st() {
-            Ke = [], Qe.forEach(function(e) {
-                return e[Me] = Date.now()
-            }), yt(null), Ot(null), ut()
+            ht(), gt()
         }
 
         function lt() {
-            ft(), vt(), Ke = [], Qe = [], yt(null), Ot(null)
+            Xe = [], Ke.forEach(function(e) {
+                return e[Ne] = Date.now()
+            }), Ot(null), _t(null), ft()
         }
 
         function ut() {
-            $e = setTimeout(ht, xe), et = setTimeout(bt, Ee), tt = setTimeout(pt, Te), nt = setTimeout(mt, Se)
+            ht(), gt(), Xe = [], Ke = [], Ot(null), _t(null)
         }
 
         function ft() {
-            clearTimeout($e), clearTimeout(et), clearTimeout(tt), clearTimeout(nt)
+            et = setTimeout(bt, xe), tt = setTimeout(pt, Te), ot = setTimeout(mt, Se), nt = setTimeout(vt, Ce)
         }
 
         function ht() {
-            Ke.length && yt(Ke)
+            clearTimeout(et), clearTimeout(tt), clearTimeout(ot), clearTimeout(nt)
         }
 
         function bt() {
-            gt(Ke), Ke = [], yt(null)
+            Xe.length && Ot(Xe)
         }
 
         function pt() {
-            Qe.length && (Ot(Et(Qe, !0, !0)), tt = setTimeout(pt, Ce))
+            yt(Xe), Xe = [], Ot(null)
         }
 
         function mt() {
-            clearTimeout(tt), gt(Et(Qe)), Qe.forEach(function(e) {
-                return e[Be] = !0
-            }), Qe = [], Ot(null)
+            Ke.length && (_t(Tt(Ke, !0, !0)), ot = setTimeout(mt, Ae))
         }
 
         function vt() {
-            gt(Ke.concat(Et(Qe)))
+            clearTimeout(ot), yt(Tt(Ke)), Ke.forEach(function(e) {
+                return e[Ie] = !0
+            }), Ke = [], _t(null)
         }
 
-        function gt(e) {
+        function gt() {
+            yt(Xe.concat(Tt(Ke)))
+        }
+
+        function yt(e) {
             e && e.length && ajax.post("/al_page.php", {
                 act: "seen",
                 data: function(e) {
                     var t = {};
                     e.forEach(function(e) {
-                        var n = e.ownerId,
-                            o = "ad" === n ? "" : ":" + e.duration + ":" + e.index;
-                        t[n] || (t[n] = []), t[n].push(e.module + e.postId + o + (e.sessionId ? ":" + e.sessionId : "") + (e.q ? ":" + e.q : "") + ":" + e.viewIndex)
+                        var o = e.ownerId,
+                            n = "ad" === o ? "" : ":" + e.duration + ":" + e.index;
+                        t[o] || (t[o] = []), t[o].push(e.module + e.postId + n + (e.sessionId ? ":" + e.sessionId : "") + (e.q ? ":" + e.q : "") + ":" + e.viewIndex)
                     });
-                    var n = [];
-                    return Object(S.f)(t, function(e, t) {
-                        return n.push(e + "_" + t.join(","))
-                    }), n.join(";")
+                    var o = [];
+                    return Object(C.f)(t, function(e, t) {
+                        return o.push(e + "_" + t.join(","))
+                    }), o.join(";")
                 }(e),
                 long_view: 1
             })
         }
 
-        function yt(e) {
-            _t(Ue, e)
-        }
-
         function Ot(e) {
-            _t(qe, e)
+            jt(qe, e)
         }
 
-        function _t(e, t) {
-            var n = H.a.get(e) || {};
-            t ? n[Xe] = t : delete n[Xe], H.a.set(e, n)
+        function _t(e) {
+            jt(ze, e)
         }
 
-        function jt() {
-            var e = jt,
-                t = [],
-                n = H.a.get(Ue) || {},
-                o = H.a.get(qe) || {};
-            return e.iterator || (e.iterator = function(e) {
-                return function(n) {
-                    Lt(n) && (t = t.concat(e[n]))
-                }
-            }), Object.keys(n).forEach(e.iterator(n)), Object.keys(o).forEach(e.iterator(o)), t
+        function jt(e, t) {
+            var o = F.a.get(e) || {};
+            t ? o[Je] = t : delete o[Je], F.a.set(e, o)
         }
 
         function kt() {
             var e = kt,
-                t = H.a.get(Ue) || {},
-                n = H.a.get(qe) || {};
+                t = [],
+                o = F.a.get(qe) || {},
+                n = F.a.get(ze) || {};
+            return e.iterator || (e.iterator = function(e) {
+                return function(o) {
+                    Et(o) && (t = t.concat(e[o]))
+                }
+            }), Object.keys(o).forEach(e.iterator(o)), Object.keys(n).forEach(e.iterator(n)), t
+        }
+
+        function Lt() {
+            var e = Lt,
+                t = F.a.get(qe) || {},
+                o = F.a.get(ze) || {};
             e.iterator || (e.iterator = function(e) {
                 return function(t) {
-                    Lt(t) && delete e[t]
+                    Et(t) && delete e[t]
                 }
-            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), H.a.set(Ue, t), H.a.set(qe, n)
+            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(o).forEach(e.iterator(o)), F.a.set(qe, t), F.a.set(ze, o)
         }
 
-        function Lt(e) {
+        function Et(e) {
             var t = Number(e);
-            return t !== Xe && Date.now() - t >= Ae
+            return t !== Je && Date.now() - t >= Pe
         }
 
-        function xt(e, t, n, o) {
+        function xt(e, t, o, n) {
             if (!e) return !1;
-            e[De] || (e[De] = !0, e[Ve] = e.offsetHeight, e[Re] = n + e.getBoundingClientRect().top, e[He] = e[Re] + e[Ve]);
-            var i = o - Je - Ye,
-                r = n + Je,
-                a = n + o - Ye,
-                d = e[Ve],
-                w = e[Re],
-                c = e[He];
+            e[Ve] || (e[Ve] = !0, e[Re] = e.offsetHeight, e[He] = o + e.getBoundingClientRect().top, e[Fe] = e[He] + e[Re]);
+            var i = n - Ye - Ze,
+                r = o + Ye,
+                a = o + n - Ze,
+                d = e[Re],
+                w = e[He],
+                c = e[Fe];
             return (c > r && w < a ? Math.min(a, c) - Math.max(r, w) : 0) >= Math.min(i * t, d * t)
         }
 
-        function Et(e, t, n) {
+        function Tt(e, t, o) {
             return e.map(function(e) {
-                return Tt(e, t, n)
+                return St(e, t, o)
             })
         }
 
-        function Tt(e, t, n) {
-            if (St(e)) return [];
-            var o = Math.min(Le, Date.now() - e[Me]);
-            if (e[Pe] === Fe && o < je || e[Pe] === We && o < ke) return [];
-            n || (e[Ne] = !0);
+        function St(e, t, o) {
+            if (Ct(e)) return [];
+            var n = Math.min(Ee, Date.now() - e[Ne]);
+            if (e[Be] === We && n < ke || e[Be] === Ue && n < Le) return [];
+            o || (e[De] = !0);
             var i, r = function(e) {
-                    var t = e[Ie];
+                    var t = e[Me];
                     if ("im" === t) {
-                        var n = Object(k.c)(e, "data-post-id"),
-                            o = Object(k.c)(e, "data-copy"),
+                        var o = Object(L.c)(e, "data-post-id"),
+                            n = Object(L.c)(e, "data-copy"),
                             i = {
                                 index: -1,
                                 module: "im"
                             };
-                        return n && (i[n] = -1), o && (i[o] = -1), i
+                        return o && (i[o] = -1), n && (i[n] = -1), i
                     }
                     try {
                         return window[t].postsGetRaws(e)
@@ -1059,66 +1066,66 @@
                         u = s[1];
                     "ads" === l && (u = s[3]), /^post\d+$/.test(l) && (l = s[1], u = s[2]);
                     var f = void 0;
-                    t || (ot[f = l + "_" + u] || (ot[f] = 0), ot[f]++), w.push("ad" === l ? {
+                    t || (it[f = l + "_" + u] || (it[f] = 0), it[f]++), w.push("ad" === l ? {
                         ownerId: "ad",
                         postId: u,
                         module: a,
-                        viewIndex: ot[f]
+                        viewIndex: it[f]
                     } : "ads" === l ? {
                         ownerId: "ads",
                         postId: u,
                         module: a,
                         index: r.index,
-                        duration: o,
+                        duration: n,
                         sessionId: d,
-                        viewIndex: ot[f]
+                        viewIndex: it[f]
                     } : {
                         ownerId: l,
                         postId: (1 === r[c] ? "" : "-") + u,
                         module: a,
                         index: r.index,
-                        duration: o,
+                        duration: n,
                         sessionId: d,
                         q: r.q || null,
-                        viewIndex: ot[f]
+                        viewIndex: it[f]
                     })
                 }
             return w
         }
 
-        function St(e) {
-            return "page_view" === ze && e[Ne] || !document.body.contains(e)
+        function Ct(e) {
+            return "page_view" === Ge && e[De] || !document.body.contains(e)
         }
 
-        function Ct(e, t) {
-            var n = e.indexOf(t);
-            n >= 0 && e.splice(n, 1)
+        function At(e, t) {
+            var o = e.indexOf(t);
+            o >= 0 && e.splice(o, 1)
         }
-        var At = n("QGEU"),
-            Pt = n("eNQP"),
-            Bt = n("o7bv"),
-            It = n("wetz"),
-            Mt = n("i6oL"),
-            Nt = n("m0N1"),
-            Dt = window.isMVK ? "mvk" : "web",
-            Vt = {
+        var Pt = o("QGEU"),
+            Bt = o("eNQP"),
+            It = o("o7bv"),
+            Mt = o("wetz"),
+            Nt = o("i6oL"),
+            Dt = o("m0N1"),
+            Vt = window.isMVK ? "mvk" : "web",
+            Rt = {
                 start: function(e, t) {
-                    var n = this;
-                    if (t.stopPropagation(), t.preventDefault(), window.statlogsValueEvent("first_april_special_event", "click", Dt), !this.timeoutHandle) {
-                        var o = Number(e.getAttribute("data-v")) || 0;
-                        this.duration && this.id || (this.duration = Number(e.getAttribute("data-duration")) || 0, this.id = e.getAttribute("data-id")), this.duration && this.id && (!this.animationData || !this.animationData.v || "number" == typeof this.v && this.v !== o ? (this.v = o, this._getAnimation().then(function(e) {
-                            return n.animationData = JSON.parse(e), n._loadBodymovin()
+                    var o = this;
+                    if (t.stopPropagation(), t.preventDefault(), window.statlogsValueEvent("first_april_special_event", "click", Vt), !this.timeoutHandle) {
+                        var n = Number(e.getAttribute("data-v")) || 0;
+                        this.duration && this.id || (this.duration = Number(e.getAttribute("data-duration")) || 0, this.id = e.getAttribute("data-id")), this.duration && this.id && (!this.animationData || !this.animationData.v || "number" == typeof this.v && this.v !== n ? (this.v = n, this._getAnimation().then(function(e) {
+                            return o.animationData = JSON.parse(e), o._loadBodymovin()
                         }).then(function() {
-                            return n._play()
+                            return o._play()
                         })) : this._play())
                     }
                 },
                 _getAnimation: function() {
                     var e = this;
                     return new Promise(function(t) {
-                        var n = new XMLHttpRequest;
-                        n.open("GET", "/images/stickers/special/" + e.id + "/animation.json?v=" + e.v, !0), n.send(), n.onreadystatechange = function() {
-                            4 === n.readyState && t(n.responseText)
+                        var o = new XMLHttpRequest;
+                        o.open("GET", "/images/stickers/special/" + e.id + "/animation.json?v=" + e.v, !0), o.send(), o.onreadystatechange = function() {
+                            4 === o.readyState && t(o.responseText)
                         }
                     })
                 },
@@ -1134,7 +1141,7 @@
                             animationData: this.animationData
                         });
                         this.timeoutHandle = setTimeout(function() {
-                            t.stop(), t.destroy(), e.frame.style.display = "none", e.timeoutHandle = null, window.statlogsValueEvent("first_april_special_event", "showed", Dt)
+                            t.stop(), t.destroy(), e.frame.style.display = "none", e.timeoutHandle = null, window.statlogsValueEvent("first_april_special_event", "showed", Vt)
                         }, this.duration)
                     }
                 },
@@ -1151,43 +1158,43 @@
                 }
             };
         m.polyfill(), window.Map = d, window.Set = w;
-        var Rt = window.vk;
+        var Ht = window.vk;
 
-        function Ht() {
+        function Ft() {
             window.NextPageID = 1, window.__debugMode = !0, window.__dev = /[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+\.[a-z0-9_\-]+/i.test(locHost), window.__dev || (window.__debugMode = !1), window._wf = 0, window.cur = {
                 destroy: [],
                 nav: []
-            }, Rt.width = 960, Rt.started = Object(S.L)(), Rt.counts = {}, _.a.android && (Object(y.d)("remixscreen_width", window.screen.width, 365), Object(y.d)("remixscreen_height", window.screen.height, 365), Object(y.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(y.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(y.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(X.f)(), Object(W.b)(), Object(T.b)(window, "unload", function() {
-                for (var e in vkCache) vkCache[e].handle && vkCache[e].handle.elem !== window && Object(T.h)(vkCache[e].handle.elem)
-            }), Object(T.b)(window, "DOMContentLoaded load", function() {
-                Rt.loaded || (Rt.loaded = !0, Object(q.y)()), Object(ce.c)()
-            }), Object(T.b)(document, "mousedown", function(e) {
+            }, Ht.width = 960, Ht.started = Object(C.L)(), Ht.counts = {}, j.a.android && (Object(O.d)("remixscreen_width", window.screen.width, 365), Object(O.d)("remixscreen_height", window.screen.height, 365), Object(O.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(O.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(O.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(J.f)(), Object(U.b)(), Object(S.b)(window, "unload", function() {
+                for (var e in vkCache) vkCache[e].handle && vkCache[e].handle.elem !== window && Object(S.h)(vkCache[e].handle.elem)
+            }), Object(S.b)(window, "DOMContentLoaded load", function() {
+                Ht.loaded || (Ht.loaded = !0, Object(z.y)()), Object(se.c)()
+            }), Object(S.b)(document, "mousedown", function(e) {
                 window._wf = 1, cur.__mdEvent = e
-            }), window.browser.mobile || Object(T.b)(document, "keydown", It.a)
+            }), window.browser.mobile || Object(S.b)(document, "keydown", Mt.a)
         }
-        var Ft = 0;
+        var Wt = 0;
 
-        function Wt() {
-            if (window.headNode = Object(k.J)("head"), window.icoNode = Object(k.J)("link", headNode), window.bodyNode = Object(k.J)("body"), window.htmlNode = Object(k.J)("html"), window.utilsNode = Object(k.F)("utils"), window._fixedNav = !1, window._tbLink = {}, Object(T.b)(bodyNode, "resize", ce.j.pbind(!1)), utilsNode) {
-                _.a.mozilla ? Object(k.a)(bodyNode, "firefox") : _.a.mobile && Object(k.a)(bodyNode, "mobfixed"), Object(ge.g)(), Object(W.a)();
-                var e = Object(k.F)("layer_bg"),
+        function Ut() {
+            if (window.headNode = Object(L.J)("head"), window.icoNode = Object(L.J)("link", headNode), window.bodyNode = Object(L.J)("body"), window.htmlNode = Object(L.J)("html"), window.utilsNode = Object(L.F)("utils"), window._fixedNav = !1, window._tbLink = {}, Object(S.b)(bodyNode, "resize", se.j.pbind(!1)), utilsNode) {
+                j.a.mozilla ? Object(L.a)(bodyNode, "firefox") : j.a.mobile && Object(L.a)(bodyNode, "mobfixed"), Object(ye.g)(), Object(U.a)();
+                var e = Object(L.F)("layer_bg"),
                     t = e.nextSibling,
-                    n = Object(k.F)("box_layer_bg"),
-                    o = n.nextSibling;
-                window.layerBG = e, window.boxLayerBG = n, window.layerWrap = t, window.layer = t.firstChild, window.boxLayerWrap = o, window.boxLayer = o.firstChild, window.boxLoader = o.firstChild.firstChild, window._stlSide = Object(k.F)("stl_side"), window._stlLeft = Object(k.F)("stl_left"), window._stlShown = 0, window._stlWas = 0, window._stlWasSet = 0, window._stlBack = 0, window._regBar = 0, window.__afterFocus = !1, _.a.mobile || Object(Mt.a)(), Object(T.b)(o, "click", boxQueue.hideLastCheck), window.LazyLoad && LazyLoad.watch(o), window.layers = function(e, t, n, o) {
-                    return window.layerQueue = R, Object(S.i)(V, {
-                        show: V._show.pbind(e, t),
-                        boxshow: V._show.pbind(n, o),
-                        wrapshow: V._show.pbind(e),
-                        hide: V._hide.pbind(e, t),
-                        boxhide: V._hide.pbind(n, o),
-                        wraphide: V._hide.pbind(e)
-                    }), V
-                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Ft = 1
+                    o = Object(L.F)("box_layer_bg"),
+                    n = o.nextSibling;
+                window.layerBG = e, window.boxLayerBG = o, window.layerWrap = t, window.layer = t.firstChild, window.boxLayerWrap = n, window.boxLayer = n.firstChild, window.boxLoader = n.firstChild.firstChild, window._stlSide = Object(L.F)("stl_side"), window._stlLeft = Object(L.F)("stl_left"), window._stlShown = 0, window._stlWas = 0, window._stlWasSet = 0, window._stlBack = 0, window._regBar = 0, window.__afterFocus = !1, j.a.mobile || Object(Nt.a)(), Object(S.b)(n, "click", boxQueue.hideLastCheck), window.LazyLoad && LazyLoad.watch(n), window.layers = function(e, t, o, n) {
+                    return window.layerQueue = H, Object(C.i)(R, {
+                        show: R._show.pbind(e, t),
+                        boxshow: R._show.pbind(o, n),
+                        wrapshow: R._show.pbind(e),
+                        hide: R._hide.pbind(e, t),
+                        boxhide: R._hide.pbind(o, n),
+                        wraphide: R._hide.pbind(e)
+                    }), R
+                }(e, t, o, n), hab.init(), window._retinaInit ? window._retinaInit() : Wt = 1
             }
         }
 
-        function Ut() {
+        function qt() {
             if (utilsNode) {
                 window.AppUseTime && (window.appUseTime = new window.AppUseTime({
                     getModule: function() {
@@ -1196,31 +1203,31 @@
                     getOID: function() {
                         return cur.oid
                     }
-                })), Object(Mt.b)();
-                var e = Object(k.F)("side_bar");
-                window.pageNode = Object(k.F)("page_wrap"), window._fixedNav = e && "fixed" === Object(k.O)(e, "position"), window._tbLink = Object(k.F)("top_back_link"), _.a.chrome || _.a.msie_edge ? window.scrollNode = document.scrollingElement || bodyNode : window.scrollNode = _.a.safari ? bodyNode : htmlNode;
-                var t = Math.max(Object(S.L)() - Rt.started, 10),
-                    n = Object(S.r)((Rt.contlen || 1) / t * 1e3);
-                _.a.mozilla && _.a.version >= 4 ? n /= 2.5 : _.a.mozilla ? n *= 1.5 : _.a.msie && _.a.version >= 7 ? n /= 1.5 : _.a.msie && (n *= 2.5);
-                var o = Object(S.r)(150 * Math.max(2e6 / n, 1));
-                if (W.d.highlimit = 6 * o, W.d.lowlimit = Math.min(o, 600), Object(ce.j)(), setTimeout(ce.j.pbind(!1), 0), Object(At.c)(), window.addEventListener("scroll", ce.k, {
+                })), Object(Nt.b)();
+                var e = Object(L.F)("side_bar");
+                window.pageNode = Object(L.F)("page_wrap"), window._fixedNav = e && "fixed" === Object(L.O)(e, "position"), window._tbLink = Object(L.F)("top_back_link"), j.a.chrome || j.a.msie_edge ? window.scrollNode = document.scrollingElement || bodyNode : window.scrollNode = j.a.safari ? bodyNode : htmlNode;
+                var t = Math.max(Object(C.L)() - Ht.started, 10),
+                    o = Object(C.r)((Ht.contlen || 1) / t * 1e3);
+                j.a.mozilla && j.a.version >= 4 ? o /= 2.5 : j.a.mozilla ? o *= 1.5 : j.a.msie && j.a.version >= 7 ? o /= 1.5 : j.a.msie && (o *= 2.5);
+                var n = Object(C.r)(150 * Math.max(2e6 / o, 1));
+                if (U.d.highlimit = 6 * n, U.d.lowlimit = Math.min(n, 600), Object(se.j)(), setTimeout(se.j.pbind(!1), 0), Object(Pt.c)(), window.addEventListener("scroll", se.k, {
                         passive: !0
-                    }), window.debuglogInit && debuglogInit(), !Rt.id && H.a.checkVersion() && H.a.get("last_reloaded")) try {
+                    }), window.debuglogInit && debuglogInit(), !Ht.id && F.a.checkVersion() && F.a.get("last_reloaded")) try {
                     var i = {};
-                    Object(S.f)(["sound_notify_off", "im_ui_notify_off"], function(e, t) {
-                        var n = H.a.get(t);
-                        null !== n && (i[t] = n)
-                    }), window.localStorage.clear(), Object(S.f)(i, function(e, t) {
-                        return H.a.set(e, t)
+                    Object(C.f)(["sound_notify_off", "im_ui_notify_off"], function(e, t) {
+                        var o = F.a.get(t);
+                        null !== o && (i[t] = o)
+                    }), window.localStorage.clear(), Object(C.f)(i, function(e, t) {
+                        return F.a.set(e, t)
                     })
                 } catch (e) {}
             }
         }
-        var qt = function() {
-            function e(t, n) {
+        var zt = function() {
+            function e(t, o) {
                 ! function(e, t) {
                     if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-                }(this, e), this.count = n || 1, this.func = t
+                }(this, e), this.count = o || 1, this.func = t
             }
             return e.prototype.done = function() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -1228,51 +1235,51 @@
             }, e
         }();
 
-        function zt(e) {
-            Rt.loaded ? e() : Object(T.b)(window, "load", e)
+        function Gt(e) {
+            Ht.loaded ? e() : Object(S.b)(window, "load", e)
         }
 
-        function Gt() {
-            window.showWriteMessageBox = ve.g, window.giftsBox = ve.a, window.moneyTransferBox = ve.d, window.reportAd = ve.e, window.mobilePromo = ve.c, window.showAudioClaimWarning = ve.f, window.menuSettings = ve.b, window.sureDeleteAll = ve.h, window.TopNotifier = Object(D.l)(), window.showPhoto = D.x, window.showManyPhoto = D.w, window.showAlbums = D.u, window.showAlbum = D.t, window.showPhotoTags = D.y, window.isPhotoeditor3Available = D.o, window.AudioMessagePlayer = D.a, window.showVideoTags = D.A, window.videoCallback = D.C, window.showWiki = D.B, window.showApp = D.v, window.showPodcast = D.z, window.podcastStartFrom = D.r, window.articlePrepare = D.b, window.isArticleLayerOpen = D.n, window.isArticleEditorAvailable = D.m, window.openArticleEditor = D.q, window.mentionOver = pe, window.mentionClick = D.p, window.mobileOnlineTip = fe, window.pageVerifiedTip = he, window.audioShowActionTooltip = be, window.shareAudioPlaylist = D.s, window.getAudioPlayer = D.j, window.deleteAudioOnClaim = D.i, window.initTopAudioPlayer = D.k, window.bookmark = D.c, window.bookmarkPost = D.h, window.bookmarkArticle = D.d, window.bookmarkLink = D.e, window.bookmarkPodcast = D.g, window.bookmarkNarrative = D.f, window.bookmarkTooltip = me, window.showStory = M.c, window.showNarrative = M.b, window.storiesPreloadStatic = M.d, window.sendMask = M.a
+        function Qt() {
+            window.showWriteMessageBox = ge.g, window.giftsBox = ge.a, window.moneyTransferBox = ge.d, window.reportAd = ge.e, window.mobilePromo = ge.c, window.showAudioClaimWarning = ge.f, window.menuSettings = ge.b, window.sureDeleteAll = ge.h, window.TopNotifier = Object(V.l)(), window.showPhoto = V.x, window.showManyPhoto = V.w, window.showAlbums = V.u, window.showAlbum = V.t, window.showPhotoTags = V.y, window.isPhotoeditor3Available = V.o, window.AudioMessagePlayer = V.a, window.showVideoTags = V.A, window.videoCallback = V.C, window.showWiki = V.B, window.showApp = V.v, window.showPodcast = V.z, window.podcastStartFrom = V.r, window.articlePrepare = V.b, window.isArticleLayerOpen = V.n, window.isArticleEditorAvailable = V.m, window.openArticleEditor = V.q, window.mentionOver = me, window.mentionClick = V.p, window.mobileOnlineTip = he, window.pageVerifiedTip = be, window.audioShowActionTooltip = pe, window.shareAudioPlaylist = V.s, window.getAudioPlayer = V.j, window.deleteAudioOnClaim = V.i, window.initTopAudioPlayer = V.k, window.bookmark = V.c, window.bookmarkPost = V.h, window.bookmarkArticle = V.d, window.bookmarkLink = V.e, window.bookmarkPodcast = V.g, window.bookmarkNarrative = V.f, window.bookmarkTooltip = ve, window.showStory = N.c, window.showNarrative = N.b, window.storiesPreloadStatic = N.d, window.sendMask = N.a
         }
         window.constants = {
-            Groups: re
-        }, window.partConfigEnabled = de.a, Object(k.X)(), window.ge = k.F, window.geByTag = k.I, window.geByTag1 = k.J, window.geByClass = k.G, window.geByClass1 = k.H, window.gpeByClass = k.T, window.domQuery = k.B, window.domQuery1 = k.C, window.domClosest = k.n, window.ce = k.e, window.cf = k.f, window.re = k.fb, window.se = k.mb, window.sech = k.nb, window.rs = k.lb, window.psr = k.eb, window.domReplaceEl = k.D, window.domEL = k.t, window.domNS = k.y, window.domPS = k.A, window.domFC = k.u, window.domLC = k.x, window.domPN = k.z, window.domChildren = k.m, window.domInsertBefore = k.w, window.domInsertAfter = k.v, window.domByClass = k.j, window.domData = k.s, window.domChildIndex = k.l, window.domCA = k.k, window.domClosestSibling = k.r, window.matchesSelector = k.db, window.isHover = k.Z, window.isAncestor = k.Y, window.getScroll = k.M, window.domClosestPositioned = k.q, window.domClosestOverflowHidden = k.p, window.show = k.tb, window.hide = k.W, window.isVisible = k.ab, window.clientHeight = k.h, window.getClientRectOffsetY = k.K, window.toggle = k.ub, window.boundingRectEnabled = k.d, window.getXYRect = k.R, window.getXY = k.Q, window.isWindow = k.bb, window.getSize = k.N, window.hasClass = k.V, window.addClass = k.a, window.addClassDelayed = k.b, window.removeClass = k.hb, window.removeClassDelayed = k.ib, window.toggleClass = k.vb, window.toggleClassDelayed = k.wb, window.replaceClass = k.kb, window.getStyle = k.O, window.setStyle = k.qb, window.setStyleDelayed = k.rb, window.setPseudoStyle = k.pb, window.data = k.i, window.attr = k.c, window.removeAttr = k.gb, window.removeData = k.jb, window.cleanElems = k.g, window.setTitle = k.sb, window.getZoom = k.S, window.val = k.yb, window.elfocus = k.E, window.traverseParent = k.xb, window.getH = k.L, window.getW = k.P, window.domClosestByTag = k.o, window.setDocumentTitle = k.ob, window.lockDocumentTitle = k.cb, window.KEY = T.a, window.addEvent = T.b, window.removeEvent = T.h, window.triggerEvent = T.j, window.cancelEvent = T.c, window.stopEvent = T.i, window.normEvent = T.g, window.checkEvent = T.d, window.checkKeyboardEvent = T.e, window.checkOver = T.f, Object(S.q)(), window.isRetina = S.y, window.extractUrls = S.j, window.serializeForm = S.F, window.addTemplates = S.a, window.getTemplate = S.n, window.rand = S.D, window.irand = S.s, window.isUndefined = S.A, window.isFunction = S.v, window.isArray = S.t, window.isString = S.z, window.isObject = S.x, window.isEmpty = S.u, window.vkNow = S.L, window.vkImage = S.J, window.trim = S.H, window.stripHTML = S.G, window.escapeRE = S.h, window.intval = S.r, window.floatval = S.k, window.positive = S.C, window.isNumeric = S.w, window.winToUtf = S.M, window.replaceEntities = S.E, window.clean = S.c, window.unclean = S.I, window.each = S.f, window.indexOf = S.p, window.inArray = S.o, window.clone = S.d, window.arrayKeyDiff = S.b, window.extend = S.i, window.vkLocal = S.K, window.lTimeout = S.B, window.getCaretCharacterOffsetWithin = S.m, window.formatCount = S.l, window.encodeHtml = S.g, window.decodeHtml = S.e, Object(O.c)(), window.ajx2q = O.b, window.q2ajx = O.f, window.requestBox = O.g, window.activateMobileBox = O.a, window.validateMobileBox = O.h, window.validatePassBox = O.i, window.photoCaptchaBox = O.e, Object(y.c)(), window.getCookie = y.a, window.setCookie = y.d, window.hideCookiesPolicy = y.b, Object(we.c)(), window.debugLog = we.b, window.debugEl = we.a, window.isToday = ae.c, window.isYesterday = ae.e, window.isTomorrow = ae.d, window.isSameDate = ae.b, window.leadingZero = ae.f, window.formatTime = ae.a, window.parseLatin = P.o, window.parseCyr = P.m, window.parseLatKeys = P.n, window.langNumeric = P.i, window.langSex = P.j, window.langStr = P.k, window.addLangKeys = P.a, window.getLang = P.d, window.langDate = P.h, window.getShortDate = P.e, window.getShortDateOrTime = P.f, window.langWordNumeric = P.l, window.getDateText = P.c, window.getBigDateNew = P.b, window.getSmDate = P.g, window.scrollToY = B.g, window.scrollToTop = B.f, window.scrollGetX = B.d, window.scrollGetY = B.e, window.disableBodyScroll = B.a, window.enableBodyScroll = B.b, window.Chat = ge.a, window.__qlTimer = null, window.__qlClear = ge.b, window.onLoginDone = ge.n, window.onLoginFailed = ge.o, window.onLoginCaptcha = ge.m, window.onLoginReCaptcha = ge.p, window.storePasswordCredential = ge.q, window.cssAnim = ge.c, window.imagesLoader = ge.f, window.nodeUpdated = ge.l, window.hideNewsAnnounce = ge.e, window.leftAdBlockClose = ge.i, window.leftBlockToggleFriend = ge.k, window.leftBlockFriendTooltip = ge.j, window.fifaReplaceText = ge.d, window.placeholderSetup = Bt.c, window.placeholderInit = Bt.b, window.isInputActive = Bt.a, window.showTooltip = ue.c, window.showTitle = ue.b, window.showHint = ue.a, window.topMsg = g.d, window.showMsg = g.b, window.topError = g.c, window.showGlobalPrg = g.a, window.checkTextLength = ye.b, window.getSelectionText = ye.d, window.goAway = ye.e, window.debounce = ye.c, window.hashCode = ye.g, window.isFullScreen = ye.h, window.parallel = ye.k, window.parseJSON = ye.l, window.shuffle = ye.m, window.throttle = ye.n, window.toggleOnline = ye.q, window.updateMoney = ye.s, window.onlinePlatformClass = ye.j, window.Fx = E.a, window.fx = E.a, window.animate = E.b, window.cubicBezier = E.d, window.fadeTo = E.g, window.genFx = E.i, window.getRGB = E.k, window.getColor = E.j, window.slideDown = E.l, window.slideUp = E.n, window.slideToggle = E.m, window.fadeIn = E.e, window.fadeOut = E.f, window.fadeToggle = E.h, window.animateCount = E.c, window.updateAriaElements = At.c, window.updateAriaCheckboxes = At.b, window.hasAccessibilityMode = At.a, window.cancelStackFilter = N.a, window.cancelStackPush = N.c, window.cancelStackPop = N.b, window.ElementTooltip = j.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = L, 1 === Rt.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== Rt.al || history.pushState || (Rt.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), Rt.version = !1), Object(W.c)(), window.stManager = W.d, Object(_.c)(), window.browser = _.a, window.mobPlatforms = _.d, window.browserFeatures = _.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, Ht(), window.updateHeaderStyles = X.j, window.updateNarrow = ce.m, window.checkPageBlocks = ce.c, window.redraw = ce.l, window.onBodyResize = ce.j, window.onBodyScroll = ce.k, window.leftBlockOver = ce.i, window.leftBlockOut = ce.h, window.leftBlockHide = ce.g, window.onDocumentClick = It.c, window.onEnter = It.d, window.onCtrlEnter = It.b, window.autosizeSetup = ce.b, window.getProgressBarEl = ce.e, window.getProgressHtml = ce.f, Object(Nt.b)(), ie(), window.onDomReady = function(e) {
+            Groups: ae
+        }, window.partConfigEnabled = we.a, Object(L.X)(), window.ge = L.F, window.geByTag = L.I, window.geByTag1 = L.J, window.geByClass = L.G, window.geByClass1 = L.H, window.gpeByClass = L.T, window.domQuery = L.B, window.domQuery1 = L.C, window.domClosest = L.n, window.ce = L.e, window.cf = L.f, window.re = L.fb, window.se = L.mb, window.sech = L.nb, window.rs = L.lb, window.psr = L.eb, window.domReplaceEl = L.D, window.domEL = L.t, window.domNS = L.y, window.domPS = L.A, window.domFC = L.u, window.domLC = L.x, window.domPN = L.z, window.domChildren = L.m, window.domInsertBefore = L.w, window.domInsertAfter = L.v, window.domByClass = L.j, window.domData = L.s, window.domChildIndex = L.l, window.domCA = L.k, window.domClosestSibling = L.r, window.matchesSelector = L.db, window.isHover = L.Z, window.isAncestor = L.Y, window.getScroll = L.M, window.domClosestPositioned = L.q, window.domClosestOverflowHidden = L.p, window.show = L.tb, window.hide = L.W, window.isVisible = L.ab, window.clientHeight = L.h, window.getClientRectOffsetY = L.K, window.toggle = L.ub, window.boundingRectEnabled = L.d, window.getXYRect = L.R, window.getXY = L.Q, window.isWindow = L.bb, window.getSize = L.N, window.hasClass = L.V, window.addClass = L.a, window.addClassDelayed = L.b, window.removeClass = L.hb, window.removeClassDelayed = L.ib, window.toggleClass = L.vb, window.toggleClassDelayed = L.wb, window.replaceClass = L.kb, window.getStyle = L.O, window.setStyle = L.qb, window.setStyleDelayed = L.rb, window.setPseudoStyle = L.pb, window.data = L.i, window.attr = L.c, window.removeAttr = L.gb, window.removeData = L.jb, window.cleanElems = L.g, window.setTitle = L.sb, window.getZoom = L.S, window.val = L.yb, window.elfocus = L.E, window.traverseParent = L.xb, window.getH = L.L, window.getW = L.P, window.domClosestByTag = L.o, window.setDocumentTitle = L.ob, window.lockDocumentTitle = L.cb, window.KEY = S.a, window.addEvent = S.b, window.removeEvent = S.h, window.triggerEvent = S.j, window.cancelEvent = S.c, window.stopEvent = S.i, window.normEvent = S.g, window.checkEvent = S.d, window.checkKeyboardEvent = S.e, window.checkOver = S.f, Object(C.q)(), window.isRetina = C.y, window.extractUrls = C.j, window.serializeForm = C.F, window.addTemplates = C.a, window.getTemplate = C.n, window.rand = C.D, window.irand = C.s, window.isUndefined = C.A, window.isFunction = C.v, window.isArray = C.t, window.isString = C.z, window.isObject = C.x, window.isEmpty = C.u, window.vkNow = C.L, window.vkImage = C.J, window.trim = C.H, window.stripHTML = C.G, window.escapeRE = C.h, window.intval = C.r, window.floatval = C.k, window.positive = C.C, window.isNumeric = C.w, window.winToUtf = C.M, window.replaceEntities = C.E, window.clean = C.c, window.unclean = C.I, window.each = C.f, window.indexOf = C.p, window.inArray = C.o, window.clone = C.d, window.arrayKeyDiff = C.b, window.extend = C.i, window.vkLocal = C.K, window.lTimeout = C.B, window.getCaretCharacterOffsetWithin = C.m, window.formatCount = C.l, window.encodeHtml = C.g, window.decodeHtml = C.e, Object(_.c)(), window.ajx2q = _.b, window.q2ajx = _.f, window.requestBox = _.g, window.activateMobileBox = _.a, window.validateMobileBox = _.h, window.validatePassBox = _.i, window.photoCaptchaBox = _.e, Object(O.c)(), window.getCookie = O.a, window.setCookie = O.d, window.hideCookiesPolicy = O.b, Object(ce.c)(), window.debugLog = ce.b, window.debugEl = ce.a, window.isToday = de.c, window.isYesterday = de.e, window.isTomorrow = de.d, window.isSameDate = de.b, window.leadingZero = de.f, window.formatTime = de.a, window.parseLatin = B.o, window.parseCyr = B.m, window.parseLatKeys = B.n, window.langNumeric = B.i, window.langSex = B.j, window.langStr = B.k, window.addLangKeys = B.a, window.getLang = B.d, window.langDate = B.h, window.getShortDate = B.e, window.getShortDateOrTime = B.f, window.langWordNumeric = B.l, window.getDateText = B.c, window.getBigDateNew = B.b, window.getSmDate = B.g, window.scrollToY = I.g, window.scrollToTop = I.f, window.scrollGetX = I.d, window.scrollGetY = I.e, window.disableBodyScroll = I.a, window.enableBodyScroll = I.b, window.Chat = ye.a, window.__qlTimer = null, window.__qlClear = ye.b, window.onLoginDone = ye.n, window.onLoginFailed = ye.o, window.onLoginCaptcha = ye.m, window.onLoginReCaptcha = ye.p, window.storePasswordCredential = ye.q, window.cssAnim = ye.c, window.imagesLoader = ye.f, window.nodeUpdated = ye.l, window.hideNewsAnnounce = ye.e, window.leftAdBlockClose = ye.i, window.leftBlockToggleFriend = ye.k, window.leftBlockFriendTooltip = ye.j, window.fifaReplaceText = ye.d, window.placeholderSetup = It.c, window.placeholderInit = It.b, window.isInputActive = It.a, window.showTooltip = fe.c, window.showTitle = fe.b, window.showHint = fe.a, window.topMsg = y.d, window.showMsg = y.b, window.topError = y.c, window.showGlobalPrg = y.a, window.checkTextLength = Oe.b, window.getSelectionText = Oe.d, window.goAway = Oe.e, window.debounce = Oe.c, window.hashCode = Oe.g, window.isFullScreen = Oe.h, window.parallel = Oe.k, window.parseJSON = Oe.l, window.shuffle = Oe.m, window.throttle = Oe.n, window.toggleOnline = Oe.q, window.updateMoney = Oe.s, window.onlinePlatformClass = Oe.j, window.Fx = T.a, window.fx = T.a, window.animate = T.b, window.cubicBezier = T.d, window.fadeTo = T.g, window.genFx = T.i, window.getRGB = T.k, window.getColor = T.j, window.slideDown = T.l, window.slideUp = T.n, window.slideToggle = T.m, window.fadeIn = T.e, window.fadeOut = T.f, window.fadeToggle = T.h, window.animateCount = T.c, window.updateAriaElements = Pt.c, window.updateAriaCheckboxes = Pt.b, window.hasAccessibilityMode = Pt.a, window.cancelStackFilter = D.a, window.cancelStackPush = D.c, window.cancelStackPop = D.b, window.ElementTooltip = k.a, window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "", window.setFavIcon = E, 1 === Ht.al ? (location.search || "/" !== location.pathname) && location.replace("/") : (3 !== Ht.al || history.pushState || (Ht.al = 2), location.search || "/index.php" !== location.pathname || location.replace("/"), Ht.version = !1), Object(U.c)(), window.stManager = U.d, Object(j.c)(), window.browser = j.a, window.mobPlatforms = j.d, window.browserFeatures = j.b, Object(x.a)(), window.toggleFlash = x.c, window.renderFlash = x.b, Ft(), window.updateHeaderStyles = J.j, window.updateNarrow = se.m, window.checkPageBlocks = se.c, window.redraw = se.l, window.onBodyResize = se.j, window.onBodyScroll = se.k, window.leftBlockOver = se.i, window.leftBlockOut = se.h, window.leftBlockHide = se.g, window.onDocumentClick = Mt.c, window.onEnter = Mt.d, window.onCtrlEnter = Mt.b, window.autosizeSetup = se.b, window.getProgressBarEl = se.e, window.getProgressHtml = se.f, Object(Dt.b)(), re(), window.onDomReady = function(e) {
             return e()
         }, window.currentModule = function() {
             return cur.currentModule ? cur.currentModule() : cur.module
-        }, window.hab = A(), window.ls = H.a, window.shortCurrency = F, window.statlogsValueEvent = U.c, window.saveSearchAttemptStats = U.b, window.removeSearchPositionTracker = U.a, window.callHub = qt, window.CallHub = qt, window.gSearch = new G, window.zNav = X.m, window.handlePageView = X.e, window.handlePageParams = X.d, window.handlePageCount = X.c, window.comScoreUDM = X.a, window.updateOtherCounters = X.l, window.processDestroy = X.g, window.globalHistoryDestroy = X.b, window.showBackLink = X.i, window.nav = K.a, nav.init(), Rt.time && !window.browser.opera_mobile && setTimeout(function() {
+        }, window.hab = P(), window.ls = F.a, window.shortCurrency = W, window.statlogsValueEvent = q.c, window.saveSearchAttemptStats = q.b, window.removeSearchPositionTracker = q.a, window.callHub = zt, window.CallHub = zt, window.gSearch = new Q, window.zNav = J.m, window.handlePageView = J.e, window.handlePageParams = J.d, window.handlePageCount = J.c, window.comScoreUDM = J.a, window.updateOtherCounters = J.l, window.processDestroy = J.g, window.globalHistoryDestroy = J.b, window.showBackLink = J.i, window.nav = X.a, nav.init(), Ht.time && !window.browser.opera_mobile && setTimeout(function() {
             var e = new Date,
                 t = [0, e.getMonth() + 1, e.getDate(), e.getHours(), e.getMinutes()];
-            1 === t[1] && 12 === Rt.time[1] ? Rt.time[1] = 0 : 12 === t[1] && 1 === Rt.time[1] ? t[1] = 0 : (t[1] > Rt.time[1] + 1 || Rt.time[1] > t[1] + 1) && (t[1] = Rt.time[1] = t[2] = Rt.time[2] = 0), t[1] > Rt.time[1] && 1 === t[2] ? 31 === Rt.time[2] || (4 === Rt.time[1] || 6 === Rt.time[1] || 9 === Rt.time[1] || 11 === Rt.time[1]) && 30 === Rt.time[2] || 2 === Rt.time[1] && (29 === Rt.time[2] || 28 === Rt.time[2] && Rt.time[0] % 4) ? Rt.time[2] = 0 : Rt.time[2] = t[2] = 0 : Rt.time[1] > t[1] && 1 === Rt.time[2] && (31 === t[2] || (4 === t[1] || 6 === t[1] || 9 === t[1] || 11 === t[1]) && 30 === t[2] || 2 === t[1] && (29 === t[2] || 28 === t[2] && Rt.time[0] % 4) ? t[2] = 0 : t[2] = Rt.time[2] = 0), (t[2] > Rt.time[2] + 1 || Rt.time[2] > t[2] + 1) && (t[2] = Rt.time[2] = 0);
-            var n = 60 * (60 * (24 * (t[2] - Rt.time[2]) + (t[3] - Rt.time[3])) + (t[4] - Rt.time[4]));
-            n < -55800 ? n += 86400 : n > 37800 && (n -= 86400);
-            var o = 0,
-                i = Math.abs(n);
-            Object(S.f)([-12, -11, -10, -9, -8, -7, -6, -5, -4.5, -4, -3.5, -3, -2.5, -2, -1, 0, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 5.75, 6, 6.5, 7, 8, 8.5, 9, 9.5, 10, 11, 12, 13], function(e, t) {
+            1 === t[1] && 12 === Ht.time[1] ? Ht.time[1] = 0 : 12 === t[1] && 1 === Ht.time[1] ? t[1] = 0 : (t[1] > Ht.time[1] + 1 || Ht.time[1] > t[1] + 1) && (t[1] = Ht.time[1] = t[2] = Ht.time[2] = 0), t[1] > Ht.time[1] && 1 === t[2] ? 31 === Ht.time[2] || (4 === Ht.time[1] || 6 === Ht.time[1] || 9 === Ht.time[1] || 11 === Ht.time[1]) && 30 === Ht.time[2] || 2 === Ht.time[1] && (29 === Ht.time[2] || 28 === Ht.time[2] && Ht.time[0] % 4) ? Ht.time[2] = 0 : Ht.time[2] = t[2] = 0 : Ht.time[1] > t[1] && 1 === Ht.time[2] && (31 === t[2] || (4 === t[1] || 6 === t[1] || 9 === t[1] || 11 === t[1]) && 30 === t[2] || 2 === t[1] && (29 === t[2] || 28 === t[2] && Ht.time[0] % 4) ? t[2] = 0 : t[2] = Ht.time[2] = 0), (t[2] > Ht.time[2] + 1 || Ht.time[2] > t[2] + 1) && (t[2] = Ht.time[2] = 0);
+            var o = 60 * (60 * (24 * (t[2] - Ht.time[2]) + (t[3] - Ht.time[3])) + (t[4] - Ht.time[4]));
+            o < -55800 ? o += 86400 : o > 37800 && (o -= 86400);
+            var n = 0,
+                i = Math.abs(o);
+            Object(C.f)([-12, -11, -10, -9, -8, -7, -6, -5, -4.5, -4, -3.5, -3, -2.5, -2, -1, 0, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 5.75, 6, 6.5, 7, 8, 8.5, 9, 9.5, 10, 11, 12, 13], function(e, t) {
                 var r = Math.round(3600 * (t - 3)),
-                    a = Math.abs(n - r);
-                a < i && (i = a, o = r)
-            }), Rt.dt = o, Object(y.a)("remixdt") !== Rt.dt && Object(y.d)("remixdt", Rt.dt, 365);
-            var r = Object(S.r)(Object(y.a)("remixrt"));
-            window.devicePixelRatio >= 2 && (!_.a.iphone || Object(y.a)("remixme")) ? 1 & r || (Object(y.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
-                W.d.add(["retina.css"]), Object(k.a)(document.body, "is_2x")
-            }, Ft && window._retinaInit()) : 1 & r && Object(y.d)("remixrt", 1 ^ r, 365)
-        }, 0), window.boxQueue = Object(le.c)(), window.__bq = boxQueue, window.curBox = le.b, Object(le.d)(), window.boxRefreshCoords = le.a, window.MessageBox = se.a, window.showBox = se.b, window.showTabbedBox = se.f, window.showFastBox = se.d, window.showCaptchaBox = se.c, window.showReCaptchaBox = se.e, window.showDoneBox = le.e, window.TopMenu = ce.a, window.TopSearch = Q.a, window.handleScroll = ye.f, window.loadScript = z.a, window.SpecialEvent = Vt, Object(q.j)(), window.notaBene = q.q, window.updSideTopLink = q.y, window.createButton = q.d, window.actionsMenuItemLocked = q.a, window.lockActionsMenuItem = q.n, window.unlockActionsMenuItem = q.v, window.linkLocked = q.m, window.lockLink = q.p, window.unlockLink = q.x, window.lockButton = q.o, window.unlockButton = q.w, window.buttonLocked = q.b, window.isButtonLocked = q.k, window.disableButton = q.f, window.sbWidth = q.t, window.isChecked = q.l, window.checkbox = q.c, window.disable = q.e, window.radioval = q.s, window.radiobtn = q.r, window.showProgress = q.u, window.hideProgress = q.i, window.disableEl = q.g, window.enableEl = q.h, Object(I.d)(), window.VideoConstants = I.a, window.showVideo = I.j, window.showInlineVideo = I.i, window.loadInlineVideo = I.e, window.revertLastInlineVideo = I.h, window.destroyInlineVideoPlayer = I.c, window.pauseLastInlineVideo = I.f, window.playLastInlineVideo = I.g, window.checkMp4 = I.b, window.performance && window.performance.memory && Object(S.D)(0, 100) < 5 && Object(Pt.a)(), ze ? (Object(T.b)(window, "blur", ct), Object(T.b)(window, "focus", st), onDomReady(function() {
-            return setTimeout(it, 500)
+                    a = Math.abs(o - r);
+                a < i && (i = a, n = r)
+            }), Ht.dt = n, Object(O.a)("remixdt") !== Ht.dt && Object(O.d)("remixdt", Ht.dt, 365);
+            var r = Object(C.r)(Object(O.a)("remixrt"));
+            window.devicePixelRatio >= 2 && (!j.a.iphone || Object(O.a)("remixme")) ? 1 & r || (Object(O.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
+                U.d.add(["retina.css"]), Object(L.a)(document.body, "is_2x")
+            }, Wt && window._retinaInit()) : 1 & r && Object(O.d)("remixrt", 1 ^ r, 365)
+        }, 0), window.boxQueue = Object(ue.c)(), window.__bq = boxQueue, window.curBox = ue.b, Object(ue.d)(), window.boxRefreshCoords = ue.a, window.MessageBox = le.a, window.showBox = le.b, window.showTabbedBox = le.f, window.showFastBox = le.d, window.showCaptchaBox = le.c, window.showReCaptchaBox = le.e, window.showDoneBox = ue.e, window.TopMenu = se.a, window.TopSearch = K.a, window.handleScroll = Oe.f, window.loadScript = G.a, window.SpecialEvent = Rt, Object(z.j)(), window.notaBene = z.q, window.updSideTopLink = z.y, window.createButton = z.d, window.actionsMenuItemLocked = z.a, window.lockActionsMenuItem = z.n, window.unlockActionsMenuItem = z.v, window.linkLocked = z.m, window.lockLink = z.p, window.unlockLink = z.x, window.lockButton = z.o, window.unlockButton = z.w, window.buttonLocked = z.b, window.isButtonLocked = z.k, window.disableButton = z.f, window.sbWidth = z.t, window.isChecked = z.l, window.checkbox = z.c, window.disable = z.e, window.radioval = z.s, window.radiobtn = z.r, window.showProgress = z.u, window.hideProgress = z.i, window.disableEl = z.g, window.enableEl = z.h, Object(M.d)(), window.VideoConstants = M.a, window.showVideo = M.j, window.showInlineVideo = M.i, window.loadInlineVideo = M.e, window.revertLastInlineVideo = M.h, window.destroyInlineVideoPlayer = M.c, window.pauseLastInlineVideo = M.f, window.playLastInlineVideo = M.g, window.checkMp4 = M.b, window.performance && window.performance.memory && Object(C.D)(0, 100) < 5 && Object(Bt.a)(), Ge ? (Object(S.b)(window, "blur", st), Object(S.b)(window, "focus", lt), onDomReady(function() {
+            return setTimeout(rt, 500)
         }), window.LongView = {
-            register: at,
-            onScroll: Object(ye.n)(dt, 50),
-            onBeforePageChange: lt,
-            clearElemsCache: rt,
+            register: dt,
+            onScroll: Object(Oe.n)(wt, 50),
+            onBeforePageChange: ut,
+            clearElemsCache: at,
             _debug: function() {
                 return {
-                    started: Qe,
-                    tracking: Ge,
-                    viewedData: Ke,
-                    viewIndexes: ot,
-                    blindTop: Je,
-                    blindBottom: Ye
+                    started: Ke,
+                    tracking: Qe,
+                    viewedData: Xe,
+                    viewIndexes: it,
+                    blindTop: Ye,
+                    blindBottom: Ze
                 }
             }
         }) : window.LongView = {
@@ -1280,6 +1287,6 @@
             onScroll: function() {},
             onBeforePageChange: function() {},
             clearElemsCache: function() {}
-        }, Object(ge.h)(), Gt(), window.onLoaded = zt, window.domStarted = Wt, window.domReady = Ut, Object(we.b)("common module enabled"), W.d.done(jsc("web/common_web.js"))
+        }, Object(ye.h)(), Qt(), window.onLoaded = Gt, window.domStarted = Ut, window.domReady = qt, Object(ce.b)("common module enabled"), U.d.done(jsc("web/common_web.js"))
     }
 });

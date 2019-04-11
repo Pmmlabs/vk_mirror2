@@ -2794,6 +2794,18 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin-bottom: 8px
 }
 
+.helpdesk_ml_feed__title .priority_low {
+    color: green
+}
+
+.helpdesk_ml_feed__title .priority_high {
+    color: #ffb300
+}
+
+.helpdesk_ml_feed__title .priority_urgent {
+    color: red
+}
+
 .helpdesk_ml_feed__title_rates {
     font-size: 11px
 }
@@ -2804,11 +2816,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_ml_ticket__text_question .ticker_title {
     margin-bottom: 5px;
-    display: block
+    display: inline-block
 }
 
 .helpdesk_ml_feed__bottom_divider {
-    border-bottom: 1px solid #e7e8ec;
     margin-bottom: 15px;
     padding-bottom: 15px
 }
@@ -2899,7 +2910,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_ml_feed__page .tickets_extra_fields {
     border-top: none;
     margin-top: 5px;
-    margin-bottom: -3px
+    margin-bottom: -3px;
+    text-align: left
 }
 
 .has_no_shadow {
@@ -2951,11 +2963,12 @@ body.body_helpdesk_small_sb .left_menu_nav {
     width: 100%;
     position: relative;
     top: -16px;
-    left: -2%;
+    left: -15px;
     background: #e5ebf1;
     color: #55677d;
     padding: 15px;
-    margin-bottom: -13px
+    margin-bottom: -13px;
+    display: inline-block
 }
 
 .helpdesk__my_answer_passes .idd_wrap {
@@ -3010,13 +3023,30 @@ body.body_helpdesk_small_sb .left_menu_nav {
 }
 
 .ento_user_info_label {
-    display: inline-block;
     font-size: 11px;
-    font-weight: 400;
     background: #4a76a8;
     color: #fff;
     padding: 3px 5px 2px;
     border-radius: 2px
+}
+
+.ento_user_info_label,
+.auto_reply_question_comments_count {
+    display: inline-block;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.auto_reply_question_comments_count {
+    color: #45688e;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    cursor: default
+}
+
+.auto_reply_attachs {
+    padding: 5px 0 0
 }
 
 .no_display {

@@ -385,6 +385,21 @@ VK.init = function(success, failure, ver) {
     } else {
         if (VK.isFunc(success)) success();
     }
+    var activeEvents = ['mousemove', 'keydown'];
+    for (var i = 0; i < 0; i++) {
+        document.addEventListener(activeEvents[i], function() {
+            VK.callMethod('unIdle');
+        });
+    }
+    window.addEventListener('focus', function() {
+        VK.callMethod('unIdle');
+    });
+    window.addEventListener('blur', function() {
+        VK.callMethod('idle');
+    });
+    window.addEventListener('scroll', function() {
+        VK.callMethod('unIdle');
+    });
 };
 
 VK.initXDConn = function() {
