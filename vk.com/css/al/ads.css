@@ -1802,31 +1802,48 @@
 .Table__Spinner {
     z-index: 100;
     position: absolute;
+    display: -ms-flexbox;
+    display: flex;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     -ms-flex-pack: center;
+    justify-content: center;
     -ms-flex-align: center;
+    align-items: center;
     -ms-flex-line-pack: center;
     align-content: center;
     background: hsla(0, 0%, 100%, .5)
 }
 
-.Table__Spinner,
-.BaseModal {
-    display: -ms-flexbox;
-    display: flex;
-    top: 0;
-    left: 0;
-    justify-content: center;
-    align-items: center
+.Table__RowEmpty {
+    padding: 30px 0
+}
+
+.Table__RowEmpty--header {
+    height: 40px;
+    border-bottom: 1px solid #e7e8ec;
+    box-sizing: border-box;
+    background-color: #f8f8f9
+}
+
+.Table__EmptyText {
+    display: block
 }
 
 .BaseModal {
     position: fixed;
+    top: 0;
     bottom: 0;
+    left: 0;
     right: 0;
+    display: -ms-flexbox;
+    display: flex;
     -ms-flex-align: center;
+    align-items: center;
     -ms-flex-pack: center;
+    justify-content: center;
     z-index: 1000
 }
 
@@ -2660,8 +2677,8 @@
     box-sizing: border-box
 }
 
-.Table__Grid--empty__inner {
-    padding: 30px 0
+.Table__Grid--empty .flat_button {
+    margin-top: 10px
 }
 
 .Table__Grid--side {

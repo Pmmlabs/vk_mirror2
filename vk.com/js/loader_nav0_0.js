@@ -380,7 +380,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 28151730287,
     'aes_light.js': 3322982554,
-    'ads.css': 105770022790,
+    'ads.css': 110545351636,
     'ads_bonus.css': 1294533291,
     'ads.js': 2438593614,
     'ads_payments.js': 1483293789,
@@ -398,7 +398,7 @@ var stVersions = {
     'mrtarg.css': 3142794554,
     'cmodules/web/ads_edit_easy.js': "1b08bb9c7ef0e432f9356173b5cacfd0d",
     'cmodules/web/ads_edit_components.js': "24ca142ca6c8f9f75d0e8adba94c3e4fa",
-    'cmodules/web/ads_components.js': "2e4a424fcf8dec2b3eff20a160e0f1c1a",
+    'cmodules/web/ads_components.js': "2504fcb3924dd23238c3be12432fddf86",
     'health.css': 2251304991,
     'health.js': 2993570139,
     'sms_office.css': 1728588285,
@@ -591,7 +591,7 @@ var stVersions = {
     'cmodules/web/emoji.js': "1321fd535301f14853236",
     'cmodules/web/apps_achievements.js': "1e528d498cb46b1a10476ca02b201f85c",
     'cmodules/web/payments.js': "19fcc1e2ce475a305259099cc5d91bd5c",
-    'lang': 6964,
+    'lang': 6966,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '3ad6443b8ff37a3ac10f',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': 'b49a6788c5ba3a00560b',
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': 'fc4f3751c29d332cd4cb',
@@ -705,7 +705,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6927;
+var _rnd = 579;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
