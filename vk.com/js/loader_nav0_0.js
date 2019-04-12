@@ -553,7 +553,7 @@ var stVersions = {
     'landings/author_guide.css': 24069300529,
     'cmodules/web/language.js': "1284b8cab627253491adcc44c2f4b33ca",
     'language.css': 17378774409,
-    'cmodules/web/stickers.js': "1860e9a6ae87e6227424c",
+    'cmodules/web/stickers.js': "197e8749ce6309ba433c7",
     'cmodules/web/stickers_office.js': "12d943723eeb0e8a0290f21e4ed18cd67",
     'cmodules/web/bodymovin.js': "10fd57492d44ba8b37127",
     'lead_forms_app.js': "4141df5aceeb185511347",
@@ -586,7 +586,7 @@ var stVersions = {
     'ui_gallery.css': 14823756785,
     'cmodules/web/ui_components.js': "237832dd1a0bf67ba8b1d",
     'apps_feed_blocks.css': 18304799780,
-    'cmodules/web/landing_transparency.js': "108566fc3dc408269ee1d72fb081051260",
+    'cmodules/web/landing_transparency.js': "10a88ae245dccbd04ce6ac42b8e59f2d43",
     'landings/transparency.css': 104543431553,
     'cmodules/web/emoji.js': "1321fd535301f14853236",
     'cmodules/web/apps_achievements.js': "1e528d498cb46b1a10476ca02b201f85c",
@@ -705,7 +705,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5038;
+var _rnd = 6927;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
