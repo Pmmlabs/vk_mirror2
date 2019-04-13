@@ -24719,6 +24719,91 @@ figure[data-type="102"] .article_object_video_play {
     z-index: 9999
 }
 
+.BottomMenu__icon,
+.svgIcon.svgIcon-menu {
+    background: url(/images/mobile/icons/sprites/menu-686c2373.svg) 0 0 / 112px
+}
+
+.vk_old.vk_2x .BottomMenu__icon,
+.vk_old.vk_2x .svgIcon.svgIcon-menu {
+    background-image: url(/images/mobile/icons/sprites/menu-686c2373_2x.png)
+}
+
+.vk_old .BottomMenu__icon,
+.vk_old .svgIcon.svgIcon-menu {
+    background-image: url(/images/mobile/icons/sprites/menu-686c2373_1x.png)
+}
+
+.BottomMenu__icon_menu,
+.svgIcon-menu__menu_28 {
+    background-position: 0 0;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_menu.BottomMenu__icon_active,
+.svgIcon-menu__menu_active_28 {
+    background-position: 33.333333333333336% 0;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_messages,
+.svgIcon-menu__messages_28 {
+    background-position: 0 50%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_messages.BottomMenu__icon_active,
+.svgIcon-menu__messages_active_28 {
+    background-position: 33.333333333333336% 50%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_feed,
+.svgIcon-menu__newsfeed_28 {
+    background-position: 66.66666666666667% 0;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_feed.BottomMenu__icon_active,
+.svgIcon-menu__newsfeed_active_28 {
+    background-position: 66.66666666666667% 50%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_notification,
+.svgIcon-menu__notifications_28 {
+    background-position: 0 100%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_notification.BottomMenu__icon_active,
+.svgIcon-menu__notifications_active_28 {
+    background-position: 33.333333333333336% 100%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_recommend,
+.svgIcon-menu__search_28 {
+    background-position: 66.66666666666667% 100%;
+    width: 28px;
+    height: 28px
+}
+
+.BottomMenu__icon_recommend.BottomMenu__icon_active,
+.svgIcon-menu__search_active_28 {
+    background-position: 100% 0;
+    width: 28px;
+    height: 28px
+}
+
 @media (min-width: 882px) {
     .BottomMenu {
         display: none
@@ -24831,59 +24916,7 @@ figure[data-type="102"] .article_object_video_play {
 .BottomMenu__icon {
     display: block;
     position: relative;
-    width: 28px;
-    height: 28px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-image: url('/images/mobile/skins/icon/tabbar.png');
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     margin: auto
-}
-
-.vk_2x .BottomMenu__icon {
-    background-image: url('/images/mobile/skins/icon/tabbar_2x.png')
-}
-
-.BottomMenu__icon_feed {
-    background-position: 0 0
-}
-
-.BottomMenu__icon_feed.BottomMenu__icon_active {
-    background-position: 0 -28px
-}
-
-.BottomMenu__icon_recommend {
-    background-position: 0 -56px
-}
-
-.BottomMenu__icon_recommend.BottomMenu__icon_active {
-    background-position: 0 -84px
-}
-
-.BottomMenu__icon_messages {
-    background-position: 0 -112px
-}
-
-.BottomMenu__icon_messages.BottomMenu__icon_active {
-    background-position: 0 -140px
-}
-
-.BottomMenu__icon_notification {
-    background-position: 0 -168px
-}
-
-.BottomMenu__icon_notification.BottomMenu__icon_active {
-    background-position: 0 -196px
-}
-
-.BottomMenu__icon_menu {
-    background-position: 0 -224px
-}
-
-.BottomMenu__icon_menu.BottomMenu__icon_active {
-    background-position: 0 -252px
 }
 
 .BottomMenu__counter {
