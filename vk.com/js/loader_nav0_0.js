@@ -380,7 +380,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 28151730287,
     'aes_light.js': 3322982554,
-    'ads.css': 110545351636,
+    'ads.css': 108163300004,
     'ads_bonus.css': 1294533291,
     'ads.js': 2438593614,
     'ads_payments.js': 1483293789,
@@ -398,7 +398,7 @@ var stVersions = {
     'mrtarg.css': 3142794554,
     'cmodules/web/ads_edit_easy.js': "1b08bb9c7ef0e432f9356173b5cacfd0d",
     'cmodules/web/ads_edit_components.js': "24ca142ca6c8f9f75d0e8adba94c3e4fa",
-    'cmodules/web/ads_components.js': "27e332ecd11f31b5fdd9a65a67f473f84",
+    'cmodules/web/ads_components.js': "2afef8db7b54d69264931b876ec097718",
     'health.css': 2251304991,
     'health.js': 2993570139,
     'sms_office.css': 1728588285,
@@ -452,7 +452,7 @@ var stVersions = {
     'ads_offers_moder.js': 3862633445,
     'landings/landings.css': 21390953908,
     'landings/vk10_years.css': 16227770903,
-    'market.css': 27913855951,
+    'market.css': 27686088104,
     'market.js': 1095402721,
     'market_adm.css': 17254737398,
     'stories_admin.css': 18291081979,
@@ -526,7 +526,7 @@ var stVersions = {
     'voice_message_player.js': "11bb8ae167c4535626dc0",
     'cmodules/web/speech_worker_mp3.js': "1cd88db9fd3a88098c9d9",
     'cmodules/web/speech_worker_opus.js': "17e65b2866d65aa28906427f18fabd4d5",
-    'stories.js': "625f65e4052b5adb0eb8a05cfd40348a6",
+    'stories.js': "677cfb5084e7f2ab5b36b04a6d8fa3334",
     'stories.css': 19333239108,
     'cmodules/web/stories_manage.js': "2d2680f76d18b469e376d984254e2067a",
     'stories_manage.css': 81823868115,
@@ -639,7 +639,7 @@ var stVersions = {
     'cmodules/web/playground.js': '12996ad48030ea450903',
     'cmodules/web/rich_dropdown.js': '04d29e1051c9dff38293',
     'cmodules/web/speech.js': 'bb09b604e0bd2526be05dbf2c4519929',
-    'cmodules/web/stories.js': '25f65e4052b5adb0eb8a05cfd40348a6',
+    'cmodules/web/stories.js': '77cfb5084e7f2ab5b36b04a6d8fa3334',
     'cmodules/web/text_editor.js': 'bd2010d862e5185d577e',
     'cmodules/web/translation.js': '128d08fd0456b26145917eddbcf412dd',
     'cmodules/web/ugcform.js': '2af0047db9f096a66ddb',
@@ -707,7 +707,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9757;
+var _rnd = 1210;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

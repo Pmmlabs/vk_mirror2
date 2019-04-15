@@ -47443,11 +47443,7 @@ body.apps_settingsPageBody .basis__content {
     font-size: 14px;
     line-height: 18px;
     color: #2e3033;
-    padding: 12px 0 2px;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap
+    padding: 12px 0 2px
 }
 
 .BookmarksItem .mlt_link,

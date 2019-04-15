@@ -2672,7 +2672,7 @@
 .Table__Grid--empty {
     position: relative;
     text-align: center;
-    background: #f0f2f5;
+    background: #fff;
     border-radius: 0 0 2px 2px;
     box-sizing: border-box
 }

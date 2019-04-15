@@ -3058,3 +3058,26 @@
     right: 9px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M9.75%203.997a1.75%201.75%200%200%200-3.5%200H5a3%203%200%200%201%206%200H9.75zM4.022%204h7.956c.538%200%20.734.053.933.154.199.101.357.25.47.443.113.193.178.385.21.922l.414%206.891A1.5%201.5%200%200%201%2012.507%2014H3.493a1.5%201.5%200%200%201-1.498-1.59l.414-6.89c.032-.538.097-.73.21-.923.113-.192.271-.342.47-.443.2-.1.395-.154.933-.154z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50% no-repeat
 }
+
+th.sortable {
+    color: #2a5885;
+    opacity: 0.8;
+    cursor: pointer
+}
+
+th.sorted:after {
+    display: inline-block;
+    content: "";
+    background: url(/images/svg_icons/contour_arrow.svg) no-repeat;
+    height: 4px;
+    width: 8px;
+    -o-transition: .2s;
+    transition: .2s;
+    margin-left: 3px;
+    margin-bottom: 2px
+}
+
+th.sorted.desc:after {
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg)
+}

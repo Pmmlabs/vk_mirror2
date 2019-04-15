@@ -2888,7 +2888,7 @@
                             var o = function(t, o) {
                                 e && e.cb && e.cb(), r._setList("feed", o);
                                 var i = Object(Et.F)("stories_feed_items");
-                                i && (t && (setStyle(i, "transform", "translateX(0px)"), Object(Et.yb)(i, t), i.children.length < 6 ? Object(Et.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(Et.hb)("stories_feed_wrap", "stories_feed_not_nav_buttons")), cur.storiesPos = 0, Bt.updateFeedArrows(), show("stories_feed_wrap"))
+                                i && (t ? (setStyle(i, "transform", "translateX(0px)"), Object(Et.yb)(i, t), i.children.length < 6 ? Object(Et.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(Et.hb)("stories_feed_wrap", "stories_feed_not_nav_buttons"), cur.storiesPos = 0, Bt.updateFeedArrows(), show("stories_feed_wrap")) : hide("stories_feed_wrap"))
                             };
                             if (e && e.stories) {
                                 var i = e.section,
