@@ -2264,6 +2264,7 @@
     display: -ms-flexbox;
     display: flex;
     width: 100%;
+    max-height: 357px;
     background: #fff
 }
 
@@ -2422,8 +2423,8 @@
     padding: 0 11px;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    -ms-flex-align: baseline;
-    align-items: baseline;
+    -ms-flex-align: center;
+    align-items: center;
     max-width: 100%;
     border: 1px solid #e7e8ec;
     border-radius: 4px;
@@ -2433,7 +2434,11 @@
     transform-origin: top left;
     -o-transition: transform 0.2s, opacity 0.2s, -o-transform 0.2s;
     transition: transform 0.2s, opacity 0.2s;
-    transition: transform 0.2s, opacity 0.2s, -o-transform 0.2s
+    transition: transform 0.2s, opacity 0.2s, -o-transform 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .TableColumnsSettings__selectedColumnsItem:last-child {
@@ -2495,7 +2500,9 @@
     display: block;
     width: 8px;
     height: 8px;
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M-1-1H9V9H-1z%22%2F%3E%3Cpath%20stroke%3D%22%23828A99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.2%22%20d%3D%22M1%201l6%206M7%201L1%207%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / cover
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.7%22%3E%3Cpath%20d%3D%22M-1-1H9V9H-1z%22%2F%3E%3Cpath%20stroke%3D%22%23828A99%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.2%22%20d%3D%22M1%201l6%206M7%201L1%207%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / cover;
+    -o-transform: translateY(1px);
+    transform: translateY(1px)
 }
 
 .TableColumnsSettings__selectedColumnsItemAppear-enter .TableColumnsSettings__selectedColumnsItem {
@@ -2741,7 +2748,7 @@
 .Table__Cell--footer.Table__Cell--fixed {
     position: -webkit-sticky;
     position: sticky;
-    bottom: 0
+    bottom: -1px
 }
 
 .Table__Cell--fixedColumn {
@@ -2911,7 +2918,7 @@
 }
 
 .Table__Row--body:hover .Table__Cell {
-    background: #f0f2f5
+    background: #f8f9fa
 }
 
 .Table__CellHint {
