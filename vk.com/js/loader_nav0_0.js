@@ -162,7 +162,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 15152466302,
     'filebutton.css': 1044306797,
-    'lite.js': 818500416,
+    'lite.js': 2720045853,
     'lite.css': 68802560515,
     'rtl.css': 15686333886,
     'pagination.js': 358700184,
@@ -289,8 +289,8 @@ var stVersions = {
     'feed.css': 23250562915,
     'privacy.js': 2258441616,
     'privacy.css': 14903788336,
-    'apps.css': 54467847299,
-    'apps.js': "294d467bc9d46e8b0631db2b93c04fb9113",
+    'apps.css': 53316876050,
+    'apps.js': "2940c5190eaf66b8e713cc2848c84a1ef11",
     'apps_edit.js': "1174cd6ada368fc878be9503b9dfbd7926a",
     'apps_edit.css': 107278061751,
     'apps_check.js': 3204387834,
@@ -607,7 +607,7 @@ var stVersions = {
     'cmodules/bundles/common.js': '4865d2e287f67becd9b9',
     'cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.js': '21512de761e9a49b5567',
     'cmodules/web/app_use_time.js': '7c9e7aeda91281ad74ce194dbaa3e828',
-    'cmodules/web/apps.js': 'd467bc9d46e8b0631db2b93c04fb9113',
+    'cmodules/web/apps.js': '0c5190eaf66b8e713cc2848c84a1ef11',
     'cmodules/web/apps_connect.js': 'e304bec0651c92870bfc87af20d81f3d',
     'cmodules/web/apps_edit.js': '4cd6ada368fc878be9503b9dfbd7926a',
     'cmodules/web/article_editor_layer.js': '8e3d0fffcf72abeb6984bd5788e53f09',
@@ -707,7 +707,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2923;
+var _rnd = 4195;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

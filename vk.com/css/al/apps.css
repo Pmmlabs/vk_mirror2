@@ -7445,6 +7445,13 @@ td.apps_cat_new_h {
 }
 
 .apps_unverifiedAppWarning {
+    min-height: 400px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
     text-align: center;
     padding: 100px 0
 }
@@ -7964,7 +7971,7 @@ td.apps_cat_new_h {
 }
 
 #apps_layer .app_container--vk-app {
-    width: 100%!important
+    min-width: 100%
 }
 
 .flash-deprecated {
