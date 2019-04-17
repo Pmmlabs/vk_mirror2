@@ -7984,10 +7984,6 @@ function formatCount(count, opts) {
     return langNumeric(count, '%s', true).replace(/,/g, '\.');
 }
 
-function fifaReplaceText(text) {
-    return text;
-}
-
 addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;
 });

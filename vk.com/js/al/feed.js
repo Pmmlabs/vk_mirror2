@@ -662,9 +662,6 @@ var Feed = {
                     if (cont && !isVisible(cont.parentNode)) {
                         text = wall.updatePostImages(text);
                     }
-                    if (window.fifaReplaceText) {
-                        text = fifaReplaceText(text);
-                    }
                     val(editEl, text);
                     if (wasExpanded) {
                         wasExpanded = geByClass1('wall_post_more', editEl);
@@ -689,10 +686,6 @@ var Feed = {
                     if (wasExpanded) wasExpanded = isVisible(domNS(wasExpanded));
 
                     var text = psr(ev[4]);
-
-                    if (window.fifaReplaceText) {
-                        text = fifaReplaceText(text);
-                    }
 
                     val(editEl, text);
 

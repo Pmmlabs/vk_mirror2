@@ -12481,6 +12481,10 @@ body.vk_app_fixed {
     z-index: 2
 }
 
+.vk_app_layout #vk_bottom {
+    padding: 0
+}
+
 #apps #apps_box {
     background-color: #fff
 }

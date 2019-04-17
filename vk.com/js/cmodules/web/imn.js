@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var l = 0; l < s.length; l++) t(s[l]);
     var u = c;
-    a.push([99, "common", "bundles/vendors", "8afc6fda89c949d8a6d98f6fbcc1090c"]), n()
+    a.push([98, "common", "bundles/vendors", "8afc6fda89c949d8a6d98f6fbcc1090c"]), n()
 }({
     "+/AQ": function(e, t, n) {
         "use strict";
@@ -445,7 +445,7 @@
             i = 5,
             a = 4194304
     },
-    99: function(e, t, n) {
+    98: function(e, t, n) {
         e.exports = n("M24l")
     },
     As6E: function(e, t, n) {
@@ -11941,217 +11941,217 @@
         }), n.d(t, "r", function() {
             return Q
         }), n.d(t, "U", function() {
-            return Ge
+            return Xe
         }), n.d(t, "jc", function() {
-            return Je
+            return Ge
         }), n.d(t, "L", function() {
-            return Ye
+            return Je
         }), n.d(t, "y", function() {
-            return Ze
+            return Ye
         }), n.d(t, "G", function() {
-            return $e
+            return Ze
         }), n.d(t, "fb", function() {
-            return tt
+            return et
         }), n.d(t, "ec", function() {
-            return nt
+            return tt
         }), n.d(t, "Gb", function() {
-            return rt
+            return nt
         }), n.d(t, "Q", function() {
-            return it
+            return rt
         }), n.d(t, "I", function() {
-            return ot
+            return at
         }), n.d(t, "Jc", function() {
-            return st
+            return ot
         }), n.d(t, "J", function() {
-            return ct
+            return st
         }), n.d(t, "Vb", function() {
-            return ut
+            return lt
         }), n.d(t, "K", function() {
-            return dt
+            return ut
         }), n.d(t, "x", function() {
-            return mt
+            return ft
         }), n.d(t, "hc", function() {
-            return pt
+            return mt
         }), n.d(t, "Jb", function() {
-            return gt
+            return pt
         }), n.d(t, "dc", function() {
-            return ht
+            return gt
         }), n.d(t, "lb", function() {
-            return bt
+            return ht
         }), n.d(t, "ub", function() {
-            return _t
+            return bt
         }), n.d(t, "pb", function() {
-            return vt
+            return _t
         }), n.d(t, "Bb", function() {
-            return yt
+            return vt
         }), n.d(t, "Cb", function() {
-            return jt
+            return yt
         }), n.d(t, "H", function() {
-            return St
+            return Ct
         }), n.d(t, "Hc", function() {
-            return Et
+            return St
         }), n.d(t, "Bc", function() {
-            return xt
+            return Et
         }), n.d(t, "D", function() {
-            return It
+            return xt
         }), n.d(t, "Xb", function() {
-            return Lt
+            return Mt
         }), n.d(t, "Qb", function() {
-            return Bt
+            return Lt
         }), n.d(t, "Wb", function() {
-            return Dt
+            return Bt
         }), n.d(t, "Sb", function() {
-            return Nt
+            return Dt
         }), n.d(t, "Zb", function() {
-            return At
+            return Nt
         }), n.d(t, "Rb", function() {
-            return Ht
+            return At
         }), n.d(t, "ac", function() {
-            return Rt
+            return Ht
         }), n.d(t, "kc", function() {
-            return Ft
+            return Rt
         }), n.d(t, "Dc", function() {
-            return qt
+            return Ft
         }), n.d(t, "Mb", function() {
-            return Ut
+            return qt
         }), n.d(t, "Ob", function() {
-            return Wt
+            return zt
         }), n.d(t, "Nb", function() {
-            return Kt
+            return Wt
         }), n.d(t, "gc", function() {
-            return Vt
+            return Kt
         }), n.d(t, "O", function() {
-            return Qt
+            return Vt
         }), n.d(t, "Hb", function() {
-            return Xt
+            return Qt
         }), n.d(t, "Tb", function() {
-            return Jt
+            return Gt
         }), n.d(t, "ic", function() {
-            return Yt
+            return Jt
         }), n.d(t, "bc", function() {
-            return Zt
+            return Yt
         }), n.d(t, "w", function() {
-            return $t
+            return Zt
         }), n.d(t, "fc", function() {
-            return en
+            return $t
         }), n.d(t, "Ab", function() {
-            return tn
+            return en
         }), n.d(t, "zc", function() {
-            return nn
+            return tn
         }), n.d(t, "Lc", function() {
-            return rn
+            return nn
         }), n.d(t, "Ec", function() {
-            return an
+            return rn
         }), n.d(t, "E", function() {
-            return on
+            return an
         }), n.d(t, "Ub", function() {
-            return sn
+            return on
         }), n.d(t, "pc", function() {
-            return cn
+            return sn
         }), n.d(t, "rc", function() {
-            return ln
+            return cn
         }), n.d(t, "xc", function() {
-            return un
+            return ln
         }), n.d(t, "tc", function() {
-            return dn
+            return un
         }), n.d(t, "F", function() {
-            return fn
+            return dn
         }), n.d(t, "eb", function() {
-            return mn
+            return fn
         }), n.d(t, "Gc", function() {
-            return pn
+            return mn
         }), n.d(t, "yc", function() {
-            return gn
+            return pn
         }), n.d(t, "C", function() {
-            return hn
+            return gn
         }), n.d(t, "qb", function() {
-            return bn
+            return hn
         }), n.d(t, "Db", function() {
-            return _n
+            return bn
         }), n.d(t, "vb", function() {
-            return vn
+            return _n
         }), n.d(t, "xb", function() {
-            return yn
+            return vn
         }), n.d(t, "wb", function() {
-            return jn
+            return yn
         }), n.d(t, "z", function() {
-            return On
+            return jn
         }), n.d(t, "wc", function() {
-            return wn
+            return On
         }), n.d(t, "W", function() {
-            return kn
+            return wn
         }), n.d(t, "V", function() {
-            return Cn
+            return kn
         }), n.d(t, "mc", function() {
-            return En
+            return Sn
         }), n.d(t, "lc", function() {
-            return xn
+            return En
         }), n.d(t, "S", function() {
-            return In
+            return xn
         }), n.d(t, "oc", function() {
-            return Tn
+            return In
         }), n.d(t, "mb", function() {
-            return Pn
+            return Tn
         }), n.d(t, "Kc", function() {
-            return Mn
+            return Pn
         }), n.d(t, "Pb", function() {
-            return Ln
+            return Mn
         }), n.d(t, "tb", function() {
-            return Bn
+            return Ln
         }), n.d(t, "cb", function() {
-            return Dn
+            return Bn
         }), n.d(t, "ab", function() {
-            return Nn
+            return Dn
         }), n.d(t, "bb", function() {
-            return An
+            return Nn
         }), n.d(t, "db", function() {
-            return Hn
+            return An
         }), n.d(t, "cc", function() {
-            return Rn
+            return Hn
         }), n.d(t, "Ib", function() {
-            return qn
+            return Fn
         }), n.d(t, "Ic", function() {
-            return Un
+            return qn
         }), n.d(t, "Yb", function() {
-            return zn
+            return Un
         }), n.d(t, "sc", function() {
-            return Wn
+            return zn
         }), n.d(t, "nc", function() {
-            return Kn
+            return Wn
         }), n.d(t, "Y", function() {
-            return Vn
+            return Kn
         }), n.d(t, "A", function() {
-            return Qn
+            return Vn
         }), n.d(t, "uc", function() {
-            return Xn
+            return Qn
         }), n.d(t, "vc", function() {
-            return Gn
+            return Xn
         }), n.d(t, "Eb", function() {
-            return Jn
+            return Gn
         }), n.d(t, "P", function() {
-            return Yn
+            return Jn
         }), n.d(t, "Kb", function() {
-            return Zn
+            return Yn
         }), n.d(t, "Lb", function() {
-            return $n
+            return Zn
         }), n.d(t, "Cc", function() {
-            return er
+            return $n
         }), n.d(t, "sb", function() {
-            return tr
+            return er
         }), n.d(t, "qc", function() {
-            return nr
+            return tr
         }), n.d(t, "Ac", function() {
-            return rr
+            return nr
         }), n.d(t, "B", function() {
-            return ir
+            return rr
         }), n.d(t, "T", function() {
-            return ar
+            return ir
         }), n.d(t, "N", function() {
-            return or
+            return ar
         }), n.d(t, "M", function() {
-            return sr
+            return or
         }), n.d(t, "X", function() {
-            return cr
+            return sr
         }), n.d(t, "Z", function() {
             return o.t
         }), n.d(t, "ib", function() {
@@ -12291,38 +12291,37 @@
             Fe = X.slideUp,
             qe = X.fadeOut,
             Ue = X.cancelEvent,
-            ze = X.fifaReplaceText,
-            We = 4096,
-            Ke = 100,
-            Ve = 8,
-            Qe = 52,
-            Xe = "chatPosition";
+            ze = 4096,
+            We = 100,
+            Ke = 8,
+            Ve = 52,
+            Qe = "chatPosition";
 
-        function Ge() {
-            return J.get(Xe) || 0
+        function Xe() {
+            return J.get(Qe) || 0
         }
 
-        function Je(e) {
-            e >= window.clientHeight() - 30 && (e = 0), J.set(Xe, e)
+        function Ge(e) {
+            e >= window.clientHeight() - 30 && (e = 0), J.set(Qe, e)
         }
 
-        function Ye(e, t) {
+        function Je(e, t) {
             var n = fe(e, t);
             n.firstElementChild.offsetHeight !== n.parentNode.offsetHeight && ve(n.firstElementChild, {
                 height: n.parentNode.offsetHeight
             })
         }
 
-        function Ze(e, t) {
+        function Ye(e, t) {
             e && e.innerHTML !== t && (e.innerHTML = t)
         }
 
-        function $e(e, t, n, r) {
+        function Ze(e, t, n, r) {
             var i = t && !n ? 1 : !t && n ? -1 : 0;
             i && !Object(o.z)(e) && r().compensateHistoryHeightChange(i)
         }
 
-        function et(e, t, n, r) {
+        function $e(e, t, n, r) {
             var i = window.devicePixelRatio >= 2 ? "256" : "128",
                 a = "animation" === n,
                 o = "im_gift";
@@ -12337,38 +12336,38 @@
             return t && (s = '<a onmouseover="return Emoji.stickerOver(' + ne(e) + ', this);"\n        onclick="return Emoji.clickSticker(' + ne(t) + ', this, event);">' + s + "</a>"), s = '<div class="im_sticker_row">' + s + "</div>"
         }
 
-        function tt(e, t, n) {
+        function et(e, t, n) {
             var r = e.get ? e.get() : e;
-            if (yt(r, t)) {
+            if (vt(r, t)) {
                 var i = r.tabs[t].deleted || [];
                 return te(n, i)
             }
             return !1
         }
 
-        function nt(e, t, n) {
+        function tt(e, t, n) {
             var r = n.randomId,
                 i = fe("_im_mess_rid" + r, t);
-            return i && (t = mt(e, n, t = zt([i], t), !0, !1)), t
+            return i && (t = ft(e, n, t = Ut([i], t), !0, !1)), t
         }
 
-        function rt(e) {
+        function nt(e) {
             var t = Object(o.a)(e);
-            return browser.mobile && browser.safari ? Promise.resolve(!1) : void 0 !== t ? Promise.resolve(t) : it().then(function(e) {
+            return browser.mobile && browser.safari ? Promise.resolve(!1) : void 0 !== t ? Promise.resolve(t) : rt().then(function(e) {
                 return e.length > 0
             }).catch(function(e) {
                 return !1
             })
         }
 
-        function it() {
+        function rt() {
             return window.AudioContext && navigator.mediaDevices ? navigator.mediaDevices.enumerateDevices().then(function(e) {
                 for (var t = [], n = 0; n < e.length; n++) "audioinput" == e[n].kind && t.push(e[n]);
                 return t
             }) : Promise.reject(new Error("NotSupported"))
         }
 
-        function at(e) {
+        function it(e) {
             return je("im_preloader", {
                 preloader: $(G.pr_tpl, {
                     id: ""
@@ -12377,37 +12376,37 @@
             })
         }
 
-        function ot(e) {
+        function at(e) {
             var t = e.split(".");
             return (t[0] < 10 ? "0" : "") + t[0] + (t[1] < 10 ? "0" : "") + t[1] + t[2]
         }
 
-        function st(e, t, n) {
+        function ot(e, t, n) {
             var r = ue(n, "msgid"),
                 i = fe("_im_mess_" + r, t),
                 a = n.cloneNode(!0);
-            return i && (i.parentNode.replaceChild(a, i), dt(t)), t
+            return i && (i.parentNode.replaceChild(a, i), ut(t)), t
         }
 
-        function ct(e, t, n) {
-            var r = lt(e, t),
+        function st(e, t, n) {
+            var r = ct(e, t),
                 i = fe("_im_mess_" + t.messageId, n);
-            return i && (i.parentNode.replaceChild(Y(r), i), dt(n)), n
+            return i && (i.parentNode.replaceChild(Y(r), i), ut(n)), n
         }
 
-        function lt(e, t) {
+        function ct(e, t) {
             var n = ["_im_mess"],
                 r = Object(s.n)(e.tabs[t.peerId], t),
                 i = Object(s.c)(t) ? je("im_message_media", {
                     type: "reply",
                     messageId: t.messageId,
-                    attaches: at("reply"),
+                    attaches: it("reply"),
                     text: ""
                 }) : "";
             Object(s.k)(t) && r && n.push("im-mess_unread _im_mess_unread"), Object(s.k)(t) && n.push("im-mess_out"), Object(s.p)(t) && n.push("im-mess_was_edited"), Object(_.a)(e, t) && n.push("im-mess_editable"), Object(s.h)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
             var a = Date.now() - 1e3 * t.date > 1e3;
             t.local && a && n.push("im-mess_sending"), t.local && n.push("" + C), t.local && Object(s.p)(t) && !r && n.push("im-mess_unread im-mess_nobg"), t.failed && n.push("im-mess_failed " + S), Object(s.f)(t) && n.push("im-mess_gift");
-            var u = ut(t),
+            var u = lt(t),
                 d = function(e, t) {
                     var n = "",
                         r = Object(g.r)(e).sourceEnabled && t.kludges && t.kludges.from_widget && t.kludges.ref_source;
@@ -12425,7 +12424,7 @@
                     }
                     return n
                 }(e, t),
-                f = i + Ct(e, t.text, t.kludges, !1, t.peerId);
+                f = i + kt(e, t.text, t.kludges, !1, t.peerId);
             "" != f && (f += d), t.subject && "..." !== t.subject.trim() && !Object(l.b)(t.peerId) && (f = je("im_topic", {
                 topic: t.subject
             }) + f);
@@ -12448,17 +12447,17 @@
             })
         }
 
-        function ut(e) {
+        function lt(e) {
             return e.attaches.reduce(function(t, n) {
-                return !Object(s.c)(e) || "mail" !== n.type && "reply" !== n.type ? ("sticker" === n.type ? e.messageId ? t.push(et(n.id, n.productId, n.kind, e.messageId)) : t.push(et(n.id, n.productId)) : t.push(at(n.type)), t) : t
+                return !Object(s.c)(e) || "mail" !== n.type && "reply" !== n.type ? ("sticker" === n.type ? e.messageId ? t.push($e(n.id, n.productId, n.kind, e.messageId)) : t.push($e(n.id, n.productId)) : t.push(it(n.type)), t) : t
             }, [])
         }
 
-        function dt(e) {
+        function ut(e) {
             for (var t = e.getElementsByClassName("_im_mess_noa"), n = t.length; n--;) be(t[n], "im-mess_fwd") || t[n].insertAdjacentHTML("afterbegin", je("sImHistoryRowActions")), ge(t[n], "_im_mess_noa")
         }
 
-        function ft(e, t, n) {
+        function dt(e, t, n) {
             var r, i, a, o, s, c = G.id,
                 l = e.attaches[0],
                 u = l.initiatorId,
@@ -12491,7 +12490,7 @@
             })
         }
 
-        function mt(e, t, n) {
+        function ft(e, t, n) {
             !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3];
             var r = !(arguments.length > 4 && void 0 !== arguments[4]) || arguments[4],
                 i = !(arguments.length > 5 && void 0 !== arguments[5]) || arguments[5],
@@ -12499,22 +12498,22 @@
                 c = e.tabs[t.peerId];
             if (!n || fe("_im_mess", n) || fe("_im_bar_date", n) || (n.innerHTML = ""), c.skipped > 0) return n;
             var u = [];
-            t.local || (u = e.imQueue(t.peerId, r)), u.length > 0 && zt(u.map(function(e) {
+            t.local || (u = e.imQueue(t.peerId, r)), u.length > 0 && Ut(u.map(function(e) {
                 return fe("_im_mess_rid" + e.rid, n)
             }, n).filter(function(e) {
                 return e
             }));
-            var d = lt(e, t),
+            var d = ct(e, t),
                 f = se(n);
             be(f, "_im_mess_stack") || (f = le(f, "._im_mess_stack", -1));
             for (var m = Object(o.k)(e, t.peerId, t.messageId); t.peerId === e.peer && m && !fe("_im_mess_" + m.messageId);) m = Object(o.k)(e, t.peerId, m.messageId);
             var p = fe("_im_unread_bar_row", n),
                 b = Object(s.b)(t),
-                _ = m ? Ot(m.date, e) : 0;
-            if (!m || wt(c, m, t, e, i)) {
+                _ = m ? jt(m.date, e) : 0;
+            if (!m || Ot(c, m, t, e, i)) {
                 var v = "",
                     y = !1;
-                if (p && Object(s.k)(t) && Ln(e, n, t.peerId), 1 === c.unread && !Object(s.k)(t) && i && (v += je("im_mess_bar", {}), y = !0, Ln(e, n, t.peerId)), !Te(new Date(_))) {
+                if (p && Object(s.k)(t) && Mn(e, n, t.peerId), 1 === c.unread && !Object(s.k)(t) && i && (v += je("im_mess_bar", {}), y = !0, Mn(e, n, t.peerId)), !Te(new Date(_))) {
                     var j = new Date,
                         O = y ? "im-page--history-new-bar_hide _im_invisible_bar" : "";
                     v += je("im_day_bar", {
@@ -12524,14 +12523,14 @@
                     })
                 }
                 if (Object(s.l)(t)) v += je("im_service_row", {
-                    text: Zt(e, t, c),
+                    text: Yt(e, t, c),
                     type: "",
                     date: t.date,
                     from_id: "",
                     message_id: t.messageId
                 });
                 else if (Object(s.e)(t)) v += je("im_service_row", {
-                    text: Yt("", ft(t, !1, e), ""),
+                    text: Jt("", dt(t, !1, e), ""),
                     type: "",
                     date: t.date,
                     from_id: "",
@@ -12557,8 +12556,8 @@
                     }
                     var P = e.gid ? "/gim" + e.gid : "/im",
                         M = void 0;
-                    if (M = t.local ? kt(t.date, e.timeshift) : je("im_stack_date", {
-                            date: kt(t.date, e.timeshift),
+                    if (M = t.local ? wt(t.date, e.timeshift) : je("im_stack_date", {
+                            date: wt(t.date, e.timeshift),
                             link: P + "?sel=" + t.peerId + "&msgid=" + t.messageId
                         }), w && e.admins[w]) {
                         var L = e.admins[w],
@@ -12585,27 +12584,27 @@
                 Object(g.p)(ee(v)).forEach(function(e) {
                     return n && n.appendChild(e)
                 })
-            } else p && e.peer === t.peerId && !c.inplaceSearch && Object(s.k)(t) && Ln(e, n, t.peerId), fe("_im_stack_messages", f).appendChild(Y(d));
+            } else p && e.peer === t.peerId && !c.inplaceSearch && Object(s.k)(t) && Mn(e, n, t.peerId), fe("_im_stack_messages", f).appendChild(Y(d));
             return Object(s.k)(t) && !a && setTimeout(function() {
                 var e = fe("_im_mess_" + t.messageId, n);
                 be(e, C) && pe(e, "im-mess_sending")
             }, 500), u = u.filter(function(e) {
                 return e.rid !== t.randomId
-            }), dt(n), pt(u, e, n)
+            }), ut(n), mt(u, e, n)
         }
 
-        function pt(e, t, n) {
+        function mt(e, t, n) {
             var r = void 0;
             return (r = "object" === (void 0 === e ? "undefined" : w(e)) ? e : t.imQueue(e, !1)).length > 0 && r.map(function(e) {
                 return e.mess.failed = !!e.failed, e.mess
             }).filter(function(e) {
                 return Object(o.m)(t, e.peerId, e.messageId)
             }).forEach(function(e) {
-                return mt(t, e, n, !1)
+                return ft(t, e, n, !1)
             }), n
         }
 
-        function gt(e, t, n) {
+        function pt(e, t, n) {
             var r = e.tabs[t];
             return Object(g.p)(de("_im_mess_unread", n)).forEach(function(e) {
                 var t, n = ne(ue(e, "msgid"));
@@ -12613,7 +12612,7 @@
             }), n
         }
 
-        function ht(e, t, n) {
+        function gt(e, t, n) {
             var r = t.peerId,
                 i = t.messageId,
                 a = fe("_im_msg_reply" + i, e),
@@ -12622,44 +12621,44 @@
             return a && (a.innerHTML = s[0]), o && (o.innerHTML = s[1]), e
         }
 
-        function bt(e, t) {
+        function ht(e, t) {
             if (!Object(o.E)(t, e.peerId)) return 0;
             var n = t.tabs[e.peerId];
             return n.msgs[e.messageId] ? 1 : n.msgs["rid" + e.randomId] ? 2 : 0
         }
 
-        function _t(e, t) {
+        function bt(e, t) {
             return e === t.peer
         }
 
-        function vt(e, t) {
+        function _t(e, t) {
             return Object(y.m)(Object(o.t)(e, t), 1024)
         }
 
-        function yt(e, t) {
+        function vt(e, t) {
             return !!e.tabs[t]
         }
 
-        function jt(e, t) {
-            return !!yt(e, t) && null !== e.tabs[t].lastmsg
+        function yt(e, t) {
+            return !!vt(e, t) && null !== e.tabs[t].lastmsg
         }
 
-        function Ot(e, t) {
+        function jt(e, t) {
             return 1e3 * e + 1e3 * t.timeshift
         }
 
-        function wt(e, t, n, r, i) {
+        function Ot(e, t, n, r, i) {
             if (Object(s.b)(t) !== Object(s.b)(n)) return !0;
-            var a = Ot(t.date, r),
-                c = Ot(n.date, r);
-            return !Ie(a, c) || (!(!Object(o.B)(r) || ne(t.kludges.from_admin) === ne(n.kludges.from_admin)) || (n.date - t.date > 300 || (!(!Object(s.l)(t) && !Object(s.l)(n)) || (!(!Object(s.e)(n) && !Object(s.e)(t)) || (!(!Object(s.f)(t) && !Object(s.f)(n)) || (!(!Object(s.g)(t) && !Object(s.g)(n)) || (!!Object(s.c)(n) || !(Object(s.n)(e, t) === Object(s.n)(e, n) || !i || Object(s.k)(n) || tn(n.peerId, r.gid)))))))))
+            var a = jt(t.date, r),
+                c = jt(n.date, r);
+            return !Ie(a, c) || (!(!Object(o.B)(r) || ne(t.kludges.from_admin) === ne(n.kludges.from_admin)) || (n.date - t.date > 300 || (!(!Object(s.l)(t) && !Object(s.l)(n)) || (!(!Object(s.e)(n) && !Object(s.e)(t)) || (!(!Object(s.f)(t) && !Object(s.f)(n)) || (!(!Object(s.g)(t) && !Object(s.g)(n)) || (!!Object(s.c)(n) || !(Object(s.n)(e, t) === Object(s.n)(e, n) || !i || Object(s.k)(n) || en(n.peerId, r.gid)))))))))
         }
 
-        function kt(e, t) {
+        function wt(e, t) {
             return ke(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
         }
 
-        function Ct(e, t, n) {
+        function kt(e, t, n) {
             var r = arguments.length > 3 && void 0 !== arguments[3] && arguments[3],
                 i = arguments.length > 4 && void 0 !== arguments[4] && arguments[4],
                 a = Math.round(1e9 * Math.random()).toString(16),
@@ -12675,16 +12674,16 @@
                 t = t.replace(e, function() {
                     return s[e]
                 })
-            }), n.emoji && (t = Re.emojiToHTML(t, !0)), ze && (t = ze(t)), t
+            }), n.emoji && (t = Re.emojiToHTML(t, !0)), t
         }
 
-        function St(e) {
+        function Ct(e) {
             return Object(l.b)(e) ? "c" + (e - 2e9) : e < -2e9 ? "e" + Math.abs(e + 2e9) : function(e) {
                 return e > 19e8 && e < 2e9
             }(e) ? "mr" + (e - 19e8) : e
         }
 
-        function Et(e) {
+        function St(e) {
             switch (e.substr(0, 1)) {
                 case "e":
                     return -2e9 - ne(e.substr(1));
@@ -12695,11 +12694,11 @@
             }
         }
 
-        function xt(e) {
+        function Et(e) {
             return e > 9999999 ? Math.floor(e / 1e6) + "M" : e > 9999 ? Math.floor(e / 1e3) + "K" : e > 0 ? e.toString() : ""
         }
 
-        function It(e, t) {
+        function xt(e, t) {
             return {
                 search: {
                     name: Oe("mail_im_peer_search"),
@@ -12784,7 +12783,7 @@
             }
         }
 
-        function Tt(e, t) {
+        function It(e, t) {
             var n = '<img src="' + e + '" alt="" class="dialogs_inline_chatter dialogs_inline_chatter_half"/>';
             return t && (n = je("im_dialogs_link", {
                 href: t,
@@ -12792,7 +12791,7 @@
             })), '<div class="im_grid">\n    <div class="dialogs_inline_chatter dialogs_inline_chatter_half">\n      ' + n + "\n    </div>\n  </div>"
         }
 
-        function Pt(e, t) {
+        function Tt(e, t) {
             var n = '<img src="' + e + '" alt="" class="dialogs_inline_chatter"/>';
             return t && (n = je("im_dialogs_link", {
                 href: t,
@@ -12800,7 +12799,7 @@
             })), '<div class="im_grid">\n    <div class="dialogs_inline_chatter">\n      ' + n + "\n    </div>\n  </div>"
         }
 
-        function Mt(e) {
+        function Pt(e) {
             var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [];
             if ("string" == typeof e) return '<div class="im_grid"><img src="' + e + '" alt=""/></div>';
             switch (e.length) {
@@ -12808,53 +12807,53 @@
                     return '<div class="im_grid"><img src="' + e[0] + '" alt=""/></div>';
                 case 2:
                     return e.map(function(e, n) {
-                        return Tt(e, t[n])
+                        return It(e, t[n])
                     }).join("");
                 case 3:
-                    return Tt(e[0], t[0]) + e.slice(1).map(function(e, n) {
-                        return Pt(e, t[n + 1])
+                    return It(e[0], t[0]) + e.slice(1).map(function(e, n) {
+                        return Tt(e, t[n + 1])
                     }).join("");
                 case 4:
                     return e.map(function(e, n) {
-                        return Pt(e, t[n])
+                        return Tt(e, t[n])
                     }).join("")
             }
         }
 
-        function Lt(e, t, n) {
+        function Mt(e, t, n) {
             if ("string" == typeof t.photo && t.photo) return '<div class="im_grid"><img src="' + t.photo + '" alt=""></div>';
             if (Object(l.b)(t.peerId) && t.membersCount < 2) return '<div class="im_grid"><img src="' + e.get().default_chat_photo + '" alt=""></div>';
-            if (Array.isArray(t.photo)) return Mt(t.photo);
+            if (Array.isArray(t.photo)) return Pt(t.photo);
             var r = t.data.active.slice(0, 4).map(h.c.bind(null, e));
-            return Mt(r.map(function(e) {
+            return Pt(r.map(function(e) {
                 return e.photo
             }), n ? [] : r.map(function(e) {
                 return e.link
             }))
         }
 
-        function Bt(e) {
+        function Lt(e) {
             var t = e.get().gid ? Oe("mail_search_only_messages_comm") : Oe("mail_search_only_messages");
             return '<li class="im-page--mess-search-w">\n    <div class="im-page--mess-search ' + V + '">\n      <button type="button" class="im-i--messages-search"></button>' + t + "\n    </div>\n  </li>"
         }
 
-        function Dt() {
+        function Bt() {
             return '<li class="im-search-results-head">' + Oe("mail_search_messages") + "</li>"
         }
 
-        function Nt() {
+        function Dt() {
             return '<li class="im-search-results-head">' + Oe("mail_search_conversations_sep") + "</li>"
         }
 
-        function At() {
+        function Nt() {
             return '<li class="im-search-results-head">' + Oe("mail_search_dialogs_sep") + "</li>"
         }
 
-        function Ht() {
+        function At() {
             return '<li class="im-search-results-head _im_recent_bar">\n    ' + Oe("mail_recent_searches") + '\n    <button type="button" class="' + W + ' im-page--clear-recent">' + Oe("mail_clear_recent") + "</button>\n  </li>"
         }
 
-        function Rt(e) {
+        function Ht(e) {
             var t = e.get().popular_sugg,
                 n = Object(o.z)(e) ? 8 : 5;
             return t.length > n && (t = t.slice(0, n)), '<li class="im-popular clear_fix">' + t.map(function(t) {
@@ -12864,11 +12863,11 @@
                     a = (e.get().mutedPeers || []).indexOf(n) >= 0;
                 return '<div class="' + ["im-popular--item", "fl_l", "_im_dialog", "_dont_add_recent", "_im_sugg_" + n, i.unread > 0 && "sugg-is_unread", a && "sugg-is_muted"].filter(function(e) {
                     return !!e
-                }).join(" ") + '" data-peer="' + n + '">\n    <a class="im-popular--avatar-w ' + Ae(i.online) + '" href="' + r.link + '"><img class="im-popular--avatar" src="' + r.photo + '"/></a>\n    <div class="im-popular--name-w"><a class="im-popular--name" href="' + r.link + '">' + (r.first_name || r.name) + '</a></div>\n    <span class="im-popular--unread _sugg_unread_ct">' + xt(i.unread) + "</span>\n</div>"
+                }).join(" ") + '" data-peer="' + n + '">\n    <a class="im-popular--avatar-w ' + Ae(i.online) + '" href="' + r.link + '"><img class="im-popular--avatar" src="' + r.photo + '"/></a>\n    <div class="im-popular--name-w"><a class="im-popular--name" href="' + r.link + '">' + (r.first_name || r.name) + '</a></div>\n    <span class="im-popular--unread _sugg_unread_ct">' + Et(i.unread) + "</span>\n</div>"
             }).join("") + "</li>"
         }
 
-        function Ft(e, t, n) {
+        function Rt(e, t, n) {
             var r = fe("_im_mess_" + t.messageId, n);
             if (r) {
                 _e(r, "aria-hidden", "false"), pe(r, "im-mess_failed " + S);
@@ -12878,7 +12877,7 @@
             return n
         }
 
-        function qt(e, t, n) {
+        function Ft(e, t, n) {
             var r = fe("_im_mess_" + t, n);
             if (r) {
                 ge(r, "im-mess_failed"), _e(r, "aria-hidden", "true"), ge(r, S);
@@ -12888,15 +12887,15 @@
             return n
         }
 
-        function Ut(e, t) {
-            return zt(e.map(function(e) {
+        function qt(e, t) {
+            return Ut(e.map(function(e) {
                 return fe("_im_mess_" + e, t)
             }).filter(function(e) {
                 return e
             }), t)
         }
 
-        function zt(e, t) {
+        function Ut(e, t) {
             var n = e.filter(function(e) {
                 return !be(e, "im-mess_srv")
             }).map(function(e) {
@@ -12913,7 +12912,7 @@
             }), t
         }
 
-        function Wt(e) {
+        function zt(e) {
             for (var t = e; t;) {
                 var n = t;
                 if (null === (t = t.previousElementSibling)) {
@@ -12925,7 +12924,7 @@
             }
         }
 
-        function Kt(e, t, n, r) {
+        function Wt(e, t, n, r) {
             return e.map(function(e) {
                 return fe("_im_mess_" + e, r)
             }).filter(function(e) {
@@ -12938,7 +12937,7 @@
             }), r
         }
 
-        function Vt(e, t, n) {
+        function Kt(e, t, n) {
             var r = fe("_im_mess_" + e, n);
             if (r) {
                 var i = fe(E, r);
@@ -12947,18 +12946,18 @@
             return n
         }
 
-        function Qt() {
+        function Vt() {
             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
                 t = arguments[1],
                 n = arguments[2],
                 r = arguments[3],
                 i = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : 2;
-            if (arguments.length > 5 && void 0 !== arguments[5] && arguments[5]) return Gt(e, t, n, r, !0, i);
-            var a = Gt(e, t, n, r, !1, i);
-            return a.length > 60 ? Gt(e, t, n, r, !0, i) : a
+            if (arguments.length > 5 && void 0 !== arguments[5] && arguments[5]) return Xt(e, t, n, r, !0, i);
+            var a = Xt(e, t, n, r, !1, i);
+            return a.length > 60 ? Xt(e, t, n, r, !0, i) : a
         }
 
-        function Xt(e) {
+        function Qt(e) {
             var t, n = (k(t = {}, u.d, 1), k(t, u.c, 2), t),
                 r = Object.keys(e).sort(function(e, t) {
                     return n[t] - n[e]
@@ -12976,7 +12975,7 @@
             return o.length > 1 ? "" : o[0]
         }
 
-        function Gt(e, t, n, r, i, a) {
+        function Xt(e, t, n, r, i, a) {
             var s = function(e, t, n) {
                 var r = [],
                     i = {};
@@ -12990,7 +12989,7 @@
             }(r, e, t);
             if (0 === s.length) return "";
             var c = Object(l.d)(t) || Object(o.C)(t) ? "first_name" : i ? "short_name" : "name",
-                d = Xt(e),
+                d = Qt(e),
                 f = "";
             d === u.c ? f = Oe("mail_recording_audio_several", s.length) : d === u.d && (f = Oe("mail_typing_several", s.length));
             var m = s.slice(0, Math.min(s.length - 1, a)),
@@ -13015,16 +13014,16 @@
             return p.trim()
         }
 
-        function Jt() {
+        function Gt() {
             return '<div class="im-page--chat-search-empty">\n    ' + Oe("mail_im_search_empty") + "\n  </div>"
         }
 
-        function Yt(e, t, n) {
+        function Jt(e, t, n) {
             var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "";
             return n ? '<a class="im_srv_lnk ' + r + '" target="_blank" rel="noopener" href="' + e + '">' + t + "</a>" : '<span class="' + r + '">' + t + "</span>"
         }
 
-        function Zt(e, t, n) {
+        function Yt(e, t, n) {
             var r = !(arguments.length > 3 && void 0 !== arguments[3]) || arguments[3],
                 i = t.kludges,
                 a = i.source_act,
@@ -13064,13 +13063,13 @@
                 default:
                     return "mail_no_support"
             }
-            if (l = (l = we(c.sex, Oe(l, "raw"))).replace("{from}", Yt(c.link, c.name, r)), o && o !== s) {
+            if (l = (l = we(c.sex, Oe(l, "raw"))).replace("{from}", Jt(c.link, c.name, r)), o && o !== s) {
                 var d = i.source_email;
-                if (d) l = l.replace("{user}", Yt("/im?email=" + encodeURIComponent(d), "email", r));
+                if (d) l = l.replace("{user}", Jt("/im?email=" + encodeURIComponent(d), "email", r));
                 else {
                     var f = Object(h.c)(e, o),
                         m = a === L ? f.inv_name : f.kick_name;
-                    l = l.replace("{user}", Yt(f.link, m, r))
+                    l = l.replace("{user}", Jt(f.link, m, r))
                 }
             }
             if (i.source_text) {
@@ -13079,15 +13078,15 @@
             }
             if (i.source_act === N || i.source_act === A)
                 if (i.source_message) {
-                    var g = Yt("", en(Re.emojiToHTML(ie(i.source_message.replace(/<br\s?\/?>/gi, " ")), !0)), !1, "im_srv_mess_link");
+                    var g = Jt("", $t(Re.emojiToHTML(ie(i.source_message.replace(/<br\s?\/?>/gi, " ")), !0)), !1, "im_srv_mess_link");
                     l = l.replace("{msg}", g)
                 } else l = l.replace(/{link}(.+){\/link}/i, function(e, t) {
-                    return Yt("", t, !1, "im_srv_mess_link")
+                    return Jt("", t, !1, "im_srv_mess_link")
                 });
             return l
         }
 
-        function $t(e, t, n, r) {
+        function Zt(e, t, n, r) {
             if (t === B) {
                 var i = fe("_im_mess_" + e.messageId, r);
                 if (i) {
@@ -13095,7 +13094,7 @@
                     i.parentNode.innerHTML = je("im_msg_row", {
                         msg_id: e.messageId,
                         from_id: e.peerId,
-                        text: Zt(n, e, a) + n.chat_photo_msg,
+                        text: Yt(n, e, a) + n.chat_photo_msg,
                         ts: e.date,
                         cls: "im-mess_srv"
                     })
@@ -13104,15 +13103,15 @@
             return r
         }
 
-        function en(e) {
+        function $t(e) {
             return e.replace(/&lt;&lt;/g, "&laquo;").replace(/&gt;&gt;/g, "&raquo;").replace(/ \-\-/g, " &mdash;").replace(/\-\- /g, "&mdash; ").replace(i.r, "$1$4")
         }
 
-        function tn(e, t) {
+        function en(e, t) {
             return !t && e === G.id
         }
 
-        function nn(e, t) {
+        function tn(e, t) {
             return De(e, {
                 url: Object(o.C)(t) ? "al_groups.php" : "al_profile.php",
                 params: {
@@ -13130,7 +13129,7 @@
             })
         }
 
-        function rn(e) {
+        function nn(e) {
             return function(t) {
                 var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "bottom",
                     r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "",
@@ -13153,7 +13152,7 @@
             }
         }
 
-        function an(e, t) {
+        function rn(e, t) {
             return {
                 0: {
                     msgs: e.reduce(function(e, t) {
@@ -13165,10 +13164,10 @@
             }
         }
 
-        function on(e, t) {
+        function an(e, t) {
             if (!t && !e) return !1;
             var n = e.target || e.srcElement,
-                r = Ve,
+                r = Ke,
                 i = !1,
                 a = /_im_mess|im_log_act|im_log_ract|_im_log_body|im_log_rspacer|_im_graffiti_w|_wall_post_cont/;
             do {
@@ -13177,18 +13176,18 @@
             return !i || !!re((window.getSelection && window.getSelection() || document.getSelection && document.getSelection() || "").toString())
         }
 
-        function sn(e, t) {
-            return '<div class="im-mess--text">\n      <span>' + Oe("mail_restored") + '</span>\n      <a class="_im_go_to" href="/im?sel=' + St(e) + "&msgid=" + t + '">' + Oe("mail_im_goto_conversation") + "</a>\n    </div>"
+        function on(e, t) {
+            return '<div class="im-mess--text">\n      <span>' + Oe("mail_restored") + '</span>\n      <a class="_im_go_to" href="/im?sel=' + Ct(e) + "&msgid=" + t + '">' + Oe("mail_im_goto_conversation") + "</a>\n    </div>"
         }
 
-        function cn(e, t, n) {
+        function sn(e, t, n) {
             var r = Oe("mail_deleteall1"),
                 i = Oe("mail_sure_to_delete_all"),
                 a = Oe("mail_delete");
             return Object(l.b)(t) && (Object(y.m)(e, 1024) ? (r = Oe("mail_leave_channel"), i = Oe("mail_unfollow_channel_confirmation"), a = Oe("mail_unfollow_channel")) : i = Oe("mail_chat_sure_to_delete_all")), Object(o.C)(t) && (i = Oe("mail_group_sure_to_delete_all")), Le(r, i, a, n, Oe("global_cancel"))
         }
 
-        function ln(e, t, n) {
+        function cn(e, t, n) {
             var r = Object(o.t)(e, t),
                 i = Object(l.b)(t),
                 a = i && Object(y.m)(r, 1024),
@@ -13196,7 +13195,7 @@
                 c = Oe("mail_sure_to_delete_all"),
                 u = Oe("mail_delete");
             if (i) {
-                if (r.data.closed || r.data.kicked) return cn(r, t, n.bind(null, !0));
+                if (r.data.closed || r.data.kicked) return sn(r, t, n.bind(null, !0));
                 a ? (s = Oe("mail_leave_channel"), c = Oe("mail_vkcomgroup_leave_confirm"), u = Oe("mail_leave_channel")) : (s = Oe("mail_leave_chat"), c = Oe("mail_chat_leave_confirm"), u = Oe("mail_leave_chat"))
             }
             Object(o.C)(t) && (c = Oe("mail_group_sure_to_delete_all"));
@@ -13209,11 +13208,11 @@
             return i && !a && d.setControlsText('<div class="checkbox im-delete-forall-checkbox _check_is_delete" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + Oe("mail_deleteall1") + "</div>"), d
         }
 
-        function un(e) {
+        function ln(e) {
             return Le(Oe("mail_unpin_title"), Oe("mail_unpin_text"), Oe("mail_unpin"), e, Oe("global_cancel"))
         }
 
-        function dn(e, t, n, r) {
+        function un(e, t, n, r) {
             var i = Oe("mail_dialog_msg_delete_N", t),
                 a = Le(Oe("mail_dialog_msg_delete_title"), i, Oe("mail_delete"), function() {
                     return r(isChecked(fe("_check_forall")))
@@ -13223,18 +13222,18 @@
             return n && (o = '<div class="checkbox im-delete-forall-checkbox _check_forall" onclick="checkbox(this);" role="checkbox" aria-checked="false">' + Oe("mail_delete_for_all") + "</div>", s = cur.imDb.selectByKey("del_forall_checked")), a.setControlsText(o), s && checkbox(fe("_check_forall")), a
         }
 
-        function fn(e, t, n, r, i) {
+        function dn(e, t, n, r, i) {
             t.showProgress(), e.set(r.bind(null, i)).then(function() {
                 t.hideProgress(), t.hide(), n().removePeer(e, i), n().updateDialogFilters(e)
             })
         }
 
-        function mn(e, t, n, r) {
+        function fn(e, t, n, r) {
             var i = e.get().tabs[t].memberIds;
             e.set(r.bind(null, "add_member", i)).then(n().showCreation)
         }
 
-        function pn(e, t, n) {
+        function mn(e, t, n) {
             var r = e.get();
             if (r.active_tab === i.h && 0 === r.message_requests_cnt) return !1;
             var a = r.active_tab === i.k ? i.h : i.k;
@@ -13243,7 +13242,7 @@
             })
         }
 
-        function gn(e, t, n) {
+        function pn(e, t, n) {
             if (e.get().active_tab === i.h && 0 === e.get().unread_cnt) return !1;
             var r = e.get().active_tab === i.m ? i.h : i.m;
             return e.set(n.bind(null, r)).then(function(e) {
@@ -13251,7 +13250,7 @@
             })
         }
 
-        function hn(e, t, n, r) {
+        function gn(e, t, n, r) {
             if (t.get().active_tab === e) return Promise.resolve(t);
             var i = Object(o.I)(t);
             return t.set(r.bind(null, e)).then(function(e) {
@@ -13259,39 +13258,39 @@
             })
         }
 
-        function bn(e, t) {
+        function hn(e, t) {
             void 0 === t && (t = e.get().peer);
             var n = e.get().tabs[t];
             return i.j[i.i] & n.folders
         }
 
-        function _n(e, t) {
+        function bn(e, t) {
             var n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
             if (void 0 === t && (t = e.get().peer), !Object(o.D)(e)) return !1;
             var r = n || e.get().tabs[t];
             return i.j[i.n] & r.folders
         }
 
-        function vn(e, t) {
+        function _n(e, t) {
             return !1 === ((t.get().block_states || {})[e] || {}).free
         }
 
-        function yn(e) {
+        function vn(e) {
             return null != e.get().pendingForward
         }
 
-        function jn(e, t) {
+        function yn(e, t) {
             return (t.get().block_states[e] || {}).who === G.id
         }
 
-        function On(e, t) {
+        function jn(e, t) {
             var n = e.get().block_states;
             Object.keys(n).forEach(function(i) {
                 n[i].time ? !1 === n[i].free && Date.now() - n[i].time >= 5e4 && t.push([r.nb([, 1, "gim" + e.get().gid, i, 0, ""])]) : n[i].time = Date.now()
             })
         }
 
-        function wn(e, t, n) {
+        function On(e, t, n) {
             var r = void 0;
             return !Be("al_im.php", {
                 act: "a_spam",
@@ -13310,19 +13309,19 @@
             }, n)
         }
 
-        function kn(e, t) {
-            return Cn(e.get(), t, Object(o.t)(e, t).last_seen)
+        function wn(e, t) {
+            return kn(e.get(), t, Object(o.t)(e, t).last_seen)
         }
 
-        function Cn(e, t, n, r) {
-            if (n[0]) return Oe("mail_header_online_status") + (Ne[n[0]] ? Sn(t, !1, !1, !0) : "");
+        function kn(e, t, n, r) {
+            if (n[0]) return Oe("mail_header_online_status") + (Ne[n[0]] ? Cn(t, !1, !1, !0) : "");
             if (!n[1]) return "";
             var i = Se(n[1], e.timeshift),
                 a = we(Object(h.c)(e, t).sex, Oe("mail_last_activity_tip", "raw")).replace("{user}", "").replace("{time}", i);
-            return n[2] && (a += Sn(t, !1, !1, r)), a
+            return n[2] && (a += Cn(t, !1, !1, r)), a
         }
 
-        function Sn(e, t, n, r) {
+        function Cn(e, t, n, r) {
             var i = {
                 mid: e
             };
@@ -13334,7 +13333,7 @@
             })
         }
 
-        function En(e, t) {
+        function Sn(e, t) {
             var n = t.get().tabs[e];
             return Me("al_settings.php", {
                 act: "blacklist_box",
@@ -13345,7 +13344,7 @@
             })
         }
 
-        function xn(e, t) {
+        function En(e, t) {
             return Me("groupsedit.php", {
                 act: "bl_edit",
                 name: "/id" + e,
@@ -13356,13 +13355,13 @@
             })
         }
 
-        function In(e) {
+        function xn(e) {
             return e.get().gid ? "/gim" + e.get().gid : "/im"
         }
 
-        function Tn(e, t, n, r) {
+        function In(e, t, n, r) {
             var i = void 0;
-            Qn(Be("al_im.php", {
+            Vn(Be("al_im.php", {
                 act: "a_important",
                 offset: "0"
             }, {
@@ -13381,17 +13380,17 @@
             }, r), e)
         }
 
-        function Pn() {
+        function Tn() {
             var e = document.activeElement;
             return null !== e && ("INPUT" === e.tagName || "TEXTAREA" === e.tagName || e.getAttribute("contenteditable"))
         }
 
-        function Mn(e, t, n) {
+        function Pn(e, t, n) {
             var r = fe("_im_mess_" + e, n);
             return r && he(r, "im-mess_fav", t), n
         }
 
-        function Ln(e, t, n) {
+        function Mn(e, t, n) {
             var r = fe("_im_unread_bar_row", t);
             if (!r) return t;
             var i, a = le(r, "._im_mess_stack", -1),
@@ -13402,7 +13401,7 @@
             var u = ue(l, "msgid"),
                 d = Object(o.q)(e, n, u),
                 f = Object(o.m)(e, n, u);
-            if (!d || wt(e.tabs[n], d, f, e)) return t;
+            if (!d || Ot(e.tabs[n], d, f, e)) return t;
             var m = fe("_im_stack_messages", a),
                 p = fe("_im_stack_messages", s).children;
             return Object(g.p)(p).forEach(function(e) {
@@ -13410,7 +13409,7 @@
             }), Z(s), t
         }
 
-        function Bn(e, t, n) {
+        function Ln(e, t, n) {
             var r = Object(o.h)(e, e.get().peer);
             if (!r) return [!1, 0];
             var i = fe("_im_mess_" + r, t);
@@ -13427,7 +13426,7 @@
             return l <= n.scrollTop() + n.getScrollHeight() ? [!0, 0] : [!1, Math.max(0, u - l)]
         }
 
-        function Dn(e, t, n) {
+        function Bn(e, t, n) {
             Ue(t);
             var r = me("_im_top_notice", n);
             qe(r, 200, Z.pbind(r));
@@ -13439,7 +13438,7 @@
             })
         }
 
-        function Nn(e, t, n) {
+        function Dn(e, t, n) {
             Ue(t);
             var r = me("_im_aside_notice", n);
             Fe(r, 200, Z.pbind(r)), Pe.post("al_im.php", {
@@ -13449,7 +13448,7 @@
             })
         }
 
-        function An(e, t) {
+        function Nn(e, t) {
             Ue(e);
             var n = me("_im_aside_promo_block", t);
             Fe(n, 200, Z.pbind(n)), Pe.post("al_im.php", {
@@ -13459,7 +13458,7 @@
             })
         }
 
-        function Hn(e, t) {
+        function An(e, t) {
             me("_im_aside_promo_block", t).classList.add("--action-called"), Pe.post("al_im.php", {
                 act: "a_vkadmin_app_install",
                 hash: ue(t, "hash"),
@@ -13467,18 +13466,18 @@
             })
         }
 
-        function Rn(e, t, n, r, i) {
+        function Hn(e, t, n, r, i) {
             return n = n.replace(/\<br\s*\/?\>(\n)?/gi, " ").replace(/[\n\r]/gi, " "), n = Object(c.f)(n, function(e, t, n, r, i) {
                 return i
             }), r && (n = Re.emojiToHTML(n, !0)), t && "..." !== t.trim() && !Object(l.b)(e) && (n = je("im_topic", {
                 topic: t,
                 cls: "im-topic_dialog"
             }) + n), !n && i.length > 0 && (n = je("im_dialog_media", {
-                name: Fn(i[0], i)
+                name: Rn(i[0], i)
             })), n
         }
 
-        function Fn(e, t) {
+        function Rn(e, t) {
             var n = {
                 photo: Oe("mail_added_photos", "raw"),
                 video: Oe("mail_added_videos", "raw"),
@@ -13547,15 +13546,15 @@
             return ""
         }
 
-        function qn(e) {
+        function Fn(e) {
             pe(e, "im-send-btn_loading")
         }
 
-        function Un(e) {
+        function qn(e) {
             ge(e, "im-send-btn_loading")
         }
 
-        function zn(e) {
+        function Un(e) {
             var t = e.get(),
                 n = Object(o.p)(e);
             if (!n || !Object(b.a)(e, Object(o.o)(e))) return "";
@@ -13577,15 +13576,15 @@
                         var c = Ce(t.kludges.attach1_held_amount / 1e3, r, !0);
                         n += " " + Oe("mail_money_request_held_amount").replace("{amount}", c)
                     }
-                    t.text && (n += '<span class="divider"></span>' + Ct(e, t.text, t.kludges)), t.kludges.attach1_total_amount && (n += je("im_pinned_message_media_bar", {
+                    t.text && (n += '<span class="divider"></span>' + kt(e, t.text, t.kludges)), t.kludges.attach1_total_amount && (n += je("im_pinned_message_media_bar", {
                         percent: Math.min(100, Math.floor(t.kludges.attach1_tr_amount / t.kludges.attach1_total_amount * 100))
                     }))
                 }
                 return n
             }(e, n);
             return i || (i = !(i = n.text) && n.attaches.length ? je("im_pinned_message_media", {
-                text: Fn(n.attaches[0], n.attaches)
-            }) : Ct(e, i, n && n.kludges || {}) || ""), i = i.replace(/<br\s?\/?>/gi, " "), je("im_pinned_message", {
+                text: Rn(n.attaches[0], n.attaches)
+            }) : kt(e, i, n && n.kludges || {}) || ""), i = i.replace(/<br\s?\/?>/gi, " "), je("im_pinned_message", {
                 date: Ee(n.date, t.timeshift),
                 content: i,
                 link: r.link,
@@ -13593,7 +13592,7 @@
             })
         }
 
-        function Wn(e, t, n) {
+        function zn(e, t, n) {
             var r = n.getAttribute("data-info");
             r && De(n, {
                 text: r,
@@ -13605,7 +13604,7 @@
             })
         }
 
-        function Kn(e, t, n) {
+        function Wn(e, t, n) {
             var r = +n.getAttribute("data-time");
             r && De(n, {
                 text: Oe("mail_message_edited") + " " + Ee(r, e.get().timeshift),
@@ -13616,21 +13615,21 @@
             })
         }
 
-        function Vn() {
+        function Kn() {
             var e = getSize(fe(Q))[1];
-            return e || (e = Qe), e
+            return e || (e = Ve), e
         }
 
-        function Qn(e, t) {
+        function Vn(e, t) {
             e.bodyNode.addEventListener("mouseover", function(e) {
-                be(e.target, "_im_edit_time") ? Kn(t, 0, e.target) : be(e.target, "_im_page_info") && Wn(0, 0, e.target)
+                be(e.target, "_im_edit_time") ? Wn(t, 0, e.target) : be(e.target, "_im_page_info") && zn(0, 0, e.target)
             })
         }
 
-        function Xn(e, t, n, r, i) {
+        function Qn(e, t, n, r, i) {
             var a = e.get(),
                 o = void 0;
-            Qn(Be("al_im.php", {
+            Vn(Be("al_im.php", {
                 act: "a_get_pinned_message_box",
                 chat: n,
                 gid: e.get().gid,
@@ -13651,9 +13650,9 @@
             }, i), e)
         }
 
-        function Gn(e, t, n) {
+        function Xn(e, t, n) {
             var r = e.get();
-            Qn(Be("al_im.php", {
+            Vn(Be("al_im.php", {
                 act: "a_get_replied_message_box",
                 chat: r.peer,
                 msgid: t,
@@ -13671,32 +13670,32 @@
             }, n), e)
         }
 
-        function Jn(e, t) {
+        function Gn(e, t) {
             return !(!Object(l.b)(e.peerId) || !e.memberIds) && e.memberIds.indexOf(t) >= 0
         }
 
-        function Yn(e) {
+        function Jn(e) {
             return !Object(l.b)(e.peerId) || e.data.kicked ? 0 : e.membersCount
         }
 
-        function Zn(e, t) {
+        function Yn(e, t) {
             var n = Object(h.c)(e, t.peerId),
                 r = Object(o.t)(e, t.peerId) || {};
             return n && (t.photo = t.photo || n.photo, t.name = t.name || n.name, t.href = t.link || n.link, t.sex = t.sex || n.sex), t.last_touched = r.last_touched || 0, t.verified = !!t.verified, t.lastmsg = t.lastmsg || t.lastmsg_meta && t.lastmsg_meta[0] || !1, t.folders = t.folders || null, t.unread = t.unread || 0, t.last_seen = t.last_seen || [0, 0, 0], t.online = t.last_seen && t.last_seen[0] || 0, t.out_up_to = null != t.out_up_to ? t.out_up_to : t.in_up_to || 0, Object(l.b)(t.peerId) && (t.memberIds = t.memberIds || r.memberIds || null), t
         }
 
-        function $n(e, t) {
-            for (var n in t) t.hasOwnProperty(n) && Zn(e, t[n])
+        function Zn(e, t) {
+            for (var n in t) t.hasOwnProperty(n) && Yn(e, t[n])
         }
 
-        function er(e, t) {
+        function $n(e, t) {
             var n = [],
                 r = t.find(function(e) {
                     return "mail" === e[0]
                 }),
                 i = r ? r[1].split(";") : [];
-            for (i.length > Ke && (r[1] = i.slice(0, Ke).join(";")); e.length > We;) {
-                var a = e.substr(0, We).lastIndexOf(" "); - 1 == a && (a = We), n.push({
+            for (i.length > We && (r[1] = i.slice(0, We).join(";")); e.length > ze;) {
+                var a = e.substr(0, ze).lastIndexOf(" "); - 1 == a && (a = ze), n.push({
                     msgText: re(e.substr(0, a))
                 }), e = re(e.substr(a))
             }
@@ -13705,19 +13704,19 @@
                     attaches: t
                 }), n.length || n.push({
                     attaches: t
-                }), i = i.slice(Ke); i.length; i = i.slice(Ke)) n.push({
+                }), i = i.slice(We); i.length; i = i.slice(We)) n.push({
                 attaches: [
-                    ["mail", i.slice(0, Ke).join(";")]
+                    ["mail", i.slice(0, We).join(";")]
                 ]
             });
             return n
         }
 
-        function tr(e) {
-            return e.length > We
+        function er(e) {
+            return e.length > ze
         }
 
-        function nr(e, t, n) {
+        function tr(e, t, n) {
             var r = !1;
             Me("al_im.php", {
                 act: "a_chat_preview",
@@ -13743,29 +13742,29 @@
             }, {})
         }
 
-        function rr() {
+        function nr() {
             Le(Oe("global_error"), Oe("mail_message_wait_until_uploaded"))
         }
 
-        function ir(e, t) {
+        function rr(e, t) {
             var n = Object(o.t)(e, t.peerId) || {};
             if (!t || !Object(s.k)(t)) return !1;
             if (333 == t.peerId) return !1;
             if (Date.now() / 1e3 - t.date > 86400) return !1;
-            if (tt(e, t.peerId, t.messageId)) return !1;
+            if (et(e, t.peerId, t.messageId)) return !1;
             if (Object(l.b)(t.peerId)) {
                 if (n.data.kicked || n.data.closed) return !1
             } else if (n.block_error > 0) return !1;
             return !0
         }
 
-        function ar(e, t) {
+        function ir(e, t) {
             return t.map(function(t) {
                 return Object(h.c)(e, t)
             })
         }
 
-        function or(e, t) {
+        function ar(e, t) {
             if ("number" != typeof e || 0 === e) return "";
             var n, r = e,
                 i = [];
@@ -13789,15 +13788,15 @@
             return Oe("global_and").replace(/{before}/gi, a).replace(/{after}/gi, o)
         }
 
-        function sr(e, t, n, i) {
-            i && !tt(e, n, i) && (Object(o.m)(e, n, i) ? (e.setState({
+        function or(e, t, n, i) {
+            i && !et(e, n, i) && (Object(o.m)(e, n, i) ? (e.setState({
                 msgid: i
             }), Object(a.b)({
                 msgid: i
             }), t()) : e.get().longpoll.push([Object(r.bb)(n, i)]))
         }
 
-        function cr(e) {
+        function sr(e) {
             var t = fe("im-mess_is_editing");
             if (!t) return null;
             var n = e.get().tabs[e.get().peer],

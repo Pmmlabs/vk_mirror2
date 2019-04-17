@@ -3155,3 +3155,15 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .tickets_add_bug_row:hover .task_pin_button {
     opacity: .3
 }
+
+.skip_other_lang_tickets_checkbox {
+    display: inline-block;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin-left: 15px
+}
+
+.line_through {
+    text-decoration: line-through
+}

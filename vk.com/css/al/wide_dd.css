@@ -364,3 +364,11 @@ div.wdd_disabled .summary_tab_x:hover {
     opacity: 0.3;
     cursor: default
 }
+
+div.wdd.wdd_no_sub .wddi_text {
+    padding-top: 9px
+}
+
+div.wdd.wdd_no_sub .wddi_sub {
+    display: none
+}

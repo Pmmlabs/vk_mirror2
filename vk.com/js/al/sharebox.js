@@ -1,9 +1,14 @@
 var ShareBox = {
-    mrg: function(v) {
+    radioBtnOptions: {
+        WALL: 0,
+        COMMUNITY: 1,
+        IM: 2
+    },
+    mrg: function(pixels) {
         return vk.rtl ? {
-            marginRight: v
+            marginRight: pixels
         } : {
-            marginLeft: v
+            marginLeft: pixels
         };
     },
     mediaChange: function() {
@@ -57,12 +62,13 @@ var ShareBox = {
             sbList: opts.shList || '',
             sbShareOwn: opts.shOwn,
             sbShParam: opts.shParam,
+            shNewUi: opts.shNewUi,
             sbSend: function() {
                 if (buttonLocked('like_share_send')) return;
                 hide('like_share_error');
 
                 var v = radioBtns['like_share'].val,
-                    to = 0,
+                    to = ShareBox.radioBtnOptions.WALL,
                     composer = cur.sbField && data(cur.sbField, 'composer'),
                     params = composer ? Composer.getSendParams(composer) : {
                         message: trim(val(cur.sbField))
@@ -71,13 +77,13 @@ var ShareBox = {
                     params.share_param = cur.sbShParam;
                 }
                 switch (v) {
-                    case 1:
+                    case ShareBox.radioBtnOptions.COMMUNITY:
                         var dd = cur.wdd && cur.wdd['like_club_dd'];
                         if (!dd || !dd.selCount) return elfocus('like_club_inp');
                         for (var i in dd.selected) {
                             to = intval(i.replace(/_$/, ''));
                         }
-                    case 0:
+                    case ShareBox.radioBtnOptions.WALL:
 
                         if (vk.widget && vk.widget !== 4) {
                             window.allowCallback = function() {
@@ -129,7 +135,7 @@ var ShareBox = {
                         }
                         break;
 
-                    case 2:
+                    case ShareBox.radioBtnOptions.IM:
                         var dd = cur.wdd && cur.wdd['like_mail_dd'],
                             params =
                             extend(params, {
@@ -143,7 +149,7 @@ var ShareBox = {
                                 media: cur.sbObj + (cur.sbList ? ('/' + cur.sbList) : ''),
                                 ret_data: 1
                             });
-                        if (!dd || !dd.selCount) return elfocus('like_mail_inp');
+                        if (!dd || !dd.selCount) return elfocus('like_im_inp');
 
                         for (var i in dd.selected) {
                             params.to_ids.push(i.replace(/_$/, ''));
@@ -158,7 +164,7 @@ var ShareBox = {
                 checkTextLength(4096, inp, 'like_share_warn');
                 var dd = cur.wdd && cur.wdd['like_mail_dd'],
                     mchat = dd && dd.full && (dd.selCount == 1);
-                toggle('like_share_title_wrap', dd && (radioBtns['like_share'].val == 2) && (inp.lastLen > 200 && !mchat || val('like_share_title')) ? true : false);
+                toggle('like_share_title_wrap', dd && (radioBtns['like_share'].val == ShareBox.radioBtnOptions.IM) && (inp.lastLen > 200 && !mchat || val('like_share_title')) ? true : false);
             },
             sbReInitMediaSelector: function(version) {
                 var addMedia = (window.data(cur.sbField, 'composer') || {}).addMedia;
@@ -258,7 +264,7 @@ var ShareBox = {
             introText: getLang('like_club_choose'),
             onChange: function(act) {
                 curBox().changed = true;
-                ShareBox.rbChanged(ge('like_share_club'), 1, true);
+                ShareBox.rbChanged(ge('like_share_club'), ShareBox.radioBtnOptions.COMMUNITY, true);
                 var dd = cur.wdd['like_club_dd'],
                     sel = dd.selCount,
                     peer = false,
@@ -290,7 +296,7 @@ var ShareBox = {
             introText: getLang('mail_choose_recipient'),
             onChange: function(act) {
                 curBox().changed = true;
-                ShareBox.rbChanged(ge('like_share_mail'), 2, true);
+                ShareBox.rbChanged(ge('like_share_mail'), ShareBox.radioBtnOptions.IM, true);
                 var dd = cur.wdd['like_mail_dd'],
                     sel = dd.selCount,
                     peer = false,
@@ -306,8 +312,10 @@ var ShareBox = {
                     ret = 1;
                 }
                 cur.sbCheckLen(cur.sbField);
+                ShareBox.updateButtonLabel(ShareBox.radioBtnOptions.IM, dd.selCount);
                 return ret;
-            }
+            },
+            allowMultiselectAll: !!cur.shNewUi,
         });
         each(geByClass('_like_share_about_select', curBox().bodyNode), function() {
             hide(this);
@@ -353,14 +361,14 @@ var ShareBox = {
             return 0;
         }
     },
-    rbChanged: function(el, v, fromDD) {
+    rbChanged: function(el, rbOption, fromDD) {
         if (!fromDD) {
-            cur.sbReInitMediaSelector(v);
+            cur.sbReInitMediaSelector(rbOption);
         }
 
         if (cur.sbPostCheckboxEl) {
             if (cur.sbFriendsOnlyEl) {
-                if (v === 0) {
+                if (rbOption === ShareBox.radioBtnOptions.WALL) {
                     cur.sbFriendsOnlyEl.classList.remove('like_share_friends_only_hidden');
                 } else {
                     cur.sbFriendsOnlyEl.classList.add('like_share_friends_only_hidden');
@@ -370,7 +378,7 @@ var ShareBox = {
             var markAsAdsCheckbox = ge('like_share_mark_as_ads');
             var muteNotificationsCheckbox = ge('like_share_mute_notifications');
 
-            if (v === 0) {
+            if (rbOption === ShareBox.radioBtnOptions.WALL) {
                 hide(markAsAdsCheckbox);
 
                 if (isChecked(markAsAdsCheckbox)) {
@@ -387,18 +395,18 @@ var ShareBox = {
                 }
             }
 
-            if (v === 2) {
+            if (rbOption === ShareBox.radioBtnOptions.IM) {
                 cur.sbPostCheckboxEl.classList.add('like_share_post_checkbox_hidden');
             } else {
                 cur.sbPostCheckboxEl.classList.remove('like_share_post_checkbox_hidden');
             }
         }
 
-        radiobtn(el, v, 'like_share');
+        radiobtn(el, rbOption, 'like_share');
         if (getLang('title_for_all')) {
-            val('dark_box_topic', getLang((v < 2) ? 'title_for_all' : 'title_for_mail'));
+            val('dark_box_topic', getLang((rbOption === ShareBox.radioBtnOptions.IM) ? 'title_for_mail' : 'title_for_all'));
         }
-        val('like_share_title_header', getLang((v < 2) ? 'like_select_comment' : 'likes_select_message'));
+        val('like_share_title_header', getLang((rbOption === ShareBox.radioBtnOptions.IM) ? 'likes_select_message' : 'like_select_comment'));
         each(geByClass('_like_share_about_select', curBox().bodyNode), function() {
             hide(this);
         });
@@ -407,10 +415,10 @@ var ShareBox = {
         if (composer && composer.addMedia) {
             var addMedia = composer.addMedia;
             var menu = addMedia.menu;
-            if (v == 1 || v == 0 && cur.sbShareOwn) {
+            if (rbOption === ShareBox.radioBtnOptions.COMMUNITY || rbOption === ShareBox.radioBtnOptions.WALL && cur.sbShareOwn) {
                 if (addMedia.limit > (addMedia.getMedias(true) || []).length) {
                     var newTypes = [];
-                    var toGroup = v == 1;
+                    var toGroup = rbOption === ShareBox.radioBtnOptions.COMMUNITY;
                     each(menu.types, function(i, v) {
                         if (v[0] === 'mark_as_ads') {
                             if ((toGroup && composer.addMedia.markAsAds) || !toGroup) {
@@ -466,8 +474,8 @@ var ShareBox = {
         }
         if (fromDD === true) return;
 
-        switch (v) {
-            case 0:
+        switch (rbOption) {
+            case ShareBox.radioBtnOptions.WALL:
                 if (!cur.sbHidden) {
                     var t = Fx.Transitions.easeOutCubic,
                         d = 150,
@@ -489,13 +497,14 @@ var ShareBox = {
                 elfocus(cur.sbField);
                 break;
 
-            case 1:
-            case 2:
-                var dd = (v == 1) ? 'like_club_dd' : 'like_mail_dd';
+            case ShareBox.radioBtnOptions.COMMUNITY:
+            case ShareBox.radioBtnOptions.IM:
+                var dd = (rbOption == ShareBox.radioBtnOptions.COMMUNITY) ? 'like_club_dd' : 'like_mail_dd';
                 cur.wdd[dd].selCount ? elfocus(cur.sbField) : WideDropdown.focus(dd);
                 WideDropdown.updimgs(dd);
                 break;
         }
+        ShareBox.updateButtonLabel(rbOption, cur.wdd['like_mail_dd'].selCount);
     },
     options: function() {
         return {
@@ -518,6 +527,23 @@ var ShareBox = {
                 return true;
             }
         };
+    },
+    updateButtonLabel: function(selectedOption, selectedItemsCount) {
+        if (!cur.shNewUi) {
+            return; //temp A/B test VKRED-13227
+        }
+        if (!cur.shButtonLabelBackup) {
+            cur.shButtonLabelBackup = ge('like_share_send').innerHTML;
+        }
+        if (selectedOption === ShareBox.radioBtnOptions.IM) {
+            if (selectedItemsCount > 1) {
+                ge('like_share_send').innerHTML = getLang('mail_send_separate');
+            } else {
+                ge('like_share_send').innerHTML = getLang('mail_send2');
+            }
+        } else {
+            ge('like_share_send').innerHTML = cur.shButtonLabelBackup;
+        }
     }
 };
 

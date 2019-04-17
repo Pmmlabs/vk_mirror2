@@ -129,7 +129,7 @@
             extend(dd, {
                 addWidth: getSize(dd.add)[0],
                 textDelta: getSize(dd.text)[0] - intval(getStyle(dd.text, 'width')),
-                fullWidth: getSize(domPN(dd.text))[0] - 4,
+                fullWidth: getSize(domPN(dd.text))[0] - 5,
                 textOffset: dd.text.offsetLeft
             });
             dd.partWidth = dd.fullWidth - getSize(dd.arrow)[0];
@@ -294,7 +294,15 @@
                 var id = item[0] + '',
                     id_ = id + '_',
                     cl = '';
-                if (dd.selected[id_] || dd.shown[id_] || dd.selCount && item[8] > 0) continue;
+                if (cur.shNewUi) { //temp A/B test VKRED-13227
+                    if (dd.selected[id_] || dd.shown[id_] || dd.selCount && item[8] > 0 && !dd.opts.allowMultiselectAll) {
+                        continue;
+                    }
+                } else {
+                    if (dd.selected[id_] || dd.shown[id_] || dd.selCount && item[8] > 0) {
+                        continue;
+                    }
+                }
                 dd.shown[id_] = item;
 
                 var onlineClass = isArray(item[3]) ? '' : ' ' + onlinePlatformClass(markfn(item));
@@ -677,7 +685,11 @@
 
             dd.selected[sel_] = item;
             ++dd.selCount;
-            dd.full = (dd.opts.maxItems && dd.selCount >= dd.opts.maxItems || item[8] > 0);
+            if (cur.shNewUi) { //temp A/B test VKRED-13227
+                dd.full = (dd.opts.maxItems && dd.selCount >= dd.opts.maxItems || (item[8] > 0 && !dd.opts.allowMultiselectAll));
+            } else {
+                dd.full = (dd.opts.maxItems && dd.selCount >= dd.opts.maxItems || item[8] > 0);
+            }
 
             dd.bubbles.appendChild(ce('div', {
                 id: 'wddb' + sel_ + id,

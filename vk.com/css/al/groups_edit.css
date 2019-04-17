@@ -1352,13 +1352,17 @@ a.group_ad_post_stats {
     text-decoration: none
 }
 
+.ui_tooltipMenu__link:hover .ui_tooltipMenu_title {
+    color: #6f7985
+}
+
 .ui_tooltipMenu__tooltip .eltt_arrow_back,
 .ui_tooltipMenu__list_unshown {
     display: none
 }
 
 .ui_tooltipMenu__item_not_found {
-    padding: 24px;
+    padding: 18px;
     text-align: center;
     font-size: 12px;
     color: #939393;
@@ -1373,7 +1377,14 @@ a.group_ad_post_stats {
     padding: 11px;
     padding-left: 0;
     margin-left: 0;
+    border-left: 12px solid transparent;
     background-image: none
+}
+
+.ui_tooltipMenu .ui_search .ui_search_reset {
+    right: 0;
+    background-position: 0;
+    width: 22px
 }
 
 .ui_tooltipMenu_title {
@@ -4583,11 +4594,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M8.9%206.1h11.2a.9.9%200%201%201%200%201.8H8.9a.9.9%200%200%201%200-1.8zm0%205h11.2a.9.9%200%201%201%200%201.8H8.9a.9.9%200%201%201%200-1.8zm0%205h11.2a.9.9%200%201%201%200%201.8H8.9a.9.9%200%201%201%200-1.8zM5%205.75a1.25%201.25%200%201%201%200%202.5%201.25%201.25%200%200%201%200-2.5zm0%205a1.25%201.25%200%201%201%200%202.5%201.25%201.25%200%200%201%200-2.5zm0%205a1.25%201.25%200%201%201%200%202.5%201.25%201.25%200%200%201%200-2.5z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.8%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cmask%20id%3D%22b%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cg%20mask%3D%22url(%23b)%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface7%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%208.898438%206.101562%20L%2020.101562%206.101562%20C%2020.597656%206.101562%2021%206.503906%2021%207%20C%2021%207.496094%2020.597656%207.898438%2020.101562%207.898438%20L%208.898438%207.898438%20C%208.402344%207.898438%208%207.496094%208%207%20C%208%206.503906%208.402344%206.101562%208.898438%206.101562%20Z%20M%208.898438%2011.101562%20L%2020.101562%2011.101562%20C%2020.597656%2011.101562%2021%2011.503906%2021%2012%20C%2021%2012.496094%2020.597656%2012.898438%2020.101562%2012.898438%20L%208.898438%2012.898438%20C%208.402344%2012.898438%208%2012.496094%208%2012%20C%208%2011.503906%208.402344%2011.101562%208.898438%2011.101562%20Z%20M%208.898438%2016.101562%20L%2020.101562%2016.101562%20C%2020.597656%2016.101562%2021%2016.503906%2021%2017%20C%2021%2017.496094%2020.597656%2017.898438%2020.101562%2017.898438%20L%208.898438%2017.898438%20C%208.402344%2017.898438%208%2017.496094%208%2017%20C%208%2016.503906%208.402344%2016.101562%208.898438%2016.101562%20Z%20M%205%205.75%20C%205.691406%205.75%206.25%206.308594%206.25%207%20C%206.25%207.691406%205.691406%208.25%205%208.25%20C%204.308594%208.25%203.75%207.691406%203.75%207%20C%203.75%206.308594%204.308594%205.75%205%205.75%20Z%20M%205%2010.75%20C%205.691406%2010.75%206.25%2011.308594%206.25%2012%20C%206.25%2012.691406%205.691406%2013.25%205%2013.25%20C%204.308594%2013.25%203.75%2012.691406%203.75%2012%20C%203.75%2011.308594%204.308594%2010.75%205%2010.75%20Z%20M%205%2015.75%20C%205.691406%2015.75%206.25%2016.308594%206.25%2017%20C%206.25%2017.691406%205.691406%2018.25%205%2018.25%20C%204.308594%2018.25%203.75%2017.691406%203.75%2017%20C%203.75%2016.308594%204.308594%2015.75%205%2015.75%20Z%20M%205%2015.75%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface7%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button_simple {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M4.9%206.1h14.2a.9.9%200%201%201%200%201.8H4.9a.9.9%200%200%201%200-1.8zm0%2010h14.2a.9.9%200%201%201%200%201.8H4.9a.9.9%200%201%201%200-1.8zm0-5h14.2a.9.9%200%201%201%200%201.8H4.9a.9.9%200%201%201%200-1.8z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.8%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cmask%20id%3D%22b%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22%23828A99%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cg%20mask%3D%22url(%23b)%22%20fill%3D%22%23828A99%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface10%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%20style%3D%22fill%3Argb(50.980392%25%2C54.117647%25%2C60%25)%3Bfill-opacity%3A1%3Bstroke%3Anone%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%204.898438%206.101562%20L%2019.101562%206.101562%20C%2019.597656%206.101562%2020%206.503906%2020%207%20C%2020%207.496094%2019.597656%207.898438%2019.101562%207.898438%20L%204.898438%207.898438%20C%204.402344%207.898438%204%207.496094%204%207%20C%204%206.503906%204.402344%206.101562%204.898438%206.101562%20Z%20M%204.898438%2016.101562%20L%2019.101562%2016.101562%20C%2019.597656%2016.101562%2020%2016.503906%2020%2017%20C%2020%2017.496094%2019.597656%2017.898438%2019.101562%2017.898438%20L%204.898438%2017.898438%20C%204.402344%2017.898438%204%2017.496094%204%2017%20C%204%2016.503906%204.402344%2016.101562%204.898438%2016.101562%20Z%20M%204.898438%2011.101562%20L%2019.101562%2011.101562%20C%2019.597656%2011.101562%2020%2011.503906%2020%2012%20C%2020%2012.496094%2019.597656%2012.898438%2019.101562%2012.898438%20L%204.898438%2012.898438%20C%204.402344%2012.898438%204%2012.496094%204%2012%20C%204%2011.503906%204.402344%2011.101562%204.898438%2011.101562%20Z%20M%204.898438%2011.101562%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface10%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button,
@@ -4596,11 +4607,10 @@ a.group_ad_post_link.deleted.deleted:hover {
     width: 24px;
     height: 24px;
     margin-top: 16px;
-    background-size: cover;
+    box-sizing: border-box;
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
-    box-sizing: content-box;
     cursor: pointer
 }
 
@@ -4617,15 +4627,20 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_title_wrap {
-    height: 51px;
+    height: 48px;
     width: 510px
+}
+
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:after,
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:before {
+    right: 32px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_title {
     border-radius: 0;
-    height: 50px;
+    height: 47px;
     width: 510px;
-    line-height: 50px;
+    line-height: 47px;
     font-size: 13px
 }
 
@@ -4635,6 +4650,11 @@ a.group_ad_post_link.deleted.deleted:hover {
     top: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
     margin-top: 96px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_title_fixed.groups_edit_event_log_title_animating {
+    border-bottom-color: #fafbfc;
+    box-shadow: none
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_controls_fixed {
@@ -4671,8 +4691,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_filter {
-    margin-right: 13px;
+    margin-right: 21px;
     margin-top: 18px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     position: relative;
     display: inline-block
 }
@@ -4685,6 +4708,9 @@ a.group_ad_post_link.deleted.deleted:hover {
     position: relative;
     display: inline-block;
     margin: 16px 0 11px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     vertical-align: top;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -4705,7 +4731,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_filter_datepicker_selector:after {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E") no-repeat;
     width: 8px;
     height: 8px;
     margin-bottom: 1px;
@@ -4720,6 +4746,16 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap:first-child {
     border-top: 0
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap a.page_post_thumb_wrap,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap span.page_post_thumb_wrap {
+    margin: 0 3px 3px 0
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap a.page_post_thumb_last_column,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap span.page_post_thumb_last_column {
+    margin-right: 0
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap:last-child .groups_edit_event_log_item:last-child {
@@ -4737,9 +4773,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap {
-    border-bottom: 1px solid #e7e8ec;
-    -o-transition: background 200ms ease-in-out;
-    transition: background 200ms ease-in-out
+    border-bottom: 1px solid #e7e8ec
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:last-child {
@@ -4751,9 +4785,19 @@ a.group_ad_post_link.deleted.deleted:hover {
     filter: alpha(opacity=70)
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover,
-.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_active {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_focused {
     background-color: #fafbfc
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main .groups_edit_event_log_item_date,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_focused .groups_edit_event_log_item_date {
+    color: #6f7985
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main .groups_edit_event_log_item_label,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_focused .groups_edit_event_log_item_label {
+    color: #4e5966
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_photo {
@@ -4841,10 +4885,8 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin-right: 12px;
     opacity: 0;
     filter: alpha(opacity=0);
-    -o-transition: opacity 200ms ease-in-out;
-    transition: opacity 200ms ease-in-out;
     cursor: pointer;
-    background-size: 11px;
+    background-size: 11px 7px;
     background-position: 50%
 }
 
@@ -4857,14 +4899,18 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_title {
-    margin-bottom: 10px;
+    margin-top: 3px;
+    margin-bottom: 7px;
     font-size: 13px;
     font-weight: 500
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_text,
-.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_description {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_text {
     margin-bottom: 10px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_description {
+    margin-bottom: 11px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_controls .groups_edit_event_log_item_date {
@@ -4872,12 +4918,12 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_row {
-    margin-top: 5px
+    margin-top: 4px
 }
 
-.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_row:first-child {
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_row:nth-child(2) {
     margin-top: 0;
-    margin-bottom: 10px
+    padding-top: 8px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_label {
