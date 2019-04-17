@@ -3156,6 +3156,19 @@ body.body_helpdesk_small_sb .left_menu_nav {
     opacity: .3
 }
 
+.helpdesk_auto_reply_pass_link {
+    cursor: pointer;
+    color: #2a5885;
+    font-size: 14px;
+    display: inline-block;
+    padding: 4px 6px
+}
+
+.helpdesk_auto_reply_pass_link:hover {
+    border-radius: 2px;
+    background: #e1e7ed
+}
+
 .skip_other_lang_tickets_checkbox {
     display: inline-block;
     font-weight: 400;

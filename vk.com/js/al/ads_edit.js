@@ -2198,7 +2198,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         cost_type: {
             value: AdsEdit.ADS_AD_COST_TYPE_CLICK,
             cpm_only: false,
-            cp� _only: false,
+            cpc_only: false,
             allow_promoted_posts_cpc: false
         },
         link_type: {

@@ -162,7 +162,7 @@ var stVersions = {
     'uncommon.js': 1640247993,
     'uncommon.css': 15152466302,
     'filebutton.css': 1044306797,
-    'lite.js': 1652795420,
+    'lite.js': 3774867358,
     'lite.css': 68802560515,
     'rtl.css': 15686333886,
     'pagination.js': 358700184,
@@ -230,11 +230,11 @@ var stVersions = {
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 18468403827,
-    'invite.js': 4133426028,
+    'invite.js': 3498521437,
     'index.css': 20152183587,
     'index.js': 4237256002,
     'join.css': 23993655993,
-    'join.js': 1455799191,
+    'join.js': 768561937,
     'intro.css': 17757900495,
     'post.css': 26871370636,
     'playground.css': 182325959,
@@ -290,7 +290,7 @@ var stVersions = {
     'privacy.js': 2258441616,
     'privacy.css': 14903788336,
     'apps.css': 53440520982,
-    'apps.js': "2940c5190eaf66b8e713cc2848c84a1ef11",
+    'apps.js': "2941c7a09c160d699812f99d2893e46b2b7",
     'apps_edit.js': "1174cd6ada368fc878be9503b9dfbd7926a",
     'apps_edit.css': 107278061751,
     'apps_check.js': 3204387834,
@@ -351,7 +351,7 @@ var stVersions = {
     'docs.css': 22196205654,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16997641513,
-    'helpdesk.css': 30745679689,
+    'helpdesk.css': 32909601220,
     'cmodules/web/support.js': "2eb798b9fb2244f08702c95b2ea79c75e",
     'tickets.css': 27046677238,
     'faq.css': 22091384048,
@@ -385,7 +385,7 @@ var stVersions = {
     'ads.js': 2438593614,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 116187989646,
-    'ads_edit.js': 2413801775,
+    'ads_edit.js': 2773104906,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 15493378060,
     'ads_moder.css': 17415805933,
@@ -607,7 +607,7 @@ var stVersions = {
     'cmodules/bundles/common.js': '5d98ea9bcba3cb49a51d',
     'cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.js': '21512de761e9a49b5567',
     'cmodules/web/app_use_time.js': '7c9e7aeda91281ad74ce194dbaa3e828',
-    'cmodules/web/apps.js': '0c5190eaf66b8e713cc2848c84a1ef11',
+    'cmodules/web/apps.js': '1c7a09c160d699812f99d2893e46b2b7',
     'cmodules/web/apps_connect.js': 'e304bec0651c92870bfc87af20d81f3d',
     'cmodules/web/apps_edit.js': '4cd6ada368fc878be9503b9dfbd7926a',
     'cmodules/web/article_editor_layer.js': '8e3d0fffcf72abeb6984bd5788e53f09',
@@ -705,7 +705,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9229;
+var _rnd = 8993;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

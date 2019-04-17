@@ -14,7 +14,9 @@ var inviter = {
         var fname = trim(ge('inv_fname').value);
         var lname = trim(ge('inv_lname').value);
         var hasrus = true;
-        if (fname && !fname.match(/[�-��-߸�]/) && lname && !lname.match(/[�-��-߸�]/)) {
+
+        // eslint-disable-next-line
+        if (fname && !fname.match(new RegExp('[�-��-߸�]')) && lname && !lname.match(new RegExp('[�-��-߸�]'))) {
             hasrus = false;
         }
         (hasrus ? hide : show)('inv_lang_row');

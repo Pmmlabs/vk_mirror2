@@ -3025,7 +3025,7 @@ function domReplaceEl(oldEl, newEl) {
 }
 
 function domChildIndex(child) {
-    let i = 0;
+    var i = 0;
     while ((child = domPS(child)) != null) {
         i++;
     }

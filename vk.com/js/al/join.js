@@ -270,7 +270,7 @@ var Join = {
         } else if (pwd.match(/^\d+$/) || indexOf(pwds, pwd) >= 0 || pwd.substr(-1).match(/\d/) && pwds.indexOf(pwd.substr(0, pwd.length - 1)) >= 0) {
             level = 1;
         } else {
-            var groups = [/[^a-z]/g, /[^A-Z]/g, /[^�-��]/g, /[^�-ߨ]/g, /[^0-9]/g, /[a-zA-Z�-��-߸�0-9]/g],
+            var groups = [/[^a-z]/g, /[^A-Z]/g, /[^�-��]/g, new RegExp('[^�-ߨ]', 'g'), /[^0-9]/g, new RegExp('[a-zA-Z�-��-߸�0-9]', 'g')],
                 cnts = [],
                 big = 0;
             for (var i = 0, c = groups.length; i < c; ++i) {
@@ -957,7 +957,7 @@ var Join = {
 
     phoneOnKeyUp: function() {
         clearTimeout(Join.checkPhoneTimeout);
-        let phone = Join.getPhone();
+        var phone = Join.getPhone();
         if (phone && phone !== Join.prevPhone) {
             if (phone.length > 4) {
                 Join.checkPhoneTimeout = setTimeout(function() {
@@ -993,7 +993,7 @@ var Join = {
     },
 
     destroyPhoneTip: function() {
-        let el = ge('join_phone');
+        var el = ge('join_phone');
         if (el && el.tt) el.tt.destroy();
     }
 };
