@@ -12481,8 +12481,18 @@ body.vk_app_fixed {
     z-index: 2
 }
 
+.vk_app_layout .app_container iframe {
+    max-height: 100vh
+}
+
 .vk_app_layout #vk_bottom {
     padding: 0
+}
+
+.vk_app_android .app_container iframe {
+    min-height: -webkit-calc(100vh - 56px);
+    min-height: -moz-calc(100vh - 56px);
+    min-height: calc(100vh - 56px)
 }
 
 #apps #apps_box {

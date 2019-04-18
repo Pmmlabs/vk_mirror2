@@ -4772,6 +4772,14 @@ a.group_ad_post_link.deleted.deleted:hover {
     border-bottom: 1px solid #e7e8ec
 }
 
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_text_explain>br {
+    display: none
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item .wall_text {
+    padding: 0
+}
+
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap {
     border-bottom: 1px solid #e7e8ec
 }

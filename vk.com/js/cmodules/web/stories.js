@@ -498,7 +498,7 @@
                 }, e.prototype._renderLink = function() {
                     var t = this,
                         e = this.props.story.getCurStoryData().link;
-                    if (!(M(e) && e.key && e.text)) return "";
+                    if (!M(e)) return "";
                     var r = "stories_link";
                     return e.object_type && (r += " story_link_object_" + e.object_type), this.state.linkObjectAudioPlaying && (r += " story_link_object_audio_playing"), o.createElement("div", {
                         className: "stories_link_wrap"
