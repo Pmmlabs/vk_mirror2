@@ -42,9 +42,9 @@
         return o.d(t, "a", t), t
     }, o.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, o.p = "", o(o.s = 4)
+    }, o.p = "", o(o.s = 0)
 }({
-    4: function(e, t, o) {
+    0: function(e, t, o) {
         e.exports = o("JfKq")
     },
     JfKq: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
@@ -522,7 +522,7 @@
                 this.resizeWidget()
             },
             override: function(e, t) {
-                var o, s, i;
+                var o, s;
                 if (StaticFiles[e] || !0 === t) switch (e) {
                     case "lite.js":
                         extend(window, {
@@ -608,22 +608,22 @@
                         });
                         break;
                     case "page.js":
-                        (cur.options.is_auto || cur.options.is_nano) && (Composer.init = (i = Composer.init, function() {
+                        (cur.options.is_auto || cur.options.is_nano) && (Composer.init = (s = Composer.init, function() {
                             var e = [].slice.call(arguments);
                             return e[1].media && (e[1].media.options = extend(e[1].media.options || {}, {
                                 hideAfterCount: 0,
                                 maxShown: 0,
                                 forceToUp: 1
-                            })), i.apply(Wall, e)
+                            })), s.apply(Wall, e)
                         })), extend(Wall, {
                             scrollHighlightReply: function(e) {
                                 (e = ge(e)) && (cur.options.fixed_height && cur.scrollbar ? cur.scrollbar.scrollIntoView(e, !0, Wall.highlightReply.bind(Wall, e)) : (e.scrollIntoView(), Wall.highlightReply(e)))
                             },
-                            postTooltip: (s = Wall.postTooltip, function() {
+                            postTooltip: (o = Wall.postTooltip, function() {
                                 var e = [].slice.call(arguments);
                                 return e[3] = extend(e[3] || {}, {
                                     appendEl: cur.postsOuterEl
-                                }), s.apply(this, e)
+                                }), o.apply(this, e)
                             }),
                             sendPost: function() {
                                 if (cur.sendPostBtn) {
@@ -895,9 +895,6 @@
                                     n && "replies_open" == n.className && re(n), extend(cur.options.reply_names || {}, s), Wall.updateMentionsIndex()
                                 }
                             },
-                            editPost: (o = Wall.editPost, function(e, t) {
-                                stManager.add(["audioplayer.css", "audioplayer.js"], Function.apply.bind(o, Wall, [].slice.call(arguments)))
-                            }),
                             checkTextLen: function() {},
                             checkPostLen: function() {},
                             replySubmitTooltip: function() {},

@@ -69,9 +69,9 @@
     a.push = e, a = a.slice();
     for (var l = 0; l < a.length; l++) e(a[l]);
     var d = c;
-    s.push([136, "common", "bundles/vendors"]), r()
+    s.push([132, "common", "bundles/vendors"]), r()
 }({
-    136: function(t, e, r) {
+    132: function(t, e, r) {
         t.exports = r("EJ7F")
     },
     "16Al": function(t, e, r) {
@@ -2648,7 +2648,7 @@
                         r = String(t).split(";");
                     for (var o in r)
                         if (r.hasOwnProperty(o)) {
-                            var i = r[o].split("="),
+                            var i = r[o].split(":"),
                                 s = St(i, 2),
                                 n = s[0],
                                 a = s[1];
@@ -2842,7 +2842,7 @@
                     delete cur["stories_list_" + t]
                 },
                 _parseList: function(t) {
-                    var e = (t = decodeURIComponent(t)).match(/^story(-?\d+)_(\d+)(\/([a-z0-9\_\-]+))?(\/([a-z0-9\_\=\;\-]+))?$/i),
+                    var e = (t = decodeURIComponent(t)).match(/^story(-?\d+)_(\d+)(\/([a-z0-9\_\-]+))?(\/([a-z0-9\_\:\;\-]+))?$/i),
                         r = Tt(e, 7),
                         o = r[1],
                         i = r[2],

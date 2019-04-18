@@ -60,7 +60,7 @@ var StoriesAdmin = {
 
     showStory: function(storyRaw, access_hash, expiredHash, event) {
         cancelEvent(event);
-        showStory(storyRaw + '/' + storyRaw + '/hash=' + access_hash + ';expired_hash=' + expiredHash);
+        showStory(storyRaw + '/' + storyRaw + '/hash:' + access_hash + ';expired_hash:' + expiredHash);
     },
 
     addChannelForm: function(hash, rhash) {

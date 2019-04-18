@@ -7430,6 +7430,106 @@ function isPhotoeditor3Available() {
     return (browser.msie ? parseInt(browser.version) > 10 : true);
 }
 
+/* Article */
+function bookmark(ownerId, objectId, objectType, hash, isBookmarked, itemAccessHash, ref) {
+    isBookmarked = isBookmarked || false;
+    itemAccessHash = itemAccessHash || '';
+    ref = ref || '';
+
+    ajax.post('al_bookmarks.php', {
+        act: 'bookmark',
+        owner_id: ownerId,
+        object_id: objectId,
+        type: objectType,
+        state: isBookmarked ? 1 : 0,
+        hash: hash,
+        item_access_hash: itemAccessHash,
+        ref: ref,
+    }, {
+        onDone: function(addedText, tags, objectTypeInt, setTagHash) {
+            if (addedText) {
+                var boxEl = window.showDoneBox(addedText)
+                var setTagEl = geByClass1('bookmarks_tag_set', boxEl)
+                if (setTagEl && !isEmpty(tags)) {
+                    var tagsArray = []
+                    each(tags, function(id, tag) {
+                        tagsArray.push(tag)
+                    })
+                    tagsArray.sort(function(a, b) {
+                        return a.order - b.order
+                    })
+
+                    var content = '<div class="bookmarks_tags_list">';
+                    for (var i = 0; i < tagsArray.length; i++) {
+                        var tag = tagsArray[i]
+                        content += '<div class="bookmarks_tags_list_item" data-id=' + tag.id + '">' + tag.name + '</div>';
+                    }
+                    content += '</div>';
+
+                    content = se(content)
+
+                    content.addEventListener('click', function(e) {
+                        var tagEl = domClosest('bookmarks_tags_list_item', e.target)
+                        if (tagEl) {
+                            var tagId = domData(tagEl, 'id')
+                            var added = toggleClass(tagEl, 'bookmarks_tags_list_item--selected')
+                            ajax.post('al_bookmarks.php', {
+                                act: 'set_tag',
+                                item_type: objectTypeInt,
+                                item_oid: ownerId,
+                                item_id: objectId,
+                                hash: setTagHash,
+                                tag_id: tagId,
+                                is_tagged: intval(!added),
+                            })
+                        }
+                    })
+
+                    if (cur.setBookmarksTagTooltip) {
+                        cur.setBookmarksTagTooltip.destroy()
+                    }
+
+                    stManager.add(['ui_common.css', 'ui_common.js'], function() {})
+
+                    cur.setBookmarksTagTooltip = new ElementTooltip(setTagEl, {
+                        content: content,
+                        appendToParent: true,
+                        cls: 'bookmarks_tag_set_tt',
+                        offset: [0, -26],
+                        onFirstTimeShow: function(contentEl) {
+                            stManager.add(['ui_common.css', 'ui_common.js'], function() {
+                                cur.setBookmarksTagTooltipScroll = new uiScroll(domFC(contentEl), { // eslint-disable-line new-cap
+                                    theme: 'dark',
+                                })
+                            })
+                        }
+                    })
+
+                    cur.destroy.push(function() {
+                        cur.setBookmarksTagTooltip.destroy()
+                    })
+                }
+            }
+        }
+    });
+}
+
+function bookmarkArticle(event, ele, ownerId, objectId, objectType, hash, isBookmarked) {
+    if (ele) {
+        isBookmarked = parseInt(domData(ele, 'state'));
+        domData(ele, 'state', isBookmarked ? 0 : 1);
+    }
+
+    bookmark(ownerId, objectId, objectType, hash, isBookmarked);
+
+    each(geByClass('_article_' + ownerId + '_' + objectId), function(i, el) {
+        var btn = geByClass1('_bookmark_btn', el)
+        domData(btn, 'state', isBookmarked ? 0 : 1);
+    });
+
+    return cancelEvent(event);
+}
+
 /* Widgets */
 
 window.Widgets = {
