@@ -12482,6 +12482,7 @@ body.vk_app_fixed {
 }
 
 .vk_app_layout .app_container iframe {
+    min-height: 100vh;
     max-height: 100vh
 }
 

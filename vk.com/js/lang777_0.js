@@ -553,7 +553,7 @@ window.lang = extend(window.lang || {}, {
     "text_N_symbols_remain": ["", "������� %s ����.", "�������� %s �����.", "�������� %s ������."],
     "text_exceeds_symbol_limit": ["", "���������� ����� �������� �� %s ����.", "���������� ����� �������� �� %s �����.", "���������� ����� �������� �� %s ������."],
     "top_search": "������ {query}",
-    "tran_badge_super_translator": "����� ����������",
+    "tran_badge_super_translator": "���������������",
     "updates": "������",
     "video_add_to_public": "������� � �������������",
     "video_comment_placeholder": "�����������..",

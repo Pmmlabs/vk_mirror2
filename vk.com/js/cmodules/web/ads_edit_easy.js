@@ -695,7 +695,7 @@
                         });
                     n.appendChild(s), this.boxBodyNode.appendChild(n), this.paymentSystemsFormElement.innerHTML = "", cur.isAdsPayment = !0, cur.paymentAccountId = this.options.payment_union_id;
                     var a = cur.submitPaymentSystemsForm(e, t.request_without_fee ? 0 : t.fee, !0);
-                    Object(i.c)("payments", "", "ads", e, "start"), this.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), this.goToScreen(this.paymentResultScreenElement), this.waitForPaymentResult({
+                    Object(i.d)("payments", "", "ads", e, "start"), this.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), this.goToScreen(this.paymentResultScreenElement), this.waitForPaymentResult({
                         ajaxParams: {
                             source: "ads",
                             ads_union_id: this.options.payment_union_id,

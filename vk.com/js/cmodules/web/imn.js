@@ -8915,7 +8915,7 @@
                 return t(i, e, a, n)
             }).then(function(e) {
                 n.get().dialog_search_going = !1
-            }).catch(function() {})) : (e().restoreDialogs(n, !1, !0), Object(cc.a)("messages"), Promise.resolve(!1))
+            }).catch(function() {})) : (e().restoreDialogs(n, !1, !0), Object(cc.b)("messages"), Promise.resolve(!1))
         }
 
         function bc(e, t, n, a) {
@@ -17134,7 +17134,7 @@
             var e = this.dData.attaches.find(function(e) {
                 return "share" === e.type
             });
-            if (e && e.object) return e.object.url
+            if (e && e.object) return e.object.url.replace(/&amp;/g, "&")
         }, s.prototype.hasOnlyReplies = function() {
             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
             return e ? e.flags & i.k && !this.dData.attaches.find(function(e) {
@@ -18639,7 +18639,7 @@
                     r = t[1];
                 return H(t[2], a), r.forEach(function(e) {
                     return Object(m.a)(a, e)
-                }), pe(n, a), Object(v.b)("messages", o, n && n.length), Object.keys(n).sort(function(e, t) {
+                }), pe(n, a), Object(v.c)("messages", o, n && n.length), Object.keys(n).sort(function(e, t) {
                     return n[e].order - n[t].order
                 }).map(function(e) {
                     return n[e]

@@ -6506,8 +6506,8 @@ div.submit_post_field font {
 }
 
 .wall_module .page_media_market .page_media_link_thumb {
-    min-height: 160px;
-    *height: 160px;
+    min-height: 150px;
+    *height: 150px;
     background-position: 50% 0;
     position: relative
 }
