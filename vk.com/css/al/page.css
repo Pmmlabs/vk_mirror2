@@ -7426,6 +7426,11 @@ a.page_media_link_desc {
     margin-bottom: 0
 }
 
+.media_preview .page_preview_article_wrap .page_media_x_wrap.inl_bl,
+.media_preview .page_preview_audio_playlist_wrap .page_media_x_wrap.inl_bl {
+    margin: 0 -1px 0 4px
+}
+
 .pam_dpic {
     display: block;
     position: relative
@@ -8790,25 +8795,25 @@ img.page_preview_video {
     display: none
 }
 
-._postpone .post_action_tt_content {
-    padding: 8px 20px
-}
-
 .eltt_fancy_actions._postpone {
     width: auto;
     white-space: nowrap
 }
 
 .post_action_btn_layout,
-.post_action_btn_text,
-.post_action_btn {
+.post_action_btn_text {
     position: relative;
-    display: inline-block
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 15px
 }
 
 .post_action_btn {
+    position: relative;
+    display: inline-block;
     margin: 12px 16px 11px 0;
     vertical-align: top;
+    line-height: 15px;
     color: #828282;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -8818,6 +8823,14 @@ img.page_preview_video {
 
 .post_action_btn.on {
     color: #2a5885
+}
+
+.post_action_btn.on.has_cross .post_action_image_btn._close {
+    display: inline-block
+}
+
+.post_action_btn.on.has_cross .post_action_btn_layout:after {
+    display: none
 }
 
 .anon_field_on .post_action_btn.post_available {
@@ -8852,13 +8865,29 @@ img.page_preview_video {
 }
 
 .post_action_btn .post_action_btn_layout:after {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E") no-repeat;
-    content: " ";
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') no-repeat 50%;
+    height: 5px;
     width: 8px;
-    height: 8px;
+    content: " ";
     display: inline-block;
-    vertical-align: text-bottom;
-    margin-bottom: 1px
+    vertical-align: middle
+}
+
+.post_action_btn .post_action_image_btn {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.post_action_btn .post_action_image_btn._close {
+    display: none;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%227%22%20height%3D%227%22%3E%3Cpath%20fill%3D%22%232A5885%22%20fill-rule%3D%22evenodd%22%20d%3D%22M3.5%202.584L5.896.188a.644.644%200%200%201%20.913.003.647.647%200%200%201%20.003.913L4.416%203.5l2.396%202.396a.644.644%200%200%201-.003.913.647.647%200%200%201-.913.003L3.5%204.416%201.104%206.812a.644.644%200%200%201-.913-.003.647.647%200%200%201-.003-.913L2.584%203.5.188%201.104A.644.644%200%200%201%20.191.191a.647.647%200%200%201%20.913-.003L3.5%202.584z%22%2F%3E%3C%2Fsvg%3E') no-repeat 50%;
+    height: 15px;
+    width: 7px;
+    opacity: 0.5
+}
+
+.post_action_btn .post_action_image_btn._close:hover {
+    opacity: 0.65
 }
 
 .wpe_text_cont .post_action_btn {
@@ -11794,7 +11823,7 @@ div.create_poll_cb {
 .post_actions_btns {
     position: relative;
     display: none;
-    margin-left: -28px;
+    margin-left: 20px;
     margin-right: 20px;
     border-top: 1px solid #e7e8ec
 }
@@ -11811,6 +11840,44 @@ div.create_poll_cb {
 
 .wpe_post_actions_btns {
     position: relative
+}
+
+.post_actions_btns ._postpone,
+.wpe_post_actions_btns ._postpone {
+    border: none
+}
+
+.post_actions_btns ._postpone .datepicker_control,
+.wpe_post_actions_btns ._postpone .datepicker_control {
+    display: none
+}
+
+.post_actions_btns ._postpone .cal_box,
+.wpe_post_actions_btns ._postpone .cal_box {
+    margin: 0;
+    padding: 0
+}
+
+.post_actions_btns ._postpone .cal_clear,
+.wpe_post_actions_btns ._postpone .cal_clear {
+    height: auto;
+    padding: 12px;
+    line-height: 1
+}
+
+.post_actions_btns ._postpone .timepicker_container,
+.wpe_post_actions_btns ._postpone .timepicker_container {
+    float: left
+}
+
+.post_actions_btns ._postpone .flat_button,
+.wpe_post_actions_btns ._postpone .flat_button {
+    float: right
+}
+
+.post_actions_btns ._postpone ._eltt_arrow_back,
+.wpe_post_actions_btns ._postpone ._eltt_arrow_back {
+    display: none
 }
 
 .timer_in_tt .datepicker_item,

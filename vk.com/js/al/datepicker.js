@@ -50,7 +50,19 @@
         var rnd = Math.round(Math.random() * 1000000);
         if (!place) return;
 
-        var guid = _ui.reg(this);
+        var timeControlEl = null;
+        var guid = null;
+
+        // if it's inline time mode then need to save time elements
+        if (params.time && params.inlineTime) {
+            var time = ge(params.time, place);
+
+            timeControlEl = time ? domPN(time) : ge(params.time);
+            guid = params.inlineTimeContainerIdx;
+        } else {
+            guid = _ui.reg(this);
+        }
+
         cals.list[guid] = this;
 
         place.innerHTML = '<div></div>';
@@ -413,6 +425,12 @@
             if (params.onMonthSelect) {
                 params.onMonthSelect();
             }
+
+            if (params.time && params.inlineTime) {
+                var timeCont = ge(params.inlineTimeContainerId);
+
+                timeCont.appendChild(timeControlEl);
+            }
         }
 
         this.getMonth(day.m, day.y);
@@ -476,16 +494,24 @@
         var checkCalendarTop = function() {
             var calDivEl = ge(calDiv),
                 calBoxEl = ge(calBox),
-                calInputEl = ge(inputId);
-            headH = getSize('page_header_cont')[1];
+                calInputEl = ge(inputId),
+                top = false,
+                headH = getSize('page_header_cont')[1],
+                sideOffset = options.sideTopOffset;
             if (!calDivEl || !calBoxEl || !calInputEl) return;
             var s = getSize(calDivEl);
 
             setStyle(calBoxEl, {
                 marginTop: 0
             });
-            var top = getXY(calDivEl)[1] + s[1] > scrollGetY() + window.lastWindowHeight,
-                mt = top ? -s[1] - 30 - 2 * intval(getStyle(calBoxEl, 'paddingTop')) : 0;
+
+            if (options.sideTop) {
+                top = s[1] + sideOffset < getXY(calDivEl)[1] - scrollGetY() - headH - 3 * sideOffset;
+            } else {
+                top = getXY(calDivEl)[1] + s[1] > scrollGetY() + window.lastWindowHeight;
+            }
+
+            var mt = top ? -s[1] - 30 - 2 * intval(getStyle(calBoxEl, 'paddingTop')) : 0;
             setStyle(calBoxEl, {
                 marginTop: mt
             });
@@ -496,9 +522,12 @@
             if (isShown) return;
             isShown = true;
 
-            _ui.sel(_t.guid);
+            if (!options.inlineTime) {
+                _ui.sel(_t.guid);
+            }
+
             show(calBox);
-            new DateCalendar({
+            var calendar = new DateCalendar({
                 container: ge(calDiv),
                 day: dates,
                 mode: mode,
@@ -507,13 +536,26 @@
                 hideAnotherMonth: options.hideAnotherMonth,
                 pastActive: options.pastActive,
                 activePeriod: options.activePeriod,
+                time: options.time,
+                inlineTime: options.inlineTime,
+                inlineTimeContainerId: options.inlineTimeContainerId,
                 onMonthSelect: checkCalendarTop,
                 getDay: function(d, m, y) {
-                    updateDate({
+                    var date = {
                         'd': d,
                         'm': m,
                         'y': y
-                    }, mode);
+                    };
+
+                    updateDate(date, mode);
+
+                    if (options.inlineTime) {
+                        if (new Date(date.y, date.m - 1, date.d, 23, 59) < new Date()) {
+                            return;
+                        }
+
+                        calendar.setDay(d, m, y);
+                    }
                 }
             });
             var s = getSize(ge(calDiv));
@@ -563,7 +605,11 @@
                     }
                 }
             }
-            _t.hide();
+
+            if (!options.inlineTime) {
+                _t.hide();
+            }
+
             if (!empty) {
                 if (fmt === 'plain') {
                     ge(id).value = date.d + '.' + date.m + '.' + date.y + (options.time ? (' ' + hour + ':' + min) : '');
@@ -579,8 +625,10 @@
             if (!isShown) return;
             isShown = false;
 
-            _ui.sel(false);
-            hide(calBox);
+            if (!options.inlineTime) {
+                _ui.sel(false);
+                hide(calBox);
+            }
         };
         this.setMode = function(m) {
             mode = m;
@@ -588,7 +636,10 @@
         };
 
         this.destroy = function() {
-            _ui._uids[_t.guid] = {};
+            if (!options.inlineTime) {
+                _ui._uids[_t.guid] = {};
+            }
+
             removeEvent(geByClass1('datepicker_control', wrap), 'mousedown', onClick);
         };
 
@@ -663,28 +714,30 @@
         addEvent(geByClass1('datepicker_control', wrap), 'mousedown', onClick);
         updateDate(dates, mode, true, isEmpty && options.allowEmpty);
 
-        _t.guid = _ui.reg({
-            container: wrap,
-            onEvent: function(e) {
-                if (e.type === 'mousedown') {
-                    var outside = true,
-                        t = e.target;
-                    while (t && t != t.parentNode) {
-                        if (t == wrap) {
-                            outside = false;
-                            break;
+        if (!options.inlineTime) {
+            _t.guid = _ui.reg({
+                container: wrap,
+                onEvent: function(e) {
+                    if (e.type === 'mousedown') {
+                        var outside = true,
+                            t = e.target;
+                        while (t && t != t.parentNode) {
+                            if (t == wrap) {
+                                outside = false;
+                                break;
+                            }
+                            t = t.parentNode;
                         }
-                        t = t.parentNode;
+                        if (outside) {
+                            _t.hide();
+                        }
                     }
-                    if (outside) {
-                        _t.hide();
-                    }
+                },
+                _blur: function() {
+                    _t.hide();
                 }
-            },
-            _blur: function() {
-                _t.hide();
-            }
-        });
+            });
+        }
 
         if (options.time) {
             var time = ge(options.time);

@@ -1942,7 +1942,7 @@ input.wide_button {
     width: 24px;
     height: 24px;
     margin: 0 18px 0 0;
-    background-image: url('/images/mobile/skins/icon/desktop_icon.png?2');
+    background-image: url('/images/mobile/skins/icon/desktop_icon.png?3');
     background-repeat: no-repeat;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -1953,7 +1953,7 @@ input.wide_button {
 .vk_2x .lfm_item .i_icon,
 .vk_2x .mm_item .i_icon,
 .vk_2x .notify_item .i_gift {
-    background-image: url('/images/mobile/skins/icon/desktop_icon_2x.png?2')
+    background-image: url('/images/mobile/skins/icon/desktop_icon_2x.png?3')
 }
 
 .mmi_profile .i_icon,
@@ -1962,7 +1962,7 @@ input.wide_button {
 }
 
 .mmi_recommended .i_icon {
-    background-position: 0 -240px
+    background-position: 0 -312px
 }
 
 .mmi_answers .i_icon {
@@ -3048,6 +3048,13 @@ input.wide_button {
 #lm_search_items.m_search_items,
 #mm_search_items.m_search_items {
     padding-bottom: 1px
+}
+
+@media (min-width: 882px) {
+    #lm_search_items.m_search_items,
+    #mm_search_items.m_search_items {
+        padding: 0
+    }
 }
 
 #lm_search_items.m_search_items .inline_item_blank,
@@ -6315,6 +6322,12 @@ div.pm_item .pm_counter {
 
 .pv_nav_link {
     padding: 7px
+}
+
+.pv_nav_link[href*=undefined],
+.pv_touch .pv_nav_link[href*=undefined],
+.pv_touch_full .pv_nav_z .pv_nav_link[href*=undefined] {
+    display: none
 }
 
 .pv_touch {

@@ -534,7 +534,7 @@ a.page_post_thumb_wrap:hover {
 .page_docs_preview .page_preview_doc_wrap,
 .page_docs_preview .page_preview_wall_reply_wrap,
 .page_docs_preview .page_preview_wall_wrap {
-    padding: 0 0 10px
+    padding: 5px 0
 }
 
 .draggable_thumb.moving .page_post_video_play_inline,
@@ -1339,11 +1339,14 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
 .page_preview_mark_as_ads_wrap,
 .page_preview_note_wrap,
 .page_preview_page_wrap,
-.page_preview_poll_wrap,
 .page_preview_postpone_wrap,
 .page_preview_share_wrap {
     margin-right: -5px;
     padding-top: 10px
+}
+
+.page_preview_poll_wrap {
+    margin-right: -5px
 }
 
 .page_preview_audio_wrap {
@@ -1366,8 +1369,16 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
 
 .media_preview_has_medias {
     padding: 0 0 5px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #e8eaed
+    margin-bottom: 15px
+}
+
+.media_preview_has_medias.wall_post_media_preview {
+    padding: 13px 20px 12px
+}
+
+.wall_post_media_preview {
+    padding: 0 20px;
+    margin-bottom: 0
 }
 
 div.media_preview {
