@@ -6339,12 +6339,6 @@ div.pm_item .pm_counter {
     padding: 7px
 }
 
-.pv_nav_link[href*=undefined],
-.pv_touch .pv_nav_link[href*=undefined],
-.pv_touch_full .pv_nav_z .pv_nav_link[href*=undefined] {
-    display: none
-}
-
 .pv_touch {
     position: relative
 }

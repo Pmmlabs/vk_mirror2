@@ -213,7 +213,7 @@ var stVersions = {
     'video.css': 28813869912,
     'videocat.js': 3590298689,
     'videocat.css': 20347987335,
-    'videoview.js': "33851b0ea35daf2b8db93ce33c7f213b3fe",
+    'videoview.js': "338f92aff2263ce8dfb2525c82aca888179",
     'videoview.css': 30772086450,
     'video_edit.css': 23726846543,
     'video_upload.js': "4764ed2ab7243c32bae1f6",
@@ -252,7 +252,7 @@ var stVersions = {
     'groups_create.css': 17594539198,
     'cmodules/web/groups_list.js': "63410d68229815b7c13768d1b0945cd05f",
     'cmodules/web/GroupsEdit.js': "14956c976f674b5dc4e519395ed5b9e707",
-    'groups_edit.css': 79582637940,
+    'groups_edit.css': 81430333808,
     'cmodules/web/groups_edit.js': "2ed34e102b7a6a200aa0375b580e7cb07",
     'profile.css': 23000070838,
     'profile.js': 482847788,
@@ -642,7 +642,7 @@ var stVersions = {
     'cmodules/web/ugcform.js': '1a6a59dd16c5599974b6',
     'cmodules/web/video_upload.js': '64ed2ab7243c32bae1f6',
     'cmodules/web/videoplayer.js': '21928118c353cca23f7300e4b298e3e7',
-    'cmodules/web/videoview.js': '51b0ea35daf2b8db93ce33c7f213b3fe',
+    'cmodules/web/videoview.js': 'f92aff2263ce8dfb2525c82aca888179',
     'cmodules/web/voice_message_player.js': '36d99be188e173632671',
     'cmodules/web/wk_editor.js': '99749f99f81f33157405840245487704',
     'cmodules/web/writebox.js': '52bf56d803eca6c522f369a164d9af7b'
@@ -703,7 +703,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2103;
+var _rnd = 604;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

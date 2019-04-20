@@ -4780,6 +4780,11 @@ a.group_ad_post_link.deleted.deleted:hover {
     padding: 0
 }
 
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item .wall_post_cont:first-child,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item .wall_post_text:first-child {
+    padding-top: 0
+}
+
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap {
     border-bottom: 1px solid #e7e8ec
 }
@@ -4944,6 +4949,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_labeled {
     float: left;
+    word-break: break-all;
     width: 370px;
     line-height: 1.38
 }
