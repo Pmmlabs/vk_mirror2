@@ -15060,8 +15060,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .msg_item .ProductSnippet {
-    margin-left: 0;
-    margin-right: 0
+    margin: 0
 }
 
 .ProductSnippet__thumb {
@@ -15115,17 +15114,17 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .ProductSnippet__discount {
     color: #fff;
     background-color: #3f8ae0;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
-    border-radius: 11px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     font-size: 12px;
-    padding: 4px 6px;
+    padding: 0 6px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 7px;
+    right: 7px;
     z-index: 1
 }
 

@@ -549,7 +549,8 @@ var Docs = {
         return false;
     },
 
-    deleteItem: function(el, oid, did, hash) {
+    //������������ �������� ������������, ��� ����� ����� sure � comment
+    deleteItem: function(el, oid, did, hash, sure, comment) {
         var doc = domClosest('_docs_item', el);
         if (!doc) return;
 
@@ -560,9 +561,18 @@ var Docs = {
             act: 'a_delete',
             hash: hash,
             did: did,
-            oid: oid
+            oid: oid,
+            sure: sure,
+            comment: comment
         }, {
             onDone: function(text) {
+                if (!text) {
+                    stManager.add([jsc('internal/group_info.js'), 'groupinfo.css'], function() {
+                        window.createConfirmBox(Docs.deleteItem.bind(null, el, oid, did, hash, 1), "��������");
+                    });
+
+                    return;
+                }
                 addClass(doc, 'docs_item_deleted');
                 var restoreEl = ge('docs_restore_row' + oid + '_' + did);
                 if (restoreEl) {

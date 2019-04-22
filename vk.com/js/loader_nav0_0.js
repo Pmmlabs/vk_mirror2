@@ -245,7 +245,7 @@ var stVersions = {
     'cmodules/web/public.js': "2760dcea382eb623248f4fa2360934205",
     'pages.css': 25090956778,
     'pages.js': 1162259210,
-    'groups.css': 114727495026,
+    'groups.css': 114204172950,
     'cmodules/web/groups.js': "3b194dfa9cf80399774bee49eaf1b175f",
     'cmodules/web/groups_admins.js': "19b4b0ed96abf43c0971aae693805d372",
     'cmodules/web/groups_create.js': "154a53de163e2ffc5b4a61df7538248d4",
@@ -287,7 +287,7 @@ var stVersions = {
     'privacy.js': 2258441616,
     'privacy.css': 14903788336,
     'apps.css': 55314957834,
-    'apps.js': "2941781749b6d1cf358e0458e9cbe82125b",
+    'apps.js': "29488a5cf9456f4aa8e12887130ed960757",
     'apps_edit.js': "1174cd6ada368fc878be9503b9dfbd7926a",
     'apps_edit.css': 109152498603,
     'apps_check.js': 3204387834,
@@ -344,7 +344,7 @@ var stVersions = {
     'cmodules/sw/sw.js': 4092088814,
     'cmodules/web/restore.js': "1b0f8b1ee514297f8480e",
     'restore.css': 20377837658,
-    'docs.js': 3526671273,
+    'docs.js': 3779263462,
     'docs.css': 24070642506,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16997641513,
@@ -356,7 +356,7 @@ var stVersions = {
     'achievements.css': 15492341998,
     'members.css': 16920294204,
     'meminfo.css': 33123643228,
-    'groupinfo.css': 97327191120,
+    'groupinfo.css': 99649829839,
     'ownerinfo.css': 5550941355,
     'bugtracker.css': 25230020052,
     'cmodules/web/bugtracker.js': "2f49beb17ab19b01dc73e9ff5f6668053",
@@ -600,12 +600,12 @@ var stVersions = {
     'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': 'fe5145fa31c6091e4ed3',
     'cmodules/bundles/95dabab5e8bf080c88abada097de6ee4.js': 'e24531881b701cf8118a',
     'cmodules/bundles/a81cf41ddc395f6c399315bd508b7abf.js': '8d773a503b93d6879797',
-    'cmodules/bundles/audioplayer.js': 'b3733403af35a5341552',
+    'cmodules/bundles/audioplayer.js': 'c4152c6d655d1bb70030',
     'cmodules/bundles/vendors.js': 'aeccf1eb258460e8cbbc',
     'cmodules/bundles/common.js': 'ec0b11f0150f08d3f05c',
     'cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.js': '21512de761e9a49b5567',
     'cmodules/web/app_use_time.js': '7c9e7aeda91281ad74ce194dbaa3e828',
-    'cmodules/web/apps.js': '1781749b6d1cf358e0458e9cbe82125b',
+    'cmodules/web/apps.js': '88a5cf9456f4aa8e12887130ed960757',
     'cmodules/web/apps_connect.js': 'e304bec0651c92870bfc87af20d81f3d',
     'cmodules/web/apps_edit.js': '4cd6ada368fc878be9503b9dfbd7926a',
     'cmodules/web/article_editor_layer.js': '8e3d0fffcf72abeb6984bd5788e53f09',
@@ -703,7 +703,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5000;
+var _rnd = 9948;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
