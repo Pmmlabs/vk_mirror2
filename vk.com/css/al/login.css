@@ -16,6 +16,7 @@
 .login_app_device_wp .login_app_device_screen.login_app_device_ua,
 .login_app_download_icon,
 .login_mobile_close,
+.SnappedByThanosPage__illustration,
 .UnblockForm__content__header .antispam_team_logo {
     -ms-high-contrast-adjust: none
 }
@@ -435,6 +436,32 @@
 .UnblockForm .DelayedWaitExplanation .DelayedWaitExplanation__progressWrap {
     text-align: center;
     margin-top: 40px
+}
+
+.SnappedByThanosPage .content {
+    text-align: center
+}
+
+.SnappedByThanosPage__illustrationWrap {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px
+}
+
+.SnappedByThanosPage__illustration {
+    display: inline-block;
+    background: url(/images/snapped_by_thanos.png) no-repeat;
+    height: 160px;
+    width: 160px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .SnappedByThanosPage__illustration {
+        background-image: url(/images/snapped_by_thanos_2x.png);
+        background-size: 160px 160px
+    }
 }
 
 .page_section {

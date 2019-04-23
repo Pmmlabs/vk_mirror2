@@ -44932,10 +44932,10 @@ body.apps_settingsPageBody .basis__content {
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
-    -webkit-animation: stories_promo_animation 6s steps(72) 3 both;
-    -moz-animation: stories_promo_animation 6s steps(72) 3 both;
-    -o-animation: stories_promo_animation 6s steps(72) 3 both;
-    animation: stories_promo_animation 6s steps(72) 3 both;
+    -webkit-animation: stories_promo_animation 6s steps(72) infinite both;
+    -moz-animation: stories_promo_animation 6s steps(72) infinite both;
+    -o-animation: stories_promo_animation 6s steps(72) infinite both;
+    animation: stories_promo_animation 6s steps(72) infinite both;
     background-image: url("/images/mobile/stories_promo_animation.png");
     -webkit-transform: translate3d(-50%, -50%, 0);
     -moz-transform: translate3d(-50%, -50%, 0);

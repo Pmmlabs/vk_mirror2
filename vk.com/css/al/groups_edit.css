@@ -4593,8 +4593,20 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin-right: 53px
 }
 
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:after,
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:before {
+    right: 40px
+}
+
 .groups_edit_event_log_page .groups_edit_event_log_extended_button {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface7%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%208.898438%206.101562%20L%2020.101562%206.101562%20C%2020.597656%206.101562%2021%206.503906%2021%207%20C%2021%207.496094%2020.597656%207.898438%2020.101562%207.898438%20L%208.898438%207.898438%20C%208.402344%207.898438%208%207.496094%208%207%20C%208%206.503906%208.402344%206.101562%208.898438%206.101562%20Z%20M%208.898438%2011.101562%20L%2020.101562%2011.101562%20C%2020.597656%2011.101562%2021%2011.503906%2021%2012%20C%2021%2012.496094%2020.597656%2012.898438%2020.101562%2012.898438%20L%208.898438%2012.898438%20C%208.402344%2012.898438%208%2012.496094%208%2012%20C%208%2011.503906%208.402344%2011.101562%208.898438%2011.101562%20Z%20M%208.898438%2016.101562%20L%2020.101562%2016.101562%20C%2020.597656%2016.101562%2021%2016.503906%2021%2017%20C%2021%2017.496094%2020.597656%2017.898438%2020.101562%2017.898438%20L%208.898438%2017.898438%20C%208.402344%2017.898438%208%2017.496094%208%2017%20C%208%2016.503906%208.402344%2016.101562%208.898438%2016.101562%20Z%20M%205%205.75%20C%205.691406%205.75%206.25%206.308594%206.25%207%20C%206.25%207.691406%205.691406%208.25%205%208.25%20C%204.308594%208.25%203.75%207.691406%203.75%207%20C%203.75%206.308594%204.308594%205.75%205%205.75%20Z%20M%205%2010.75%20C%205.691406%2010.75%206.25%2011.308594%206.25%2012%20C%206.25%2012.691406%205.691406%2013.25%205%2013.25%20C%204.308594%2013.25%203.75%2012.691406%203.75%2012%20C%203.75%2011.308594%204.308594%2010.75%205%2010.75%20Z%20M%205%2015.75%20C%205.691406%2015.75%206.25%2016.308594%206.25%2017%20C%206.25%2017.691406%205.691406%2018.25%205%2018.25%20C%204.308594%2018.25%203.75%2017.691406%203.75%2017%20C%203.75%2016.308594%204.308594%2015.75%205%2015.75%20Z%20M%205%2015.75%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface7%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_extended_button:hover {
+    opacity: 1;
+    filter: none
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button_simple {
@@ -4615,14 +4627,13 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_loader {
-    width: 18px;
-    height: 18px;
-    margin-top: 19px;
+    width: 24px;
+    height: 24px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2228%22%20height%3D%2228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M14%2025c6.075%200%2011-4.925%2011-11S20.075%203%2014%203%203%207.925%203%2014%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
     display: none;
     -o-animation: groups_edit_event_log_loader_anim 0.8s infinite linear;
     animation: groups_edit_event_log_loader_anim 0.8s infinite linear;
-    background-size: cover;
+    background-size: 18px;
     cursor: auto
 }
 
@@ -4633,7 +4644,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:after,
 .groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:before {
-    right: 32px
+    right: 35px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_title {
@@ -4769,6 +4780,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item {
     padding: 15px 20px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #e7e8ec
 }
 
@@ -4923,7 +4935,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_description {
-    margin-bottom: 11px
+    margin-bottom: 7px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_controls .groups_edit_event_log_item_date {

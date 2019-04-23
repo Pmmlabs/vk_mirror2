@@ -1655,8 +1655,8 @@
     box-shadow: none;
     background-repeat: no-repeat;
     background-size: 100%;
-    -o-animation: stories_promo_animation 7s steps(120) 3;
-    animation: stories_promo_animation 7s steps(120) 3;
+    -o-animation: stories_promo_animation 7s steps(120) infinite;
+    animation: stories_promo_animation 7s steps(120) infinite;
     background-image: url("/images/stories_promo_animation.png");
     transform: translateZ(0)
 }
