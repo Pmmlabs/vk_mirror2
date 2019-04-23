@@ -27019,8 +27019,8 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .basisGroup__main .pp_img {
-    max-width: 70px;
-    max-height: 70px;
+    max-width: 100%;
+    max-height: 100%;
     margin-right: 10px!important;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
@@ -29572,6 +29572,14 @@ a.feedBlocks__article:hover {
     z-index: 1
 }
 
+.vk_hide_header .Friends__symbol {
+    top: 0
+}
+
+.vk_tabbar_top.vk_hide_header .Friends__symbol {
+    top: 48px
+}
+
 .vk_header_tabs .Friends__symbol {
     top: 88px
 }
@@ -29584,6 +29592,10 @@ a.feedBlocks__article:hover {
 
 .ScrollView .Friends__symbol {
     top: 0
+}
+
+.vk_hide_header .ScrollView .Friends__symbol {
+    top: -48px
 }
 
 ._hfixed .Friends__symbol {
@@ -33045,9 +33057,6 @@ body.apps_settingsPageBody .basis__content {
         left: 48px;
         right: 87px
     }
-    .n.h .mhb_back.mhb_back.mhb_back {
-        left: 0
-    }
     .h .mhb_back.mhb_back.mhb_back .tabs_block {
         margin-right: -81px
     }
@@ -33061,6 +33070,12 @@ body.apps_settingsPageBody .basis__content {
     .h ._touch .mhb_back.active .mhi_back:before,
     .h ._touch .mhb_back.hover .mhi_back:before {
         background-color: #4676ac
+    }
+}
+
+@media (max-width: 881px) and (min-width: 320px) {
+    .n.h .mhb_back.mhb_back.mhb_back:first-child {
+        left: 0
     }
 }
 
@@ -33279,16 +33294,17 @@ body.apps_settingsPageBody .basis__content {
 }
 
 @media (max-width: 319px) {
-    .header__back {
-        float: left
-    }
     .header__center {
         overflow: visible
     }
     .header__back {
+        float: left;
         left: -44px;
         position: absolute;
         background-color: #5181b8
+    }
+    .n .header__back {
+        margin: 2px 0
     }
 }
 
@@ -33344,7 +33360,8 @@ body.apps_settingsPageBody .basis__content {
         flex-grow: 1
     }
     .vk .header__title-inner {
-        min-width: 0
+        min-width: 0;
+        width: 100%
     }
     .vk .header__center.header__center.header__center.header__center {
         padding-left: 0!important
@@ -33469,14 +33486,6 @@ body.apps_settingsPageBody .basis__content {
     .vk .header__back {
         margin-left: 1px
     }
-    .n.vk .header__right:last-child,
-    .n.vk .header__wrapper-bookmarks {
-        position: fixed;
-        margin: 0 0 0 190px;
-        left: 50%;
-        top: 0;
-        z-index: 7
-    }
 }
 
 @media (min-width: 320px) and (min-width: 882px) {
@@ -33494,6 +33503,17 @@ body.apps_settingsPageBody .basis__content {
     }
     .n.vk__page_feed .header__title.header__title.header__title {
         padding-left: 0!important
+    }
+}
+
+@media (min-width: 882px) {
+    .n ._hfixed .header__right:last-child,
+    .n ._hfixed .header__wrapper-bookmarks {
+        position: fixed;
+        margin: 0 0 0 190px;
+        left: 50%;
+        top: 0;
+        z-index: 7
     }
 }
 
@@ -59295,7 +59315,7 @@ img.wk_photo_right {
     ._hfixed._lm.lm_opened #m .mhead .mhb_logo {
         position: fixed;
         -webkit-backface-visibility: hidden;
-        width: 330px
+        width: 284px
     }
     ._lm #m .mhead .mhb_back,
     ._lm #m .mhead .mhb_logo,
@@ -59304,7 +59324,7 @@ img.wk_photo_right {
         position: absolute;
         z-index: 8;
         -webkit-backface-visibility: hidden;
-        width: 330px
+        width: 284px
     }
     ._hfixed._lm #m .mhead .mhb_logo,
     ._hfixed._lm.lm_opened #m .mhead .mhb_logo {

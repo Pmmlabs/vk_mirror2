@@ -3180,3 +3180,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .line_through {
     text-decoration: line-through
 }
+
+.helpdesk_send_pass_answer_checkbox {
+    margin-top: 15px
+}

@@ -348,7 +348,7 @@ var stVersions = {
     'docs.css': 24070642506,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16997641513,
-    'helpdesk.css': 35940635953,
+    'helpdesk.css': 32866800521,
     'cmodules/web/support.js': "2f9b7a17bacdd1d2a994cbf3868ba16dd",
     'tickets.css': 30077711971,
     'faq.css': 22091384048,
@@ -361,7 +361,7 @@ var stVersions = {
     'bugtracker.css': 25230020052,
     'cmodules/web/bugtracker.js': "2f49beb17ab19b01dc73e9ff5f6668053",
     'login.css': 20753500971,
-    'cmodules/web/login.js': "13c7c81db95e50e7981dd385ef4f27a3c5",
+    'cmodules/web/login.js': "14ef93d49cb80a9dbe1e8011d035707831",
     'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
     'graffiti_new.js': 67279821,
@@ -587,7 +587,7 @@ var stVersions = {
     'landings/transparency.css': 105102924482,
     'cmodules/web/emoji.js': "1ae4e6ec8893de4a0f9c0",
     'cmodules/web/apps_achievements.js': "1e528d498cb46b1a10476ca02b201f85c",
-    'cmodules/web/payments.js': "15652abc1e40e313550076ad493cffe7c",
+    'cmodules/web/payments.js': "1e1d52d0fa0bde9536243646b86065649",
     'cmodules/web/stats.js': "1de0a16c3072bb56197d9acaf57425749",
     'lang': 6967,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '3ad6443b8ff37a3ac10f',
@@ -596,6 +596,7 @@ var stVersions = {
     'cmodules/bundles/6d669e070da493537223b2032427707c.js': '0f5ffe789441e17d89ab',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.js': 'bad4ac5597ff22247557',
     'cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js': '0a774211d42463412908',
+    'cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.js': '719ee7c42ff7c0b5efc2',
     'cmodules/bundles/8f9b95e37f18d0c7165292d5115bec0e.js': '91ea17f16e2ffbe4065b',
     'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': 'fe5145fa31c6091e4ed3',
     'cmodules/bundles/a81cf41ddc395f6c399315bd508b7abf.js': '8d773a503b93d6879797',
@@ -628,7 +629,7 @@ var stVersions = {
     'cmodules/web/lazyload.js': '21d81dca3de63f9e8dd64353e75fa47a',
     'cmodules/web/lead_forms_app.js': '070a4a91bd6a37274018',
     'cmodules/web/likes.js': '0e4a0892acaa2b39d49c',
-    'cmodules/web/money_transfer.js': 'bd988c6ee7cb30a2f05cffbfa372a973',
+    'cmodules/web/money_transfer.js': '1e8f0c9e1e7f61d1fc6f1e66f6bd6511',
     'cmodules/web/mr_truth.js': 'a1e040c5b52f0d107132',
     'cmodules/web/music_2018.js': '7c6875592a6ccbe0d72818aa537f87cc',
     'cmodules/web/notifier.js': '7c78932b70cd5ee28612f2d39f1c0922',
@@ -704,7 +705,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2226;
+var _rnd = 5981;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
@@ -743,11 +744,11 @@ var stDeps = {
     "/js/cmodules/web/language.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/lazyload.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/login.js": ["cmodules/bundles/vendors.js", "cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js"],
-    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.js", "cmodules/bundles/bcf1b93707952324ba7fd451951014d9.js"],
+    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.js", "cmodules/bundles/bcf1b93707952324ba7fd451951014d9.js"],
     "/js/cmodules/web/music_2018.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/notifier.js": ["cmodules/bundles/common.js", "cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js"],
     "/js/cmodules/web/page.js": ["cmodules/bundles/common.js"],
-    "/js/cmodules/web/payments.js": ["cmodules/bundles/common.js"],
+    "/js/cmodules/web/payments.js": ["cmodules/bundles/common.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.js"],
     "/js/cmodules/web/poster.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/pretty_cards.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/public.js": ["cmodules/bundles/common.js"],
