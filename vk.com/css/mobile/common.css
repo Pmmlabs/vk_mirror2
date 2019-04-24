@@ -9745,6 +9745,35 @@ div.pm_item .pm_counter {
     text-align: center
 }
 
+.login_blocked_panel--thanos {
+    background: #fff
+}
+
+.fit_box .login_blocked_panel--thanos.text_panel {
+    padding-bottom: 22px
+}
+
+.login_blocked_panel--thanos img {
+    display: block;
+    width: 160px;
+    height: 160px;
+    margin: 32px auto 16px
+}
+
+.login_blocked_panel--thanos .Btn,
+.login_blocked_panel--thanos .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.login_blocked_panel--thanos .Groups .GroupsInvite__item .si_links .si_link,
+.login_blocked_panel--thanos .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.login_blocked_panel--thanos .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.login_blocked_panel--thanos .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.login_blocked_panel--thanos .GroupsNear .GroupsInvite__item .si_links .si_link {
+    margin: 32px 0 10px
+}
+
+.login_blocked_panel--thanos .login_blocked_panel__till {
+    margin-top: 16px
+}
+
 .login_blocked_reason {
     position: relative;
     padding: 10px;
