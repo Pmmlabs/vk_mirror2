@@ -464,7 +464,7 @@ Ads.openUnionCreateBox = function(unionId) {
         params: {}
     };
     showOptions.onFail = Ads.onBoxFail;
-    showOptions.params.width = 250;
+    showOptions.params.width = 300;
 
     showBox('/ads?act=a_union_create_box', ajaxParams, showOptions);
 }
@@ -985,7 +985,7 @@ Ads.createStaticDateRange = function(elem, containerID) {
     //Container
     var container = document.createElement('div');
 
-    var globalWrapper = ge('ads_page_wrap2');
+    var globalWrapper = ge('ads_page_wrap2') || ge('ads_office_root');
     globalWrapper.appendChild(container);
 
     container.id = containerID;

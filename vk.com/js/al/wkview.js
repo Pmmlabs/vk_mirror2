@@ -549,10 +549,7 @@ var WkView = {
             });
             if (!options.noLocChange && options.myLoc) nav.setLoc(options.myLoc);
         } else {
-            var referrer = document.URL;
             WkView.setLocation(options.noLocChange, toQueue);
-            if (referrer == document.URL) referrer = '';
-            setTimeout(window.comScoreUDM && comScoreUDM.pbind(locProtocol + '//' + location.host + '/wkview.php?comscorekw=pageview_candidate', referrer), 10);
             if (options.prevLoc) wkcur.prevLoc = options.prevLoc;
         }
 

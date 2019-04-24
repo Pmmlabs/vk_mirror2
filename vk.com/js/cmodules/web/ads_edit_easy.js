@@ -723,7 +723,7 @@
             }, e.frameMessage = function(t) {
                 if (!t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?paymentgate\.ru$/) && !t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?money\.mail\.ru$/)) return !1;
                 var s = {};
-                t.data && "{" === t.data.substr(0, 1) && "billing" !== (s = Object(n.l)(t.data)).type || ("submit" === t.data || "3dsPage" === s.action ? setTimeout(e.setCardFrameHeight.pbind(600), 200) : "3dsFinish" === s.action ? e.setCardFrameHeight() : "resizeFrame" === s.action && setTimeout(e.setCardFrameHeight.pbind(s.action_params.height), 200))
+                t.data && "{" === t.data.substr(0, 1) && "billing" !== (s = Object(n.m)(t.data)).type || ("submit" === t.data || "3dsPage" === s.action ? setTimeout(e.setCardFrameHeight.pbind(600), 200) : "3dsFinish" === s.action ? e.setCardFrameHeight() : "resizeFrame" === s.action && setTimeout(e.setCardFrameHeight.pbind(s.action_params.height), 200))
             }, e.prototype.setPaymentIFrameHtml = function(e) {
                 var t = ce("iframe", {
                     id: "card_iframe",

@@ -25017,15 +25017,31 @@ figure[data-type="102"] .article_object_video_play {
 }
 
 .BottomMenu__updateButton_container {
-    margin: 12px 0 0;
-    position: relative;
-    z-index: 1;
     position: fixed;
     top: 88px;
     left: 0;
     right: 0;
     margin: 12px;
-    z-index: 7
+    z-index: 7;
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    -ms-transform: translate(0);
+    -o-transform: translate(0);
+    transform: translate(0);
+    -webkit-transition: -webkit-transform 0.2s ease;
+    transition: -webkit-transform 0.2s ease;
+    -moz-transition: transform 0.2s ease, -moz-transform 0.2s ease;
+    -o-transition: transform 0.2s ease, -o-transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -webkit-transform 0.2s ease, -moz-transform 0.2s ease, -o-transform 0.2s ease
+}
+
+.BottomMenu__updateButton_offset .BottomMenu__updateButton_container {
+    -webkit-transform: translateY(-48px);
+    -moz-transform: translateY(-48px);
+    -ms-transform: translateY(-48px);
+    -o-transform: translateY(-48px);
+    transform: translateY(-48px)
 }
 
 .vk_tabbar_bottom .BottomMenu__updateButton_container {

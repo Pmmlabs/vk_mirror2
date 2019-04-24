@@ -3026,7 +3026,8 @@ textarea.EditableLabel__textarea {
 .ads_edit_label,
 .ads_edit_value {
     padding: 0 0 10px;
-    vertical-align: top
+    vertical-align: top;
+    position: relative
 }
 
 .ads_edit_label {

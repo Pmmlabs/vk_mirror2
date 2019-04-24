@@ -1789,13 +1789,7 @@ var Photoview = {
                 cur.pvOptions.scroll = 0;
             }
 
-            var referrer = document.URL;
             Photoview.updateLoc();
-            if (cur.pvCandidate) {
-                if (referrer == document.URL) referrer = '';
-                setTimeout(window.comScoreUDM && comScoreUDM.pbind(locProtocol + '//' + location.host + '/al_photos.php?comscorekw=pageview_candidate', referrer), 10);
-                delete cur.pvCandidate;
-            }
 
             Photoview.updatePhotoDimensions();
         },
@@ -3819,7 +3813,6 @@ var Photoview = {
                 delete(ph.likes);
                 cur.pvData[listId][index] = ph;
             }
-            cur.pvCandidate = 1;
         },
         showDeleted: function(lst, msg, spm) {
             if (cur.pvShown && cur.pvListId == 'temp') {
