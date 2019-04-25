@@ -15390,6 +15390,15 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background: #fff
 }
 
+.n .AudioSerp:after {
+    content: "";
+    height: 64px;
+    display: block;
+    background: #ebedf0;
+    padding: 0 0 10px;
+    margin: 0 0 -10px
+}
+
 .AudioSerp__search {
     padding: 12px 12px 0
 }
@@ -15693,6 +15702,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .ArtistPage_audios,
 .ArtistPage_audios_special {
     padding: 0!important
+}
+
+.n .ArtistPage_audios:after {
+    content: "";
+    height: 48px;
+    display: block
 }
 
 .ArtistPage_playlists .audioPlaylistsPage__item:first-child {
@@ -17559,6 +17574,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPlaylistsPage {
     padding: 1px 0 10px;
     margin-top: -1px!important
+}
+
+.n .audioPlaylistsPage:after {
+    content: "";
+    height: 48px;
+    display: block
 }
 
 .audioPlaylistsPage .ArtistPage__search,
@@ -41308,6 +41329,8 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_push_silent,
 .Icon_notify_related_events,
 .Icon_notify_repost,
+.Icon_notify_story_question,
+.Icon_notify_story_question_answer,
 .Icon_notify_story_reply,
 .Icon_notify_voting,
 .Icon_notify_wall {
@@ -41343,6 +41366,8 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_push_silent:before,
 .Icon_notify_related_events:before,
 .Icon_notify_repost:before,
+.Icon_notify_story_question:before,
+.Icon_notify_story_question_answer:before,
 .Icon_notify_story_reply:before,
 .Icon_notify_voting:before,
 .Icon_notify_wall:before {
@@ -41379,6 +41404,8 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_notify_push_silent:before,
 .vk_2x .Icon_notify_related_events:before,
 .vk_2x .Icon_notify_repost:before,
+.vk_2x .Icon_notify_story_question:before,
+.vk_2x .Icon_notify_story_question_answer:before,
 .vk_2x .Icon_notify_story_reply:before,
 .vk_2x .Icon_notify_voting:before,
 .vk_2x .Icon_notify_wall:before {
@@ -41509,6 +41536,14 @@ body.apps_settingsPageBody .basis__content {
     background-position: 0 -1204px
 }
 
+.Icon_notify_story_question:before {
+    background-position: 0 -1232px
+}
+
+.Icon_notify_story_question_answer:before {
+    background-position: 0 -1260px
+}
+
 .Icon_notify_mini_birthday,
 .Icon_notify_mini_comment,
 .Icon_notify_mini_discussions,
@@ -41531,6 +41566,8 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_mini_private_post,
 .Icon_notify_mini_repost,
 .Icon_notify_mini_request_money,
+.Icon_notify_mini_story_question,
+.Icon_notify_mini_story_question_answer,
 .Icon_notify_mini_story_reply,
 .Icon_notify_mini_transfer_money,
 .Icon_notify_mini_transfer_money_cancelled,
@@ -41563,6 +41600,8 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_mini_private_post:before,
 .Icon_notify_mini_repost:before,
 .Icon_notify_mini_request_money:before,
+.Icon_notify_mini_story_question:before,
+.Icon_notify_mini_story_question_answer:before,
 .Icon_notify_mini_story_reply:before,
 .Icon_notify_mini_transfer_money:before,
 .Icon_notify_mini_transfer_money_cancelled:before,
@@ -41571,7 +41610,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_mini_wall:before {
     width: 20px;
     height: 20px;
-    background-image: url('/images/mobile/skins/icon/notifications_mini.png?7')
+    background-image: url('/images/mobile/skins/icon/notifications_mini.png?8')
 }
 
 .vk_2x .Icon_notify_mini_birthday:before,
@@ -41596,13 +41635,15 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_notify_mini_private_post:before,
 .vk_2x .Icon_notify_mini_repost:before,
 .vk_2x .Icon_notify_mini_request_money:before,
+.vk_2x .Icon_notify_mini_story_question:before,
+.vk_2x .Icon_notify_mini_story_question_answer:before,
 .vk_2x .Icon_notify_mini_story_reply:before,
 .vk_2x .Icon_notify_mini_transfer_money:before,
 .vk_2x .Icon_notify_mini_transfer_money_cancelled:before,
 .vk_2x .Icon_notify_mini_transfer_votes:before,
 .vk_2x .Icon_notify_mini_voting:before,
 .vk_2x .Icon_notify_mini_wall:before {
-    background-image: url('/images/mobile/skins/icon/notifications_mini_2x.png?7')
+    background-image: url('/images/mobile/skins/icon/notifications_mini_2x.png?8')
 }
 
 .Icon_notify_mini_like:before {
@@ -41712,6 +41753,14 @@ body.apps_settingsPageBody .basis__content {
 
 .Icon_notify_mini_message_request:before {
     background-position: 0 -620px
+}
+
+.Icon_notify_mini_story_question:before {
+    background-position: 0 -640px
+}
+
+.Icon_notify_mini_story_question_answer:before {
+    background-position: 0 -660px
 }
 
 .Icon_chevron_down,
@@ -47855,6 +47904,15 @@ a .BookmarkListItem__subtitle:hover {
 
 .BookmarkSlider__item:last-child {
     margin: 0
+}
+
+.n .Bookmarks:after {
+    content: "";
+    height: 64px;
+    display: block;
+    background: #ebedf0;
+    padding: 0 0 10px;
+    margin: 0 0 -10px
 }
 
 .BookmarksItem {

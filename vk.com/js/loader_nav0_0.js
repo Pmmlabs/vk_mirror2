@@ -293,7 +293,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 29762212629,
     'settings.js': 514690275,
-    'settings.css': 31023091179,
+    'settings.css': 32802315664,
     'profile_edit.js': 1753790963,
     'profile_edit.css': 16532501331,
     'profile_edit_edu.js': 872687230,
@@ -340,7 +340,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'notifier.js': "388d9231ed5ab4f1970ab36e8c680c5b10e",
-    'notifier.css': 28630575691,
+    'notifier.css': 28689655448,
     'cmodules/sw/sw.js': 4092088814,
     'cmodules/web/restore.js': "1f40a84e9fd060c3c7d62",
     'restore.css': 20377837658,
@@ -708,7 +708,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2777;
+var _rnd = 9941;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

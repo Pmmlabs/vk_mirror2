@@ -18081,9 +18081,15 @@ div.chat_tab_img {
 }
 
 .feedback_reply_story_row .feedback_photo_icon,
-.feedback_story_reply_row .feedback_photo_icon {
+.feedback_story_reply_row .feedback_photo_icon,
+.feedback_story_question_row .feedback_photo_icon {
     display: block;
     background: #aa65f0 url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%221.5%22%20transform%3D%22translate(4%205)%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M1%202.80000305C4.5%202%206%202%208%204M3%200L.712132043%202.28786796.712132043%202.28786796C.594974751%202.40502525.594974751%202.59497475.712132043%202.71213204L3%205%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') no-repeat
+}
+
+.feedback_story_question_answer_row .feedback_photo_icon {
+    display: block;
+    background: #4bb34b url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%221.5%22%20transform%3D%22translate(4%205)%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M1%202.80000305C4.5%202%206%202%208%204M3%200L.712132043%202.28786796.712132043%202.28786796C.594974751%202.40502525.594974751%202.59497475.712132043%202.71213204L3%205%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') no-repeat
 }
 
 .feedback_tag_row .feedback_photo_icon {
@@ -18219,6 +18225,8 @@ div.chat_tab_img {
 .notifier_baloon .feedback_publish_row .notifier_image,
 .notifier_baloon .feedback_reply_row .notifier_image,
 .notifier_baloon .feedback_reply_story_row .notifier_image,
+.notifier_baloon .feedback_story_question_answer_row .notifier_image,
+.notifier_baloon .feedback_story_question_row .notifier_image,
 .notifier_baloon .feedback_story_reply_row .notifier_image,
 .notifier_baloon .feedback_suggested_post_published_row .notifier_image,
 .notifier_baloon .feedback_tag_row .notifier_image,
@@ -18260,6 +18268,8 @@ div.chat_tab_img {
 .notifier_baloon .feedback_publish_row .feedback_photo_icon,
 .notifier_baloon .feedback_reply_row .feedback_photo_icon,
 .notifier_baloon .feedback_reply_story_row .feedback_photo_icon,
+.notifier_baloon .feedback_story_question_answer_row .feedback_photo_icon,
+.notifier_baloon .feedback_story_question_row .feedback_photo_icon,
 .notifier_baloon .feedback_story_reply_row .feedback_photo_icon,
 .notifier_baloon .feedback_suggested_post_published_row .feedback_photo_icon,
 .notifier_baloon .feedback_tag_row .feedback_photo_icon,
