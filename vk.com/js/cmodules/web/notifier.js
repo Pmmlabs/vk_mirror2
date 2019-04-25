@@ -509,7 +509,7 @@
                     (o.shouldLoad ? t.loadResources(o) : Promise.resolve()).then(function() {
                         i.forEach(function(e) {
                             switch (e.type) {
-                                case c.W:
+                                case c.Y:
                                     var i = t.getTab(e.peerId);
                                     t.setTyping(e), i && (t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.blinkTyping(e.peerId);
                                     break;
@@ -518,19 +518,19 @@
                                     t.setTyping(e), a && (t.addMessage(t.prepareMessageData(e)), t.scroll(e.peerId), t.blinkTab(e.peerId), t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.updateTabUnreadCounter(a, e);
                                     break;
                                 case c.g:
-                                case c.N:
+                                case c.P:
                                     var o = e.peerId,
                                         r = e.messageId,
                                         n = t.getTab(o);
                                     n && n.msgs[r] && (delete curFastChat.gotMedia[r], t.editMessage(t.prepareMessageData(e)));
                                     break;
-                                case c.M:
-                                case c.U:
-                                case c.Q:
+                                case c.O:
+                                case c.W:
+                                case c.S:
                                     e.flags & c.j && t.deleteMessage(t.prepareMessageData(e));
                                     break;
-                                case c.H:
-                                case c.I:
+                                case c.J:
+                                case c.K:
                                     t.markMessagesAsRead(e);
                                     break;
                                 case c.d:
@@ -538,19 +538,19 @@
                                     var s = t.getTab(e.peerId);
                                     t.handleEventChatUpdated(s, e);
                                     break;
-                                case c.Y:
-                                case c.X:
-                                case c.G:
+                                case c.ab:
+                                case c.Z:
+                                case c.I:
                                 case c.h:
-                                case c.S:
-                                case c.K:
-                                case c.V:
-                                case c.R:
-                                case c.F:
+                                case c.U:
+                                case c.M:
+                                case c.X:
+                                case c.T:
+                                case c.H:
                                 case c.b:
                                 case c.c:
                                 case c.i:
-                                case c.O:
+                                case c.Q:
                                 case c.f:
                             }
                         })
@@ -764,7 +764,7 @@
 
                 function n(e, t) {
                     var a = FastChat.getTab(e);
-                    Object(h.hb)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
+                    Object(h.ib)(e) && t && a && !a.data.members[t] && (i[e] ? -1 === i[e].indexOf(t) && i[e].push(t) : i[e] = [t])
                 }
                 return a.forEach(function(e) {
                     t.isTabLoaded(e.peerId) && n(e.peerId, e.userId)
@@ -811,7 +811,7 @@
             handleEventChatUpdated: function(e, t) {
                 var i = this;
                 switch (t.updateType) {
-                    case c.B:
+                    case c.C:
                     case c.v:
                         var a = [t.peerId, 0].join(",");
                         this.loadPeers(a, function(e) {
@@ -819,14 +819,14 @@
                         });
                         break;
                     case c.t:
-                    case c.x:
-                    case c.A:
-                    case c.C:
-                    case c.E:
+                    case c.y:
+                    case c.B:
                     case c.D:
+                    case c.F:
+                    case c.E:
                     case c.u:
                     case c.w:
-                    case c.y:
+                    case c.z:
                 }
             },
             updateChatInfo: function(e, t) {
@@ -1687,13 +1687,13 @@
                     i = e.userIds,
                     a = this.getTab(t),
                     o = i[0],
-                    r = Object(h.hb)(t) ? a.data.members[o] : a,
+                    r = Object(h.ib)(t) ? a.data.members[o] : a,
                     n = function(e) {
                         return e.fname || e.name || ""
                     };
-                if (1 === i.length || !Object(h.hb)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
+                if (1 === i.length || !Object(h.ib)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", n(r));
                 var s = i[i.length - 1],
-                    c = Object(h.hb)(t) ? a.data.members[s] : a;
+                    c = Object(h.ib)(t) ? a.data.members[s] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", n(r)).replace("{last_user}", n(c))
             },
             markMessagesAsRead: function(e) {
@@ -1702,7 +1702,7 @@
                     a = e.upToId,
                     o = e.unread,
                     r = this.getTab(i);
-                r && (t === c.H && (r.inUpTo = a), t === c.I && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === c.I)), this.updateTabUnreadCounterElement(r || {
+                r && (t === c.J && (r.inUpTo = a), t === c.K && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === c.K)), this.updateTabUnreadCounterElement(r || {
                     unread: 0
                 }, i)
             },
@@ -2296,14 +2296,14 @@
                     i = Object(f.b)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
-                var o = Object(f.k)(e) ? curFastChat.me : Object(h.hb)(t) ? a.data.members[i] : a,
+                var o = Object(f.k)(e) ? curFastChat.me : Object(h.ib)(t) ? a.data.members[i] : a,
                     r = o.name,
                     n = o.link,
                     s = o.photo,
                     c = o.fname,
                     l = o.first_name;
                 return {
-                    fname: Object(h.hb)(t) ? c || l : "",
+                    fname: Object(h.ib)(t) ? c || l : "",
                     name: r,
                     link: n,
                     photo: s,
@@ -2325,7 +2325,7 @@
                             var n = e.object ? e.object.fwd_count : e.id.split(";").length;
                             o += rs(curFastChat.tpl.msg_fwd, {
                                 msg_id: a,
-                                peerId_nice: Object(h.H)(i),
+                                peerId_nice: Object(h.I)(i),
                                 label: getLang(n > 1 ? "mail_im_fwd_msgs" : "mail_im_fwd_msg")
                             });
                             break;
@@ -2400,9 +2400,9 @@
                     default:
                         return "mail_no_support"
                 }
-                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(h.ic)(n.link, n.name, !0)), r && r !== a) {
+                if (s = (s = langSex(n.sex, getLang(s, "raw"))).replace("{from}", Object(h.kc)(n.link, n.name, !0)), r && r !== a) {
                     var l = t.source_email;
-                    if (l) s = s.replace("{user}", Object(h.ic)("/im?email=" + encodeURIComponent(l), "email", !0));
+                    if (l) s = s.replace("{user}", Object(h.kc)("/im?email=" + encodeURIComponent(l), "email", !0));
                     else {
                         var u = this.getMember(i, r) || {
                                 name_inv_case: "",
@@ -2410,7 +2410,7 @@
                                 link: ""
                             },
                             d = o === h.c ? u.name_kick_case : u.name_inv_case;
-                        s = s.replace("{user}", Object(h.ic)(u.link, d, !0))
+                        s = s.replace("{user}", Object(h.kc)(u.link, d, !0))
                     }
                 }
                 if (t.source_text) {
@@ -2419,17 +2419,17 @@
                 }
                 if (t.source_act === h.f || t.source_act === h.h)
                     if (t.source_message) {
-                        var p = Object(h.fc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
-                            _ = Object(h.ic)("", p, !1, "im_srv_mess_link");
+                        var p = Object(h.hc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
+                            _ = Object(h.kc)("", p, !1, "im_srv_mess_link");
                         s = s.replace("{msg}", _)
                     } else s = s.replace(/{link}(.+){\/link}/i, function(e, t) {
-                        return Object(h.ic)("", t, !1, "im_srv_mess_link")
+                        return Object(h.kc)("", t, !1, "im_srv_mess_link")
                     });
                 return s
             },
             getMember: function(e, t) {
                 var i = this.getTab(e);
-                return Object(h.hb)(e) && i ? i.data.members[t] : i || null
+                return Object(h.ib)(e) && i ? i.data.members[t] : i || null
             },
             needMsgMedia: function(e, t) {
                 t <= 0 || (FastChat.lcSend("needMedia", {
@@ -3076,59 +3076,59 @@
                         e.ts && n(a.ts, e.ts, e.updates.map(function(e) {
                             switch (e[0]) {
                                 case 0:
-                                    return r.gb(e);
+                                    return r.ib(e);
                                 case 1:
-                                    return r.vb(e);
+                                    return r.xb(e);
                                 case 2:
-                                    return r.Db(e);
-                                case 3:
-                                    return r.zb(e);
-                                case 4:
-                                    return r.Z(e);
-                                case 5:
-                                    return r.hb(e);
-                                case 6:
-                                    return r.pb(e);
-                                case 7:
-                                    return r.qb(e);
-                                case 8:
-                                    return r.mb(e);
-                                case 9:
-                                    return r.lb(e);
-                                case 10:
-                                    return r.yb(e);
-                                case 11:
-                                    return r.ub(e);
-                                case 12:
-                                    return r.Cb(e);
-                                case 13:
-                                    return r.fb(e);
-                                case 18:
-                                    return r.wb(e);
-                                case 51:
-                                    return r.db(e);
-                                case 52:
-                                    return r.eb(e);
-                                case 63:
                                     return r.Fb(e);
-                                case 64:
+                                case 3:
+                                    return r.Bb(e);
+                                case 4:
+                                    return r.bb(e);
+                                case 5:
+                                    return r.jb(e);
+                                case 6:
                                     return r.rb(e);
-                                case 70:
-                                    return r.Hb(e);
-                                case 80:
-                                    return r.Gb(e);
-                                case 114:
-                                    return r.ob(e);
-                                case 116:
-                                    return r.tb(e);
-                                case 117:
-                                    return r.ab(e);
-                                case -1:
-                                    return r.Bb();
-                                case -2:
+                                case 7:
                                     return r.sb(e);
+                                case 8:
+                                    return r.ob(e);
+                                case 9:
+                                    return r.nb(e);
+                                case 10:
+                                    return r.Ab(e);
+                                case 11:
+                                    return r.wb(e);
+                                case 12:
+                                    return r.Eb(e);
+                                case 13:
+                                    return r.hb(e);
+                                case 18:
+                                    return r.yb(e);
+                                case 51:
+                                    return r.fb(e);
+                                case 52:
+                                    return r.gb(e);
+                                case 63:
+                                    return r.Hb(e);
+                                case 64:
+                                    return r.tb(e);
+                                case 70:
+                                    return r.Jb(e);
+                                case 80:
+                                    return r.Ib(e);
+                                case 114:
+                                    return r.qb(e);
+                                case 116:
+                                    return r.vb(e);
+                                case 117:
+                                    return r.cb(e);
+                                case -1:
+                                    return r.Db();
+                                case -2:
+                                    return r.ub(e);
                                 default:
-                                    return r.jb(e)
+                                    return r.lb(e)
                             }
                         }))
                     },
@@ -3142,7 +3142,7 @@
 
             function n(e, t, i) {
                 a.ts = t;
-                for (var n = 0; n < i.length; ++n) i[n].type === r.K && (a.key = i[n].key, a.url = i[n].url);
+                for (var n = 0; n < i.length; ++n) i[n].type === r.M && (a.key = i[n].key, a.url = i[n].url);
                 o(e, t, i)
             }
             var l = {

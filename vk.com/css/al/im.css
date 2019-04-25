@@ -11370,6 +11370,25 @@ body.sf .nim-dialog .nim-dialog--unread {
     max-width: 230px
 }
 
+.im-right-menu .im-right-menu--counter[data-tab=mr] {
+    width: 20px;
+    height: 16px;
+    margin-top: 6px;
+    padding: 2px 0;
+    background: #5081b8;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 16px;
+    -webkit-font-smoothing: antialiased
+}
+
+.im-right-menu .im-right-menu--counter[data-tab=mr]:empty {
+    display: none
+}
+
 .im-right-menu .im-right-menu--count {
     color: #42648b;
     font-weight: 500;

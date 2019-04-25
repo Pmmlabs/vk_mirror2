@@ -1977,7 +1977,7 @@
                         type: r ? "error" : "warn"
                     }), this._errors.push("[" + this.currentTime + "] " + e.details), e.details === Hls.ErrorDetails.FRAG_LOAD_ERROR && this.undelayRecoverNetwork(), r) {
                     var o = !1;
-                    this.player.isActiveLive() ? (o = !0, e.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, 2e3) : e.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(2e3)) : o = this.recoverMedia(), o || this.onFatalError(e)
+                    this.player.isActiveLive() ? (o = !0, e.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, 6e3) : e.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(6e3)) : o = this.recoverMedia(), o || this.onFatalError(e)
                 }
             }, e.prototype.onFatalError = function(t) {
                 this.getVar("live") && !this.getVar("postlive_mp4") ? this.player.media.onError() : (t && ajax.post("al_video.php?act=hls_fail_stat", {
@@ -1990,11 +1990,11 @@
                     force: !0
                 }), this.player.reinitWithoutHls())
             }, e.prototype.recoverMedia = function() {
-                return !(Date.now() - intval(this._lastMediaRecoverTry) < 1e3) && (this._lastMediaRecoverTry = Date.now(), this.player.debugLog("trying to recover hls media", {
+                return !(Date.now() - intval(this._lastMediaRecoverTry) < 3e3) && (this._lastMediaRecoverTry = Date.now(), this.player.debugLog("trying to recover hls media", {
                     force: !0
                 }), this.player.isActiveLive() ? this.restartLive() : this.hls.recoverMediaError(), this.player.media.isPlayingMedia() && this.play(), !0)
             }, e.prototype.recoverNetwork = function() {
-                return !(Date.now() - intval(this._lastNetworkRecoverTry) < 1e3) && (this._lastNetworkRecoverTry = Date.now(), this.player.debugLog("trying to recover hls network", {
+                return !(Date.now() - intval(this._lastNetworkRecoverTry) < 3e3) && (this._lastNetworkRecoverTry = Date.now(), this.player.debugLog("trying to recover hls network", {
                     force: !0
                 }), this.player.isActiveLive() ? this.restartLive() : this.hls.startLoad(), this.player.media.isPlayingMedia() && this.play(), !0)
             }, e.prototype.delayRecoverNetwork = function() {
