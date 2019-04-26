@@ -45061,7 +45061,8 @@ body.apps_settingsPageBody .basis__content {
     display: block;
     overflow-x: auto;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
+    min-height: 104px
 }
 
 .StoriesFeedBlock__item {
@@ -53299,19 +53300,18 @@ a .BookmarkListItem__subtitle:hover {
     display: flex
 }
 
-.n .messenger__layer_main:after,
-.n .messenger__layer_page:after {
-    content: "";
-    height: 49px;
-    min-height: 49px;
-    display: block
+.n .messenger__layer_main,
+.n .messenger__layer_page {
+    padding-bottom: 49px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
 
 @media (min-width: 882px) {
-    .n .messenger__layer_main:after,
-    .n .messenger__layer_page:after {
-        content: none;
-        display: none
+    .n .messenger__layer_main,
+    .n .messenger__layer_page {
+        padding-bottom: 0
     }
 }
 
