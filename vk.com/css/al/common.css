@@ -8838,6 +8838,10 @@ button.ui_load_more_btn {
     opacity: 1
 }
 
+.subscription_04_2019 .audio_promo__title {
+    max-width: 300px
+}
+
 .audio_new_year_promo .audio_promo__title {
     font-size: 20px
 }
@@ -9252,7 +9256,7 @@ button.ui_load_more_btn {
 
 .audio_subscribe_promo {
     border-top: 1px solid #e7e8ec;
-    margin: 5px 0 0 15px
+    margin: 5px 15px 0
 }
 
 .audio_subscribe_promo:first-child {
@@ -9262,15 +9266,8 @@ button.ui_load_more_btn {
 
 .audio_subscribe_promo__content {
     border-radius: 4px;
-    background-color: #f0f2f5;
     margin: 20px 0 0;
-    padding: 16px
-}
-
-.audio_layer_container .audio_subscribe_promo__content,
-.audio_subscribe_promo_type2 .audio_subscribe_promo__content {
-    padding: 0;
-    background: none
+    padding: 0
 }
 
 .audio_subscribe_promo:first-child .audio_subscribe_promo__content {
@@ -9290,56 +9287,11 @@ button.ui_load_more_btn {
     line-height: 1.38;
     text-align: center;
     color: #222;
-    margin: 10px 0
-}
-
-.audio_layer_container .audio_subscribe_promo__text,
-.audio_subscribe_promo_type2 .audio_subscribe_promo__text {
-    margin-top: 6px
-}
-
-.audio_subscribe_promo__items {
-    list-style-type: none;
-    padding: 0;
-    margin: 18px 0 20px
-}
-
-.audio_layer_container .audio_subscribe_promo__items,
-.audio_subscribe_promo_type2 .audio_subscribe_promo__items {
-    display: none
-}
-
-.audio_subscribe_promo__item {
-    font-size: 13px;
-    line-height: 1.38;
-    color: #626d7a;
-    margin-bottom: 14px;
-    white-space: normal
-}
-
-.audio_subscribe_promo__item:before {
-    content: '';
-    width: 24px;
-    height: 24px;
-    margin: 6px 12px 0 0;
-    float: left
-}
-
-.audio_subscribe_promo__item_ads:before {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20d%3D%22m2.5%2012c0-5.24670512%204.25329488-9.5%209.5-9.5%205.2467051%200%209.5%204.25329488%209.5%209.5%200%205.2467051-4.2532949%209.5-9.5%209.5-5.24670512%200-9.5-4.2532949-9.5-9.5zm17.1999998%200c0-4.25259247-3.4474073-7.69999981-7.6999998-7.69999981-4.25259247%200-7.69999981%203.44740734-7.69999981%207.69999981%200%204.2525925%203.44740734%207.6999998%207.69999981%207.6999998%204.2525925%200%207.6999998-3.4474073%207.6999998-7.6999998zm-10.6999998-.4285714c-.71008039%200-1.28571429-.5756339-1.28571429-1.2857143%200-.71008041.5756339-1.2857143%201.28571429-1.2857143s1.2857143.57563389%201.2857143%201.2857143c0%20.7100804-.57563391%201.2857143-1.2857143%201.2857143zm5.9999896%200c-.7100804%200-1.2857143-.5756339-1.2857143-1.2857143%200-.71008041.5756339-1.2857143%201.2857143-1.2857143s1.2857143.57563389%201.2857143%201.2857143c0%20.7100804-.5756339%201.2857143-1.2857143%201.2857143zm-7.21337694%203.514019c-.29604957-.3992738-.21236977-.9629448.18690406-1.2589944.39927382-.2960496.96294481-.2123698%201.25899439.1869041.11099295.1496931.23495155.2909487.37136489.4226815%201.3450779%201.2989267%203.4884671%201.2615137%204.7873938-.0835642.1318986-.136585.2509855-.2822752.356786-.4359636.2818495-.4094214.8422352-.5128388%201.2516565-.2309894.4094213.2818495.5128388.8422352.2309893%201.2516565-.1619267.2352187-.3438254.4577525-.5446202.6656815-1.9894952%202.0601827-5.2724078%202.1174862-7.33259046.1279909-.20766699-.2005417-.39700581-.4163006-.56687828-.6454029z%22%20fill%3D%22%235b91cf%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.audio_subscribe_promo__item_int:before {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cg%20transform%3D%22translate(4%202)%22%3E%3Cpath%20d%3D%22m8%20.04v13%22%20stroke%3D%22%23528bcc%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3Cpath%20d%3D%22m2%209.04%206%205%206-5%22%20stroke%3D%22%23528bcc%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.8%22%2F%3E%3Crect%20fill%3D%22%23528bcc%22%20height%3D%221.8032%22%20rx%3D%22.9016%22%20width%3D%2216%22%20y%3D%2217.04%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+    margin: 6px 0 10px
 }
 
 .audio_subscribe_promo__button {
     display: block
-}
-
-.audio_layer_container .audio_subscribe_promo,
-.audio_subscribe_promo.audio_subscribe_promo_type2 {
-    margin-right: 15px
 }
 
 .audio_recoms_block .videocat_grid_wrap,

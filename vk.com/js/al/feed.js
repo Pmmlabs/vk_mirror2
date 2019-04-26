@@ -18,7 +18,7 @@ var Feed = {
             }
 
             elem.longViewRegistered = true;
-            elem.longViewTracking = longView.isAutoplayAd(elem) || longView.isAdWithLongImpression(elem);
+            elem.longViewTracking = longView.isAutoplayAd(elem) || longView.isAdWithLongImpression(elem) || longView.isAdWithLongImpressionOnly(elem);
 
             if (elem.longViewTracking) {
                 longView.tracking.push(elem);
@@ -86,6 +86,11 @@ var Feed = {
         isAdWithLongImpression: function(elem) {
             var firstChild = elem && domFC(elem);
             return firstChild && (firstChild.hasAttribute('data-ad-stat-impression_long') || firstChild.hasAttribute('data-ad-disabled-stat-impression_long'));
+        },
+
+        isAdWithLongImpressionOnly: function(elem) {
+            var firstChild = elem && domFC(elem);
+            return firstChild && firstChild.hasAttribute('data-ad-views-long-only');
         },
 
         isElemViewable: function(elem, percent, scrollY, windowHeight) {
