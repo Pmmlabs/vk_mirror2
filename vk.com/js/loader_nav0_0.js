@@ -340,7 +340,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'notifier.js': "388d9231ed5ab4f1970ab36e8c680c5b10e",
-    'notifier.css': 28689655448,
+    'notifier.css': 30259649677,
     'cmodules/sw/sw.js': 4092088814,
     'cmodules/web/restore.js': "1f40a84e9fd060c3c7d62",
     'restore.css': 20377837658,
@@ -591,7 +591,7 @@ var stVersions = {
     'cmodules/web/apps_achievements.js': "1df8b0ee63328bb366121b88bc3315814",
     'cmodules/web/payments.js': "11ac12d32cd1ba9355a8f3e29eeb961c4",
     'cmodules/web/stats.js': "159f179a94924c1b2ec235e93b8bce77d",
-    'lang': 6967,
+    'lang': 6968,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '3ad6443b8ff37a3ac10f',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': '63637192dd71d5c9f64f',
     'cmodules/bundles/3c3425c9f3cf4d66a7f6633fe2397772.js': 'd1ded2d9e2bf3caa54ff',
@@ -708,7 +708,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7005;
+var _rnd = 1402;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

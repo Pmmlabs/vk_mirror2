@@ -41366,7 +41366,6 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_related_events,
 .Icon_notify_repost,
 .Icon_notify_story_question,
-.Icon_notify_story_question_answer,
 .Icon_notify_story_reply,
 .Icon_notify_voting,
 .Icon_notify_wall {
@@ -41403,7 +41402,6 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_related_events:before,
 .Icon_notify_repost:before,
 .Icon_notify_story_question:before,
-.Icon_notify_story_question_answer:before,
 .Icon_notify_story_reply:before,
 .Icon_notify_voting:before,
 .Icon_notify_wall:before {
@@ -41441,7 +41439,6 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_notify_related_events:before,
 .vk_2x .Icon_notify_repost:before,
 .vk_2x .Icon_notify_story_question:before,
-.vk_2x .Icon_notify_story_question_answer:before,
 .vk_2x .Icon_notify_story_reply:before,
 .vk_2x .Icon_notify_voting:before,
 .vk_2x .Icon_notify_wall:before {
@@ -41573,10 +41570,6 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .Icon_notify_story_question:before {
-    background-position: 0 -1232px
-}
-
-.Icon_notify_story_question_answer:before {
     background-position: 0 -1260px
 }
 
