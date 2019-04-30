@@ -1159,6 +1159,7 @@
     border-radius: 0 0 4px 4px
 }
 
+.Select__option--selected,
 .Select__option:hover {
     background: #e7edf2
 }
@@ -1705,8 +1706,8 @@
 .Table__FiltersPanel .Table__Button--icon .Table__ButtonIcon {
     position: relative;
     display: block;
-    width: 21px;
-    height: 21px;
+    width: 20px;
+    height: 20px;
     top: 0;
     left: 0
 }
@@ -1716,7 +1717,7 @@
 }
 
 .Table__FiltersPanel .Table__Button--export .Select__control {
-    padding: 4px
+    padding: 4px 3px
 }
 
 .Table__FiltersPanel .Table__Button--export .Select__control:before {
@@ -2290,11 +2291,12 @@
 }
 
 .TableColumnsSettings__item {
-    padding-bottom: 10px;
+    padding-bottom: 16px;
     border-bottom: 1px solid transparent
 }
 
 .TableColumnsSettings__item--line {
+    padding-bottom: 10px;
     border-bottom-color: #e8e9ed
 }
 
@@ -2437,7 +2439,9 @@
     margin-bottom: 4px;
     list-style-type: none;
     max-width: 200px;
-    z-index: 1010
+    z-index: 1010;
+    -o-transition: max-height 0.2s, margin-bottom 0.2s, opacity 0.2s;
+    transition: max-height 0.2s, margin-bottom 0.2s, opacity 0.2s
 }
 
 .TableColumnsSettings__selectedColumnsItem {
@@ -2532,17 +2536,22 @@
     transform: scale(0.7)
 }
 
-.TableColumnsSettings__selectedColumnsItemAppear-enter-active .TableColumnsSettings__selectedColumnsItem,
-.TableColumnsSettings__selectedColumnsItemAppear-exit .TableColumnsSettings__selectedColumnsItem {
+.TableColumnsSettings__selectedColumnsItemAppear-enter-active .TableColumnsSettings__selectedColumnsItem {
     opacity: 1;
     -o-transform: scale(1);
     transform: scale(1)
 }
 
-.TableColumnsSettings__selectedColumnsItemAppear-exit-active .TableColumnsSettings__selectedColumnsItem {
+.TableColumnsSettings__selectedColumnsItemAppear-exit {
+    opacity: 1;
+    max-height: 50px;
+    overflow: hidden
+}
+
+.TableColumnsSettings__selectedColumnsItemAppear-exit-active {
     opacity: 0.01;
-    -o-transform: scale(0.7);
-    transform: scale(0.7)
+    max-height: 0;
+    margin-bottom: 0
 }
 
 .TableColumnsSettings__paranja {
@@ -2555,26 +2564,34 @@
     z-index: 1
 }
 
-.ResetSettingsModal .BaseModal__content {
-    padding: 64px 25px 32px;
-    max-width: 400px;
+.SecondaryModal .BaseModal__content {
+    padding: 56px 40px;
+    min-width: 400px;
     text-align: center;
     border-radius: 8px;
     box-sizing: border-box
 }
 
-.ResetSettingsModal__title {
+.SecondaryModal__content {
+    margin-bottom: 40px
+}
+
+.SecondaryModal__title {
     margin: 0 0 8px;
     font-size: 16px;
     line-height: 22px;
     font-weight: 500
 }
 
-.ResetSettingsModal__text {
-    margin: 0 0 48px;
+.SecondaryModal__text {
+    margin: 0;
     font-size: 13px;
     line-height: 18px;
     color: #656565
+}
+
+.SecondaryModal__buttons .Button {
+    min-width: 100px
 }
 
 .TableColumnsSettingsModal .BaseModal__content {

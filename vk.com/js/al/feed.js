@@ -2489,10 +2489,10 @@ var Feed = {
             if (ntop < st && nel) cur.topRow = nel;
             LongView && LongView.register(el, 'feed');
             if (longView.registerElement(el)) {
-                if (!longView.isAdWithLongImpression(el)) {
+                if (longView.isAutoplayAd(el) || longView.isAdWithLongImpressionOnly(el)) {
                     continue;
                 }
-            };
+            }
 
             bits = el.bits || 0;
             if (bits >= 3) continue;

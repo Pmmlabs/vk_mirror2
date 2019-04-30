@@ -578,7 +578,7 @@ ul {
 
 .basisGroup .service_msg_box,
 .basisProfile .service_msg_box {
-    margin: 0 -1px 10px;
+    margin: 0 0 10px;
     padding: 0 7px
 }
 
@@ -589,8 +589,6 @@ ul {
 }
 
 @media (min-width: 882px) {
-    .basisGroup .service_msg_box,
-    .basisProfile .service_msg_box,
     .pcont>.service_msg_box:first-child {
         margin: 0 -1px 10px;
         padding: 0
@@ -9745,35 +9743,6 @@ div.pm_item .pm_counter {
     text-align: center
 }
 
-.login_blocked_panel--thanos {
-    background: #fff
-}
-
-.fit_box .login_blocked_panel--thanos.text_panel {
-    padding-bottom: 22px
-}
-
-.login_blocked_panel--thanos img {
-    display: block;
-    width: 160px;
-    height: 160px;
-    margin: 32px auto 16px
-}
-
-.login_blocked_panel--thanos .Btn,
-.login_blocked_panel--thanos .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
-.login_blocked_panel--thanos .Groups .GroupsInvite__item .si_links .si_link,
-.login_blocked_panel--thanos .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
-.login_blocked_panel--thanos .GroupsInvite .GroupsInvite__item .si_links .si_link,
-.login_blocked_panel--thanos .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
-.login_blocked_panel--thanos .GroupsNear .GroupsInvite__item .si_links .si_link {
-    margin: 32px 0 10px
-}
-
-.login_blocked_panel--thanos .login_blocked_panel__till {
-    margin-top: 16px
-}
-
 .login_blocked_reason {
     position: relative;
     padding: 10px;
@@ -15390,13 +15359,20 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background: #fff
 }
 
-.n .AudioSerp:after {
+.AudioSerp:after {
     content: "";
     height: 64px;
     display: block;
     background: #ebedf0;
     padding: 0 0 10px;
     margin: 0 0 -10px
+}
+
+@media (min-width: 882px) {
+    .AudioSerp:after {
+        content: none;
+        display: none
+    }
 }
 
 .AudioSerp__search {
@@ -15704,10 +15680,17 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding: 0!important
 }
 
-.n .ArtistPage_audios:after {
+.ArtistPage_audios:after {
     content: "";
     height: 48px;
     display: block
+}
+
+@media (min-width: 882px) {
+    .ArtistPage_audios:after {
+        content: none;
+        display: none
+    }
 }
 
 .ArtistPage_playlists .audioPlaylistsPage__item:first-child {
@@ -17576,10 +17559,17 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin-top: -1px!important
 }
 
-.n .audioPlaylistsPage:after {
+.audioPlaylistsPage:after {
     content: "";
     height: 48px;
     display: block
+}
+
+@media (min-width: 882px) {
+    .audioPlaylistsPage:after {
+        content: none;
+        display: none
+    }
 }
 
 .audioPlaylistsPage .ArtistPage__search,
@@ -42367,15 +42357,15 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .Unfold__item:first-child {
-    -webkit-border-radius: 2px 2px 0 0;
-    -moz-border-radius: 2px 2px 0 0;
-    border-radius: 2px 2px 0 0
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0
 }
 
 .Unfold__item:last-child {
-    -webkit-border-radius: 0 0 2px 2px;
-    -moz-border-radius: 0 0 2px 2px;
-    border-radius: 0 0 2px 2px
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px
 }
 
 .Unfold__item_hidden {
@@ -47943,13 +47933,20 @@ a .BookmarkListItem__subtitle:hover {
     margin: 0
 }
 
-.n .Bookmarks:after {
+.Bookmarks:after {
     content: "";
     height: 64px;
     display: block;
     background: #ebedf0;
     padding: 0 0 10px;
     margin: 0 0 -10px
+}
+
+@media (min-width: 882px) {
+    .Bookmarks:after {
+        content: none;
+        display: none
+    }
 }
 
 .BookmarksItem {

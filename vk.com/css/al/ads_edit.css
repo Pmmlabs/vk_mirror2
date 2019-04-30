@@ -1566,6 +1566,7 @@ textarea.EditableLabel__textarea {
     border-radius: 0 0 4px 4px
 }
 
+.Select__option--selected,
 .Select__option:hover {
     background: #e7edf2
 }
