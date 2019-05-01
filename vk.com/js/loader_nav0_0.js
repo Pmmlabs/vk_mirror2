@@ -547,6 +547,7 @@ var stVersions = {
     'cmodules/web/page_layout.js': "1946c0324bd9e8b09f125",
     'landings/ads_cases.css': 28063986223,
     'landings/digital_day_2018.css': 20572432315,
+    'landings/add_vk_2019_may.css': 23867092147,
     'surveys.css': 26491127719,
     'cmodules/web/surveys.js': "127a7b198ba3cd3b040e101ea1e6ee342",
     'landings/author_guide.css': 24069300529,
@@ -708,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 142;
+var _rnd = 9858;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
