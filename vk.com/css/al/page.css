@@ -2081,13 +2081,6 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     opacity: 1
 }
 
-.deep_active .replies .reply_form_user_image:hover .post_field_user_link,
-.deep_active.wall_module .replies .reply_form_user_image:hover .post_field_user_link,
-.deep_active.wall_module .wl_replies_block_wrap .reply_form_user_image:hover .post_field_user_link,
-.deep_active .wl_replies_block_wrap .reply_form_user_image:hover .post_field_user_link {
-    display: none
-}
-
 .deep_active .replies .reply_fakebox_with_official .reply_fakebox_wrap_image:before,
 .deep_active .replies .reply_form_user_image .checkbox_official:before,
 .deep_active.wall_module .replies .reply_fakebox_with_official .reply_fakebox_wrap_image:before,
@@ -2098,13 +2091,13 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active .wl_replies_block_wrap .reply_form_user_image .checkbox_official:before {
     content: '';
     position: absolute;
-    z-index: 1;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, .4);
-    border-radius: 50%
+    border-radius: 50%;
+    z-index: 2
 }
 
 .deep_active .replies .reply_fakebox_with_official .reply_fakebox_wrap_image:after,
@@ -2117,7 +2110,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .deep_active .wl_replies_block_wrap .reply_form_user_image .checkbox_official:after {
     content: '';
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     width: 16px;
     height: 12px;
     top: 0;
