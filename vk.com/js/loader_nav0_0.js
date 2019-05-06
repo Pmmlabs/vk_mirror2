@@ -349,9 +349,9 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16997641513,
     'helpdesk.css': 33347948756,
-    'cmodules/web/support.js': "2a6f0988f09643db18050d6905e533f56",
+    'cmodules/web/support.js': "2ec8a76c59d0f04488f9afb361cd34fbd",
     'tickets.css': 30077711971,
-    'faq.css': 22091384048,
+    'faq.css': 22854738908,
     'agents.css': 16975375001,
     'achievements.css': 15492341998,
     'members.css': 16920294204,
@@ -360,8 +360,8 @@ var stVersions = {
     'ownerinfo.css': 5550941355,
     'bugtracker.css': 25230020052,
     'cmodules/web/bugtracker.js': "2e8b1bd35c68170acdbbeafd195f07c42",
-    'login.css': 20767005261,
-    'cmodules/web/login.js': "159ea9f458b131b8f78df733ffb12f707d",
+    'login.css': 22194856523,
+    'cmodules/web/login.js': "155862d3d0190b05048a2912563b757d71",
     'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
     'graffiti_new.js': 67279821,
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5277;
+var _rnd = 9003;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
@@ -748,7 +748,7 @@ var stDeps = {
     "/js/cmodules/web/landing_transparency.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js", "cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js"],
     "/js/cmodules/web/language.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/lazyload.js": ["cmodules/bundles/common.js"],
-    "/js/cmodules/web/login.js": ["cmodules/bundles/vendors.js", "cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js"],
+    "/js/cmodules/web/login.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js", "cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js"],
     "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.js", "cmodules/bundles/bcf1b93707952324ba7fd451951014d9.js"],
     "/js/cmodules/web/music_2018.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/notifier.js": ["cmodules/bundles/common.js", "cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js"],
@@ -765,7 +765,7 @@ var stDeps = {
     "/js/cmodules/web/stickers_office.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/stories.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/stories_manage.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
-    "/js/cmodules/web/support.js": ["cmodules/bundles/922212473b83a11bea81153804d90f9d.js"],
+    "/js/cmodules/web/support.js": ["cmodules/bundles/common.js", "cmodules/bundles/922212473b83a11bea81153804d90f9d.js"],
     "/js/cmodules/web/surveys.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/translation.js": ["cmodules/bundles/common.js"],
     "/js/cmodules/web/ui_media_selector.js": ["cmodules/bundles/common.js"],

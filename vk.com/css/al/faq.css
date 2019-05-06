@@ -582,6 +582,10 @@
     cursor: default
 }
 
+.faq_full_text:empty {
+    display: none
+}
+
 .faq_inner_row.detail_hidden .faq_full_text {
     height: 20px;
     overflow: hidden;

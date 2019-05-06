@@ -626,6 +626,10 @@
     margin-top: 5px
 }
 
+.login_blocked_wrap .page_block.tutorial_step .content:empty {
+    display: none
+}
+
 .login_blocked_wrap .page_block .content {
     margin: 24px auto 0;
     color: #000;
@@ -666,7 +670,7 @@
     margin-top: 10px
 }
 
-.login_blocked_wrap .page_block .content .tutorial_finish_appeal {
+.login_blocked_wrap .page_block .content .tutorial_step_hint {
     margin-bottom: 20px;
     overflow-y: hidden;
     -o-transition-property: all;
