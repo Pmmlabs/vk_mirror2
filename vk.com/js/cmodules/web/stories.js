@@ -69,9 +69,9 @@
     a.push = e, a = a.slice();
     for (var l = 0; l < a.length; l++) e(a[l]);
     var d = c;
-    s.push([134, "common", "bundles/vendors"]), r()
+    s.push([135, "common", "bundles/vendors"]), r()
 }({
-    134: function(t, e, r) {
+    135: function(t, e, r) {
         t.exports = r("EJ7F")
     },
     "16Al": function(t, e, r) {
@@ -691,7 +691,7 @@
                     })
                 }, e
             }(o.Component);
-        var V = function() {
+        var K = function() {
             function t(e, r) {
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -848,7 +848,7 @@
                 return this.failed
             }, t
         }();
-        var K = function(t) {
+        var V = function(t) {
             function e(r, o, i) {
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -944,7 +944,7 @@
             }, e.prototype._resetTimer = function() {
                 window.CanvasRenderingContext2D && (clearTimeout(this._nextTO), this.timerInProgress = !1, hide(domByClass(this.el, "_timer_canvas")))
             }, e
-        }(V);
+        }(K);
         var U = function(t) {
             function e() {
                 return function(t, e) {
@@ -1009,7 +1009,7 @@
             }, e.prototype.volumeUpdate = function() {
                 this.video.volume = m()
             }, e
-        }(V);
+        }(K);
         var z = function(t) {
                 function e(r, o) {
                     ! function(t, e) {
@@ -1062,7 +1062,7 @@
                 }, e.prototype._onCanPlay = function() {
                     this.startTs = Date.now(), t.prototype._onCanPlay.call(this), setStyle(this.photo, "opacity", 1)
                 }, e
-            }(V),
+            }(K),
             q = "stories_manage",
             Y = 1,
             X = 2,
@@ -1303,7 +1303,7 @@
                         onLongLoading: this._showLoader.bind(this),
                         onAutoPlayFail: this._onAutoPlayFail.bind(this)
                     };
-                    ("live" === r ? this.story = new K(e, o, this.wrapEl) : ("video" === r ? (this.story = new U(e, o), ot(this.wrapEl, "video")) : (this.story = new z(e, o), this.opts.onVideoEnd(), it(this.wrapEl, "video")), val(this.descEl, e.is_ads ? $("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === r || "video" === r) && (m() > 0 && this.opts.onVideoPlay());
+                    ("live" === r ? this.story = new V(e, o, this.wrapEl) : ("video" === r ? (this.story = new U(e, o), ot(this.wrapEl, "video")) : (this.story = new z(e, o), this.opts.onVideoEnd(), it(this.wrapEl, "video")), val(this.descEl, e.is_ads ? $("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === r || "video" === r) && (m() > 0 && this.opts.onVideoPlay());
                     this.opts.onStartStory(), st(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && this.renderStickersLayer(), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), rt(nt("stories_narrative_cover", this.contWrap), "click", function(e) {
                         t._showTooltip(e, t._createNarrativeTooltipLink())
                     })), this.story.isNarrativeMetaStory && !this.story.failed && (re(nt("stories_photo", this.contWrap)), re(nt("stories_video", this.contWrap)), ot(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
@@ -1477,7 +1477,7 @@
                 }, t.prototype._onLoadingStart = function() {
                     this._loadingStartTime = new Date
                 }, t.prototype._onLoadingEnd = function() {
-                    if (statlogsValueEvent("story_views_tmp_stat", this.getCurStoryData().unread ? 0 : 1), this._loadingStartTime) {
+                    if (this._loadingStartTime) {
                         var t = new Date - this._loadingStartTime;
                         this.layer._sendViewerStartTime(this.getRawId(), t), this._loadingStartTime = 0
                     }

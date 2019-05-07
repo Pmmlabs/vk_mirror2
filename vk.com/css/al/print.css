@@ -218,7 +218,7 @@ table.print_table.visible .print_preview {
 }
 
 .print_preview.qr {
-    background: url(/images/print_qr_preview.png?4)
+    background: url(/images/print_qr_preview.png?5)
 }
 
 .print_preview.qr canvas {
@@ -254,7 +254,7 @@ table.print_table.visible .print_preview {
     border-radius: 6px;
     padding: 0 10px;
     display: inline-block;
-    background-color: #4d75a3
+    background-color: #4680c2
 }
 
 .print_preview.logo .print_preview_logo_sq {
@@ -263,7 +263,7 @@ table.print_table.visible .print_preview {
     height: 40px;
     margin-right: 4px;
     border-radius: 6px;
-    background-color: #4d75a3;
+    background-color: #4680c2;
     display: inline-block;
     vertical-align: top
 }
@@ -292,7 +292,7 @@ table.print_table.visible .print_preview {
 }
 
 .print_preview.simple_blue .print_preview_domain {
-    background-color: #4d75a3;
+    background-color: #4680c2;
     color: #fff
 }
 
@@ -468,7 +468,7 @@ table.print_table.visible .print_links {
 }
 
 .is_2x .print_preview.qr {
-    background-image: url(/images/print_qr_preview_2x.png?4);
+    background-image: url(/images/print_qr_preview_2x.png?5);
     background-size: 160px 190px
 }
 
