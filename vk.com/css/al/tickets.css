@@ -362,6 +362,18 @@ body.dev .tickets_reply_row {
     border-top: 0 none!important
 }
 
+.tickets_reply_row.tickets_reply_row_openable {
+    cursor: pointer
+}
+
+.tickets_reply_row.tickets_reply_row_openable:hover {
+    background: #f0f2f5
+}
+
+.tickets_reply_row.tickets_reply_row_openable .tickets_reply_text {
+    display: none
+}
+
 .tickets_reply_row_same_author.tickets_reply_row {
     padding-top: 0;
     border-top: 0 none!important

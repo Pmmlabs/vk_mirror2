@@ -238,7 +238,7 @@ var stVersions = {
     'module.css': 21857739737,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 17554375531,
-    'page.js': "963cd0a1a03d8a93c2997cede1a151f6e77",
+    'page.js': "963bee1d6b3c7ced0a4f9502e9bf9ea9e2f",
     'page.css': 82300141771,
     'page_help.css': 25978082451,
     'public.css': 29881834057,
@@ -350,7 +350,7 @@ var stVersions = {
     'tags_dd.css': 16997641513,
     'helpdesk.css': 33347948756,
     'cmodules/web/support.js': "2ec8a76c59d0f04488f9afb361cd34fbd",
-    'tickets.css': 30077711971,
+    'tickets.css': 33236610695,
     'faq.css': 22854738908,
     'agents.css': 16975375001,
     'achievements.css': 15492341998,
@@ -638,7 +638,7 @@ var stVersions = {
     'cmodules/web/music_2018.js': '24b5d76c1969811c9f240ee2a9065e1b',
     'cmodules/web/notifier.js': 'd9231ed5ab4f1970ab36e8c680c5b10e',
     'cmodules/web/old_places_admin.js': '9a4d7b50bc5aeac80bab',
-    'cmodules/web/page.js': 'cd0a1a03d8a93c2997cede1a151f6e77',
+    'cmodules/web/page.js': 'bee1d6b3c7ced0a4f9502e9bf9ea9e2f',
     'cmodules/web/playground.js': 'db277f448cff35e37edd',
     'cmodules/web/rich_dropdown.js': '87f3fc5ce42c8cf57581',
     'cmodules/web/speech.js': '999d52c42b29444db62e969e38d2ef3f',
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8932;
+var _rnd = 1489;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
