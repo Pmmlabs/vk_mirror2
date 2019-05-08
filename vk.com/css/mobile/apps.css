@@ -11852,6 +11852,10 @@ body.vk_app_fixed {
     overflow: hidden
 }
 
+.vk_app_android .vkAppHeader {
+    top: 12px
+}
+
 .vkAppHeader {
     position: fixed;
     top: 6px;
