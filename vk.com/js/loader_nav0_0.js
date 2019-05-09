@@ -229,7 +229,7 @@ var stVersions = {
     'invite.css': 18468403827,
     'invite.js': 3498521437,
     'index.css': 20152183587,
-    'index.js': 4237256002,
+    'index.js': 3114494457,
     'join.css': 23993655993,
     'join.js': 768561937,
     'intro.css': 18933613132,
@@ -711,7 +711,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2776;
+var _rnd = 3384;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

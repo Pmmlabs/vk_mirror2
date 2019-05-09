@@ -213,84 +213,42 @@ var Index = {
     },
 
     fbCheck: function(appId, context) {
-        if (cur.fbContinueWithSign) {
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId: appId,
-                    xfbml: true,
-                    version: 'v2.7'
-                });
-                var isBox = context == '_box';
-                var indexDiv = ge('index_fbcontinuewithsign' + (context || ''));
-                setStyle(indexDiv, {
-                    opacity: 0,
-                    height: 0,
-                    overflow: 'hidden'
-                });
-                show(indexDiv);
-                FB.Event.subscribe('xfbml.render', function() {
-                    animate(indexDiv, {
-                        height: isBox ? 78 : 54,
-                        opacity: 1
-                    }, 200);
-                });
-            };
-
-            if (window.FB && window.FB.init) {
-                window.fbAsyncInit();
-            } else {
-                (function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {
-                        return;
-                    }
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "//connect.facebook.net/" + cur.fbLocale + "/sdk.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            }
-        } else {
-            stManager.add(['fbsign.js'], function() {
-                Fbsign.init();
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: appId,
+                xfbml: true,
+                version: 'v2.7'
             });
-            var indexDiv = ge('index_fbsign' + (context || ''));
+            var isBox = context == '_box';
+            var indexDiv = ge('index_fbcontinuewithsign' + (context || ''));
             setStyle(indexDiv, {
-                opacity: 1
+                opacity: 0,
+                height: 0,
+                overflow: 'hidden'
             });
             show(indexDiv);
-        }
-
-        /*window.fbAsyncInit = function() {
-          FB.init({
-            appId      : appId,
-            channelUrl : '//vk.com//api/fb_channel.html',
-            status     : true,
-            cookie     : true
-          });
-          FB.getLoginStatus(function(response) {
-            if (response.status === 'connected' || response.status === 'not_authorized') {
-              stManager.add(['fbsign.js'], function() {Fbsign.init();});
-              var indexDiv = ge('index_fbsign' + (context || ''));
-              setStyle(indexDiv, {opacity:0, height:0});
-              show(indexDiv);
-              animate(indexDiv, {height: 54, opacity: 1}, 200)
-              setCookie('remixfbuser', 1, 30);
-            } else {
-              debugLog('no fb user');
-            }
-          });
+            FB.Event.subscribe('xfbml.render', function() {
+                animate(indexDiv, {
+                    height: isBox ? 78 : 54,
+                    opacity: 1
+                }, 200);
+            });
         };
+
         if (window.FB && window.FB.init) {
-          window.fbAsyncInit();
+            window.fbAsyncInit();
         } else {
-          (function(d){
-             var js, id = 'facebook-jssdk', ref = geByTag1('script');
-             if (ge(id)) {return;}
-             js = ce('script', {id: id, async: true, src: '//connect.facebook.net/en_US/all.js'})
-             ref.parentNode.insertBefore(js, ref);
-          }(document));
-        }*/
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/" + cur.fbLocale + "/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
     },
     fbJoin: function(context) {
         cur.fbContext = context;
