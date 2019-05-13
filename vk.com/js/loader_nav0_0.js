@@ -524,7 +524,7 @@ var stVersions = {
     'voice_message_player.js': "192b9c5480328ae93488a",
     'cmodules/web/speech_worker_mp3.js': "1777997de7f091ec2118a",
     'cmodules/web/speech_worker_opus.js': "1144a05a532a8776d2c8ce993dee7d1dc",
-    'stories.js': "632625f4380fadb14308ad103b16607f8",
+    'stories.js': "648e04a01fc8a0b9c4b4b676f4d608a00",
     'stories.css': 18365338977,
     'cmodules/web/stories_manage.js': "2b5527fbb701778f9ca59dbadfbc7baa0",
     'stories_manage.css': 81410261294,
@@ -642,7 +642,7 @@ var stVersions = {
     'cmodules/web/print.js': '917bf92ebfe0db422a33d96056d06535',
     'cmodules/web/rich_dropdown.js': '32561bea18e07fba9f44',
     'cmodules/web/speech.js': '1cb56bc37de0add1c262368cff6633c6',
-    'cmodules/web/stories.js': '32625f4380fadb14308ad103b16607f8',
+    'cmodules/web/stories.js': '48e04a01fc8a0b9c4b4b676f4d608a00',
     'cmodules/web/text_editor.js': '69a16e6f0c27adc35a45',
     'cmodules/web/translation.js': '0a5372f7049fe08bd8eadd7afd60ad94',
     'cmodules/web/ugcform.js': '20c5d126d4132cc7e08f',
@@ -711,7 +711,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3591;
+var _rnd = 1652;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

@@ -1113,10 +1113,10 @@
                 function t(e, r) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), this.data = e, this.opts = r, this.id = r.id, this.isActive = !1, this.story = !1, this.index = 0, this.preloadedStories = {}, this.layer = r.layer
+                    }(this, t), this.data = e, this.opts = r, this.id = r.id, this.isActive = !1, this.story = !1, this.index = 0, this.preloadedStories = {}, this.layer = r.layer, this._onResizeHandle = this._onResizeHandle.bind(this)
                 }
                 return t.prototype.destroy = function() {
-                    this._destroyStory(), et(window, "resize", this._onResizeHandle.bind(this)), et(this.contWrap, "click", this._onClickHandle.bind(this)), et(nt("stories_item_cont", this.contWrap)), et(nt("stories_reply_to", this.replyToWrap)), et(this.shareButton), delete this.shareButton, et(this.followBtn), delete this.followBtn, et(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
+                    this._destroyStory(), et(this.contWrap, "click", this._onClickHandle.bind(this)), et(nt("stories_item_cont", this.contWrap)), et(nt("stories_reply_to", this.replyToWrap)), et(this.shareButton), delete this.shareButton, et(this.followBtn), delete this.followBtn, et(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
                     for (var t = at("stories_time_line", this.timeLineEl), e = 0; e < t.length; e++) et(t[e]);
                     et(this.viewsButton), et(nt("stories_feedback_close", this.wrapEl)), et(nt("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
                     for (var r = !1, o = 0; o < this.data.items.length; o++)
@@ -1152,7 +1152,7 @@
                         className: "stories_item_cont_wrap"
                     }), this.contStickers = ce("div", {
                         className: "stories_item_cont_sticker"
-                    }), this.contWrap.appendChild(this.contStickers), this.wrapEl.appendChild(this.contWrap), rt(window, "resize", this._onResizeHandle.bind(this)), rt(this.contWrap, "click", this._onClickHandle.bind(this));
+                    }), this.contWrap.appendChild(this.contStickers), this.wrapEl.appendChild(this.contWrap), rt(this.contWrap, "click", this._onClickHandle.bind(this));
                     var t = ce("div", {
                         className: "stories_item_cont"
                     });
@@ -1351,13 +1351,13 @@
                             }
                             t.contStickers.appendChild(n), t.stickers.push(n)
                         }
-                    })
+                    }), rt(window, "resize", this._onResizeHandle)
                 }, t.prototype._onResizeHandle = function() {
                     var t = this,
                         e = this.getCurStoryData().clickable_stickers,
                         r = (isObject(e) ? e : {}).stickers;
                     isArray(r) && r.forEach(function(e, r) {
-                        inArray(e.type, [Y, X]) && t.stickers[r] && _t(t.stickers[r], t._getStickerStyle(e, t.contWrap))
+                        inArray(e.type, [Y, X]) && t.stickers && t.stickers[r] && _t(t.stickers[r], t._getStickerStyle(e, t.contWrap))
                     }), this._hideTooltip()
                 }, t.prototype._onClickHandle = function(t) {
                     hasClass(t.target, "stories_sticker") && (this.hideFeedbackTooltip(), this.tooltip ? this._hideTooltip() : this._showTooltip(t, this._createStickerLink(t.target)))
@@ -1460,7 +1460,7 @@
                     }
                 }, t.prototype._destroyStory = function() {
                     if (this.story) {
-                        this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), it(this.contWrap, "stories_item_cont_wrap_meta_story"), re(nt("narrative-meta-story", this.contWrap)), it(this.contWrap, "stories_narrative_cover_blur"), re(nt("stories_narrative_cover", this.contWrap)), et(nt("stories_narrative_cover", this.contWrap)), this.contStickers.innerHTML = "", cancelAnimationFrame(this.timeLineAnim);
+                        this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), it(this.contWrap, "stories_item_cont_wrap_meta_story"), re(nt("narrative-meta-story", this.contWrap)), it(this.contWrap, "stories_narrative_cover_blur"), re(nt("stories_narrative_cover", this.contWrap)), et(nt("stories_narrative_cover", this.contWrap)), et(window, "resize", this._onResizeHandle), this.contStickers.innerHTML = "", cancelAnimationFrame(this.timeLineAnim);
                         try {
                             this.contWrap.removeChild(this.story.getContainer()), this.story.destroy()
                         } catch (t) {}
