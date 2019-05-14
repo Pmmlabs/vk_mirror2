@@ -4815,43 +4815,10 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
-.wall_item .item_like .i_like,
-.wall_item .item_replies .i_replies,
-.wall_item .item_share .i_share,
-.wi_actions_btn .i_icon {
-    background: url(/images/mobile/post_buttons.png) no-repeat;
-    padding: 0 14px 0 0;
-    margin: 0
-}
-
 .wall_item .item_like .v_like,
 .wall_item .item_replies .v_replies,
 .wall_item .item_share .v_share {
     margin: 0 0 0 4px
-}
-
-.wall_item .item_like .i_like {
-    background-position: 0
-}
-
-.wall_item .item_like.item_sel .i_like {
-    background-position: -14px
-}
-
-.wall_item .item_share .i_share {
-    background-position: -56px
-}
-
-.wall_item .item_share.item_sel .i_share {
-    background-position: -70px
-}
-
-.wall_item .item_replies .i_replies {
-    background-position: -28px
-}
-
-.wall_item .item_replies.item_sel .i_replies {
-    background-position: -42px
 }
 
 .wi_actions_btn .i_icon {
@@ -6057,37 +6024,6 @@ input.wide_button {
 ._hover .item_tags:hover,
 ._hover .item_views:hover {
     text-decoration: none
-}
-
-.item_like .i_like,
-.item_replies .i_replies,
-.item_repost .i_repost,
-.item_share .i_share,
-.item_views .i_views {
-    background: url(/images/mobile/like.png?5) no-repeat;
-    padding: 0 13px 0 0;
-    margin: 0 4px 0 1px
-}
-
-.item_like .i_like {
-    background-position: 0
-}
-
-.item_share .i_share {
-    background-position: -26px
-}
-
-.item_replies .i_replies {
-    background-position: -13px
-}
-
-.item_repost .i_repost {
-    background-position: -26px
-}
-
-.item_views .i_views {
-    background-position: -78px;
-    padding: 0 17px 0 0
 }
 
 .profile_menu {
@@ -38412,6 +38348,89 @@ body.apps_settingsPageBody .basis__content {
     display: none!important
 }
 
+.Socials__icon,
+.svgIcon-wall,
+.wi_buttons i.i_like,
+.wi_buttons i.i_replies,
+.wi_buttons i.i_share,
+.wi_buttons i.i_views,
+.wi_like_wrap i.i_like,
+.wi_like_wrap i.i_share {
+    -moz-background-size: 72px 48px;
+    -o-background-size: 72px 48px;
+    background-size: 72px 48px;
+    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe.svg')
+}
+
+.vk_old.vk_1x .Socials__icon,
+.vk_old.vk_1x .svgIcon-wall,
+.vk_old.vk_1x .wi_buttons i.i_like,
+.vk_old.vk_1x .wi_buttons i.i_replies,
+.vk_old.vk_1x .wi_buttons i.i_share,
+.vk_old.vk_1x .wi_buttons i.i_views,
+.vk_old.vk_1x .wi_like_wrap i.i_like,
+.vk_old.vk_1x .wi_like_wrap i.i_share {
+    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe_1x.png')
+}
+
+.vk_old.vk_2x .Socials__icon,
+.vk_old.vk_2x .svgIcon-wall,
+.vk_old.vk_2x .wi_buttons i.i_like,
+.vk_old.vk_2x .wi_buttons i.i_replies,
+.vk_old.vk_2x .wi_buttons i.i_share,
+.vk_old.vk_2x .wi_buttons i.i_views,
+.vk_old.vk_2x .wi_like_wrap i.i_like,
+.vk_old.vk_2x .wi_like_wrap i.i_share {
+    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe_2x.png')
+}
+
+.r .wi_buttons i.i_replies,
+.Socials__icon_comment,
+.svgIcon-wall__comment_outline_24 {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.r .wi_buttons .item_sel i.i_like,
+.Socials__button_active .Socials__icon_like,
+.svgIcon-wall__like_24 {
+    background-position: -24px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.r .wi_buttons i.i_like,
+.r .wi_like_wrap i.i_like,
+.Socials__icon_like,
+.svgIcon-wall__like_outline_24 {
+    background-position: 0 -24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.r .wi_buttons i.i_share,
+.r .wi_like_wrap i.i_share,
+.Socials__icon_repost,
+.svgIcon-wall__share_outline_24 {
+    background-position: -24px -24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.r .wi_buttons i.i_views,
+.Socials__icon_views,
+.svgIcon-wall__view_24 {
+    background-position: -48px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
 .r .wi_buttons,
 .Socials {
     padding: 0;
@@ -38577,28 +38596,6 @@ body.apps_settingsPageBody .basis__content {
     }
 }
 
-@media (max-width: 319px) {
-    .r .wi_buttons .item_like,
-    .Socials__button_like,
-    .r .wi_buttons .item_share,
-    .Socials__button_repost {
-        min-width: 0;
-        width: 50%
-    }
-}
-
-.r .wi_buttons .item_replies,
-.Socials__button_comment {
-    width: auto
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons .item_replies,
-    .Socials__button_comment {
-        width: 33.3%
-    }
-}
-
 .r .wi_buttons .item_views,
 .Socials__button_views {
     width: 100%;
@@ -38617,108 +38614,19 @@ body.apps_settingsPageBody .basis__content {
     }
 }
 
-.r .wi_buttons i.i_like,
-.r .wi_buttons i.i_replies,
-.r .wi_buttons i.i_share,
-.r .wi_buttons i.i_views,
-.r .wi_like_wrap i.i_like,
-.r .wi_like_wrap i.i_share,
-.Socials__icon {
+.Socials__icon,
+.wi_buttons i.i_like,
+.wi_buttons i.i_replies,
+.wi_buttons i.i_share,
+.wi_buttons i.i_views,
+.wi_like_wrap i.i_like,
+.wi_like_wrap i.i_share {
     display: inline-block;
     vertical-align: top;
     width: 24px;
     height: 24px;
     margin: 0;
-    padding: 0;
-    -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
-    background-size: 100%!important;
-    background-repeat: no-repeat;
-    background-image: url('/images/mobile/icons/action_icons_24px.png?1');
-    opacity: 0.8
-}
-
-.vk_2x.r .wi_buttons i.i_like,
-.vk_2x.r .wi_buttons i.i_replies,
-.vk_2x.r .wi_buttons i.i_share,
-.vk_2x.r .wi_buttons i.i_views,
-.vk_2x.r .wi_like_wrap i.i_like,
-.vk_2x.r .wi_like_wrap i.i_share,
-.vk_2x .Socials__icon {
-    background-image: url('/images/mobile/icons/action_icons_24px_2x.png?1')
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons i.i_like,
-    .r .wi_buttons i.i_replies,
-    .r .wi_buttons i.i_share,
-    .r .wi_buttons i.i_views,
-    .r .wi_like_wrap i.i_like,
-    .r .wi_like_wrap i.i_share,
-    .Socials__icon {
-        background-image: url('/images/mobile/icons/action_icons_16px.png?6')
-    }
-    .vk_2x.r .wi_buttons i.i_like,
-    .vk_2x.r .wi_buttons i.i_replies,
-    .vk_2x.r .wi_buttons i.i_share,
-    .vk_2x.r .wi_buttons i.i_views,
-    .vk_2x.r .wi_like_wrap i.i_like,
-    .vk_2x.r .wi_like_wrap i.i_share,
-    .vk_2x .Socials__icon {
-        background-image: url('/images/mobile/icons/action_icons_16px_2x.png?6')
-    }
-}
-
-.r .wi_buttons i.i_like,
-.r .wi_like_wrap i.i_like,
-.Socials__icon_like {
-    background-position: 0 0!important
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons i.i_like,
-    .r .wi_like_wrap i.i_like,
-    .Socials__icon_like {
-        background-position: 0 -16px!important
-    }
-}
-
-.r .wi_buttons i.i_share,
-.r .wi_like_wrap i.i_share,
-.Socials__icon_repost {
-    background-position: 0 -72px!important
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons i.i_share,
-    .r .wi_like_wrap i.i_share,
-    .Socials__icon_repost {
-        background-position: 0 -32px!important
-    }
-}
-
-.r .wi_buttons i.i_replies,
-.Socials__icon_comment {
-    background-position: 0 -48px!important
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons i.i_replies,
-    .Socials__icon_comment {
-        background-position: 0 -48px!important
-    }
-}
-
-.r .wi_buttons i.i_views,
-.Socials__icon_views {
-    background-position: 0 -96px!important
-}
-
-@media (max-width: 319px) {
-    .r .wi_buttons i.i_views,
-    .Socials__icon_views {
-        background-position: 0 -64px!important
-    }
+    padding: 0
 }
 
 .r .wi_buttons b,
@@ -38735,59 +38643,23 @@ body.apps_settingsPageBody .basis__content {
     margin: 0 0 0 6px!important
 }
 
-@media (max-width: 319px) {
-    .r .wi_buttons b,
-    .Socials__count {
-        line-height: 16px
-    }
-}
-
 .r .wi_buttons .v_views,
 .Socials__viewsCount {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}
-
-.r .item_sel i.i_like,
-.Socials__button_active .Socials__icon_like {
-    background-position: 0 -24px!important;
-    opacity: 1
-}
-
-@media (max-width: 319px) {
-    .r .item_sel i.i_like,
-    .Socials__button_active .Socials__icon_like {
-        background-position: 0 0!important
-    }
+    -moz-osx-font-smoothing: auto;
+    color: #aaaeb3
 }
 
 .r .item_sel b.v_like,
 .Socials__button_active .Socials__count {
-    color: #e62e40
+    color: #ff3347
 }
 
 @media (max-width: 319px) {
     .r .wi_buttons,
     .Socials {
-        height: 40px;
         margin: 0
-    }
-    .r .wi_buttons i.i_like,
-    .r .wi_buttons i.i_replies,
-    .r .wi_buttons i.i_share,
-    .r .wi_buttons i.i_views,
-    .r .wi_like_wrap i.i_like,
-    .r .wi_like_wrap i.i_share,
-    .Socials__icon {
-        width: 16px;
-        height: 16px;
-        vertical-align: top
-    }
-    .r .wi_buttons b,
-    .Socials__count {
-        font-size: 14px;
-        margin: 0 0 0 4px!important
     }
 }
 
@@ -57340,26 +57212,6 @@ screen and (min-device-pixel-ratio: 1.5) {
         -moz-background-size: 32px 8px!important;
         -o-background-size: 32px 8px!important;
         background-size: 32px 8px!important
-    }
-    .item_like .i_like,
-    .item_replies .i_replies,
-    .item_repost .i_repost,
-    .item_shares .i_share,
-    .item_views .i_views {
-        background-image: url(/images/mobile/like_2x.png?5);
-        -moz-background-size: 95px 14px!important;
-        -o-background-size: 95px 14px!important;
-        background-size: 95px 14px!important
-    }
-    .wall_item .item_like .i_like,
-    .wall_item .item_replies .i_replies,
-    .wall_item .item_share .i_share,
-    .wi_actions_btn .i_icon,
-    .wi_actions_wrap .i_pointer {
-        background-image: url(/images/mobile/post_buttons_2x.png);
-        -moz-background-size: 188px 14px!important;
-        -o-background-size: 188px 14px!important;
-        background-size: 188px 14px!important
     }
     .wi_buttons_ex .i_star {
         background-image: url(/images/mobile/stars_2x.png?1);

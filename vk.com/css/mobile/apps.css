@@ -4800,43 +4800,10 @@ input.wide_button {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
-.wall_item .item_like .i_like,
-.wall_item .item_replies .i_replies,
-.wall_item .item_share .i_share,
-.wi_actions_btn .i_icon {
-    background: url(/images/mobile/post_buttons.png) no-repeat;
-    padding: 0 14px 0 0;
-    margin: 0
-}
-
 .wall_item .item_like .v_like,
 .wall_item .item_replies .v_replies,
 .wall_item .item_share .v_share {
     margin: 0 0 0 4px
-}
-
-.wall_item .item_like .i_like {
-    background-position: 0
-}
-
-.wall_item .item_like.item_sel .i_like {
-    background-position: -14px
-}
-
-.wall_item .item_share .i_share {
-    background-position: -56px
-}
-
-.wall_item .item_share.item_sel .i_share {
-    background-position: -70px
-}
-
-.wall_item .item_replies .i_replies {
-    background-position: -28px
-}
-
-.wall_item .item_replies.item_sel .i_replies {
-    background-position: -42px
 }
 
 .wi_actions_btn .i_icon {
@@ -6042,37 +6009,6 @@ input.wide_button {
 ._hover .item_tags:hover,
 ._hover .item_views:hover {
     text-decoration: none
-}
-
-.item_like .i_like,
-.item_replies .i_replies,
-.item_repost .i_repost,
-.item_share .i_share,
-.item_views .i_views {
-    background: url(/images/mobile/like.png?5) no-repeat;
-    padding: 0 13px 0 0;
-    margin: 0 4px 0 1px
-}
-
-.item_like .i_like {
-    background-position: 0
-}
-
-.item_share .i_share {
-    background-position: -26px
-}
-
-.item_replies .i_replies {
-    background-position: -13px
-}
-
-.item_repost .i_repost {
-    background-position: -26px
-}
-
-.item_views .i_views {
-    background-position: -78px;
-    padding: 0 17px 0 0
 }
 
 .profile_menu {
