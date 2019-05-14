@@ -2,20 +2,15 @@
     display: none
 }
 
-.login_app_device_android .login_app_device_screen,
-.login_app_device_android .login_app_device_screen.login_app_device_br,
-.login_app_device_android .login_app_device_screen.login_app_device_en,
-.login_app_device_android .login_app_device_screen.login_app_device_ua,
-.login_app_device_ios .login_app_device_screen,
-.login_app_device_ios .login_app_device_screen.login_app_device_br,
-.login_app_device_ios .login_app_device_screen.login_app_device_en,
-.login_app_device_ios .login_app_device_screen.login_app_device_ua,
-.login_app_device_wp .login_app_device_screen,
-.login_app_device_wp .login_app_device_screen.login_app_device_br,
-.login_app_device_wp .login_app_device_screen.login_app_device_en,
-.login_app_device_wp .login_app_device_screen.login_app_device_ua,
-.login_app_download_icon,
 .login_mobile_close,
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--br,
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--en,
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--ru,
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--ua,
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--br,
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--en,
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ru,
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ua,
 .UnblockForm__content__header .antispam_team_logo {
     -ms-high-contrast-adjust: none
 }
@@ -1256,9 +1251,158 @@ table.login_blocked_reason_thumbs {
     margin-bottom: 10px
 }
 
-.login_mobile_promo_wrap {
+.LoginMobilePromo {
     position: relative;
     line-height: 19px
+}
+
+.LoginMobilePromo__devices {
+    white-space: nowrap;
+    padding: 44px 0 2px;
+    font-size: 0
+}
+
+.LoginMobilePromoDevice__button {
+    margin-top: 16px;
+    line-height: 16px
+}
+
+.LoginMobilePromoDevice__button:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: top;
+    display: inline-block
+}
+
+.LoginMobilePromoDevice {
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 396px
+}
+
+.LoginMobilePromoDevice--android {
+    background: no-repeat 0 8px;
+    width: 183px
+}
+
+.LoginMobilePromoDevice--android .LoginMobilePromoDevice__button:before {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2216%22%20height%3D%2216%22%20rx%3D%22.533%22%2F%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M6%2012v1.495c0%20.279.232.505.5.505.276%200%20.5-.214.5-.505V12h2v1.495c0%20.279.232.505.5.505.276%200%20.5-.214.5-.505V12h1a1%201%200%200%200%201-.99V6H4v5.01c0%20.546.444.99%201%20.99h1zM2.5%206c-.276%200-.5.215-.5.49v3.02a.5.5%200%200%200%20.5.49c.276%200%20.5-.215.5-.49V6.49A.5.5%200%200%200%202.5%206zm7.144-3.778C11.918%202.916%2012%205%2012%205H4s.082-2.084%202.356-2.778l-.32-.688a.375.375%200%200%201%20.679-.317l.393.842C7.38%202.02%207.678%202%208%202c.323%200%20.62.02.892.059l.393-.842a.375.375%200%200%201%20.68.317l-.321.688zM13.5%206a.5.5%200%200%201%20.5.49v3.02c0%20.275-.224.49-.5.49a.5.5%200%200%201-.5-.49V6.49c0-.275.224-.49.5-.49zm-7-2c.268%200%20.5-.224.5-.5%200-.268-.224-.5-.5-.5-.268%200-.5.224-.5.5%200%20.268.224.5.5.5zm3%200c.268%200%20.5-.224.5-.5%200-.268-.224-.5-.5-.5-.268%200-.5.224-.5.5%200%20.268.224.5.5.5z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--ru {
+    background-image: url(/images/login/ru/reg_android_ru.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--android.LoginMobilePromoDevice--ru {
+        background-image: url(/images/login/ru/reg_android_ru_2x.png);
+        background-size: 183px 384px
+    }
+}
+
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--en {
+    background-image: url(/images/login/en/reg_android_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--android.LoginMobilePromoDevice--en {
+        background-image: url(/images/login/en/reg_android_en_2x.png);
+        background-size: 183px 384px
+    }
+}
+
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--ua {
+    background-image: url(/images/login/ua/reg_android_ua.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--android.LoginMobilePromoDevice--ua {
+        background-image: url(/images/login/ua/reg_android_ua_2x.png);
+        background-size: 183px 384px
+    }
+}
+
+.LoginMobilePromoDevice--android.LoginMobilePromoDevice--br {
+    background-image: url(/images/login/br/reg_android_br.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--android.LoginMobilePromoDevice--br {
+        background-image: url(/images/login/br/reg_android_br_2x.png);
+        background-size: 183px 384px
+    }
+}
+
+.LoginMobilePromoDevice--ios {
+    background: no-repeat 0 0;
+    width: 198px;
+    margin-left: -30px
+}
+
+.LoginMobilePromoDevice--ios .LoginMobilePromoDevice__button:before {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2216%22%20height%3D%2216%22%20rx%3D%22.533%22%2F%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M11.761%207.085c-.017-1.689%201.381-2.499%201.444-2.54-.786-1.145-2.01-1.302-2.446-1.32-1.04-.105-2.031.611-2.56.611-.527%200-1.343-.596-2.206-.58-1.135.017-2.182.658-2.766%201.671-1.18%202.04-.302%205.063.847%206.718.562.81%201.231%201.72%202.11%201.687.847-.033%201.168-.546%202.191-.546%201.024%200%201.312.546%202.208.53.911-.017%201.489-.826%202.046-1.638.645-.94.91-1.85.927-1.896-.02-.01-1.777-.68-1.795-2.697zm-1.684-4.956c.467-.564.782-1.348.696-2.129-.672.027-1.487.446-1.97%201.01-.432.5-.811%201.297-.71%202.063.751.058%201.517-.38%201.984-.944z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ru {
+    background-image: url(/images/login/ru/reg_iphone_ru.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ru {
+        background-image: url(/images/login/ru/reg_iphone_ru_2x.png);
+        background-size: 198px 396px
+    }
+}
+
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--en {
+    background-image: url(/images/login/en/reg_iphone_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--ios.LoginMobilePromoDevice--en {
+        background-image: url(/images/login/en/reg_iphone_en_2x.png);
+        background-size: 198px 396px
+    }
+}
+
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ua {
+    background-image: url(/images/login/ua/reg_iphone_ua.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--ios.LoginMobilePromoDevice--ua {
+        background-image: url(/images/login/ua/reg_iphone_ua_2x.png);
+        background-size: 198px 396px
+    }
+}
+
+.LoginMobilePromoDevice--ios.LoginMobilePromoDevice--br {
+    background-image: url(/images/login/br/reg_iphone_br.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .LoginMobilePromoDevice--ios.LoginMobilePromoDevice--br {
+        background-image: url(/images/login/br/reg_iphone_br_2x.png);
+        background-size: 198px 396px
+    }
 }
 
 .login_mobile_close {
@@ -1310,16 +1454,6 @@ table.login_blocked_reason_thumbs {
     margin: 26px auto 6px
 }
 
-.login_app_devices {
-    white-space: nowrap;
-    padding: 44px 0 2px
-}
-
-.login_app_devices a,
-.login_app_devices a:hover {
-    text-decoration: none
-}
-
 .login_about_mobile {
     font-size: 12.5px;
     text-align: center;
@@ -1328,224 +1462,6 @@ table.login_blocked_reason_thumbs {
     color: #000;
     border-top: 1px solid #e7e8ec;
     border-radius: 0 0 4px 4px
-}
-
-.login_app_device_screen {
-    width: 192px;
-    height: 397px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%
-}
-
-.login_app_device_ios {
-    margin-left: -348px;
-    margin-right: 156px
-}
-
-.login_app_device_ios .login_app_device_screen {
-    background-image: url(/images/login/ios_ru.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_ios .login_app_device_screen {
-        background-image: url(/images/login/ios_ru_2x.png?5);
-        background-size: 192px 397px
-    }
-}
-
-.login_app_device_ios .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/ios_en.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_ios .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/ios_en_2x.png?5);
-        background-size: 192px 397px
-    }
-}
-
-.login_app_device_ios .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/ios_ua.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_ios .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/ios_ua_2x.png?5);
-        background-size: 192px 397px
-    }
-}
-
-.login_app_device_ios .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/ios_br.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_ios .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/ios_br_2x.png?5);
-        background-size: 192px 397px
-    }
-}
-
-.login_app_device_android {
-    margin-right: 116px
-}
-
-.login_app_device_android .login_app_device_screen {
-    background-image: url(/images/login/android_ru.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_android .login_app_device_screen {
-        background-image: url(/images/login/android_ru_2x.png?5);
-        background-size: 181px 372px
-    }
-}
-
-.login_app_device_android .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/android_en.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_android .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/android_en_2x.png?5);
-        background-size: 181px 372px
-    }
-}
-
-.login_app_device_android .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/android_ua.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_android .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/android_ua_2x.png?5);
-        background-size: 181px 372px
-    }
-}
-
-.login_app_device_android .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/android_br.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_android .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/android_br_2x.png?5);
-        background-size: 181px 372px
-    }
-}
-
-.login_app_device_wp .login_app_device_screen {
-    background-image: url(/images/login/wp_ru.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_wp .login_app_device_screen {
-        background-image: url(/images/login/wp_ru_2x.png?5);
-        background-size: 192px 372px
-    }
-}
-
-.login_app_device_wp .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/wp_en.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_wp .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/wp_en_2x.png?5);
-        background-size: 192px 372px
-    }
-}
-
-.login_app_device_wp .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/wp_ua.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_wp .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/wp_ua_2x.png?5);
-        background-size: 192px 372px
-    }
-}
-
-.login_app_device_wp .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/wp_br.png?5)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_device_wp .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/wp_br_2x.png?5);
-        background-size: 192px 372px
-    }
-}
-
-.login_app_device {
-    display: inline-block;
-    vertical-align: bottom
-}
-
-.login_app_device_screen {
-    cursor: pointer
-}
-
-.login_app_download_wrap {
-    margin-top: 20px
-}
-
-.login_app_download_wrap .flat_button {
-    line-height: 19px
-}
-
-.login_app_download_icon {
-    background-image: url(/images/login/platforms.png);
-    width: 18px;
-    height: 22px;
-    display: inline-block;
-    margin: -1px 8px -7px 0
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .login_app_download_icon {
-        background-image: url(/images/login/platforms_2x.png);
-        background-size: 18px 67px
-    }
-}
-
-.login_app_device_ios .login_app_download_icon {
-    background-position: 0px 0px
-}
-
-.login_app_device_android .login_app_download_icon {
-    background-position: 0px -23px
-}
-
-.login_app_device_wp .login_app_download_icon {
-    background-position: 0px -44px
 }
 
 .login_all_products_button {

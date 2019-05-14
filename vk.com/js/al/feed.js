@@ -1835,30 +1835,6 @@ var Feed = {
         var point = cur.replySubmitSettings;
         point && point.tt && point.tt.el && point.tt.destroy();
     },
-    ungroup: function(item, ev) {
-        var el = ge('feedback_row' + item);
-        ev = ev || window.event;
-        if (!el || checkEvent(ev) || !Wall.checkPostClick(el, ev, true)) return;
-
-        var hid = domNS(domPN(el)),
-            names = geByClass1('_header', el),
-            tmp = val(names),
-            name = ge('fbgr_' + item + '_that');
-        toggle(hid);
-        toggleClass(el, 'feedback_row_expanded', isVisible(hid));
-        val(names, val(name));
-        val(name, tmp);
-    },
-    ungroupUnified: function(item, ev) {
-        var el = ge('feedback_row' + item);
-        ev = ev || window.event;
-        if (!el || checkEvent(ev) || !Wall.checkPostClick(el, ev, true)) return;
-
-        var hid = domNS(domPN(el));
-        show(hid);
-        re(domPN(el));
-    },
-
     notifyPostTooltip: function(el, post, opts, tt_opts) {
         var reply = (opts || {}).reply,
             url = 'al_wall.php';

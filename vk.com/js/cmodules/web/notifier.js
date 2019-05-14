@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var l = 0; l < s.length; l++) t(s[l]);
     var u = c;
-    r.push([110, "common", "37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    r.push([111, "common", "37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
     "+iox": function(e, t, i) {
         "use strict";
@@ -118,7 +118,7 @@
             }
         }), window.IdleManager = a
     },
-    110: function(e, t, i) {
+    111: function(e, t, i) {
         e.exports = i("8S/u")
     },
     "8S/u": function(e, t, i) {
@@ -3600,27 +3600,8 @@
                 }
                 return i || !0
             },
-            ungroup: function ungroup(item, event) {
-                var el = ge("top_feedback_row" + item);
-                if (event = event || window.event, el && !hasClass(el, "feedback_row_expanded") && !checkEvent(event) && TopNotifier.checkClick(el, event)) {
-                    var hid = domNS(domPN(el)),
-                        names = geByClass1("_header", el),
-                        text = domData(names, "text");
-                    show(hid), removeClass(el, "feedback_row_grouped"), addClass(el, "feedback_row_expanded"), val(names, text);
-                    var evalExpr = "(function(){ if (!TopNotifier.checkClick(this, event)) return; " + unclean(domData(names, "click")) + ";})";
-                    try {
-                        el.onclick = eval(evalExpr)
-                    } catch (e) {
-                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_0__.d)(e, evalExpr)
-                    }
-                }
-            },
             ungroupUnified: function(e, t) {
-                var i = ge("top_feedback_row" + e);
-                if (t = t || window.event, i && !hasClass(i, "feedback_row_expanded") && !checkEvent(t) && TopNotifier.checkClick(i, t)) {
-                    var a = domNS(domPN(i));
-                    show(a), re(domPN(i)), t.stopPropagation(), t.preventDefault()
-                }
+                e = domClosest("_feed_row", e), show(domNS(e)), re(e), t.stopPropagation(), t.preventDefault()
             },
             showActionsMenu: function(e) {
                 var t = !1,
