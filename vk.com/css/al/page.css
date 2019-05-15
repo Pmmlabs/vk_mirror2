@@ -7110,6 +7110,30 @@ a.page_media_link_desc {
     filter: alpha(opacity=60)
 }
 
+.page_media_qr_link td.page_media_link_thumb {
+    height: 150px
+}
+
+.page_media_qr_link .page_media_link_desc_td {
+    padding-top: 18px;
+    padding-bottom: 20px;
+    position: relative
+}
+
+.page_media_qr_link a.page_media_link_title {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 21px
+}
+
+.page_media_qr_link .wall_postlink_preview_btn {
+    position: absolute;
+    bottom: 20px
+}
+
 .page_media_link_thumb {
     position: relative
 }

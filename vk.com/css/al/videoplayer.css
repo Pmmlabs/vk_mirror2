@@ -968,7 +968,8 @@
     height: 37px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: transparent
+    background-color: transparent;
+    position: relative
 }
 
 .videoplayer_end_info_author_photo:before,
@@ -2034,13 +2035,13 @@
 }
 
 .videoplayer_donation ._sender_photo {
-    position: relative;
     float: left;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: transparent
+    background-color: transparent;
+    position: relative
 }
 
 .videoplayer_donation ._sender_photo:before,

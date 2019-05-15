@@ -842,6 +842,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     vertical-align: top
 }
 
@@ -963,7 +964,8 @@
     height: 34px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .feedback_group_photo_img:before {
@@ -1262,7 +1264,8 @@
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .feedback_sticky_img:before {
@@ -1541,7 +1544,8 @@
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .feedback_row_answer .feedback_img:before {

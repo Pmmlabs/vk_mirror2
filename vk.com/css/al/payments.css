@@ -80,6 +80,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -177,6 +178,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -227,6 +229,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -325,6 +328,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -395,6 +399,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -493,6 +498,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -563,6 +569,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -661,6 +668,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -731,6 +739,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -839,7 +848,8 @@
     height: 50px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .payments_box_votes .payments_summary_phumb:before {
@@ -2275,6 +2285,7 @@ h2.payments_getvotes_title {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: #fff
 }
 
@@ -2611,7 +2622,8 @@ h2.payments_getvotes_title {
     height: 36px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 #payments_box.payments_money_transfer_box .payments_transfer_to_photo:before {
@@ -2730,6 +2742,81 @@ h2.payments_getvotes_title {
     margin-top: 16px
 }
 
+#payments_box.payments_money_transfer_box #payments_money_transfer_user_select {
+    margin: 5px 0
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_label {
+    padding: 0 0 8px;
+    color: #222;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-align: left
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copied {
+    display: none;
+    padding-left: 4px;
+    color: #939393;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_labeled_link {
+    padding: 20px 25px 25px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_labeled_link:last-child {
+    border: none
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copy_table {
+    border: none;
+    width: 100%
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copy_table+.payments_money_transfer_link_notice {
+    padding-top: 8px
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copy_input_td {
+    width: 100%
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copy_input {
+    width: 100%;
+    color: #000;
+    -webkit-text-fill-color: #000;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_copy_btn {
+    margin-left: 10px
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_link_notice {
+    color: #939393
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_qr_box {
+    float: right;
+    width: 115px;
+    height: 115px
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_qr_buttons {
+    margin-top: 12px
+}
+
+#payments_box.payments_money_transfer_box .payments_money_transfer_qr_buttons .flat_button {
+    margin-right: 10px
+}
+
 .payments_money_transfer_chat_photo_wrap {
     width: 36px;
     height: 36px;
@@ -2759,6 +2846,7 @@ h2.payments_getvotes_title {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 

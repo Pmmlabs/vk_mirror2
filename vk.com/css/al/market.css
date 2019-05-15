@@ -703,6 +703,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     margin-right: 12px
 }
 
@@ -2193,7 +2194,8 @@
     height: 18px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 #marketplace .market_content .market_row .market_place_friend_badge:before {

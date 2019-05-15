@@ -470,7 +470,8 @@ body.mobfixed #mv_layer_wrap {
     height: 50px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .mv_live_gift_popup_author_thumb:before {
@@ -552,9 +553,9 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_author_photo {
-    position: relative;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .mv_author_photo:before {
@@ -2796,12 +2797,12 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 }
 
 .mv_chat_message_author_thumb_img {
-    position: relative;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: transparent
+    background-color: transparent;
+    position: relative
 }
 
 .mv_chat_message_author_thumb_img:before {
@@ -3058,6 +3059,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: transparent;
+    position: relative;
     backface-visibility: hidden;
     left: 0;
     position: absolute;
@@ -3315,7 +3317,8 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .video_donate_intro_author_photo:before {

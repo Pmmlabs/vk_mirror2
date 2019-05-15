@@ -73,7 +73,8 @@
     height: 50px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .mail_box_single_ava .mail_box_single_ava_img:before {

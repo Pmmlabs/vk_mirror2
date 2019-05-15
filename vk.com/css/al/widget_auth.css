@@ -152,7 +152,8 @@
 .wauth_user_pic img {
     vertical-align: top;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .wauth_user_pic img:before {
@@ -235,7 +236,8 @@
 .wauth_friend img {
     vertical-align: top;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .wauth_friend img:before {

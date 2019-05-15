@@ -445,7 +445,8 @@ div.search_row:first-child {
     height: 80px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .search_item_img:before {

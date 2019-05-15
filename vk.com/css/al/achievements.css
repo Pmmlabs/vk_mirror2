@@ -572,7 +572,8 @@
     height: 60px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .ach_links_list_row_img:before {
@@ -719,7 +720,8 @@
     height: 35px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .ach_history_row_img_circle:before {
@@ -920,7 +922,8 @@
     height: 35px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .ach_request_row_img_circle:before {
@@ -1025,7 +1028,8 @@
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .ach_leaders_people .ach_leaders_row__img:before {

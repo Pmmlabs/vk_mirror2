@@ -309,6 +309,7 @@ i i.untranslated {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     margin-right: 10px
 }
 

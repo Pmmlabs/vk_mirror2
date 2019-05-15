@@ -593,6 +593,7 @@ body.mac .wcommunity_show_more button .pr {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     margin-bottom: 20px
 }
 

@@ -1774,6 +1774,7 @@ body.dev .tickets_faq_row {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     height: 50px
 }
 

@@ -971,6 +971,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     vertical-align: middle
 }
 
@@ -1862,6 +1863,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     float: left;
     margin-right: 6px
 }

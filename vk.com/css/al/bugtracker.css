@@ -1272,7 +1272,8 @@
     height: 50px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .bt_reproducer .bt_reproducer_photo .bt_reproducer_photo_img:before {
@@ -2186,15 +2187,17 @@
 
 .bt_reporter_icon {
     float: left;
+    overflow: hidden
+}
+
+.bt_reporter_icon,
+.bt_reporter_icon_img {
     width: 80px;
     height: 80px;
-    overflow: hidden;
     position: relative
 }
 
 .bt_reporter_icon_img {
-    width: 80px;
-    height: 80px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc
@@ -2431,7 +2434,8 @@
     height: 80px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .bt_product_row_photo__img:before {
@@ -2559,6 +2563,7 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     vertical-align: middle;
     display: block
 }

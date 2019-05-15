@@ -4873,7 +4873,8 @@ a.page_block_header:hover .apps_cat_header_link:after {
     height: 34px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .apps_app_widget_preview_box_photo:before {
@@ -7158,6 +7159,7 @@ td.apps_cat_new_h {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     margin-bottom: 20px
 }
 

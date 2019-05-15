@@ -17741,6 +17741,7 @@ div.chat_tab_img {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     display: inline-block
 }
 

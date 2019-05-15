@@ -1677,6 +1677,7 @@ table.login_blocked_reason_thumbs {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     margin: 32px auto 0;
     display: block
 }

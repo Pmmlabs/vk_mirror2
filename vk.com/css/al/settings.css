@@ -761,6 +761,7 @@ img.settings_bl_photo {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     overflow: hidden
 }
 

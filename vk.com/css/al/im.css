@@ -7462,6 +7462,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     vertical-align: top
 }
 
@@ -7500,7 +7501,8 @@ img.im_photo_thumb {
     height: 48px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .im-page_classic .im-popular--avatar:before {
@@ -8303,6 +8305,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8400,6 +8403,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8450,6 +8454,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8548,6 +8553,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8618,6 +8624,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8716,6 +8723,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8786,6 +8794,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8884,6 +8893,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -8954,6 +8964,7 @@ img.im_photo_thumb {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -9854,6 +9865,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
+    position: relative;
     background-color: inherit
 }
 
@@ -11332,13 +11344,13 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-prebody img {
-    position: relative;
     overflow: hidden;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .im-prebody img:before {
@@ -12265,7 +12277,8 @@ body.sf .nim-dialog .nim-dialog--unread {
     height: 80px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    position: relative
 }
 
 .im-invitation .im-invitation--chat-photo-src:before {
