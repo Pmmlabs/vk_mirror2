@@ -1258,13 +1258,14 @@ table.login_blocked_reason_thumbs {
 
 .LoginMobilePromo__devices {
     white-space: nowrap;
-    padding: 44px 0 2px;
+    padding-top: 32px;
     font-size: 0
 }
 
-.LoginMobilePromoDevice__button {
+.LoginMobilePromoDevice__button.flat_button {
     margin-top: 16px;
-    line-height: 16px
+    line-height: 16px;
+    font-size: 13px
 }
 
 .LoginMobilePromoDevice__button:before {
@@ -1272,14 +1273,17 @@ table.login_blocked_reason_thumbs {
     width: 16px;
     height: 16px;
     margin-right: 4px;
+    margin-left: -4px;
     vertical-align: top;
-    display: inline-block
+    display: inline-block;
+    position: relative;
+    bottom: -1px
 }
 
 .LoginMobilePromoDevice {
     text-decoration: none;
     display: inline-block;
-    padding-top: 396px
+    padding-top: 395px
 }
 
 .LoginMobilePromoDevice--android {
@@ -1346,7 +1350,7 @@ table.login_blocked_reason_thumbs {
 .LoginMobilePromoDevice--ios {
     background: no-repeat 0 0;
     width: 198px;
-    margin-left: -30px
+    margin-left: -31px
 }
 
 .LoginMobilePromoDevice--ios .LoginMobilePromoDevice__button:before {
@@ -1441,13 +1445,17 @@ table.login_blocked_reason_thumbs {
 
 .login_mobile_header {
     font-size: 22px;
-    margin-bottom: 25px
+    line-height: 26px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 8px
 }
 
 .login_mobile_info {
     font-size: 14px;
-    color: #222;
-    line-height: 23px
+    color: #626d7a;
+    line-height: 20px
 }
 
 .login_mobile_install_button {

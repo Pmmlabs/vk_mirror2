@@ -44,8 +44,9 @@ if (!window.Upload) {
                     }
                 }
             }
-            if (options.noCheck) {
+            if (options.noCheck || window.partConfigEnabled('upload.dont_check_upload')) {
                 this.embed(iUpload);
+                this.onCheckComplete(iUpload);
             } else {
                 this.check(iUpload);
             }

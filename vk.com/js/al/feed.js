@@ -2465,7 +2465,7 @@ var Feed = {
             if (ntop < st && nel) cur.topRow = nel;
             LongView && LongView.register(el, 'feed');
             if (longView.registerElement(el)) {
-                if (longView.isAutoplayAd(el) || longView.isAdWithLongImpressionOnly(el)) {
+                if (longView.isAutoplayAd(el)) {
                     continue;
                 }
             }
@@ -2497,7 +2497,11 @@ var Feed = {
                 if (bits == 3) {
                     var postRaws = feed.postsGetRaws(el);
 
-                    posts.push(postRaws);
+                    if (longView.isAdWithLongImpressionOnly(el)) {
+                        Wall.triggerAdStat(el, 'impression');
+                    } else {
+                        posts.push(postRaws);
+                    }
 
                     if (hasClass(el, 'feed_to_recomm')) {
                         statlogsValueEvent('promo_button_view_blocks', postRaws.index, postRaws.module);

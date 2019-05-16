@@ -11967,7 +11967,7 @@ body.vk_app_fixed {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -11992,8 +11992,7 @@ body.vk_app_fixed {
 }
 
 .AppPreloadInfo--hidden {
-    opacity: 0;
-    height: 100%
+    opacity: 0
 }
 
 .AppPreloadInfo__SpinnerContainer {
@@ -12428,6 +12427,7 @@ body.vk_app_fixed {
 
 .vk_app_layout .app_container iframe {
     min-height: 100vh;
+    height: 100%;
     max-height: 100vh
 }
 
@@ -12435,6 +12435,11 @@ body.vk_app_fixed {
     padding: 0
 }
 
+.vk_app_android .AppPreloadInfo {
+    height: 100%
+}
+
+.vk_app_android .AppPreloadInfo,
 .vk_app_android .app_container iframe {
     min-height: -webkit-calc(100vh - 56px);
     min-height: -moz-calc(100vh - 56px);
