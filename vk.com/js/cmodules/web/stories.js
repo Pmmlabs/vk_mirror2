@@ -2524,7 +2524,7 @@
                 }, t.prototype.changeStory = function(t) {
                     this.activeStory && this.activeStory.changeStory(t)
                 }, t.prototype._readStories = function() {
-                    if (this.storiesToRead.length || bt.length || wt.length) {
+                    if (this.storiesToRead.length && (bt.length || wt.length)) {
                         var t, e, r = this._getSource(),
                             o = this.storiesToRead.join(","),
                             i = this.storiesSkip.join(",");

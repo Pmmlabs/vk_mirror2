@@ -13194,6 +13194,10 @@ a.Popup__headerCorner {
     pointer-events: none
 }
 
+.Btn_loading .Btn__text {
+    opacity: 0
+}
+
 .Btn_theme_regular .BookmarksItem .ai_menu_toggle_button,
 .Btn_theme_regular .GlobalSearchHeader .i_search,
 .Btn_theme_regular .Icon,
@@ -51743,6 +51747,42 @@ a .BookmarkListItem__subtitle:hover {
     margin: 0 6px
 }
 
+.svgIcon-mail-bot_buttons {
+    -moz-background-size: 69px 40px;
+    -o-background-size: 69px 40px;
+    background-size: 69px 40px;
+    background-image: url('/images/mobile/icons/sprites/mail-bot_buttons-72ec1049.svg')
+}
+
+.vk_old.vk_1x .svgIcon-mail-bot_buttons {
+    background-image: url('/images/mobile/icons/sprites/mail-bot_buttons-72ec1049_1x.png')
+}
+
+.vk_old.vk_2x .svgIcon-mail-bot_buttons {
+    background-image: url('/images/mobile/icons/sprites/mail-bot_buttons-72ec1049_2x.png')
+}
+
+.svgIcon-mail-bot_buttons__place_24 {
+    background-position: 0 -16px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-bot_buttons__service_24 {
+    background-position: -45px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-bot_buttons__vkpay {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 45px;
+    height: 16px
+}
+
 .CopyrightPopup .Popup__header {
     font-size: 16px;
     padding: 0 0 8px
@@ -52670,8 +52710,7 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .uMailWrite__keyboardButton {
-    background-color: #dfe6ed;
-    color: #000;
+    font-weight: 400;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -52684,7 +52723,18 @@ a .BookmarkListItem__subtitle:hover {
     flex-grow: 1;
     -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
-    flex-shrink: 1
+    flex-shrink: 1;
+    background-color: #e6ebf1;
+    color: #000
+}
+
+._hover .uMailWrite__keyboardButton:hover {
+    background: rgba(230, 235, 241, .8)
+}
+
+._hover .uMailWrite__keyboardButton:active,
+._touch .uMailWrite__keyboardButton.hover {
+    background: #c5d2df
 }
 
 .uMailWrite__keyboardButton_primary {
@@ -52692,9 +52742,27 @@ a .BookmarkListItem__subtitle:hover {
     color: #fff
 }
 
+._hover .uMailWrite__keyboardButton_primary:hover {
+    background: #6b94c3
+}
+
+._hover .uMailWrite__keyboardButton_primary:active,
+._touch .uMailWrite__keyboardButton_primary.hover {
+    background: #4b74a3
+}
+
 .uMailWrite__keyboardButton_negative {
     background-color: #e64646;
     color: #fff
+}
+
+._hover .uMailWrite__keyboardButton_negative:hover {
+    background: #ea6262
+}
+
+._hover .uMailWrite__keyboardButton_negative:active,
+._touch .uMailWrite__keyboardButton_negative.hover {
+    background: #db1e1e
 }
 
 .uMailWrite__keyboardButton_positive {
@@ -52702,8 +52770,36 @@ a .BookmarkListItem__subtitle:hover {
     color: #fff
 }
 
+._hover .uMailWrite__keyboardButton_positive:hover {
+    background: #66be66
+}
+
+._hover .uMailWrite__keyboardButton_positive:active,
+._touch .uMailWrite__keyboardButton_positive.hover {
+    background: #3c8f3c
+}
+
 .uMailWrite__keyboardButton:not(:first-child) {
     margin-left: 8px
+}
+
+.uMailWrite__keyboardButtonInner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%
 }
 
 .uMailWrite__templates {

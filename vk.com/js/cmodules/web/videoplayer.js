@@ -1956,7 +1956,7 @@
                     var a = Math.max.apply(Math, Lt(i));
                     n = Math.min(n, a);
                     var l = this.getLevelIndexForQuality(n);
-                    this.hls.startLevel = l, r && this.setCurrentLevel(l), this.player.onQualityChanged(n), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load(), r || this.player.isActiveLive() || this.forceNextLevel(l)
+                    this.hls.startLevel = l, r && this.setCurrentLevel(l), this.player.onQualityChanged(n), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load()
                 }
             }, e.prototype.onLevelSwitch = function(t, e) {
                 var i = this.hls.levels[e.level],
