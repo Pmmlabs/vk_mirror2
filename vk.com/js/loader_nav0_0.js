@@ -169,7 +169,7 @@ var stVersions = {
     'blog.css': 21618611385,
     'blog.js': 3048193982,
     'audioplayer.js': "17481365f2c5bb1b7a92d10040437ae1dca",
-    'audio.js': "26931b92362703b1333f8e46799055cfe2c",
+    'audio.js': "2697d0a9d5f9f404908203e0bba8581f36f",
     'audio.css': 31384624814,
     'audio_admins.css': 24524271512,
     'gifts.css': 23369636757,
@@ -362,7 +362,7 @@ var stVersions = {
     'cmodules/web/bugtracker.js': "26f1d624d8c3b442c1f866c10bd5e176c",
     'login.css': 27128958552,
     'cmodules/web/login.js': "15e2be816d163d49cb985ad1effa40ef94",
-    'upload.js': 1220668021,
+    'upload.js': 2558068015,
     'upload_photo_transform.js': 1497838791,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 25902483707,
@@ -602,7 +602,7 @@ var stVersions = {
     'cmodules/bundles/8f9b95e37f18d0c7165292d5115bec0e.js': '91ea17f16e2ffbe4065b',
     'cmodules/bundles/922212473b83a11bea81153804d90f9d.js': 'ebe86731d5b5ae68d21d',
     'cmodules/bundles/a81cf41ddc395f6c399315bd508b7abf.js': '8d773a503b93d6879797',
-    'cmodules/bundles/audioplayer.js': '57a0bcfd4ed03da0ef68',
+    'cmodules/bundles/audioplayer.js': '9a376359d455a4170d4c',
     'cmodules/bundles/vendors.js': 'aeccf1eb258460e8cbbc',
     'cmodules/bundles/common.js': 'fe4536a28db2b2f9ed24',
     'cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.js': '21512de761e9a49b5567',
@@ -613,7 +613,7 @@ var stVersions = {
     'cmodules/web/apps_edit.js': 'c528ee44381f0e61605842a5090971a7',
     'cmodules/web/article_editor_layer.js': 'e2c88d5c72ebfccf1e7518002c549bd0',
     'cmodules/web/article_view.js': '567d48a168c14934faf554e05f22c278',
-    'cmodules/web/audio.js': '31b92362703b1333f8e46799055cfe2c',
+    'cmodules/web/audio.js': '7d0a9d5f9f404908203e0bba8581f36f',
     'cmodules/web/audioplayer.js': '81365f2c5bb1b7a92d10040437ae1dca',
     'cmodules/web/bugtracker_testrun.js': 'f5573cad9bee36029f728fdb09a6da22',
     'cmodules/web/checklists.js': '29c17a1bf27f06d985bcd0d7ec7ce0fb',
@@ -711,7 +711,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9193;
+var _rnd = 5702;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
