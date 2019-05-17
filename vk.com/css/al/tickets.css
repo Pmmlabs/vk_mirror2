@@ -26,6 +26,7 @@
 .tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
+.tickets_media_icon,
 .tickets_mobile_notice__close,
 .tickets_new_extra_field__uploaded,
 .tickets_suggest__icon:after,
@@ -2837,11 +2838,20 @@ a.tickets_question_row_tt_unread {
 
 .tickets_media_icon {
     float: left;
-    background: url(/images/icons/mono_iconset.png?1) no-repeat 0 -294px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat 0 -294px;
     width: 11px;
     height: 11px;
     margin-right: 3px;
-    margin-top: 3px
+    margin-top: 1px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_media_icon {
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
+        background-size: 12px 417px
+    }
 }
 
 .tickets_provider_email textarea {

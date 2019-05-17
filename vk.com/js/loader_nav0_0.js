@@ -350,7 +350,7 @@ var stVersions = {
     'tags_dd.css': 19778510027,
     'helpdesk.css': 36128817270,
     'cmodules/web/support.js': "2bdc7283a6aebde81ec99ff21f98c8350",
-    'tickets.css': 36017479209,
+    'tickets.css': 35449444825,
     'faq.css': 25635607422,
     'agents.css': 19756243515,
     'achievements.css': 18273210512,
@@ -594,7 +594,7 @@ var stVersions = {
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '3ad6443b8ff37a3ac10f',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': '63637192dd71d5c9f64f',
     'cmodules/bundles/3c3425c9f3cf4d66a7f6633fe2397772.js': 'd1ded2d9e2bf3caa54ff',
-    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': '4a327fd0ae20760c74bd',
+    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': '638878f0ce054df93a4f',
     'cmodules/bundles/6d669e070da493537223b2032427707c.js': '0f5ffe789441e17d89ab',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.js': 'bad4ac5597ff22247557',
     'cmodules/bundles/8afc6fda89c949d8a6d98f6fbcc1090c.js': '0a774211d42463412908',
@@ -711,7 +711,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5702;
+var _rnd = 4269;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
