@@ -23071,15 +23071,23 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     clear: both
 }
 
-.article .video_box_wrap,
-.article .article_object_audio {
+.article .video_box_wrap {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .article .article_object_audio {
-    text-align: left;
-    font-size: 13px;
     padding: 0 100px
+}
+
+.article .article_object_audio,
+.article .article_object_poll {
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px
+}
+
+.article .article_object_poll {
+    padding: 0 85px
 }
 
 .article .article_object_gif {
@@ -23116,11 +23124,21 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article figure[data-type="100"],
-.article figure[data-type="104"] {
+.article figure[data-type="104"],
+.article figure[data-type="111"] {
     line-height: 1em
 }
 
-.article figure[data-type="105"] .article_figure_content {
+.article figure[data-type="111"] .voting_tt_image {
+    width: 35px;
+    height: 35px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.article figure[data-type="105"] .article_figure_content,
+.article figure[data-type="111"] .article_figure_content {
     overflow: visible
 }
 
@@ -23389,7 +23407,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .article_view>figure[data-type="100"],
 .article_view>figure[data-type="104"],
-.article_view>figure[data-type="105"] {
+.article_view>figure[data-type="105"],
+.article_view>figure[data-type="111"] {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     padding: 0 100px
@@ -23750,7 +23769,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .article.article_mobile>figure[data-type="107"],
 .article.article_mobile>figure[data-type="108"],
 .article.article_mobile>figure[data-type="109"],
-.article.article_mobile>figure[data-type="110"] {
+.article.article_mobile>figure[data-type="110"],
+.article.article_mobile>figure[data-type="111"] {
     padding: 0 16px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -24329,6 +24349,14 @@ figure[data-type="102"] .article_object_video_play {
     background-position: 0 -1417px
 }
 
+.article_dark .Voting .BookmarksItem_article .ai_menu_toggle_button:before,
+.article_dark .Voting .BookmarksItem_narrative .ai_menu_toggle_button:before,
+.article_dark .Voting .BookmarksItem_post .ai_menu_toggle_button:before,
+.article_dark .Voting .BookmarksItem_video .ai_menu_toggle_button:before,
+.article_dark .Voting .Icon_more:before {
+    background-position: 0 -1320px
+}
+
 .article_dark .articleView__footer_views {
     color: hsla(0, 0%, 100%, .4)
 }
@@ -24837,6 +24865,11 @@ figure[data-type="102"] .article_object_video_play {
     left: 0;
     word-break: break-word;
     z-index: 9999
+}
+
+.article .Unfold__itemText,
+.article_dark .article .Unfold__itemText {
+    color: #000
 }
 
 @media (min-width: 882px) {

@@ -784,15 +784,23 @@
     clear: both
 }
 
-.article .video_box_wrap,
-.article .article_object_audio {
+.article .video_box_wrap {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .article .article_object_audio {
-    text-align: left;
-    font-size: 13px;
     padding: 0 100px
+}
+
+.article .article_object_audio,
+.article .article_object_poll {
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px
+}
+
+.article .article_object_poll {
+    padding: 0 85px
 }
 
 .article .article_object_gif {
@@ -823,11 +831,19 @@
 }
 
 .article figure[data-type="100"],
-.article figure[data-type="104"] {
+.article figure[data-type="104"],
+.article figure[data-type="111"] {
     line-height: 1em
 }
 
-.article figure[data-type="105"] .article_figure_content {
+.article figure[data-type="111"] .voting_tt_image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%
+}
+
+.article figure[data-type="105"] .article_figure_content,
+.article figure[data-type="111"] .article_figure_content {
     overflow: visible
 }
 
@@ -1061,7 +1077,8 @@
 
 .article_view>figure[data-type="100"],
 .article_view>figure[data-type="104"],
-.article_view>figure[data-type="105"] {
+.article_view>figure[data-type="105"],
+.article_view>figure[data-type="111"] {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     padding: 0 100px
@@ -1404,7 +1421,8 @@
 .article.article_mobile>figure[data-type="107"],
 .article.article_mobile>figure[data-type="108"],
 .article.article_mobile>figure[data-type="109"],
-.article.article_mobile>figure[data-type="110"] {
+.article.article_mobile>figure[data-type="110"],
+.article.article_mobile>figure[data-type="111"] {
     padding: 0 16px;
     box-sizing: border-box
 }
@@ -2590,6 +2608,11 @@ body.article_body .article_layer {
 
 .article_dark .ui_actions_menu:after,
 .article_dark .ui_actions_menu:before {
+    border-bottom-color: #333!important
+}
+
+.article_dark .ui_actions_menu .ui_actions_menu_top:after,
+.article_dark .ui_actions_menu .ui_actions_menu_top:before {
     border-top-color: #333!important
 }
 

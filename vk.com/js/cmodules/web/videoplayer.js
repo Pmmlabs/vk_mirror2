@@ -69,12 +69,12 @@
     a.push = e, a = a.slice();
     for (var u = 0; u < a.length; u++) e(a[u]);
     var h = l;
-    o.push([151, "common"]), i()
+    o.push([152, "common"]), i()
 }({
     "+SFK": function(t, e, i) {
         i("AUvm"), i("wgeU"), t.exports = i("WEpk").Symbol
     },
-    151: function(t, e, i) {
+    152: function(t, e, i) {
         t.exports = i("bvfi")
     },
     "29s/": function(t, e, i) {
@@ -5185,7 +5185,7 @@
                     })
                 }
             }, e.prototype.canShowEndScreen = function() {
-                return (!this.getVar("live") || this.getVar("live") === at) && (!this.getVar("nolikes") || (this.getVar("show_next") && this.player.getNextVideos().length || this.getVar("show_suggestions") && this.player.getSuggestions().length))
+                return !!this._adsSnippetsVideo || (!this.getVar("live") || this.getVar("live") === at) && (!this.getVar("nolikes") || (this.getVar("show_next") && this.player.getNextVideos().length || this.getVar("show_suggestions") && this.player.getSuggestions().length))
             }, e.prototype.buildEndScreen = function() {
                 var t, e, i = [],
                     n = !1,
@@ -5677,6 +5677,7 @@
                         last_pos: this.player.curTime(),
                         post_id: this.getVar("post_id"),
                         module: this.getVar("module"),
+                        ad_data: this.getVar("ad_data"),
                         hls_candy: "hls" == this.player.getMediaProviderType() && this.getVar("hls_candy_server") ? 1 : 0
                     })
                 }, e.prototype.flushWatchData = function() {

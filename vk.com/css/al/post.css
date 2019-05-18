@@ -1349,6 +1349,17 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
     margin-right: -5px
 }
 
+.article_poll_creation .page_add_media,
+.article_poll_creation .page_preview_poll_wrap {
+    display: none
+}
+
+.article_poll_creation .media_preview_has_medias {
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: none
+}
+
 .page_preview_audio_wrap {
     position: relative
 }

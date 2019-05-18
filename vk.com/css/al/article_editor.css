@@ -628,15 +628,23 @@
     clear: both
 }
 
-.article .video_box_wrap,
-.article .article_object_audio {
+.article .video_box_wrap {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .article .article_object_audio {
-    text-align: left;
-    font-size: 13px;
     padding: 0 100px
+}
+
+.article .article_object_audio,
+.article .article_object_poll {
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px
+}
+
+.article .article_object_poll {
+    padding: 0 85px
 }
 
 .article .article_object_gif {
@@ -667,11 +675,19 @@
 }
 
 .article figure[data-type="100"],
-.article figure[data-type="104"] {
+.article figure[data-type="104"],
+.article figure[data-type="111"] {
     line-height: 1em
 }
 
-.article figure[data-type="105"] .article_figure_content {
+.article figure[data-type="111"] .voting_tt_image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%
+}
+
+.article figure[data-type="105"] .article_figure_content,
+.article figure[data-type="111"] .article_figure_content {
     overflow: visible
 }
 
@@ -905,7 +921,8 @@
 
 .article_view>figure[data-type="100"],
 .article_view>figure[data-type="104"],
-.article_view>figure[data-type="105"] {
+.article_view>figure[data-type="105"],
+.article_view>figure[data-type="111"] {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     padding: 0 100px
@@ -1248,7 +1265,8 @@
 .article.article_mobile>figure[data-type="107"],
 .article.article_mobile>figure[data-type="108"],
 .article.article_mobile>figure[data-type="109"],
-.article.article_mobile>figure[data-type="110"] {
+.article.article_mobile>figure[data-type="110"],
+.article.article_mobile>figure[data-type="111"] {
     padding: 0 16px;
     box-sizing: border-box
 }
@@ -1931,6 +1949,10 @@
 .article_ed_layer .article_ed_layer__list_item.article_ed_layer__list_item_new .article_ed_layer__list_item_title {
     padding: 6px 0 0 29px;
     color: #2a5885
+}
+
+.article_ed_layer .article_object_poll .media_voting .ui_actions_menu_wrap {
+    display: none!important
 }
 
 .article_ed_layer .article_ed_guide {
@@ -2640,6 +2662,10 @@
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M10.0010578%2C17.14977%20L10.0010578%2C9.5%20L16.9989423%2C7.5%20L16.9989423%2C13.1345932%20C16.526659%2C13.0395343%2016.0064987%2C13.0430516%2015.4794441%2C13.1647317%20C13.8583629%2C13.5389878%2012.7859307%2C14.8893592%2013.0840996%2C16.1808705%20C13.3822685%2C17.4723819%2014.938128%2C18.2159643%2016.5592092%2C17.8417082%20C18.0519948%2C17.4970715%2019.0795375%2C16.3247089%2019%2C15.1328004%20L19%2C4.00656087%20C19%2C3.45065265%2018.568787%2C3.11760356%2018.0430649%2C3.26098229%20L8.95693506%2C5.73901771%20C8.42843442%2C5.88315425%208%2C6.4556644%208%2C6.99539757%20L8%2C15.1348062%20C7.52743565%2C15.0395291%207.00689218%2C15.0429608%206.47944406%2C15.1647317%20C4.85836293%2C15.5389878%203.78593068%2C16.8893592%204.08409959%2C18.1808705%20C4.38226849%2C19.4723819%205.93812804%2C20.2159643%207.55920916%2C19.8417082%20C9.04490982%2C19.4987072%2010.0697732%2C18.3358187%2010.0010578%2C17.14977%20Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
+.article_editor .article_editor_object_picker_btn#article_editor_object_picker_btn_poll {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20d%3D%22m6%2012c1.1045695%200%202%20.8954305%202%202v4c0%201.1045695-.8954305%202-2%202s-2-.8954305-2-2v-4c0-1.1045695.8954305-2%202-2zm12-4c1.1045695%200%202%20.8954305%202%202v8c0%201.1045695-.8954305%202-2%202s-2-.8954305-2-2v-8c0-1.1045695.8954305-2%202-2zm-6-6c1.1045695%200%202%20.8954305%202%202v14c0%201.1045695-.8954305%202-2%202s-2-.8954305-2-2v-14c0-1.1045695.8954305-2%202-2z%22%20fill%3D%22%23000%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+}
+
 .article_editor .article_editor_object_picker_btn#article_editor_object_picker_btn_sep {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M4%203h15a1%201%200%200%201%200%202H4a1%201%200%201%201%200-2zm0%2015h15a1%201%200%200%201%200%202H4a1%201%200%200%201%200-2zm2.5-8a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3zm5%200a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3zm5%200a1.5%201.5%200%201%201%200%203%201.5%201.5%200%200%201%200-3z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
@@ -3038,7 +3064,8 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     min-height: 150px
 }
 
-.article_editor_canvas[contenteditable=true] .article_ed__extra_controls {
+.article_editor_canvas[contenteditable=true] .article_ed__extra_controls,
+.article_editor_canvas[contenteditable=true] .article_ed__obj_edit_control {
     position: absolute;
     top: 0;
     left: 0;
@@ -3088,6 +3115,43 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     height: 0;
     width: 0;
     display: block
+}
+
+.article_editor_canvas[contenteditable=true] .article_ed__poll_object_btn {
+    position: absolute;
+    top: 12px;
+    right: 105px
+}
+
+.article_editor_canvas[contenteditable=true] .article_ed__poll_object_btn .article_ed__poll_object_edit {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 9px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    line-height: 15px;
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 6px;
+    padding: 7px 12px 8px;
+    cursor: pointer;
+    opacity: 0;
+    -o-transition: opacity 60ms linear;
+    transition: opacity 60ms linear;
+    color: #fff;
+    border: none;
+    white-space: nowrap
+}
+
+.article_editor_canvas[contenteditable=true] .article_ed__poll_object_btn .article_ed__poll_object_edit:hover {
+    background-color: rgba(0, 0, 0, .7)
+}
+
+.article_editor_canvas[contenteditable=true] .article_ed__poll_object_btn .article_ed__poll_object_edit:active {
+    margin-top: 1px
+}
+
+.article_editor_canvas[contenteditable=true] .article_ed__obj_edit_control:hover .article_ed__poll_object_edit {
+    opacity: 1
 }
 
 @-o-keyframes article_ed__object_loader {

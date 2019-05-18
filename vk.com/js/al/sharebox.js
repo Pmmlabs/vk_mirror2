@@ -504,7 +504,8 @@ var ShareBox = {
                 WideDropdown.updimgs(dd);
                 break;
         }
-        ShareBox.updateButtonLabel(rbOption, cur.wdd['like_mail_dd'].selCount);
+        var selCount = cur.wdd['like_mail_dd'] ? cur.wdd['like_mail_dd'].selCount : 0;
+        ShareBox.updateButtonLabel(rbOption, selCount);
     },
     options: function() {
         return {
