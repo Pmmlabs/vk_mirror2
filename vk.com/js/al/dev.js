@@ -814,6 +814,10 @@ var Dev = {
         return html;
     },
     getResponseHelpers: function(response) {
+        if (/^\/dev\/execute/.test(window.location.pathname)) {
+            return '';
+        }
+
         // *.getUploadServer
         if (response.upload_url && Dev.checkUploadUrl(response.upload_url)) {
             return '<div class="dev_upload_form">' +
@@ -827,7 +831,7 @@ var Dev = {
         }
 
         // groups.getLongPollServer / messages.getLongPollServer
-        if (/^[a-z0-9:/.]+$/.test(response.server) && /^[0-9a-f]+$/.test(response.key)) {
+        if (response.server && response.key && /^[a-z0-9:/.]+$/.test(response.server) && /^[0-9a-f]+$/.test(response.key)) {
             var link = response.server + '?act=a_check&key=' + response.key + '&wait=25&mode=2';
             var version = val('dev_const_lp_version');
 
@@ -1919,8 +1923,8 @@ var Dev = {
 
     appIdByLink: function(url, cb) {
         if (!url) return cb(0, 0);
-        ajax.post('apps', {
-            act: 'a_aid_by_link',
+        ajax.post('share.php', {
+            act: 'id_by_link',
             url: url
         }, {
             onDone: cb,

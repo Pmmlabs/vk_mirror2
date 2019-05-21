@@ -23,7 +23,6 @@
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_fav_timer_on:before,
 .tickets_header_links .ui_actions_menu_item.helpdesk_header_links_send_payout_form:before,
 .tickets_header_links .ui_actions_menu_item:before,
-.tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
 .tickets_media_icon,
@@ -678,6 +677,10 @@ body.dev .tickets_header_info {
     visibility: hidden
 }
 
+.tickets_header_info__pointable {
+    cursor: pointer
+}
+
 .tickets_header_helpdesk .tickets_header_title {
     padding-right: 65px
 }
@@ -691,43 +694,11 @@ body.dev .tickets_header_info {
     color: #2a5885
 }
 
-.tickets_header_task_info {
-    padding-top: 1px;
-    color: #939393;
-    font-size: 12.5px;
-    line-height: 19px;
-    font-size: 12px
-}
-
-body.dev .tickets_header_task_info {
-    display: none
-}
-
-.tickets_header_task_info.tickets_header_info_progress {
-    background: url(/images/upload.gif) 0 no-repeat;
-    color: transparent
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .tickets_header_task_info.tickets_header_info_progress {
-        background-image: url(/images/upload_2x.gif);
-        background-size: 32px 8px
-    }
-}
-
-.tickets_header_task_info.tickets_header_info_progress>* {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden
-}
-
-.tickets_header_task_info .tickets_unbind {
+.tickets_header_info .tickets_unbind {
     background-color: #fff
 }
 
-.tickets_header_task_info__title {
+.tickets_header_info__task_title {
     float: left
 }
 
@@ -740,6 +711,7 @@ body.dev .tickets_header_task_info {
 
 .tickets_header_body {
     float: left;
+    min-width: 750px;
     max-width: 100%;
     position: relative
 }
@@ -1936,9 +1908,17 @@ body.dev #tickets_search_reset {
     color: #939393
 }
 
+.tickets_info_tt_rows_wide .tickets_info_title_tt {
+    width: 175px
+}
+
 .tickets_info_text_tt {
     float: left;
     width: 130px
+}
+
+.tickets_info_tt_rows_wide .tickets_info_text_tt {
+    width: 280px
 }
 
 a.tickets_question_row_tt {

@@ -1336,6 +1336,16 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
     margin: 9px 4px
 }
 
+.page_docs_preview .page_preview_group_wrap {
+    position: relative
+}
+
+.page_docs_preview .page_preview_group_wrap .page_media_x_wrap {
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
 .page_preview_mark_as_ads_wrap,
 .page_preview_note_wrap,
 .page_preview_page_wrap,

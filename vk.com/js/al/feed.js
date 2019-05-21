@@ -2498,7 +2498,7 @@ var Feed = {
                     var postRaws = feed.postsGetRaws(el);
 
                     if (longView.isAdWithLongImpressionOnly(el)) {
-                        Wall.triggerAdStat(el, 'impression');
+                        Wall.triggerAdStat(domFC(el), 'impression');
                     } else {
                         posts.push(postRaws);
                     }

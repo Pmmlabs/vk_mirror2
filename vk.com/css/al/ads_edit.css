@@ -1577,6 +1577,78 @@ textarea.EditableLabel__textarea {
     padding: 6px 11px 7px
 }
 
+.Select--secondary {
+    width: 100%
+}
+
+.Select--secondary.Select--empty .Select__placeholder {
+    color: #828282
+}
+
+.Select--secondary.Select--opened .Select__control {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff
+}
+
+.Select--secondary.Select--opened .Select__control:before {
+    content: none
+}
+
+.Select--secondary.Select--disabled .Select__control {
+    cursor: default;
+    color: #abaeb1;
+    background-color: #f2f4f7
+}
+
+.Select--secondary .Select__control {
+    padding: 0 10px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 30px;
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    color: #000;
+    box-sizing: border-box;
+    text-decoration: none
+}
+
+.Select--secondary .Select__arrow {
+    margin-left: 8px;
+    display: block;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 11px;
+    height: 6px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2211%22%20height%3D%226%22%20viewBox%3D%220%200%2011%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M0.75%200.75L5.5%205.25L10.25%200.75%22%20stroke%3D%22%23B0B4B8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E') no-repeat 50% / cover
+}
+
+.Select--secondary .Select__menu {
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(43, 47, 51, .17);
+    border-radius: 0 0 2px 2px
+}
+
+.Select--secondary .Select__option {
+    padding-top: 8px;
+    padding-bottom: 9px;
+    color: #000
+}
+
+.Select--secondary .Select__option:last-child {
+    border-radius: 0
+}
+
+.Select--secondary .Select--placeholder {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .Spinner {
     width: 100%;
     height: 100%;
@@ -2198,10 +2270,89 @@ textarea.EditableLabel__textarea {
 
 .Modal__footerInner {
     padding: 14px 25px;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-pack: end;
     justify-content: flex-end
+}
+
+.Modal__footerInner,
+.Radio {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.Radio {
+    -ms-flex-align: start;
+    align-items: flex-start;
+    cursor: pointer
+}
+
+.Radio:hover .Radio__control {
+    background-color: #f2f4f8
+}
+
+.Radio--disabled {
+    cursor: default
+}
+
+.Radio--disabled:hover .Radio__control {
+    background-color: inherit
+}
+
+.Radio__control {
+    margin-right: 8px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border: 1px solid #c1c9d1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.Radio__text {
+    font-size: 13px;
+    line-height: 19px;
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px)
+}
+
+.Radio__visuallyHidden {
+    position: absolute;
+    margin: -1px;
+    padding: 0;
+    height: 1px;
+    width: 1px;
+    clip: rect(0px, 0px, 0px, 0px);
+    border: 0;
+    overflow: hidden
+}
+
+.Radio__input:checked+.Radio__control {
+    border-color: #5181b8
+}
+
+.Radio__input:checked+.Radio__control:before {
+    content: '';
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #5181b8
+}
+
+.Radio__input:disabled+.Radio__control,
+.Radio__input:disabled~.Radio__text {
+    opacity: .45
 }
 
 .ads_schedule_cell {

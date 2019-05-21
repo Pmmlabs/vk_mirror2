@@ -7530,6 +7530,46 @@ function bookmarkArticle(event, ele, ownerId, objectId, objectType, hash, isBook
     return cancelEvent(event);
 }
 
+function bookmarkEvent(event, ele, groupId, hash) {
+    var isBookmarked = parseInt(domData(ele, 'state'));
+
+    domData(ele, 'state', isBookmarked ? 0 : 1);
+
+    ajax.post('fave.php', {
+        act: isBookmarked ? 'a_delete_group' : 'a_add_group',
+        gid: groupId,
+        hash: hash
+    }, {
+        onDone: function(text, addedText) {
+            if (!isBookmarked) {
+                showDoneBox(addedText);
+            }
+        }
+    });
+
+    return cancelEvent(event);
+}
+
+function bookmarkTooltip(btn) {
+    var shift = [9, 8];
+    var shiftClass = '';
+    var appendClass = '';
+
+    if (gpeByClass('_im_mess_stack', btn)) {
+        appendClass = '_im_mess_stack';
+    }
+
+    showTooltip(btn, {
+        className: 'bookmarks_tt ' + shiftClass,
+        shift: shift,
+        text: function() {
+            return domData(btn, 'state') === '1' ? domData(btn, 'remove') : domData(btn, 'add');
+        },
+        black: 1,
+        appendParentCls: appendClass,
+    });
+}
+
 /* Widgets */
 
 window.Widgets = {

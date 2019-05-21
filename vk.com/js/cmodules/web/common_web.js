@@ -513,11 +513,11 @@
                         if (H.skipVideo && (H.skipVideo = !1, "video" == e[0])) return H._layers.push(e), void(H.skipVideo = !1);
                         "photo" === e[0] ? (Object(C.i)(e[3], {
                             fromQueue: !0
-                        }), Object(V.x)(e[1], e[2], e[3], !1)) : "video" === e[0] ? (Object(C.i)(e[3], {
+                        }), Object(V.y)(e[1], e[2], e[3], !1)) : "video" === e[0] ? (Object(C.i)(e[3], {
                             fromQueue: !0
-                        }), Object(M.j)(e[1], e[2], e[3], !1)) : "wiki" === e[0] ? Object(V.B)({
+                        }), Object(M.j)(e[1], e[2], e[3], !1)) : "wiki" === e[0] ? Object(V.C)({
                             w: e[1]
-                        }, !1, !1, e[3]) : "stories" === e[0] ? Object(N.c)(e[1]) : "podcast" === e[0] && Object(V.z)(null, e[1], null, "layer_back")
+                        }, !1, !1, e[3]) : "stories" === e[0] ? Object(N.c)(e[1]) : "podcast" === e[0] && Object(V.A)(null, e[1], null, "layer_back")
                     }
                 },
                 back: function(e, t, o, n) {
@@ -1241,7 +1241,7 @@
         }
 
         function Kt() {
-            window.showWriteMessageBox = ge.g, window.giftsBox = ge.a, window.moneyTransferBox = ge.d, window.reportAd = ge.e, window.mobilePromo = ge.c, window.showAudioClaimWarning = ge.f, window.menuSettings = ge.b, window.sureDeleteAll = ge.h, window.TopNotifier = Object(V.l)(), window.showPhoto = V.x, window.showManyPhoto = V.w, window.showAlbums = V.u, window.showAlbum = V.t, window.showPhotoTags = V.y, window.isPhotoeditor3Available = V.o, window.AudioMessagePlayer = V.a, window.showVideoTags = V.A, window.videoCallback = V.C, window.showWiki = V.B, window.showApp = V.v, window.showPodcast = V.z, window.podcastStartFrom = V.r, window.articlePrepare = V.b, window.isArticleLayerOpen = V.n, window.isArticleEditorAvailable = V.m, window.openArticleEditor = V.q, window.mentionOver = me, window.mentionClick = V.p, window.mobileOnlineTip = he, window.pageVerifiedTip = be, window.audioShowActionTooltip = pe, window.shareAudioPlaylist = V.s, window.getAudioPlayer = V.j, window.deleteAudioOnClaim = V.i, window.initTopAudioPlayer = V.k, window.bookmark = V.c, window.bookmarkPost = V.h, window.bookmarkArticle = V.d, window.bookmarkLink = V.e, window.bookmarkPodcast = V.g, window.bookmarkNarrative = V.f, window.bookmarkTooltip = ve, window.showStory = N.c, window.showNarrative = N.b, window.storiesPreloadStatic = N.d, window.sendMask = N.a
+            window.showWriteMessageBox = ge.g, window.giftsBox = ge.a, window.moneyTransferBox = ge.d, window.reportAd = ge.e, window.mobilePromo = ge.c, window.showAudioClaimWarning = ge.f, window.menuSettings = ge.b, window.sureDeleteAll = ge.h, window.TopNotifier = Object(V.m)(), window.showPhoto = V.y, window.showManyPhoto = V.x, window.showAlbums = V.v, window.showAlbum = V.u, window.showPhotoTags = V.z, window.isPhotoeditor3Available = V.p, window.AudioMessagePlayer = V.a, window.showVideoTags = V.B, window.videoCallback = V.D, window.showWiki = V.C, window.showApp = V.w, window.showPodcast = V.A, window.podcastStartFrom = V.s, window.articlePrepare = V.b, window.isArticleLayerOpen = V.o, window.isArticleEditorAvailable = V.n, window.openArticleEditor = V.r, window.mentionOver = me, window.mentionClick = V.q, window.mobileOnlineTip = he, window.pageVerifiedTip = be, window.audioShowActionTooltip = pe, window.shareAudioPlaylist = V.t, window.getAudioPlayer = V.k, window.deleteAudioOnClaim = V.j, window.initTopAudioPlayer = V.l, window.bookmark = V.c, window.bookmarkPost = V.i, window.bookmarkArticle = V.d, window.bookmarkLink = V.f, window.bookmarkPodcast = V.h, window.bookmarkNarrative = V.g, window.bookmarkEvent = V.e, window.bookmarkTooltip = ve, window.showStory = N.c, window.showNarrative = N.b, window.storiesPreloadStatic = N.d, window.sendMask = N.a
         }
         window.constants = {
             Groups: ae

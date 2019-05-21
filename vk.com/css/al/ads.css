@@ -1170,6 +1170,78 @@
     padding: 6px 11px 7px
 }
 
+.Select--secondary {
+    width: 100%
+}
+
+.Select--secondary.Select--empty .Select__placeholder {
+    color: #828282
+}
+
+.Select--secondary.Select--opened .Select__control {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff
+}
+
+.Select--secondary.Select--opened .Select__control:before {
+    content: none
+}
+
+.Select--secondary.Select--disabled .Select__control {
+    cursor: default;
+    color: #abaeb1;
+    background-color: #f2f4f7
+}
+
+.Select--secondary .Select__control {
+    padding: 0 10px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 30px;
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    color: #000;
+    box-sizing: border-box;
+    text-decoration: none
+}
+
+.Select--secondary .Select__arrow {
+    margin-left: 8px;
+    display: block;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 11px;
+    height: 6px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2211%22%20height%3D%226%22%20viewBox%3D%220%200%2011%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M0.75%200.75L5.5%205.25L10.25%200.75%22%20stroke%3D%22%23B0B4B8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E') no-repeat 50% / cover
+}
+
+.Select--secondary .Select__menu {
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(43, 47, 51, .17);
+    border-radius: 0 0 2px 2px
+}
+
+.Select--secondary .Select__option {
+    padding-top: 8px;
+    padding-bottom: 9px;
+    color: #000
+}
+
+.Select--secondary .Select__option:last-child {
+    border-radius: 0
+}
+
+.Select--secondary .Select--placeholder {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .Dropdown {
     position: absolute;
     width: 0;
@@ -1585,11 +1657,11 @@
 .Table__FiltersPanel {
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 10px
+    margin-bottom: 16px
 }
 
 .Table__FiltersPanel .Select__control {
-    padding: 6px 24px 8px 10px
+    padding: 5px 24px 7px 10px
 }
 
 .Table__FiltersPanel .Select__control:hover {
@@ -1631,6 +1703,7 @@
 .Table__FiltersPanel .Table__Button {
     position: relative;
     margin: 0 10px 0 0;
+    min-width: 30px;
     box-sizing: border-box;
     border-radius: 4px;
     cursor: pointer;
@@ -1644,8 +1717,8 @@
 }
 
 .Table__FiltersPanel .Table__Button.ads_stat_date_range {
-    padding-top: 6px;
-    padding-bottom: 8px
+    padding-top: 5px;
+    padding-bottom: 7px
 }
 
 .Table__FiltersPanel .Table__Button--blue {
@@ -1717,7 +1790,7 @@
 }
 
 .Table__FiltersPanel .Table__Button--export .Select__control {
-    padding: 4px 3px
+    padding: 3px 3px 4px
 }
 
 .Table__FiltersPanel .Table__Button--export .Select__control:before {
@@ -1741,7 +1814,7 @@
 
 .Table__FiltersPanel .flat_button {
     margin-right: 10px;
-    padding: 8px 10px 7px
+    padding: 7px 10px 6px
 }
 
 .Table__Dropdown .Dropdown__in {
@@ -1813,6 +1886,10 @@
 
 .Table__Title .Tabs__item {
     font-size: 14px
+}
+
+.Table__Title .Tabs__item>* {
+    padding-bottom: 16px
 }
 
 .Table__Title--desc {
@@ -2894,7 +2971,7 @@
     padding: 0 8px
 }
 
-.Table__block,
+.Table,
 .Table__wrapper {
     position: relative
 }
@@ -2975,6 +3052,49 @@
 
 .Table__CellHint:hover {
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22%236690C7%22%20rx%3D%226%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23F8F8F9%22%20fill-rule%3D%22nonzero%22%20d%3D%22M4.11158973%2C4.27043468%20L4.11158973%2C4.27043468%20C4.39616616%2C4.38265693%204.71908014%2C4.255798%204.85117456%2C3.97988381%20C4.8736351%2C3.93297808%204.89144848%2C3.8955928%204.90461823%2C3.86772967%20C5.09637824%2C3.46202456%205.50190042%2C3.22167969%206.05281641%2C3.22167969%20C6.78865625%2C3.22167969%207.26668359%2C3.65136719%207.26668359%2C4.2421875%20C7.26668359%2C4.78466797%207.03572656%2C5.09082031%206.38582422%2C5.48291016%20C5.75947635%2C5.8578045%205.42888951%2C6.26383158%205.36093838%2C6.85336771%20C5.35773191%2C6.88118664%205.35547597%2C6.93790966%205.35417054%2C7.02353676%20L5.35418617%2C7.023537%20C5.34950224%2C7.33077093%205.59476747%2C7.58363033%205.9020014%2C7.58831427%20C5.9048282%2C7.58835736%205.90765529%2C7.58837891%205.91048242%2C7.58837891%20L5.91048242%2C7.58837891%20C6.21043778%2C7.58837891%206.45933901%2C7.3564548%206.48049446%2C7.0572464%20C6.48216881%2C7.03396704%206.48392262%2C7.01675642%206.48578414%2C7.00561654%20C6.54999069%2C6.62138637%206.78504897%2C6.36830966%207.35799219%2C6.03076172%20C8.0669766%2C5.60644531%208.4859219%2C5.02099609%208.4859219%2C4.19384766%20C8.4859219%2C3.02832031%207.52986719%2C2.18505859%206.11189844%2C2.18505859%20C5.05321588%2C2.18505859%204.32950382%2C2.61183582%203.95931339%2C3.27313304%20C3.91338123%2C3.35518488%203.86730691%2C3.44634807%203.82109043%2C3.54662259%20L3.82111222%2C3.54663263%20C3.69706281%2C3.81577897%203.81468711%2C4.13452711%204.08383345%2C4.25857653%20C4.09297252%2C4.26278872%204.10222828%2C4.266743%204.11158973%2C4.27043468%20Z%20M5.97762109%2C10.1235352%20C6.47176172%2C10.1235352%206.80476953%2C9.7958984%206.80476953%2C9.3071289%20C6.80476953%2C8.8076172%206.47176172%2C8.4799805%205.97762109%2C8.4799805%20C5.48348047%2C8.4799805%205.14510156%2C8.8076172%205.14510156%2C9.3071289%20C5.14510156%2C9.7958984%205.48348047%2C10.1235352%205.97762109%2C10.1235352%20Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E')
+}
+
+.Table__block {
+    position: relative;
+    height: 431px
+}
+
+.Table__root {
+    display: none;
+    opacity: 0;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease
+}
+
+.Table__stub {
+    position: relative;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease
+}
+
+.Table__stub,
+.Table__stub:before {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0
+}
+
+.Table__stub:before {
+    content: '';
+    position: absolute;
+    display: block;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22900%22%20height%3D%22431%22%20viewBox%3D%220%200%20900%20431%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22img-load-table-a%22%20x1%3D%2291.978%25%22%20x2%3D%223.61%25%22%20y1%3D%2250%25%22%20y2%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23FFF%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22img-load-table-b%22%20x1%3D%2291.978%25%22%20x2%3D%223.61%25%22%20y1%3D%2250%25%22%20y2%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23FFF%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%22900%22%20height%3D%22431%22%20fill%3D%22%23FFF%22%2F%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate(0%20114)%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22900%22%20height%3D%2241%22%20fill%3D%22%23F8F8F9%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22575%22%20height%3D%2241%22%20x%3D%22325%22%20fill%3D%22url(%23img-load-table-a)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22130%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%22173%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22130%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%22251%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22170%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%22290%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22678%22%20y%3D%22290%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22844%22%20y%3D%22290%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22544%22%20y%3D%22290%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22378%22%20y%3D%22290%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22520%22%20y%3D%22251%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22698%22%20y%3D%22251%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22820%22%20y%3D%22251%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22398%22%20y%3D%22251%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22170%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%22212%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22678%22%20y%3D%22212%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22844%22%20y%3D%22212%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22544%22%20y%3D%22212%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22378%22%20y%3D%22212%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22170%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%22134%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22130%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%2295%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22170%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%2256%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2270%22%20height%3D%229%22%20x%3D%2216%22%20y%3D%2216%22%20fill%3D%22%23E7E8EC%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22520%22%20y%3D%22173%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22698%22%20y%3D%22173%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22678%22%20y%3D%22134%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22698%22%20y%3D%2295%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22678%22%20y%3D%2256%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2250%22%20height%3D%229%22%20x%3D%22690%22%20y%3D%2216%22%20fill%3D%22%23E7E8EC%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22820%22%20y%3D%22173%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22844%22%20y%3D%22134%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22820%22%20y%3D%2295%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22844%22%20y%3D%2256%22%20fill%3D%22%23F9F9FA%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22820%22%20y%3D%2216%22%20fill%3D%22%23F3F4F6%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22544%22%20y%3D%22134%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22520%22%20y%3D%2295%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2256%22%20height%3D%229%22%20x%3D%22544%22%20y%3D%2256%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%229%22%20x%3D%22520%22%20y%3D%2216%22%20fill%3D%22%23E7E8EC%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22398%22%20y%3D%22173%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22378%22%20y%3D%22134%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2242%22%20height%3D%229%22%20x%3D%22398%22%20y%3D%2295%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2262%22%20height%3D%229%22%20x%3D%22378%22%20y%3D%2256%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2250%22%20height%3D%229%22%20x%3D%22390%22%20y%3D%2216%22%20fill%3D%22%23E7E8EC%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate(0%2019)%22%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22148%22%20height%3D%2230%22%20y%3D%2249%22%20fill%3D%22%23F3F3F5%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22121%22%20height%3D%2230%22%20x%3D%22158%22%20y%3D%2249%22%20fill%3D%22%23F8F8F9%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2294%22%20height%3D%2230%22%20x%3D%22289%22%20y%3D%2249%22%20fill%3D%22%23F8F8F9%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2228%22%20height%3D%2230%22%20x%3D%22393%22%20y%3D%2249%22%20fill%3D%22%23FAFAFA%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2228%22%20height%3D%2230%22%20x%3D%22431%22%20y%3D%2249%22%20fill%3D%22%23FBFBFB%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2269%22%20height%3D%229%22%20x%3D%229%22%20fill%3D%22%23E7E8EC%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2286%22%20height%3D%229%22%20x%3D%2298%22%20fill%3D%22%23F7F7F9%22%20rx%3D%224.5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22900%22%20height%3D%221%22%20y%3D%2228%22%20fill%3D%22%23F3F3F5%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%22575%22%20height%3D%221%22%20x%3D%22325%22%20y%3D%2228%22%20fill%3D%22url(%23img-load-table-b)%22%2F%3E%0A%20%20%20%20%20%20%3Crect%20width%3D%2280%22%20height%3D%222%22%20x%3D%224%22%20y%3D%2227%22%20fill%3D%22%23E7E8EC%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E') 0 0 no-repeat;
+    border-radius: 4px
+}
+
+.Table__block--animated .Table__stub {
+    opacity: 0
+}
+
+.Table__block--animated .Table__root {
+    display: block;
+    opacity: 1
 }
 
 ul.ads_listing {
