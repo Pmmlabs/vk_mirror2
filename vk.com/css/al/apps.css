@@ -681,11 +681,29 @@
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
+.ui_tooltipMenu__list {
+    border-radius: 9px;
+    overflow: hidden
+}
+
 .ui_tooltipMenu__list>.ui_tooltipMenu__items {
     text-align: left;
-    list-style: none;
+    padding: 8px 0;
     margin: 0;
-    padding: 8px 0
+    list-style: none
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search {
+    padding: 0;
+    max-height: 270px
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search .ui_tooltipMenu__item:first-child {
+    margin-top: 8px
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search .ui_tooltipMenu__item:last-child {
+    margin-bottom: 8px
 }
 
 .ui_tooltipMenu__link {
@@ -704,9 +722,9 @@
     content: '';
     position: absolute;
     right: 10px;
-    top: 8px;
+    top: 0;
     width: 16px;
-    height: 16px;
+    height: 100%;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
@@ -754,6 +772,38 @@
     font-size: 11px;
     color: #939393;
     margin-top: 1px
+}
+
+.ui_tooltipMenu_photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    float: left;
+    display: block
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link {
+    padding-right: 25px;
+    padding-top: 8px;
+    padding-bottom: 7px
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap {
+    padding-left: 40px;
+    padding-right: 8px
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap .ui_tooltipMenu_label {
+    width: 100%;
+    overflow: hidden;
+    height: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap .ui_tooltipMenu_title {
+    margin-top: 0;
+    line-height: 16px
 }
 
 .Stub {
@@ -1590,30 +1640,24 @@
 }
 
 .apps_recent_block {
-    width: 430px;
-    height: 385px;
+    width: 328px;
+    height: 305px;
     float: left
 }
 
-.apps_recent_block.eight_games {
-    height: 315px
-}
-
-.apps_recent_block.eight_games .apps_recent_apps_wrap,
-.apps_recent_block.eight_games .apps_notifications_wrap,
-.apps_recent_block.eight_games .apps_notifications_wrap_inner {
-    height: 260px
+.apps_recent_block .apps_recent_all {
+    width: 328px
 }
 
 .apps_recent_apps_wrap {
     position: relative;
     padding: 0 5px;
-    height: 330px
+    height: 250px
 }
 
 .apps_recent_apps_wrap .apps_recent_all {
     position: absolute;
-    width: 430px;
+    width: 328px;
     bottom: 0;
     left: 0
 }
@@ -1643,11 +1687,11 @@
 .apps_recent_row {
     display: block;
     cursor: pointer;
-    width: 120px;
-    height: 120px;
-    margin: 15px 0 0 15px;
+    width: 86px;
+    height: 86px;
+    background-size: 86px 86px;
+    margin: 0 0 15px 15px;
     border-radius: 3px;
-    background-size: 120px 120px;
     position: relative
 }
 
@@ -1658,12 +1702,6 @@
 
 .apps_recent_row_hidden {
     display: none
-}
-
-.apps_recent_row.apps_recent_row_eight_games {
-    width: 86px;
-    height: 86px;
-    background-size: 86px 86px
 }
 
 .apps_cat_row .thumb_x_button,
@@ -1720,7 +1758,7 @@
 .apps_notifications_wrap .apps_notifications_wrap_inner {
     padding: 0 31px 0 20px;
     overflow: hidden;
-    height: 330px
+    height: 250px
 }
 
 .apps_notifications_wrap .apps_notifications_wrap_inner .ui_scroll_bar_container {
@@ -1738,7 +1776,7 @@
 }
 
 .apps_notifications_wrap .apps_notifications_wrap_inner .no_rows div {
-    height: 330px;
+    height: 250px;
     padding-left: 11px
 }
 
@@ -1907,27 +1945,31 @@
 }
 
 .apps_feed_block {
-    width: 348px;
-    height: 385px;
+    width: 452px;
+    height: 305px;
     float: right
 }
 
-.apps_feed_block.eight_games {
-    height: 315px
+.apps_feed_block .apps_feed_str_cont {
+    width: 282px
 }
 
-.apps_feed_block.eight_games .apps_feed_wrap {
-    height: 259px
+.apps_feed_block .apps_feed_info {
+    max-height: 146px
+}
+
+.apps_feed {
+    position: relative
 }
 
 .apps_feed_wrap {
-    padding: 0 31px 0 20px;
+    padding: 15px 31px 0 20px;
     overflow: hidden;
-    height: 330px
+    height: 234px
 }
 
 .apps_feed_wrap .ui_scroll_bar_container {
-    top: -3px;
+    top: 12px;
     bottom: 12px;
     right: 13px
 }
@@ -1944,10 +1986,14 @@
     clear: both
 }
 
+.apps_feed_wrap .no_rows {
+    height: 234px
+}
+
 .apps_feed_row {
     overflow: hidden;
     margin: 0 0 15px;
-    height: 40px;
+    min-height: 40px;
     -o-transition: opacity 200ms linear, margin 200ms linear;
     transition: opacity 200ms linear, margin 200ms linear
 }
@@ -1980,7 +2026,7 @@
 
 .apps_feed_info_wrap {
     margin-left: 40px;
-    height: 40px;
+    min-height: 40px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
@@ -2019,6 +2065,17 @@
 
 .apps_feed_row.sticker_achievement .apps_feed_info_str {
     color: #656565
+}
+
+.apps_feed_info_media {
+    margin-top: 10px;
+    width: 294px
+}
+
+.apps_feed_info_media_img {
+    width: 294px;
+    height: 98px;
+    border-radius: 4px
 }
 
 .apps_featured_slider {
@@ -8332,4 +8389,15 @@ body.apps_vkpayMobileTransfer .apps_vkPayPageBlock {
 body.apps_vkpayMobileTransfer .footer_wrap,
 body.apps_vkpayMobileTransfer .app_container:after {
     display: none
+}
+
+.apps_feed_info_media {
+    margin-top: 10px;
+    width: 294px
+}
+
+.apps_feed_info_media_img {
+    width: 294px;
+    height: 98px;
+    border-radius: 4px
 }

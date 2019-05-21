@@ -543,6 +543,40 @@ var Settings = {
         TopNotifier && TopNotifier.invalidate();
     },
 
+    /**
+     * @param {Array} oldValue
+     */
+    saveBrowserNotify: function(oldValue) {
+        var key = 'browser_notification';
+        var el = ge('privacy_edit_' + key);
+        var state = Number(Privacy.getValue(key));
+
+        addClass(el, 'privacy_link_disabled');
+
+        pushNotifier.canBeEnabled().then(function(canEnable) {
+            if (canEnable) {
+                pushNotifier.setupSubscription().then(function() {
+                    removeClass(el, 'privacy_link_disabled');
+
+                    return pushNotifier.setState(state, cur.options.push_notify_hash);
+                }).catch(function(error) {
+                    if (PushNotifier.PUSH_NOTIFIER_BLOCKED_BY_BROWSER_SETTINGS === error) {
+                        pushNotifier.showPopupAllowNotification();
+                    } else {
+                        showFastBox(getLang('global_error'), getLang('notifications_native_common_error'));
+                    }
+
+                    Privacy.setValue(key, oldValue);
+                    removeClass(el, 'privacy_link_disabled');
+                });
+            } else {
+                Privacy.setValue(key, oldValue);
+                removeClass(el, 'privacy_link_disabled');
+                showFastBox(getLang('global_error'), getLang('notifications_native_common_error'));
+            }
+        });
+    },
+
     saveGroupNotify: function(el, gid) {
         if (hasClass(geByClass1('_ui_toggler', el), 'ui_toggler_disable')) {
             return false;
@@ -592,8 +626,14 @@ var Settings = {
         }), 500);
     },
 
-    saveNotifyPrivacyKey: function(key) {
-        if (key == 'mail_period') {
+    /**
+     * @param {String} key
+     * @param {Array} oldValue
+     */
+    saveNotifyPrivacyKey: function(key, oldValue) {
+        if (key === 'browser_notification') {
+            Settings.saveBrowserNotify(oldValue);
+        } else if (key === 'mail_period') {
             Settings.saveMailNotify('privacy_edit_' + key);
             if (Privacy.getValue(key) == 3) {
                 hide('mail_options');
@@ -602,7 +642,7 @@ var Settings = {
             }
         } else if (cur.options.notify_privacy_keys && ~cur.options.notify_privacy_keys.indexOf(key)) {
             Settings.saveSiteNotify('privacy_edit_' + key);
-        } else if (key == 'sms_pm_notify') {
+        } else if (key === 'sms_pm_notify') {
             if (Privacy.getValue(key) != 0) {
                 hide('sms_pm_privacy_row');
             } else {
@@ -2472,7 +2512,7 @@ var Settings = {
         cur = cur || {};
         extend(cur, settings);
         box.removeButtons();
-        box.addButton(settings.okBtnText, this.groupNotifyPopupSubmit.bind(this)); // ����������
+        box.addButton(settings.okBtnText, this.groupNotifyPopupSubmit.bind(this));
         extend(cur, {
             popupSubmitBtnEl: curBox().btns.ok[0],
             popupSelectedGroup: 0,

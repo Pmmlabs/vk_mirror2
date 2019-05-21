@@ -478,7 +478,11 @@ var Privacy = {
     customType: 4, // ���, �����
     someType: 5, // ��������� ������
     listsType: 6, // ��������� ������ ������
-    update: function(key) {
+    /**
+     * @param {String} key
+     * @param {Array} oldValue
+     */
+    update: function(key, oldValue) {
         var el = ge('privacy_edit_' + key),
             p = cur.privacy[key],
             v = p[0];
@@ -518,9 +522,23 @@ var Privacy = {
             }
         }
 
-        if (cur.onPrivacyChanged) cur.onPrivacyChanged(key);
+        if (cur.onPrivacyChanged) {
+            cur.onPrivacyChanged(key, oldValue);
+        }
+    },
+    setValue: function(key, value) {
+        var oldValue = cur.privacy[key];
+        var tmpCallback = cur.onPrivacyChanged;
+
+        cur.privacy[key] = value;
+        cur.onPrivacyChanged = null;
+
+        Privacy.update(key, oldValue);
+
+        cur.onPrivacyChanged = tmpCallback;
     },
     someSaved: function(key, ids, list, plain) {
+        var oldValue = cur.privacy[key];
         cur.privacy[key] = [Privacy.someType, 0, ids, []];
 
         var lang = cur.privacy.lang || {};
@@ -544,14 +562,17 @@ var Privacy = {
         el.innerHTML = types[Privacy.someType];
         elWrap.nextSibling.innerHTML = ': ' + str;
 
-        if (cur.onPrivacyChanged) cur.onPrivacyChanged(key);
+        if (cur.onPrivacyChanged) {
+            cur.onPrivacyChanged(key, oldValue);
+        }
     },
     customSaved: function(key, np, plus, minus) {
+        var oldValue = cur.privacy[key];
         cur.privacy[key] = np;
         var lang = cur.privacy.lang || {};
 
         if (np[1] == 1 && !np[3].length || np[0] == Privacy.listsType) {
-            Privacy.update(key);
+            Privacy.update(key, oldValue);
         } else if (np[0] == Privacy.someType) {
             Privacy.someSaved(key, np[2], plus, true);
         } else { // save here
@@ -619,9 +640,10 @@ var Privacy = {
         }
     },
     choose: function(ev, val, list, confirmed) {
-        var key = cur.privSel,
-            p = cur.privacy[key],
-            noselect = (cur.privacy._noselect || key == 'chat_actions');
+        var key = cur.privSel;
+        var noselect = (cur.privacy._noselect || key === 'chat_actions');
+        var p = cur.privacy[key];
+
         if (cur.privacyNeedConfirm && !confirmed) {
             cur.privacyNeedConfirm(key, val, function() {
                 Privacy.show(ge('privacy_edit_' + key), ev, key);
@@ -698,13 +720,13 @@ var Privacy = {
                 }
                 p[2].push(-list);
             }
-            Privacy.update(key);
+            Privacy.update(key, p);
             return cancelEvent(ev);
         }
         cur.privacy[key] = [val, 1, [val],
             []
         ];
-        Privacy.update(key);
+        Privacy.update(key, p);
         Privacy.qhide();
     },
     select: function(val, force) {
@@ -767,6 +789,10 @@ var Privacy = {
         removeEvent(document, 'click', Privacy.qhide);
     },
     show: function(el, ev, key, delta) {
+        if (hasClass(el, 'privacy_link_disabled')) {
+            return cancelEvent(ev);
+        }
+
         var p = cur.privacy[key],
             noselect = (key.indexOf('actions') != -1),
             elWrap = gpeByClass('privacy_edit_wrap', el);

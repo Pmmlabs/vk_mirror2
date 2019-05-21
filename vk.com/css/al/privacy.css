@@ -710,3 +710,9 @@
 .privacy_custom_box .cp_plus_friends_type {
     color: #2a5885
 }
+
+.privacy_edit_wrap .privacy_link_disabled {
+    color: #939393;
+    text-decoration: none;
+    cursor: default
+}

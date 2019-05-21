@@ -27377,6 +27377,10 @@ figure[data-type="102"] .article_object_video_play {
     padding-top: 0!important
 }
 
+.money_transfer_web #vk_wrap {
+    max-width: 480px
+}
+
 .pageMoneyTransferCard {
     padding: 12px 12px 16px;
     background: #fff;

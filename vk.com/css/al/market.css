@@ -2097,7 +2097,8 @@
 #marketplace .market_content .market_row .market_row_img,
 #marketplace .market_content .market_row .market_row_photo {
     width: 160px;
-    height: 160px
+    height: 160px;
+    border-radius: 2px
 }
 
 #marketplace .market_content .market_row .market_row_photo {

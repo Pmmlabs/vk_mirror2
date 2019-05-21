@@ -1817,58 +1817,6 @@
     padding: 7px 10px 6px
 }
 
-.Table__Dropdown .Dropdown__in {
-    padding: 0
-}
-
-.Table__Dropdown .Dropdown__in:before,
-.Table__Dropdown .Dropdown__in:after {
-    display: none
-}
-
-.Table__Dropdown .Dropdown__item:first-child {
-    cursor: default;
-    background-color: #f0f2f5;
-    border-radius: 4px 4px 0 0
-}
-
-.Table__DropdownStatus {
-    position: relative;
-    display: block;
-    padding: 0 0 0 21px
-}
-
-.Table__DropdownStatus:after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: -4px;
-    left: -5px;
-    width: 21px;
-    height: 21px;
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M3%203h15v15H3z%22%2F%3E%3Cpath%20d%3D%22M13.838914%2010.959524l-5.854342%204.888558c-.254354.212393-.632727.178378-.84512-.075976A.6.6%200%200%201%207%2015.387534v-9.77511c0-.331371.26863-.6.6-.6a.6.6%200%200%201%20.384479.139374l5.854342%204.886553c.254397.212342.288489.590708.076147.845104a.6.6%200%200%201-.076054.07607z%22%20fill%3D%22%234BB34B%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 0 0 no-repeat
-}
-
-.Table__DropdownStatus--off:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(3%203)%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h15v15H0z%22%2F%3E%3Crect%20fill%3D%22%238591A2%22%20opacity%3D%22.80029297%22%20x%3D%223%22%20y%3D%223%22%20width%3D%229%22%20height%3D%229%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.Table__DropdownStatus--archived:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h21v21H0z%22%2F%3E%3Cpath%20d%3D%22M9%206a1%201%200%200%201%201-1h1a1%201%200%200%201%201%201h2a1%201%200%200%201%200%202H7a1%201%200%201%201%200-2h2zM7%209h7l-.43%206.07a1%201%200%200%201-1%20.93H8.43a1%201%200%200%201-1-.93L7%209z%22%20fill%3D%22%238591A2%22%20opacity%3D%22.8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.Table__DropdownStatus--off_red:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h21v21H0z%22%2F%3E%3Crect%20fill%3D%22%23E64646%22%20x%3D%226%22%20y%3D%225.5%22%20width%3D%223%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3Crect%20fill%3D%22%23E64646%22%20x%3D%2212%22%20y%3D%225.5%22%20width%3D%223%22%20height%3D%2210%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.Table__DropdownStatus--pending:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h21v21H0z%22%2F%3E%3Cpath%20d%3D%22M12.90394%2013H13c.55228%200%201%20.44772%201%201s-.44772%201-1%201H8c-.55228%200-1-.44772-1-1s.44772-1%201-1h.1246a1%201%200%200%201%20.226-.63319l1.38937-1.69834a1.00424%201.00424%200%200%201%20.14664-.1458%201%201%200%200%201-.15993-.15602L8.33674%208.66832C8.17655%208.47258%208.10292%208.23435%208.11121%208H8c-.55228%200-1-.44772-1-1s.44772-1%201-1h5c.55228%200%201%20.44772%201%201s-.44772%201-1%201h-.11067a1%201%200%200%201-.2254.66816l-1.38939%201.69834a1.00425%201.00425%200%200%201-.14663.1458%201%201%200%200%201%20.15993.15602l1.38994%201.69834c.15222.186.22629.41038.22616.63334z%22%20fill%3D%22%238591A2%22%20opacity%3D%22.79578%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
-.Table__DropdownStatus--cross:after {
-    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h21v21H0z%22%2F%3E%3Crect%20fill%3D%22%23E64646%22%20transform%3D%22rotate(45%2010.5%2010.5)%22%20x%3D%229%22%20y%3D%224.5%22%20width%3D%223%22%20height%3D%2212%22%20rx%3D%221%22%2F%3E%3Crect%20fill%3D%22%23E64646%22%20transform%3D%22rotate(-45%2010.5%2010.5)%22%20x%3D%229%22%20y%3D%224.5%22%20width%3D%223%22%20height%3D%2212%22%20rx%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-}
-
 .Table__Tip {
     display: block;
     font-size: 10px;

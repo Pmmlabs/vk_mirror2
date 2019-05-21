@@ -3081,6 +3081,105 @@ textarea.EditableLabel__textarea {
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1)
 }
 
+.AppsEditActivityMediaPhoto .apps_edit_input_block {
+    border: none;
+    background: none
+}
+
+.AppsEditActivityMediaPhoto__photoContainer {
+    position: relative
+}
+
+.AppsEditActivityMediaPhoto__controls {
+    position: absolute;
+    display: -ms-flexbox;
+    display: flex;
+    width: 52px;
+    height: 28px;
+    background: rgba(31, 31, 31, .75);
+    top: 10px;
+    right: 10px;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    border-radius: 4px;
+    opacity: 0;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.AppsEditActivityMediaPhoto__control {
+    padding: 0;
+    display: inline-block;
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.8;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s
+}
+
+.AppsEditActivityMediaPhoto__control:hover {
+    opacity: 1
+}
+
+.AppsEditActivityMediaPhoto__control--remove {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(-1%200%200%201%2024%200)%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m12%2010.5857864%203.2928932-3.29289318c.3905243-.39052429%201.0236893-.39052429%201.4142136%200s.3905243%201.02368927%200%201.41421356l-3.2928932%203.29289322%203.2928932%203.2928932c.3905243.3905243.3905243%201.0236893%200%201.4142136s-1.0236893.3905243-1.4142136%200l-3.2928932-3.2928932-3.29289322%203.2928932c-.39052429.3905243-1.02368927.3905243-1.41421356%200s-.39052429-1.0236893%200-1.4142136l3.29289318-3.2928932-3.29289318-3.29289322c-.39052429-.39052429-.39052429-1.02368927%200-1.41421356s1.02368927-.39052429%201.41421356%200z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.AppsEditActivityMediaPhoto__control--upload {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22m10.5%2015h3c.2761424%200%20.5-.2238576.5-.5v-3.5h2.3014579c.2761424%200%20.5-.2238576.5-.5%200-.1207176-.0436742-.2373594-.1229592-.3283904l-4.3014579-4.93871091c-.181365-.20823388-.4971973-.23001542-.7054312-.04865042-.0173146.0150805-.0335699.03133578-.0486504.04865042l-4.30145791%204.93871091c-.18136499.2082339-.15958346.5240662.04865043.7054312.09103095.079285.20767273.1229592.32839037.1229592h2.30145791v3.5c0%20.2761424.2238576.5.5.5zm-3.5%202h10c.5522847%200%201%20.4477153%201%201%200%20.5522847-.4477153%201-1%201h-10c-.55228475%200-1-.4477153-1-1%200-.5522847.44771525-1%201-1z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.AppsEditActivityMediaPhoto__photoContainer {
+    display: none
+}
+
+.AppsEditActivityMediaPhoto__img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 447px;
+    height: 152px;
+    border-radius: 4px
+}
+
+.AppsEditActivityMediaPhoto--hasPhoto .AppsEditActivityMediaPhoto__uploadButton {
+    display: none
+}
+
+.AppsEditActivityMediaPhoto--hasPhoto .AppsEditActivityMediaPhoto__photoContainer {
+    display: block
+}
+
+.AppsEditActivityMediaPhoto:hover .AppsEditActivityMediaPhoto__controls {
+    opacity: 1
+}
+
+.AppsEditActivityMediaPhoto__uploadButton {
+    margin-top: 4px;
+    padding: 0;
+    line-height: 1.46;
+    background: none;
+    color: #2a5885;
+    cursor: pointer;
+    font-size: 13px
+}
+
+.AppsEditActivityMediaPhoto__uploadButton:hover {
+    text-decoration: underline;
+    background: none;
+    color: #2a5885
+}
+
+.AppsEditActivityMediaPhoto__uploadButton:active {
+    padding: 0;
+    margin-top: 4px;
+    background: none;
+    color: #2a5885
+}
+
 .apps_edit_nav_header {
     padding: 10px 23px;
     background: #fafbfc;
@@ -4903,6 +5002,18 @@ input.apps_edit_cont_name {
     width: 135px;
     color: #666;
     padding: 4px 15px 0px 0px
+}
+
+.activity.hasMedia .apps_edit_activity_field {
+    width: 152px
+}
+
+.activity.hasMedia .apps_edit_input_block input.apps_edit_input.apps_edit_no_user:not(.apps_edit_activity_points) {
+    width: 426px
+}
+
+.activity.hasMedia input.apps_edit_input_with_suffix {
+    width: 275px
 }
 
 .apps_edit_input_block {

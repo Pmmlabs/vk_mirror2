@@ -744,6 +744,15 @@ a.ui_crumb {
     display: none
 }
 
+.ui_rmenu_extra_label .ui_rmenu_extra_label_badge_new {
+    margin: 13px 0 0;
+    margin-right: -5px;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: #528bcc
+}
+
 .ui_rmenu_extra_label_onhover {
     -o-transition: opacity 150ms linear;
     transition: opacity 150ms linear;

@@ -517,6 +517,10 @@ var ShareBox = {
                 showDoneBox(text);
                 !cur.sbObj.indexOf(':') && isObject(likeData) && Likes.update(cur.sbObj, likeData);
 
+                if (cur.storyLayer && cur.shareAction === 'im_send') {
+                    cur.storyLayer._sendNavigationStatEvents('share_to_message');
+                }
+
                 if (window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj)) {
                     Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList);
                 }

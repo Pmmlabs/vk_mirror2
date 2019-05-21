@@ -1392,11 +1392,29 @@ a.group_ad_post_stats {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
+.ui_tooltipMenu__list {
+    border-radius: 9px;
+    overflow: hidden
+}
+
 .ui_tooltipMenu__list>.ui_tooltipMenu__items {
     text-align: left;
-    list-style: none;
+    padding: 8px 0;
     margin: 0;
-    padding: 8px 0
+    list-style: none
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search {
+    padding: 0;
+    max-height: 270px
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search .ui_tooltipMenu__item:first-child {
+    margin-top: 8px
+}
+
+.ui_tooltipMenu__list>.ui_tooltipMenu__items_search .ui_tooltipMenu__item:last-child {
+    margin-bottom: 8px
 }
 
 .ui_tooltipMenu__link {
@@ -1415,9 +1433,9 @@ a.group_ad_post_stats {
     content: '';
     position: absolute;
     right: 10px;
-    top: 8px;
+    top: 0;
     width: 16px;
-    height: 16px;
+    height: 100%;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
 
@@ -1465,6 +1483,38 @@ a.group_ad_post_stats {
     font-size: 11px;
     color: #939393;
     margin-top: 1px
+}
+
+.ui_tooltipMenu_photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    float: left;
+    display: block
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link {
+    padding-right: 25px;
+    padding-top: 8px;
+    padding-bottom: 7px
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap {
+    padding-left: 40px;
+    padding-right: 8px
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap .ui_tooltipMenu_label {
+    width: 100%;
+    overflow: hidden;
+    height: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.ui_tooltipMenu_item_photo .ui_tooltipMenu__link .ui_tooltipMenu_label_wrap .ui_tooltipMenu_title {
+    margin-top: 0;
+    line-height: 16px
 }
 
 .StaticRanges {
@@ -4669,13 +4719,19 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:after,
 .groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:before {
-    right: 40px
+    right: 42px
+}
+
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip_item.toleft:after,
+.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip_item.toleft:before {
+    right: 35px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button {
     opacity: 0.8;
     filter: alpha(opacity=80);
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface7%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%208.898438%206.101562%20L%2020.101562%206.101562%20C%2020.597656%206.101562%2021%206.503906%2021%207%20C%2021%207.496094%2020.597656%207.898438%2020.101562%207.898438%20L%208.898438%207.898438%20C%208.402344%207.898438%208%207.496094%208%207%20C%208%206.503906%208.402344%206.101562%208.898438%206.101562%20Z%20M%208.898438%2011.101562%20L%2020.101562%2011.101562%20C%2020.597656%2011.101562%2021%2011.503906%2021%2012%20C%2021%2012.496094%2020.597656%2012.898438%2020.101562%2012.898438%20L%208.898438%2012.898438%20C%208.402344%2012.898438%208%2012.496094%208%2012%20C%208%2011.503906%208.402344%2011.101562%208.898438%2011.101562%20Z%20M%208.898438%2016.101562%20L%2020.101562%2016.101562%20C%2020.597656%2016.101562%2021%2016.503906%2021%2017%20C%2021%2017.496094%2020.597656%2017.898438%2020.101562%2017.898438%20L%208.898438%2017.898438%20C%208.402344%2017.898438%208%2017.496094%208%2017%20C%208%2016.503906%208.402344%2016.101562%208.898438%2016.101562%20Z%20M%205%205.75%20C%205.691406%205.75%206.25%206.308594%206.25%207%20C%206.25%207.691406%205.691406%208.25%205%208.25%20C%204.308594%208.25%203.75%207.691406%203.75%207%20C%203.75%206.308594%204.308594%205.75%205%205.75%20Z%20M%205%2010.75%20C%205.691406%2010.75%206.25%2011.308594%206.25%2012%20C%206.25%2012.691406%205.691406%2013.25%205%2013.25%20C%204.308594%2013.25%203.75%2012.691406%203.75%2012%20C%203.75%2011.308594%204.308594%2010.75%205%2010.75%20Z%20M%205%2015.75%20C%205.691406%2015.75%206.25%2016.308594%206.25%2017%20C%206.25%2017.691406%205.691406%2018.25%205%2018.25%20C%204.308594%2018.25%203.75%2017.691406%203.75%2017%20C%203.75%2016.308594%204.308594%2015.75%205%2015.75%20Z%20M%205%2015.75%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface7%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface7%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%208.898438%206.101562%20L%2020.101562%206.101562%20C%2020.597656%206.101562%2021%206.503906%2021%207%20C%2021%207.496094%2020.597656%207.898438%2020.101562%207.898438%20L%208.898438%207.898438%20C%208.402344%207.898438%208%207.496094%208%207%20C%208%206.503906%208.402344%206.101562%208.898438%206.101562%20Z%20M%208.898438%2011.101562%20L%2020.101562%2011.101562%20C%2020.597656%2011.101562%2021%2011.503906%2021%2012%20C%2021%2012.496094%2020.597656%2012.898438%2020.101562%2012.898438%20L%208.898438%2012.898438%20C%208.402344%2012.898438%208%2012.496094%208%2012%20C%208%2011.503906%208.402344%2011.101562%208.898438%2011.101562%20Z%20M%208.898438%2016.101562%20L%2020.101562%2016.101562%20C%2020.597656%2016.101562%2021%2016.503906%2021%2017%20C%2021%2017.496094%2020.597656%2017.898438%2020.101562%2017.898438%20L%208.898438%2017.898438%20C%208.402344%2017.898438%208%2017.496094%208%2017%20C%208%2016.503906%208.402344%2016.101562%208.898438%2016.101562%20Z%20M%205%205.75%20C%205.691406%205.75%206.25%206.308594%206.25%207%20C%206.25%207.691406%205.691406%208.25%205%208.25%20C%204.308594%208.25%203.75%207.691406%203.75%207%20C%203.75%206.308594%204.308594%205.75%205%205.75%20Z%20M%205%2010.75%20C%205.691406%2010.75%206.25%2011.308594%206.25%2012%20C%206.25%2012.691406%205.691406%2013.25%205%2013.25%20C%204.308594%2013.25%203.75%2012.691406%203.75%2012%20C%203.75%2011.308594%204.308594%2010.75%205%2010.75%20Z%20M%205%2015.75%20C%205.691406%2015.75%206.25%2016.308594%206.25%2017%20C%206.25%2017.691406%205.691406%2018.25%205%2018.25%20C%204.308594%2018.25%203.75%2017.691406%203.75%2017%20C%203.75%2016.308594%204.308594%2015.75%205%2015.75%20Z%20M%205%2015.75%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface7%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%;
+    background-size: 24px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button:hover {
@@ -4684,7 +4740,8 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button_simple {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface10%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%20style%3D%22fill%3Argb(50.980392%25%2C54.117647%25%2C60%25)%3Bfill-opacity%3A1%3Bstroke%3Anone%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%204.898438%206.101562%20L%2019.101562%206.101562%20C%2019.597656%206.101562%2020%206.503906%2020%207%20C%2020%207.496094%2019.597656%207.898438%2019.101562%207.898438%20L%204.898438%207.898438%20C%204.402344%207.898438%204%207.496094%204%207%20C%204%206.503906%204.402344%206.101562%204.898438%206.101562%20Z%20M%204.898438%2016.101562%20L%2019.101562%2016.101562%20C%2019.597656%2016.101562%2020%2016.503906%2020%2017%20C%2020%2017.496094%2019.597656%2017.898438%2019.101562%2017.898438%20L%204.898438%2017.898438%20C%204.402344%2017.898438%204%2017.496094%204%2017%20C%204%2016.503906%204.402344%2016.101562%204.898438%2016.101562%20Z%20M%204.898438%2011.101562%20L%2019.101562%2011.101562%20C%2019.597656%2011.101562%2020%2011.503906%2020%2012%20C%2020%2012.496094%2019.597656%2012.898438%2019.101562%2012.898438%20L%204.898438%2012.898438%20C%204.402344%2012.898438%204%2012.496094%204%2012%20C%204%2011.503906%204.402344%2011.101562%204.898438%2011.101562%20Z%20M%204.898438%2011.101562%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface10%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%20version%3D%221.1%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cfilter%20id%3D%22alpha%22%20filterUnits%3D%22objectBoundingBox%22%20x%3D%220%25%22%20y%3D%220%25%22%20width%3D%22100%25%22%20height%3D%22100%25%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask0%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20filter%3D%22url(%23alpha)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%20%20%20%20%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2FclipPath%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22surface10%22%20clip-path%3D%22url(%23clip1)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%20style%3D%22fill%3Argb(50.980392%25%2C54.117647%25%2C60%25)%3Bfill-opacity%3A1%3Bstroke%3Anone%3B%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22surface1%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M%204.898438%206.101562%20L%2019.101562%206.101562%20C%2019.597656%206.101562%2020%206.503906%2020%207%20C%2020%207.496094%2019.597656%207.898438%2019.101562%207.898438%20L%204.898438%207.898438%20C%204.402344%207.898438%204%207.496094%204%207%20C%204%206.503906%204.402344%206.101562%204.898438%206.101562%20Z%20M%204.898438%2016.101562%20L%2019.101562%2016.101562%20C%2019.597656%2016.101562%2020%2016.503906%2020%2017%20C%2020%2017.496094%2019.597656%2017.898438%2019.101562%2017.898438%20L%204.898438%2017.898438%20C%204.402344%2017.898438%204%2017.496094%204%2017%20C%204%2016.503906%204.402344%2016.101562%204.898438%2016.101562%20Z%20M%204.898438%2011.101562%20L%2019.101562%2011.101562%20C%2019.597656%2011.101562%2020%2011.503906%2020%2012%20C%2020%2012.496094%2019.597656%2012.898438%2019.101562%2012.898438%20L%204.898438%2012.898438%20C%204.402344%2012.898438%204%2012.496094%204%2012%20C%204%2011.503906%204.402344%2011.101562%204.898438%2011.101562%20Z%20M%204.898438%2011.101562%20%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23surface10%22%20mask%3D%22url(%23mask0)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%;
+    background-size: 24px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_extended_button,
@@ -4716,11 +4773,6 @@ a.group_ad_post_link.deleted.deleted:hover {
     width: 510px
 }
 
-.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:after,
-.groups_edit_event_log_page .tt_w.tt_black.groups_edit_event_log_tooltip.toleft:before {
-    right: 35px
-}
-
 .groups_edit_event_log_page .groups_edit_event_log_title {
     border-radius: 0;
     height: 47px;
@@ -4734,7 +4786,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     z-index: 11;
     top: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
-    margin-top: 96px
+    margin-top: 88px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_title_fixed.groups_edit_event_log_title_animating {
@@ -4750,7 +4802,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_controls_wrap {
-    height: 55px;
+    height: 47px;
     width: 510px
 }
 
@@ -4758,7 +4810,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin-bottom: 0;
     padding: 0 20px;
     display: block;
-    height: 54px;
+    height: 46px;
     width: 510px;
     border-bottom: 1px solid #e7e8ec;
     background-color: #fff;
@@ -4776,23 +4828,39 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_filter {
-    margin-right: 21px;
-    margin-top: 18px;
+    margin-right: 24px;
+    margin-top: 16px;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    position: relative;
-    display: inline-block
+    float: left;
+    position: relative
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_filter .ui_tooltipMenu__current {
     color: #2a5885
 }
 
+.groups_edit_event_log_page .groups_edit_event_log_filter_role .ui_tooltipMenu__current {
+    padding-right: 12px;
+    line-height: 15px;
+    position: relative;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_filter_role .ui_tooltipMenu__current:after {
+    right: 0;
+    top: 4px;
+    position: absolute
+}
+
 .groups_edit_event_log_page .groups_edit_event_log_filter_datepicker {
     position: relative;
-    display: inline-block;
-    margin: 16px 0 11px;
+    float: left;
+    margin: 14px 0 11px;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -4849,7 +4917,8 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap:last-child .groups_edit_event_log_item_wrap:last-child {
-    border-radius: 0 0 4px 4px
+    border-radius: 0 0 4px 4px;
+    overflow: hidden
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item {
@@ -4860,6 +4929,10 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_text_explain>br {
     display: none
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item .page_media_thumbed_link:last-child {
+    margin-bottom: 0
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item .wall_text {
@@ -4887,6 +4960,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main,
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_focused {
     background-color: #fafbfc
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main .groups_edit_event_log_item_counter,
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_focused .groups_edit_event_log_item_counter {
+    border-color: #fafbfc
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap:hover>.groups_edit_event_log_item_main .groups_edit_event_log_item_date,
@@ -4972,7 +5050,8 @@ a.group_ad_post_link.deleted.deleted:hover {
     opacity: 0.7;
     filter: alpha(opacity=70);
     width: 15px;
-    height: 15px
+    height: 15px;
+    background-size: cover
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_wrap_toggle {
@@ -4987,6 +5066,37 @@ a.group_ad_post_link.deleted.deleted:hover {
     cursor: pointer;
     background-size: 11px 7px;
     background-position: 50%
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_controls {
+    position: relative
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_photo {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    width: 36px;
+    height: 36px
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_photo>img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%
+}
+
+.groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_counter {
+    right: -5px;
+    bottom: -3px;
+    border: 2px solid #fff;
+    padding: 2px 5px;
+    border-radius: 18px;
+    background: #b2b7c2;
+    font-weight: 500;
+    font-size: 11px;
+    position: absolute;
+    color: #fff
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_main {
@@ -5005,7 +5115,8 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_text {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    margin-right: 40px
 }
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_description {
@@ -5035,8 +5146,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_edit_event_log_page .groups_edit_event_log_items_wrap .groups_edit_event_log_item_labeled {
     float: left;
-    word-break: break-all;
-    width: 370px;
+    width: 330px;
     line-height: 1.38
 }
 
