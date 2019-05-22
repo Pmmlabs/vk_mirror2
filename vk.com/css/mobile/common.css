@@ -32938,6 +32938,10 @@ a.feedBlocks__article:hover {
     .vk__page_login .fit_box.new_form .social_button:first-child {
         margin-left: 0
     }
+    .vk__page_login .fit_box.new_form .social_button:first-child:last-child {
+        float: none;
+        width: auto
+    }
 }
 
 body.apps_settingsPageBody {

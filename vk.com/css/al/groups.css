@@ -2556,7 +2556,9 @@ textarea.EditableLabel__textarea {
 }
 
 .Select--secondary .Select__menu {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 145px;
     box-shadow: 0 1px 1px rgba(43, 47, 51, .17);
     border-radius: 0 0 2px 2px
 }
