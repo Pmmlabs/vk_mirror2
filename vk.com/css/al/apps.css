@@ -1963,9 +1963,9 @@
 }
 
 .apps_feed_wrap {
-    padding: 15px 31px 0 20px;
+    padding: 0 31px 0 20px;
     overflow: hidden;
-    height: 234px
+    height: 249px
 }
 
 .apps_feed_wrap .ui_scroll_bar_container {
@@ -1988,6 +1988,10 @@
 
 .apps_feed_wrap .no_rows {
     height: 234px
+}
+
+.apps_feed_wrap .apps_feed_row:first-child {
+    margin-top: 15px
 }
 
 .apps_feed_row {

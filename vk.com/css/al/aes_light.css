@@ -947,7 +947,8 @@ a.ads_ad_box2:hover {
     position: relative;
     margin: 15px 0 0;
     padding: 0;
-    background-color: #fff;
+    background-color: #000;
+    background-color: transparent;
     display: none
 }
 
@@ -962,7 +963,7 @@ a.ads_ad_box2:hover {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: -1;
     border: 1px solid rgba(0, 20, 51, .12);
     border-radius: 4px;
     box-sizing: border-box
