@@ -1613,11 +1613,12 @@
                 }
             },
             decHashCb: function(e) {
-                var t;
-                t = e, curFastChat.decodedHashes[t] = function(e) {
-                    for (var t = ge ? "" : "___", i = 0; i < e.length; ++i) t += e.charAt(e.length - i - 1);
-                    return geByClass ? t : "___"
-                }(t.substr(t.length - 5) + t.substr(4, t.length - 12))
+                ! function(e) {
+                    curFastChat.decodedHashes[e] = function(e) {
+                        for (var t = ge ? "" : "___", i = 0; i < e.length; ++i) t += e.charAt(e.length - i - 1);
+                        return geByClass ? t : "___"
+                    }(e.substr(e.length - 5) + e.substr(4, e.length - 12))
+                }(e)
             },
             decodehash: function(e) {
                 return curFastChat.decodedHashes || (curFastChat.decodedHashes = {}), curFastChat.decodedHashes[e] || FastChat.decHashCb(e), curFastChat.decodedHashes[e]
@@ -2784,21 +2785,24 @@
         }
 
         function d() {
-            var e;
             u() && (s().forEach(function(e) {
-                !n().find(function(t) {
-                    return e.ev === t.ev
-                }) && e.time < Date.now() - 1e3 && !e.warned && (e.warned = !0, r("red", "im not fc", e.ev), Object(a.c)() && c("im not fc", e.ev))
-            }), n().forEach(function(e) {
-                var t = s().find(function(t) {
-                    return t.ev === e.ev
-                });
-                t && t.warned && !e.warned && (e.warned = !0, r("red", "now fc like im", e.ev), Object(a.c)() && c("now fc like im", e.ev))
-            })), e = Date.now() - 3e4, window.lpBufferFc = n().filter(function(t) {
-                return t.time > e
-            }), window.lpBufferIm = s().filter(function(t) {
-                return t.time > e
-            })
+                    !n().find(function(t) {
+                        return e.ev === t.ev
+                    }) && e.time < Date.now() - 1e3 && !e.warned && (e.warned = !0, r("red", "im not fc", e.ev), Object(a.c)() && c("im not fc", e.ev))
+                }), n().forEach(function(e) {
+                    var t = s().find(function(t) {
+                        return t.ev === e.ev
+                    });
+                    t && t.warned && !e.warned && (e.warned = !0, r("red", "now fc like im", e.ev), Object(a.c)() && c("now fc like im", e.ev))
+                })),
+                function() {
+                    var e = Date.now() - 3e4;
+                    window.lpBufferFc = n().filter(function(t) {
+                        return t.time > e
+                    }), window.lpBufferIm = s().filter(function(t) {
+                        return t.time > e
+                    })
+                }()
         }
 
         function f(e) {
@@ -2865,35 +2869,38 @@
         }
 
         function p() {
-            return u() ? (l || (s.lpConfig.id = s.id, window.lpConnect = c = Object(a.a)(s.lpConfig, h), e = Object(o.a)(s.lpConfig.ts, function(e) {
-                Object(r.a)(e), t.trigger("data", e)
-            }, g), t = new window.EventEmitter, window.lpInstance = l = {
-                onData: function(e) {
-                    t.on("data", e)
-                },
-                offData: function(e) {
-                    t.off("data", e)
-                },
-                pause: function() {
-                    e.pause()
-                },
-                resume: function() {
-                    e.resume()
-                },
-                push: function(e) {
-                    t.trigger("data", e)
-                },
-                abortWaiting: function() {
-                    c.abortWaiting()
-                },
-                onLp: function(t, i, a) {
-                    e.onLp(t, i, a)
-                },
-                isEnabled: function() {
-                    return !(!c || c.isStopped())
+            return u() ? (l || (s.lpConfig.id = s.id, window.lpConnect = c = Object(a.a)(s.lpConfig, h), function() {
+                var e = Object(o.a)(s.lpConfig.ts, function(e) {
+                        Object(r.a)(e), t.trigger("data", e)
+                    }, g),
+                    t = new window.EventEmitter;
+                window.lpInstance = l = {
+                    onData: function(e) {
+                        t.on("data", e)
+                    },
+                    offData: function(e) {
+                        t.off("data", e)
+                    },
+                    pause: function() {
+                        e.pause()
+                    },
+                    resume: function() {
+                        e.resume()
+                    },
+                    push: function(e) {
+                        t.trigger("data", e)
+                    },
+                    abortWaiting: function() {
+                        c.abortWaiting()
+                    },
+                    onLp: function(t, i, a) {
+                        e.onLp(t, i, a)
+                    },
+                    isEnabled: function() {
+                        return !(!c || c.isStopped())
+                    }
                 }
-            }), l) : null;
-            var e, t
+            }()), l) : null
         }
 
         function _() {
@@ -3075,64 +3082,66 @@
                         return i
                     },
                     onResult: function(e) {
-                        e.ts && n(a.ts, e.ts, e.updates.map(function(e) {
-                            switch (e[0]) {
-                                case 0:
-                                    return r.ib(e);
-                                case 1:
-                                    return r.xb(e);
-                                case 2:
-                                    return r.Fb(e);
-                                case 3:
-                                    return r.Bb(e);
-                                case 4:
-                                    return r.bb(e);
-                                case 5:
-                                    return r.jb(e);
-                                case 6:
-                                    return r.rb(e);
-                                case 7:
-                                    return r.sb(e);
-                                case 8:
-                                    return r.ob(e);
-                                case 9:
-                                    return r.nb(e);
-                                case 10:
-                                    return r.Ab(e);
-                                case 11:
-                                    return r.wb(e);
-                                case 12:
-                                    return r.Eb(e);
-                                case 13:
-                                    return r.hb(e);
-                                case 18:
-                                    return r.yb(e);
-                                case 51:
-                                    return r.fb(e);
-                                case 52:
-                                    return r.gb(e);
-                                case 63:
-                                    return r.Hb(e);
-                                case 64:
-                                    return r.tb(e);
-                                case 70:
-                                    return r.Jb(e);
-                                case 80:
-                                    return r.Ib(e);
-                                case 114:
-                                    return r.qb(e);
-                                case 116:
-                                    return r.vb(e);
-                                case 117:
-                                    return r.cb(e);
-                                case -1:
-                                    return r.Db();
-                                case -2:
-                                    return r.ub(e);
-                                default:
-                                    return r.lb(e)
-                            }
-                        }))
+                        e.ts && n(a.ts, e.ts, function(e) {
+                            return e.map(function(e) {
+                                switch (e[0]) {
+                                    case 0:
+                                        return r.ib(e);
+                                    case 1:
+                                        return r.xb(e);
+                                    case 2:
+                                        return r.Fb(e);
+                                    case 3:
+                                        return r.Bb(e);
+                                    case 4:
+                                        return r.bb(e);
+                                    case 5:
+                                        return r.jb(e);
+                                    case 6:
+                                        return r.rb(e);
+                                    case 7:
+                                        return r.sb(e);
+                                    case 8:
+                                        return r.ob(e);
+                                    case 9:
+                                        return r.nb(e);
+                                    case 10:
+                                        return r.Ab(e);
+                                    case 11:
+                                        return r.wb(e);
+                                    case 12:
+                                        return r.Eb(e);
+                                    case 13:
+                                        return r.hb(e);
+                                    case 18:
+                                        return r.yb(e);
+                                    case 51:
+                                        return r.fb(e);
+                                    case 52:
+                                        return r.gb(e);
+                                    case 63:
+                                        return r.Hb(e);
+                                    case 64:
+                                        return r.tb(e);
+                                    case 70:
+                                        return r.Jb(e);
+                                    case 80:
+                                        return r.Ib(e);
+                                    case 114:
+                                        return r.qb(e);
+                                    case 116:
+                                        return r.vb(e);
+                                    case 117:
+                                        return r.cb(e);
+                                    case -1:
+                                        return r.Db();
+                                    case -2:
+                                        return r.ub(e);
+                                    default:
+                                        return r.lb(e)
+                                }
+                            })
+                        }(e.updates))
                     },
                     onData: p(t.onData),
                     onRequestError: p(t.onRequestError),
@@ -4368,7 +4377,7 @@
                 } else ls.set(curNotifier.connection_id, i)
             },
             lcRecv: function(e) {
-                if (!isEmpty(e) && e.__client != curNotifier.instance_id) {
+                if (e && !isEmpty(e) && e.__client != curNotifier.instance_id) {
                     var t = e.__act;
                     switch (delete e.__client, delete e.__act, delete e.__rnd, Notifier.debug && debugLog(curNotifier.instance_id + ": recv", t, e), t) {
                         case "new_server":

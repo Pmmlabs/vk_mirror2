@@ -113,8 +113,8 @@ ul {
 }
 
 .image_cover {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -1017,8 +1017,8 @@ input.wide_button {
     display: block;
     width: 15px;
     height: 15px;
+    -webkit-background-size: 15px 15px;
     -moz-background-size: 15px;
-    -o-background-size: 15px;
     background-size: 15px;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/star_white.png)
@@ -1376,8 +1376,8 @@ input.wide_button {
 .top_author,
 .verified {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 20px 20px;
     -moz-background-size: 20px;
-    -o-background-size: 20px;
     background-size: 20px;
     background-repeat: no-repeat;
     width: 17px;
@@ -1942,8 +1942,8 @@ input.wide_button {
     margin: 0 18px 0 0;
     background-image: url('/images/mobile/skins/icon/desktop_icon.png?3');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     display: none
 }
@@ -2027,8 +2027,8 @@ input.wide_button {
 .mmi_settings .i_icon {
     height: 22px;
     background-image: url('/images/mobile/menu_icons.png?16');
+    -webkit-background-size: 25px 455px;
     -moz-background-size: 25px 455px;
-    -o-background-size: 25px 455px;
     background-size: 25px 455px;
     margin-top: 1px
 }
@@ -2387,8 +2387,8 @@ input.wide_button {
 
 .show_more_loading .i_loading {
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -2506,8 +2506,8 @@ input.wide_button {
     width: 72px;
     height: 72px;
     margin: 0 12px 0 0;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -2987,8 +2987,8 @@ input.wide_button {
     width: 24px;
     height: 24px;
     margin: auto;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -505px;
     background-image: url('/images/mobile/icons/audio_icons.png?12')
@@ -4273,8 +4273,8 @@ input.wide_button {
 
 .mlt_thumb {
     background: no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     margin: 0 7px 1px 0;
     width: 120px;
@@ -4371,8 +4371,8 @@ input.wide_button {
     height: 12px;
     background-image: url(/images/mobile/icons/fwd_msg_icon.png);
     background-repeat: no-repeat;
+    -webkit-background-size: 12px 12px;
     -moz-background-size: 12px 12px;
-    -o-background-size: 12px 12px;
     background-size: 12px 12px;
     position: relative;
     top: 2px
@@ -4407,8 +4407,8 @@ input.wide_button {
     display: block;
     width: 100%;
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -4418,8 +4418,8 @@ input.wide_button {
 .thumb_map_img_unsized {
     vertical-align: top;
     background: no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     width: 100%;
     height: 100%
@@ -4454,15 +4454,15 @@ input.wide_button {
 }
 
 .thumb_map_nocover img {
+    -webkit-background-size: 60px 48px;
     -moz-background-size: 60px 48px;
-    -o-background-size: 60px 48px;
     background-size: 60px 48px;
     background-position: 50% 45%
 }
 
 .thumb_map_market.thumb_map_nocover img {
+    -webkit-background-size: 66px 75px;
     -moz-background-size: 66px 75px;
-    -o-background-size: 66px 75px;
     background-size: 66px 75px
 }
 
@@ -4575,8 +4575,8 @@ input.wide_button {
     margin: 0 0 0 7px;
     float: right;
     background: no-repeat center 0;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     display: none
 }
@@ -4910,8 +4910,8 @@ input.wide_button {
     bottom: 13px;
     content: '';
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     width: 17px;
     height: 5px;
@@ -5043,8 +5043,8 @@ input.wide_button {
     margin-right: 5px;
     width: 11px;
     height: 11px;
+    -webkit-background-size: 11px 11px;
     -moz-background-size: 11px;
-    -o-background-size: 11px;
     background-size: 11px;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/icons/star.png')
@@ -5078,8 +5078,8 @@ input.wide_button {
     margin-right: 1px;
     width: 11px;
     height: 11px;
+    -webkit-background-size: 11px 11px;
     -moz-background-size: 11px;
-    -o-background-size: 11px;
     background-size: 11px;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/star.png)
@@ -5213,8 +5213,8 @@ input.wide_button {
     right: 8px;
     background-image: url(/images/mobile/icons/msg_check.png);
     background-repeat: no-repeat;
+    -webkit-background-size: 16px 36px;
     -moz-background-size: 16px 36px;
-    -o-background-size: 16px 36px;
     background-size: 16px 36px
 }
 
@@ -5332,8 +5332,8 @@ input.wide_button {
     width: 300px;
     max-width: 100%;
     height: auto;
+    -webkit-background-size: 300px auto;
     -moz-background-size: 300px auto;
-    -o-background-size: 300px auto;
     background-size: 300px auto;
     height: 156px
 }
@@ -5405,8 +5405,8 @@ input.wide_button {
     width: 100%;
     padding-top: 70%;
     background: url(/images/mobile/chronicle/snapster_invite_web.png);
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     margin-bottom: 10px
 }
@@ -5599,8 +5599,8 @@ input.wide_button {
 
 .dmi_l .dmi_i,
 .dmi_r .dmi_i {
-    -o-background-size: 50px 50px;
     -moz-background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
     background-size: 50px 50px!important
 }
 
@@ -5615,8 +5615,8 @@ input.wide_button {
 .dmi_lt .dmi_i,
 .dmi_rb .dmi_i,
 .dmi_rt .dmi_i {
-    -o-background-size: 25px 25px;
     -moz-background-size: 25px 25px;
+    -webkit-background-size: 25px 25px;
     background-size: 25px 25px!important
 }
 
@@ -6705,8 +6705,8 @@ div.pm_item .pm_counter {
 
 .pp_last_activity .mlvi {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     background-repeat: no-repeat;
     background-position: 0 -300px;
@@ -6861,8 +6861,8 @@ div.pm_item .pm_counter {
 
 .create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -824px;
     content: '';
@@ -7530,8 +7530,8 @@ div.pm_item .pm_counter {
     background: #fff;
     background-image: url(/images/feedback_icons.png?3);
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     position: absolute;
     width: 16px;
@@ -7788,8 +7788,8 @@ div.pm_item .pm_counter {
     height: 20px;
     left: 47px;
     top: 47px;
+    -webkit-background-size: 20px 20px;
     -moz-background-size: 20px;
-    -o-background-size: 20px;
     background-size: 20px;
     border: 2px solid #fff;
     -webkit-border-radius: 50%;
@@ -8319,8 +8319,8 @@ div.pm_item .pm_counter {
 
 .sp_badge {
     background: no-repeat 0 0;
+    -webkit-background-size: 40px 19px;
     -moz-background-size: 40px 19px;
-    -o-background-size: 40px 19px;
     background-size: 40px 19px;
     width: 19px;
     height: 19px;
@@ -8361,7 +8361,6 @@ div.pm_item .pm_counter {
 }
 
 .scroller_wrap:before {
-    background-image: -moz-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#dce1e6), to(rgba(220, 225, 230, 0)));
     background-image: -webkit-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
     background-image: -o-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
@@ -8369,7 +8368,6 @@ div.pm_item .pm_counter {
 }
 
 .scroller_wrap:after {
-    background-image: -moz-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgba(220, 225, 230, 0)), to(#dce1e6));
     background-image: -webkit-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
     background-image: -o-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
@@ -9510,8 +9508,8 @@ div.pm_item .pm_counter {
     height: 100%;
     background-repeat: no-repeat;
     background-position: 50% 40%;
+    -webkit-background-size: 66px 75px;
     -moz-background-size: 66px 75px;
-    -o-background-size: 66px 75px;
     background-size: 66px 75px
 }
 
@@ -10247,8 +10245,8 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_upload_img {
     background: #fff no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     display: inline-block;
     vertical-align: top;
@@ -10479,7 +10477,6 @@ only screen and (min-device-pixel-ratio: 2) {
 ._touch .zpv_close_btn.active,
 ._touch .zpv_close_btn.hover {
     text-decoration: none;
-    background: -moz-linear-gradient(top, rgba(52, 52, 52, .6), rgba(30, 30, 30, .6));
     background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(52, 52, 52, .6)), to(rgba(30, 30, 30, .6)));
     background: -o-linear-gradient(rgba(52, 52, 52, .6), rgba(30, 30, 30, .6))
 }
@@ -10527,7 +10524,6 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_bottom_bg {
     top: -75px;
-    background: -moz-linear-gradient(top, rgba(64, 64, 64, 0), rgba(64, 64, 64, .55));
     background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(64, 64, 64, 0)), to(rgba(64, 64, 64, .55)));
     background: -o-linear-gradient(rgba(64, 64, 64, 0), rgba(64, 64, 64, .55))
 }
@@ -10577,8 +10573,8 @@ only screen and (min-device-pixel-ratio: 2) {
 .zpv_close_icon,
 .zpv_zb_wrap .i_icon {
     background: url(/images/mobile/icons/photo_icons_24.png?1) no-repeat;
+    -webkit-background-size: 24px 24px!important;
     -moz-background-size: 24px!important;
-    -o-background-size: 24px!important;
     background-size: 24px!important;
     padding: 0;
     margin: 0;
@@ -10598,8 +10594,8 @@ only screen and (min-device-pixel-ratio: 2) {
     display: block;
     opacity: 1;
     background: url('/images/mobile/skins/icon/header.png?5') no-repeat -10px -316px;
+    -webkit-background-size: 44px 44px!important;
     -moz-background-size: 44px!important;
-    -o-background-size: 44px!important;
     background-size: 44px!important
 }
 
@@ -11212,8 +11208,8 @@ only screen and (min-device-pixel-ratio: 2) {
     width: 0.95em;
     height: 1.38em;
     padding: 5px 0.72em;
+    -webkit-background-size: 0.95em 0.95em;
     -moz-background-size: 0.95em;
-    -o-background-size: 0.95em;
     background-size: 0.95em;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/search_clear.png);
@@ -11288,8 +11284,8 @@ only screen and (min-device-pixel-ratio: 2) {
     height: 24px;
     background: url('/images/svg_icons/doc_icon.svg');
     vertical-align: middle;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 5px

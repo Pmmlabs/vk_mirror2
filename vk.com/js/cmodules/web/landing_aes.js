@@ -637,8 +637,10 @@
                                             if (d)
                                                 if (c)
                                                     if (_ && /^(https?:\/\/)?vk\.com\/[^\/]+$/.test(_)) {
-                                                        if (!u || (-1 === (D = u).indexOf("@") || -1 !== D.indexOf(" "))) return notaBene("adv_agency_form_email");
-                                                        var D, I = {
+                                                        if (!u || ! function(e) {
+                                                                return -1 !== e.indexOf("@") && -1 === e.indexOf(" ")
+                                                            }(u)) return notaBene("adv_agency_form_email");
+                                                        var D = {
                                                                 act: "adv_agency_send_request",
                                                                 country: n,
                                                                 city: a,
@@ -658,8 +660,8 @@
                                                                 clients: JSON.stringify(B),
                                                                 hash: t
                                                             },
-                                                            W = ge("adv_agency_form_sent");
-                                                        hide(W), LandingAds.sendStatEvent("adv_agency_form_send"), lockButton(e), ajax.post("ads.php", I, {
+                                                            I = ge("adv_agency_form_sent");
+                                                        hide(I), LandingAds.sendStatEvent("adv_agency_form_send"), lockButton(e), ajax.post("ads.php", D, {
                                                             onDone: function() {
                                                                 unlockButton(e), val("adv_agency_form_city", ""), val("adv_agency_form_site", ""), val("adv_agency_form_company", ""), val("adv_agency_form_inn", ""), val("adv_agency_form_starting_budget", ""), val("adv_agency_form_monthly_budget", ""), val("adv_agency_form_contact_first_name", domData(ge("adv_agency_form_contact_first_name"), "initial")), val("adv_agency_form_contact_last_name", domData(ge("adv_agency_form_contact_last_name"), "initial")), val("adv_agency_form_email", ""), val("adv_agency_form_vk_profile", domData(ge("adv_agency_form_vk_profile"), "initial")), val("adv_agency_form_message", ""), val("adv_agency_business_direction_other", ""), cur.countryDD.selectItem(0);
                                                                 for (var t = geByClass("on", "adv_agency_products_wrap"), n = 0; n < t.length; n++) removeClass(t[n], "on");
@@ -678,7 +680,7 @@
                                                                             val(p, "")
                                                                         } else c.parentNode.removeChild(c)
                                                                 }
-                                                                removeClass(geByClass1("js-adv-agency-clients-add"), "hidden"), show(W), scrollToY(getXY(W)[1] - 200)
+                                                                removeClass(geByClass1("js-adv-agency-clients-add"), "hidden"), show(I), scrollToY(getXY(I)[1] - 200)
                                                             },
                                                             onFail: function() {
                                                                 unlockButton(e)
@@ -688,7 +690,7 @@
                                             else notaBene("adv_agency_form_contact_last_name");
                                             else notaBene("adv_agency_form_contact_first_name")
                                         } else
-                                            for (var M = domQuery("#adv_agency_clients_wrap > div:first-child input"), N = 0; N < M.length; N++) notaBene(M[N])
+                                            for (var W = domQuery("#adv_agency_clients_wrap > div:first-child input"), M = 0; M < W.length; M++) notaBene(W[M])
                                 }
                             } else notaBene("adv_agency_form_inn");
                 else notaBene("adv_agency_form_company");

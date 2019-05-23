@@ -390,8 +390,10 @@
                     return (Math.pow(e, t) - 1) / (e - 1)
                 }, t.prototype._unlogf = function(t) {
                     if (!this.options.log) return t;
-                    var e, i, o = this.options.logfbase;
-                    return e = o, i = 1 + t * (o - 1), Math.log(i) / Math.log(e)
+                    var e = this.options.logfbase;
+                    return function(t, e) {
+                        return Math.log(e) / Math.log(t)
+                    }(e, 1 + t * (e - 1))
                 }, t.prototype.setValue = function(t, e, i) {
                     if (!hasClass(this._el, "active") || i) {
                         var o = i ? this._logf(t) : t;

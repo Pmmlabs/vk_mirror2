@@ -698,10 +698,12 @@
                 }
 
                 function N() {
-                    if (t) return r = ge("lead_forms_view_form_preview_error"), show(r), setTimeout(function() {
-                        hide(r)
-                    }, 5e3), !1;
-                    var r;
+                    if (t) return function() {
+                        var e = ge("lead_forms_view_form_preview_error");
+                        show(e), setTimeout(function() {
+                            hide(e)
+                        }, 5e3)
+                    }(), !1;
                     ajax.post("/lead_forms_app.php", {
                         act: "send_form",
                         hash: cur.leadFormSendHash,

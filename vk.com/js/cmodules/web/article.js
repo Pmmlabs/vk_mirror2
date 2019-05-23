@@ -1416,40 +1416,43 @@
         }
         var zt = function() {
             function t(e, r, a) {
-                var o, n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
+                var o = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, t), this._id = Ut(), J.lang = J.lang || {}, dt(J.lang, n.lang), this._options = n, this._els = {
-                    editor: vt(e),
-                    canvas: st('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
-                }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = st('<div class="article_photo_upload"></div>')), $(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [], o = n.limits, z = o;
-                var s = a || [];
-                if (n.postData) {
-                    var c = n.postData.text || "";
-                    c = (c = c.replace(/❤/g, "❤️")).split("\n");
-                    var l = [];
-                    l.push(Object(i.e)({
+                }(this, t), this._id = Ut(), J.lang = J.lang || {}, dt(J.lang, o.lang), this._options = o, this._els = {
+                        editor: vt(e),
+                        canvas: st('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
+                    }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = st('<div class="article_photo_upload"></div>')), $(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [],
+                    function(t) {
+                        z = t
+                    }(o.limits);
+                var n = a || [];
+                if (o.postData) {
+                    var s = o.postData.text || "";
+                    s = (s = s.replace(/❤/g, "❤️")).split("\n");
+                    var c = [];
+                    c.push(Object(i.e)({
                         type: h.b.Header1,
                         lines: [{
                             text: ""
                         }]
-                    })), c.forEach(function(t) {
-                        ht(t) && l.push(Object(i.e)({
+                    })), s.forEach(function(t) {
+                        ht(t) && c.push(Object(i.e)({
                             lines: [{
                                 text: ft(t)
                             }]
                         }))
-                    }), s = l.concat(s)
+                    }), n = c.concat(n)
                 }
-                s && 0 != s.length || (s = [Object(i.e)({
+                n && 0 != n.length || (n = [Object(i.e)({
                     type: this._options.noTitle ? h.b.Text : h.b.Header1
-                })]), (s = s.filter(function(t) {
+                })]), (n = n.filter(function(t) {
                     return !1 !== t
                 })).forEach(function(t) {
                     t.lines.forEach(function(t) {
                         t.text = Object(i.R)(t.text), t.brs && bt(t.brs) && (t.brs = Object(i.j)(t.brs))
                     })
-                }), n.needIndexCorrection && Object(i.k)(s, 1), this.initParagraphs(s), this._updateTextPlaceholders(), this._initObjectDrag(), n.postData ? Object(i.o)(this._getParagraphElByIndex(0)) : this._restoreLastCursor(), this.saveDraft(!1, !0), n.coverPhoto && this.setCoverPhoto(n.coverPhoto, !1), (this._options.isPublished || this._options.wasPublished) && this.setPublishName(r.name), this.updateWarnInfos(), this._publishNameCandidate = n.name || this._getName(), this._saveUndoState(), stManager.add("audio.js")
+                }), o.needIndexCorrection && Object(i.k)(n, 1), this.initParagraphs(n), this._updateTextPlaceholders(), this._initObjectDrag(), o.postData ? Object(i.o)(this._getParagraphElByIndex(0)) : this._restoreLastCursor(), this.saveDraft(!1, !0), o.coverPhoto && this.setCoverPhoto(o.coverPhoto, !1), (this._options.isPublished || this._options.wasPublished) && this.setPublishName(r.name), this.updateWarnInfos(), this._publishNameCandidate = o.name || this._getName(), this._saveUndoState(), stManager.add("audio.js")
             }
             return t.prototype.updateWarnInfos = function() {
                 this.showWarningInfo(), this.showEditLockInfo(), this.showRevEditInfo()

@@ -113,8 +113,8 @@ ul {
 }
 
 .image_cover {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -1019,8 +1019,8 @@ input.wide_button {
     display: block;
     width: 15px;
     height: 15px;
+    -webkit-background-size: 15px 15px;
     -moz-background-size: 15px;
-    -o-background-size: 15px;
     background-size: 15px;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/star_white.png)
@@ -1380,8 +1380,8 @@ input.wide_button {
 .top_author,
 .verified {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 20px 20px;
     -moz-background-size: 20px;
-    -o-background-size: 20px;
     background-size: 20px;
     background-repeat: no-repeat;
     width: 17px;
@@ -1955,8 +1955,8 @@ input.wide_button {
     margin: 0 18px 0 0;
     background-image: url('/images/mobile/skins/icon/desktop_icon.png?3');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     display: none
 }
@@ -2040,8 +2040,8 @@ input.wide_button {
 .mmi_settings .i_icon {
     height: 22px;
     background-image: url('/images/mobile/menu_icons.png?16');
+    -webkit-background-size: 25px 455px;
     -moz-background-size: 25px 455px;
-    -o-background-size: 25px 455px;
     background-size: 25px 455px;
     margin-top: 1px
 }
@@ -2400,8 +2400,8 @@ input.wide_button {
 
 .show_more_loading .i_loading {
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -2519,8 +2519,8 @@ input.wide_button {
     width: 72px;
     height: 72px;
     margin: 0 12px 0 0;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -3002,8 +3002,8 @@ input.wide_button {
     width: 24px;
     height: 24px;
     margin: auto;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -505px;
     background-image: url('/images/mobile/icons/audio_icons.png?12')
@@ -4288,8 +4288,8 @@ input.wide_button {
 
 .mlt_thumb {
     background: no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     margin: 0 7px 1px 0;
     width: 120px;
@@ -4386,8 +4386,8 @@ input.wide_button {
     height: 12px;
     background-image: url(/images/mobile/icons/fwd_msg_icon.png);
     background-repeat: no-repeat;
+    -webkit-background-size: 12px 12px;
     -moz-background-size: 12px 12px;
-    -o-background-size: 12px 12px;
     background-size: 12px 12px;
     position: relative;
     top: 2px
@@ -4422,8 +4422,8 @@ input.wide_button {
     display: block;
     width: 100%;
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -4433,8 +4433,8 @@ input.wide_button {
 .thumb_map_img_unsized {
     vertical-align: top;
     background: no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     width: 100%;
     height: 100%
@@ -4469,15 +4469,15 @@ input.wide_button {
 }
 
 .thumb_map_nocover img {
+    -webkit-background-size: 60px 48px;
     -moz-background-size: 60px 48px;
-    -o-background-size: 60px 48px;
     background-size: 60px 48px;
     background-position: 50% 45%
 }
 
 .thumb_map_market.thumb_map_nocover img {
+    -webkit-background-size: 66px 75px;
     -moz-background-size: 66px 75px;
-    -o-background-size: 66px 75px;
     background-size: 66px 75px
 }
 
@@ -4590,8 +4590,8 @@ input.wide_button {
     margin: 0 0 0 7px;
     float: right;
     background: no-repeat center 0;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     display: none
 }
@@ -4925,8 +4925,8 @@ input.wide_button {
     bottom: 13px;
     content: '';
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     width: 17px;
     height: 5px;
@@ -5058,8 +5058,8 @@ input.wide_button {
     margin-right: 5px;
     width: 11px;
     height: 11px;
+    -webkit-background-size: 11px 11px;
     -moz-background-size: 11px;
-    -o-background-size: 11px;
     background-size: 11px;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/icons/star.png')
@@ -5093,8 +5093,8 @@ input.wide_button {
     margin-right: 1px;
     width: 11px;
     height: 11px;
+    -webkit-background-size: 11px 11px;
     -moz-background-size: 11px;
-    -o-background-size: 11px;
     background-size: 11px;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/star.png)
@@ -5228,8 +5228,8 @@ input.wide_button {
     right: 8px;
     background-image: url(/images/mobile/icons/msg_check.png);
     background-repeat: no-repeat;
+    -webkit-background-size: 16px 36px;
     -moz-background-size: 16px 36px;
-    -o-background-size: 16px 36px;
     background-size: 16px 36px
 }
 
@@ -5347,8 +5347,8 @@ input.wide_button {
     width: 300px;
     max-width: 100%;
     height: auto;
+    -webkit-background-size: 300px auto;
     -moz-background-size: 300px auto;
-    -o-background-size: 300px auto;
     background-size: 300px auto;
     height: 156px
 }
@@ -5420,8 +5420,8 @@ input.wide_button {
     width: 100%;
     padding-top: 70%;
     background: url(/images/mobile/chronicle/snapster_invite_web.png);
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     margin-bottom: 10px
 }
@@ -5614,8 +5614,8 @@ input.wide_button {
 
 .dmi_l .dmi_i,
 .dmi_r .dmi_i {
-    -o-background-size: 50px 50px;
     -moz-background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
     background-size: 50px 50px!important
 }
 
@@ -5630,8 +5630,8 @@ input.wide_button {
 .dmi_lt .dmi_i,
 .dmi_rb .dmi_i,
 .dmi_rt .dmi_i {
-    -o-background-size: 25px 25px;
     -moz-background-size: 25px 25px;
+    -webkit-background-size: 25px 25px;
     background-size: 25px 25px!important
 }
 
@@ -6720,8 +6720,8 @@ div.pm_item .pm_counter {
 
 .pp_last_activity .mlvi {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     background-repeat: no-repeat;
     background-position: 0 -300px;
@@ -6876,8 +6876,8 @@ div.pm_item .pm_counter {
 
 .create_post .post__select:after {
     background-image: url('/images/mobile/skins/icon/statuses.png?14');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -824px;
     content: '';
@@ -7545,8 +7545,8 @@ div.pm_item .pm_counter {
     background: #fff;
     background-image: url(/images/feedback_icons.png?3);
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     position: absolute;
     width: 16px;
@@ -7803,8 +7803,8 @@ div.pm_item .pm_counter {
     height: 20px;
     left: 47px;
     top: 47px;
+    -webkit-background-size: 20px 20px;
     -moz-background-size: 20px;
-    -o-background-size: 20px;
     background-size: 20px;
     border: 2px solid #fff;
     -webkit-border-radius: 50%;
@@ -8334,8 +8334,8 @@ div.pm_item .pm_counter {
 
 .sp_badge {
     background: no-repeat 0 0;
+    -webkit-background-size: 40px 19px;
     -moz-background-size: 40px 19px;
-    -o-background-size: 40px 19px;
     background-size: 40px 19px;
     width: 19px;
     height: 19px;
@@ -8376,7 +8376,6 @@ div.pm_item .pm_counter {
 }
 
 .scroller_wrap:before {
-    background-image: -moz-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#dce1e6), to(rgba(220, 225, 230, 0)));
     background-image: -webkit-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
     background-image: -o-linear-gradient(left, #dce1e6, rgba(220, 225, 230, 0));
@@ -8384,7 +8383,6 @@ div.pm_item .pm_counter {
 }
 
 .scroller_wrap:after {
-    background-image: -moz-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgba(220, 225, 230, 0)), to(#dce1e6));
     background-image: -webkit-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
     background-image: -o-linear-gradient(left, rgba(220, 225, 230, 0), #dce1e6);
@@ -9525,8 +9523,8 @@ div.pm_item .pm_counter {
     height: 100%;
     background-repeat: no-repeat;
     background-position: 50% 40%;
+    -webkit-background-size: 66px 75px;
     -moz-background-size: 66px 75px;
-    -o-background-size: 66px 75px;
     background-size: 66px 75px
 }
 
@@ -10262,8 +10260,8 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_upload_img {
     background: #fff no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     display: inline-block;
     vertical-align: top;
@@ -10494,7 +10492,6 @@ only screen and (min-device-pixel-ratio: 2) {
 ._touch .zpv_close_btn.active,
 ._touch .zpv_close_btn.hover {
     text-decoration: none;
-    background: -moz-linear-gradient(top, rgba(52, 52, 52, .6), rgba(30, 30, 30, .6));
     background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(52, 52, 52, .6)), to(rgba(30, 30, 30, .6)));
     background: -o-linear-gradient(rgba(52, 52, 52, .6), rgba(30, 30, 30, .6))
 }
@@ -10542,7 +10539,6 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .zpv_bottom_bg {
     top: -75px;
-    background: -moz-linear-gradient(top, rgba(64, 64, 64, 0), rgba(64, 64, 64, .55));
     background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(64, 64, 64, 0)), to(rgba(64, 64, 64, .55)));
     background: -o-linear-gradient(rgba(64, 64, 64, 0), rgba(64, 64, 64, .55))
 }
@@ -10592,8 +10588,8 @@ only screen and (min-device-pixel-ratio: 2) {
 .zpv_close_icon,
 .zpv_zb_wrap .i_icon {
     background: url(/images/mobile/icons/photo_icons_24.png?1) no-repeat;
+    -webkit-background-size: 24px 24px!important;
     -moz-background-size: 24px!important;
-    -o-background-size: 24px!important;
     background-size: 24px!important;
     padding: 0;
     margin: 0;
@@ -10613,8 +10609,8 @@ only screen and (min-device-pixel-ratio: 2) {
     display: block;
     opacity: 1;
     background: url('/images/mobile/skins/icon/header.png?5') no-repeat -10px -316px;
+    -webkit-background-size: 44px 44px!important;
     -moz-background-size: 44px!important;
-    -o-background-size: 44px!important;
     background-size: 44px!important
 }
 
@@ -11227,8 +11223,8 @@ only screen and (min-device-pixel-ratio: 2) {
     width: 0.95em;
     height: 1.38em;
     padding: 5px 0.72em;
+    -webkit-background-size: 0.95em 0.95em;
     -moz-background-size: 0.95em;
-    -o-background-size: 0.95em;
     background-size: 0.95em;
     background-repeat: no-repeat;
     background-image: url(/images/mobile/icons/search_clear.png);
@@ -11303,8 +11299,8 @@ only screen and (min-device-pixel-ratio: 2) {
     height: 24px;
     background: url('/images/svg_icons/doc_icon.svg');
     vertical-align: middle;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 5px
@@ -11483,8 +11479,8 @@ img[src^="/images/mobile/places/"] {
     background: #b7c1d1;
     padding-top: 150px;
     background: url(/images/blog/m_about_cover.jpg) center 0px no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -11902,8 +11898,8 @@ img[src^="/images/mobile/places/"] {
 .blog_post_cover {
     width: 100%;
     height: 150px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: center 0px
 }
@@ -12095,8 +12091,8 @@ img[src^="/images/mobile/places/"] {
 }
 
 .blog_video_wrap {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -12393,8 +12389,8 @@ img[src^="/images/mobile/places/"] {
 
 .BottomMenu__icon,
 .svgIcon-menu {
+    -webkit-background-size: 112px 84px;
     -moz-background-size: 112px 84px;
-    -o-background-size: 112px 84px;
     background-size: 112px 84px;
     background-image: url('/images/mobile/icons/sprites/menu-686c2373.svg')
 }
@@ -12811,7 +12807,6 @@ a.Popup__headerCorner {
     color: #909499
 }
 
-.TextInput__native:-moz-placeholder,
 .TextInput__native::-moz-placeholder {
     color: #909499
 }
@@ -12874,7 +12869,6 @@ a.Popup__headerCorner {
     color: #909499
 }
 
-.Textarea:-moz-placeholder,
 .Textarea::-moz-placeholder {
     color: #909499
 }
@@ -13301,8 +13295,8 @@ a.Popup__headerCorner {
     margin-left: 8px;
     width: 24px;
     height: 24px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-image: url(/images/mobile/button_close.png)
 }
@@ -13559,8 +13553,8 @@ a.Popup__headerCorner {
     width: 24px;
     height: 24px;
     position: relative;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/checkboxes.png?4')
@@ -13766,7 +13760,7 @@ left top,
 left bottom,
 from(transparent),
 to(#fff))) or (background: -webkit-linear-gradient(transparent,
-#fff)) or (background: -moz-linear-gradient(transparent,
+#fff)) or (background: -moz- oldlinear-gradient(transparent,
 #fff)) or (background: -o-linear-gradient(transparent,
 #fff)) or (background: linear-gradient(transparent,
 #fff))) {
@@ -13784,7 +13778,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
         pointer-events: none;
         background: -webkit-gradient(linear, left top, right top, from(hsla(0, 0%, 100%, 0)), color-stop(#fff), to(#fff));
         background: -webkit-linear-gradient(left, hsla(0, 0%, 100%, 0), #fff, #fff);
-        background: -moz-linear-gradient(left, hsla(0, 0%, 100%, 0), #fff, #fff);
+        background: -moz- oldlinear-gradient(left, hsla(0, 0%, 100%, 0), #fff, #fff);
         background: -o-linear-gradient(left, hsla(0, 0%, 100%, 0), #fff, #fff);
         background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff, #fff)
     }
@@ -13880,8 +13874,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .Avatar__image {
     float: left;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -13898,8 +13892,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .Avatar_0,
 .Avatar_1 {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -14119,8 +14113,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-border-radius: 44px;
     border-radius: 44px;
     background-color: #f5f5f5;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     position: relative
@@ -14129,15 +14123,15 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .OwnerRow_artist .OwnerRow__img {
     background-color: #ebedf0;
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m13.0127481%2014.5071369-6.09698577%205.0808215c-.70632675.5886056-1.7449414.541493-2.39507757-.1086432-.65013616-.6501361-.69724878-1.6887508-.10864315-2.3950775l5.0808215-6.0969858c.65889199%201.5895578%201.93032719%202.860993%203.51988499%203.519885zm2.4872519-1.5071369c-2.4852814%200-4.5-2.0147186-4.5-4.5%200-2.48528137%202.0147186-4.5%204.5-4.5s4.5%202.01471863%204.5%204.5c0%202.4852814-2.0147186%204.5-4.5%204.5z%22%20fill%3D%22%23afbac6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    -webkit-background-size: 24px 24px;
     -moz-background-size: 24px;
-    -o-background-size: 24px;
     background-size: 24px;
     background-repeat: no-repeat
 }
 
 .OwnerRow_artist .OwnerRow__img[style] {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -14443,7 +14437,6 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     color: #909499
 }
 
-.SearchPanel__input:-moz-placeholder,
 .SearchPanel__input::-moz-placeholder {
     color: #909499
 }
@@ -15106,8 +15099,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     left: 0;
     top: 0;
     bottom: 0;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     width: 120px;
@@ -15225,7 +15218,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     bottom: 0;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .12)), to(rgba(0, 0, 0, .02)));
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
+    background-image: -moz- oldlinear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
     background-image: linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .02));
     -webkit-border-radius: 8px;
@@ -15258,8 +15251,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     clear: left;
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M7.624%203.76l2.151.21c.748.074.978.822.4%201.313L8.491%206.715l.625%202.333c.206.766-.431%201.23-1.07.769l-2.045-1.48-2.046%201.48c-.635.459-1.275-.003-1.07-.77l.626-2.332-1.684-1.432c-.58-.493-.352-1.239.4-1.312l2.15-.211.947-2.235c.297-.7%201.057-.7%201.353%200l.947%202.235z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h12v12H0z%22%2F%3E%3Cuse%20fill%3D%22%23ADADAD%22%20fill-rule%3D%22nonzero%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
     background-position: 100% 1px;
+    -webkit-background-size: 14px 14px;
     -moz-background-size: 14px 14px;
-    -o-background-size: 14px 14px;
     background-size: 14px 14px;
     padding-right: 16px;
     margin-top: 2px;
@@ -15370,8 +15363,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 24px;
     height: 24px;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%20width%3D%228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22matrix(0%201%20-1%200%208%200)%22%3E%3Cpath%20d%3D%22m0%200h8v8h-8z%22%2F%3E%3Cpath%20d%3D%22m1%203%203%203%203-3%22%20stroke%3D%22%23C4C8CC%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.3%22%20transform%3D%22matrix(1%200%200%20-1%200%209)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
+    -webkit-background-size: 14px 14px;
     -moz-background-size: 14px;
-    -o-background-size: 14px;
     background-size: 14px
 }
 
@@ -15524,8 +15517,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 100%;
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     position: absolute;
     left: 0;
@@ -15786,7 +15779,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-color: #f5f6f7;
     background-image: -webkit-gradient(linear, left bottom, left top, from(#f5f6f7), to(#fff));
     background-image: -webkit-linear-gradient(bottom, #f5f6f7, #fff);
-    background-image: -moz-linear-gradient(bottom, #f5f6f7, #fff);
+    background-image: -moz- oldlinear-gradient(bottom, #f5f6f7, #fff);
     background-image: -o-linear-gradient(bottom, #f5f6f7, #fff);
     background-image: linear-gradient(0deg, #f5f6f7, #fff);
     -webkit-box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, .08);
@@ -16036,8 +16029,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     right: 12px;
     background-image: url('/images/mobile/icons/list_clear_24.png');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 50%;
     cursor: pointer
@@ -16065,8 +16058,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     border-radius: 100%;
     background-image: url('/images/mobile/icons/audio_limit_32.png');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 50%;
     background-color: #518bcc
@@ -16150,8 +16143,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audioPage .show_more_loading .i_loading {
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -16222,8 +16215,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audioPlaylistsPage__cover {
     background-image: url('/images/mobile/icons/placeholder_playlist.png?1');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 50%;
     background-color: #dfe2e6
@@ -16363,8 +16356,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .vk__page_redesign .filter_peer_wrap .qs_field_wrap:after {
     content: "";
     background-image: url('/images/mobile/icons/top_menu_icons.png?5');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -264px;
@@ -16492,8 +16485,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 29px;
     height: 7px;
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px;
     -moz-background-size: 29px 7px;
-    -o-background-size: 29px 7px;
     background-size: 29px 7px;
     background-repeat: no-repeat;
     background-position: 50%
@@ -16761,8 +16754,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audioPlaylist__grid_cover {
     position: absolute;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -16830,8 +16823,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     bottom: -100px;
     height: 100px;
     background: url('/images/audio/scrim_bottom_4percent.png') repeat-x 0 0;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -17108,8 +17101,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audioPlaylist .show_more_loading .i_loading {
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -17362,8 +17355,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 72px;
     height: 72px;
     background: url('/images/audio/pensive_face_144x144.png') no-repeat 50%;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     display: block;
     margin: 0 auto 16px
@@ -17812,8 +17805,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .audioPlaylistsPage .show_more_loading .i_loading {
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -17955,8 +17948,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding: 36px 12px 0;
     position: relative;
     background: url('/images/audio/scrim_bottom_4percent.png') repeat-x 0 0;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -18031,8 +18024,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .audioPlaylistSnippet__cover {
+    -webkit-background-size: auto auto;
     -moz-background-size: auto;
-    -o-background-size: auto;
     background-size: auto;
     background-color: #e6ebf1;
     -webkit-border-radius: 4px 4px 0 0;
@@ -18634,8 +18627,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .vk_2x .audioPlaylistShortSnippet__menu:after {
     background-image: url(/images/mobile/post_buttons_2x.png);
+    -webkit-background-size: 188px 14px!important;
     -moz-background-size: 188px 14px!important;
-    -o-background-size: 188px 14px!important;
     background-size: 188px 14px!important
 }
 
@@ -18878,8 +18871,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
     background: url('/images/audio/scrim_bottom_4percent.png') #fff repeat-x 0 0;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -18890,8 +18883,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .audio_artist_snippet.audio_artist_snippet_big .audio_artist_snippet__cover {
     width: 100%;
     height: 172px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -19031,8 +19024,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 24px;
     height: 24px;
     background: url(/images/mobile/icons/audio_icons.png?12) no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     display: inline-block;
     vertical-align: top;
@@ -19052,8 +19045,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     position: relative;
     background-repeat: no-repeat;
     background-color: #e6ebf1;
+    -webkit-background-size: 98px 98px;
     -moz-background-size: 98px;
-    -o-background-size: 98px;
     background-size: 98px;
     width: 98px;
     height: 98px;
@@ -19323,8 +19316,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     height: 48px;
     width: 48px;
     margin-bottom: 29px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/podcast_48.png')
@@ -19402,8 +19395,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 100%;
     height: 100%;
     top: 0;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     -webkit-border-radius: 4px;
@@ -19495,8 +19488,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .vk_2x .articleSnippet__block .articleSnippet_icon {
     background-image: url('/images/mobile/skins/icon/longread_base_2x.png?2');
+    -webkit-background-size: 54px 54px;
     -moz-background-size: 54px;
-    -o-background-size: 54px;
     background-size: 54px
 }
 
@@ -19565,8 +19558,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 12px;
     height: 12px;
     margin-left: 5px;
+    -webkit-background-size: 12px 12px;
     -moz-background-size: 12px 12px;
-    -o-background-size: 12px 12px;
     background-size: 12px 12px;
     background-image: url('/images/mobile/article_author_verified.png')
 }
@@ -19607,8 +19600,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     top: 50%;
     left: -11px;
     margin-top: -8px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -182px;
@@ -19661,8 +19654,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .author-page-icon {
     display: inline-block;
     vertical-align: middle;
+    -webkit-background-size: 54px 120px;
     -moz-background-size: 54px 120px;
-    -o-background-size: 54px 120px;
     background-size: 54px 120px;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/author_page_icons.png')
@@ -19798,7 +19791,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     right: 0;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f5f5f5));
     background-image: -webkit-linear-gradient(top, #fff, #f5f5f5);
-    background-image: -moz-linear-gradient(top, #fff, #f5f5f5);
+    background-image: -moz- oldlinear-gradient(top, #fff, #f5f5f5);
     background-image: -o-linear-gradient(top, #fff, #f5f5f5);
     background-image: linear-gradient(180deg, #fff, #f5f5f5);
     border-bottom: 1px solid #e0e1e2;
@@ -19826,8 +19819,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     overflow: hidden;
     background-color: #e0e1e2;
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -19968,8 +19961,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     height: 6px;
     display: inline-block;
     vertical-align: middle;
+    -webkit-background-size: 20px 883px;
     -moz-background-size: 20px 883px;
-    -o-background-size: 20px 883px;
     background-size: 20px 883px;
     background-repeat: no-repeat;
     background-position: -5px -774px;
@@ -20197,8 +20190,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-border-radius: 4px;
     border-radius: 4px;
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -20257,8 +20250,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-image: url('/images/mobile/icons/back.png');
     background-repeat: no-repeat;
     background-position: 50%;
+    -webkit-background-size: 8px 14px;
     -moz-background-size: 8px 14px;
-    -o-background-size: 8px 14px;
     background-size: 8px 14px
 }
 
@@ -20537,8 +20530,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin-left: 3px;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/icons/dropdown_arrow.png?1');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     position: relative;
     top: -1px
@@ -20681,8 +20674,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     right: 0;
     bottom: 0;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -20738,8 +20731,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     .groupCover-vk_animationYes .groupCover__scrim {
         width: 100%;
         height: 87px;
+        -webkit-background-size: 1px 88px;
         -moz-background-size: 1px 88px;
-        -o-background-size: 1px 88px;
         background-size: 1px 88px;
         background-image: url('/images/mobile/icons/cover_scrim.png');
         background-repeat-x: repeat;
@@ -21382,8 +21375,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     margin: 0 auto;
     width: 72px;
     height: 72px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat
 }
@@ -21466,8 +21459,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .snippet__icon {
     width: 90px;
     min-width: 90px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -21685,8 +21678,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 24px;
     height: 24px;
     content: '';
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -412px;
     background-image: url('/images/mobile/icons/audio_icons.png?12')
@@ -21703,8 +21696,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     top: 10px;
     width: 24px;
     height: 24px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 167px;
     background-image: url('/images/mobile/icons/base.png')
@@ -21811,8 +21804,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
+    -webkit-background-size: 224px 224px;
     -moz-background-size: 224px 224px;
-    -o-background-size: 224px 224px;
     background-size: 224px 224px;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -21923,11 +21916,11 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-image: url('/images/cross_delete_user.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
+    -webkit-background-size: 40% 40%;
     -moz-background-size: 40%;
-    -o-background-size: 40%;
     background-size: 40%
 }
 
@@ -21935,7 +21928,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-image: url('/images/cross_delete_user_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/pretty_card_close.svg')
 }
@@ -22003,14 +21996,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .prettyCard_friend .prettyCard__photo {
+    -webkit-background-size: 224px auto;
     -moz-background-size: 224px auto;
-    -o-background-size: 224px auto;
     background-size: 224px auto
 }
 
 .prettyCard_friend .prettyCard__photo_cover {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     border: 1px solid #e1e2e4
 }
@@ -22319,8 +22312,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .vk_2x .reply_owner_selected_image:before {
     background-image: url('/images/mobile/icons/reply_owner_picker_2x.png?1');
+    -webkit-background-size: 12px 12px;
     -moz-background-size: 12px 12px;
-    -o-background-size: 12px 12px;
     background-size: 12px 12px
 }
 
@@ -23149,8 +23142,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article figure[data-type="102"] .article_object_video {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     cursor: pointer;
@@ -23197,8 +23190,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 (min-resolution: 192dpi) {
     .article figure[data-type="102"] .article_object_video_play {
         background-image: url(/images/icons/video_play_small_2x.png?1);
+        -webkit-background-size: 17px 24px;
         -moz-background-size: 17px 24px;
-        -o-background-size: 17px 24px;
         background-size: 17px 24px
     }
 }
@@ -23248,8 +23241,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 
 .article_view>figure[data-type="102"] .article_object_video {
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -23427,8 +23420,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 (min-resolution: 192dpi) {
     .article_view .article_object_phone_iphone {
         background-image: url(/images/blog/smartfeed_ios_blog_2x.png);
+        -webkit-background-size: 252px 521px;
         -moz-background-size: 252px 521px;
-        -o-background-size: 252px 521px;
         background-size: 252px 521px
     }
 }
@@ -23453,8 +23446,8 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 (min-resolution: 192dpi) {
     .article_view .article_object_phone_android {
         background-image: url(/images/blog/smartfeed_android_blog_2x.png);
+        -webkit-background-size: 239px 485px;
         -moz-background-size: 239px 485px;
-        -o-background-size: 239px 485px;
         background-size: 239px 485px
     }
 }
@@ -24056,8 +24049,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .vk_2x .articleView__header .articleView__close {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0px -381px
 }
@@ -24081,8 +24074,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .vk_2x .articleView__header .articleView__close_mini {
     background-image: url('/images/mobile/skins/icon/header_2x.png?5');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0px -421px
 }
@@ -24280,8 +24273,8 @@ figure[data-type="102"] .article_object_video_play {
 .articleView__footer_btn .articleView__footer_btn_icon {
     margin: 10px;
     background-image: url('/images/mobile/skins/icon/base_2x.png');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     width: 24px;
     height: 24px
@@ -24491,8 +24484,8 @@ figure[data-type="102"] .article_object_video_play {
 .article_layer_prev_next .article_layer_next_thumb {
     width: 96px;
     height: 72px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -24579,8 +24572,8 @@ figure[data-type="102"] .article_object_video_play {
     display: inline-block;
     margin-right: 8px;
     background-image: url('/images/mobile/icons/audio_play_2x.png');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -24663,8 +24656,8 @@ figure[data-type="102"] .article_object_video_play {
     min-width: 120px;
     min-height: 120px;
     background: url('/images/mobile/podcast_placeholder_120.png') no-repeat 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     -webkit-border-radius: 6px 0 0 6px;
     -moz-border-radius: 6px 0 0 6px;
@@ -24758,8 +24751,8 @@ figure[data-type="102"] .article_object_video_play {
     right: -22px;
     width: 24px;
     height: 24px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -412px;
     background-image: url('/images/mobile/icons/audio_icons.png?12')
@@ -24807,8 +24800,8 @@ figure[data-type="102"] .article_object_video_play {
     width: 16px;
     height: 16px;
     margin-right: 6px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -112px;
     background-image: url('/images/mobile/icons/audio_icons.png?12')
@@ -24830,8 +24823,8 @@ figure[data-type="102"] .article_object_video_play {
     height: 30px;
     content: "";
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     margin-right: 10px
 }
@@ -25234,8 +25227,8 @@ figure[data-type="102"] .article_object_video_play {
     background-image: url('/images/icons/mobile_new.png');
     background-position: 0;
     background-repeat: no-repeat;
+    -webkit-background-size: 20px 20px;
     -moz-background-size: 20px;
-    -o-background-size: 20px;
     background-size: 20px;
     padding: 15px 25px;
     position: relative;
@@ -25273,8 +25266,8 @@ figure[data-type="102"] .article_object_video_play {
     background-image: url('/images/icons/blue_arrow.png');
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 9px 15px;
     -moz-background-size: 9px 15px;
-    -o-background-size: 9px 15px;
     background-size: 9px 15px;
     position: absolute;
     right: 12px;
@@ -25404,8 +25397,8 @@ figure[data-type="102"] .article_object_video_play {
     -moz-border-radius: 2px;
     border-radius: 2px;
     float: left;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -25667,7 +25660,6 @@ figure[data-type="102"] .article_object_video_play {
     color: #909499
 }
 
-.pcont .qs_textfield:-moz-placeholder,
 .pcont .qs_textfield::-moz-placeholder {
     color: #909499
 }
@@ -25763,8 +25755,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .pcont .qsearch .clear_btn {
     background-image: url('/images/mobile/statuses.png?14');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     display: inline-block;
@@ -25815,11 +25807,6 @@ figure[data-type="102"] .article_object_video_play {
     color: #909499
 }
 
-.ArtistPage__search .hp_block:first-child .qs_textfield:-moz-placeholder,
-.audioPage__search .hp_block:first-child .qs_textfield:-moz-placeholder,
-.BookmarksSearch .hp_block:first-child .qs_textfield:-moz-placeholder,
-.head_panel:first-child .hp_block:first-child .qs_textfield:-moz-placeholder,
-.qsearch_wrap .hp_block:first-child .qs_textfield:-moz-placeholder,
 .ArtistPage__search .hp_block:first-child .qs_textfield::-moz-placeholder,
 .audioPage__search .hp_block:first-child .qs_textfield::-moz-placeholder,
 .BookmarksSearch .hp_block:first-child .qs_textfield::-moz-placeholder,
@@ -25885,8 +25872,8 @@ figure[data-type="102"] .article_object_video_play {
 .head_panel:first-child .hp_block:first-child .qsearch .qs_submit-icon,
 .qsearch_wrap .hp_block:first-child .qsearch .qs_submit-icon {
     background-image: url('/images/mobile/statuses.png?14');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     display: inline-block;
@@ -25976,8 +25963,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .vk_2x .Gif__popup .gp__corner {
     background: url('/images/mobile/skins/icon/base_28_2x.png?2') 0 -112px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -27328,8 +27315,8 @@ figure[data-type="102"] .article_object_video_play {
     width: 65px;
     height: 65px;
     background: url(/images/mobile/svg_icons/success.svg) 0 0 no-repeat;
+    -webkit-background-size: 65px 65px;
     -moz-background-size: 65px 65px;
-    -o-background-size: 65px 65px;
     background-size: 65px 65px
 }
 
@@ -27524,8 +27511,8 @@ figure[data-type="102"] .article_object_video_play {
     width: 100%;
     padding-top: 27%;
     background: url('/images/landings/vk2019/top_ny_img.png') center 0 no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -27620,6 +27607,10 @@ figure[data-type="102"] .article_object_video_play {
     background: #fff
 }
 
+.vk_tabbar_bottom .messagesActions {
+    bottom: 48px
+}
+
 .vk_messages_actions_visible {
     padding-bottom: 65px
 }
@@ -27672,8 +27663,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .vk_2x .messagesActions__close {
     background-image: url(/images/mobile/attach_icons_2x.png?4);
+    -webkit-background-size: 352px 22px;
     -moz-background-size: 352px 22px;
-    -o-background-size: 352px 22px;
     background-size: 352px 22px
 }
 
@@ -27692,8 +27683,8 @@ figure[data-type="102"] .article_object_video_play {
     display: block;
     width: 15px;
     height: 15px;
+    -webkit-background-size: 15px 15px;
     -moz-background-size: 15px;
-    -o-background-size: 15px;
     background-size: 15px;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/icons/remove.png')
@@ -28183,8 +28174,8 @@ figure[data-type="102"] .article_object_video_play {
     opacity: 0.97;
     background-image: url(/images/mobile/icons/stickers_hints_arrow.png);
     background-repeat: no-repeat;
+    -webkit-background-size: 20px 10px;
     -moz-background-size: 20px 10px;
-    -o-background-size: 20px 10px;
     background-size: 20px 10px;
     z-index: 1
 }
@@ -28300,8 +28291,8 @@ figure[data-type="102"] .article_object_video_play {
 
 .appWidget__image {
     display: inline-block;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -29027,8 +29018,8 @@ a .appWidget__tiles_title {
 .vk_2x .appWidget__list_info.address:before,
 .vk_2x .appWidget__list_info.time:before {
     background-image: url('/images/mobile/icons/group_info_cons_2x.png');
+    -webkit-background-size: 15px 149px;
     -moz-background-size: 15px 149px;
-    -o-background-size: 15px 149px;
     background-size: 15px 149px
 }
 
@@ -29086,8 +29077,8 @@ a .appWidget__tiles_title {
     -moz-border-radius: 2px;
     border-radius: 2px;
     height: 128px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -29360,8 +29351,8 @@ a.feedBlocks__article:hover {
     width: 64px;
     height: 64px;
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -29615,8 +29606,8 @@ a.feedBlocks__article:hover {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-image: url('/images/mobile/skins/icon/base_28.png');
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -30032,8 +30023,8 @@ a.feedBlocks__article:hover {
     float: left;
     width: 73px;
     height: 73px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-image: url('/images/mobile/money_attachment.png');
     background-repeat: no-repeat;
@@ -30178,8 +30169,8 @@ a.feedBlocks__article:hover {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -30274,8 +30265,8 @@ a.feedBlocks__article:hover {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -30323,8 +30314,8 @@ a.feedBlocks__article:hover {
     -moz-border-radius: 50%;
     border-radius: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -30381,8 +30372,8 @@ a.feedBlocks__article:hover {
     margin-right: 12px;
     background-image: url('/images/mobile/icons/mastercard.png');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
@@ -30459,8 +30450,8 @@ a.feedBlocks__article:hover {
     -moz-border-radius: 50%;
     border-radius: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -30488,8 +30479,8 @@ a.feedBlocks__article:hover {
     height: 22px;
     background-image: url('/images/mobile/icons/info.png?2');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -30531,7 +30522,6 @@ a.feedBlocks__article:hover {
     color: #c5c8cc
 }
 
-.sendMoneyForm__input_amount:-moz-placeholder,
 .sendMoneyForm__input_amount::-moz-placeholder {
     color: #c5c8cc
 }
@@ -30553,7 +30543,6 @@ a.feedBlocks__article:hover {
     color: #888
 }
 
-.sendMoneyForm__input_message:-moz-placeholder,
 .sendMoneyForm__input_message::-moz-placeholder {
     color: #888
 }
@@ -30718,8 +30707,8 @@ a.feedBlocks__article:hover {
 }
 
 .transfersHistory__button .OwnerRow__img {
+    -webkit-background-size: auto auto;
     -moz-background-size: auto;
-    -o-background-size: auto;
     background-size: auto;
     background-repeat: no-repeat
 }
@@ -30753,8 +30742,8 @@ a.feedBlocks__article:hover {
 .transfersHistoryEmptyBox__icon {
     height: 72px;
     background: url('/images/mobile/money_transfer.png') no-repeat 50%;
+    -webkit-background-size: 72px 72px;
     -moz-background-size: 72px;
-    -o-background-size: 72px;
     background-size: 72px
 }
 
@@ -31007,8 +30996,8 @@ a.feedBlocks__article:hover {
     display: block;
     width: 24px;
     height: 24px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-image: url("/images/mobile/informer/informer_close.png")
@@ -31126,8 +31115,8 @@ a.feedBlocks__article:hover {
     width: 36px;
     height: 36px;
     background: url('/images/svg_icons/fave_mob_actions_arrow.svg') no-repeat 50%;
+    -webkit-background-size: 12px 6px;
     -moz-background-size: 12px 6px;
-    -o-background-size: 12px 6px;
     background-size: 12px 6px;
     margin: 0 0 -12px -12px;
     -webkit-transform: scaleY(-1);
@@ -31194,8 +31183,8 @@ a.feedBlocks__article:hover {
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-image: url("/images/mobile/asssistance/profile_photo.png")
 }
@@ -31263,8 +31252,8 @@ a.feedBlocks__article:hover {
 
 .vk_2x .feedAssistancePromoButton {
     background-image: url('/images/mobile/prv_arrow_2x.png');
+    -webkit-background-size: 8px 14px!important;
     -moz-background-size: 8px 14px!important;
-    -o-background-size: 8px 14px!important;
     background-size: 8px 14px!important
 }
 
@@ -31285,8 +31274,8 @@ a.feedBlocks__article:hover {
     background-image: url('/images/icons/rocket.png');
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -31340,8 +31329,8 @@ a.feedBlocks__article:hover {
     background-image: url('/images//mobile/logo/vk_app_50.png');
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-color: #fff;
     -webkit-border-radius: 0;
@@ -31434,8 +31423,8 @@ a.feedBlocks__article:hover {
     -moz-border-radius: 50%;
     border-radius: 50%;
     margin-right: 12px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-image: url('/images/mobile/icons/import_contacts.png');
     -webkit-flex-shrink: 0;
@@ -31517,8 +31506,8 @@ a.feedBlocks__article:hover {
 
 .vk_2x .feedAssistanceImportContacts__goIcon {
     background: url(/images/mobile/prv_arrow_2x.png) no-repeat 100%;
+    -webkit-background-size: 8px 14px!important;
     -moz-background-size: 8px 14px!important;
-    -o-background-size: 8px 14px!important;
     background-size: 8px 14px!important
 }
 
@@ -31535,8 +31524,8 @@ a.feedBlocks__article:hover {
     box-sizing: border-box;
     width: 138px;
     height: 138px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     -webkit-border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
@@ -31686,7 +31675,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/icons/add_16.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/add_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg')
 }
@@ -31695,7 +31684,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/icons/add_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/add_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg')
 }
@@ -31722,11 +31711,11 @@ a.feedBlocks__article:hover {
     background-image: url('/images/hide_16.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
+    -webkit-background-size: 80% 80%;
     -moz-background-size: 80%;
-    -o-background-size: 80%;
     background-size: 80%
 }
 
@@ -31734,7 +31723,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/hide_16_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg')
 }
@@ -31762,8 +31751,8 @@ a.feedBlocks__article:hover {
 
 .friendsRecommendedSlider.friendsRecommendedSlider_circleFriends .prettyCard__closeButton {
     background-image: url('/images/mobile/skins/icon/base.png');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-color: transparent;
     background-position: 0 -600px;
@@ -32046,8 +32035,8 @@ a.feedBlocks__article:hover {
     width: 20px;
     height: 20px;
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -179px;
@@ -32163,8 +32152,8 @@ a.feedBlocks__article:hover {
     position: absolute;
     top: 5px;
     right: 5px;
+    -webkit-background-size: 36px 36px;
     -moz-background-size: 36px 36px;
-    -o-background-size: 36px 36px;
     background-size: 36px 36px
 }
 
@@ -32182,8 +32171,8 @@ a.feedBlocks__article:hover {
     width: 48px;
     height: 48px;
     position: absolute;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     -webkit-border-radius: 4px;
@@ -32214,8 +32203,8 @@ a.feedBlocks__article:hover {
 }
 
 .post_suggest .post_suggest__friend {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     width: 24px;
     height: 24px;
@@ -32352,8 +32341,8 @@ a.feedBlocks__article:hover {
     cursor: pointer;
     background-image: url('/images/mobile/icons/audio_icons.png?12');
     background-position: 0 624px;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     width: 24px;
     height: 24px;
@@ -32496,8 +32485,8 @@ a.feedBlocks__article:hover {
     -moz-border-radius-topright: 2px;
     border-top-right-radius: 2px;
     border: none;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 1
@@ -32669,8 +32658,8 @@ a.feedBlocks__article:hover {
     height: 24px;
     background-repeat: no-repeat;
     background-position: 50%;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -32678,7 +32667,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/icons/user_subscribe.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg')
 }
@@ -32687,7 +32676,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/icons/user_subscribe_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_subscribe.svg')
 }
@@ -32696,7 +32685,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/icons/user_unsubscribe.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg')
 }
@@ -32705,7 +32694,7 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/icons/user_unsubscribe_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/user_unsubscribe.svg')
 }
@@ -32884,8 +32873,8 @@ a.feedBlocks__article:hover {
 
 .vk__page_login .fit_box.new_form .social_button .social_icon {
     background-image: url('/images/mobile/auth_social_networks.png');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     font-size: 15px;
     padding: 3px 12px;
@@ -33156,8 +33145,8 @@ body.apps_settingsPageBody .basis__content {
     display: block;
     width: 44px;
     height: 44px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -44px;
@@ -33203,8 +33192,8 @@ body.apps_settingsPageBody .basis__content {
     height: 44px;
     margin-top: -13px;
     margin-right: 11px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -88px;
@@ -33363,8 +33352,8 @@ body.apps_settingsPageBody .basis__content {
     float: left;
     width: 44px;
     height: 44px;
+    -webkit-background-size: 44px 44px;
     -moz-background-size: 44px;
-    -o-background-size: 44px;
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 0 0px;
@@ -33393,8 +33382,8 @@ body.apps_settingsPageBody .basis__content {
     float: right;
     width: 44px;
     height: 44px;
+    -webkit-background-size: 44px 44px;
     -moz-background-size: 44px;
-    -o-background-size: 44px;
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 0 -175px;
@@ -33594,8 +33583,8 @@ body.apps_settingsPageBody .basis__content {
         margin-top: 0!important;
         margin-right: 0!important;
         padding: 2px;
+        -webkit-background-size: 44px 44px;
         -moz-background-size: 44px;
-        -o-background-size: 44px;
         background-size: 44px;
         background-position: 2px -86px;
         background-color: #5181b8
@@ -33862,8 +33851,8 @@ body.apps_settingsPageBody .basis__content {
 .r .audioPlaylist .wi_actions_btn .i_icon {
     background-image: url('/images/mobile/icons/audio_icons.png?12');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -33937,8 +33926,8 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Audio__menuContainerPointerIcon,
 .vk_2x.r .ai_menu_wrap .i_pointer {
     background-image: url('/images/mobile/post_buttons_2x.png');
+    -webkit-background-size: 188px 14px!important;
     -moz-background-size: 188px 14px!important;
-    -o-background-size: 188px 14px!important;
     background-size: 188px 14px!important
 }
 
@@ -34004,8 +33993,8 @@ body.apps_settingsPageBody .basis__content {
     background-color: #e6edf5;
     background-image: url('/images/mobile/icons/placeholder_audio.png?1');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 50%;
     margin-right: 8px;
@@ -34089,8 +34078,8 @@ body.apps_settingsPageBody .basis__content {
     margin: auto;
     background-image: url('/images/mobile/icons/audio_play.png');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 0 -64px
 }
@@ -34146,8 +34135,8 @@ body.apps_settingsPageBody .basis__content {
     width: 24px;
     background-image: url('/images/mobile/icons/audio_icons.png?12');
     background-position: 0 122px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -34719,8 +34708,8 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .r .ai_theme_white .i_play:after {
+    -webkit-background-size: 32px 32px;
     -moz-background-size: 32px;
-    -o-background-size: 32px;
     background-size: 32px;
     background-position: 0px -176px!important
 }
@@ -35162,8 +35151,8 @@ body.apps_settingsPageBody .basis__content {
     width: 24px;
     height: 24px;
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -1008px;
@@ -35204,8 +35193,8 @@ body.apps_settingsPageBody .basis__content {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     padding: 0;
     margin: 0
@@ -35250,8 +35239,8 @@ body.apps_settingsPageBody .basis__content {
 .m .vk__page_chatAdd .inline_item_remove:before {
     content: '';
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     width: 24px;
@@ -35321,8 +35310,8 @@ body.apps_settingsPageBody .basis__content {
 .m .vk__page_chatAdd .selected_users_next_button:before {
     content: '';
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     width: 44px;
@@ -36790,8 +36779,8 @@ body.apps_settingsPageBody .basis__content {
     height: 24px;
     background-repeat: no-repeat;
     background-position: 50%;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%
 }
 
@@ -36799,7 +36788,7 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/post_subscribe.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg')
 }
@@ -36808,7 +36797,7 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/post_subscribe_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_subscribe.svg')
 }
@@ -36817,7 +36806,7 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/post_unsubscribe.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg')
 }
@@ -36826,7 +36815,7 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/post_unsubscribe_2x.png');
     background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent)), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: -webkit-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
-    background-image: -moz-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
+    background-image: -moz- oldlinear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg');
     background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/post_unsubscribe.svg')
 }
@@ -37030,8 +37019,8 @@ body.apps_settingsPageBody .basis__content {
     background-image: url('/images/mobile/icons/post_buttons.png?3');
     background-repeat: no-repeat;
     background-position: 0 100%!important;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important
 }
 
@@ -37201,8 +37190,8 @@ body.apps_settingsPageBody .basis__content {
     height: 24px;
     background-image: url('/images/mobile/icons/post_buttons.png?3');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     background-position: 0 83.33333333%!important
 }
@@ -37383,8 +37372,8 @@ body.apps_settingsPageBody .basis__content {
     height: 16px;
     margin-right: 6px;
     padding: 0;
+    -webkit-background-size: 40px 40px!important;
     -moz-background-size: 40px!important;
-    -o-background-size: 40px!important;
     background-size: 40px!important;
     background-image: url('/images/mobile/icons/post_attachments.png')!important;
     background-repeat: no-repeat!important;
@@ -37454,8 +37443,8 @@ body.apps_settingsPageBody .basis__content {
     padding: 0;
     margin: 0;
     margin-right: 8px;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     background-image: url('/images/mobile/icons/post_attachments.png')!important;
     background-repeat: no-repeat;
@@ -37677,8 +37666,8 @@ body.apps_settingsPageBody .basis__content {
 
 .vk_2x.r .e .medias_row .i_icon.i_audio {
     background-image: url(/images/mobile/media_icons_2x.png?1)!important;
+    -webkit-background-size: 168px 17px!important;
     -moz-background-size: 168px 17px!important;
-    -o-background-size: 168px 17px!important;
     background-size: 168px 17px!important
 }
 
@@ -37791,8 +37780,8 @@ body.apps_settingsPageBody .basis__content {
     -moz-border-radius: 3px;
     border-radius: 3px;
     background-image: url('/images/mobile/icons/top_menu_icons.png?5');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -38099,8 +38088,8 @@ body.apps_settingsPageBody .basis__content {
     height: 6px;
     margin-left: 6px;
     background-image: url('/images/mobile/icons/dropdown_arrow_light.png');
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat
 }
@@ -38276,8 +38265,8 @@ body.apps_settingsPageBody .basis__content {
     content: '';
     width: 22px;
     height: 36px;
+    -webkit-background-size: 35px 35px;
     -moz-background-size: 35px;
-    -o-background-size: 35px;
     background-size: 35px;
     background-image: url('/images/mobile/icons/post_attachments.png');
     background-repeat: no-repeat;
@@ -38307,8 +38296,8 @@ body.apps_settingsPageBody .basis__content {
     width: 100%;
     height: auto;
     min-height: 130px;
+    -webkit-background-size: cover!important;
     -moz-background-size: cover!important;
-    -o-background-size: cover!important;
     background-size: cover!important;
     position: relative
 }
@@ -38392,8 +38381,8 @@ body.apps_settingsPageBody .basis__content {
     left: 0;
     top: 0;
     bottom: 0;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -38536,8 +38525,8 @@ body.apps_settingsPageBody .basis__content {
 .wi_buttons i.i_views,
 .wi_like_wrap i.i_like,
 .wi_like_wrap i.i_share {
+    -webkit-background-size: 72px 48px;
     -moz-background-size: 72px 48px;
-    -o-background-size: 72px 48px;
     background-size: 72px 48px;
     background-image: url('/images/mobile/icons/sprites/wall-5564ffbe.svg')
 }
@@ -38881,8 +38870,8 @@ body.apps_settingsPageBody .basis__content {
     left: 0;
     right: 0;
     height: 112px;
+    -webkit-background-size: 2px 112px;
     -moz-background-size: 2px 112px;
-    -o-background-size: 2px 112px;
     background-size: 2px 112px;
     background-position: 0 -1px;
     background-repeat-x: repeat;
@@ -38913,8 +38902,8 @@ body.apps_settingsPageBody .basis__content {
     margin: 0;
     margin-left: -20px;
     margin-top: -20px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     padding: 0;
     background-image: url('/images/mobile/icons/post_attachments.png');
@@ -39093,8 +39082,8 @@ body.apps_settingsPageBody .basis__content {
     margin: 0!important;
     width: 100%;
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -39122,8 +39111,8 @@ body.apps_settingsPageBody .basis__content {
     display: inline-block;
     width: 6px;
     height: 8px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-image: url('/images/mobile/icons/play_small.png');
     background-repeat: no-repeat;
@@ -39253,8 +39242,8 @@ body.apps_settingsPageBody .basis__content {
     width: 10px;
     height: 9px;
     margin-right: 6px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/icons/album.png')
@@ -39281,8 +39270,8 @@ body.apps_settingsPageBody .basis__content {
 .r .e .opera_mini_yes .medias_thumbs .thumb_map_img_as_div,
 .r .opera_mini_yes .cp_attached_post .medias_thumbs .thumb_map_img_as_div,
 .r .opera_mini_yes .wall_item .medias_thumbs .thumb_map_img_as_div {
+    -webkit-background-size: 101% 101%;
     -moz-background-size: 101%;
-    -o-background-size: 101%;
     background-size: 101%;
     background-repeat: no-repeat;
     position: absolute;
@@ -39403,8 +39392,8 @@ body.apps_settingsPageBody .basis__content {
     margin: 0;
     margin-left: -20px;
     margin-top: -20px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     padding: 0;
     background-image: url('/images/mobile/icons/post_attachments.png');
@@ -39479,8 +39468,8 @@ body.apps_settingsPageBody .basis__content {
 .r .post_item.comment_item .pi_acts_link .i_icon {
     background-image: url('/images/mobile/icons/comment_action.png?3');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     width: 12px;
     height: 12px;
@@ -40104,8 +40093,8 @@ body.apps_settingsPageBody .basis__content {
 .vk__page_redesign .basis .ii_btn:before {
     content: '';
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat
 }
@@ -43289,8 +43278,8 @@ body.apps_settingsPageBody .basis__content {
     flex-shrink: 0;
     width: 28px;
     height: 28px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/skins/CookiePolicy/cookies.png')
@@ -43715,8 +43704,8 @@ body.apps_settingsPageBody .basis__content {
     height: 24px;
     position: absolute;
     top: -3px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -48px;
@@ -43796,8 +43785,8 @@ body.apps_settingsPageBody .basis__content {
     position: absolute;
     top: -11px;
     left: -1px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -168px;
@@ -44177,8 +44166,8 @@ body.apps_settingsPageBody .basis__content {
 
 .VotingBcg__photoImage {
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     -webkit-border-radius: 4px 4px 0 0;
@@ -44385,8 +44374,8 @@ body.apps_settingsPageBody .basis__content {
     margin: 12px auto 0;
     width: 24px;
     height: 24px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -216px;
@@ -45155,8 +45144,8 @@ body.apps_settingsPageBody .basis__content {
     top: 50%;
     left: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     -webkit-animation: stories_promo_animation 6s steps(72) infinite both;
     -moz-animation: stories_promo_animation 6s steps(72) infinite both;
@@ -45298,8 +45287,8 @@ body.apps_settingsPageBody .basis__content {
     color: #fff;
     padding: 6px;
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .08);
     -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .08);
@@ -45324,7 +45313,7 @@ body.apps_settingsPageBody .basis__content {
     height: 100%;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .15)), to(rgba(0, 0, 0, .6)));
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, .15), rgba(0, 0, 0, .6));
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6) 100%);
+    background: -moz- oldlinear-gradient(top, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6) 100%);
     background: -o-linear-gradient(top, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6) 100%);
     background: linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .6))
 }
@@ -45661,8 +45650,8 @@ body.apps_settingsPageBody .basis__content {
     float: none!important;
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     position: relative
 }
@@ -45779,7 +45768,7 @@ body.apps_settingsPageBody .basis__content {
 .StoryAuthor__prev:active {
     background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .2)), to(transparent));
     background: -webkit-linear-gradient(left, rgba(0, 0, 0, .2), transparent);
-    background: -moz-linear-gradient(left, rgba(0, 0, 0, .2) 0%, transparent 100%);
+    background: -moz- oldlinear-gradient(left, rgba(0, 0, 0, .2) 0%, transparent 100%);
     background: -o-linear-gradient(left, rgba(0, 0, 0, .2) 0%, transparent 100%);
     background: linear-gradient(90deg, rgba(0, 0, 0, .2) 0%, transparent)
 }
@@ -45876,7 +45865,7 @@ body.apps_settingsPageBody .basis__content {
     top: 0;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .24)), to(transparent));
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, .24), transparent);
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, .24) 0%, transparent 100%);
+    background: -moz- oldlinear-gradient(top, rgba(0, 0, 0, .24) 0%, transparent 100%);
     background: -o-linear-gradient(top, rgba(0, 0, 0, .24) 0%, transparent 100%);
     background: linear-gradient(180deg, rgba(0, 0, 0, .24) 0%, transparent);
     z-index: 51
@@ -45885,7 +45874,7 @@ body.apps_settingsPageBody .basis__content {
 .Story__body:before {
     bottom: 0;
     background: -webkit-linear-gradient(270deg, transparent, rgba(0, 0, 0, .24));
-    background: -moz-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .24) 100%);
+    background: -moz- oldlinear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .24) 100%);
     background: -o-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, .24) 100%);
     background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .24));
     z-index: 52
@@ -46250,8 +46239,8 @@ body.apps_settingsPageBody .basis__content {
     position: absolute;
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     top: 0;
     left: 0;
@@ -46385,8 +46374,8 @@ body.apps_settingsPageBody .basis__content {
 .Story__replyPreview {
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     position: absolute;
     top: 0;
@@ -46403,7 +46392,7 @@ body.apps_settingsPageBody .basis__content {
     content: "";
     background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .48)));
     background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, .48));
-    background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .48) 100%);
+    background: -moz- oldlinear-gradient(top, transparent 0%, rgba(0, 0, 0, .48) 100%);
     background: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .48) 100%);
     background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .48));
     position: absolute;
@@ -46593,8 +46582,8 @@ body.apps_settingsPageBody .basis__content {
 ._story__Icons,
 .Views__close:after {
     background-image: url('/images/mobile/skins/icon/stories.png?1');
+    -webkit-background-size: 24px 24px;
     -moz-background-size: 24px;
-    -o-background-size: 24px;
     background-size: 24px;
     background-repeat: no-repeat
 }
@@ -46607,8 +46596,8 @@ body.apps_settingsPageBody .basis__content {
 ._story__Icons_i,
 .Story__icon:after {
     background-image: url('/images/mobile/skins/icon/stories_icons.png?5');
+    -webkit-background-size: 48px 48px;
     -moz-background-size: 48px;
-    -o-background-size: 48px;
     background-size: 48px;
     background-repeat: no-repeat
 }
@@ -46728,8 +46717,8 @@ body.apps_settingsPageBody .basis__content {
     min-height: 228px;
     max-width: 210px;
     max-height: 315px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     -webkit-border-radius: 9px;
@@ -46941,8 +46930,8 @@ body.apps_settingsPageBody .basis__content {
     overflow-wrap: break-word;
     color: #fff;
     background-color: #000;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     border: 1px solid #000;
@@ -46998,8 +46987,8 @@ body.apps_settingsPageBody .basis__content {
 
 .NarrativePreview__author,
 .NarrativePreview__inner {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -47025,7 +47014,7 @@ body.apps_settingsPageBody .basis__content {
     height: 100%;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, transparent), to(rgba(0, 0, 0, .48)));
     background: -webkit-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48));
-    background: -moz-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48) 100%);
+    background: -moz- oldlinear-gradient(top, transparent 50%, rgba(0, 0, 0, .48) 100%);
     background: -o-linear-gradient(top, transparent 50%, rgba(0, 0, 0, .48) 100%);
     background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, .48))
 }
@@ -47186,8 +47175,8 @@ body.apps_settingsPageBody .basis__content {
     width: 29px;
     height: 7px;
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -47390,8 +47379,8 @@ body.apps_settingsPageBody .basis__content {
 
 .narrative-snippet__blur,
 .narrative-snippet__cover {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -47551,8 +47540,8 @@ body.apps_settingsPageBody .basis__content {
 .narrative-small-snippet__thumb {
     width: 82px;
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-color: rgba(0, 0, 0, .8);
@@ -47629,8 +47618,8 @@ body.apps_settingsPageBody .basis__content {
 .BookmarksItem .mlt_no_photo:before,
 .BookmarksItem .mlt_thumb,
 .BookmarksProduct__thumb {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -47656,7 +47645,7 @@ body.apps_settingsPageBody .basis__content {
     bottom: 0;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .16)), to(transparent));
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
+    background-image: -moz- oldlinear-gradient(top, rgba(0, 0, 0, .16), transparent);
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
     background-image: linear-gradient(180deg, rgba(0, 0, 0, .16), transparent)
 }
@@ -47774,8 +47763,8 @@ a.BookmarksTags__item {
 }
 
 .BookmarksVideo__thumb {
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -47840,8 +47829,8 @@ a.BookmarksTags__item {
     border-radius: 2px;
     background: #ebedf0;
     position: relative;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -48192,7 +48181,7 @@ a .BookmarkListItem__subtitle:hover {
     border-radius: 6px;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .16)), to(transparent));
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
+    background-image: -moz- oldlinear-gradient(top, rgba(0, 0, 0, .16), transparent);
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, .16), transparent);
     background-image: linear-gradient(180deg, rgba(0, 0, 0, .16), transparent)
 }
@@ -48473,8 +48462,8 @@ a .BookmarkListItem__subtitle:hover {
     width: 29px;
     height: 7px;
     background-image: url('/images/mobile/oupload.gif');
+    -webkit-background-size: 29px 7px!important;
     -moz-background-size: 29px 7px!important;
-    -o-background-size: 29px 7px!important;
     background-size: 29px 7px!important;
     background-position: 50%
 }
@@ -48605,8 +48594,8 @@ a .BookmarkListItem__subtitle:hover {
     margin: 0 auto;
     width: 56px;
     height: 56px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -49040,8 +49029,8 @@ a .BookmarkListItem__subtitle:hover {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat
@@ -49055,8 +49044,8 @@ a .BookmarkListItem__subtitle:hover {
 .notification__media_horizontal {
     height: 27px;
     margin-top: 10px;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -49135,8 +49124,8 @@ a .BookmarkListItem__subtitle:hover {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat
@@ -49190,7 +49179,7 @@ a .BookmarkListItem__subtitle:hover {
     right: 0;
     bottom: 0;
     background: -webkit-linear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff, #fff);
-    background: -moz-linear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff, #fff);
+    background: -moz- oldlinear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff, #fff);
     background: -o-linear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff, #fff);
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff, #fff)
 }
@@ -49198,8 +49187,8 @@ a .BookmarkListItem__subtitle:hover {
 .notification__actionsTrigger {
     cursor: pointer;
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     width: 12px;
     height: 12px;
@@ -50191,8 +50180,8 @@ a .BookmarkListItem__subtitle:hover {
     -ms-flex-positive: 0;
     flex-grow: 0;
     background: transparent 50% no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     margin-right: 8px
 }
@@ -51190,8 +51179,8 @@ a .BookmarkListItem__subtitle:hover {
     float: right;
     background-image: url('/images/mobile/icons/list_clear_24.png');
     background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-position: 50%;
     cursor: pointer
@@ -51324,7 +51313,6 @@ a .BookmarkListItem__subtitle:hover {
     color: #909499
 }
 
-.mailFilter__input:-moz-placeholder,
 .mailFilter__input::-moz-placeholder {
     color: #909499
 }
@@ -51789,8 +51777,8 @@ a .BookmarkListItem__subtitle:hover {
 }
 
 .svgIcon-mail-bot_buttons {
+    -webkit-background-size: 69px 40px;
     -moz-background-size: 69px 40px;
-    -o-background-size: 69px 40px;
     background-size: 69px 40px;
     background-image: url('/images/mobile/icons/sprites/mail-bot_buttons-72ec1049.svg')
 }
@@ -52068,7 +52056,6 @@ a .BookmarkListItem__subtitle:hover {
     overflow: hidden
 }
 
-.uMailWrite__textarea:-moz-placeholder,
 .uMailWrite__textarea::-moz-placeholder {
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -52283,8 +52270,8 @@ a .BookmarkListItem__subtitle:hover {
     margin: 0;
     padding: 0;
     height: 100%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat
@@ -52329,8 +52316,8 @@ a .BookmarkListItem__subtitle:hover {
     display: inline-block;
     width: 20px;
     height: 20px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -200px;
@@ -52366,8 +52353,8 @@ a .BookmarkListItem__subtitle:hover {
     display: inline-block;
     width: 20px;
     height: 20px;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -242px;
@@ -52410,8 +52397,8 @@ a .BookmarkListItem__subtitle:hover {
     width: 20px;
     height: 20px;
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('/images/mobile/skins/icon/statuses.png?14')
@@ -54099,7 +54086,6 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     -moz-osx-font-smoothing: auto
 }
 
-.vk__page_publish .create_post .textfield:-moz-placeholder,
 .vk__page_publish .create_post .textfield::-moz-placeholder {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -54201,8 +54187,8 @@ html.vk_appAuth_yes .vk__page_mail._ios {
 }
 
 .vk__page_publish .radio_items .ri_radio {
+    -webkit-background-size: 100% 100%!important;
     -moz-background-size: 100%!important;
-    -o-background-size: 100%!important;
     background-size: 100%!important;
     background-position: 0 -216px!important;
     display: inline-block;
@@ -54694,8 +54680,8 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     width: 24px;
     height: 24px;
     display: block;
+    -webkit-background-size: 100% 100%;
     -moz-background-size: 100%;
-    -o-background-size: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 -1008px;
@@ -54757,8 +54743,8 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
+    -webkit-background-size: 44px 44px;
     -moz-background-size: 44px;
-    -o-background-size: 44px;
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 2px -174px;
@@ -57289,15 +57275,15 @@ screen and (min--moz-device-pixel-ratio: 1.5),
 screen and (min-device-pixel-ratio: 1.5) {
     .i_pointer {
         background-image: url(/images/mobile/pointer_2x.gif?1);
+        -webkit-background-size: 90px 8px!important;
         -moz-background-size: 90px 8px!important;
-        -o-background-size: 90px 8px!important;
         background-size: 90px 8px!important
     }
     .al_loading,
     .wait_loading {
         background-image: url(/images/mobile/oupload_2x.gif?1);
+        -webkit-background-size: 29px 7px!important;
         -moz-background-size: 29px 7px!important;
-        -o-background-size: 29px 7px!important;
         background-size: 29px 7px!important
     }
     .cm_item_loading .cm_label,
@@ -57306,32 +57292,32 @@ screen and (min-device-pixel-ratio: 1.5) {
     .input_loading,
     .mva_item_loading .mva_label {
         background-image: url(/images/mobile/mupload_2x.gif?1);
+        -webkit-background-size: 27px 4px;
         -moz-background-size: 27px 4px;
-        -o-background-size: 27px 4px;
         background-size: 27px 4px
     }
     .head_search .qsearch .clear_btn {
         background-image: url(/images/mobile/search_icons_2x.png?6)!important;
+        -webkit-background-size: 40px 20px!important;
         -moz-background-size: 40px 20px!important;
-        -o-background-size: 40px 20px!important;
         background-size: 40px 20px!important
     }
     .head_search .input_loading {
         background-image: none;
+        -webkit-background-size: auto auto;
         -moz-background-size: auto;
-        -o-background-size: auto;
         background-size: auto
     }
     .button_locked {
         background-image: url(/images/mobile/wupload_2x.gif?1);
+        -webkit-background-size: 32px 8px!important;
         -moz-background-size: 32px 8px!important;
-        -o-background-size: 32px 8px!important;
         background-size: 32px 8px!important
     }
     .lvi {
         background-image: url(/images/mobile/profile_icons_2x.png?5);
+        -webkit-background-size: 40px 12px!important;
         -moz-background-size: 40px 12px!important;
-        -o-background-size: 40px 12px!important;
         background-size: 40px 12px!important
     }
     .mhi_home,
@@ -57341,8 +57327,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     .mhi_home,
     .mhi_logo,
     .mhi_vkhome {
+        -webkit-background-size: 31px 18px!important;
         -moz-background-size: 31px 18px!important;
-        -o-background-size: 31px 18px!important;
         background-size: 31px 18px!important
     }
     .mhi_vkhome {
@@ -57350,26 +57336,26 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .mhi_notify {
         background-image: url(/images/mobile/notify_2x.png?5)!important;
+        -webkit-background-size: 18px 16px!important;
         -moz-background-size: 18px 16px!important;
-        -o-background-size: 18px 16px!important;
         background-size: 18px 16px!important
     }
     .mhi_back {
         background-image: url(/images/mobile/back_2x.png?3)!important;
+        -webkit-background-size: 10px 16px!important;
         -moz-background-size: 10px 16px!important;
-        -o-background-size: 10px 16px!important;
         background-size: 10px 16px!important
     }
     .mhi_search {
         background-image: url(/images/mobile/search_icon_2x.png?4)!important;
+        -webkit-background-size: 18px 18px!important;
         -moz-background-size: 18px 18px!important;
-        -o-background-size: 18px 18px!important;
         background-size: 18px 18px!important
     }
     ._lm .mhi_home {
         background-image: url(/images/mobile/menu_2x.png?2)!important;
+        -webkit-background-size: 20px 18px!important;
         -moz-background-size: 20px 18px!important;
-        -o-background-size: 20px 18px!important;
         background-size: 20px 18px!important
     }
     .faq_cat_item .faq_body,
@@ -57377,14 +57363,14 @@ screen and (min-device-pixel-ratio: 1.5) {
     .op_inline_user_link,
     .payment_opt_label {
         background-image: url(/images/mobile/profile_arrow_2x.png?1);
+        -webkit-background-size: 9px 13px!important;
         -moz-background-size: 9px 13px!important;
-        -o-background-size: 9px 13px!important;
         background-size: 9px 13px!important
     }
     .answers_item .pi_img .i_icon {
         background-image: url(/images/mobile/feedback_2x.png?8);
+        -webkit-background-size: 135px 16px!important;
         -moz-background-size: 135px 16px!important;
-        -o-background-size: 135px 16px!important;
         background-size: 135px 16px!important
     }
     .edit_partner_reset,
@@ -57393,20 +57379,20 @@ screen and (min-device-pixel-ratio: 1.5) {
     .poll_del_btn,
     .sel_reset_btn {
         background-image: url(/images/mobile/close_2x.png?2);
+        -webkit-background-size: 15px 11px!important;
         -moz-background-size: 15px 11px!important;
-        -o-background-size: 15px 11px!important;
         background-size: 15px 11px!important
     }
     .show_more_loading .i_loading {
         background-image: url(/images/mobile/gupload_2x.gif?2);
+        -webkit-background-size: 32px 8px!important;
         -moz-background-size: 32px 8px!important;
-        -o-background-size: 32px 8px!important;
         background-size: 32px 8px!important
     }
     .di_current_peer .multichat_count {
         background-image: url(/images/mobile/multichat_icon_2x.png);
+        -webkit-background-size: 19px 13px!important;
         -moz-background-size: 19px 13px!important;
-        -o-background-size: 19px 13px!important;
         background-size: 19px 13px!important
     }
     ._js .tabs_block_hideable.tabs_block_closed,
@@ -57421,20 +57407,20 @@ screen and (min-device-pixel-ratio: 1.5) {
     ._js .tabs_block_opened,
     .tabs_block_closed .tabs_dd,
     .tabs_block_opened .tabs_dd {
+        -webkit-background-size: 23px 23px!important;
         -moz-background-size: 23px 23px!important;
-        -o-background-size: 23px 23px!important;
         background-size: 23px 23px!important
     }
     .inline_item_selected .ii_body {
         background-image: url(/images/mobile/selected_2x.png?2);
+        -webkit-background-size: 15px 15px!important;
         -moz-background-size: 15px 15px!important;
-        -o-background-size: 15px 15px!important;
         background-size: 15px 15px!important
     }
     .medias_row .i_icon {
         background-image: url(/images/mobile/media_icons_2x.png?1);
+        -webkit-background-size: 168px 17px!important;
         -moz-background-size: 168px 17px!important;
-        -o-background-size: 168px 17px!important;
         background-size: 168px 17px!important
     }
     .head_actions_wrap .i_actions,
@@ -57447,8 +57433,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     .pic_from .i_copy {
         background-image: url(/images/mobile/post_icons_2x.png?7);
         height: 12px;
+        -webkit-background-size: 144px 17px!important;
         -moz-background-size: 144px 17px!important;
-        -o-background-size: 144px 17px!important;
         background-size: 144px 17px!important
     }
     .pic_skipped .pic_img {
@@ -57459,63 +57445,63 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .pic_copyof_btn .pic_cont,
     .pic_skipped .pic_img {
+        -webkit-background-size: 16px 4px!important;
         -moz-background-size: 16px 4px!important;
-        -o-background-size: 16px 4px!important;
         background-size: 16px 4px!important
     }
     .mt_loading {
         background-image: url(/images/mobile/wgupload_2x.gif?2);
+        -webkit-background-size: 32px 8px!important;
         -moz-background-size: 32px 8px!important;
-        -o-background-size: 32px 8px!important;
         background-size: 32px 8px!important
     }
     .wi_buttons_ex .i_star {
         background-image: url(/images/mobile/stars_2x.png?1);
+        -webkit-background-size: 36px 12px!important;
         -moz-background-size: 36px 12px!important;
-        -o-background-size: 36px 12px!important;
         background-size: 36px 12px!important
     }
     .fb_button .i_fb {
         background-image: url(/images/mobile/fb_icon_2x.png?1);
+        -webkit-background-size: 8px 15px!important;
         -moz-background-size: 8px 15px!important;
-        -o-background-size: 8px 15px!important;
         background-size: 8px 15px!important
     }
     .pm_item .i_icon {
         background-image: url(/images/mobile/profile_2x.png?6);
+        -webkit-background-size: 128px 16px!important;
         -moz-background-size: 128px 16px!important;
-        -o-background-size: 128px 16px!important;
         background-size: 128px 16px!important
     }
     .vv_video_icon {
+        -webkit-background-size: 46px 46px!important;
         -moz-background-size: 46px 46px!important;
-        -o-background-size: 46px 46px!important;
         background-size: 46px 46px!important
     }
     .cp_attached_wrap .medias_map_close .i_close,
     .cp_icon_btn .i_icon,
     .cp_options_btn .i_icon {
         background-image: url(/images/mobile/attach_icons_2x.png?4)!important;
+        -webkit-background-size: 352px 22px!important;
         -moz-background-size: 352px 22px!important;
-        -o-background-size: 352px 22px!important;
         background-size: 352px 22px!important
     }
     .nc_reply_name {
         background-image: url(/images/mobile/reset_2x.gif?3)!important;
+        -webkit-background-size: 10px 10px!important;
         -moz-background-size: 10px 10px!important;
-        -o-background-size: 10px 10px!important;
         background-size: 10px 10px!important
     }
     .sp_icon {
         background-image: url(/images/mobile/stickers_icons_2x.png?3)!important;
+        -webkit-background-size: 120px 30px!important;
         -moz-background-size: 120px 30px!important;
-        -o-background-size: 120px 30px!important;
         background-size: 120px 30px!important
     }
     .di_typing .i_typing {
         background-image: url(/images/mobile/typing_2x.gif);
+        -webkit-background-size: 15px 11px!important;
         -moz-background-size: 15px 11px!important;
-        -o-background-size: 15px 11px!important;
         background-size: 15px 11px!important
     }
     .selected_users_opened .peers_selected_dd {
@@ -57526,48 +57512,48 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .selected_users_closed .peers_selected_dd,
     .selected_users_opened .peers_selected_dd {
+        -webkit-background-size: 15px 10px!important;
         -moz-background-size: 15px 10px!important;
-        -o-background-size: 15px 10px!important;
         background-size: 15px 10px!important
     }
     .fp_filter_reset .i_reset,
     .mk_filter_selector .i_filter,
     .search_summary .i_filter {
         background-image: url(/images/mobile/filter_icons_2x.png);
+        -webkit-background-size: 29px 11px!important;
         -moz-background-size: 29px 11px!important;
-        -o-background-size: 29px 11px!important;
         background-size: 29px 11px!important
     }
     .login_btn_with_arr {
         background-image: url(/images/mobile/backlink_2x.gif);
+        -webkit-background-size: 20px 150px!important;
         -moz-background-size: 20px 150px!important;
-        -o-background-size: 20px 150px!important;
         background-size: 20px 150px!important
     }
     .apps_access_icon {
         background-image: url(/images/mobile/app_settings_icons_2x.png?3);
+        -webkit-background-size: 33px 588px!important;
         -moz-background-size: 33px 588px!important;
-        -o-background-size: 33px 588px!important;
         background-size: 33px 588px!important
     }
     a.wk_ext_link {
         background-image: url(/images/mobile/wikiextarr_2x.gif);
+        -webkit-background-size: 7px 7px!important;
         -moz-background-size: 7px 7px!important;
-        -o-background-size: 7px 7px!important;
         background-size: 7px 7px!important
     }
     .pv_icon .i_icon {
         background-image: url(/images/mobile/pv_touch_icons_2x.png);
+        -webkit-background-size: 44px 20px!important;
         -moz-background-size: 44px 20px!important;
-        -o-background-size: 44px 20px!important;
         background-size: 44px 20px!important
     }
     #zpv_center.zpv_ti_loading .zpv_img,
     .zpv_crop_saving .zpv_crop_loading,
     .zpv_ti_loading {
         background-image: url(/images/mobile/zpv_upload_2x.gif?1);
+        -webkit-background-size: 24px 24px!important;
         -moz-background-size: 24px 24px!important;
-        -o-background-size: 24px 24px!important;
         background-size: 24px 24px!important
     }
     .zpv_close_msg {
@@ -57575,8 +57561,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .zpv_close_msg,
     .zpv_close_move_down {
+        -webkit-background-size: 14px 15px!important;
         -moz-background-size: 14px 15px!important;
-        -o-background-size: 14px 15px!important;
         background-size: 14px 15px!important
     }
     .zpv_close_move_down {
@@ -57584,54 +57570,54 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .zpv_close_move_up {
         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAABYUlEQVRIDe2UP05CQRDGVwsK9QxwHm5gY8IRVKCwo8M/2IsHoCAG6KngEPQYY+jVmFjw/ObFMZtxd2cnIcTibfKxM/O+nd++5WVdURTOqHP4F9CZcV3JscL6gPDYIiC4qYfFfM0kMZugucAYjNnZ0BzgDXdV5gs8V/tphlwY7+VSg6aAt9zFOCehMeCdESLtbRSCvUPFGGyGJq+i8wb5UtQ47SD4018WBuwWM8Fq0FrUKT+BsqE+MAaboiHByBsCUv0YyoIy8B4LQmOCIsNSQIbSlRcaXRRLFv1chRyoSZgG1KAtgpJpFQCGYDnAFHROwEPn3AjyxwTJKfTlFw3xB7xNaCnWjMsc1AOoB71AD5D/n9GOfcU+Gt/D8RHWPkHU9/faI5jYSDJd42ndczwjbni5GtKR7nVUwJ0fd3Wk1ZGaT+DffzRb8UqfIldT6xsO0fH9p+sb5keVIAzWy1sst6fffgmvdQPnrpwAAAAASUVORK5CYII=);
+        -webkit-background-size: 14px 15px!important;
         -moz-background-size: 14px 15px!important;
-        -o-background-size: 14px 15px!important;
         background-size: 14px 15px!important
     }
     .map_pointer {
         background-image: url(/images/mobile/map_point_2x.png);
+        -webkit-background-size: 180px 70px!important;
         -moz-background-size: 180px 70px!important;
-        -o-background-size: 180px 70px!important;
         background-size: 180px 70px!important
     }
     .checkins_cnt .i_icon,
     .place_address .i_icon,
     .place_checkins .i_icon {
         background-image: url(/images/mobile/place_icons_2x.png);
+        -webkit-background-size: 45px 15px!important;
         -moz-background-size: 45px 15px!important;
-        -o-background-size: 45px 15px!important;
         background-size: 45px 15px!important
     }
     .mt_photo_count {
         background-image: url(/images/mobile/camera_white_2x.png);
+        -webkit-background-size: 11px 9px!important;
         -moz-background-size: 11px 9px!important;
-        -o-background-size: 11px 9px!important;
         background-size: 11px 9px!important
     }
     .mk_more_arrow,
     .prv_body {
         background-image: url(/images/mobile/prv_arrow_2x.png);
+        -webkit-background-size: 8px 14px!important;
         -moz-background-size: 8px 14px!important;
-        -o-background-size: 8px 14px!important;
         background-size: 8px 14px!important
     }
     .prv_private {
         background-image: url(/images/mobile/prv_private_2x.png);
+        -webkit-background-size: 9px 12px!important;
         -moz-background-size: 9px 12px!important;
-        -o-background-size: 9px 12px!important;
         background-size: 9px 12px!important
     }
     .payment_opt .ii_icon {
         background-image: url(/images/mobile/payments_2x.png?3);
+        -webkit-background-size: 164px 41px!important;
         -moz-background-size: 164px 41px!important;
-        -o-background-size: 164px 41px!important;
         background-size: 164px 41px!important
     }
     .faq_cat_item .body_icon,
     .faq_item .i_icon {
         background-image: url(/images/mobile/faq_icons_2x.png?1);
+        -webkit-background-size: 35px 16px!important;
         -moz-background-size: 35px 16px!important;
-        -o-background-size: 35px 16px!important;
         background-size: 35px 16px!important
     }
     ._copts .radio+.option_label:before,
@@ -57644,41 +57630,41 @@ screen and (min-device-pixel-ratio: 1.5) {
     ._copts .checkbox+.option_label:before,
     ._copts .radio+.option_label:before,
     .ri_radio {
+        -webkit-background-size: 102px 17px!important;
         -moz-background-size: 102px 17px!important;
-        -o-background-size: 102px 17px!important;
         background-size: 102px 17px!important
     }
     .tu_img,
     .zpv_thumb_uploading {
         background-image: url(/images/mobile/uploading_2x.gif);
+        -webkit-background-size: 16px 16px!important;
         -moz-background-size: 16px 16px!important;
-        -o-background-size: 16px 16px!important;
         background-size: 16px 16px!important
     }
     .tu_cancel {
         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAINJREFUeNqsk0sOwCAIBUnvVa8kG3rReh8qiabWgNC0L2HhZyZGBZg51Tpr5VoQrNyYXQaF71AApmF/kQnkZygIS7AvHAHJDAsD44aVRIVngSUxYU2gSUzYElgS9XI30MMQTeC2l6fwYPKe2IPdJ47AS8kvX/lzM6UmwRftjL2dLwEGACiuMpJJM2BNAAAAAElFTkSuQmCC);
+        -webkit-background-size: 8px 8px!important;
         -moz-background-size: 8px 8px!important;
-        -o-background-size: 8px 8px!important;
         background-size: 8px 8px!important
     }
     .emoji_css {
         background-image: url('/images/mobile/im_emoji_2x.png?6');
+        -webkit-background-size: 16px 544px!important;
         -moz-background-size: 16px 544px!important;
-        -o-background-size: 16px 544px!important;
         background-size: 16px 544px!important
     }
     .wk_medal_bronze,
     .wk_medal_gold,
     .wk_medal_silver {
         background-image: url(/images/mobile/medals_2x.png);
+        -webkit-background-size: 48px 16px!important;
         -moz-background-size: 48px 16px!important;
-        -o-background-size: 48px 16px!important;
         background-size: 48px 16px!important
     }
     .blog_about_link_ic {
         background-image: url('/images/blog/m_about_icons_2x.png');
+        -webkit-background-size: 28px 200px!important;
         -moz-background-size: 28px 200px!important;
-        -o-background-size: 28px 200px!important;
         background-size: 28px 200px!important
     }
     .blog_about_cover {
@@ -57695,26 +57681,26 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .blog_about_job_ic {
         background-image: url(/images/blog/m_jobs_icons_2x.png);
+        -webkit-background-size: 48px 563px!important;
         -moz-background-size: 48px 563px!important;
-        -o-background-size: 48px 563px!important;
         background-size: 48px 563px!important
     }
     .blog_about_header_logo {
         background-image: url(/images/blog/m_about_logo_2x.png);
+        -webkit-background-size: 32px 19px!important;
         -moz-background-size: 32px 19px!important;
-        -o-background-size: 32px 19px!important;
         background-size: 32px 19px!important
     }
     .blog_post_repost_ic {
         background-image: url(/images/blog/m_like_share_2x.png);
+        -webkit-background-size: 20px 81px!important;
         -moz-background-size: 20px 81px!important;
-        -o-background-size: 20px 81px!important;
         background-size: 20px 81px!important
     }
     .blog_view_job_back_ic {
         background-image: url(/images/blog/m_vacancy_back_2x.png);
+        -webkit-background-size: 10px 15px!important;
         -moz-background-size: 10px 15px!important;
-        -o-background-size: 10px 15px!important;
         background-size: 10px 15px!important
     }
     .landing_pp_header {
@@ -57725,8 +57711,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_example_picture,
     .landing_pp_example_photos {
+        -webkit-background-size: 320px 293px;
         -moz-background-size: 320px 293px;
-        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
     .landing_pp_example_photos {
@@ -57737,8 +57723,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_example_video,
     .landing_pp_example_poll {
+        -webkit-background-size: 320px 293px;
         -moz-background-size: 320px 293px;
-        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
     .landing_pp_example_poll {
@@ -57749,8 +57735,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_example_map,
     .landing_pp_example_market {
+        -webkit-background-size: 320px 293px;
         -moz-background-size: 320px 293px;
-        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
     .landing_pp_example_market {
@@ -57761,8 +57747,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_example_group,
     .landing_pp_example_site {
+        -webkit-background-size: 320px 293px;
         -moz-background-size: 320px 293px;
-        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
     .landing_pp_example_site {
@@ -57770,26 +57756,26 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_example_call {
         background-image: url('/images/landings/promo_post/mob/iphone_browser9_2x.jpg')!important;
+        -webkit-background-size: 320px 293px;
         -moz-background-size: 320px 293px;
-        -o-background-size: 320px 293px;
         background-size: 320px 293px
     }
     .landing_pp_feed_pic {
         background-image: url('/images/landings/promo_post/mob/adv_example_2x.jpg')!important;
+        -webkit-background-size: 304px 365px;
         -moz-background-size: 304px 365px;
-        -o-background-size: 304px 365px;
         background-size: 304px 365px
     }
     .landing_pp_big_adcreate_pic {
         background-image: url('/images/landings/promo_post/mob/browser_2x.png')!important;
+        -webkit-background-size: 307px 213px;
         -moz-background-size: 307px 213px;
-        -o-background-size: 307px 213px;
         background-size: 307px 213px
     }
     .landing_pp_big_group_create_pic {
         background-image: url('/images/landings/promo_post/mob/fit_2x.png')!important;
+        -webkit-background-size: 303px 319px;
         -moz-background-size: 303px 319px;
-        -o-background-size: 303px 319px;
         background-size: 303px 319px
     }
     .landing_pp_target_ic {
@@ -57797,8 +57783,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_target_ic,
     .landing_pp_target_ic_cities {
+        -webkit-background-size: 164px 164px;
         -moz-background-size: 164px 164px;
-        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
     .landing_pp_target_ic_cities {
@@ -57809,8 +57795,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_target_ic_demography,
     .landing_pp_target_ic_interests {
+        -webkit-background-size: 164px 164px;
         -moz-background-size: 164px 164px;
-        -o-background-size: 164px 164px;
         background-size: 164px 164px
     }
     .landing_pp_target_ic_interests {
@@ -57821,8 +57807,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_story,
     .landing_pp_story_2 {
+        -webkit-background-size: 882px 1000px;
         -moz-background-size: 882px 1000px;
-        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
     .landing_pp_story_2 {
@@ -57833,8 +57819,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_story_3,
     .landing_pp_story_4 {
+        -webkit-background-size: 882px 1000px;
         -moz-background-size: 882px 1000px;
-        -o-background-size: 882px 1000px;
         background-size: 882px 1000px
     }
     .landing_pp_story_4 {
@@ -57845,8 +57831,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_story_ava,
     .landing_pp_story_ava_2 {
+        -webkit-background-size: 128px 128px;
         -moz-background-size: 128px 128px;
-        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
     .landing_pp_story_ava_2 {
@@ -57857,8 +57843,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .landing_pp_story_ava_3,
     .landing_pp_story_ava_4 {
+        -webkit-background-size: 128px 128px;
         -moz-background-size: 128px 128px;
-        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
     .landing_pp_story_ava_4 {
@@ -57866,8 +57852,8 @@ screen and (min-device-pixel-ratio: 1.5) {
     }
     .audio-msg-track .audio-msg-track--btn {
         background: url(/images/mobile/audio_icons_2x.png?10) no-repeat 0 0;
+        -webkit-background-size: 200px 40px!important;
         -moz-background-size: 200px 40px!important;
-        -o-background-size: 200px 40px!important;
         background-size: 200px 40px!important
     }
 }
@@ -57877,8 +57863,8 @@ screen and (min--moz-device-pixel-ratio: 1.5) and screen and (min-width: 320px),
 screen and (min-device-pixel-ratio: 1.5) and screen and (min-width: 320px) {
     .wall_item .medias_row .i_icon {
         background-image: url(/images/mobile/media_thumbs_2x.png?1)!important;
+        -webkit-background-size: 168px 24px!important;
         -moz-background-size: 168px 24px!important;
-        -o-background-size: 168px 24px!important;
         background-size: 168px 24px!important
     }
 }
@@ -58273,8 +58259,8 @@ img.wk_photo_no_padding {
     background-color: #fff;
     margin: 3px 6px 3px 0px;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%;
     height: 90px;
@@ -58603,14 +58589,14 @@ img.wk_photo_right {
     }
     .msg_item .thumbs_list .thumb_map_img_unsized {
         background-position: center 0;
+        -webkit-background-size: contain;
         -moz-background-size: contain;
-        -o-background-size: contain;
         background-size: contain
     }
     .msg_item .thumbs_list .thumb_map_album .thumb_map_img_unsized {
         background-position: 50%;
+        -webkit-background-size: cover;
         -moz-background-size: cover;
-        -o-background-size: cover;
         background-size: cover;
         max-height: 98px
     }
