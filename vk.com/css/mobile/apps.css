@@ -12728,3 +12728,10 @@ body.vk_app_layout #mcont {
     margin: 0;
     padding: 0
 }
+
+@media screen and (min-width: 620px) {
+    #vk_head {
+        display: block;
+        width: 100%
+    }
+}

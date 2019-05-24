@@ -6211,21 +6211,34 @@ function showReCaptchaBox(key, lang, box, o) {
 }
 
 function showDoneBox(msg, opts) {
-    opts = opts || {};
+    if (!opts) {
+        opts = {};
+    }
     var l = (opts.w || 380) + 20;
     var style = opts.w ? ' style="width: ' + opts.w + 'px;"' : '';
-    var pageW = bodyNode.offsetWidth,
-        resEl = ce('div', {
-            className: 'top_result_baloon_wrap fixed',
-            innerHTML: '<div class="top_result_baloon"' + style + '>' + msg + '</div>'
-        }, {
-            left: (pageW - l) / 2
-        });
-    bodyNode.insertBefore(resEl, bodyNode.firstChild);
-    boxRefreshCoords(resEl);
+    var pageW = bodyNode.offsetWidth;
+    var resEl = ce('div', {
+        className: 'top_result_baloon_wrap fixed ' + (opts.className || ''),
+        innerHTML: '<div class="top_result_baloon"' + style + '>' + msg + '</div>',
+    }, {
+        left: (pageW - l) / 2
+    });
+    if (opts.parentEl) {
+        geByClass1(opts.parentEl).appendChild(resEl);
+    } else {
+        bodyNode.insertBefore(resEl, bodyNode.firstChild);
+    }
+    var height = window.innerHeight ? window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : boxLayerBG.offsetHeight);
+    var top = browser.mobile ? intval(window.pageYOffset) : 0;
+    var containerSize = getSize(resEl);
+    resEl.style.top = Math.max(10, top + (height - containerSize[1]) / 3) + 'px';
     var out = opts.out || 2000;
+    var start = new Date();
     var _fadeOut = function() {
-        setTimeout(function() {
+        if (out < 0) {
+            return;
+        }
+        window.doneBoxTO = setTimeout(function() {
             if (opts.permit && !opts.permit()) {
                 _fadeOut();
                 return;
@@ -6238,7 +6251,16 @@ function showDoneBox(msg, opts) {
             });
         }, out);
     }
+    addEvent(resEl, 'mouseenter', function() {
+        clearTimeout(window.doneBoxTO);
+        out -= new Date() - start;
+    });
+    addEvent(resEl, 'mouseleave', function() {
+        start = new Date();
+        _fadeOut();
+    });
     _fadeOut();
+    return resEl;
 }
 
 /**
@@ -7448,7 +7470,7 @@ function bookmark(ownerId, objectId, objectType, hash, isBookmarked, itemAccessH
     }, {
         onDone: function(addedText, tags, objectTypeInt, setTagHash) {
             if (addedText) {
-                var boxEl = window.showDoneBox(addedText)
+                var boxEl = window.showDoneBox(addedText);
                 var setTagEl = geByClass1('bookmarks_tag_set', boxEl)
                 if (setTagEl && !isEmpty(tags)) {
                     var tagsArray = []
@@ -7495,18 +7517,29 @@ function bookmark(ownerId, objectId, objectType, hash, isBookmarked, itemAccessH
                         content: content,
                         appendToParent: true,
                         cls: 'bookmarks_tag_set_tt',
-                        offset: [0, -26],
+                        autoShow: true,
+                        offset: [0, -36],
                         onFirstTimeShow: function(contentEl) {
                             stManager.add(['ui_common.css', 'ui_common.js'], function() {
                                 cur.setBookmarksTagTooltipScroll = new uiScroll(domFC(contentEl), { // eslint-disable-line new-cap
                                     theme: 'dark',
                                 })
                             })
+                        },
+                        onShow: function() {
+                            Notifier.freezeEvents();
+                            curNotifier.tooltipShown = true;
+                        },
+                        onHide: function() {
+                            curNotifier.tooltipShown = false;
+                            if (curNotifier.unfreezeAfterTooltipHide) {
+                                Notifier.unfreezeEvents();
+                            }
                         }
-                    })
+                    });
 
                     cur.destroy.push(function() {
-                        cur.setBookmarksTagTooltip.destroy()
+                        cur.setBookmarksTagTooltip.destroy();
                     })
                 }
             }

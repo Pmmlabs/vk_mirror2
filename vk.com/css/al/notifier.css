@@ -15096,16 +15096,13 @@ span.fc_contact_photo.online.mobile:after {
 #notifiers_wrap {
     bottom: 0;
     left: 0;
+    padding: 0 0 2px;
     z-index: 1001
 }
 
 .notifier_baloon_wrap {
     padding: 0 0 8px 10px;
     visibility: hidden
-}
-
-.notifier_baloon_wrap:last-child {
-    padding-bottom: 10px
 }
 
 .notifier_baloon {
@@ -15123,6 +15120,10 @@ span.fc_contact_photo.online.mobile:after {
     padding: 10px 12px 0
 }
 
+.notifier_type_done_box .notifier_baloon_head {
+    float: right
+}
+
 .notifier_baloon_title {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
@@ -15133,6 +15134,42 @@ span.fc_contact_photo.online.mobile:after {
     margin: 0;
     font-size: 12.5px;
     border-bottom: 0
+}
+
+.notifier_type_done_box .notifier_baloon_title {
+    display: none
+}
+
+.notifier_type_done_box .notifier_baloon_msg>b:first-of-type,
+.notifier_type_done_box .top_result_header {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 12.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0;
+    padding-bottom: 11px;
+    display: block
+}
+
+.notifier_type_done_box .notifier_baloon_msg>b:first-of-type {
+    overflow: visible;
+    white-space: normal
+}
+
+.notifier_type_done_box .notifier_baloon_body {
+    padding-top: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.notifier_type_done_box br {
+    display: none
 }
 
 .notifier_close_wrap {
