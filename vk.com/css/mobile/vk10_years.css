@@ -32,8 +32,8 @@
 
 .vk_2x .vk10_years_head {
     background-image: url('/images/landings/vk10_years/landing_mobile_2x.png');
+    -webkit-background-size: 608px 135px;
     -moz-background-size: 608px 135px;
-    -o-background-size: 608px 135px;
     background-size: 608px 135px
 }
 
@@ -75,8 +75,8 @@
 
 .vk_2x .vk10_years_caption_ic:after {
     background-image: url('/images/landings/vk10_years/vk10_icons_2x.png');
+    -webkit-background-size: 24px 283px;
     -moz-background-size: 24px 283px;
-    -o-background-size: 24px 283px;
     background-size: 24px 283px
 }
 
@@ -126,7 +126,7 @@
     margin: 56px auto 0px;
     background-image: -webkit-gradient(linear, right top, left top, from(#fff), color-stop(5%, #f3f3f3), color-stop(95%, #e8e8e8), color-stop(95%, #fff));
     background-image: -webkit-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
-    background-image: -moz-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
+    background-image: -moz- oldlinear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     background-image: -o-linear-gradient(right, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     background-image: linear-gradient(270deg, #fff, #f3f3f3 5%, #e8e8e8 95%, #fff);
     height: 1px
@@ -212,8 +212,8 @@
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
     border-radius: 40px;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: 50%
 }
@@ -313,8 +313,8 @@
 (min-resolution: 192dpi) {
     .vk10_years_share_btn:after {
         background-image: url(/images/landings/vk10_years/vk10_icons_2x.png);
+        -webkit-background-size: 24px 283px;
         -moz-background-size: 24px 283px;
-        -o-background-size: 24px 283px;
         background-size: 24px 283px
     }
 }

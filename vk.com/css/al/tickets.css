@@ -849,7 +849,8 @@ body.dev .tickets_header_links {
     background-position: 0 -108px
 }
 
-.tickets_header_links .ui_actions_menu_item.tickets_header_links_faq_suggestions:before {
+.tickets_header_links .ui_actions_menu_item.tickets_header_links_faq_suggestions:before,
+.tickets_header_links .ui_actions_menu_item.tickets_header_links_to_task_tracker:before {
     background-position: 0 -176px
 }
 
@@ -1092,6 +1093,10 @@ body.dev .tu_row {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
+}
+
+.tu_row_comment_after__label {
+    color: #939393
 }
 
 .tu_info {

@@ -3789,6 +3789,10 @@ body.mac #layer_stl .fixed {
     position: relative
 }
 
+.box_no_padding .box_body {
+    padding: 0
+}
+
 .box_no_controls .box_layout .box_controls,
 .box_no_controls .box_title_wrap {
     display: none

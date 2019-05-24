@@ -223,8 +223,8 @@ html {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools_wrapper.pixel {
         background-image: url(/images/landings/PSB/mob_assets/imge2_2x.jpg);
+        -webkit-background-size: 882px 529px;
         -moz-background-size: 882px 529px;
-        -o-background-size: 882px 529px;
         background-size: 882px 529px
     }
 }
@@ -238,8 +238,8 @@ html {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools_wrapper.file {
         background-image: url(/images/landings/PSB/mob_assets/imge1_2x.jpg);
+        -webkit-background-size: 882px 529px;
         -moz-background-size: 882px 529px;
-        -o-background-size: 882px 529px;
         background-size: 882px 529px
     }
 }
@@ -247,8 +247,8 @@ html {
 .landing .landings_psb_tools_wrapper.file,
 .landing .landings_psb_tools_wrapper.pixel {
     background-position: 50%;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover
 }
 
@@ -260,8 +260,8 @@ html {
     width: 100%;
     height: 100%;
     z-index: 1;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-color: rgba(0, 0, 0, .5)
 }
@@ -718,8 +718,8 @@ body.mac .landing .landings_psb_questions {
 
 .landing .landings_psb_tools .background_wrapper {
     background: url(/images/landings/PSB/mob_assets/image22.jpg);
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain;
     position: relative;
     top: -45px;
@@ -734,8 +734,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landing .landings_psb_tools .background_wrapper {
         background-image: url(/images/landings/PSB/mob_assets/image22_2x.jpg);
+        -webkit-background-size: 882px 372px;
         -moz-background-size: 882px 372px;
-        -o-background-size: 882px 372px;
         background-size: 882px 372px
     }
 }
@@ -746,9 +746,9 @@ body.mac .landing .landings_psb_questions {
     position: absolute;
     left: 0;
     display: block;
-    background: -moz-linear-gradient(top, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
     background: -webkit-linear-gradient(top, #fff, hsla(0, 0%, 100%, 0));
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(hsla(0, 0%, 100%, 0)));
+    background: -moz- oldlinear-gradient(top, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
     background: -o-linear-gradient(top, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
     background: linear-gradient(180deg, #fff 0%, hsla(0, 0%, 100%, 0));
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0)
@@ -829,8 +829,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .psb_activation .error {
         background-image: url(/images/icons/msg_error_2x.png?1);
+        -webkit-background-size: 32px 32px;
         -moz-background-size: 32px 32px;
-        -o-background-size: 32px 32px;
         background-size: 32px 32px
     }
 }
@@ -907,8 +907,8 @@ body.mac .landing .landings_psb_questions {
     background: url(/images/landings/PSB/web_assets/vk_logo.png);
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -917,8 +917,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--vklogo {
         background-image: url(/images/landings/PSB/web_assets/vk_logo_2x.png);
+        -webkit-background-size: 65px 39px;
         -moz-background-size: 65px 39px;
-        -o-background-size: 65px 39px;
         background-size: 65px 39px
     }
 }
@@ -929,8 +929,8 @@ body.mac .landing .landings_psb_questions {
     background: url(/images/landings/PSB/web_assets/PSB_logo.png);
     background-position: 50%;
     background-repeat: no-repeat;
+    -webkit-background-size: contain;
     -moz-background-size: contain;
-    -o-background-size: contain;
     background-size: contain
 }
 
@@ -939,8 +939,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--psblogo {
         background-image: url(/images/landings/PSB/web_assets/PSB_logo_2x.png);
+        -webkit-background-size: 117px 61px;
         -moz-background-size: 117px 61px;
-        -o-background-size: 117px 61px;
         background-size: 117px 61px
     }
 }
@@ -956,8 +956,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--cities {
         background-image: url(/images/landings/PSB/web_assets/cities_2x.png);
+        -webkit-background-size: 78px 78px;
         -moz-background-size: 78px 78px;
-        -o-background-size: 78px 78px;
         background-size: 78px 78px
     }
 }
@@ -973,8 +973,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--demography {
         background-image: url(/images/landings/PSB/web_assets/demography_2x.png);
+        -webkit-background-size: 82px 62px;
         -moz-background-size: 82px 62px;
-        -o-background-size: 82px 62px;
         background-size: 82px 62px
     }
 }
@@ -990,8 +990,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb_advantage__image--interests {
         background-image: url(/images/landings/PSB/web_assets/interests_2x.png);
+        -webkit-background-size: 74px 51px;
         -moz-background-size: 74px 51px;
-        -o-background-size: 74px 51px;
         background-size: 74px 51px
     }
 }
@@ -1007,8 +1007,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--mic {
         background-image: url(/images/landings/PSB/web_assets/mic_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1024,8 +1024,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--newusers {
         background-image: url(/images/landings/PSB/web_assets/newusers_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1043,8 +1043,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--click {
         background-image: url(/images/landings/PSB/web_assets/click_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1062,8 +1062,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--money {
         background-image: url(/images/landings/PSB/web_assets/money_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1081,8 +1081,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--partners {
         background-image: url(/images/landings/PSB/web_assets/partners_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1100,8 +1100,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--budget {
         background-image: url(/images/landings/PSB/web_assets/budget_2x.png);
+        -webkit-background-size: 82px 82px;
         -moz-background-size: 82px 82px;
-        -o-background-size: 82px 82px;
         background-size: 82px 82px
     }
 }
@@ -1117,8 +1117,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user1 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user1_2x.jpg);
+        -webkit-background-size: 261px 120px;
         -moz-background-size: 261px 120px;
-        -o-background-size: 261px 120px;
         background-size: 261px 120px
     }
 }
@@ -1134,8 +1134,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user2 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user2_2x.jpg);
+        -webkit-background-size: 261px 120px;
         -moz-background-size: 261px 120px;
-        -o-background-size: 261px 120px;
         background-size: 261px 120px
     }
 }
@@ -1151,8 +1151,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--user3 {
         background-image: url(/images/landings/PSB/mob_assets/bg_user3_2x.jpg);
+        -webkit-background-size: 261px 120px;
         -moz-background-size: 261px 120px;
-        -o-background-size: 261px 120px;
         background-size: 261px 120px
     }
 }
@@ -1169,8 +1169,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava1 {
         background-image: url(/images/landings/PSB/mob_assets/user1_2x.png);
+        -webkit-background-size: 84px 84px;
         -moz-background-size: 84px 84px;
-        -o-background-size: 84px 84px;
         background-size: 84px 84px
     }
 }
@@ -1187,8 +1187,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava2 {
         background-image: url(/images/landings/PSB/mob_assets/user2_2x.png);
+        -webkit-background-size: 84px 84px;
         -moz-background-size: 84px 84px;
-        -o-background-size: 84px 84px;
         background-size: 84px 84px
     }
 }
@@ -1205,8 +1205,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--userava3 {
         background-image: url(/images/landings/PSB/mob_assets/user3_2x.png);
+        -webkit-background-size: 84px 84px;
         -moz-background-size: 84px 84px;
-        -o-background-size: 84px 84px;
         background-size: 84px 84px
     }
 }
@@ -1224,8 +1224,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--spotty {
         background-image: url(/images/landings/PSB/web_assets/spotty_2x.png);
+        -webkit-background-size: 106px 128px;
         -moz-background-size: 106px 128px;
-        -o-background-size: 106px 128px;
         background-size: 106px 128px
     }
 }
@@ -1243,8 +1243,8 @@ body.mac .landing .landings_psb_questions {
 (min-resolution: 192dpi) {
     .landings_psb__image--sad_spotty {
         background-image: url(/images/landings/PSB/web_assets/sad_spotty_2x.png);
+        -webkit-background-size: 128px 128px;
         -moz-background-size: 128px 128px;
-        -o-background-size: 128px 128px;
         background-size: 128px 128px
     }
 }

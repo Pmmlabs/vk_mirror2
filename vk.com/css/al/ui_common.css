@@ -3118,7 +3118,9 @@ a.ui_search_custom_link {
     position: relative
 }
 
+.olist_item_label,
 .olist_item_name,
+.olist_item_note,
 .olist_item_on_label,
 .olist_item_over_label {
     display: block;
@@ -3160,9 +3162,16 @@ a.ui_search_custom_link {
     color: #939393
 }
 
+.olist_item_label,
+.olist_item_note,
 .olist_item_on_label,
 .olist_item_over_label {
     float: right
+}
+
+.olist_item_note {
+    color: #939393;
+    margin: 0 10px
 }
 
 .olist_item_on_label,

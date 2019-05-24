@@ -15256,6 +15256,14 @@ span.fc_contact_photo.online.mobile:after {
     line-height: 16px
 }
 
+.notifier_baloon_msg .footer {
+    color: #c4c8cc
+}
+
+.notifier_baloon_msg .footer .link {
+    color: #fff
+}
+
 .notifier_baloon_msg span.group_link,
 .notifier_baloon_msg span.mem_link,
 .notifier_baloon_wrap a {
