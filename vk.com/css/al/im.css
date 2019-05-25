@@ -7814,6 +7814,10 @@ img.im_photo_thumb {
     margin-left: 51px
 }
 
+.im-mess .im-mess--post .wall_audio_rows {
+    margin-left: 0
+}
+
 .im-mess .im-mess--text {
     outline: 0;
     margin: 0 49px 0 86px;

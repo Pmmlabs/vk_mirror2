@@ -547,9 +547,9 @@
                 },
                 _layers: []
             };
-        var R = n("Xrg9");
+        var I = n("Xrg9");
 
-        function I() {
+        function R() {
             var e = {};
             Object(g.f)(Object(h.G)("_short_currency"), function() {
                 var t = Object(h.s)(this, "short") || "";
@@ -842,8 +842,8 @@
             Le = "_longViewCached",
             Te = "_longViewHeight",
             Pe = "_longViewTop",
-            Re = "_longViewBottom",
-            Ie = "REGULAR",
+            Ie = "_longViewBottom",
+            Re = "REGULAR",
             xe = "AUTOPLAY_AD",
             Ce = "LongView.viewed",
             Ae = "LongView.idled",
@@ -879,7 +879,7 @@
                 return !(!t || "ads_feed_placeholder" === t.getAttribute("id") || Object(h.V)(e, "no_posts"))
             }(e) && (e[Oe] = function(e) {
                 var t = e && Object(h.u)(e);
-                return t && t.hasAttribute("data-ad-video-autoplay") ? xe : Ie
+                return t && t.hasAttribute("data-ad-video-autoplay") ? xe : Re
             }(e), e[Ee] = t, Be.push(e))
         }
 
@@ -981,15 +981,15 @@
         }
 
         function lt(e, t) {
-            var n = R.a.get(e) || {};
-            t ? n[Fe] = t : delete n[Fe], R.a.set(e, n)
+            var n = I.a.get(e) || {};
+            t ? n[Fe] = t : delete n[Fe], I.a.set(e, n)
         }
 
         function ft() {
             var e = ft,
                 t = [],
-                n = R.a.get(Ce) || {},
-                o = R.a.get(Ae) || {};
+                n = I.a.get(Ce) || {},
+                o = I.a.get(Ae) || {};
             return e.iterator || (e.iterator = function(e) {
                 return function(n) {
                     pt(n) && (t = t.concat(e[n]))
@@ -999,13 +999,13 @@
 
         function ht() {
             var e = ht,
-                t = R.a.get(Ce) || {},
-                n = R.a.get(Ae) || {};
+                t = I.a.get(Ce) || {},
+                n = I.a.get(Ae) || {};
             e.iterator || (e.iterator = function(e) {
                 return function(t) {
                     pt(t) && delete e[t]
                 }
-            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), R.a.set(Ce, t), R.a.set(Ae, n)
+            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), I.a.set(Ce, t), I.a.set(Ae, n)
         }
 
         function pt(e) {
@@ -1015,13 +1015,13 @@
 
         function bt(e, t, n, o) {
             if (!e) return !1;
-            e[Le] || (e[Le] = !0, e[Te] = e.offsetHeight, e[Pe] = n + e.getBoundingClientRect().top, e[Re] = e[Pe] + e[Te]);
+            e[Le] || (e[Le] = !0, e[Te] = e.offsetHeight, e[Pe] = n + e.getBoundingClientRect().top, e[Ie] = e[Pe] + e[Te]);
             var i = o - He - Ve,
                 r = n + He,
                 a = n + o - Ve,
                 s = e[Te],
                 d = e[Pe],
-                c = e[Re];
+                c = e[Ie];
             return (c > r && d < a ? Math.min(a, c) - Math.max(r, d) : 0) >= Math.min(i * t, s * t)
         }
 
@@ -1034,7 +1034,7 @@
         function mt(e, t, n) {
             if (gt(e)) return [];
             var o = Math.min(pe, Date.now() - e[Se]);
-            if (e[Oe] === Ie && o < fe || e[Oe] === xe && o < he) return [];
+            if (e[Oe] === Re && o < fe || e[Oe] === xe && o < he) return [];
             n || (e[ke] = !0);
             var i = function(e) {
                     var t = e[Ee];
@@ -1147,17 +1147,17 @@
             }, e.prototype.isSupported = function() {
                 return "PushManager" in window && "Notification" in window && this.SWClient.isSupported()
             }, e.prototype.loadEndpoint = function() {
-                return R.a.get("push_notifier_endpoint" + vk.id) || !1
+                return I.a.get("push_notifier_endpoint" + vk.id) || !1
             }, e.prototype.saveEndpoint = function(e) {
-                R.a.set("push_notifier_endpoint" + vk.id, e || !1)
+                I.a.set("push_notifier_endpoint" + vk.id, e || !1)
             }, e.prototype.action = function(e, t) {
                 return this.sw.action(e, t)
             }, e.prototype._needupdate = function(e) {
                 var t = Date.now(),
                     n = this.loadEndpoint(),
-                    o = R.a.get("push_notifier_subscribed_ts" + vk.id),
+                    o = I.a.get("push_notifier_subscribed_ts" + vk.id),
                     i = !1;
-                return (n !== e.endpoint || !o || t - o > 6e4) && (R.a.set("push_notifier_subscribed_ts" + vk.id, t), i = !0), i
+                return (n !== e.endpoint || !o || t - o > 6e4) && (I.a.set("push_notifier_subscribed_ts" + vk.id, t), i = !0), i
             }, e.prototype.listenPermission = function() {
                 var e = this;
                 navigator.permissions && navigator.permissions.query && navigator.permissions.query({
@@ -1270,7 +1270,7 @@
         }();
         Tt.SERVER_KEY = "BPrntRk2W1_ISFwlgY-vz9tQDg9i1oSQ3-N8xyjdbNAbIOdZIGFdh5FlO7zn730UwU9Sayoec-Fpqq4JZFTyv60", Tt.SERVER_URL = "push_notifier", Tt.PUSH_NOTIFIER_PERMISSION_GRANTED = "granted", Tt.PUSH_NOTIFIER_PERMISSION_DEFAULT = "default", Tt.PUSH_NOTIFIER_PERMISSION_DENIED = "denied", Tt.PUSH_NOTIFIER_BLOCKED_BY_BROWSER_SETTINGS = "BLOCKED_BY_BROWSER_SETTINGS", Tt.SUBSCRIBE_ERROR_NETWORK = "SUBSCRIBE_ERROR_NETWORK";
         var Pt = Tt;
-        var Rt = function(e) {
+        var It = function(e) {
                 function t(n, o) {
                     ! function(e, t) {
                         if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
@@ -1355,17 +1355,17 @@
                     })
                 }, t
             }(Pt),
-            It = "sw";
+            Rt = "sw";
 
         function xt(e) {
             return {
-                type: It,
+                type: Rt,
                 data: e
             }
         }
 
         function Ct(e) {
-            return ("" === e.origin || e.origin.match(/^https:\/\/([a-zA-Z0-9\-\.]+\.)?vk\.com$/)) && e.data && e.data.data && e.data.type === It
+            return ("" === e.origin || e.origin.match(/^https:\/\/([a-zA-Z0-9\-\.]+\.)?vk\.com$/)) && e.data && e.data.data && e.data.type === Rt
         }
         var At = function() {
             return function(e, t) {
@@ -1556,8 +1556,8 @@
                         boxhide: T._hide.pbind(n, o),
                         wraphide: T._hide.pbind(e)
                     }), T
-                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, window.PushNotifier = Rt, window.sw = new Nt, window.sw.register().then(function() {
-                    window.pushNotifier = new Rt(window.sw, Nt)
+                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, window.PushNotifier = It, window.sw = new Nt, window.sw.register().then(function() {
+                    window.pushNotifier = new It(window.sw, Nt)
                 })
             }
         }
@@ -1570,7 +1570,8 @@
                     },
                     getOID: function() {
                         return cur.oid
-                    }
+                    },
+                    doesScrollTriggerIdle: !0
                 })), Object(St.b)();
                 var e = Object(h.F)("side_bar");
                 window.pageNode = Object(h.F)("page_wrap"), window._fixedNav = e && "fixed" === Object(h.O)(e, "position"), window._tbLink = Object(h.F)("top_back_link"), l.a.chrome || l.a.msie_edge ? window.scrollNode = document.scrollingElement || bodyNode : window.scrollNode = l.a.safari ? bodyNode : htmlNode;
@@ -1580,13 +1581,13 @@
                 var o = Object(g.r)(150 * Math.max(2e6 / n, 1));
                 if (x.d.highlimit = 6 * o, x.d.lowlimit = Math.min(o, 600), Object($.j)(), setTimeout($.j.pbind(!1), 0), Object(_t.c)(), window.addEventListener("scroll", $.k, {
                         passive: !0
-                    }), window.debuglogInit && debuglogInit(), !Ft.id && R.a.checkVersion() && R.a.get("last_reloaded")) try {
+                    }), window.debuglogInit && debuglogInit(), !Ft.id && I.a.checkVersion() && I.a.get("last_reloaded")) try {
                     var i = {};
                     Object(g.f)(["sound_notify_off", "im_ui_notify_off"], function(e, t) {
-                        var n = R.a.get(t);
+                        var n = I.a.get(t);
                         null !== n && (i[t] = n)
                     }), window.localStorage.clear(), Object(g.f)(i, function(e, t) {
-                        return R.a.set(e, t)
+                        return I.a.set(e, t)
                     })
                 } catch (e) {}
             }
@@ -1616,7 +1617,7 @@
             return e()
         }, window.currentModule = function() {
             return cur.currentModule ? cur.currentModule() : cur.module
-        }, window.hab = _(), window.ls = R.a, window.shortCurrency = I, window.statlogsValueEvent = C.d, window.saveSearchAttemptStats = C.c, window.removeSearchPositionTracker = C.b, window.callHub = qt, window.CallHub = qt, window.gSearch = new B, window.zNav = F.l, window.handlePageView = F.d, window.handlePageParams = F.c, window.handlePageCount = F.b, window.updateOtherCounters = F.k, window.processDestroy = F.f, window.globalHistoryDestroy = F.a, window.showBackLink = F.h, window.nav = D.a, nav.init(), Ft.time && !window.browser.opera_mobile && setTimeout(function() {
+        }, window.hab = _(), window.ls = I.a, window.shortCurrency = R, window.statlogsValueEvent = C.d, window.saveSearchAttemptStats = C.c, window.removeSearchPositionTracker = C.b, window.callHub = qt, window.CallHub = qt, window.gSearch = new B, window.zNav = F.l, window.handlePageView = F.d, window.handlePageParams = F.c, window.handlePageCount = F.b, window.updateOtherCounters = F.k, window.processDestroy = F.f, window.globalHistoryDestroy = F.a, window.showBackLink = F.h, window.nav = D.a, nav.init(), Ft.time && !window.browser.opera_mobile && setTimeout(function() {
             var e = new Date,
                 t = [0, e.getMonth() + 1, e.getDate(), e.getHours(), e.getMinutes()];
             1 === t[1] && 12 === Ft.time[1] ? Ft.time[1] = 0 : 12 === t[1] && 1 === Ft.time[1] ? t[1] = 0 : (t[1] > Ft.time[1] + 1 || Ft.time[1] > t[1] + 1) && (t[1] = Ft.time[1] = t[2] = Ft.time[2] = 0), t[1] > Ft.time[1] && 1 === t[2] ? 31 === Ft.time[2] || (4 === Ft.time[1] || 6 === Ft.time[1] || 9 === Ft.time[1] || 11 === Ft.time[1]) && 30 === Ft.time[2] || 2 === Ft.time[1] && (29 === Ft.time[2] || 28 === Ft.time[2] && Ft.time[0] % 4) ? Ft.time[2] = 0 : Ft.time[2] = t[2] = 0 : Ft.time[1] > t[1] && 1 === Ft.time[2] && (31 === t[2] || (4 === t[1] || 6 === t[1] || 9 === t[1] || 11 === t[1]) && 30 === t[2] || 2 === t[1] && (29 === t[2] || 28 === t[2] && Ft.time[0] % 4) ? t[2] = 0 : t[2] = Ft.time[2] = 0), (t[2] > Ft.time[2] + 1 || Ft.time[2] > t[2] + 1) && (t[2] = Ft.time[2] = 0);
