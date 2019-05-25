@@ -571,8 +571,8 @@
         }
         var x = n("0gG3"),
             C = n("XzvV"),
-            A = n("v+DW"),
-            N = n("lkNA");
+            N = n("v+DW"),
+            A = n("lkNA");
         var B = function() {
                 function e() {
                     var t = this;
@@ -846,8 +846,8 @@
             Re = "REGULAR",
             xe = "AUTOPLAY_AD",
             Ce = "LongView.viewed",
-            Ae = "LongView.idled",
-            Ne = vk.longViewTestGroup,
+            Ne = "LongView.idled",
+            Ae = vk.longViewTestGroup,
             Be = [],
             Me = [],
             De = [],
@@ -977,7 +977,7 @@
         }
 
         function ut(e) {
-            lt(Ae, e)
+            lt(Ne, e)
         }
 
         function lt(e, t) {
@@ -989,7 +989,7 @@
             var e = ft,
                 t = [],
                 n = I.a.get(Ce) || {},
-                o = I.a.get(Ae) || {};
+                o = I.a.get(Ne) || {};
             return e.iterator || (e.iterator = function(e) {
                 return function(n) {
                     pt(n) && (t = t.concat(e[n]))
@@ -1000,12 +1000,12 @@
         function ht() {
             var e = ht,
                 t = I.a.get(Ce) || {},
-                n = I.a.get(Ae) || {};
+                n = I.a.get(Ne) || {};
             e.iterator || (e.iterator = function(e) {
                 return function(t) {
                     pt(t) && delete e[t]
                 }
-            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), I.a.set(Ce, t), I.a.set(Ae, n)
+            }), Object.keys(t).forEach(e.iterator(t)), Object.keys(n).forEach(e.iterator(n)), I.a.set(Ce, t), I.a.set(Ne, n)
         }
 
         function pt(e) {
@@ -1112,7 +1112,7 @@
         }
 
         function gt(e) {
-            return "page_view" === Ne && e[ke] || !document.body.contains(e)
+            return "page_view" === Ae && e[ke] || !document.body.contains(e)
         }
 
         function yt(e, t) {
@@ -1367,7 +1367,7 @@
         function Ct(e) {
             return ("" === e.origin || e.origin.match(/^https:\/\/([a-zA-Z0-9\-\.]+\.)?vk\.com$/)) && e.data && e.data.data && e.data.type === Rt
         }
-        var At = function() {
+        var Nt = function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e)) return function(e, t) {
@@ -1391,7 +1391,7 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }();
-        var Nt = function() {
+        var At = function() {
                 function e() {
                     ! function(e, t) {
                         if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
@@ -1455,7 +1455,7 @@
                         if (n.actions && Array.isArray(n.actions)) {
                             var o = [];
                             n.actions.forEach(function(n) {
-                                var i = At(n, 2),
+                                var i = Nt(n, 2),
                                     r = i[0],
                                     a = i[1],
                                     s = "action_" + r;
@@ -1476,9 +1476,9 @@
             Mt = {
                 start: function(e, t) {
                     var n = this;
-                    if (t.stopPropagation(), t.preventDefault(), window.statlogsValueEvent("first_april_special_event", "click", Bt), !this.timeoutHandle) {
-                        var o = Number(e.getAttribute("data-v")) || 0;
-                        this.duration && this.id || (this.duration = Number(e.getAttribute("data-duration")) || 0, this.id = e.getAttribute("data-id")), this.duration && this.id && (!this.animationData || !this.animationData.v || "number" == typeof this.v && this.v !== o ? (this.v = o, this._getAnimation().then(function(e) {
+                    if (t.stopPropagation(), t.preventDefault(), this.id = window.domData(e, "id"), this.id && (window.statlogsValueEvent("special_event", "click", Bt, this.id), !this.timeoutHandle)) {
+                        var o = Number(window.domData(e, "v")) || 0;
+                        this.duration || (this.duration = Number(window.domData(e, "duration")) || 0), this.duration && (!this.animationData || !this.animationData.v || "number" == typeof this.v && this.v !== o ? (this.v = o, this._getAnimation().then(function(e) {
                             return n.animationData = JSON.parse(e), n._loadBodymovin()
                         }).then(function() {
                             return n._play()
@@ -1506,7 +1506,7 @@
                             animationData: this.animationData
                         });
                         this.timeoutHandle = setTimeout(function() {
-                            t.stop(), t.destroy(), e.frame.style.display = "none", e.timeoutHandle = null, window.statlogsValueEvent("first_april_special_event", "showed", Bt)
+                            t.stop(), t.destroy(), e.frame.style.display = "none", e.timeoutHandle = null, window.statlogsValueEvent("special_event", "showed", Bt, e.id)
                         }, this.duration)
                     }
                 },
@@ -1533,7 +1533,7 @@
             }, Ft.width = 960, Ft.started = Object(g.L)(), Ft.counts = {}, l.a.android && (Object(w.d)("remixscreen_width", window.screen.width, 365), Object(w.d)("remixscreen_height", window.screen.height, 365), Object(w.d)("remixscreen_dpr", window.devicePixelRatio || 1, 365)), Object(w.d)("remixscreen_depth", screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365), Object(w.d)("remixscreen_orient", Number(window.screen.width >= window.screen.height), 7), Object(F.e)(), Object(x.b)(), Object(m.b)(window, "unload", function() {
                 for (var e in vkCache) vkCache[e].handle && vkCache[e].handle.elem !== window && Object(m.h)(vkCache[e].handle.elem)
             }), Object(m.b)(window, "DOMContentLoaded load", function() {
-                Ft.loaded || (Ft.loaded = !0, Object(A.y)()), Object($.c)()
+                Ft.loaded || (Ft.loaded = !0, Object(N.y)()), Object($.c)()
             }), Object(m.b)(document, "mousedown", function(e) {
                 window._wf = 1, cur.__mdEvent = e
             }), window.browser.mobile || Object(m.b)(document, "keydown", Et.a)
@@ -1556,8 +1556,8 @@
                         boxhide: T._hide.pbind(n, o),
                         wraphide: T._hide.pbind(e)
                     }), T
-                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, window.PushNotifier = It, window.sw = new Nt, window.sw.register().then(function() {
-                    window.pushNotifier = new It(window.sw, Nt)
+                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, window.PushNotifier = It, window.sw = new At, window.sw.register().then(function() {
+                    window.pushNotifier = new It(window.sw, At)
                 })
             }
         }
@@ -1634,7 +1634,7 @@
             window.devicePixelRatio >= 2 && (!l.a.iphone || Object(w.a)("remixme")) ? 1 & r || (Object(w.d)("remixrt", 1 | r, 365), window._retinaInit = function() {
                 x.d.add(["retina.css"]), Object(h.a)(document.body, "is_2x")
             }, Vt && window._retinaInit()) : 1 & r && Object(w.d)("remixrt", 1 ^ r, 365)
-        }, 0), window.boxQueue = Object(te.c)(), window.__bq = boxQueue, window.curBox = te.b, Object(te.d)(), window.boxRefreshCoords = te.a, window.MessageBox = ee.a, window.showBox = ee.b, window.showTabbedBox = ee.f, window.showFastBox = ee.d, window.showCaptchaBox = ee.c, window.showReCaptchaBox = ee.e, window.showDoneBox = te.e, window.TopMenu = $.a, window.TopSearch = M.a, window.handleScroll = we.f, window.loadScript = N.a, window.SpecialEvent = Mt, Object(A.j)(), window.notaBene = A.q, window.updSideTopLink = A.y, window.createButton = A.d, window.actionsMenuItemLocked = A.a, window.lockActionsMenuItem = A.n, window.unlockActionsMenuItem = A.v, window.linkLocked = A.m, window.lockLink = A.p, window.unlockLink = A.x, window.lockButton = A.o, window.unlockButton = A.w, window.buttonLocked = A.b, window.isButtonLocked = A.k, window.disableButton = A.f, window.sbWidth = A.t, window.isChecked = A.l, window.checkbox = A.c, window.disable = A.e, window.radioval = A.s, window.radiobtn = A.r, window.showProgress = A.u, window.hideProgress = A.i, window.disableEl = A.g, window.enableEl = A.h, Object(E.d)(), window.VideoConstants = E.a, window.showVideo = E.j, window.showInlineVideo = E.i, window.loadInlineVideo = E.e, window.revertLastInlineVideo = E.h, window.destroyInlineVideoPlayer = E.c, window.pauseLastInlineVideo = E.f, window.playLastInlineVideo = E.g, window.checkMp4 = E.b, window.performance && window.performance.memory && Object(g.D)(0, 100) < 5 && Object(Ot.a)(), Ne ? (Object(m.b)(window, "blur", $e), Object(m.b)(window, "focus", et), onDomReady(function() {
+        }, 0), window.boxQueue = Object(te.c)(), window.__bq = boxQueue, window.curBox = te.b, Object(te.d)(), window.boxRefreshCoords = te.a, window.MessageBox = ee.a, window.showBox = ee.b, window.showTabbedBox = ee.f, window.showFastBox = ee.d, window.showCaptchaBox = ee.c, window.showReCaptchaBox = ee.e, window.showDoneBox = te.e, window.TopMenu = $.a, window.TopSearch = M.a, window.handleScroll = we.f, window.loadScript = A.a, window.SpecialEvent = Mt, Object(N.j)(), window.notaBene = N.q, window.updSideTopLink = N.y, window.createButton = N.d, window.actionsMenuItemLocked = N.a, window.lockActionsMenuItem = N.n, window.unlockActionsMenuItem = N.v, window.linkLocked = N.m, window.lockLink = N.p, window.unlockLink = N.x, window.lockButton = N.o, window.unlockButton = N.w, window.buttonLocked = N.b, window.isButtonLocked = N.k, window.disableButton = N.f, window.sbWidth = N.t, window.isChecked = N.l, window.checkbox = N.c, window.disable = N.e, window.radioval = N.s, window.radiobtn = N.r, window.showProgress = N.u, window.hideProgress = N.i, window.disableEl = N.g, window.enableEl = N.h, Object(E.d)(), window.VideoConstants = E.a, window.showVideo = E.j, window.showInlineVideo = E.i, window.loadInlineVideo = E.e, window.revertLastInlineVideo = E.h, window.destroyInlineVideoPlayer = E.c, window.pauseLastInlineVideo = E.f, window.playLastInlineVideo = E.g, window.checkMp4 = E.b, window.performance && window.performance.memory && Object(g.D)(0, 100) < 5 && Object(Ot.a)(), Ae ? (Object(m.b)(window, "blur", $e), Object(m.b)(window, "focus", et), onDomReady(function() {
             return setTimeout(Ye, 500)
         }), window.LongView = {
             register: Xe,

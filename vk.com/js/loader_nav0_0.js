@@ -378,10 +378,10 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32299244123,
     'aes_light.js': 3322982554,
-    'ads.css': 109537799237,
+    'ads.css': 111229122228,
     'ads_office.css': 57492637740,
-    'ads_bonus.css': 1294533291,
-    'ads.js': 295607004,
+    'ads_bonus.css': 119875826,
+    'ads.js': 1638869836,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 121186483546,
     'ads_edit.js': 128918461,
@@ -395,9 +395,9 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': "1ce1ed92cd7799548ae0933052a03cac0",
+    'cmodules/web/ads_edit_easy.js': "1aef7c9ffc2487bdb80ffde68f79fd296",
     'cmodules/web/ads_edit_components.js': "3b0dee5a50d202550181723802cb93602",
-    'cmodules/web/ads_components.js': "3217f369f95279e4fceebc79607c45c4e",
+    'cmodules/web/ads_components.js': "31e077ad540598958ec198839cd1a8395",
     'cmodules/web/ads_office.js': "2a8406dc07bc2a9235dcdd3d9b8e8ac9d",
     'health.css': 2251304991,
     'health.js': 2993570139,
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4570;
+var _rnd = 9959;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

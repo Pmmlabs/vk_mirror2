@@ -1847,6 +1847,10 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                         showLongError.call(self, unknownError);
                     }
                 }
+
+                if (response.promo_business_day && window.AdsComponents) {
+                    AdsComponents.renderPromoBusinessDay(response.promo_business_day);
+                }
             } else {
                 showLongError.call(self, unknownError);
             }
@@ -2900,6 +2904,9 @@ Ads.createOfficePaginatedTable = function(container, options, content) {
                 debugLog('onDone change status, ' + info);
 
                 updateStatusInTable(response);
+                if (response.promo_business_day && window.AdsComponents) {
+                    AdsComponents.renderPromoBusinessDay(response.promo_business_day);
+                }
                 return true;
             }
 
@@ -3102,6 +3109,10 @@ Ads.onStatusHover = function(elem, callback, rown, coln) {
                 debugLog('onDone change status, ' + info);
 
                 updateStatusInTable(response.status, response.status_class, response.status_type, response.status_variants);
+
+                if (response.promo_business_day && window.AdsComponents) {
+                    AdsComponents.renderPromoBusinessDay(response.promo_business_day);
+                }
                 return true;
             }
 

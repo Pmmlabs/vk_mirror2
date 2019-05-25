@@ -1,16 +1,16 @@
 ﻿! function(e) {
     function t(t) {
-        for (var n, o, r = t[0], c = t[1], d = t[2], m = 0, p = []; m < r.length; m++) o = r[m], i[o] && p.push(i[o][0]), i[o] = 0;
-        for (n in c) Object.prototype.hasOwnProperty.call(c, n) && (e[n] = c[n]);
+        for (var n, o, r = t[0], d = t[1], c = t[2], m = 0, p = []; m < r.length; m++) o = r[m], i[o] && p.push(i[o][0]), i[o] = 0;
+        for (n in d) Object.prototype.hasOwnProperty.call(d, n) && (e[n] = d[n]);
         for (l && l(t); p.length;) p.shift()();
-        return a.push.apply(a, d || []), s()
+        return a.push.apply(a, c || []), s()
     }
 
     function s() {
         for (var e, t = 0; t < a.length; t++) {
             for (var s = a[t], n = !0, r = 1; r < s.length; r++) {
-                var c = s[r];
-                0 !== i[c] && (n = !1)
+                var d = s[r];
+                0 !== i[d] && (n = !1)
             }
             n && (a.splice(t--, 1), e = o(o.s = s[0]))
         }
@@ -65,10 +65,10 @@
         return Object.prototype.hasOwnProperty.call(e, t)
     }, o.p = "";
     var r = window.webpackJsonp = window.webpackJsonp || [],
-        c = r.push.bind(r);
+        d = r.push.bind(r);
     r.push = t, r = r.slice();
-    for (var d = 0; d < r.length; d++) t(r[d]);
-    var l = c;
+    for (var c = 0; c < r.length; c++) t(r[c]);
+    var l = d;
     a.push([57, "common"]), s()
 }({
     57: function(e, t, s) {
@@ -306,9 +306,9 @@
                     o = i[0],
                     r = i[1];
                 r = intval(r);
-                var c = t.getAttribute("data-action");
+                var d = t.getAttribute("data-action");
                 if (hasClass(t, "ui_actions_menu_item_disabled")) return !1;
-                switch (c) {
+                switch (d) {
                     case "save-to-current":
                         if (0 == s) return !1;
                         if (r <= 0) return !1;
@@ -549,14 +549,14 @@
                                 }
                             } else {
                                 var r = e + "_" + -a.request_id,
-                                    c = e + "_" + s.criteria_preset_id;
-                                i.options.audiences[c] = i.options.audiences[r], i.options.audiences[c][0] = c, "description" in s && (i.options.audiences[c][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
+                                    d = e + "_" + s.criteria_preset_id;
+                                i.options.audiences[d] = i.options.audiences[r], i.options.audiences[d][0] = d, "description" in s && (i.options.audiences[d][2] = s.description), delete i.options.audiences[r], i.audienceDropdown.setOptions({
                                     defaultItems: Object.values(i.options.audiences)
-                                }), i.audienceDropdown.selectItem(c)
+                                }), i.audienceDropdown.selectItem(d)
                             }
                         if (n) {
-                            var d = e + "_" + t;
-                            delete i.options.audiences[d], i.audienceDropdown.setOptions({
+                            var c = e + "_" + t;
+                            delete i.options.audiences[c], i.audienceDropdown.setOptions({
                                 defaultItems: Object.values(i.options.audiences)
                             }), i.audienceDropdown.selectItem(0)
                         }
@@ -606,7 +606,8 @@
                 var e = {
                     enable: 1,
                     hash: this.options.enable_ad_hash,
-                    union_id: this.options.created_ad_id
+                    union_id: this.options.created_ad_id,
+                    promo_business_day_disabled: 1
                 };
                 ajax.post("/ads?act=a_union_change_status", e, {
                     onDone: this.onEnableAdDone.bind(this, !0),
