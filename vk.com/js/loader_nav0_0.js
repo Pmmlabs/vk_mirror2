@@ -378,7 +378,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32299244123,
     'aes_light.js': 3322982554,
-    'ads.css': 111229122228,
+    'ads.css': 111367819013,
     'ads_office.css': 57492637740,
     'ads_bonus.css': 119875826,
     'ads.js': 1638869836,
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4657;
+var _rnd = 9222;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

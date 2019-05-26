@@ -3069,8 +3069,8 @@
     z-index: 1002;
     position: fixed;
     display: block;
-    width: 125%;
-    top: -40%;
+    width: 100%;
+    top: 0;
     left: 0
 }
 
