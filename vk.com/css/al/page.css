@@ -4895,7 +4895,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin-bottom: 0
 }
 
-.wall_module .post--with-likes:not(.post_copy):not(.post_btl) .wall_text .thumbed_link:last-child {
+.wall_module .post--with-likes:not(.post_copy):not(.post_btl):not(.post_wf):not(.post_fr_likes) .wall_text .thumbed_link:last-child {
     margin-bottom: -21px;
     background: #fff;
     border-radius: 0
@@ -5249,7 +5249,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin-bottom: 0
 }
 
-.wall_module .post--with-likes:not(.post_copy) .wall_text .media_link:last-child {
+.wall_module .post--with-likes:not(.post_copy):not(.post_btl):not(.post_wf):not(.post_fr_likes) .wall_text .media_link:last-child {
     margin-bottom: -21px;
     background: #fff;
     border-radius: 0

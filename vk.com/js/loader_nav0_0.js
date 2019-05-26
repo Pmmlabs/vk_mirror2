@@ -239,7 +239,7 @@ var stVersions = {
     'owner_photo.js': 3368798011,
     'owner_photo.css': 19572436521,
     'page.js': "9634e4faee4254d92bf75cb2f172d1a6f12",
-    'page.css': 84521086958,
+    'page.css': 84018509974,
     'page_help.css': 27442043053,
     'public.css': 31345794659,
     'cmodules/web/public.js': "2f994c11d37dd2cd04243f0534d1e710a",
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9959;
+var _rnd = 4657;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
