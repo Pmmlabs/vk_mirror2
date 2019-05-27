@@ -589,7 +589,7 @@ var stVersions = {
     'cmodules/web/apps_achievements.js': "27f84ef6147df07ad4f56ad006df2571c",
     'cmodules/web/payments.js': "1e4bf5dc8fde9f245bf26dc0c3fca1b01",
     'cmodules/web/stats.js': "122e8b3c3156554544851710ad3325903",
-    'lang': 6969,
+    'lang': 6970,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '0962ae68f588a1e98b32',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': '63637192dd71d5c9f64f',
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.js': '638878f0ce054df93a4f',
@@ -709,7 +709,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9117;
+var _rnd = 4435;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
