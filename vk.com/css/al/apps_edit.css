@@ -3160,16 +3160,22 @@ textarea.EditableLabel__textarea {
 }
 
 .AppsEditActivityMediaPhoto__uploadButton {
-    margin-top: 4px;
+    margin-top: 2px;
     padding: 0;
     line-height: 1.46;
     background: none;
     color: #2a5885;
     cursor: pointer;
-    font-size: 13px
+    font-size: 13px;
+    border: none
 }
 
-.AppsEditActivityMediaPhoto__uploadButton:hover {
+.AppsEditActivityMediaPhoto__uploadButton.disabled {
+    color: #939393;
+    margin-top: 4px
+}
+
+.AppsEditActivityMediaPhoto__uploadButton:not(.disabled):hover {
     text-decoration: underline;
     background: none;
     color: #2a5885
@@ -3177,7 +3183,7 @@ textarea.EditableLabel__textarea {
 
 .AppsEditActivityMediaPhoto__uploadButton:active {
     padding: 0;
-    margin-top: 4px;
+    margin-top: 2px;
     background: none;
     color: #2a5885
 }

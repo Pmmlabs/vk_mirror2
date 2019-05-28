@@ -7777,7 +7777,7 @@
 
         function Fo(e, t) {
             var n = geByClass1("_im_dialog_actions", e);
-            Object(Ho.vb)(n, "im-page--chat-header_top-banner", t)
+            Object(Ho.wb)(n, "im-page--chat-header_top-banner", t)
         }
 
         function Uo(e, t) {

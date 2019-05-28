@@ -6151,6 +6151,13 @@ div.pm_item .pm_counter {
     background-position: -60px 0
 }
 
+.pm_item-stories .svgIcon {
+    display: inline-block;
+    margin-left: 5.5px;
+    opacity: 0.6;
+    vertical-align: -1px
+}
+
 .context_menu {
     list-style: none
 }

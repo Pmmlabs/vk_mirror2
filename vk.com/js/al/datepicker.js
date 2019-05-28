@@ -177,7 +177,11 @@
                         }
                         clDay = (i == selDay) ? 'day sel' : 'day';
                         curDate = new Date(y, i - 1, 1);
-                        if (!params.pastActive && curDate < todayDate || params.pastActive && curDate > todayDate) {
+                        if (
+                            (!params.pastActive && curDate < todayDate) ||
+                            (params.pastActive && curDate > todayDate) ||
+                            (params.pastActive && curDate < params.startDate)
+                        ) {
                             clDay += ' inactive_day';
                         }
                         if (params.activePeriod && curDate > futureDate) {

@@ -396,6 +396,7 @@ var WkView = {
             });
             curBox().hide();
         }
+
         var box = showFastBox(extend({
             title: title
         }, options), html);

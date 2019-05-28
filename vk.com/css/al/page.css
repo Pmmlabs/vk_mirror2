@@ -13957,11 +13957,14 @@ button.wall_block_app_btn {
     }
 }
 
+.page_actions_btn.narrow {
+    width: 36px
+}
+
 .page_actions_btn.narrow.stats {
-    width: 36px;
+    background-position: center 8px;
     background-image: url(/images/icons/profile_statistics.png?1);
-    background-repeat: no-repeat;
-    background-position: center 8px
+    background-repeat: no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -13971,6 +13974,12 @@ button.wall_block_app_btn {
         background-image: url(/images/icons/profile_statistics_2x.png?1);
         background-size: 13px 13px
     }
+}
+
+.page_actions_btn.narrow.stories_archive {
+    background-position: center 8px;
+    background-repeat: no-repeat;
+    background-image: url('/images/svg_icons/profile/archive.svg')
 }
 
 .page_actions_cont.narrow .page_actions_header {

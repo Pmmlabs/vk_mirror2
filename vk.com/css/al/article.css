@@ -558,6 +558,14 @@
     color: #a3a3a3
 }
 
+.article_dark .article .media_voting_info a {
+    color: #656565
+}
+
+.article_dark .article .media_voting_bg_gradient .media_voting_info a {
+    color: hsla(0, 0%, 100%, .84)
+}
+
 .article h1,
 .article h2,
 .article h3 {
