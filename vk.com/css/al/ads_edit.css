@@ -4311,6 +4311,17 @@ a.ads_edit_link_go:hover {
     color: #777
 }
 
+.ads_edit_upload_video_or_label {
+    padding: 6px 8px 0;
+    line-height: normal;
+    vertical-align: top;
+    display: inline-block
+}
+
+.ads_edit_upload_video_or_label.unshown {
+    display: none
+}
+
 #ads_edit_ad_creating_post_group_wrap {
     padding-bottom: 20px
 }

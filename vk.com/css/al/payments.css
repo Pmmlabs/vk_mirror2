@@ -2747,7 +2747,7 @@ h2.payments_getvotes_title {
 }
 
 #payments_box.payments_money_transfer_box .payments_money_transfer_label {
-    padding: 0 0 8px;
+    padding: 0 0 5px;
     color: #222;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;

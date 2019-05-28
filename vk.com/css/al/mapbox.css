@@ -180,7 +180,6 @@
 }
 
 .leaflet-container {
-    cursor: -webkit-grab;
     cursor: -moz-grab
 }
 
@@ -193,7 +192,6 @@
 .leaflet-dragging .leaflet-clickable,
 .leaflet-dragging .leaflet-container {
     cursor: move;
-    cursor: -webkit-grabbing;
     cursor: -moz-grabbing
 }
 
@@ -683,7 +681,6 @@ a.mapbox-icon-twitter {
 
 .leaflet-dragging {
     cursor: move;
-    cursor: -webkit-grabbing;
     cursor: -moz-grabbing
 }
 

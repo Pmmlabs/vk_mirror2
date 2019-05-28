@@ -5159,6 +5159,8 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 .thumbed_link--chat-invitation {
+    overflow: hidden;
+    background: #fff;
     border: 1px solid rgba(0, 20, 51, .12);
     border-radius: 3px
 }

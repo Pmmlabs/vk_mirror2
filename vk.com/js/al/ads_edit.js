@@ -1047,7 +1047,7 @@ AdsEdit.showUploadVideoBox = function(buttonElem, hash) {
     };
     showOptions.stat = ['upload.js'];
 
-    var uploadVideoBox = showTabbedBox('/adsedit?act=upload_video_box', ajaxParams, showOptions);
+    var uploadVideoBox = showBox('/adsedit?act=upload_video_box', ajaxParams, showOptions);
 }
 
 AdsEdit.initUploadVideoBox = function(uploadVideoBox, uploadUrl, uploadVars, uploadOptions, updateAfterUploadHash) {
@@ -1287,13 +1287,13 @@ AdsEdit.updateUploadedVideo = function(uploadVideoBox, updateAfterUploadHash, vi
         onFail: onFail
     });
 
-    function onDone(ajaxResult, videoHash, videoPreviewHash) {
-        if (ajaxResult === 'ok' && videoHash && videoPreviewHash) {
+    function onDone(ajaxResult, videoHash, videoPreviewHash, videoThumbUrl) {
+        if (ajaxResult === 'ok' && videoHash && videoPreviewHash && videoThumbUrl) {
             uploadVideoBox.hide();
             showFastBox({
                 title: getLang('ads_edit_ad_upload_done_title')
             }, getLang('ads_video_upload_done'));
-            cur.viewEditor.setVideoData(videoId, videoOwnerId, videoHash, videoPreviewHash);
+            cur.viewEditor.setVideoData(videoId, videoOwnerId, videoHash, videoThumbUrl);
         } else {
             onFail();
         }
@@ -2352,6 +2352,14 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         photo_link: {
             value: ''
         },
+        video_id: {
+            value: '',
+            allow: false,
+            allow_video_only: false
+        },
+        video_owner_id: {
+            value: ''
+        },
         video_hash: {
             value: '',
             value_old: ''
@@ -2572,6 +2580,7 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
     this.preview.promoted_post = geByClass1('ads_ad_promoted_post', this.preview.layout);
     this.preview.big_app_info_box = geByClass1('ads_ad_big_app_info_box', this.preview.layout);
     this.preview.explain = geByClass1('ads_ad_explain', this.preview.layout);
+    this.preview.play = geByClass1('ads_adaptive_ad_video_play', this.preview.layout);
     this.preview.storiesContainer = ge('ads_edit_stories_container');
 
     var targetElem = geByClass1('wall_module', this.preview.promoted_post);
@@ -4081,7 +4090,13 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
                     headerTitle = getLang('ads_edit_ad_header_setting_view');
             }
             ge('ads_edit_value_header_view').innerHTML = headerTitle;
-            toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY])));
+            var allowPhoto = !(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY])) && !this.params.video_id.allow_video_only;
+            var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+            var allowAdaptiveAdVideo = isAdaptiveAd && this.params.video_id.allow;
+            toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !(allowPhoto || allowAdaptiveAdVideo)); // wrapper for photo & video
+            toggleClass('ads_edit_upload_photo', 'unshown', !allowPhoto); // upload photo button
+            toggleClass('ads_edit_upload_video', 'unshown', !allowAdaptiveAdVideo); // upload video button
+            toggleClass('ads_edit_upload_video_or_label', 'unshown', !(allowPhoto && allowAdaptiveAdVideo)); // or label
             toggleClass('ads_edit_ad_row_upload_photo_icon', 'unshown', (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) && !this.isStoryPromo());
             break;
         case 'title':
@@ -5491,6 +5506,14 @@ AdsViewEditor.prototype.setPhotoData = function(formatPhotoSize, photo) {
     this.params.photo[valueBySize] = photo || '';
     this.params.photo_link[valueBySize] = '';
 
+    var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+    var isIcon = inArray(formatPhotoSize, [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD_ICON, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_STORY_PROMO_ICON]);
+    if (isAdaptiveAd && !isIcon) { // ���� �������� ������� �������� ����������� �������, �� ������� �����
+        this.params.video_id.value = '';
+        this.params.video_hash.value = '';
+        this.params.video_owner_id.value = '';
+    }
+
     this.updatePhotoData(formatPhotoSize);
 }
 
@@ -5561,18 +5584,22 @@ AdsViewEditor.prototype.loadPhotoLink = function(formatPhotoSize, delayed) {
     }
     if (formatPhotoSize === this.getFormatPhotoSize(isIcon)) {
         this.updatePreview(isIcon ? 'photo_icon' : 'photo');
+        this.updatePreview('play');
     }
 }
 
-AdsViewEditor.prototype.setVideoData = function(videoId, ownerId, videoHash, videoPreviewHash) {
-    this.params.video_id = this.params.video_id || {};
-    this.params.video_owner_id = this.params.video_owner_id || {};
-    this.params.video_preview_hash = this.params.video_preview_hash || {};
-
+AdsViewEditor.prototype.setVideoData = function(videoId, ownerId, videoHash, videoThumbUrl) {
     this.params.video_hash.value = videoHash;
     this.params.video_id.value = videoId;
     this.params.video_owner_id.value = ownerId;
-    this.params.video_preview_hash.value = videoPreviewHash;
+
+    var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+    if (isAdaptiveAd) {
+        this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD] = null;
+        this.params.photo['value'] = null;
+        this.params.photo_link['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD] = (videoThumbUrl || null);
+        this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD);
+    }
 
     this.updateUiParam('_link_video');
     this.updateUiParamVisibility('_link_video');
@@ -6099,7 +6126,7 @@ AdsViewEditor.prototype.cancelLink = function() {
         this.setLinkType(this.params_old.link_type.value);
         this.setLinkId(this.params_old.link_id.value, this.params_old.link_id.data)
     }
-    this.setVideoData(this.params_old.link_id.video_value, this.params_old.link_owner_id.video_value, this.params_old.video_hash.value, this.params_old.link_url.video_preview_hash);
+    this.setVideoData(this.params_old.link_id.video_value, this.params_old.link_owner_id.video_value, this.params_old.video_hash.value);
     this.onParamUpdate('link_url', this.params_old.link_url.value, false, true);
     this.updateUiParam('link_url');
     this.params.link_domain.link_url = this.params_old.link_domain.link_url;
@@ -6415,7 +6442,9 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             break;
         case 'photo':
             var isPhotoSrcSet = true;
-            if (this.params.photo.value && this.params.photo_link.value) {
+            var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+            var isAdaptiveAdVideo = isAdaptiveAd && this.params.video_id.value && this.params.video_owner_id.value && this.params.video_hash.value;
+            if ((this.params.photo.value || isAdaptiveAdVideo) && this.params.photo_link.value) { // ��� ����� �������� ��������� ������ �������� ��� �������� � photo, ������ ��� ��� ������ �� �����
                 this.preview[previewParamName].src = this.params.photo_link.value;
             } else {
                 var formatPhotoSize = this.getFormatPhotoSize();
@@ -6452,7 +6481,9 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             this.preview[previewParamName].src = (this.params.photo['value_' + photoIconSize] ? this.params.photo_link['value_' + photoIconSize] : this.params.photo_link['value_default_' + photoIconSize]);
             break;
         case 'play':
-            toggleClass(this.preview[previewParamName], 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));
+            var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+            var isAdaptiveAdVideo = isAdaptiveAd && this.params.video_id.value && this.params.video_owner_id.value && this.params.video_hash.value;
+            toggleClass(this.preview[previewParamName], 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO || isAdaptiveAdVideo));
             toggleClass(this.preview[previewParamName], 'empty', !!(!this.params.link_id.value || !this.params.link_owner_id.value));
             toggleClass(this.preview[previewParamName], 'big', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE));
             break;
