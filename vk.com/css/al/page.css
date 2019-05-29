@@ -15609,3 +15609,7 @@ button.wall_block_app_btn {
     width: 16px;
     height: 16px
 }
+
+.widget_body .article_snippet__title {
+    font-size: calc( 17px + (30 - 17) * (100vw - 320px) / (552 - 320))!important
+}

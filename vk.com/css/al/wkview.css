@@ -44,8 +44,8 @@
 }
 
 .wk_voting_options {
-    padding-top: 8px;
-    margin: 0 -25px
+    padding-top: 16px;
+    margin: 0 -25px -8px
 }
 
 .wk_voting_option_wrap {
@@ -258,7 +258,12 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     white-space: nowrap;
-    padding-top: 12px
+    padding-top: 25px
+}
+
+.wk_voting_info .ui_actions_menu {
+    right: -27px;
+    margin-top: -14px
 }
 
 .wk_voting_count {
@@ -300,10 +305,18 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     display: none
 }
 
-.wk_voting_export_link,
-.wk_voting_graph_hide_link,
-.wk_voting_graph_show_link {
-    margin-left: 15px
+.wk_voting_menu {
+    color: #2a5885;
+    position: relative
+}
+
+.wk_voting_stats_box:not(.wk_voting_box_has_graph).wk_voting_box_board .wk_voting_menu,
+.wk_voting_box_graphed .wk_voting_voted {
+    display: none
+}
+
+.wk_voting_voted .divider:before {
+    vertical-align: top
 }
 
 #wk_layer_wrap {

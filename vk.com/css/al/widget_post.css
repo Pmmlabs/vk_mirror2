@@ -263,3 +263,12 @@ div.wpost_post_body_wrap .copy_quote .wall_audio_rows {
 .likes_tt_like:after {
     left: 24px!important
 }
+
+.wpost_embed_post_link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+}

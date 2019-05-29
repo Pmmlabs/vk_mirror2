@@ -1369,6 +1369,7 @@ a.group_ad_post_stats {
 }
 
 #groups_menu_promo {
+    overflow: auto;
     text-align: center
 }
 
@@ -1419,6 +1420,10 @@ a.group_ad_post_stats {
 
 #groups_menu_items .groups_edit_menu_items {
     padding: 8px 0 9x
+}
+
+#groups_menu_items .groups_edit_menu_items .link {
+    color: #2a5885
 }
 
 #groups_menu_items .groups_edit_menu_items .msg {
@@ -1499,11 +1504,11 @@ a.group_ad_post_stats {
     margin: 0 20px
 }
 
-#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.preview_placeholder .cover_edit {
+#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.no_cover .cover_edit {
     display: none
 }
 
-#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.preview_placeholder .cover_upload_link {
+#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.no_cover .cover_upload_link {
     display: block
 }
 
@@ -1585,12 +1590,20 @@ a.group_ad_post_stats {
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M16.544%209.193L7.096%2018.64a1.228%201.228%200%200%201-1.736-1.736l9.447-9.448H8.93A1.228%201.228%200%201%201%208.93%205h8.842C18.45%205%2019%205.55%2019%206.228v8.842a1.228%201.228%200%201%201-2.456%200V9.193z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cuse%20fill%3D%22%23A8B8C8%22%20fill-rule%3D%22nonzero%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
 }
 
+#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.new.has_cover .groups_edit_menu_item_settings .cover_upload_link {
+    display: none
+}
+
+#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.new.has_cover .groups_edit_menu_item_settings .cover_edit {
+    display: inline
+}
+
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.new .groups_edit_menu_item_settings {
     cursor: default
 }
 
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.new .groups_edit_menu_item_settings .cover_upload_link {
-    display: block
+    display: inline
 }
 
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.new .groups_edit_menu_item_settings .cover_edit {
