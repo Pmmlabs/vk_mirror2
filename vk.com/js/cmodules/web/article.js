@@ -1011,7 +1011,7 @@
                     r = k(e, 2),
                     i = r[0],
                     a = r[1];
-                this._el = se('<div class="article_object_embed fb-post" data-href="https://www.facebook.com/' + i + "/posts/" + a + '/" data-width="auto"></div>'), this.setLoadingState(!0);
+                this._el = se('<div class="article_object_embed fb-post" data-href="https://www.facebook.com/' + i + "/posts/" + a + '/" data-width="552px"></div>'), this.setLoadingState(!0);
                 var o = window.vk && 0 == window.vk.lang ? "ru_RU" : "en_US";
                 return loadScript("https://connect.facebook.net/" + o + "/all.js#xfbml=1&amp;version=v2.8", {
                     onLoad: function() {

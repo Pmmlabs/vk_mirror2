@@ -1340,7 +1340,7 @@
 }
 
 .article_object_embed[fb-xfbml-state=rendered]+.article_object_embed_loading,
-.article_object_embed iframe[style^="overflow: hidden; height:"]+.article_object_embed_loading {
+.article_object_embed iframe[style^="overflow: hidden;"]+.article_object_embed_loading {
     display: none
 }
 
