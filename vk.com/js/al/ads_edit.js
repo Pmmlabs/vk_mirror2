@@ -1132,9 +1132,11 @@ AdsEdit.switchUploadVideoBox = function(isExternal) {
     }
 }
 
-AdsEdit.onUploadVideoStart = function(uploadVideoBox, uploadIndex, result) {
+AdsEdit.onUploadVideoStart = function(uploadVideoBox, uploadVideoInfo, result) {
 
-    cur.videoUploadIndex = uploadIndex;
+    var uploadIndex = uploadVideoInfo.ind;
+
+    // cur.videoUploadIndex = uploadIndex;
 
     if (Upload.types[uploadIndex] === 'form') {
         uploadVideoBox.showProgress();
@@ -1146,22 +1148,10 @@ AdsEdit.onUploadVideoStart = function(uploadVideoBox, uploadIndex, result) {
 }
 
 AdsEdit.onUploadVideoError = function(uploadVideoBox, uploadVars, uploadOptions, uploadIndex, msg) {
-
-    var errorElem = ge('ads_edit_upload_video_error');
-    if (errorElem) {
-        if (msg) {
-            errorElem.innerHTML = msg;
-        } else {
-            errorElem.innerHTML = getLang('video_external_server_error');
-        }
-        show(errorElem);
-    }
-
-    hide('ads_edit_upload_video_info');
-    uploadVideoBox.hideProgress();
-    AdsEdit.hideUploadGradientProgress(uploadVideoBox);
-
-    Upload.embed(uploadIndex);
+    uploadVideoBox.hide();
+    showFastBox({
+        title: getLang('video_external_server_error')
+    }, msg || getLang('video_external_server_error'));
 }
 
 AdsEdit.onUploadVideoComplete = function(uploadVideoBox, uploadVars, uploadOptions, updateAfterUploadHash, uploadIndex, result) {
@@ -1186,6 +1176,12 @@ AdsEdit.onUploadVideoComplete = function(uploadVideoBox, uploadVars, uploadOptio
 
     if (!resultParsed || resultParsed.code || resultParsed.error) {
         var message = resultParsed && (resultParsed.code ? resultParsed.code : resultParsed.error);
+        if (resultParsed && resultParsed.debug) {
+            try {
+                var debug = parseJSON(resultParsed.debug);
+                message = debug.error_lang_key ? getLang(debug.error_lang_key) : (debug.error_message || debug.video_error_code || resultParsed.code || message);
+            } catch (e) {}
+        }
         Upload.onUploadError(uploadIndex, message);
         return;
     }

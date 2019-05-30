@@ -6166,13 +6166,6 @@ div.pm_item .pm_counter {
     background-position: -60px 0
 }
 
-.pm_item-stories .svgIcon {
-    display: inline-block;
-    margin-left: 5.5px;
-    opacity: 0.6;
-    vertical-align: -1px
-}
-
 .context_menu {
     list-style: none
 }
@@ -23285,6 +23278,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 .article>figure.article_p_obj_small video {
     width: auto!important;
     max-width: 100%!important
+}
+
+.article>figure[data-done="1"] .article_object_embed_loading {
+    display: none
 }
 
 .article .article_decoration_before:after {

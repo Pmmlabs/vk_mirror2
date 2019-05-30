@@ -253,7 +253,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': "6397080965f1841939e553b2ef02d27ef8",
     'cmodules/web/GroupsEdit.js': "15ff93e3e0ba1a9edf550827a7990e74f6",
     'groups_edit.css': 87166611467,
-    'cmodules/web/groups_edit.js': "4b18bb0eeb6219d8729e94dee5aa18d92",
+    'cmodules/web/groups_edit.js': "486d8ef5b9b24a5dd4cba84dbedb688a1",
     'push_notifier_popup.css': 16502578234,
     'profile.css': 24157596801,
     'profile.js': 482847788,
@@ -384,7 +384,7 @@ var stVersions = {
     'ads.js': 883579668,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 118829369305,
-    'ads_edit.js': 3804703902,
+    'ads_edit.js': 1865300016,
     'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 17205004411,
     'ads_moder.css': 16719591375,
@@ -528,13 +528,13 @@ var stVersions = {
     'stories_manage.css': 83740816760,
     'cmodules/web/stories_archive.js': "1e7b83221c9714b0750dc3bf6f0ca5938",
     'stories_archive.css': 2484729905,
-    'article.css': 35989227249,
-    'article_editor.css': 34118345829,
+    'article.css': 38627623354,
+    'article_editor.css': 36756741934,
     'cmodules/web/article.js': "49fbf0bdbcd83f4853f181bb689f03724",
     'cmodules/web/article_layer.js': "418e01f5dc20eac661c32b904c4cd9d22",
     'cmodules/web/article_editor_layer.js': "21dd87ac50f6216a50386443f98a42313",
     'article_view.js': "305bcc93571abc8a652f61cd019ba3e5d",
-    'author_page.css': 31557969458,
+    'author_page.css': 34196365563,
     'cmodules/web/author_page.js': "219f44a15be23eb53824d879606f5d9c0",
     'bookmarks.css': 20143329021,
     'cmodules/web/bookmarks.js': "11d56a1db67f1ea3b81b9735ab85a99dd",
@@ -592,7 +592,7 @@ var stVersions = {
     'cmodules/web/apps_achievements.js': "27f84ef6147df07ad4f56ad006df2571c",
     'cmodules/web/payments.js': "1e4bf5dc8fde9f245bf26dc0c3fca1b01",
     'cmodules/web/stats.js': "2fbb8773844cd207afc82c50c1b1905f1",
-    'cmodules/web/checklists.js': "29f699cd1a67b1d8d18b295a860ecb3bc",
+    'cmodules/web/checklists.js': "27d5f07714c40a471969ba2a39c80fc2e",
     'cmodules/web/lazyload.js': "2f33004176a7c51ae90e0a7999e42ee07",
     'cmodules/web/money_transfer.js': "2b7367c62f3e7bd95a9f53949a4673faf",
     'lang': 6970,
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8975;
+var _rnd = 3726;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
