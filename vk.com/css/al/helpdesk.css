@@ -1772,7 +1772,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
 #tickets_content .paginated_table_header th.paginated_table_cell {
     border-width: 0px 0px 1px 1px;
     background-color: #f7f7f7;
-    border-color: #dae1e8
+    border-color: #dae1e8;
+    white-space: nowrap
 }
 
 #tickets_content .paginated_table_header th.paginated_table_cell:hover {

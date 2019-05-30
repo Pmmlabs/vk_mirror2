@@ -5500,6 +5500,37 @@ div.top_result_baloon a {
     max-width: 300px
 }
 
+.subscription_05_2019 .audio_promo__title {
+    top: 25px;
+    left: 25px;
+    max-width: 300px;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    line-height: 1.18;
+    color: #fff
+}
+
+.subscription_05_2019 .audio_promo__desc {
+    top: 83px;
+    left: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    color: #fff;
+    opacity: .72
+}
+
+.subscription_05_2019 .audio_promo__button {
+    top: 121px;
+    left: 25px
+}
+
 .audio_new_year_promo .audio_promo__title {
     font-size: 20px
 }

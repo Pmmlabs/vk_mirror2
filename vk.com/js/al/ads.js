@@ -661,7 +661,7 @@ Ads.openHelpBox = function(type, unionId) {
     };
     showOptions.onFail = Ads.onBoxFail;
     showOptions.cache = 1;
-    showOptions.params.width = 450;
+    showOptions.params.width = 530;
 
     showBox('/ads?act=a_help_text', ajaxParams, showOptions);
 }

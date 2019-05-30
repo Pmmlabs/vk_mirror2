@@ -889,6 +889,7 @@ AdsEdit.showCropPhotoBox = function(uploadPhoto, formatPhotoSize) {
     ajaxParams.format_photo_size = formatPhotoSize;
 
     var viewParams = cur.viewEditor.getParams();
+    ajaxParams.client_id = viewParams.client_id;
     ajaxParams.photo = isIcon ? viewParams.photo : uploadPhoto;
     ajaxParams.photo_icon = isIcon ? uploadPhoto : viewParams.photo_icon;
     ajaxParams.format_type = viewParams.format_type;
@@ -900,6 +901,9 @@ AdsEdit.showCropPhotoBox = function(uploadPhoto, formatPhotoSize) {
     ajaxParams.link_domain = viewParams.link_domain;
     ajaxParams.link_title = viewParams.link_title || cur.viewEditor.params.link_title.value_default;
     ajaxParams.link_button = viewParams.link_button;
+    ajaxParams.video_id = viewParams.video_id;
+    ajaxParams.video_owner_id = viewParams.video_owner_id;
+    ajaxParams.video_hash = viewParams.video_hash;
     ajaxParams.disclaimer_medical = viewParams.disclaimer_medical;
     ajaxParams.disclaimer_specialist = viewParams.disclaimer_specialist;
     ajaxParams.disclaimer_supplements = viewParams.disclaimer_supplements;
@@ -2364,6 +2368,10 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             value: '',
             value_old: ''
         },
+        repeat_video: {
+            value: 0,
+            data: []
+        },
         cost_per_click: {
             value: '',
             edited: false,
@@ -3437,6 +3445,20 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
                 cleanElems(targetElem);
             }.pbind(targetElem));
             break;
+        case 'repeat_video':
+            targetElem = ge(this.options.targetIdPrefix + paramName);
+            this.params[paramName].ui = new Checkbox(targetElem, {
+                label: this.params[paramName].label_checkbox,
+                checked: this.params[paramName].value,
+                width: this.options.uiWidth,
+                onChange: function(state) {
+                    this.onUiChange(paramName, state);
+                }.bind(this)
+            });
+            this.cur.destroy.push(function() {
+                this.params[paramName].ui.destroy();
+            }.bind(this));
+            break;
     }
 
     switch (paramName) {
@@ -3923,6 +3945,8 @@ AdsViewEditor.prototype.getUiParamEnabled = function(paramName) {
         case 'subcategory2_id':
             var data = this.getUiParamData(paramName);
             return !!(data.length || this.params[paramName].value);
+        case 'repeat_video':
+            return !!(this.params.video_id.value);
         default:
             return null;
     }
@@ -3944,7 +3968,7 @@ AdsViewEditor.prototype.updateUiParamEnabled = function(paramName) {
             if (!this.params[paramName].value) {
                 this.params[paramName].ui.disable(enabled); // Fix disabling introText
                 this.params[paramName].ui.disable(!enabled);
-                this.params[paramName].ui.clear(); // Fix placeholder
+                this.params[paramName].ui.clear && this.params[paramName].ui.clear(); // Fix placeholder
             }
         }
     }
@@ -4183,6 +4207,11 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case 'campaign_name':
             this.initUiParam(paramName);
             toggleClass(this.options.targetIdPrefix + paramName + '_wrap', 'unshown', !!this.params[paramName].hidden);
+            break;
+        case 'repeat_video':
+            this.initUiParam(paramName);
+            var isAdaptiveAd = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD);
+            toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !(this.params.video_id.allow && isAdaptiveAd));
             break;
     }
 }
@@ -4445,6 +4474,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParamVisibility('views_limit_flag');
                 this.updateUiParamVisibility('views_limit_exact');
                 this.updateUiParamVisibility('category1_id');
+                this.updateUiParamEnabled('repeat_video');
                 this.updatePreview('layout');
                 this.updatePreview('play');
                 this.updatePreview('description');
@@ -5512,6 +5542,8 @@ AdsViewEditor.prototype.setPhotoData = function(formatPhotoSize, photo) {
         this.params.video_id.value = '';
         this.params.video_hash.value = '';
         this.params.video_owner_id.value = '';
+
+        this.updateUiParamEnabled('repeat_video');
     }
 
     this.updatePhotoData(formatPhotoSize);
@@ -5599,6 +5631,7 @@ AdsViewEditor.prototype.setVideoData = function(videoId, ownerId, videoHash, vid
         this.params.photo['value'] = null;
         this.params.photo_link['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD] = (videoThumbUrl || null);
         this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ADAPTIVE_AD);
+        this.updateUiParamEnabled('repeat_video');
     }
 
     this.updateUiParam('_link_video');

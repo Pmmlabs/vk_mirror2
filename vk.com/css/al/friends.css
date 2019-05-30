@@ -298,7 +298,8 @@
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: #fafbfc;
-    position: relative
+    position: relative;
+    position: static
 }
 
 .friends_photo_img:before {

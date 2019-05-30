@@ -1008,6 +1008,7 @@ a.ads_ad_box2:hover {
     content: '';
     position: absolute;
     width: calc(100% - 4px);
+    z-index: -1;
     height: 100%;
     top: 0;
     left: 2px;

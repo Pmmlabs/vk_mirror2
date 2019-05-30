@@ -25241,6 +25241,10 @@ figure[data-type="102"] .article_object_video_play {
     display: none
 }
 
+.vk.n .vk_tabbar_bottom.vk_tabbar_hidden .messenger__layer_main {
+    padding-bottom: 0
+}
+
 .BottomMenu__offset {
     height: 48px
 }
@@ -31886,6 +31890,13 @@ a.feedBlocks__article:hover {
 .friendsRecommendedSlider .prettyCard__title:last-child {
     height: 46px;
     line-height: 46px
+}
+
+.friendsRecommendedSlider .prettyCard__title .top_author,
+.friendsRecommendedSlider .prettyCard__title .verified {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center
 }
 
 .friendsRecommendedSlider .prettyCard__title_text {
