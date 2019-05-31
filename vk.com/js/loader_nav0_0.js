@@ -242,11 +242,11 @@ var stVersions = {
     'page.css': 85756658398,
     'page_help.css': 27135608414,
     'public.css': 31039360020,
-    'cmodules/web/public.js': "3321a5a335a0073b0dc0f9cb867163d81",
+    'cmodules/web/public.js': "3d74018d4f05ace0df5fa54cbd1425fc6",
     'pages.css': 25819471273,
     'pages.js': 1162259210,
     'groups.css': 118620792995,
-    'cmodules/web/groups.js': "41a3e4a613d776a78f058085a49104a98",
+    'cmodules/web/groups.js': "48306f670cbd4f10d007f81086793902f",
     'cmodules/web/groups_admins.js': "207743e42683de8af2cbc09c04d68cb76",
     'cmodules/web/groups_create.js': "17bfc53ab7fa6668c204dad262cff7954",
     'groups_create.css': 19306165549,
@@ -595,7 +595,7 @@ var stVersions = {
     'cmodules/web/checklists.js': "27d5f07714c40a471969ba2a39c80fc2e",
     'cmodules/web/lazyload.js': "2f33004176a7c51ae90e0a7999e42ee07",
     'cmodules/web/money_transfer.js': "2b7367c62f3e7bd95a9f53949a4673faf",
-    'lang': 6975,
+    'lang': 6976,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '9d20859b86b1f84352ad',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': 'b077b9c053dfe3f2b796',
     'cmodules/bundles/5dcccb3c1bcb408bafe4b1b8bae0d035.js': '3c889a5336687aafc98e',
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2739;
+var _rnd = 369;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
