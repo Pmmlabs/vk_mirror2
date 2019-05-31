@@ -26072,6 +26072,10 @@ figure[data-type="102"] .article_object_video_play {
     background-image: url('/images/mobile/statuses_2x.png?14')
 }
 
+.vk_js_no .pcont .qsearch .clear_btn {
+    display: none
+}
+
 .ArtistPage__search,
 .audioPage__search,
 .BookmarksSearch,

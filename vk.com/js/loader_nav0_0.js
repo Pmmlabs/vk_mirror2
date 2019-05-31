@@ -378,10 +378,10 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32906228019,
     'aes_light.js': 3322982554,
-    'ads.css': 111061384374,
-    'ads_office.css': 58253311732,
+    'ads.css': 110450618358,
+    'ads_office.css': 56443798354,
     'ads_bonus.css': 119875826,
-    'ads.js': 883579668,
+    'ads.js': 82226898,
     'ads_payments.js': 1483293789,
     'ads_edit.css': 118829369305,
     'ads_edit.js': 1865300016,
@@ -397,8 +397,8 @@ var stVersions = {
     'mrtarg.css': 3142794554,
     'cmodules/web/ads_edit_easy.js': "1aef7c9ffc2487bdb80ffde68f79fd296",
     'cmodules/web/ads_edit_components.js': "4cced5d7f6b30477aee079e3de6ad380b",
-    'cmodules/web/ads_components.js': "4e505220690a49b0906503563e09d0915",
-    'cmodules/web/ads_office.js': "45bbe7e0ad7425db4e7f18acaeb945540",
+    'cmodules/web/ads_components.js': "48029c35673d597d9b8f8faea9729d46a",
+    'cmodules/web/ads_office.js': "4a509104f25b1d4655eeca3d0f6278757",
     'health.css': 2251304991,
     'health.js': 2993570139,
     'sms_office.css': 1728588285,
@@ -595,7 +595,7 @@ var stVersions = {
     'cmodules/web/checklists.js': "27d5f07714c40a471969ba2a39c80fc2e",
     'cmodules/web/lazyload.js': "2f33004176a7c51ae90e0a7999e42ee07",
     'cmodules/web/money_transfer.js': "2b7367c62f3e7bd95a9f53949a4673faf",
-    'lang': 6970,
+    'lang': 6975,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '9d20859b86b1f84352ad',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': 'b077b9c053dfe3f2b796',
     'cmodules/bundles/5dcccb3c1bcb408bafe4b1b8bae0d035.js': '3c889a5336687aafc98e',
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3726;
+var _rnd = 2739;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

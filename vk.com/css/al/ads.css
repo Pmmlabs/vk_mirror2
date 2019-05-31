@@ -7535,3 +7535,15 @@ td.ads_settings_notifications_label {
     color: #000;
     background-color: #eceef2
 }
+
+.ads_settings_admin_input {
+    margin: 0;
+    padding: 5px 5px 5px 20px;
+    width: 330px;
+    height: 30px;
+    background: url('/images/magglass.png') no-repeat scroll 6px 6px #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}

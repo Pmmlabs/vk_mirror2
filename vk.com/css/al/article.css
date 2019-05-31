@@ -786,6 +786,10 @@
     max-width: 100%!important
 }
 
+.article>figure[data-done="1"] .article_object_embed_loading {
+    display: none
+}
+
 .article .article_decoration_before:after {
     content: "";
     display: table;

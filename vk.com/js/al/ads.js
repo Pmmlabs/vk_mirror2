@@ -3631,7 +3631,8 @@ Ads.showEditAdminBox = function(event, unionId, userId, userEmail, isRemove) {
     userId = intval(userId);
 
     if (!userId && !userEmail) {
-        var userLink = ge('ads_user_link').getValue();
+        var userLinkEl = ge('ads_user_link');
+        var userLink = userLinkEl ? userLinkEl.value : false;
         if (!userLink) {
             showFastBox(getLang('ads_error_box_title'), getLang('ads_edit_admin_no_user_link'));
             return;
