@@ -253,7 +253,7 @@ var stVersions = {
     'cmodules/web/groups_list.js': "6397080965f1841939e553b2ef02d27ef8",
     'cmodules/web/GroupsEdit.js': "15ff93e3e0ba1a9edf550827a7990e74f6",
     'groups_edit.css': 87166611467,
-    'cmodules/web/groups_edit.js': "486d8ef5b9b24a5dd4cba84dbedb688a1",
+    'cmodules/web/groups_edit.js': "45b8336c97b5a172d952606b589de902b",
     'push_notifier_popup.css': 16502578234,
     'profile.css': 24157596801,
     'profile.js': 482847788,
@@ -283,7 +283,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3810837977,
+    'feed.js': 414113869,
     'feed.css': 26282525730,
     'privacy.js': 3525612433,
     'privacy.css': 20088772212,
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 369;
+var _rnd = 828;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

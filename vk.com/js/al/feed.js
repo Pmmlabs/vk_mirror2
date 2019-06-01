@@ -2125,6 +2125,47 @@ var Feed = {
             hideProgress: btn && unlockButton.pbind(btn)
         });
     },
+    ignoreGroupWall: function(post_raw, owner_id, hash, btn) {
+        if (post_raw) {
+            cur.feedEntriesHTML[post_raw + '_ignored'] = val('post' + post_raw);
+        }
+        var from = feed.getModuleRef();
+        ajax.post('/al_feed.php?misc', {
+            act: 'a_ignore_owner',
+            post_raw: post_raw,
+            owner_id: owner_id,
+            ignore_type: 'group_wall',
+            hash: hash,
+            ref: from
+        }, {
+            onDone: function(html) {
+                val('post' + post_raw, html);
+            },
+            showProgress: btn && lockButton.pbind(btn),
+            hideProgress: btn && unlockButton.pbind(btn)
+        });
+    },
+    unignoreGroupWall: function(post_raw, owner_id, hash, btn) {
+        var from = feed.getModuleRef();
+        ajax.post('/al_feed.php?misc', {
+            act: 'a_unignore_owner',
+            post_raw: post_raw || '',
+            owner_id: owner_id,
+            ignore_type: 'group_wall',
+            hash: hash,
+            ref: from
+        }, {
+            onDone: function(html) {
+                if (post_raw) {
+                    val('post' + post_raw, cur.feedEntriesHTML[post_raw + '_ignored']);
+                } else {
+                    val('ignore_row' + owner_id, html);
+                }
+            },
+            showProgress: btn && lockButton.pbind(btn),
+            hideProgress: btn && unlockButton.pbind(btn)
+        });
+    },
     ignoreLiveOwner: function(post_raw, owner_id, hash, btn) {
         var postEl = ge('post' + post_raw),
             actMenu = geByClass1('ui_actions_menu_wrap', postEl);
