@@ -293,7 +293,7 @@ var stVersions = {
     'apps_edit.css': 113940018642,
     'apps_check.js': 3204387834,
     'apps_check.css': 29977345115,
-    'settings.js': 2958485939,
+    'settings.js': 4001132135,
     'settings.css': 33321740724,
     'profile_edit.js': 1753790963,
     'profile_edit.css': 18244127682,
@@ -350,7 +350,7 @@ var stVersions = {
     'tags_dd.js': 3735969205,
     'tags_dd.css': 18709267864,
     'helpdesk.css': 35075612568,
-    'cmodules/web/support.js': "425f9c38f4097d24b8a98882479ffbad6",
+    'cmodules/web/support.js': "4fde48bcb6d11cd06ba06f9304569f123",
     'tickets.css': 32119188792,
     'faq.css': 24566365259,
     'agents.css': 18687001352,
@@ -595,7 +595,7 @@ var stVersions = {
     'cmodules/web/checklists.js': "27d5f07714c40a471969ba2a39c80fc2e",
     'cmodules/web/lazyload.js': "2f33004176a7c51ae90e0a7999e42ee07",
     'cmodules/web/money_transfer.js': "2b7367c62f3e7bd95a9f53949a4673faf",
-    'lang': 6976,
+    'lang': 6978,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.js': '9d20859b86b1f84352ad',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.js': 'b077b9c053dfe3f2b796',
     'cmodules/bundles/5dcccb3c1bcb408bafe4b1b8bae0d035.js': '3c889a5336687aafc98e',
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2458;
+var _rnd = 6678;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

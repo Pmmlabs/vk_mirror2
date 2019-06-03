@@ -2413,7 +2413,7 @@ var Settings = {
         });
         return false;
     },
-    deleteValidateDevice: function(lnk, index, hash, force) {
+    deleteValidateDevice: function(lnk, deviceHash, hash, force) {
         if (!force) {
             cur.confirmBox = showFastBox({
                 title: cur.lang['global_action_confirmation'],
@@ -2421,22 +2421,18 @@ var Settings = {
                 forceNoBtn: 1,
                 bodyStyle: 'padding: 20px; line-height: 160%;'
             }, cur.lang['settings_delete_validate_device_confirm'], getLang('global_delete'), function() {
-                Settings.deleteValidateDevice(lnk, index, hash, true);
+                Settings.deleteValidateDevice(lnk, deviceHash, hash, true);
             }, getLang('global_cancel'));
             return;
         }
         var row = lnk.parentNode;
         ajax.post('al_settings.php', {
             act: 'a_del_validate_device',
-            i: index,
+            dhash: deviceHash,
             hash: hash
         }, {
             onDone: function(msg) {
                 row.innerHTML = msg;
-            },
-            onDone: function(msg) {
-                row.innerHTML = msg;
-                return true;
             },
             showProgress: function() {
                 cur.confirmBox.showProgress();
