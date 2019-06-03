@@ -3020,6 +3020,14 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     border-bottom: 1px solid #fff
 }
 
+.poster__layer .mention_tt_wrap {
+    max-width: 315px
+}
+
+.wk_cont .poster__layer {
+    z-index: 640
+}
+
 .poster__sidebar .post_settings._border-left {
     border-left: 1px solid #e7e8ec
 }
@@ -3462,6 +3470,10 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     height: 412px;
     overflow: hidden;
     z-index: 1
+}
+
+.poster__layer {
+    position: relative
 }
 
 .poster__view {
@@ -3945,9 +3957,9 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     margin-bottom: -1px
 }
 
-.poster__wrap:hover .poster__cta-btn {
-    -o-transform: translate(-50%, -51px);
-    transform: translate(-50%, -51px);
+.poster__layer:hover .poster__cta-btn {
+    -o-transform: translate(-50%, -47px);
+    transform: translate(-50%, -47px);
     -o-transition: transform 0.3s ease 0.2s, background-color 0.1s ease, -o-transform 0.3s ease 0.2s;
     transition: transform 0.3s ease 0.2s, background-color 0.1s ease;
     transition: transform 0.3s ease 0.2s, background-color 0.1s ease, -o-transform 0.3s ease 0.2s
@@ -4006,11 +4018,11 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .poster__author-bkg {
     position: absolute;
-    bottom: 10px;
-    right: 13px;
+    top: -25px;
+    right: 12px;
     display: none;
-    max-width: 250px;
-    padding: 4px 8px 6px;
+    max-width: 195px;
+    padding: 4px 8px 5px;
     font-size: 11px;
     line-height: normal;
     color: #fff;
@@ -4019,11 +4031,29 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     text-overflow: ellipsis;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, .4);
+    -o-transition: transform 0.2s ease, -o-transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -o-transform 0.2s ease;
+    -webkit-font-smoothing: subpixel-antialiased;
     z-index: 4
+}
+
+.poster-editor .poster__author-bkg {
+    top: 12px;
+    -o-transform: none;
+    transform: none
 }
 
 .poster__author-bkg:hover {
     text-decoration: none
+}
+
+.poster__layer:hover .poster__author-bkg {
+    -o-transform: translateY(37px);
+    transform: translateY(37px);
+    -o-transition: transform 0.3s ease 0.2s, -o-transform 0.3s ease 0.2s;
+    transition: transform 0.3s ease 0.2s;
+    transition: transform 0.3s ease 0.2s, -o-transform 0.3s ease 0.2s
 }
 
 .page_preview_podcast_wrap {
@@ -6238,7 +6268,8 @@ h5.post_author {
 .wall_module .post_poster .wall_text {
     padding-top: 15px;
     padding-left: 20px;
-    padding-right: 20px
+    padding-right: 20px;
+    z-index: 4
 }
 
 .wall_module .post_poster:not(.Post--copyright) .wall_text {

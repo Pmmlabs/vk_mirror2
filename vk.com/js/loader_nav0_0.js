@@ -238,8 +238,8 @@ var stVersions = {
     'module.css': 23015265700,
     'owner_photo.js': 3368798011,
     'owner_photo.css': 19266001882,
-    'page.js': "9642c7acd5d3627d3e01991a50896b286d6",
-    'page.css': 85756658398,
+    'page.js': "964956f350360fd665e69cda58f1163cb2b",
+    'page.css': 87685113507,
     'page_help.css': 27135608414,
     'public.css': 31039360020,
     'cmodules/web/public.js': "3d74018d4f05ace0df5fa54cbd1425fc6",
@@ -268,7 +268,7 @@ var stVersions = {
     'wall.js': 416283576,
     'wk_wall_archive.css': 19440608110,
     'cmodules/web/wk_wall_archive.js': "14f10dc7875c846c245cd",
-    'cmodules/web/wall_edit.js': "20eded69ee6cdec41c027",
+    'cmodules/web/wall_edit.js': "2d300c00f63dfe2142e84",
     'thumbs_edit.css': 17735241817,
     'cmodules/web/thumbs_edit.js': "2cdd17e454ab17fd3619a",
     'mail.css': 2042965398,
@@ -378,7 +378,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32906228019,
     'aes_light.js': 3322982554,
-    'ads.css': 110450618358,
+    'ads.css': 107481181163,
     'ads_office.css': 56443798354,
     'ads_bonus.css': 119875826,
     'ads.js': 82226898,
@@ -397,7 +397,7 @@ var stVersions = {
     'mrtarg.css': 3142794554,
     'cmodules/web/ads_edit_easy.js': "1aef7c9ffc2487bdb80ffde68f79fd296",
     'cmodules/web/ads_edit_components.js': "4cced5d7f6b30477aee079e3de6ad380b",
-    'cmodules/web/ads_components.js': "48029c35673d597d9b8f8faea9729d46a",
+    'cmodules/web/ads_components.js': "434935cad13464ed27c5f3934a2d945d1",
     'cmodules/web/ads_office.js': "4a509104f25b1d4655eeca3d0f6278757",
     'health.css': 2251304991,
     'health.js': 2993570139,
@@ -570,7 +570,7 @@ var stVersions = {
     'podcast_add.css': 17334928224,
     'podcast_choose.css': 18595079050,
     'podcast_stats.css': 18535907000,
-    'cmodules/web/poster.js': "43c8e89e8a5117fea04de6f37b8bbb648",
+    'cmodules/web/poster.js': "48a5286ad9376fd551b7bbd178bd802ac",
     'cmodules/web/grip.js': "1cdd037140afcd228cded",
     'cmodules/web/group_invite_chat.js': "36e8573319e0f57778d4150392dd23ed6",
     'group_invite_chat.css': 89722779931,
@@ -638,7 +638,7 @@ var stVersions = {
     'cmodules/web/music_2018.js': '31faa047a105c4baf37d4d1bcd0990d8',
     'cmodules/web/notifier.js': '8f4e21c0029df8529a9873ddf0f2c51f',
     'cmodules/web/old_places_admin.js': '9d6aa224eca6c2f10d15',
-    'cmodules/web/page.js': '2c7acd5d3627d3e01991a50896b286d6',
+    'cmodules/web/page.js': '956f350360fd665e69cda58f1163cb2b',
     'cmodules/web/playground.js': '8f04d925bc185a5ade26',
     'cmodules/web/print.js': 'ecf989d6cea84f7b69ed541d7e41edff',
     'cmodules/web/qrcode.js': 'c3a438ca8a6b9e144625',
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6678;
+var _rnd = 1245;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

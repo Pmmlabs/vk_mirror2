@@ -798,13 +798,14 @@
                     from: "wall"
                 },
                 shift: t.shift || [52, 7, 7],
-                hidedt: 500,
+                hidedt: t.hidedt || 500,
                 showdt: 500,
+                needLeft: t.needLeft,
                 slide: 15,
                 checkLeft: !0,
                 reverseOffset: t.reverseOffset || 112,
                 dir: "auto",
-                appendEl: Object(h.n)("im-page-history-w", e) || Object(h.n)("rb_box_wrap", e) || Object(h.n)("wk_cont", e) || Object(h.n)("scroll_fix_wrap", e)
+                appendEl: t.appendEl || Object(h.n)("im-page-history-w", e) || Object(h.n)("rb_box_wrap", e) || Object(h.n)("wk_cont", e) || Object(h.n)("scroll_fix_wrap", e)
             })
         }
 

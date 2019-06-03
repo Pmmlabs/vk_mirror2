@@ -1659,7 +1659,20 @@
 .Table__FiltersPanel {
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 16px
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    margin-bottom: 6px
+}
+
+.Table__FiltersPanel .Table__Filters {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
 }
 
 .Table__FiltersPanel .Select__control {
@@ -1706,12 +1719,13 @@
     position: relative;
     margin: 0 10px 0 0;
     min-width: 30px;
-    box-sizing: border-box;
+    height: 30px;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     background-color: #f8f8f9;
-    border: 1px solid #e3e4e8
+    border: 1px solid #e3e4e8;
+    box-sizing: border-box
 }
 
 .Table__FiltersPanel .Table__Button:hover {
@@ -1811,12 +1825,27 @@
     padding: 6px 8px 6px 31px;
     font-size: 12.5px;
     border-radius: 4px;
-    margin-left: auto
+    margin-left: auto;
+    height: 30px;
+    width: 154px;
+    box-sizing: border-box;
+    -o-transition: 0.2s ease width;
+    transition: 0.2s ease width
+}
+
+@media (min-width: 1200px) {
+    .Table__FiltersPanel .Table__SearchTermInput {
+        width: 228px
+    }
 }
 
 .Table__FiltersPanel .flat_button {
     margin-right: 10px;
     padding: 7px 10px 6px
+}
+
+.Table__FiltersPanel .Table__Filter {
+    margin-bottom: 10px
 }
 
 .Table__Tip {
