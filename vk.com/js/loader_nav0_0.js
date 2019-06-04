@@ -352,7 +352,7 @@ var stVersions = {
     'helpdesk.css': 35075612568,
     'cmodules/web/support.js': "4fde48bcb6d11cd06ba06f9304569f123",
     'tickets.css': 32119188792,
-    'faq.css': 24566365259,
+    'faq.css': 26588049123,
     'agents.css': 18687001352,
     'achievements.css': 17203968349,
     'members.css': 18631920555,
@@ -712,7 +712,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 1245;
+var _rnd = 9934;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],

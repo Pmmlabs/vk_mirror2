@@ -1143,13 +1143,13 @@
     color: #939393
 }
 
-.faq_category_row .faq_category_action_type {
+.faq_category_row .faq_category_details {
     color: #656565;
     font-size: 12px;
     margin-top: 4px
 }
 
-.faq_category_row .faq_category_action_type:empty {
+.faq_category_row .faq_category_details:empty {
     display: none
 }
 
@@ -1162,6 +1162,12 @@
     color: #d0021b
 }
 
+.faq_category_edit_box .faq_category_edit_row_bordered {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 13px;
+    padding-top: 10px
+}
+
 .faq_category_edit_box .faq_category_edit_row {
     margin-bottom: 7px
 }
@@ -1172,6 +1178,10 @@
     float: left;
     width: 210px;
     color: #555
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_label.faq_category_edit_label_wide {
+    width: 550px
 }
 
 .faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled {
