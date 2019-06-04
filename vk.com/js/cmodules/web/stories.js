@@ -1907,7 +1907,8 @@
                         object_id: e.id,
                         type: "narrative",
                         state: e.is_bookmarked ? 1 : 0,
-                        hash: e.bookmark_hash
+                        hash: e.bookmark_hash,
+                        ref: cur.module
                     }, {
                         onDone: function(r) {
                             showDoneBox(r || tt("stories_narrative_bookmark_deleted"), {
@@ -2684,7 +2685,20 @@
                             case "narrative_recommendations":
                                 t = "narrative_other"
                         }
-                        t && this._sendNavigationStatEvents(t, !1)
+                        if (t && this._sendNavigationStatEvents(t, !1), "narrative_fave" === this._source) {
+                            var e = this.activeStory.getCurStoryData();
+                            if (e && e.narrative) {
+                                var r = e.narrative,
+                                    o = r.owner_id,
+                                    i = r.id;
+                                statlogsValueEvent("bookmarks_product_analytics", {
+                                    item_type: "narrative",
+                                    item_owner_id: o,
+                                    item_id: i,
+                                    time: window.getServerTime()
+                                })
+                            }
+                        }
                     }
                 }, t.prototype._destroyStories = function() {
                     for (var t in this.renderedStories) {

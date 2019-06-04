@@ -4901,6 +4901,75 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     border-radius: 4px
 }
 
+.FeedRecommendedApps {
+    position: relative
+}
+
+.FeedRecommendedApps__content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 5px;
+    padding-bottom: 5px
+}
+
+.FeedRecommendedApps__header {
+    position: relative
+}
+
+.FeedRecommendedApps__header.post_header {
+    min-height: 0
+}
+
+.FeedRecommendedApps__header.post_header .FeedRecommendedApps__menu .ui_actions_menu_icons {
+    top: 15px
+}
+
+.FeedRecommendedApps__title {
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.46;
+    font-weight: 400
+}
+
+.FeedRecommendedApp {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 10px 5px
+}
+
+.FeedRecommendedApp__img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    margin: 0 0 10px;
+    box-sizing: border-box;
+    background-size: 120px;
+    background-repeat: no-repeat;
+    background-position: 50%
+}
+
+.FeedRecommendedApp__link {
+    display: inline-block;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    margin-bottom: 6px
+}
+
+.FeedRecommendedApp__genre {
+    font-size: 12.5px;
+    line-height: 1.28;
+    color: #939393
+}
+
 .thumbed_link {
     position: relative;
     z-index: 2;

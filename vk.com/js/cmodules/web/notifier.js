@@ -4271,6 +4271,7 @@
                                 }), ev.preventHideByClick || Notifier.hideEvent(ev);
                                 break;
                             case 2:
+                                if (!ev.link) return;
                                 var wnd = window.open(ev.link, "_blank");
                                 try {
                                     wnd.blur(), window.focus()

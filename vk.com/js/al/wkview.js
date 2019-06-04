@@ -709,6 +709,18 @@ var WkView = {
 
         window.LazyLoad && LazyLoad.scanDelayed();
 
+        if (ev && !!domClosest('bookmarks_row_type_product', ev.target)) {
+            if (options && options.wkRaw) {
+                var productRaw = options.wkRaw.match(/^product(-?\d+)_(\d+)/);
+                statlogsValueEvent('bookmarks_product_analytics', {
+                    item_type: 'product',
+                    item_owner_id: intval(productRaw[1]),
+                    item_id: intval(productRaw[2]),
+                    time: window.getServerTime(),
+                });
+            }
+        }
+
         return false;
     },
 

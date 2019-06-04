@@ -29,6 +29,7 @@
 .tickets_mobile_notice__close,
 .tickets_new_extra_field__uploaded,
 .tickets_suggest__icon:after,
+.tickets_sys_img.tickets_sys_img_priority,
 .tu_info.tu_info_ok:before,
 .tu_info.tu_info_outdated:before,
 .tu_info.tu_info_waiting:before,
@@ -1629,6 +1630,36 @@ body.dev #tis_add_lnk_edit {
     background-position: 13px -67px
 }
 
+.tickets_sys_img.tickets_sys_img_priority {
+    background: url(/images/icons/menu_icon.png?9) no-repeat;
+    background-position: 11px -809px;
+    height: 21px;
+    margin-top: 4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_sys_img.tickets_sys_img_priority {
+        background-image: url(/images/icons/menu_icon_2x.png?9);
+        background-size: 18px 1045px
+    }
+}
+
+.sure_bind_radio_group {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.sure_bind_radio_group .radiobtn_container {
+    display: inline-block
+}
+
+.helpdesk_pt_form .sure_bind_radio_group {
+    margin-bottom: 0;
+    margin-top: 20px
+}
+
 .tickets_sys_content {
     padding: 3px 0px 5px;
     line-height: 140%;
@@ -1738,7 +1769,8 @@ body.dev .tickets_faq_row {
 
 .tickets_faq_img.tickets_closed_profile:before {
     width: 14px;
-    height: 14px
+    height: 14px;
+    z-index: 1
 }
 
 .similar_row_wrap .tickets_faq_img {

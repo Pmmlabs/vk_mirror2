@@ -1201,7 +1201,8 @@ var Market = {
         showWiki({
             w: 'product' + oid + '_' + id + '/query',
             from: _from
-        });
+        }, false, e);
+
         return false;
     },
     showWriteMessage: function(e, id, item_id, hash) {
