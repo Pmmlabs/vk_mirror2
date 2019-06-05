@@ -1751,6 +1751,13 @@
     filter: alpha(opacity=0)
 }
 
+#apps_recent_notifications_black_list .header_side_link {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .apps_notifications_wrap {
     position: relative
 }

@@ -2084,6 +2084,11 @@ a.tickets_question_row_tt_unread {
     cursor: pointer
 }
 
+.tickets_similar_row.detailed .tickets_similar_has_comments,
+.tickets_similar_row.detailed .helpdesk_has_attaches {
+    display: none
+}
+
 .tickets_similar_row:hover {
     background-color: #edf1f5
 }
@@ -2126,7 +2131,11 @@ a.tickets_question_row_tt_unread {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     opacity: 0.7;
-    display: none
+    display: inline-block
+}
+
+.helpdesk_has_attaches {
+    display: inline-block
 }
 
 .tickets_similar_full_text {

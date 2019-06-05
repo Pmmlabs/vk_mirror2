@@ -1586,8 +1586,6 @@ input.BlockSearchInput {
 }
 
 .Dropdown--align-right {
-    -ms-flex-pack: left;
-    justify-content: left;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -3108,8 +3106,6 @@ textarea.EditableLabel__textarea {
 }
 
 .Tooltip--align-right {
-    -ms-flex-pack: left;
-    justify-content: left;
     direction: rtl
 }
 

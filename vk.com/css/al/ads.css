@@ -1445,8 +1445,6 @@
 }
 
 .Dropdown--align-right {
-    -ms-flex-pack: left;
-    justify-content: left;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse
 }
@@ -2185,8 +2183,6 @@
 }
 
 .Tooltip--align-right {
-    -ms-flex-pack: left;
-    justify-content: left;
     direction: rtl
 }
 
