@@ -67,6 +67,15 @@
     backface-visibility: hidden
 }
 
+#ads_bonus .adv_promocode_coupon__bg {
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 950px;
+    height: 340px;
+    background: url(/images/bonus/bg-top.png) no-repeat 0 0;
+    background-size: cover
+}
+
 #ads_bonus .adv_promocode_coupon__side {
     overflow: hidden;
     text-align: center;
@@ -207,8 +216,9 @@
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: 40px 20px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px
 }
 
 #ads_bonus .adv_promocode_section__title {
@@ -233,10 +243,9 @@
 }
 
 #ads_bonus .adv_promocode_section--coupon {
-    background: #f9fafc url(/images/bonus/bg-top.jpg) no-repeat 50% 102%;
-    margin-bottom: 20px;
-    perspective: 1000px;
-    background-size: cover
+    margin: 0 auto 20px;
+    padding: 0;
+    background: url('/images/bonus/bg.jpg') 0 0 repeat-x
 }
 
 #ads_bonus .adv_promocode_section--coupon .adv_promocode_button {
@@ -254,12 +263,6 @@
 #ads_bonus .adv_promocode_section--bottom {
     margin: 0;
     padding-top: 48px
-}
-
-#ads_bonus .adv_promocode_section--coupon {
-    width: 950px;
-    margin-left: -21px;
-    height: 340px
 }
 
 #ads_bonus .adv_promocode_intro {
@@ -304,10 +307,9 @@
 }
 
 #ads_bonus .footer {
+    margin: 0 auto -40px;
     background: #fff url(/images/bonus/bg-bottom.jpg) no-repeat bottom;
-    width: 950px;
-    margin-left: -20px;
-    margin-bottom: -20px;
+    width: 910px;
     height: 175px;
     background-size: contain
 }

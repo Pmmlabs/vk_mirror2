@@ -5462,7 +5462,7 @@ a.app_decline:hover {
 
 .app_nav {
     list-style: none;
-    margin: 0 0 1em;
+    margin: 0 0 1.0em;
     padding: 0;
     vertical-align: top
 }

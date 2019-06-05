@@ -398,6 +398,47 @@
     opacity: 1!important
 }
 
+.like_indicators_wrap {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.like_btn_indicator {
+    cursor: default
+}
+
+.like_btn_indicator.comment,
+.like_btn_indicator.like {
+    margin-left: 10px
+}
+
+.like_btn_indicator.comment:first-child,
+.like_btn_indicator.like:first-child {
+    margin-left: 0
+}
+
+.like_btn_indicator.empty {
+    display: none
+}
+
+.like_btn_indicator .like_button_count {
+    font-size: 12px
+}
+
+.like_btn_indicator .like_button_icon {
+    width: 13px;
+    height: 11px;
+    opacity: 1
+}
+
+.like_btn_indicator.like .like_button_icon {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9.25%202C10.625%202%2012%203.363%2012%205.045c0%201.69-.69%202.535-3.59%204.74l-1.348%201.026a.93.93%200%200%201-1.124%200L4.59%209.786C1.69%207.58%201%206.734%201%205.046%201%203.362%202.375%202%203.75%202s2.52.9%202.75%202.249C6.73%202.899%207.875%202%209.25%202z%22%20fill%3D%22%23C3C7CE%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.like_btn_indicator.comment .like_button_icon {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%209l-3.602%202.701c-.226.17-.398.077-.398-.196V9H2.923c-.669%200-.911-.07-1.156-.2a1.363%201.363%200%200%201-.567-.567c-.13-.245-.2-.487-.2-1.156V2.923c0-.669.07-.911.2-1.156.131-.244.323-.436.567-.567.245-.13.487-.2%201.156-.2h7.154c.669%200%20.911.07%201.156.2.244.131.436.323.567.567.13.245.2.487.2%201.156v4.154c0%20.669-.07.911-.2%201.156-.131.244-.323.436-.567.567-.245.13-.487.2-1.156.2H8z%22%20fill%3D%22%23C3C7CE%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')
+}
+
 .like_button_count,
 .like_button_label {
     font-size: 14px;
