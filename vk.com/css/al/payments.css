@@ -20,6 +20,7 @@
 .payments_logo_mailmoney,
 .payments_logo_mailmoney_vkpay,
 .payments_logo_paypal_ipn,
+.payments_logo_spasibo,
 .payments_logo_webmoney,
 .payments_logo_yandexmoney,
 .payments_money_transfer_mc_info_msg,
@@ -1054,15 +1055,15 @@
     float: left;
     width: 42px;
     height: 42px;
-    background: url(/images/icons/payments_n.png?1) no-repeat 0 0
+    background: url(/images/icons/payments_n.png?2) no-repeat 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_getvotes_method_img {
-        background-image: url(/images/icons/payments_n_2x.png?1);
-        background-size: 84px 210px
+        background-image: url(/images/icons/payments_n_2x.png?2);
+        background-size: 84px 252px
     }
 }
 
@@ -1084,6 +1085,10 @@
 
 .payments_getvotes_method_img.payments_method_offers {
     background-position: 0 -168px
+}
+
+.payments_getvotes_method_img.payments_method_spasibo {
+    background-position: 0 -210px
 }
 
 .payments_getvotes_method_text {
@@ -1607,6 +1612,10 @@ h2.payments_getvotes_title {
     height: 40px
 }
 
+#payments_box.payments_box_votes .payments_logo_spasibo {
+    margin: -21px 0 0
+}
+
 #payments_box.payments_box_votes.payments_phone_form .payments_getvotes_buttons {
     padding-left: 180px
 }
@@ -1838,6 +1847,11 @@ h2.payments_getvotes_title {
     background-position: -42px -168px
 }
 
+.payments_box_wide .payments_box_menu .payments_getvotes_active_row .payments_method_spasibo,
+.payments_box_wide .payments_box_menu .payments_getvotes_active_row:hover .payments_method_spasibo {
+    background-position: -42px -210px
+}
+
 .payments_box_wide .payments_box_menu .payments_getvotes_active_row .payments_getvotes_method_title,
 .payments_box_wide .payments_box_menu .payments_getvotes_active_row:hover .payments_getvotes_method_title {
     color: #fff
@@ -2012,7 +2026,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_in_money #payments_box_left_col .payments_box_menu {
-    top: 150px
+    top: 133px
 }
 
 .payments_box_in_money .payments_getvotes_method_text {
@@ -2452,6 +2466,22 @@ h2.payments_getvotes_title {
     .payments_logo_mailmoney_vkpay {
         background-image: url(/images/ps/mailmoney_vkpay_2x.png?1);
         background-size: 79px 40px
+    }
+}
+
+.payments_logo_spasibo {
+    background: url(/images/ps/spasibo.png?1) right 0 no-repeat;
+    width: 150px;
+    height: 38px;
+    margin: -21px 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_logo_spasibo {
+        background-image: url(/images/ps/spasibo_2x.png?1);
+        background-size: 90px 40px
     }
 }
 
