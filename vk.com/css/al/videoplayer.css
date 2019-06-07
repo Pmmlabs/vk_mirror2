@@ -2378,12 +2378,6 @@
     padding-right: 34px
 }
 
-.videoplayer_settings_menu_sublist_item_tip {
-    margin-left: 12px;
-    opacity: 0.7;
-    pointer-events: none
-}
-
 .feature_intro_subtitles {
     -ms-flex-align: center;
     align-items: center;

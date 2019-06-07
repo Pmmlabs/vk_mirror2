@@ -3532,12 +3532,7 @@
                     }
                     return []
                 }, e.prototype._getSubtitleTitle = function(t) {
-                    var e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-                    if (!t) return "";
-                    var i = clean(t.name).replace(/&amp;/g, "&");
-                    if (!t.lang) return i;
-                    var n = this._subtitleLangs[t.lang].name;
-                    return e && n !== t.name ? n + ' <div class="videoplayer_settings_menu_sublist_item_tip">' + i + "</div>" : n
+                    return t ? this._subtitleLangs[t.lang].name : ""
                 }, e.prototype._isControlAvailable = function(t) {
                     switch (t) {
                         case qt:
@@ -3638,7 +3633,7 @@
                     var i = domByClass(this.el, "videoplayer_settings_menu_list_item_" + Wt),
                         n = domByClass(i, "videoplayer_settings_menu_list_value");
                     this._toggleControl(i, t.length);
-                    var r = this._getSubtitleTitle(e, !1) || this.getLang("subtitles_off");
+                    var r = this._getSubtitleTitle(e) || this.getLang("subtitles_off");
                     val(n, r)
                 }, e.prototype.disable = function() {
                     this.toggle(!1), this._disabled = !0, setStyle(this._wrap, {

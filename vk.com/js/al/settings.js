@@ -1927,10 +1927,12 @@ var Settings = {
         }
         var loc = clone(nav.objLoc);
         uiTabs.switchTab(el);
+        Settings.hideMoneyLinksTooltip();
         if (section === 'transfer') {
             hide('settings_votes_history_wrap', 'settings_payments_subscriptions_wrap');
             show('settings_transfer_history_wrap', 'settings_payments_transfer_msg');
             loc.section = section;
+            Settings.showMoneyLinksTooltip();
         } else if (section === 'subscriptions') {
             hide('settings_votes_history_wrap', 'settings_transfer_history_wrap', 'settings_payments_transfer_msg');
             show('settings_payments_subscriptions_wrap');
@@ -2635,6 +2637,43 @@ var Settings = {
             cur.orderSettingsFeatureTT.show();
         }
     },
+
+    showMoneyLinksTooltip: function() {
+        var btn = geByClass1('_money_request_btn', 'wide_column');
+        if (!cur.moneylinks_feature_tooltip || !btn) {
+            return;
+        }
+
+        setTimeout(function() {
+            cur.moneyLinksTooltip = new ElementTooltip(btn, {
+                content: '<div class="feature_tooltip__close" onclick="cur.moneyLinksTooltip.hide();"></div>' + getLang('settings_payments_moneylinks_feature_text'),
+                cls: 'feature_intro_tt feature_info_tooltip moneylinks_feature_tooltip',
+                forceSide: 'top',
+                width: 270,
+                autoShow: false,
+                noHideOnClick: true,
+                noAutoHideOnWindowClick: true,
+                appendToParent: true,
+                offset: [0, -4],
+                onHide: function() {
+                    ajax.post('al_index.php', {
+                        act: 'hide_feature_tt',
+                        hash: cur.moneylinks_feature_tooltip_hash,
+                        type: 'moneylinks'
+                    });
+                    Settings.hideMoneyLinksTooltip();
+                }
+            });
+            cur.moneyLinksTooltip.show();
+            cur.destroy.push(Settings.hideMoneyLinksTooltip);
+        }, 1000);
+    },
+    hideMoneyLinksTooltip: function() {
+        if (cur.moneyLinksTooltip) {
+            cur.moneyLinksTooltip.destroy();
+            delete cur.moneyLinksTooltip;
+        }
+    }
 };
 
 try {
