@@ -3517,6 +3517,55 @@ textarea.EditableLabel__textarea {
     font-size: 16px
 }
 
+:root {
+    --box-border-radius: 8px;
+    --box-width: 655px;
+    --box-height: 538px;
+    --text-width: 527px
+}
+
+.WarningNotification {
+    box-shadow: none
+}
+
+.WarningNotification__box {
+    height: var(--box-height);
+    background: #fff;
+    text-align: center
+}
+
+.WarningNotification__box,
+.WarningNotification__image {
+    width: var(--box-width);
+    border-radius: var(--box-border-radius)
+}
+
+.WarningNotification__title {
+    letter-spacing: 0.36px;
+    font-size: 28px;
+    margin-bottom: 12px;
+    max-width: var(--text-width);
+    color: #222
+}
+
+.WarningNotification__text {
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    font-size: 14px;
+    max-width: var(--text-width);
+    margin-bottom: 32px
+}
+
+.WarningNotification .WarningNotification__button {
+    display: block;
+    margin-bottom: 17px
+}
+
+.WarningNotification .WarningNotification__box .WarningNotification__component--centered {
+    margin-left: auto;
+    margin-right: auto
+}
+
 .group_info_block {
     line-height: 150%;
     display: none

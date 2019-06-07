@@ -32199,7 +32199,7 @@ a.feedBlocks__article:hover {
 }
 
 .vk__page_newCreatePost .cp_buttons_block .Unfold__popup .Unfold__itemIcon {
-    padding-left: 14px
+    margin-left: 14px
 }
 
 .vk__page_newCreatePost .cp_buttons_block .Unfold__popup .Unfold__itemText {
@@ -40869,16 +40869,8 @@ body.apps_settingsPageBody .basis__content {
     background-position: 0 -144px
 }
 
-.Icon_camera:before {
-    background-position: 0 -168px
-}
-
 .Icon_video.Icon_active:before {
     background-position: 0 -192px
-}
-
-.Icon_video:before {
-    background-position: 0 -216px
 }
 
 .Icon_search.Icon_active:before {
@@ -40972,22 +40964,6 @@ body.apps_settingsPageBody .basis__content {
 
 .Icon_clock.Icon_active:before {
     background-position: 0 -696px
-}
-
-.Icon_photo:before {
-    background-position: 0 -720px
-}
-
-.Icon_audio:before {
-    background-position: 0 -744px
-}
-
-.Icon_doc:before {
-    background-position: 0 -768px
-}
-
-.Icon_money:before {
-    background-position: 0 -792px
 }
 
 .Icon_like:before {
@@ -42720,7 +42696,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .Unfold__itemIcon {
-    padding: 10px 12px
+    margin: 10px 12px
 }
 
 .Unfold__itemText {
@@ -52475,6 +52451,77 @@ a .BookmarkListItem__subtitle:hover {
 
 .MainMenu__splashScreenLink {
     color: #5181b8
+}
+
+.svgIcon-mail-attachments {
+    -webkit-background-size: 72px 72px;
+    -moz-background-size: 72px 72px;
+    background-size: 72px 72px;
+    background-image: url('/images/mobile/icons/sprites/mail-attachments-2bdca76d.svg')
+}
+
+.vk_old.vk_1x .svgIcon-mail-attachments {
+    background-image: url('/images/mobile/icons/sprites/mail-attachments-2bdca76d_1x.png')
+}
+
+.vk_old.vk_2x .svgIcon-mail-attachments {
+    background-image: url('/images/mobile/icons/sprites/mail-attachments-2bdca76d_2x.png')
+}
+
+.svgIcon-mail-attachments__camera_24 {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__document_24 {
+    background-position: -24px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__gallery_24 {
+    background-position: 0 -24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__gift_24 {
+    background-position: -24px -24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__money_transfer_24 {
+    background-position: -48px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__music_24 {
+    background-position: -48px -24px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__poll_24 {
+    background-position: 0 -48px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-mail-attachments__video_24 {
+    background-position: -24px -48px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
 }
 
 .uMailWrite {

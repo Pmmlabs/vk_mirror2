@@ -18864,16 +18864,16 @@
                 gid: i.hidegid ? 0 : a.gid,
                 query: n,
                 peerIds: t.join(",")
-            }).then(function(e) {
-                var t = j(e, 3),
-                    n = t[0],
-                    r = t[1];
-                return H(t[2], a), r.forEach(function(e) {
+            }).then(function(t) {
+                var n = j(t, 3),
+                    r = n[0],
+                    i = n[1];
+                return H(n[2], a), i.forEach(function(e) {
                     return Object(m.a)(a, e)
-                }), pe(n, a), Object(v.c)("messages", o, n && n.length), Object.keys(n).sort(function(e, t) {
-                    return n[e].order - n[t].order
+                }), pe(r, a), Object(v.c)("messages", o, r && r.length, e), Object.keys(r).sort(function(e, t) {
+                    return r[e].order - r[t].order
                 }).map(function(e) {
-                    return n[e]
+                    return r[e]
                 })
             })
         }

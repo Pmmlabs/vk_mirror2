@@ -186,7 +186,7 @@ var FullWall = {
         });
 
         if (ge('wall_search') && nav.objLoc.q) {
-            saveSearchAttemptStats('wall', 0, cur.options && cur.options.count);
+            saveSearchAttemptStats('wall', 0, cur.options && cur.options.count, nav.objLoc.q);
         }
     },
     loadedPosts: function(count, from, rows, offset, pages, preload, names) {

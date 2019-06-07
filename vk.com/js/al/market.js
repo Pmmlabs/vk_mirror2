@@ -3409,7 +3409,7 @@ var Marketplace = {
         }, 0);
         Marketplace.filters.init();
         if (nav.objLoc.q) {
-            saveSearchAttemptStats('market', 0, !isVisible(cur.notFound));
+            saveSearchAttemptStats('market', 0, !isVisible(cur.notFound), val(cur.searchInp));
         }
     },
     scroll: {
@@ -3800,7 +3800,7 @@ var Marketplace = {
                 }
                 Marketplace.updateLocation(query);
                 if (saveStats) {
-                    saveSearchAttemptStats('market', ts, !isVisible(cur.notFound));
+                    saveSearchAttemptStats('market', ts, !isVisible(cur.notFound), query.q);
                 }
             },
             showProgress: function() {

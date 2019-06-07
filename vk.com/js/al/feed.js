@@ -2870,7 +2870,7 @@ var Feed = {
                 }
 
                 if (cur.q) {
-                    saveSearchAttemptStats(cur.section === 'photos_search' ? 'photos' : 'news', ts, cur.count);
+                    saveSearchAttemptStats(cur.section === 'photos_search' ? 'photos' : 'news', ts, cur.count, val(cur.feedEls.search));
                 }
                 setTimeout(feed.scrollCheck, 200);
             },
@@ -2932,7 +2932,7 @@ var Feed = {
                 placeholderSetup(this);
             });
             if (cur.q) {
-                saveSearchAttemptStats(cur.section === 'photos_search' ? 'photos' : 'news', 0, cur.count);
+                saveSearchAttemptStats(cur.section === 'photos_search' ? 'photos' : 'news', 0, cur.count, val(cur.feedEls.search));
             }
         }, 200);
 

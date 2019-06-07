@@ -297,7 +297,7 @@ var Docs = {
         var ts = +new Date();
 
         if (!more && cur.found) {
-            saveSearchAttemptStats('docs', ts, cur.found);
+            saveSearchAttemptStats('docs', ts, cur.found, cur.searchStr);
         }
 
         var searchStr = cur.searchStr;
@@ -305,7 +305,7 @@ var Docs = {
             var cache = cur.cache[cur.searchStr];
 
             if (!cur.found) {
-                saveSearchAttemptStats('docs', ts, cache[2]);
+                saveSearchAttemptStats('docs', ts, cache[2], cur.searchStr);
             }
 
             return Docs.processGlobalSearch(searchStr, true, cache[0], cache[1], cache[2]);
@@ -322,7 +322,7 @@ var Docs = {
                         return false;
                     }
                     if (!more && !cur.found) {
-                        saveSearchAttemptStats('docs', ts, count);
+                        saveSearchAttemptStats('docs', ts, count, cur.searchStr);
                     }
                     return Docs.processGlobalSearch(searchStr, !more, list, shown, count)
                 },

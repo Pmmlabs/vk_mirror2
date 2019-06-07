@@ -212,7 +212,7 @@ var searcher = {
                     shortCurrency();
                     setTimeout(checkPageBlocks, 200);
                     cur.onSearchDone && cur.onSearchDone();
-                    saveSearchAttemptStats(cur.module === 'friends' ? 'friends_find' : 'search_' + cur.section, ts, !isVisible(ge('no_results')));
+                    saveSearchAttemptStats(cur.module === 'friends' ? 'friends_find' : 'search_' + cur.section, ts, !isVisible(ge('no_results')), params['c[q]']);
                 },
                 onFail: function() {
                     uiSearch.hideProgress('search_query');
@@ -696,7 +696,7 @@ if (window.iSearch === undefined) {
 
             setTimeout(function() {
                 if (cur.params && cur.params['c[q]']) {
-                    saveSearchAttemptStats(cur.module === 'friends' ? 'friends_find' : 'search_' + cur.section, 0, !isVisible(ge('no_results')));
+                    saveSearchAttemptStats(cur.module === 'friends' ? 'friends_find' : 'search_' + cur.section, 0, !isVisible(ge('no_results')), cur.params['c[q]']);
                 }
             }, 0);
 

@@ -646,7 +646,7 @@ var Friends = {
             }, {
                 onDone: function(html, found, newOffset) {
                     if (!count) {
-                        saveSearchAttemptStats('friends', ts, found);
+                        saveSearchAttemptStats('friends', ts, found, cur.serverSearchStr);
                     }
                     cur.searchOffset = newOffset;
                     cur.searchFinished = !found;
@@ -723,7 +723,7 @@ var Friends = {
                     }
                 }
                 if (count) {
-                    saveSearchAttemptStats('friends', 0, count);
+                    saveSearchAttemptStats('friends', 0, count, cur.serverSearchStr);
                 }
                 if (count < 5 && cur.oid == vk.id && !cur.gid && type != 'phonebook') { // try to find some on the server side
                     this.serverSearch(str, count, res);
