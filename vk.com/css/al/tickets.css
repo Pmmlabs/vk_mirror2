@@ -712,7 +712,6 @@ body.dev .tickets_header_info {
 
 .tickets_header_body {
     float: left;
-    min-width: 750px;
     max-width: 100%;
     position: relative
 }

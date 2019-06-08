@@ -1082,6 +1082,10 @@ if (!window.Upload) {
                 filesQueue = [],
                 re;
 
+            vars = extend(vars, {
+                _ts: Date.now()
+            });
+
             if (options.uploading) {
                 totalSize = options.filesTotalSize || 0;
                 totalCount = options.filesTotalCount || 0;

@@ -7522,6 +7522,7 @@ td.apps_cat_new_h {
 }
 
 .apps_unverifiedAppWarning {
+    width: 100%;
     min-height: 400px;
     display: -ms-flexbox;
     display: flex;

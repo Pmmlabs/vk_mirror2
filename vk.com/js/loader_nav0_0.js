@@ -287,7 +287,7 @@ var stVersions = {
     'feed.css': 26163241510,
     'privacy.js': 3525612433,
     'privacy.css': 20517393847,
-    'apps.css': 57251798002,
+    'apps.css': 58520411021,
     'apps.js': "29478755fa857a9e17e3e35dd31fa0f00eb",
     'apps_edit.js': "11931d8b59389599503cf68e4d81539c478",
     'apps_edit.css': 119846686314,
@@ -351,7 +351,7 @@ var stVersions = {
     'tags_dd.css': 21349158624,
     'helpdesk.css': 35557468412,
     'cmodules/web/support.js': "4fde48bcb6d11cd06ba06f9304569f123",
-    'tickets.css': 32009161864,
+    'tickets.css': 32271400803,
     'faq.css': 27342719017,
     'agents.css': 21149427155,
     'achievements.css': 22266393021,
@@ -363,7 +363,7 @@ var stVersions = {
     'cmodules/web/bugtracker.js': "25d7395ba85bd069ff1214e9677506e1a",
     'login.css': 29938454157,
     'cmodules/web/login.js': "17d3d4d792b9a09fd03598bf622c979c3f",
-    'upload.js': 2558068015,
+    'upload.js': 268755226,
     'upload_photo_transform.js': 1497838791,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 30031323741,
@@ -711,7 +711,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5251;
+var _rnd = 2093;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.js", "cmodules/bundles/vendors.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.js"],
