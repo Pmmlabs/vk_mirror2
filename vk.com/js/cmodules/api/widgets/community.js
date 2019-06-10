@@ -1,19 +1,19 @@
 ﻿! function(t) {
     var e = {};
 
-    function o(i) {
-        if (e[i]) return e[i].exports;
-        var n = e[i] = {
-            i: i,
+    function o(n) {
+        if (e[n]) return e[n].exports;
+        var i = e[n] = {
+            i: n,
             l: !1,
             exports: {}
         };
-        return t[i].call(n.exports, n, n.exports, o), n.l = !0, n.exports
+        return t[n].call(i.exports, i, i.exports, o), i.l = !0, i.exports
     }
-    o.m = t, o.c = e, o.d = function(t, e, i) {
+    o.m = t, o.c = e, o.d = function(t, e, n) {
         o.o(t, e) || Object.defineProperty(t, e, {
             enumerable: !0,
-            get: i
+            get: n
         })
     }, o.r = function(t) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
@@ -24,15 +24,15 @@
     }, o.t = function(t, e) {
         if (1 & e && (t = o(t)), 8 & e) return t;
         if (4 & e && "object" == typeof t && t && t.__esModule) return t;
-        var i = Object.create(null);
-        if (o.r(i), Object.defineProperty(i, "default", {
+        var n = Object.create(null);
+        if (o.r(n), Object.defineProperty(n, "default", {
                 enumerable: !0,
                 value: t
             }), 2 & e && "string" != typeof t)
-            for (var n in t) o.d(i, n, function(e) {
+            for (var i in t) o.d(n, i, function(e) {
                 return t[e]
-            }.bind(null, n));
-        return i
+            }.bind(null, i));
+        return n
     }, o.n = function(t) {
         var e = t && t.__esModule ? function() {
             return t.default
@@ -97,7 +97,7 @@
             sendStateEvent: function(t) {
                 cur.Rpc.callMethod("publish", t ? "widgets.groups.joined" : "widgets.groups.leaved")
             },
-            sendChangeState: function(t, e, o, i, n) {
+            sendChangeState: function(t, e, o, n, i) {
                 this.sendStateEvent(t);
                 var c = ge("hiddenDomain");
                 ajax.post("/widget_community.php", {
@@ -106,56 +106,56 @@
                     oid: e,
                     hash: cur.hash,
                     domain: c ? c.value : "",
-                    is_event: i ? 1 : 0
+                    is_event: n ? 1 : 0
                 }, {
                     onDone: o,
-                    onFail: n
+                    onFail: i
                 })
             },
             changeGroupState: function(t, e) {
                 var o = this,
-                    i = function() {
-                        function i(t) {
+                    n = function() {
+                        function n(t) {
                             t ? (val("members_count", cur.count_in), replaceClass(e, "color3_bg", "color4_bg color2 secondary _subscribed"), val(e, cur.unsubscribe_lang), setStyle("anim_row", "left", 0)) : (val("members_count", cur.count_out), replaceClass(e, "color4_bg color2 secondary _subscribed", "color3_bg"), val(e, cur.subscribe_lang), setStyle("anim_row", "left", -cur.mWidth))
                         }
-                        cur.changinGroupState || (cur.changinGroupState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(i) {
-                            -1 == i && (setTimeout(location.reload.bind(location), 1e3), location.href = location.href + "&1"), i && ajax.post("/widget_community.php", {
+                        cur.changinGroupState || (cur.changinGroupState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(n) {
+                            -1 == n && (setTimeout(location.reload.bind(location), 1e3), location.href = location.href + "&1"), n && ajax.post("/widget_community.php", {
                                 act: "a_get_info",
                                 oid: cur.oid
                             }, {
-                                onDone: function(i) {
-                                    i.hash && (cur.noAuth = !1, cur.justAuth = !0, cur.hash = i.hash, cur.changinGroupState = !1, o.changeGroupState(t, e))
+                                onDone: function(n) {
+                                    n.hash && (cur.noAuth = !1, cur.justAuth = !0, cur.hash = n.hash, cur.changinGroupState = !1, o.changeGroupState(t, e))
                                 }
                             })
                         }) : t && !cur.justAuth ? (unlockButton(e), cur.changinGroupState = !1, Widgets.showSubscribeBox(cur.oid, function() {
-                            o.sendStateEvent(t), i(!0)
+                            o.sendStateEvent(t), n(!0)
                         }, t)) : cur.justAuth || o.sendChangeState(t, cur.oid, function() {
-                            unlockButton(e), i(t), cur.changinGroupState = !1
+                            unlockButton(e), n(t), cur.changinGroupState = !1
                         }, !1, function() {
                             unlockButton(e), cur.changinGroupState = !1
                         }))
                     };
-                cur.confirmUnsubscribe && !t ? Widgets.showUnsubscribeBox(cur.oid, i) : i()
+                cur.confirmUnsubscribe && !t ? Widgets.showUnsubscribeBox(cur.oid, n) : n()
             },
             changeEventState: function(t, e) {
                 var o = this;
 
-                function i(t) {
+                function n(t) {
                     t ? (val("members_count", cur.count_in), setStyle("anim_row", "left", 0)) : (val("members_count", cur.count_out), setStyle("anim_row", "left", -cur.mWidth))
                 }
-                cur.changinEventState || (cur.changinEventState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(i) {
+                cur.changinEventState || (cur.changinEventState = !0, lockButton(e), cur.noAuth ? (Widgets.oauth(), window.gotSession = function(n) {
                     cur.noAuth = !1, ajax.post("/widget_community.php", {
                         act: "a_get_info",
                         oid: cur.oid
                     }, {
-                        onDone: function(i) {
-                            i.hash && (cur.hash = i.hash, cur.changinEventState = !1, o.changeEventState(t, e))
+                        onDone: function(n) {
+                            n.hash && (cur.hash = n.hash, cur.changinEventState = !1, o.changeEventState(t, e))
                         }
                     })
                 }) : t > 0 && !cur.justAuth ? (unlockButton(e), cur.changinEventState = !1, Widgets.showSubscribeBox(cur.oid, function(e) {
-                    void 0 !== e && val("community_footer", e), o.sendStateEvent(t), i(!0), o.resizeWidget()
+                    void 0 !== e && val("community_footer", e), o.sendStateEvent(t), n(!0), o.resizeWidget()
                 }, t, !0)) : cur.justAuth || this.sendChangeState(t, cur.oid, function(t) {
-                    void 0 !== t && val("community_footer", t), cur.changinEventState = !1, i(!1), o.resizeWidget()
+                    void 0 !== t && val("community_footer", t), cur.changinEventState = !1, n(!1), o.resizeWidget()
                 }, 1, function() {
                     unlockButton(e), cur.changinEventState = !1
                 }))
@@ -190,8 +190,8 @@
                     width: cur.width,
                     mode: cur.mode ? 1 : void 0
                 }, {
-                    onDone: function(o, i, n) {
-                        cur.offset += n, cur.offset >= i ? hide(e) : unlockButton(e), ge("page_wall_posts").appendChild(cf(o)), t.resizeWidget(), setTimeout(t.resizeWidget, 500)
+                    onDone: function(o, n, i) {
+                        cur.offset += i, cur.offset >= n ? hide(e) : unlockButton(e), ge("page_wall_posts").appendChild(cf(o)), t.resizeWidget(), setTimeout(t.resizeWidget, 500)
                     }
                 }))
             },
@@ -273,10 +273,10 @@
                         }, extend(Wall, {
                             likesShow: function(t, e, o) {
                                 o = o || {};
-                                var i = hasClass(t, "post_like"),
-                                    n = Wall.parsePostId(e),
-                                    c = n.type,
-                                    u = n.id,
+                                var n = hasClass(t, "post_like"),
+                                    i = Wall.parsePostId(e),
+                                    c = i.type,
+                                    u = i.id,
                                     a = c + u,
                                     r = t && gpeByClass("_post_content", t) || Wall.domPost(u),
                                     s = o.share ? "_share_wrap" : "_like_wrap",
@@ -284,7 +284,7 @@
                                     d = domByClass(l, "_icon"),
                                     h = r && domByClass(r, "_share_wrap");
                                 if (d && !cur.viewAsBox) {
-                                    var p = i ? 14 : 58,
+                                    var p = n ? 14 : 58,
                                         f = getXY(l)[0],
                                         g = getXY(d)[0] + getSize(d, !0)[0] / 2 - f - p;
                                     showTooltip(d.parentNode, {
@@ -297,7 +297,7 @@
                                             published: 1
                                         } : {}),
                                         slide: 15,
-                                        shift: [-g, i ? 5 : -3],
+                                        shift: [-g, n ? 5 : -3],
                                         ajaxdt: 100,
                                         showdt: 400,
                                         hidedt: 200,
@@ -310,7 +310,7 @@
                                                 Wall.likesShow(t, e, o)
                                             }
                                         },
-                                        typeClass: "like_tt " + (i ? "wcommunity_post_like_tt" : "wcommunity_like_tt"),
+                                        typeClass: "like_tt " + (n ? "wcommunity_post_like_tt" : "wcommunity_like_tt"),
                                         className: o.cl || ""
                                     })
                                 }
@@ -322,11 +322,12 @@
                             },
                             stickerClick: function() {}
                         }), each(["markAsSpam", "likeIt"], function(t, e) {
-                            var o;
-                            Wall[e] = (o = Wall[e], function() {
-                                if (vk.id) return o.apply(Wall, [].slice.call(arguments));
-                                Widgets.oauth()
-                            })
+                            Wall[e] = function(t) {
+                                return function() {
+                                    if (vk.id) return t.apply(Wall, [].slice.call(arguments));
+                                    Widgets.oauth()
+                                }
+                            }(Wall[e])
                         })
                 }
             }

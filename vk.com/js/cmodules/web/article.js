@@ -69,7 +69,7 @@
     s.push = e, s = s.slice();
     for (var l = 0; l < s.length; l++) e(s[l]);
     var d = c;
-    o.push([65, "common", "6deb4edfcbfb465064078145a4a266bf"]), r()
+    o.push([65, "bundles/common", "bundles/6deb4edfcbfb465064078145a4a266bf"]), r()
 }({
     65: function(t, e, r) {
         t.exports = r("f68Q")

@@ -4088,6 +4088,10 @@ input.wide_button {
     visibility: hidden
 }
 
+.gif_original::-internal-media-controls-overlay-cast-button {
+    display: none
+}
+
 .gif_opened .gif_original {
     display: block;
     position: static;

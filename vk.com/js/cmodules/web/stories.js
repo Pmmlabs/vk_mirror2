@@ -69,7 +69,7 @@
     a.push = e, a = a.slice();
     for (var c = 0; c < a.length; c++) e(a[c]);
     var d = l;
-    s.push([138, "common", "bundles/vendors"]), r()
+    s.push([138, "bundles/common", "bundles/vendors"]), r()
 }({
     "+wdc": function(t, e, r) {
         "use strict";

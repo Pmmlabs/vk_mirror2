@@ -69,7 +69,7 @@
     n.push = i, n = n.slice();
     for (var b = 0; b < n.length; b++) i(n[b]);
     var h = s;
-    l.push([134, "common"]), r()
+    l.push([134, "bundles/common"]), r()
 }({
     "/xjt": function(e, i, r) {
         "use strict";

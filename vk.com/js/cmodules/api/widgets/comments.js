@@ -42,9 +42,9 @@
         return o.d(t, "a", t), t
     }, o.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, o.p = "", o(o.s = 0)
+    }, o.p = "", o(o.s = 4)
 }({
-    0: function(e, t, o) {
+    4: function(e, t, o) {
         e.exports = o("JfKq")
     },
     JfKq: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
@@ -522,7 +522,6 @@
                 this.resizeWidget()
             },
             override: function(e, t) {
-                var o, s;
                 if (StaticFiles[e] || !0 === t) switch (e) {
                     case "lite.js":
                         extend(window, {
@@ -608,23 +607,27 @@
                         });
                         break;
                     case "page.js":
-                        (cur.options.is_auto || cur.options.is_nano) && (Composer.init = (s = Composer.init, function() {
-                            var e = [].slice.call(arguments);
-                            return e[1].media && (e[1].media.options = extend(e[1].media.options || {}, {
-                                hideAfterCount: 0,
-                                maxShown: 0,
-                                forceToUp: 1
-                            })), s.apply(Wall, e)
-                        })), extend(Wall, {
+                        (cur.options.is_auto || cur.options.is_nano) && (Composer.init = function(e) {
+                            return function() {
+                                var t = [].slice.call(arguments);
+                                return t[1].media && (t[1].media.options = extend(t[1].media.options || {}, {
+                                    hideAfterCount: 0,
+                                    maxShown: 0,
+                                    forceToUp: 1
+                                })), e.apply(Wall, t)
+                            }
+                        }(Composer.init)), extend(Wall, {
                             scrollHighlightReply: function(e) {
                                 (e = ge(e)) && (cur.options.fixed_height && cur.scrollbar ? cur.scrollbar.scrollIntoView(e, !0, Wall.highlightReply.bind(Wall, e)) : (e.scrollIntoView(), Wall.highlightReply(e)))
                             },
-                            postTooltip: (o = Wall.postTooltip, function() {
-                                var e = [].slice.call(arguments);
-                                return e[3] = extend(e[3] || {}, {
-                                    appendEl: cur.postsOuterEl
-                                }), o.apply(this, e)
-                            }),
+                            postTooltip: function(e) {
+                                return function() {
+                                    var t = [].slice.call(arguments);
+                                    return t[3] = extend(t[3] || {}, {
+                                        appendEl: cur.postsOuterEl
+                                    }), e.apply(this, t)
+                                }
+                            }(Wall.postTooltip),
                             sendPost: function() {
                                 if (cur.sendPostBtn) {
                                     var e = cur.wallAddMedia || {},
@@ -960,11 +963,12 @@
                                 }), !1)
                             }
                         }), each(["showEditReply", "markAsSpam", "stickerClick", "likeIt"], function(e, t) {
-                            var o;
-                            Wall[t] = (o = Wall[t], function() {
-                                if (vk.id) return o.apply(Wall, [].slice.call(arguments));
-                                Widgets.oauth()
-                            })
+                            Wall[t] = function(e) {
+                                return function() {
+                                    if (vk.id) return e.apply(Wall, [].slice.call(arguments));
+                                    Widgets.oauth()
+                                }
+                            }(Wall[t])
                         })
                 }
             }

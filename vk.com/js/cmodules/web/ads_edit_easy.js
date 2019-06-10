@@ -69,7 +69,7 @@
     r.push = t, r = r.slice();
     for (var c = 0; c < r.length; c++) t(r[c]);
     var l = d;
-    a.push([57, "common"]), s()
+    a.push([57, "bundles/common"]), s()
 }({
     57: function(e, t, s) {
         e.exports = s("x625")

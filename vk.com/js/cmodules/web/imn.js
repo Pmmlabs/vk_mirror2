@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var u = 0; u < s.length; u++) t(s[u]);
     var l = c;
-    a.push([96, "common", "bundles/vendors", "d46160146769c36f8584474d14bb72bf"]), n()
+    a.push([96, "bundles/common", "bundles/vendors", "bundles/d46160146769c36f8584474d14bb72bf"]), n()
 }({
     "+/AQ": function(e, t, n) {
         "use strict";

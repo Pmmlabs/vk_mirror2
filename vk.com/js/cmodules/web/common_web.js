@@ -69,7 +69,7 @@
     s.push = t, s = s.slice();
     for (var c = 0; c < s.length; c++) t(s[c]);
     var w = d;
-    r.push([80, "bundles/audioplayer", "common"]), n()
+    r.push([80, "bundles/audioplayer", "bundles/common"]), n()
 }({
     "4O8T": function(e, t, n) {
         var o;
