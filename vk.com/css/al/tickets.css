@@ -12,6 +12,7 @@
 .help_tile_alert_urgent:before,
 .help_tile_alert_waiting:before,
 .help_tiles_empty,
+.tickets_action_temp_closed_timer_icon,
 .tickets_actions_add_to_bookmark,
 .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_timer.tickets_actions_bookmarks_love .ui_actions_menu_icons,
 .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_timer .ui_actions_menu_icons,
@@ -4469,6 +4470,26 @@ a.tickets_question_row_tt_unread {
 .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_menu_hidden .shown .ui_actions_menu {
     visibility: hidden;
     display: none!important
+}
+
+.tickets_action_temp_closed_timer_icon {
+    background: url(/images/post_icon.png?10) no-repeat -5px -274px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    position: absolute;
+    left: 402px;
+    margin-top: -148px;
+    display: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_action_temp_closed_timer_icon {
+        background-image: url(/images/post_icon_2x.png?10);
+        background-size: 20px 413px
+    }
 }
 
 .tickets_actions_add_to_bookmark {

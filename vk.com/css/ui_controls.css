@@ -126,15 +126,15 @@
 }
 
 .big.selector_container table.selector_table {
-    border-radius: 2px
+    border-radius: 3px
 }
 
 .big.selector_container.selector_focused table.selector_table {
-    border-radius: 2px 2px 0 0
+    border-radius: 3px 3px 0 0
 }
 
 .big.selector_container.selector_focused.reverse table.selector_table {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 3px 3px
 }
 
 .big_text.selector_container table.selector_table {
@@ -548,11 +548,11 @@
 }
 
 .big.selector_container .result_list {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 3px 3px
 }
 
 .big.selector_container.reverse .result_list {
-    border-radius: 2px 2px 0 0
+    border-radius: 3px 3px 0 0
 }
 
 .result_list_scrollable {

@@ -2108,6 +2108,14 @@ a.group_ad_post_stats {
     padding: 8px 16px 7px
 }
 
+.Button--size-l:not(.Button--link) {
+    padding: 12px 25px 13px
+}
+
+.Button--size-l:not(.Button--disabled):not(.Button--link):active {
+    padding: 13px 25px 12px
+}
+
 .Button--mobile,
 .Button--wide {
     display: block;

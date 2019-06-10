@@ -802,7 +802,7 @@ if (!VK.xdConnectionCallbacks) {
                         timer;
 
                     if (!params.v) {
-                        params.v = '3.0';
+                        params.v = '5.95';
                     }
 
                     params.attachments = params.attachments || params.attachment || [];

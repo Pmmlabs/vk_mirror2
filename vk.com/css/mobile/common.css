@@ -39135,6 +39135,48 @@ body.apps_settingsPageBody .basis__content {
     color: #ff3347
 }
 
+.vi_values .item_like .i_like,
+.vi_values .item_replies .i_replies,
+.vi_values .item_repost .i_repost,
+.vi_values .item_share .i_share,
+.vi_values .item_views .i_views {
+    background: url(/images/mobile/like.png?5) no-repeat;
+    padding: 0 13px 0 0;
+    margin: 0 4px 0 1px
+}
+
+.vk_2x .vi_values .item_like .i_like,
+.vk_2x .vi_values .item_replies .i_replies,
+.vk_2x .vi_values .item_repost .i_repost,
+.vk_2x .vi_values .item_share .i_share,
+.vk_2x .vi_values .item_views .i_views {
+    background-image: url(/images/mobile/like_2x.png?5);
+    -webkit-background-size: 95px 14px!important;
+    -moz-background-size: 95px 14px!important;
+    background-size: 95px 14px!important
+}
+
+.vi_values .item_like .i_like {
+    background-position: 0
+}
+
+.vi_values .item_share .i_share {
+    background-position: -26px
+}
+
+.vi_values .item_replies .i_replies {
+    background-position: -13px
+}
+
+.vi_values .item_repost .i_repost {
+    background-position: -26px
+}
+
+.vi_values .item_views .i_views {
+    background-position: -78px;
+    padding: 0 17px 0 0
+}
+
 @media (max-width: 319px) {
     .r .wi_buttons,
     .Socials {
@@ -42744,6 +42786,26 @@ body.apps_settingsPageBody .basis__content {
     bottom: 0;
     right: 12px;
     margin: auto
+}
+
+.Unfold_withTitle .Unfold__triggerIcon:before {
+    top: 10px
+}
+
+.Unfold_withTitle .Unfold__triggerContent {
+    margin-top: 5px;
+    margin-right: 6px
+}
+
+.Unfold_withTitle .Unfold__triggerContent .Unfold__triggerContentTitle {
+    line-height: 19px;
+    font-size: 16px
+}
+
+.Unfold_withTitle .Unfold__triggerContent .Unfold__triggerContentSubTitle {
+    line-height: 16px;
+    font-size: 14px;
+    opacity: 0.7
 }
 
 .Unfold__triggerTextCount {

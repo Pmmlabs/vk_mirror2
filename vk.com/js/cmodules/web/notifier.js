@@ -3966,8 +3966,8 @@
                 })
             },
             unfreezeEvents: function() {
-                curNotifier.tooltipShown ? curNotifier.unfreezeAfterTooltipHide = !0 : (curNotifier.frozen = !1, each(curNotifier.q_shown, function() {
-                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_3__.a)(FEATURE_SHOW_DONE_BOX_NEW) ? this.fadeTO = setTimeout(this.startFading, hasAccessibilityMode() ? this.timeoutConf.unfreeze_am : this.timeoutConf.unfreeze) : this.fadeTO = setTimeout(this.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
+                curNotifier.tooltipShown ? curNotifier.unfreezeAfterTooltipHide = !0 : (curNotifier.frozen = !1, each(curNotifier.q_shown, function(e, t) {
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_3__.a)(FEATURE_SHOW_DONE_BOX_NEW) && t.timeoutConf ? t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? t.timeoutConf.unfreeze_am : t.timeoutConf.unfreeze) : t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
                 }))
             },
             getTransportWrap: function() {
@@ -4303,7 +4303,7 @@
                     visibility: "visible"
                 }), animate(curNotifier.cont, {
                     bottom: 0
-                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_3__.a)(FEATURE_SHOW_DONE_BOX_NEW) ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
+                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_3__.a)(FEATURE_SHOW_DONE_BOX_NEW) && ev.timeoutConf ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
             },
             trackEvent: function(e, t) {
                 ajax.post("al_feed.php", extend({

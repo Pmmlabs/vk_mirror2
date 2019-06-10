@@ -1789,7 +1789,7 @@ input.dark~.placeholder .ph_input,
 textarea.dark,
 textarea.dark~.placeholder .ph_input {
     padding: 5px 9px 7px;
-    border-radius: 2px;
+    border-radius: 3px;
     box-sizing: border-box
 }
 

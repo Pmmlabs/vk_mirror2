@@ -1242,6 +1242,15 @@ var Market = {
             }
         }
 
+        if (cur.mkOptions.cart && cur.mkOptions.cart.in_cart_quantity) {
+            var container = ge('market_add_to_card_btn');
+
+            var controls = Market.updateAddToCardButton(cur.mkOptions.cart.in_cart_quantity);
+
+            container.innerHTML = '';
+            container.appendChild(controls);
+        }
+
         if (!cur.mkComments) cur.mkComments = {};
         var cms = ge('market_comments_wrap');
         if (cur.mkComments[cur.mkOptions.itemRaw]) {
@@ -1323,6 +1332,60 @@ var Market = {
             removeClass(actions, 'visible');
         }
     },
+    addToCard: function(event) {
+        ajax.post('al_market_cart.php', {
+            act: 'add',
+            group_id: -cur.oid,
+            item_id: cur.mkOptions.itemId,
+            hash: cur.mkOptions.cart.add_item_hash,
+        });
+
+        var container = event.target.parentElement;
+
+        var controls = Market.updateAddToCardButton(1);
+
+        container.innerHTML = '';
+        container.appendChild(controls);
+    },
+    updateAddToCardButton: function(count) {
+        var fragment = document.createDocumentFragment();
+        var cartCouter = count;
+
+        var cartCouterElement = document.createElement('span');
+        cartCouterElement.innerHTML = cartCouter.toString();
+
+        var countText = document.createElement('span');
+        countText.innerHTML = langNumeric(cartCouter, getLang('market_shop_count_in_cart', 'raw'));
+
+        var goToText = document.createElement('span');
+        goToText.innerHTML = getLang('market_shop_go_to_cart');
+        goToText.classList.add('market_shop_go_to_cart_text');
+
+        var goToCartButton = document.createElement('a');
+        goToCartButton.href = './cart' + -cur.oid;
+        goToCartButton.appendChild(countText);
+        goToCartButton.appendChild(goToText);
+        goToCartButton.classList.add('market_go_to_card_btn', 'flat_button', 'button_wide');
+
+        fragment.appendChild(goToCartButton);
+
+        var counter = document.createElement('button');
+        counter.innerHTML = getLang('market_add_one_more_product');
+        counter.classList.add('market_card_counter_button', 'flat_button', 'button_wide', 'secondary');
+        counter.addEventListener('click', function() {
+            ajax.post('al_market_cart.php', {
+                act: 'add',
+                group_id: -cur.oid,
+                item_id: cur.mkOptions.itemId,
+                hash: cur.mkOptions.cart.add_item_hash,
+            });
+            cartCouter += 1;
+            countText.innerHTML = langNumeric(cartCouter, getLang('market_shop_count_in_cart', 'raw'));
+        });
+
+        fragment.appendChild(counter);
+        return fragment;
+    },
     showBigPhoto: function(ev) {
         if (!cur.mkOptions.canEnlarge) return false;
         var ph = cur.mkOptions.photos[cur.mkOptions.photoIndex];
@@ -1363,19 +1426,10 @@ var Market = {
             act: 'a_set_favourite',
             owner_id: ownerId,
             item_id: itemId,
-            hash: hash
+            hash: hash,
         };
-        ajax.post('/al_market.php', params, {
-            onDone: function(success, text) {
-                if (!success) return;
-
-                toggleClass(el, 'selected');
-                toggleClass('market_row_fav' + ownerId + '_' + itemId, 'selected');
-                geByClass1('_btn_text', el).innerHTML = text;
-            },
-            showProgress: lockButton.pbind(el),
-            hideProgress: unlockButton.pbind(el)
-        });
+        ajax.post('/al_market.php', params);
+        toggleClass(el, 'selected');
     },
     reportFromDD: function(hash, reason) {
         var onDone = function(responseText) {
