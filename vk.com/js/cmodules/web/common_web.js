@@ -1557,9 +1557,9 @@
                         boxhide: T._hide.pbind(n, o),
                         wraphide: T._hide.pbind(e)
                     }), T
-                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, window.PushNotifier = It, window.sw = new At, window.sw.register().then(function() {
+                }(e, t, n, o), hab.init(), window._retinaInit ? window._retinaInit() : Vt = 1, Ft.disableSW || (window.PushNotifier = It, window.sw = new At, window.sw.register().then(function() {
                     window.pushNotifier = new It(window.sw, At)
-                })
+                }))
             }
         }
 

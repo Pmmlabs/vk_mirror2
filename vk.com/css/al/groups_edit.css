@@ -18,6 +18,7 @@
 .group_money_transfers_table .settings_transfer_action,
 .group_u_photo.online:after,
 .groups_ad_withdraw_logo,
+.groups_edit_owner_docs_close,
 a.group_ad_post_link,
 a.group_ad_post_stats {
     -ms-high-contrast-adjust: none
@@ -1366,6 +1367,32 @@ a.group_ad_post_stats {
     background: #597da3 url(/images/progress_grad.gif) repeat;
     border: 1px solid #45688e;
     margin: -1px
+}
+
+.groups_edit_owner_docs_close {
+    background: url(/images/landings/testing/close.png) no-repeat 50%;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: -25px;
+    opacity: 0.65;
+    -o-transition: opacity 200ms ease;
+    transition: opacity 200ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .groups_edit_owner_docs_close {
+        background-image: url(/images/landings/testing/close_2x.png);
+        background-size: 14px 14px
+    }
+}
+
+.groups_edit_owner_docs_close:hover {
+    opacity: 1
 }
 
 #groups_menu_promo {

@@ -66,8 +66,8 @@
                     return i && t(e.prototype, i), o && t(e, o), e
                 }
             }();
-        var a = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=",
-            s = function() {
+        var s = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=",
+            a = function() {
                 function t(e) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -80,7 +80,7 @@
                     for (var t = this._currentAudioEl.played, e = 0, i = 0; i < t.length; i++) e += t.end(i) - t.start(i);
                     return e
                 }, t.prototype._setAudioNodeUrl = function(t, e) {
-                    window.data && data(t, "setUrlTimesetUrlTime", e == a ? 0 : vkNow()), t.src = e
+                    window.data && data(t, "setUrlTimesetUrlTime", e == s ? 0 : vkNow()), t.src = e
                 }, t.prototype._createAudioNode = function(t) {
                     var e = new Audio,
                         i = this;
@@ -111,7 +111,7 @@
                 }, t.prototype.onReady = function(t) {
                     t(!0)
                 }, t.prototype.prefetch = function(t) {
-                    this._prefetchAudioEl && this._setAudioNodeUrl(this._prefetchAudioEl, a), this._prefetchAudioEl = this._createAudioNode(t)
+                    this._prefetchAudioEl && this._setAudioNodeUrl(this._prefetchAudioEl, s), this._prefetchAudioEl = this._createAudioNode(t)
                 }, t.prototype.seek = function(t) {
                     var e = this._currentAudioEl;
                     this.duration ? e.currentTime = this.duration * t : this._seekOnReady = t
@@ -133,15 +133,15 @@
                     if (this._seekOnReady = !1, this._trackOptions = {}, i && "object" === (void 0 === i ? "undefined" : o(i)) && (this._trackOptions = i, i = i.callback), n.src == e) return this.opts.onCanPlay && this.opts.onCanPlay(), i && i(!0);
                     if (this._prefetchAudioEl && this._prefetchAudioEl.readyState > t.STATE_HAVE_NOTHING)
                         if (this._prefetchAudioEl.src == e) {
-                            this._currentAudioEl.pause(0), this._setAudioNodeUrl(this._currentAudioEl, a);
-                            var s = this;
+                            this._currentAudioEl.pause(0), this._setAudioNodeUrl(this._currentAudioEl, s);
+                            var a = this;
                             this._prefetchAudioEl.readyState >= t.STATE_HAVE_FUTURE_DATA && setTimeout(function() {
-                                s.opts.onCanPlay && s.opts.onCanPlay()
+                                a.opts.onCanPlay && a.opts.onCanPlay()
                             }), n = this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = !1
-                        } else this._prefetchAudioEl.src && this._setAudioNodeUrl(this._prefetchAudioEl, a);
+                        } else this._prefetchAudioEl.src && this._setAudioNodeUrl(this._prefetchAudioEl, s);
                     return n.src != e && (this._setAudioNodeUrl(n, e), n.load()), i && i(!0)
                 }, t.prototype.play = function(e) {
-                    this._prefetchAudioEl.src == e && this._prefetchAudioEl.readyState > t.STATE_HAVE_NOTHING && (this._setAudioNodeUrl(this._currentAudioEl, a), this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = this._createAudioNode(), this.opts.onCanPlay && this.opts.onCanPlay());
+                    this._prefetchAudioEl.src == e && this._prefetchAudioEl.readyState > t.STATE_HAVE_NOTHING && (this._setAudioNodeUrl(this._currentAudioEl, s), this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = this._createAudioNode(), this.opts.onCanPlay && this.opts.onCanPlay());
                     var i = this._currentAudioEl;
                     if (i.src) try {
                         i.play()
@@ -153,7 +153,7 @@
                     t.src && t.pause()
                 }, t.prototype.stop = function() {
                     var t = this._currentAudioEl;
-                    this._setAudioNodeUrl(t, a)
+                    this._setAudioNodeUrl(t, s)
                 }, t.prototype._setFadeVolumeInterval = function(t) {
                     if (t) {
                         if (!this._fadeVolumeWorker && window.Worker && window.Blob) {
@@ -196,7 +196,7 @@
                     }
                 }]), t
             }();
-        s.STATE_HAVE_NOTHING = 0, s.STATE_HAVE_FUTURE_DATA = 3, s.HAVE_ENOUGH_DATA = 4, s.AUDIO_EL_ID = "ap_audio";
+        a.STATE_HAVE_NOTHING = 0, a.STATE_HAVE_FUTURE_DATA = 3, a.HAVE_ENOUGH_DATA = 4, a.AUDIO_EL_ID = "ap_audio";
         var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
                 return typeof t
             } : function(t) {
@@ -315,7 +315,7 @@
         }();
         var d = 35;
         void 0 === window.isTouch && (window.isTouch = !1);
-        var c, p = function() {
+        var c, _ = function() {
                 function t(e, i) {
                     if (function(t, e) {
                             if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -330,12 +330,12 @@
                         className: "slider",
                         id: e.getAttribute("id") || ""
                     });
-                    var a = this;
+                    var s = this;
                     if (e.classList)
-                        for (var s = e.classList, r = 0, u = s.length; r < u; r++) addClass(this._el, s[r]);
+                        for (var a = e.classList, r = 0, u = a.length; r < u; r++) addClass(this._el, a[r]);
                     else this._el.className = e.className;
                     each(this._el.attributes, function(t, e) {
-                        "id" == e.name && "class" == e.name || a._el.setAttribute(e.name, e.value)
+                        "id" == e.name && "class" == e.name || s._el.setAttribute(e.name, e.value)
                     }), e.parentNode.replaceChild(this._el, e), this._amountEl = geByClass1("slider_amount", this._el), this._handlerEl = geByClass1("slider_handler", this._el), this._slideEl = geByClass1("slider_slide", this._el), this._backEl = geByClass1("slider_back", this._el), this._progressEl = geByClass1("slider_loading_bar", this._el), this.options.color && (setStyle(this._amountEl, {
                         backgroundColor: this.options.color
                     }), setStyle(this._handlerEl, {
@@ -359,12 +359,12 @@
                         o = Math.round((t.pageX || t.touches[0].pageX) - i[0]),
                         n = this._width;
                     if ((o = e ? Math.min(Math.max(0, o), n) : o) >= 0 && o <= n) {
-                        var a = o / n;
-                        this._currHintEl.innerHTML = this.options.formatHint ? this.options.formatHint.call(this, a) : a;
-                        var s = this._currHintEl.getBoundingClientRect();
+                        var s = o / n;
+                        this._currHintEl.innerHTML = this.options.formatHint ? this.options.formatHint.call(this, s) : s;
+                        var a = this._currHintEl.getBoundingClientRect();
                         setStyle(this._currHintEl, {
-                            left: this._slideEl.offsetLeft + o - (s.right - s.left) / 2,
-                            top: this._slideEl.offsetTop - (s.bottom - s.top) - 10
+                            left: this._slideEl.offsetLeft + o - (a.right - a.left) / 2,
+                            top: this._slideEl.offsetTop - (a.bottom - a.top) - 10
                         }), !e && this._toggleHint(!0)
                     } else !e && this._toggleHint(!1);
                     this.options.formatHint || this._toggleHint(!1)
@@ -426,7 +426,7 @@
                     }
                 }]), t
             }(),
-            _ = function() {
+            p = function() {
                 function t(t, e) {
                     for (var i = 0; i < e.length; i++) {
                         var o = e[i];
@@ -440,35 +440,38 @@
         var f = !1,
             y = function() {
                 function t() {
-                    var e = this;
+                    var e = this,
+                        i = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}).onListened;
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
                     }(this, t), this._reattach = !1, this._audioEl = null, this._playing = !1, this._timer = null, this._duration = 0, this._detaching = !1;
-                    var i = {
+                    var o = {
                         onEnd: function() {
                             e.detach()
                         },
                         onFail: function() {
-                            i.onEnd()
+                            o.onEnd()
                         },
                         onCanPlay: function() {},
                         onProgressUpdate: function(t) {
                             e._updateProgress(t)
                         }
                     };
-                    c = !1, s.isSupported() ? (s.isSupported('audio/ogg;codecs="opus"') && !s.isSupported('audio/ogg;codecs="codec_check"') && (c = !0), this._impl = new s(i)) : browser.flash && window.renderFlash && (this._impl = new l(i)), this.onPlayPause = function(t) {
+                    c = !1, a.isSupported() ? (a.isSupported('audio/ogg;codecs="opus"') && !a.isSupported('audio/ogg;codecs="codec_check"') && (c = !0), this._impl = new a(o)) : browser.flash && window.renderFlash && (this._impl = new l(o)), this.onPlayPause = function(t) {
                         return cancelEvent(t), e.toggle()
                     }, this.onDurationClick = function(t) {
                         e.durationType = !e.durationType, cancelEvent(t)
+                    }, this._onListened = function() {
+                        i && i(e._audioEl)
                     }, this._initEvents()
                 }
                 return t.prototype._updateProgress = function(t) {
-                    this._durationEl && (this.durationType ? this._durationEl.innerHTML = "-" + formatTime(Math.round(this._duration * (1 - t))) : this._durationEl.innerHTML = formatTime(Math.round(this._duration * t))), this._progressSlider && this._progressSlider.setValue(t)
+                    this._duration * t >= 1 && this._audioEl && !this._audioEl._listened && (this._audioEl._listened = !0, this._onListened()), this._durationEl && (this.durationType ? this._durationEl.innerHTML = "-" + formatTime(Math.round(this._duration * (1 - t))) : this._durationEl.innerHTML = formatTime(Math.round(this._duration * t))), this._progressSlider && this._progressSlider.setValue(t)
                 }, t.prototype._initInterface = function() {
                     var t = this;
                     this._el = ce("div", {
                         innerHTML: '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>'
-                    }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new p(geByClass1("audio-msg-track--slider", this._el), {
+                    }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new _(geByClass1("audio-msg-track--slider", this._el), {
                         value: 0,
                         size: 0,
                         hintClass: "audio_player_hint",
@@ -505,7 +508,7 @@
                     var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                     if (this._audioEl && this._el && !this._detaching) {
                         if (t && this.isAttached()) return;
-                        this._detaching = !0, this.stop(), this._destroyInterface(), removeClass(this._audioEl, "audio-msg-track_player-attached"), this._audioEl = null
+                        this._detaching = !0, this.stop(), this._destroyInterface(), removeClass(this._audioEl, "audio-msg-track_player-attached"), this._audioEl._listened = !1, this._audioEl = null
                     }
                     this._detaching = !1
                 }, t.prototype.play = function() {
@@ -545,7 +548,7 @@
                     window.Notifier && (f = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
                 }, t.resumeGlobalMedia = function() {
                     window.Notifier && f && (f = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (audio.play(), delete audio.pausedByMsg)
-                }, _(t, [{
+                }, p(t, [{
                     key: "type",
                     get: function() {
                         return this._impl.type
@@ -588,23 +591,28 @@
                 var o = v(t[e]);
                 if (i && o) {
                     i = i.split(",");
-                    for (var n = geByClass("audio-msg-track--wave", t[e]), a = E(i, o / 3), s = 0; s < n.length; s++) {
+                    for (var n = geByClass("audio-msg-track--wave", t[e]), s = E(i, o / 3), a = 0; a < n.length; a++) {
                         var r = ce("div", {
-                            innerHTML: a
+                            innerHTML: s
                         }).firstChild;
-                        n[s].parentNode.replaceChild(r, n[s])
+                        n[a].parentNode.replaceChild(r, n[a])
                     }
                 }
             }
         }
 
         function A() {
-            return m || (m = new y), m
+            return m || (m = new y({
+                onListened: function(t) {
+                    AudioMessagePlayer.events.emit("listened", t)
+                }
+            })), m
         }
         addEvent(window, "orientationchange", function() {
             return setTimeout(w, 500)
         }), window.mail && window.mail.onMessagesRepainted && (onDOMReady(w), window.mail.onMessagesRepainted(w)), window.AudioMessagePlayer = {
             loaded: !0,
+            events: new EventEmitter,
             togglePlay: function(t, e) {
                 var i = A(),
                     o = i.attachTo(t);
@@ -658,7 +666,7 @@
                 this._max = 0
             }, t
         }();
-        var a = function() {
+        var s = function() {
             function t() {
                 ! function(t, e) {
                     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
@@ -677,16 +685,16 @@
         }), i.d(e, "b", function() {
             return u
         });
-        var s = {
+        var a = {
                 avg: o,
                 peak: n,
-                quad: a
+                quad: s
             },
             r = function() {
                 function t(e) {
                     ! function(t, e) {
                         if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), this._normalizeAlgorithm = !1, s[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new s[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, void 0 !== e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, s[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new s[e.algorithm], this._sampleCount = 0, this._data = []
+                    }(this, t), this._normalizeAlgorithm = !1, a[e.normalizeAlgorithm] && (this._normalizeAlgorithm = new a[e.normalizeAlgorithm]), this._srcSampleRate = parseInt(e.srcSampleRate || 0), this._dstSampleRate = parseInt(e.dstSampleRate || 0), this._truncateTo = 1, void 0 !== e.truncateTo && (this._truncateTo = e.truncateTo), this._dstSampleRate > 0 ? this._sampleRate = this._srcSampleRate / this._dstSampleRate : this._sampleRate = 0, a[e.algorithm] || (e.algorithm = "peak"), this._algorithm = new a[e.algorithm], this._sampleCount = 0, this._data = []
                 }
                 return t.prototype.push = function(t) {
                     if (this._sampleRate <= 0) return [];
@@ -697,7 +705,7 @@
                     if (this._normalizeAlgorithm) {
                         var n = this._normalizeAlgorithm.get();
                         if (this._normalizeAlgorithm.clear(), n > 0)
-                            for (var a = 0; a < e.length; a++) e[a] = e[a] / n, this._truncateTo > 0 && (e[a] = Math.min(this._truncateTo, Math.abs(e[a])))
+                            for (var s = 0; s < e.length; s++) e[s] = e[s] / n, this._truncateTo > 0 && (e[s] = Math.min(this._truncateTo, Math.abs(e[s])))
                     }
                     return e
                 }, t
