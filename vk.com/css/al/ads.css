@@ -1916,6 +1916,152 @@
     display: block
 }
 
+.BulkEdit .Modal__body {
+    width: 500px
+}
+
+.BulkEdit__settings {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.BulkEdit__modifierType {
+    width: 180px
+}
+
+.BulkEdit__modifierValue {
+    width: 130px
+}
+
+.BulkEdit__modifierItem {
+    margin-left: 10px
+}
+
+.BulkEdit__modifierItem:first-child {
+    margin-left: 0
+}
+
+.BulkEdit__settings {
+    margin-bottom: 20px
+}
+
+.BulkEdit__preview {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border: 1px solid #e7e8ec;
+    border-collapse: collapse;
+    table-layout: fixed
+}
+
+.BulkEdit__preview td,
+.BulkEdit__preview th {
+    padding: 9px 12px;
+    text-align: left
+}
+
+.BulkEdit__preview td.BulkEdit__cell--value,
+.BulkEdit__preview th.BulkEdit__cell--value {
+    text-align: right;
+    width: 25%;
+    white-space: nowrap
+}
+
+.BulkEdit__preview td.BulkEdit__cell--name,
+.BulkEdit__preview th.BulkEdit__cell--name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%
+}
+
+.BulkEdit__preview th {
+    background: #f8f8f9;
+    color: #626d7a;
+    font-weight: 400
+}
+
+.BulkEdit__preview td {
+    border-top: 1px solid #e7e8ec
+}
+
+.BulkEdit__cellIcon {
+    margin-left: 6px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-size: contain;
+    vertical-align: top
+}
+
+.BulkEdit__cellIcon--error {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.9%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%20fill%3D%22%23E95959%22%2F%3E%0A%20%20%20%20%3Ctext%20fill%3D%22%23FFF%22%20font-family%3D%22SFCompactRounded-Bold%2C%20SF%20Compact%20Rounded%22%20font-size%3D%2212%22%20font-style%3D%22condensed%22%20font-weight%3D%22bold%22%3E%0A%20%20%20%20%20%20%3Ctspan%20x%3D%226.295%22%20y%3D%2212%22%3E!%3C%2Ftspan%3E%0A%20%20%20%20%3C%2Ftext%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E')
+}
+
+.BulkEdit__cellIcon--success {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.9%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%20fill%3D%22%234BB34B%22%2F%3E%0A%20%20%20%20%3Cpolyline%20stroke%3D%22%23FFF%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20points%3D%224.5%208%207%2010.5%2011.5%206%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E')
+}
+
+.BulkEdit__error {
+    padding: 10px 15px;
+    border: 1px solid #f2ab99;
+    background: #ffefe9;
+    border-radius: 3px;
+    margin-bottom: 20px
+}
+
+.BulkEdit__limitsInfo {
+    margin-left: 4px;
+    color: #656565;
+    font-size: 12.5px
+}
+
+.SelectButtons {
+    display: -ms-flexbox;
+    display: flex
+}
+
+.SelectButtons__option {
+    cursor: pointer
+}
+
+.SelectButtons__option input {
+    display: none
+}
+
+.SelectButtons__label {
+    padding: 7px 23px 8px;
+    background: #e5ebf1;
+    color: #2a5885;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.SelectButtons__label:hover {
+    background: #dfe6ed
+}
+
+.SelectButtons__option:first-child .SelectButtons__label {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+
+.SelectButtons__option:last-child .SelectButtons__label {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+.SelectButtons__option input:checked+.SelectButtons__label {
+    background: #5181b8;
+    color: #fff
+}
+
+.SelectButtons__option input:checked+.SelectButtons__label:hover {
+    background: #5181b8
+}
+
 .BaseModal {
     position: fixed;
     top: 0;
@@ -4365,7 +4511,7 @@ a.ads_status_link {
     background-color: #f6f7f9;
     border: 1px solid #d8dfea;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     line-height: 160%
 }
 
@@ -5710,6 +5856,18 @@ a.ads_dd_menu_multi_item.label:hover {
 
 #ads_retargeting_name {
     width: 100%
+}
+
+.ads_retargeting_groups_buttons {
+    margin: 20px 0
+}
+
+.ads_retargeting_groups_buttons .flat_button {
+    margin-right: 10px
+}
+
+.ads_retargeting_groups_buttons+#ads_retargeting_groups_table .ui_table_filter.ui_search {
+    border: 1px solid #eef0f3
 }
 
 #ads_retargeting_groups_table .ui_search_custom_ctrl {

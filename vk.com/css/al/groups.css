@@ -1637,6 +1637,7 @@ input.BlockSearchInput {
 }
 
 .EditableLabel--editing:after,
+.EditableLabel:after,
 .EditableLabel:hover:after {
     position: absolute;
     top: 50%;
@@ -1655,7 +1656,8 @@ input.BlockSearchInput {
     opacity: 1
 }
 
-.EditableLabel--editing.EditableLabel--changed:after {
+.EditableLabel--editing.EditableLabel--changed:after,
+.EditableLabel:after {
     content: none
 }
 

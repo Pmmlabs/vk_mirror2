@@ -150,8 +150,17 @@ svg+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_voting_avatar+.wk_
     padding-top: 20px!important
 }
 
+.wk_voting_option_count_extended {
+    display: none
+}
+
+.wk_voting_option_selected .wk_voting_option_count_extended {
+    display: inline
+}
+
 .wk_voting_option_selected .wk_voting_avatar,
 .wk_voting_option_selected .wk_voting_info,
+.wk_voting_option_selected .wk_voting_option_count_simple,
 .wk_voting_option_selected .wk_voting_option_wrap:not(.wk_voting_option_selected),
 .wk_voting_option_selected .wk_voting_selectors {
     display: none
