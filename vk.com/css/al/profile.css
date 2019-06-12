@@ -1267,10 +1267,12 @@ div.profile_online {
     display: none
 }
 
+.eltt .notify_tt_money_link,
 .eltt .notify_tt_money_transfer {
     text-align: center
 }
 
+.eltt .notify_tt_money_link .profile_notify_img,
 .eltt .notify_tt_money_transfer .profile_notify_img {
     display: block;
     padding: 24px 0 8px;
@@ -1281,10 +1283,12 @@ div.profile_online {
     height: 56px
 }
 
+.eltt .notify_tt_money_link .profile_notify_text,
 .eltt .notify_tt_money_transfer .profile_notify_text {
     padding: 0 10px
 }
 
+.eltt .notify_tt_money_link .flat_button,
 .eltt .notify_tt_money_transfer .flat_button {
     margin-top: 24px
 }

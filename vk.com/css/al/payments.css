@@ -2847,6 +2847,14 @@ h2.payments_getvotes_title {
     margin-right: 10px
 }
 
+#payments_box.payments_money_transfer_box.payments_money_link #payments_money_transfer_request_box {
+    display: none
+}
+
+#payments_box.payments_money_transfer_box.payments_money_link #payments_money_link_box {
+    display: block
+}
+
 .payments_money_transfer_chat_photo_wrap {
     width: 36px;
     height: 36px;

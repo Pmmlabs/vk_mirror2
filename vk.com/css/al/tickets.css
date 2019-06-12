@@ -692,16 +692,20 @@ body.dev .tickets_header_info {
     font-size: 12px
 }
 
+.tickets_header_helpdesk .tickets_header_info__task_title {
+    float: left;
+    max-width: 680px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
 .tickets_remaining_time_delay {
     color: #2a5885
 }
 
 .tickets_header_info .tickets_unbind {
     background-color: #fff
-}
-
-.tickets_header_info__task_title {
-    float: left
 }
 
 .tickets_header_progress {

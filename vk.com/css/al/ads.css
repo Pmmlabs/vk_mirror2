@@ -2016,6 +2016,11 @@
     font-size: 12.5px
 }
 
+.BulkEdit__valueTip {
+    font-size: 10px;
+    color: #828282
+}
+
 .SelectButtons {
     display: -ms-flexbox;
     display: flex
@@ -5867,7 +5872,8 @@ a.ads_dd_menu_multi_item.label:hover {
 }
 
 .ads_retargeting_groups_buttons+#ads_retargeting_groups_table .ui_table_filter.ui_search {
-    border: 1px solid #eef0f3
+    border-top-width: 1px;
+    border-bottom: 0
 }
 
 #ads_retargeting_groups_table .ui_search_custom_ctrl {
@@ -5902,7 +5908,7 @@ a.ads_dd_menu_multi_item.label:hover {
 }
 
 #ads_retargeting_groups .ui_table_filter.ui_search {
-    border-top: 0
+    border-top-width: 0
 }
 
 .ads_retargeting_group_list_item {

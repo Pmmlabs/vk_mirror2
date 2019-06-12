@@ -14776,17 +14776,22 @@ button.wall_block_app_btn {
 
 .article_snippet.article_snippet_mini .article_snippet_mini_thumb {
     min-width: 140px;
-    background-size: cover;
-    background-position: 50%;
     border-radius: 2px 0 0 2px;
     overflow: hidden
 }
 
-.article_snippet.article_snippet_mini.article_snippet__deleted .article_snippet_mini_thumb {
+.article_snippet.article_snippet_mini .article_snippet_mini_thumb_inner {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50%
+}
+
+.article_snippet.article_snippet_mini.article_snippet__deleted .article_snippet_mini_thumb_inner {
     filter: grayscale(1) brightness(0.8)
 }
 
-.article_snippet.article_snippet_mini.article_snippet__no_cover .article_snippet_mini_thumb {
+.article_snippet.article_snippet_mini.article_snippet__no_cover .article_snippet_mini_thumb_inner {
     filter: blur(14px) brightness(0.5);
     background-size: 400%
 }
@@ -14809,7 +14814,12 @@ button.wall_block_app_btn {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.36;
-    color: #222
+    color: #222;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .article_snippet.article_snippet_mini .article_snippet_mini_title:hover {

@@ -3800,7 +3800,7 @@
                         case "subtitles":
                             return !e.live && this.player.getAvailableSubtitleTracksInfo().length;
                         case "logo":
-                            return !!e.is_embed && !e.nologo;
+                            return !!e.is_embed && !e.no_logo;
                         default:
                             return !1
                     }
