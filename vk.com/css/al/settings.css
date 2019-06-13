@@ -2506,3 +2506,10 @@ span.page_block_header_group_notify_settings a {
     position: relative;
     z-index: 1
 }
+
+.settings_email_confirmation {
+    padding: 25px 0 35px;
+    margin: 0 auto;
+    line-height: 160%;
+    width: 635px
+}

@@ -296,7 +296,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 30706120752,
     'settings.js': 3105896883,
-    'settings.css': 31573879620,
+    'settings.css': 33595119710,
     'profile_edit.js': 1753790963,
     'profile_edit.css': 19487493147,
     'profile_edit_edu.js': 872687230,
@@ -715,7 +715,7 @@ var stVersions = {
     'cmodules/web/ugcform.df5704170d1f95ee8de4.js': '52cfeefb95c8e0e45d55',
     'cmodules/web/ui_common.c05fc3765f7cde5f9602.js': '2d6536d4bf12700097c794434a42c7c3',
     'cmodules/web/ui_components.6e892c9f2de0b997322c.js': 'ac358fbd8231430ce766',
-    'cmodules/web/ui_media_selector.f68fcaaa7cd061f3beb9.js': '040e69e85cf430413aef50c866d31381',
+    'cmodules/web/ui_media_selector.79b27c36cc50918461c7.js': 'e8245fb04149f4068a37f83028744183',
     'cmodules/web/video.6fc038631eb86c99f2f5.js': 'baabea25f01033895ec0',
     'cmodules/web/video_ext.55b393114666035b5909.js': 'f87b859c3f5eed9944ec',
     'cmodules/web/video_upload.1a58b2e9ef5ac7a75838.js': '81bdcaaa949f099b3da6',
@@ -788,7 +788,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3677;
+var _rnd = 617;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.2b4dbe9fc2d9b990f1a0.js", "cmodules/bundles/vendors.5b1d41fca8d022c55ef6.js", "cmodules/web/GroupsEdit.0002f7ea4ba2f971b2cf.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/web/add_to_community_app.115091bbaa4e24f33897.js"],
@@ -889,7 +889,7 @@ var stDeps = {
     "/js/cmodules/web/ugcform.js": ["cmodules/web/ugcform.df5704170d1f95ee8de4.js"],
     "/js/cmodules/web/ui_common.js": ["cmodules/bundles/common.2b4dbe9fc2d9b990f1a0.js", "cmodules/bundles/ff578da9047a3433232ff9486c3dfb04.1c4a0483deba5f79ec89.js", "cmodules/web/ui_common.c05fc3765f7cde5f9602.js"],
     "/js/cmodules/web/ui_components.js": ["cmodules/web/ui_components.6e892c9f2de0b997322c.js"],
-    "/js/cmodules/web/ui_media_selector.js": ["cmodules/bundles/common.2b4dbe9fc2d9b990f1a0.js", "cmodules/web/ui_media_selector.f68fcaaa7cd061f3beb9.js"],
+    "/js/cmodules/web/ui_media_selector.js": ["cmodules/bundles/common.2b4dbe9fc2d9b990f1a0.js", "cmodules/web/ui_media_selector.79b27c36cc50918461c7.js"],
     "/js/cmodules/web/video.js": ["cmodules/web/video.6fc038631eb86c99f2f5.js"],
     "/js/cmodules/web/video_ext.js": ["cmodules/web/video_ext.55b393114666035b5909.js"],
     "/js/cmodules/web/video_upload.js": ["cmodules/web/video_upload.1a58b2e9ef5ac7a75838.js"],
