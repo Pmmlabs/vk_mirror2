@@ -49,40 +49,14 @@
     },
     "6ldD": function(e, t, r) {
         "use strict";
-        r.r(t);
-        var n = function() {
-            return function(e, t) {
-                if (Array.isArray(e)) return e;
-                if (Symbol.iterator in Object(e)) return function(e, t) {
-                    var r = [],
-                        n = !0,
-                        o = !1,
-                        i = void 0;
-                    try {
-                        for (var u, c = e[Symbol.iterator](); !(n = (u = c.next()).done) && (r.push(u.value), !t || r.length !== t); n = !0);
-                    } catch (e) {
-                        o = !0, i = e
-                    } finally {
-                        try {
-                            !n && c.return && c.return()
-                        } finally {
-                            if (o) throw i
-                        }
-                    }
-                    return r
-                }(e, t);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        window.WApp = {
+        r.r(t), window.WApp = {
             init: function(e) {
-                var t = this;
                 e = e || {}, cur.options = e, extend(cur, {
                     noAwayCheck: !0,
                     height_el: ge("page_wrap")
                 }), this.override("lite.js"), stManager.emitter.addListener("update", this.override.bind(this)), cur.RpcMethods = {
-                    onInit: function() {
-                        addEvent(window, "resize", onBodyResize), uiScroll.addResizeSensor(cur.height_el, t.onresize)[1]()
+                    onInit: () => {
+                        addEvent(window, "resize", onBodyResize), uiScroll.addResizeSensor(cur.height_el, this.onresize)[1]()
                     }
                 };
                 try {
@@ -95,9 +69,8 @@
             },
             onresize: function() {
                 if (cur.height_el && cur.Rpc) {
-                    var e = getSize(cur.height_el),
-                        t = n(e, 2)[1];
-                    cur.Rpc.callMethod("resize", t)
+                    var [, e] = getSize(cur.height_el);
+                    cur.Rpc.callMethod("resize", e)
                 }
             },
             override: function(e, t) {

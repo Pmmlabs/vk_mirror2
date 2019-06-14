@@ -1,1283 +1,314 @@
-﻿! function(t) {
-    function e(e) {
-        for (var n, s, a = e[0], l = e[1], u = e[2], c = 0, d = []; c < a.length; c++) s = a[c], r[s] && d.push(r[s][0]), r[s] = 0;
-        for (n in l) Object.prototype.hasOwnProperty.call(l, n) && (t[n] = l[n]);
-        for (h && h(e); d.length;) d.shift()();
-        return o.push.apply(o, u || []), i()
+﻿! function(e) {
+    function t(t) {
+        for (var s, l, n = t[0], o = t[1], h = t[2], u = 0, c = []; u < n.length; u++) l = n[u], a[l] && c.push(a[l][0]), a[l] = 0;
+        for (s in o) Object.prototype.hasOwnProperty.call(o, s) && (e[s] = o[s]);
+        for (d && d(t); c.length;) c.shift()();
+        return r.push.apply(r, h || []), i()
     }
 
     function i() {
-        for (var t, e = 0; e < o.length; e++) {
-            for (var i = o[e], n = !0, a = 1; a < i.length; a++) {
-                var l = i[a];
-                0 !== r[l] && (n = !1)
+        for (var e, t = 0; t < r.length; t++) {
+            for (var i = r[t], s = !0, n = 1; n < i.length; n++) {
+                var o = i[n];
+                0 !== a[o] && (s = !1)
             }
-            n && (o.splice(e--, 1), t = s(s.s = i[0]))
+            s && (r.splice(t--, 1), e = l(l.s = i[0]))
         }
-        return t
+        return e
     }
-    var n = {},
-        r = {
+    var s = {},
+        a = {
             "web/videoplayer": 0
         },
-        o = [];
+        r = [];
 
-    function s(e) {
-        if (n[e]) return n[e].exports;
-        var i = n[e] = {
-            i: e,
+    function l(t) {
+        if (s[t]) return s[t].exports;
+        var i = s[t] = {
+            i: t,
             l: !1,
             exports: {}
         };
-        return t[e].call(i.exports, i, i.exports, s), i.l = !0, i.exports
+        return e[t].call(i.exports, i, i.exports, l), i.l = !0, i.exports
     }
-    s.m = t, s.c = n, s.d = function(t, e, i) {
-        s.o(t, e) || Object.defineProperty(t, e, {
+    l.m = e, l.c = s, l.d = function(e, t, i) {
+        l.o(e, t) || Object.defineProperty(e, t, {
             enumerable: !0,
             get: i
         })
-    }, s.r = function(t) {
-        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+    }, l.r = function(e) {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
-        }), Object.defineProperty(t, "__esModule", {
+        }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, s.t = function(t, e) {
-        if (1 & e && (t = s(t)), 8 & e) return t;
-        if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+    }, l.t = function(e, t) {
+        if (1 & t && (e = l(e)), 8 & t) return e;
+        if (4 & t && "object" == typeof e && e && e.__esModule) return e;
         var i = Object.create(null);
-        if (s.r(i), Object.defineProperty(i, "default", {
+        if (l.r(i), Object.defineProperty(i, "default", {
                 enumerable: !0,
-                value: t
-            }), 2 & e && "string" != typeof t)
-            for (var n in t) s.d(i, n, function(e) {
-                return t[e]
-            }.bind(null, n));
+                value: e
+            }), 2 & t && "string" != typeof e)
+            for (var s in e) l.d(i, s, function(t) {
+                return e[t]
+            }.bind(null, s));
         return i
-    }, s.n = function(t) {
-        var e = t && t.__esModule ? function() {
-            return t.default
+    }, l.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default
         } : function() {
-            return t
+            return e
         };
-        return s.d(e, "a", e), e
-    }, s.o = function(t, e) {
-        return Object.prototype.hasOwnProperty.call(t, e)
-    }, s.p = "";
-    var a = window.webpackJsonp = window.webpackJsonp || [],
-        l = a.push.bind(a);
-    a.push = e, a = a.slice();
-    for (var u = 0; u < a.length; u++) e(a[u]);
-    var h = l;
-    o.push([157, "bundles/common"]), i()
+        return l.d(t, "a", t), t
+    }, l.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t)
+    }, l.p = "";
+    var n = window.webpackJsonp = window.webpackJsonp || [],
+        o = n.push.bind(n);
+    n.push = t, n = n.slice();
+    for (var h = 0; h < n.length; h++) t(n[h]);
+    var d = o;
+    r.push([158, "bundles/common"]), i()
 }({
-    "+SFK": function(t, e, i) {
-        i("AUvm"), i("wgeU"), t.exports = i("WEpk").Symbol
+    158: function(e, t, i) {
+        e.exports = i("bvfi")
     },
-    157: function(t, e, i) {
-        t.exports = i("bvfi")
-    },
-    "29s/": function(t, e, i) {
-        var n = i("5T2Y"),
-            r = n["__core-js_shared__"] || (n["__core-js_shared__"] = {});
-        t.exports = function(t) {
-            return r[t] || (r[t] = {})
-        }
-    },
-    "2GTP": function(t, e, i) {
-        var n = i("eaoh");
-        t.exports = function(t, e, i) {
-            if (n(t), void 0 === e) return t;
-            switch (i) {
-                case 1:
-                    return function(i) {
-                        return t.call(e, i)
-                    };
-                case 2:
-                    return function(i, n) {
-                        return t.call(e, i, n)
-                    };
-                case 3:
-                    return function(i, n, r) {
-                        return t.call(e, i, n, r)
-                    }
-            }
-            return function() {
-                return t.apply(e, arguments)
-            }
-        }
-    },
-    "2faE": function(t, e, i) {
-        var n = i("5K7Z"),
-            r = i("eUtF"),
-            o = i("G8Mo"),
-            s = Object.defineProperty;
-        e.f = i("jmDH") ? Object.defineProperty : function(t, e, i) {
-            if (n(t), e = o(e, !0), n(i), r) try {
-                return s(t, e, i)
-            } catch (t) {}
-            if ("get" in i || "set" in i) throw TypeError("Accessors not supported!");
-            return "value" in i && (t[e] = i.value), t
-        }
-    },
-    "5K7Z": function(t, e, i) {
-        var n = i("93I4");
-        t.exports = function(t) {
-            if (!n(t)) throw TypeError(t + " is not an object!");
-            return t
-        }
-    },
-    "5T2Y": function(t, e) {
-        var i = t.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
-        "number" == typeof __g && (__g = i)
-    },
-    "5vMV": function(t, e, i) {
-        var n = i("B+OT"),
-            r = i("NsO/"),
-            o = i("W070")(!1),
-            s = i("VVlx")("IE_PROTO");
-        t.exports = function(t, e) {
-            var i, a = r(t),
-                l = 0,
-                u = [];
-            for (i in a) i != s && n(a, i) && u.push(i);
-            for (; e.length > l;) n(a, i = e[l++]) && (~o(u, i) || u.push(i));
-            return u
-        }
-    },
-    "6/1s": function(t, e, i) {
-        var n = i("YqAc")("meta"),
-            r = i("93I4"),
-            o = i("B+OT"),
-            s = i("2faE").f,
-            a = 0,
-            l = Object.isExtensible || function() {
-                return !0
-            },
-            u = !i("KUxP")(function() {
-                return l(Object.preventExtensions({}))
-            }),
-            h = function(t) {
-                s(t, n, {
-                    value: {
-                        i: "O" + ++a,
-                        w: {}
-                    }
-                })
-            },
-            c = t.exports = {
-                KEY: n,
-                NEED: !1,
-                fastKey: function(t, e) {
-                    if (!r(t)) return "symbol" == typeof t ? t : ("string" == typeof t ? "S" : "P") + t;
-                    if (!o(t, n)) {
-                        if (!l(t)) return "F";
-                        if (!e) return "E";
-                        h(t)
-                    }
-                    return t[n].i
-                },
-                getWeak: function(t, e) {
-                    if (!o(t, n)) {
-                        if (!l(t)) return !0;
-                        if (!e) return !1;
-                        h(t)
-                    }
-                    return t[n].w
-                },
-                onFreeze: function(t) {
-                    return u && c.NEED && l(t) && !o(t, n) && h(t), t
-                }
-            }
-    },
-    "6AMp": function(t, e, i) {
-        var n = i("Ojgd"),
-            r = Math.max,
-            o = Math.min;
-        t.exports = function(t, e) {
-            return (t = n(t)) < 0 ? r(t + e, 0) : o(t, e)
-        }
-    },
-    "6tYh": function(t, e, i) {
-        var n = i("93I4"),
-            r = i("5K7Z"),
-            o = function(t, e) {
-                if (r(t), !n(e) && null !== e) throw TypeError(e + ": can't set as prototype!")
-            };
-        t.exports = {
-            set: Object.setPrototypeOf || ("__proto__" in {} ? function(t, e, n) {
-                try {
-                    (n = i("2GTP")(Function.call, i("vwuL").f(Object.prototype, "__proto__").set, 2))(t, []), e = !(t instanceof Array)
-                } catch (t) {
-                    e = !0
-                }
-                return function(t, i) {
-                    return o(t, i), e ? t.__proto__ = i : n(t, i), t
-                }
-            }({}, !1) : void 0),
-            check: o
-        }
-    },
-    "8gHz": function(t, e, i) {
-        var n = i("5K7Z"),
-            r = i("eaoh"),
-            o = i("UWiX")("species");
-        t.exports = function(t, e) {
-            var i, s = n(t).constructor;
-            return void 0 === s || void 0 == (i = n(s)[o]) ? e : r(i)
-        }
-    },
-    "93I4": function(t, e) {
-        t.exports = function(t) {
-            return "object" == typeof t ? null !== t : "function" == typeof t
-        }
-    },
-    A5Xg: function(t, e, i) {
-        var n = i("NsO/"),
-            r = i("ar/p").f,
-            o = {}.toString,
-            s = "object" == typeof window && window && Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [];
-        t.exports.f = function(t) {
-            return s && "[object Window]" == o.call(t) ? function(t) {
-                try {
-                    return r(t)
-                } catch (t) {
-                    return s.slice()
-                }
-            }(t) : r(n(t))
-        }
-    },
-    AUvm: function(t, e, i) {
+    QOPk: function(e, t, i) {
         "use strict";
-        var n = i("5T2Y"),
-            r = i("WEpk"),
-            o = i("B+OT"),
-            s = i("jmDH"),
-            a = i("Y7ZC"),
-            l = i("kTiW"),
-            u = i("6/1s").KEY,
-            h = i("KUxP"),
-            c = i("29s/"),
-            d = i("RfKB"),
-            p = i("YqAc"),
-            f = i("UWiX"),
-            y = i("XVRT"),
-            v = i("R+7+"),
-            g = i("kAMH"),
-            _ = i("5K7Z"),
-            m = i("NsO/"),
-            b = i("G8Mo"),
-            w = i("rr1i"),
-            S = i("oVml"),
-            k = i("A5Xg"),
-            L = i("vwuL"),
-            T = i("2faE"),
-            E = L.f,
-            C = T.f,
-            P = k.f,
-            A = n.Symbol,
-            x = n.JSON,
-            V = x && x.stringify,
-            I = !1,
-            M = f("_hidden"),
-            R = f("toPrimitive"),
-            O = {}.propertyIsEnumerable,
-            D = c("symbol-registry"),
-            B = c("symbols"),
-            F = Object.prototype,
-            N = "function" == typeof A,
-            j = n.QObject,
-            H = s && h(function() {
-                return 7 != S(C({}, "a", {
-                    get: function() {
-                        return C(this, "a", {
-                            value: 7
-                        }).a
-                    }
-                })).a
-            }) ? function(t, e, i) {
-                var n = E(F, e);
-                n && delete F[e], C(t, e, i), n && t !== F && C(F, e, n)
-            } : C,
-            U = function(t) {
-                var e = B[t] = S(A.prototype);
-                return e._k = t, s && I && H(F, t, {
-                    configurable: !0,
-                    set: function(e) {
-                        o(this, M) && o(this[M], t) && (this[M][t] = !1), H(this, t, w(1, e))
-                    }
-                }), e
-            },
-            z = N && "symbol" == typeof A.iterator ? function(t) {
-                return "symbol" == typeof t
-            } : function(t) {
-                return t instanceof A
-            },
-            Q = function(t, e, i) {
-                return _(t), e = b(e, !0), _(i), o(B, e) ? (i.enumerable ? (o(t, M) && t[M][e] && (t[M][e] = !1), i = S(i, {
-                    enumerable: w(0, !1)
-                })) : (o(t, M) || C(t, M, w(1, {})), t[M][e] = !0), H(t, e, i)) : C(t, e, i)
-            },
-            W = function(t, e) {
-                _(t);
-                for (var i, n = v(e = m(e)), r = 0, o = n.length; o > r;) Q(t, i = n[r++], e[i]);
-                return t
-            },
-            q = function(t) {
-                var e = O.call(this, t = b(t, !0));
-                return !(e || !o(this, t) || !o(B, t) || o(this, M) && this[M][t]) || e
-            },
-            G = function(t, e) {
-                var i = E(t = m(t), e = b(e, !0));
-                return !i || !o(B, e) || o(t, M) && t[M][e] || (i.enumerable = !0), i
-            },
-            Y = function(t) {
-                for (var e, i = P(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) || e == M || e == u || n.push(e);
-                return n
-            },
-            K = function(t) {
-                for (var e, i = P(m(t)), n = [], r = 0; i.length > r;) o(B, e = i[r++]) && n.push(B[e]);
-                return n
-            },
-            X = h(function() {
-                var t = A();
-                return "[null]" != V([t]) || "{}" != V({
-                    a: t
-                }) || "{}" != V(Object(t))
-            });
-        N || (l((A = function() {
-            if (this instanceof A) throw TypeError("Symbol is not a constructor!");
-            return U(p(arguments.length > 0 ? arguments[0] : void 0))
-        }).prototype, "toString", function() {
-            return this._k
-        }), L.f = G, T.f = Q, i("ar/p").f = k.f = Y, i("NV0k").f = q, i("mqlF").f = K, s && !i("uOPS") && l(F, "propertyIsEnumerable", q, !0)), a(a.G + a.W + a.F * !N, {
-            Symbol: A
+        i.d(t, "a", function() {
+            return s
         });
-        for (var J = "hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","), Z = 0; J.length > Z;) {
-            var $ = J[Z++],
-                tt = r.Symbol,
-                et = f($);
-            $ in tt || C(tt, $, {
-                value: N ? et : U(et)
-            })
-        }
-        j && j.prototype && j.prototype.findChild || (I = !0), a(a.S + a.F * !N, "Symbol", {
-            for: function(t) {
-                return o(D, t += "") ? D[t] : D[t] = A(t)
-            },
-            keyFor: function(t) {
-                if (z(t)) return y(D, t);
-                throw TypeError(t + " is not a symbol!")
-            },
-            useSetter: function() {
-                I = !0
-            },
-            useSimple: function() {
-                I = !1
-            }
-        }), a(a.S + a.F * !N, "Object", {
-            create: function(t, e) {
-                return void 0 === e ? S(t) : W(S(t), e)
-            },
-            defineProperty: Q,
-            defineProperties: W,
-            getOwnPropertyDescriptor: G,
-            getOwnPropertyNames: Y,
-            getOwnPropertySymbols: K
-        }), x && a(a.S + a.F * (!N || X), "JSON", {
-            stringify: function(t) {
-                if (void 0 !== t && !z(t)) {
-                    for (var e, i, n = [t], r = 1; arguments.length > r;) n.push(arguments[r++]);
-                    return "function" == typeof(e = n[1]) && (i = e), !i && g(e) || (e = function(t, e) {
-                        if (i && (e = i.call(this, t, e)), !z(e)) return e
-                    }), n[1] = e, V.apply(x, n)
-                }
-            }
-        }), A.prototype[R] || i("NegM")(A.prototype, R, A.prototype.valueOf), d(A, "Symbol"), d(Math, "Math", !0), d(n.JSON, "JSON", !0)
-    },
-    "B+OT": function(t, e) {
-        var i = {}.hasOwnProperty;
-        t.exports = function(t, e) {
-            return i.call(t, e)
-        }
-    },
-    EXMj: function(t, e) {
-        t.exports = function(t, e, i, n) {
-            if (!(t instanceof e) || void 0 !== n && n in t) throw TypeError(i + ": incorrect invocation!");
-            return t
-        }
-    },
-    FlQf: function(t, e, i) {
-        "use strict";
-        var n = i("ccE7")(!0);
-        i("MPFp")(String, "String", function(t) {
-            this._t = String(t), this._i = 0
-        }, function() {
-            var t, e = this._t,
-                i = this._i;
-            return i >= e.length ? {
-                value: void 0,
-                done: !0
-            } : (t = n(e, i), this._i += t.length, {
-                value: t,
-                done: !1
-            })
-        })
-    },
-    FpHa: function(t, e) {
-        t.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
-    },
-    G8Mo: function(t, e, i) {
-        var n = i("93I4");
-        t.exports = function(t, e) {
-            if (!n(t)) return t;
-            var i, r;
-            if (e && "function" == typeof(i = t.toString) && !n(r = i.call(t))) return r;
-            if ("function" == typeof(i = t.valueOf) && !n(r = i.call(t))) return r;
-            if (!e && "function" == typeof(i = t.toString) && !n(r = i.call(t))) return r;
-            throw TypeError("Can't convert object to primitive value")
-        }
-    },
-    Hsns: function(t, e, i) {
-        var n = i("93I4"),
-            r = i("5T2Y").document,
-            o = n(r) && n(r.createElement);
-        t.exports = function(t) {
-            return o ? r.createElement(t) : {}
-        }
-    },
-    JB68: function(t, e, i) {
-        var n = i("Jes0");
-        t.exports = function(t) {
-            return Object(n(t))
-        }
-    },
-    "JMW+": function(t, e, i) {
-        "use strict";
-        var n, r, o, s = i("uOPS"),
-            a = i("5T2Y"),
-            l = i("2GTP"),
-            u = i("QMMT"),
-            h = i("Y7ZC"),
-            c = i("93I4"),
-            d = (i("5K7Z"), i("eaoh")),
-            p = i("EXMj"),
-            f = i("oioR"),
-            y = (i("6tYh").set, i("8gHz")),
-            v = i("QXhf").set,
-            g = i("q6LJ"),
-            _ = a.TypeError,
-            m = a.process,
-            b = a.Promise,
-            w = "process" == u(m = a.process),
-            S = function() {},
-            k = !! function() {
-                try {
-                    var t = b.resolve(1),
-                        e = (t.constructor = {})[i("UWiX")("species")] = function(t) {
-                            t(S, S)
-                        };
-                    return (w || "function" == typeof PromiseRejectionEvent) && t.then(S) instanceof e
-                } catch (t) {}
-            }(),
-            L = function(t, e) {
-                return t === e || t === b && e === o
-            },
-            T = function(t) {
-                var e;
-                return !(!c(t) || "function" != typeof(e = t.then)) && e
-            },
-            E = function(t) {
-                return L(b, t) ? new C(t) : new r(t)
-            },
-            C = r = function(t) {
-                var e, i;
-                this.promise = new t(function(t, n) {
-                    if (void 0 !== e || void 0 !== i) throw _("Bad Promise constructor");
-                    e = t, i = n
-                }), this.resolve = d(e), this.reject = d(i)
-            },
-            P = function(t) {
-                try {
-                    t()
-                } catch (t) {
-                    return {
-                        error: t
-                    }
-                }
-            },
-            A = function(t, e) {
-                if (!t._n) {
-                    t._n = !0;
-                    var i = t._c;
-                    g(function() {
-                        for (var n = t._v, r = 1 == t._s, o = 0, s = function(e) {
-                                var i, o, s = r ? e.ok : e.fail,
-                                    a = e.resolve,
-                                    l = e.reject,
-                                    u = e.domain;
-                                try {
-                                    s ? (r || (2 == t._h && I(t), t._h = 1), !0 === s ? i = n : (u && u.enter(), i = s(n), u && u.exit()), i === e.promise ? l(_("Promise-chain cycle")) : (o = T(i)) ? o.call(i, a, l) : a(i)) : l(n)
-                                } catch (t) {
-                                    l(t)
-                                }
-                            }; i.length > o;) s(i[o++]);
-                        t._c = [], t._n = !1, e && !t._h && x(t)
-                    })
-                }
-            },
-            x = function(t) {
-                v.call(a, function() {
-                    var e, i, n, r = t._v;
-                    if (V(t) && (e = P(function() {
-                            w ? m.emit("unhandledRejection", r, t) : (i = a.onunhandledrejection) ? i({
-                                promise: t,
-                                reason: r
-                            }) : (n = a.console) && n.error && n.error("Unhandled promise rejection", r)
-                        }), t._h = w || V(t) ? 2 : 1), t._a = void 0, e) throw e.error
-                })
-            },
-            V = function(t) {
-                if (1 == t._h) return !1;
-                for (var e, i = t._a || t._c, n = 0; i.length > n;)
-                    if ((e = i[n++]).fail || !V(e.promise)) return !1;
-                return !0
-            },
-            I = function(t) {
-                v.call(a, function() {
-                    var e;
-                    w ? m.emit("rejectionHandled", t) : (e = a.onrejectionhandled) && e({
-                        promise: t,
-                        reason: t._v
-                    })
-                })
-            },
-            M = function(t) {
-                var e = this;
-                e._d || (e._d = !0, (e = e._w || e)._v = t, e._s = 2, e._a || (e._a = e._c.slice()), A(e, !0))
-            },
-            R = function(t) {
-                var e, i = this;
-                if (!i._d) {
-                    i._d = !0, i = i._w || i;
-                    try {
-                        if (i === t) throw _("Promise can't be resolved itself");
-                        (e = T(t)) ? g(function() {
-                            var n = {
-                                _w: i,
-                                _d: !1
-                            };
-                            try {
-                                e.call(t, l(R, n, 1), l(M, n, 1))
-                            } catch (t) {
-                                M.call(n, t)
-                            }
-                        }): (i._v = t, i._s = 1, A(i, !1))
-                    } catch (t) {
-                        M.call({
-                            _w: i,
-                            _d: !1
-                        }, t)
-                    }
-                }
-            };
-        k || (b = function(t) {
-            p(this, b, "Promise", "_h"), d(t), n.call(this);
-            try {
-                t(l(R, this, 1), l(M, this, 1))
-            } catch (t) {
-                M.call(this, t)
-            }
-        }, (n = function(t) {
-            this._c = [], this._a = void 0, this._s = 0, this._d = !1, this._v = void 0, this._h = 0, this._n = !1
-        }).prototype = i("XJU/")(b.prototype, {
-            then: function(t, e) {
-                var i = E(y(this, b));
-                return i.ok = "function" != typeof t || t, i.fail = "function" == typeof e && e, i.domain = w ? m.domain : void 0, this._c.push(i), this._a && this._a.push(i), this._s && A(this, !1), i.promise
-            },
-            catch: function(t) {
-                return this.then(void 0, t)
-            }
-        }), C = function() {
-            var t = new n;
-            this.promise = t, this.resolve = l(R, t, 1), this.reject = l(M, t, 1)
-        }), h(h.G + h.W + h.F * !k, {
-            Promise: b
-        }), i("RfKB")(b, "Promise"), i("TJWN")("Promise"), o = i("WEpk").Promise, h(h.S + h.F * !k, "Promise", {
-            reject: function(t) {
-                var e = E(this);
-                return (0, e.reject)(t), e.promise
-            }
-        }), h(h.S + h.F * (s || !k), "Promise", {
-            resolve: function(t) {
-                if (t instanceof b && L(t.constructor, this)) return t;
-                var e = E(this);
-                return (0, e.resolve)(t), e.promise
-            }
-        }), h(h.S + h.F * !(k && i("TuGD")(function(t) {
-            b.all(t).catch(S)
-        })), "Promise", {
-            all: function(t) {
-                var e = this,
-                    i = E(e),
-                    n = i.resolve,
-                    r = i.reject,
-                    o = P(function() {
-                        var i = [],
-                            o = 0,
-                            s = 1;
-                        f(t, !1, function(t) {
-                            var a = o++,
-                                l = !1;
-                            i.push(void 0), s++, e.resolve(t).then(function(t) {
-                                l || (l = !0, i[a] = t, --s || n(i))
-                            }, r)
-                        }), --s || n(i)
-                    });
-                return o && r(o.error), i.promise
-            },
-            race: function(t) {
-                var e = this,
-                    i = E(e),
-                    n = i.reject,
-                    r = P(function() {
-                        f(t, !1, function(t) {
-                            e.resolve(t).then(i.resolve, n)
-                        })
-                    });
-                return r && n(r.error), i.promise
-            }
-        })
-    },
-    Jes0: function(t, e) {
-        t.exports = function(t) {
-            if (void 0 == t) throw TypeError("Can't call method on  " + t);
-            return t
-        }
-    },
-    KUxP: function(t, e) {
-        t.exports = function(t) {
-            try {
-                return !!t()
-            } catch (t) {
-                return !0
-            }
-        }
-    },
-    M1xp: function(t, e, i) {
-        var n = i("a0xu");
-        t.exports = Object("z").propertyIsEnumerable(0) ? Object : function(t) {
-            return "String" == n(t) ? t.split("") : Object(t)
-        }
-    },
-    MCSJ: function(t, e) {
-        t.exports = function(t, e, i) {
-            var n = void 0 === i;
-            switch (e.length) {
-                case 0:
-                    return n ? t() : t.call(i);
-                case 1:
-                    return n ? t(e[0]) : t.call(i, e[0]);
-                case 2:
-                    return n ? t(e[0], e[1]) : t.call(i, e[0], e[1]);
-                case 3:
-                    return n ? t(e[0], e[1], e[2]) : t.call(i, e[0], e[1], e[2]);
-                case 4:
-                    return n ? t(e[0], e[1], e[2], e[3]) : t.call(i, e[0], e[1], e[2], e[3])
-            }
-            return t.apply(i, e)
-        }
-    },
-    MPFp: function(t, e, i) {
-        "use strict";
-        var n = i("uOPS"),
-            r = i("Y7ZC"),
-            o = i("kTiW"),
-            s = i("NegM"),
-            a = i("B+OT"),
-            l = i("SBuE"),
-            u = i("j2DC"),
-            h = i("RfKB"),
-            c = i("U+KD"),
-            d = i("UWiX")("iterator"),
-            p = !([].keys && "next" in [].keys()),
-            f = function() {
-                return this
-            };
-        t.exports = function(t, e, i, y, v, g, _) {
-            u(i, e, y);
-            var m, b, w, S = function(t) {
-                    if (!p && t in E) return E[t];
-                    switch (t) {
-                        case "keys":
-                        case "values":
-                            return function() {
-                                return new i(this, t)
-                            }
-                    }
-                    return function() {
-                        return new i(this, t)
-                    }
-                },
-                k = e + " Iterator",
-                L = "values" == v,
-                T = !1,
-                E = t.prototype,
-                C = E[d] || E["@@iterator"] || v && E[v],
-                P = C || S(v),
-                A = v ? L ? S("entries") : P : void 0,
-                x = "Array" == e && E.entries || C;
-            if (x && (w = c(x.call(new t))) !== Object.prototype && (h(w, k, !0), n || a(w, d) || s(w, d, f)), L && C && "values" !== C.name && (T = !0, P = function() {
-                    return C.call(this)
-                }), n && !_ || !p && !T && E[d] || s(E, d, P), l[e] = P, l[k] = f, v)
-                if (m = {
-                        values: L ? P : S("values"),
-                        keys: g ? P : S("keys"),
-                        entries: A
-                    }, _)
-                    for (b in m) b in E || o(E, b, m[b]);
-                else r(r.P + r.F * (p || T), e, m);
-            return m
-        }
-    },
-    MvwC: function(t, e, i) {
-        t.exports = i("5T2Y").document && document.documentElement
-    },
-    NV0k: function(t, e) {
-        e.f = {}.propertyIsEnumerable
-    },
-    NegM: function(t, e, i) {
-        var n = i("2faE"),
-            r = i("rr1i");
-        t.exports = i("jmDH") ? function(t, e, i) {
-            return n.f(t, e, r(1, i))
-        } : function(t, e, i) {
-            return t[e] = i, t
-        }
-    },
-    "NsO/": function(t, e, i) {
-        var n = i("M1xp"),
-            r = i("Jes0");
-        t.exports = function(t) {
-            return n(r(t))
-        }
-    },
-    NwJ3: function(t, e, i) {
-        var n = i("SBuE"),
-            r = i("UWiX")("iterator"),
-            o = Array.prototype;
-        t.exports = function(t) {
-            return void 0 !== t && (n.Array === t || o[r] === t)
-        }
-    },
-    Ojgd: function(t, e) {
-        var i = Math.ceil,
-            n = Math.floor;
-        t.exports = function(t) {
-            return isNaN(t = +t) ? 0 : (t > 0 ? n : i)(t)
-        }
-    },
-    QMMT: function(t, e, i) {
-        var n = i("a0xu"),
-            r = i("UWiX")("toStringTag"),
-            o = "Arguments" == n(function() {
-                return arguments
-            }());
-        t.exports = function(t) {
-            var e, i, s;
-            return void 0 === t ? "Undefined" : null === t ? "Null" : "string" == typeof(i = function(t, e) {
-                try {
-                    return t[e]
-                } catch (t) {}
-            }(e = Object(t), r)) ? i : o ? n(e) : "Object" == (s = n(e)) && "function" == typeof e.callee ? "Arguments" : s
-        }
-    },
-    QOPk: function(t, e, i) {
-        "use strict";
-        i.d(e, "a", function() {
-            return n
-        });
-        var n = function() {
-            var t = function() {
-                    for (var t = void 0, e = void 0, i = [
+        var s = function() {
+            var e = function() {
+                    for (var e, t, i = [
                             ["requestFullscreen", "exitFullscreen", "fullscreenElement", "fullscreenEnabled", "fullscreenchange", "fullscreenerror"],
                             ["webkitRequestFullscreen", "webkitExitFullscreen", "webkitFullscreenElement", "webkitFullscreenEnabled", "webkitfullscreenchange", "webkitfullscreenerror"],
                             ["mozRequestFullScreen", "mozCancelFullScreen", "mozFullScreenElement", "mozFullScreenEnabled", "mozfullscreenchange", "mozfullscreenerror"],
                             ["msRequestFullscreen", "msExitFullscreen", "msFullscreenElement", "msFullscreenEnabled", "MSFullscreenChange", "MSFullscreenError"]
-                        ], n = 0, r = i.length, o = {}; n < r; n++)
-                        if ((t = i[n]) && t[1] in document) {
-                            for (n = 0, e = t.length; n < e; n++) o[i[0][n]] = t[n];
-                            return o
+                        ], s = 0, a = i.length, r = {}; s < a; s++)
+                        if ((e = i[s]) && e[1] in document) {
+                            for (s = 0, t = e.length; s < t; s++) r[i[0][s]] = e[s];
+                            return r
                         }
                     return !1
                 }(),
-                e = {
-                    request: function(e) {
-                        var i = t.requestFullscreen;
-                        (e = e || document.documentElement)[i]()
+                t = {
+                    request: function(t) {
+                        var i = e.requestFullscreen;
+                        (t = t || document.documentElement)[i]()
                     },
                     exit: function() {
-                        document[t.exitFullscreen]()
+                        document[e.exitFullscreen]()
                     },
-                    toggle: function(t) {
-                        this.isFullscreen ? this.exit() : this.request(t)
+                    toggle: function(e) {
+                        this.isFullscreen ? this.exit() : this.request(e)
                     },
-                    raw: t
+                    raw: e
                 };
-            return !!t && (Object.defineProperties(e, {
+            return !!e && (Object.defineProperties(t, {
                 isFullscreen: {
                     get: function() {
-                        return Boolean(document[t.fullscreenElement])
+                        return Boolean(document[e.fullscreenElement])
                     }
                 },
                 element: {
                     enumerable: !0,
                     get: function() {
-                        return document[t.fullscreenElement]
+                        return document[e.fullscreenElement]
                     }
                 },
                 enabled: {
                     enumerable: !0,
                     get: function() {
-                        return Boolean(document[t.fullscreenEnabled])
+                        return Boolean(document[e.fullscreenEnabled])
                     }
                 }
-            }), e)
+            }), t)
         }()
     },
-    QXhf: function(t, e, i) {
-        var n, r, o, s = i("2GTP"),
-            a = i("MCSJ"),
-            l = i("MvwC"),
-            u = i("Hsns"),
-            h = i("5T2Y"),
-            c = h.process,
-            d = h.setImmediate,
-            p = h.clearImmediate,
-            f = h.MessageChannel,
-            y = 0,
-            v = {},
-            g = function() {
-                var t = +this;
-                if (v.hasOwnProperty(t)) {
-                    var e = v[t];
-                    delete v[t], e()
-                }
-            },
-            _ = function(t) {
-                g.call(t.data)
-            };
-        d && p || (d = function(t) {
-            for (var e = [], i = 1; arguments.length > i;) e.push(arguments[i++]);
-            return v[++y] = function() {
-                a("function" == typeof t ? t : Function(t), e)
-            }, n(y), y
-        }, p = function(t) {
-            delete v[t]
-        }, "process" == i("a0xu")(c) ? n = function(t) {
-            c.nextTick(s(g, t, 1))
-        } : f ? (o = (r = new f).port2, r.port1.onmessage = _, n = s(o.postMessage, o, 1)) : h.addEventListener && "function" == typeof postMessage && !h.importScripts ? (n = function(t) {
-            h.postMessage(t + "", "*")
-        }, h.addEventListener("message", _, !1)) : n = "onreadystatechange" in u("script") ? function(t) {
-            l.appendChild(u("script")).onreadystatechange = function() {
-                l.removeChild(this), g.call(t)
-            }
-        } : function(t) {
-            setTimeout(s(g, t, 1), 0)
-        }), t.exports = {
-            set: d,
-            clear: p
-        }
-    },
-    "R+7+": function(t, e, i) {
-        var n = i("w6GO"),
-            r = i("mqlF"),
-            o = i("NV0k");
-        t.exports = function(t) {
-            var e = n(t),
-                i = r.f;
-            if (i)
-                for (var s, a = i(t), l = o.f, u = 0; a.length > u;) l.call(t, s = a[u++]) && e.push(s);
-            return e
-        }
-    },
-    RfKB: function(t, e, i) {
-        var n = i("2faE").f,
-            r = i("B+OT"),
-            o = i("UWiX")("toStringTag");
-        t.exports = function(t, e, i) {
-            t && !r(t = i ? t : t.prototype, o) && n(t, o, {
-                configurable: !0,
-                value: e
-            })
-        }
-    },
-    SBuE: function(t, e) {
-        t.exports = {}
-    },
-    TJWN: function(t, e, i) {
+    bvfi: function(e, t, i) {
         "use strict";
-        var n = i("5T2Y"),
-            r = i("WEpk"),
-            o = i("2faE"),
-            s = i("jmDH"),
-            a = i("UWiX")("species");
-        t.exports = function(t) {
-            var e = "function" == typeof r[t] ? r[t] : n[t];
-            s && e && !e[a] && o.f(e, a, {
-                configurable: !0,
-                get: function() {
-                    return this
-                }
-            })
-        }
-    },
-    TuGD: function(t, e, i) {
-        var n = i("UWiX")("iterator"),
-            r = !1;
-        try {
-            var o = [7][n]();
-            o.return = function() {
-                r = !0
-            }, Array.from(o, function() {
-                throw 2
-            })
-        } catch (t) {}
-        t.exports = function(t, e) {
-            if (!e && !r) return !1;
-            var i = !1;
-            try {
-                var o = [7],
-                    s = o[n]();
-                s.next = function() {
-                    i = !0
-                }, o[n] = function() {
-                    return s
-                }, t(o)
-            } catch (t) {}
-            return i
-        }
-    },
-    "U+KD": function(t, e, i) {
-        var n = i("B+OT"),
-            r = i("JB68"),
-            o = i("VVlx")("IE_PROTO"),
-            s = Object.prototype;
-        t.exports = Object.getPrototypeOf || function(t) {
-            return t = r(t), n(t, o) ? t[o] : "function" == typeof t.constructor && t instanceof t.constructor ? t.constructor.prototype : t instanceof Object ? s : null
-        }
-    },
-    UO39: function(t, e) {
-        t.exports = function(t, e) {
-            return {
-                value: e,
-                done: !!t
-            }
-        }
-    },
-    UWiX: function(t, e, i) {
-        var n = i("29s/")("wks"),
-            r = i("YqAc"),
-            o = i("5T2Y").Symbol,
-            s = "function" == typeof o;
-        t.exports = function(t) {
-            return n[t] || (n[t] = s && o[t] || (s ? o : r)("Symbol." + t))
-        }
-    },
-    VVlx: function(t, e, i) {
-        var n = i("29s/")("keys"),
-            r = i("YqAc");
-        t.exports = function(t) {
-            return n[t] || (n[t] = r(t))
-        }
-    },
-    W070: function(t, e, i) {
-        var n = i("NsO/"),
-            r = i("tEej"),
-            o = i("6AMp");
-        t.exports = function(t) {
-            return function(e, i, s) {
-                var a, l = n(e),
-                    u = r(l.length),
-                    h = o(s, u);
-                if (t && i != i) {
-                    for (; u > h;)
-                        if ((a = l[h++]) != a) return !0
-                } else
-                    for (; u > h; h++)
-                        if ((t || h in l) && l[h] === i) return t || h;
-                return !t && -1
-            }
-        }
-    },
-    WEpk: function(t, e) {
-        var i = t.exports = {
-            version: "2.2.1"
-        };
-        "number" == typeof __e && (__e = i)
-    },
-    "XJU/": function(t, e, i) {
-        var n = i("NegM");
-        t.exports = function(t, e, i) {
-            for (var r in e) i && t[r] ? t[r] = e[r] : n(t, r, e[r]);
-            return t
-        }
-    },
-    XVRT: function(t, e, i) {
-        var n = i("w6GO"),
-            r = i("NsO/");
-        t.exports = function(t, e) {
-            for (var i, o = r(t), s = n(o), a = s.length, l = 0; a > l;)
-                if (o[i = s[l++]] === e) return i
-        }
-    },
-    Y7ZC: function(t, e, i) {
-        var n = i("5T2Y"),
-            r = i("WEpk"),
-            o = i("2GTP"),
-            s = i("NegM"),
-            a = function(t, e, i) {
-                var l, u, h, c = t & a.F,
-                    d = t & a.G,
-                    p = t & a.S,
-                    f = t & a.P,
-                    y = t & a.B,
-                    v = t & a.W,
-                    g = d ? r : r[e] || (r[e] = {}),
-                    _ = g.prototype,
-                    m = d ? n : p ? n[e] : (n[e] || {}).prototype;
-                for (l in d && (i = e), i)(u = !c && m && void 0 !== m[l]) && l in g || (h = u ? m[l] : i[l], g[l] = d && "function" != typeof m[l] ? i[l] : y && u ? o(h, n) : v && m[l] == h ? function(t) {
-                    var e = function(e, i, n) {
-                        if (this instanceof t) {
-                            switch (arguments.length) {
-                                case 0:
-                                    return new t;
-                                case 1:
-                                    return new t(e);
-                                case 2:
-                                    return new t(e, i)
-                            }
-                            return new t(e, i, n)
-                        }
-                        return t.apply(this, arguments)
-                    };
-                    return e.prototype = t.prototype, e
-                }(h) : f && "function" == typeof h ? o(Function.call, h) : h, f && ((g.virtual || (g.virtual = {}))[l] = h, t & a.R && _ && !_[l] && s(_, l, h)))
-            };
-        a.F = 1, a.G = 2, a.S = 4, a.P = 8, a.B = 16, a.W = 32, a.U = 64, a.R = 128, t.exports = a
-    },
-    YqAc: function(t, e) {
-        var i = 0,
-            n = Math.random();
-        t.exports = function(t) {
-            return "Symbol(".concat(void 0 === t ? "" : t, ")_", (++i + n).toString(36))
-        }
-    },
-    a0xu: function(t, e) {
-        var i = {}.toString;
-        t.exports = function(t) {
-            return i.call(t).slice(8, -1)
-        }
-    },
-    aW7e: function(t, e, i) {
-        i("wgeU"), i("FlQf"), i("bBy9"), i("JMW+"), t.exports = i("WEpk").Promise
-    },
-    "ar/p": function(t, e, i) {
-        var n = i("5vMV"),
-            r = i("FpHa").concat("length", "prototype");
-        e.f = Object.getOwnPropertyNames || function(t) {
-            return n(t, r)
-        }
-    },
-    bBy9: function(t, e, i) {
-        i("w2d+");
-        for (var n = i("5T2Y"), r = i("NegM"), o = i("SBuE"), s = i("UWiX")("toStringTag"), a = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], l = 0; l < 5; l++) {
-            var u = a[l],
-                h = n[u],
-                c = h && h.prototype;
-            c && !c[s] && r(c, s, u), o[u] = o.Array
-        }
-    },
-    bvfi: function(t, e, i) {
-        "use strict";
-        i.r(e);
-        var n = {};
-        i.r(n), i.d(n, "_INIT_VIDEO", function() {
+        i.r(t);
+        var s = {};
+        i.r(s), i.d(s, "_INIT_VIDEO", function() {
             return l
-        }), i.d(n, "_DEINIT_VIDEO", function() {
-            return u
-        }), i.d(n, "_RESIZE", function() {
+        }), i.d(s, "_DEINIT_VIDEO", function() {
+            return n
+        }), i.d(s, "_RESIZE", function() {
+            return o
+        }), i.d(s, "_DESTROY", function() {
             return h
-        }), i.d(n, "_DESTROY", function() {
-            return c
-        }), i.d(n, "STATE_CHANGE", function() {
+        }), i.d(s, "STATE_CHANGE", function() {
             return d
-        }), i.d(n, "QUALITIES_LIST_CHANGE", function() {
+        }), i.d(s, "QUALITIES_LIST_CHANGE", function() {
+            return u
+        }), i.d(s, "SUBTITLES_LIST_CHANGED", function() {
+            return c
+        }), i.d(s, "QUALITY_CHANGE", function() {
             return p
-        }), i.d(n, "SUBTITLES_LIST_CHANGED", function() {
-            return f
-        }), i.d(n, "QUALITY_CHANGE", function() {
-            return y
-        }), i.d(n, "SUBTITLE_TRACK_CHANGED", function() {
-            return v
-        }), i.d(n, "SUBTITLE_CUE_CHANGE", function() {
+        }), i.d(s, "SUBTITLE_TRACK_CHANGED", function() {
             return g
-        }), i.d(n, "FULLSCREEN_CHANGE", function() {
+        }), i.d(s, "SUBTITLE_CUE_CHANGE", function() {
+            return v
+        }), i.d(s, "FULLSCREEN_CHANGE", function() {
             return _
-        }), i.d(n, "SEEK", function() {
+        }), i.d(s, "SEEK", function() {
             return m
-        }), i.d(n, "EXPANDED", function() {
+        }), i.d(s, "EXPANDED", function() {
+            return y
+        }), i.d(s, "NEXT_TIMER_RESET", function() {
             return b
-        }), i.d(n, "NEXT_TIMER_RESET", function() {
-            return w
-        }), i.d(n, "NEXT_TIMER_START", function() {
+        }), i.d(s, "NEXT_TIMER_START", function() {
+            return f
+        }), i.d(s, "VIDEO_LIKE", function() {
             return S
-        }), i.d(n, "VIDEO_LIKE", function() {
-            return k
-        }), i.d(n, "VIDEO_SHARE", function() {
+        }), i.d(s, "VIDEO_SHARE", function() {
             return L
-        }), i.d(n, "VIDEO_ADD", function() {
-            return T
-        }), i.d(n, "VIDEO_BOOKMARK", function() {
-            return E
-        }), i.d(n, "SUBSCRIBED", function() {
+        }), i.d(s, "VIDEO_ADD", function() {
+            return k
+        }), i.d(s, "VIDEO_BOOKMARK", function() {
+            return w
+        }), i.d(s, "SUBSCRIBED", function() {
             return C
-        }), i.d(n, "LIVE_PHASE_CHANGE", function() {
-            return P
-        }), i.d(n, "LIVE_DONATION", function() {
+        }), i.d(s, "LIVE_PHASE_CHANGE", function() {
+            return T
+        }), i.d(s, "LIVE_DONATION", function() {
+            return E
+        }), i.d(s, "MEDIA_TIMEUPDATE", function() {
             return A
-        }), i.d(n, "MEDIA_TIMEUPDATE", function() {
-            return x
-        }), i.d(n, "MEDIA_PROGRESS", function() {
+        }), i.d(s, "MEDIA_PROGRESS", function() {
+            return P
+        }), i.d(s, "MEDIA_VOLUMECHANGE", function() {
             return V
-        }), i.d(n, "MEDIA_VOLUMECHANGE", function() {
+        }), i.d(s, "MEDIA_DURATIONCHANGE", function() {
+            return x
+        }), i.d(s, "MEDIA_WAITING", function() {
             return I
-        }), i.d(n, "MEDIA_DURATIONCHANGE", function() {
-            return M
-        }), i.d(n, "MEDIA_WAITING", function() {
-            return R
-        }), i.d(n, "MEDIA_PLAYING", function() {
-            return O
-        }), i.d(n, "MEDIA_PAUSE", function() {
+        }), i.d(s, "MEDIA_PLAYING", function() {
             return D
-        }), i.d(n, "MEDIA_ENDED", function() {
+        }), i.d(s, "MEDIA_PAUSE", function() {
+            return M
+        }), i.d(s, "MEDIA_ENDED", function() {
+            return R
+        }), i.d(s, "MEDIA_ERROR", function() {
             return B
-        }), i.d(n, "MEDIA_ERROR", function() {
+        }), i.d(s, "MEDIA_SEEKING", function() {
             return F
-        }), i.d(n, "MEDIA_SEEKING", function() {
+        }), i.d(s, "MEDIA_SEEKED", function() {
             return N
-        }), i.d(n, "MEDIA_SEEKED", function() {
-            return j
-        }), i.d(n, "MEDIA_PROVIDER_CHANGE", function() {
+        }), i.d(s, "MEDIA_PROVIDER_CHANGE", function() {
             return H
-        }), i.d(n, "MEDIA_LIVE_WARNING", function() {
+        }), i.d(s, "MEDIA_LIVE_WARNING", function() {
+            return O
+        }), i.d(s, "MEDIA_HLS_LEVEL_LOADED", function() {
             return U
-        }), i.d(n, "MEDIA_HLS_LEVEL_LOADED", function() {
-            return z
-        }), i.d(n, "MEDIA_HLS_FRAG_LOADED", function() {
-            return Q
-        }), i.d(n, "UI_SEEKSTART", function() {
-            return W
-        }), i.d(n, "UI_SEEKEND", function() {
-            return q
-        }), i.d(n, "UI_CONTROLS_HIDE", function() {
-            return G
-        }), i.d(n, "UI_CONTROLS_SHOW", function() {
-            return Y
-        }), i.d(n, "UI_STICKERS_PROMO_EVENT", function() {
-            return K
-        }), i.d(n, "UI_SUBTITLES_ENABLED_FROM_BTN", function() {
-            return X
-        }), i.d(n, "UI_ACTION_BUTTON_CLICKED", function() {
-            return J
-        }), i.d(n, "UI_ACTION_BUTTON_SHOWN", function() {
-            return Z
-        }), i.d(n, "ADS_WAITING", function() {
+        }), i.d(s, "MEDIA_HLS_FRAG_LOADED", function() {
             return $
-        }), i.d(n, "ADS_TIME_REMAINED", function() {
-            return tt
-        }), i.d(n, "ADS_LINEAR_STARTED", function() {
-            return et
-        }), i.d(n, "ADS_LINEAR_COMPLETED", function() {
-            return it
-        }), i.d(n, "ADS_OVERLAY_STARTED", function() {
-            return nt
-        }), i.d(n, "ADS_OVERLAY_COMPLETED", function() {
-            return rt
+        }), i.d(s, "UI_SEEKSTART", function() {
+            return z
+        }), i.d(s, "UI_SEEKEND", function() {
+            return Q
+        }), i.d(s, "UI_CONTROLS_HIDE", function() {
+            return q
+        }), i.d(s, "UI_CONTROLS_SHOW", function() {
+            return W
+        }), i.d(s, "UI_STICKERS_PROMO_EVENT", function() {
+            return G
+        }), i.d(s, "UI_SUBTITLES_ENABLED_FROM_BTN", function() {
+            return Y
+        }), i.d(s, "UI_ACTION_BUTTON_CLICKED", function() {
+            return K
+        }), i.d(s, "UI_ACTION_BUTTON_SHOWN", function() {
+            return j
+        }), i.d(s, "ADS_WAITING", function() {
+            return X
+        }), i.d(s, "ADS_TIME_REMAINED", function() {
+            return J
+        }), i.d(s, "ADS_LINEAR_STARTED", function() {
+            return Z
+        }), i.d(s, "ADS_LINEAR_COMPLETED", function() {
+            return ee
+        }), i.d(s, "ADS_OVERLAY_STARTED", function() {
+            return te
+        }), i.d(s, "ADS_OVERLAY_COMPLETED", function() {
+            return ie
         });
-        var r = {};
-        i.r(r), i.d(r, "WAITING", function() {
-            return ot
-        }), i.d(r, "STARTED", function() {
-            return st
-        }), i.d(r, "ENDED", function() {
-            return at
-        }), i.d(r, "FAILED", function() {
-            return lt
-        }), i.d(r, "UPCOMING", function() {
-            return ut
+        var a = {};
+        i.r(a), i.d(a, "WAITING", function() {
+            return ae
+        }), i.d(a, "STARTED", function() {
+            return le
+        }), i.d(a, "ENDED", function() {
+            return ne
+        }), i.d(a, "FAILED", function() {
+            return oe
+        }), i.d(a, "UPCOMING", function() {
+            return he
         });
-        i("ls82");
-        var o = i("aW7e"),
-            s = i("+SFK"),
-            a = i("qOki"),
+        i("pIFo"), i("KKXr"), i("a1Th"), i("Btvt");
+        var r = i("qOki"),
             l = "_initVideo",
-            u = "_deinitVideo",
-            h = "_resize",
-            c = "_destroy",
+            n = "_deinitVideo",
+            o = "_resize",
+            h = "_destroy",
             d = "stateChange",
-            p = "qualitiesListChange",
-            f = "subtitlesListChanged",
-            y = "qualityChange",
-            v = "subtitleTrackChanged",
-            g = "subtitleCueChange",
+            u = "qualitiesListChange",
+            c = "subtitlesListChanged",
+            p = "qualityChange",
+            g = "subtitleTrackChanged",
+            v = "subtitleCueChange",
             _ = "fullscreenChange",
             m = "seek",
-            b = "expanded",
-            w = "nextTimerReset",
-            S = "nextTimerStart",
-            k = "videoLike",
+            y = "expanded",
+            b = "nextTimerReset",
+            f = "nextTimerStart",
+            S = "videoLike",
             L = "videoShare",
-            T = "videoAdd",
-            E = "videoBookmark",
+            k = "videoAdd",
+            w = "videoBookmark",
             C = "subscribed",
-            P = "livePhaseChange",
-            A = "liveDonation",
-            x = "media.timeupdate",
-            V = "media.progress",
-            I = "media.volumechange",
-            M = "media.durationchange",
-            R = "media.waiting",
-            O = "media.playing",
-            D = "media.pause",
-            B = "media.ended",
-            F = "media.error",
-            N = "media.seeking",
-            j = "media.seeked",
+            T = "livePhaseChange",
+            E = "liveDonation",
+            A = "media.timeupdate",
+            P = "media.progress",
+            V = "media.volumechange",
+            x = "media.durationchange",
+            I = "media.waiting",
+            D = "media.playing",
+            M = "media.pause",
+            R = "media.ended",
+            B = "media.error",
+            F = "media.seeking",
+            N = "media.seeked",
             H = "media.providerChange",
-            U = "media.liveWarning",
-            z = "media.hlsLevelLoaded",
-            Q = "media.hlsFragLoaded",
-            W = "ui.seekstart",
-            q = "ui.seekend",
-            G = "ui.controlsHide",
-            Y = "ui.controlsShow",
-            K = "ui.stickersPromoEvent",
-            X = "ui.subtitlesEnabledFromBtn",
-            J = "ui.actionButtonClicked",
-            Z = "ui.actionButtonShown",
-            $ = "ads.waiting",
-            tt = "ads.timeRemained",
-            et = "ads.linearStarted",
-            it = "ads.linearCompleted",
-            nt = "ads.overlayStarted",
-            rt = "ads.overlayCompleted",
-            ot = 1,
-            st = 2,
-            at = 3,
-            lt = 4,
-            ut = 5,
-            ht = [{
+            O = "media.liveWarning",
+            U = "media.hlsLevelLoaded",
+            $ = "media.hlsFragLoaded",
+            z = "ui.seekstart",
+            Q = "ui.seekend",
+            q = "ui.controlsHide",
+            W = "ui.controlsShow",
+            G = "ui.stickersPromoEvent",
+            Y = "ui.subtitlesEnabledFromBtn",
+            K = "ui.actionButtonClicked",
+            j = "ui.actionButtonShown",
+            X = "ads.waiting",
+            J = "ads.timeRemained",
+            Z = "ads.linearStarted",
+            ee = "ads.linearCompleted",
+            te = "ads.overlayStarted",
+            ie = "ads.overlayCompleted",
+            ae = 1,
+            le = 2,
+            ne = 3,
+            oe = 4,
+            he = 5,
+            de = -1,
+            ue = 480,
+            pe = 480,
+            ve = 720,
+            _e = [{
                 width: 320,
                 height: 240
             }, {
@@ -1300,1468 +331,1280 @@
                 height: 2160
             }];
 
-        function ct(t, e) {
-            var i = !0,
-                n = !1,
-                r = void 0;
-            try {
-                for (var o, s = ht[Symbol.iterator](); !(i = (o = s.next()).done); i = !0) {
-                    var a = o.value;
-                    if (t <= a.width && e <= a.height) return a.height
-                }
-            } catch (t) {
-                n = !0, r = t
-            } finally {
-                try {
-                    !i && s.return && s.return()
-                } finally {
-                    if (n) throw r
-                }
-            }
-            return e
+        function me(e, t) {
+            for (var i of _e)
+                if (e <= i.width && t <= i.height) return i.height;
+            return t
         }
 
-        function dt(t) {
-            var e = ht[t];
-            return e ? e.height : 0
+        function ye(e) {
+            var t = _e[e];
+            return t ? t.height : 0
         }
-        var pt = function(t) {
-                arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                var e = new XMLHttpRequest,
-                    i = new Promise(function(i, n) {
-                        e.onload = function() {
-                            i({
-                                response: e.responseText,
-                                details: e
-                            })
-                        }, e.onerror = function() {
-                            n(new Error("Request failed"))
-                        }, e.onabort = function() {
-                            n(new Error("Request aborted"))
-                        }, e.open("GET", t), e.send()
-                    });
-                i.catch(function(t) {});
-                return {
-                    promise: i,
-                    abort: function() {
-                        e.abort()
-                    }
+        i("rGqo"), i("Vd3H"), i("Oyvg");
+        var be = function(e, t = {}) {
+            var i = new XMLHttpRequest,
+                s = new Promise((t, s) => {
+                    i.onload = (() => {
+                        t({
+                            response: i.responseText,
+                            details: i
+                        })
+                    }), i.onerror = (() => {
+                        s(new Error("Request failed"))
+                    }), i.onabort = (() => {
+                        s(new Error("Request aborted"))
+                    }), i.open("GET", e), i.send()
+                });
+            s.catch(e => {});
+            return {
+                promise: s,
+                abort: () => {
+                    i.abort()
                 }
-            },
-            ft = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
-                    }
-                }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
-        var yt = function() {
-            function t(e) {
-                var i = this;
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, t), this._componentPlayerListeners = [], this._componentDomListeners = [], this._componentTimeouts = [], this._componentRequests = [], this.player = e, this.playerListen(l, function() {
-                    i.initVideo && i.initVideo.apply(i, arguments)
-                }), this.playerListen(u, function() {
-                    i.deinitVideo && i.deinitVideo()
-                }), this.playerListen(h, function() {
-                    i.resize && i.resize.apply(i, arguments)
-                }), this.playerListen(c, this.destroy)
             }
-            return t.prototype.domListen = function(t, e, i) {
-                var n = this,
-                    r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {},
-                    o = r.useCapture,
-                    s = r.context,
-                    a = r.once;
-                if (t && e && i && !(vt(this._componentDomListeners, t, e, i, o) > -1)) {
-                    isString(t) && (t = domByClass(this.el, t));
-                    var l = a ? function(r) {
-                        return n.domUnlisten(t, e, i, {
-                            useCapture: o
-                        }), i.call(s || n, r)
-                    } : i.bind(s || this);
-                    t.addEventListener(e, l, o), this._componentDomListeners.push({
-                        elem: t,
-                        type: e,
+        };
+        class fe {
+            constructor(e) {
+                this._componentPlayerListeners = [], this._componentDomListeners = [], this._componentTimeouts = [], this._componentRequests = [], this.player = e, this.playerListen(l, (...e) => {
+                    this.initVideo && this.initVideo(...e)
+                }), this.playerListen(n, () => {
+                    this.deinitVideo && this.deinitVideo()
+                }), this.playerListen(o, (...e) => {
+                    this.resize && this.resize(...e)
+                }), this.playerListen(h, this.destroy)
+            }
+            domListen(e, t, i, {
+                useCapture: s,
+                context: a,
+                once: r
+            } = {}) {
+                if (e && t && i && !(Se(this._componentDomListeners, e, t, i, s) > -1)) {
+                    isString(e) && (e = domByClass(this.el, e));
+                    var l = r ? r => (this.domUnlisten(e, t, i, {
+                        useCapture: s
+                    }), i.call(a || this, r)) : i.bind(a || this);
+                    e.addEventListener(t, l, s), this._componentDomListeners.push({
+                        elem: e,
+                        type: t,
                         handler: i,
-                        useCapture: o,
+                        useCapture: s,
                         realHandler: l
                     })
                 }
-            }, t.prototype.domListenOnce = function(t, e, i) {
-                var n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
-                return n.once = !0, this.domListen(t, e, i, n)
-            }, t.prototype.domUnlisten = function(t, e, i) {
-                var n = (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {}).useCapture;
-                if (i && e) {
-                    var r = vt(this._componentDomListeners, t, e, i, n);
-                    gt(this._componentDomListeners, r)
+            }
+            domListenOnce(e, t, i, s = {}) {
+                return s.once = !0, this.domListen(e, t, i, s)
+            }
+            domUnlisten(e, t, i, {
+                useCapture: s
+            } = {}) {
+                if (i && t) {
+                    var a = Se(this._componentDomListeners, e, t, i, s);
+                    Le(this._componentDomListeners, a)
                 } else
-                    for (var o = 0; this._componentDomListeners[o];) {
-                        var s = this._componentDomListeners[o];
-                        t !== s.elem || e && e !== s.type ? o++ : gt(this._componentDomListeners, o)
+                    for (var r = 0; this._componentDomListeners[r];) {
+                        var l = this._componentDomListeners[r];
+                        e !== l.elem || t && t !== l.type ? r++ : Le(this._componentDomListeners, r)
                     }
-            }, t.prototype.domUnlistenAll = function() {
-                for (var t; t = this._componentDomListeners[0];) this.domUnlisten(t.elem, t.type, t.handler, {
-                    useCapture: t.useCapture
+            }
+            domUnlistenAll() {
+                for (var e; e = this._componentDomListeners[0];) this.domUnlisten(e.elem, e.type, e.handler, {
+                    useCapture: e.useCapture
                 })
-            }, t.prototype.attachTooltip = function(t) {
-                var e = this;
-                isString(t.el) && (t.el = domByClass(this.el, t.el));
-                var i = void 0;
-                this.domListen(t.el, "mouseenter", function() {
-                    e.tooltip.isVisible() || Date.now() - e.tooltip.lastShown < 100 ? e.tooltip.show(t) : i = setTimeout(function() {
-                        return e.tooltip.show(t)
-                    }, 1e3)
-                }), this.domListen(t.el, "mouseleave", function(n) {
-                    clearTimeout(i), t.hideDelay ? e.tooltip.hideWithDelay(t.hideDelay) : e.tooltip.hide()
-                }), this.domListen(t.el, "click", function(n) {
-                    clearTimeout(i), t.hideOnClick ? e.tooltip.hide() : setTimeout(function() {
-                        return e.tooltip.show(t)
-                    }, 0)
+            }
+            get tooltip() {
+                return this.player.ui.playerTooltip
+            }
+            attachTooltip(e) {
+                var t;
+                isString(e.el) && (e.el = domByClass(this.el, e.el)), this.domListen(e.el, "mouseenter", () => {
+                    this.tooltip.isVisible() || Date.now() - this.tooltip.lastShown < 100 ? this.tooltip.show(e) : t = setTimeout(() => this.tooltip.show(e), 1e3)
+                }), this.domListen(e.el, "mouseleave", i => {
+                    clearTimeout(t), e.hideDelay ? this.tooltip.hideWithDelay(e.hideDelay) : this.tooltip.hide()
+                }), this.domListen(e.el, "click", i => {
+                    clearTimeout(t), e.hideOnClick ? this.tooltip.hide() : setTimeout(() => this.tooltip.show(e), 0)
                 })
-            }, t.prototype.playerListen = function(t, e) {
-                var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : this,
-                    n = e.bind(i);
-                this.player.on(t, n), this._componentPlayerListeners.push({
-                    type: t,
-                    handler: e,
-                    realHandler: n
+            }
+            playerListen(e, t, i = this) {
+                var s = t.bind(i);
+                this.player.on(e, s), this._componentPlayerListeners.push({
+                    type: e,
+                    handler: t,
+                    realHandler: s
                 })
-            }, t.prototype.playerUnlisten = function(t, e) {
-                var i = function(t, e, i) {
-                    var n = -1;
-                    return each(t, function(t, r) {
-                        if (r.type === e && r.handler === i) return n = t, !1
-                    }), n
-                }(this._componentPlayerListeners, t, e);
+            }
+            playerUnlisten(e, t) {
+                var i = function(e, t, i) {
+                    var s = -1;
+                    return each(e, (e, a) => {
+                        if (a.type === t && a.handler === i) return s = e, !1
+                    }), s
+                }(this._componentPlayerListeners, e, t);
                 if (!(i < 0)) {
-                    var n = this._componentPlayerListeners[i];
-                    this.player.off(t, n.realHandler), this._componentPlayerListeners.splice(i, 1)
+                    var s = this._componentPlayerListeners[i];
+                    this.player.off(e, s.realHandler), this._componentPlayerListeners.splice(i, 1)
                 }
-            }, t.prototype.playerUnlistenAll = function() {
-                for (var t; t = this._componentPlayerListeners[0];) this.playerUnlisten(t.type, t.handler)
-            }, t.prototype.getLang = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-                    i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                    n = this.player.langVars[t];
-                return n ? (i.sex && (n = langSex(i.sex, n)), e && each(e, function(t, e) {
-                    n = n.replace(new RegExp("{" + t + "}", "g"), e)
-                }), n) : ""
-            }, t.prototype.getVars = function() {
+            }
+            playerUnlistenAll() {
+                for (var e; e = this._componentPlayerListeners[0];) this.playerUnlisten(e.type, e.handler)
+            }
+            getLang(e, t = {}, i = {}) {
+                var s = this.player.langVars[e];
+                return s ? (i.sex && (s = langSex(i.sex, s)), t && each(t, (e, t) => {
+                    s = s.replace(new RegExp("{" + e + "}", "g"), t)
+                }), s) : ""
+            }
+            getVars() {
                 return this.player.vars || {}
-            }, t.prototype.getVar = function(t) {
-                return this.getVars()[t]
-            }, t.prototype.delay = function(t, e) {
-                for (var i = arguments.length, n = Array(i > 2 ? i - 2 : 0), r = 2; r < i; r++) n[r - 2] = arguments[r];
-                var o = this,
-                    s = setTimeout(function() {
-                        t.apply(o, n)
-                    }, e);
+            }
+            getVar(e) {
+                return this.getVars()[e]
+            }
+            delay(e, t, ...i) {
+                var s = setTimeout(() => {
+                    e.apply(this, i)
+                }, t);
                 return this._componentTimeouts.push(s), s
-            }, t.prototype.undelay = function(t) {
-                if (t) {
-                    clearTimeout(t);
-                    var e = this._componentTimeouts.indexOf(t);
-                    e >= 0 && this._componentTimeouts.splice(e, 1)
+            }
+            undelay(e) {
+                if (e) {
+                    clearTimeout(e);
+                    var t = this._componentTimeouts.indexOf(e);
+                    t >= 0 && this._componentTimeouts.splice(t, 1)
                 }
-            }, t.prototype.request = function(t, e) {
-                var i = this,
-                    n = !(arguments.length > 2 && void 0 !== arguments[2]) || arguments[2],
-                    r = pt(t, e);
-                if (n) {
-                    this._componentRequests.push(r);
-                    var o = function() {
-                        var t = i._componentRequests.indexOf(r);
-                        t >= 0 && i._componentRequests.splice(t, 1)
+            }
+            request(e, t, i = !0) {
+                var s = be(e, t);
+                if (i) {
+                    this._componentRequests.push(s);
+                    var a = () => {
+                        var e = this._componentRequests.indexOf(s);
+                        e >= 0 && this._componentRequests.splice(e, 1)
                     };
-                    r.promise.then(o).catch(o)
+                    s.promise.then(a).catch(a)
                 }
-                return r
-            }, t.prototype.clearComponentTimeouts = function() {
-                each(this._componentTimeouts, function(t, e) {
-                    clearTimeout(e)
+                return s
+            }
+            clearComponentTimeouts() {
+                each(this._componentTimeouts, (e, t) => {
+                    clearTimeout(t)
                 }), this._componentTimeouts = []
-            }, t.prototype.abortAllRequests = function() {
-                each(this._componentRequests, function(t, e) {
-                    e.abort()
+            }
+            abortAllRequests() {
+                each(this._componentRequests, (e, t) => {
+                    t.abort()
                 }), this._componentRequests = []
-            }, t.prototype.destroy = function() {
+            }
+            destroy() {
                 this.playerUnlistenAll(), this.domUnlistenAll(), this.clearComponentTimeouts(), this.abortAllRequests()
-            }, ft(t, [{
-                key: "tooltip",
-                get: function() {
-                    return this.player.ui.playerTooltip
-                }
-            }]), t
-        }();
-
-        function vt(t, e, i, n, r) {
-            var o = -1;
-            return each(t, function(t, s) {
-                if (s.elem === e && s.type === i && s.handler === n && s.useCapture === r) return o = t, !1
-            }), o
+            }
         }
 
-        function gt(t, e) {
-            var i = t[e];
-            i && (i.elem.removeEventListener(i.type, i.realHandler, i.useCapture), t.splice(e, 1))
+        function Se(e, t, i, s, a) {
+            var r = -1;
+            return each(e, (e, l) => {
+                if (l.elem === t && l.type === i && l.handler === s && l.useCapture === a) return r = e, !1
+            }), r
         }
-        var _t = ["play", "pause", "resume", "stop", "seek", "buf_start", "buf_stop", "heartbeat", "bitrate_change", "error"],
-            mt = function() {
-                function t(e, i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), this.player = e, this.media = i, this.gotNetworkStatus = !1, this.supported = !0, this.paused = !1, this.stopped = !0, this.eventsQueue = []
-                }
-                return t.prototype.init = function(t, e, i, n) {
-                    var r = this;
-                    this.svcid = e ? n ? "5d31" : "5d05" : i ? "5d10" : n ? "5d41" : "5d04", this.inited || (this.cid = t, this.inited = !0, this.getNetworkStatus().then(function(t) {
-                        r.onNetworkStatusReceived(t.supported)
-                    }).catch(function() {
-                        r.onNetworkStatusReceived(!1)
-                    }))
-                }, t.prototype.reset = function() {
-                    this.flushEventsQueue(), this.stopHeartbeats(), this.paused = !1, this.stopped = !0, this.bufStarted = 0
-                }, t.prototype.enable = function(t) {
-                    this.enabled = t
-                }, t.prototype.getNetworkStatus = function() {
-                    var t = function(t) {
-                        return function() {
-                            var e = t.apply(this, arguments);
-                            return new Promise(function(t, i) {
-                                return function n(r, o) {
-                                    try {
-                                        var s = e[r](o),
-                                            a = s.value
-                                    } catch (t) {
-                                        return void i(t)
-                                    }
-                                    if (!s.done) return Promise.resolve(a).then(function(t) {
-                                        n("next", t)
-                                    }, function(t) {
-                                        n("throw", t)
-                                    });
-                                    t(a)
-                                }("next")
-                            })
-                        }
-                    }(regeneratorRuntime.mark(function t() {
-                        var e, i, n;
-                        return regeneratorRuntime.wrap(function(t) {
-                            for (;;) switch (t.prev = t.next) {
-                                case 0:
-                                    return e = this.sendRequest("network_status", {
-                                        svcid: this.svcid,
-                                        cid: this.cid,
-                                        client: this.getClientData()
-                                    }), t.next = 3, e.promise;
-                                case 3:
-                                    return i = t.sent, n = i.response, t.abrupt("return", JSON.parse(n));
-                                case 6:
-                                case "end":
-                                    return t.stop()
-                            }
-                        }, t, this)
-                    }));
+
+        function Le(e, t) {
+            var i = e[t];
+            i && (i.elem.removeEventListener(i.type, i.realHandler, i.useCapture), e.splice(t, 1))
+        }
+
+        function ke(e, t, i, s, a, r, l) {
+            try {
+                var n = e[r](l),
+                    o = n.value
+            } catch (e) {
+                return void i(e)
+            }
+            n.done ? t(o) : Promise.resolve(o).then(s, a)
+        }
+        var we = "stats.vk-portal.net",
+            Ce = "5d04",
+            Te = "5d05",
+            Ee = "5d10",
+            Ae = "5d31",
+            Pe = "5d41",
+            Ve = ["play", "pause", "resume", "stop", "seek", "buf_start", "buf_stop", "heartbeat", "bitrate_change", "error"],
+            xe = 100,
+            Ie = 3e4;
+        class De {
+            constructor(e, t) {
+                this.player = e, this.media = t, this.gotNetworkStatus = !1, this.supported = !0, this.paused = !1, this.stopped = !0, this.eventsQueue = []
+            }
+            init(e, t, i, s) {
+                this.svcid = t ? s ? Ae : Te : i ? Ee : s ? Pe : Ce, this.inited || (this.cid = e, this.inited = !0, this.getNetworkStatus().then(e => {
+                    this.onNetworkStatusReceived(e.supported)
+                }).catch(() => {
+                    this.onNetworkStatusReceived(!1)
+                }))
+            }
+            reset() {
+                this.flushEventsQueue(), this.stopHeartbeats(), this.paused = !1, this.stopped = !0, this.bufStarted = 0
+            }
+            enable(e) {
+                this.enabled = e
+            }
+            getNetworkStatus() {
+                var e = this;
+                return function(e) {
                     return function() {
-                        return t.apply(this, arguments)
-                    }
-                }(), t.prototype.onNetworkStatusReceived = function(t) {
-                    this.supported = t, this.gotNetworkStatus = !0, t ? this.flushEventsQueue() : this.clearEventsQueue()
-                }, t.prototype.triggerEvent = function(t) {
-                    if (this.supported && this.enabled && inArray(t, _t) && this.player.isInited() && (!this.stopped || "play" == t)) {
-                        "play" != t || this.stopped || (t = "resume");
-                        var e = null;
-                        switch (t) {
-                            case "play":
-                                this.wid = irand(0, 1e10), this.seq = 0, this.buf_num = 0, this.paused = !1, this.stopped = !1, this.startHeartbeats();
-                                break;
-                            case "stop":
-                                this.stopped = !0, this.bufStarted = 0, this.stopHeartbeats();
-                                break;
-                            case "pause":
-                                if (this.paused) return;
-                                this.paused = !0, this.stopHeartbeats();
-                                break;
-                            case "resume":
-                                if (!this.paused) return;
-                                this.paused = !1, this.startHeartbeats();
-                                break;
-                            case "buf_start":
-                                if (this.bufStarted) return;
-                                this.bufStarted = Date.now();
-                                break;
-                            case "buf_stop":
-                                if (!this.bufStarted) return;
-                                e = Date.now() - this.bufStarted, this.bufStarted = 0
-                        }
-                        var i = this.paramString({
-                            type: t,
-                            seq: ++this.seq,
-                            ts: Date.now(),
-                            tz: -60 * (new Date).getTimezoneOffset(),
-                            pos: this.media.curTime(),
-                            buffer: this.media.getBufferPercent(),
-                            bytes: this.media.getLoadedBytes(),
-                            bitrate: this.media.getBitrate(),
-                            buf_num: "buf_start" == t ? ++this.buf_num : "buf_stop" == t ? this.buf_num : null,
-                            buf_time: e,
-                            load_state: this.bufStarted ? "buffering" : null,
-                            err: "error" == t ? this.media.getErrorCode() : null
-                        });
-                        this.eventsQueue.push(i), this.gotNetworkStatus && (clearTimeout(this.flushTimeout), this.eventsQueue.length > 10 || "bitrate_change" == t ? this.flushEventsQueue() : this.flushTimeout = setTimeout(this.flushEventsQueue.bind(this), 100))
-                    }
-                }, t.prototype.flushEventsQueue = function() {
-                    this.gotNetworkStatus && this.supported && this.eventsQueue.length && this.sendRequest("notify", {
-                        svcid: this.svcid,
-                        cid: this.cid,
-                        wid: this.wid,
-                        client: this.getClientData(),
-                        co: this.getContentData(),
-                        ev: this.eventsQueue
-                    }), this.clearEventsQueue()
-                }, t.prototype.clearEventsQueue = function() {
-                    this.eventsQueue.length = 0
-                }, t.prototype.startHeartbeats = function() {
-                    var t = this;
-                    clearInterval(this.heartbeatInterval), this.heartbeatInterval = setInterval(function() {
-                        t.triggerEvent("heartbeat")
-                    }, 3e4)
-                }, t.prototype.stopHeartbeats = function() {
-                    clearInterval(this.heartbeatInterval)
-                }, t.prototype.sendRequest = function(t, e) {
-                    var i = "https://stats.vk-portal.net/uxzoom/1/" + t + "?" + this.queryString(e);
-                    return pt(i)
-                }, t.prototype.getClientData = function() {
-                    return this.paramString({
-                        player: "HTML5"
-                    })
-                }, t.prototype.getContentData = function() {
-                    return this.paramString({
-                        duration: this.media.getDuration() || this.player.vars.duration,
-                        quality: this.player.isAutoQualityEnabled() ? 100 : 2 + this.player.getQualityIndex(),
-                        host: this.media.getContentHost(),
-                        id: this.player.getVideoId()
-                    })
-                }, t.prototype.paramString = function(t) {
-                    var e = [];
-                    return each(t, function(t, i) {
-                        null != i && e.push(t + "=" + i)
-                    }), e.join(",")
-                }, t.prototype.queryString = function(t) {
-                    var e = [];
-                    return each(t, function(t, i) {
-                        isArray(i) || (i = [i]), each(i, function(i, n) {
-                            e.push(encodeURIComponent(t) + "=" + encodeURIComponent(n))
+                        var t = this,
+                            i = arguments;
+                        return new Promise(function(s, a) {
+                            var r = e.apply(t, i);
+
+                            function l(e) {
+                                ke(r, s, a, l, n, "next", e)
+                            }
+
+                            function n(e) {
+                                ke(r, s, a, l, n, "throw", e)
+                            }
+                            l(void 0)
                         })
-                    }), e.join("&")
-                }, t.prototype.destroy = function() {
-                    this.reset()
-                }, t
-            }(),
-            bt = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
                     }
-                }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
-        var wt = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                            return !e || "object" != typeof e && "function" != typeof e ? t : e
-                        }(this, t.call(this, i)),
-                        r = i.getVars();
-                    return n.el = n.buildEl(r), n.initListeners(), n._delaySeek = 0, n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.buildEl = function(t) {
-                    var e = ce("video", {
-                        preload: t.is_embed ? "none" : "metadata",
-                        className: "videoplayer_media_provider"
+                }(function*() {
+                    var t = e.sendRequest("network_status", {
+                            svcid: e.svcid,
+                            cid: e.cid,
+                            client: e.getClientData()
+                        }),
+                        {
+                            response: i
+                        } = yield t.promise;
+                    return JSON.parse(i)
+                })()
+            }
+            onNetworkStatusReceived(e) {
+                this.supported = e, this.gotNetworkStatus = !0, e ? this.flushEventsQueue() : this.clearEventsQueue()
+            }
+            triggerEvent(e) {
+                if (this.supported && this.enabled && inArray(e, Ve) && this.player.isInited() && (!this.stopped || "play" == e)) {
+                    "play" != e || this.stopped || (e = "resume");
+                    var t = null;
+                    switch (e) {
+                        case "play":
+                            this.wid = irand(0, 1e10), this.seq = 0, this.buf_num = 0, this.paused = !1, this.stopped = !1, this.startHeartbeats();
+                            break;
+                        case "stop":
+                            this.stopped = !0, this.bufStarted = 0, this.stopHeartbeats();
+                            break;
+                        case "pause":
+                            if (this.paused) return;
+                            this.paused = !0, this.stopHeartbeats();
+                            break;
+                        case "resume":
+                            if (!this.paused) return;
+                            this.paused = !1, this.startHeartbeats();
+                            break;
+                        case "buf_start":
+                            if (this.bufStarted) return;
+                            this.bufStarted = Date.now();
+                            break;
+                        case "buf_stop":
+                            if (!this.bufStarted) return;
+                            t = Date.now() - this.bufStarted, this.bufStarted = 0
+                    }
+                    var i = this.paramString({
+                        type: e,
+                        seq: ++this.seq,
+                        ts: Date.now(),
+                        tz: -60 * (new Date).getTimezoneOffset(),
+                        pos: this.media.curTime(),
+                        buffer: this.media.getBufferPercent(),
+                        bytes: this.media.getLoadedBytes(),
+                        bitrate: this.media.getBitrate(),
+                        buf_num: "buf_start" == e ? ++this.buf_num : "buf_stop" == e ? this.buf_num : null,
+                        buf_time: t,
+                        load_state: this.bufStarted ? "buffering" : null,
+                        err: "error" == e ? this.media.getErrorCode() : null
                     });
-                    return attr(e, "tabindex", -1), attr(e, "aria-hidden", "true"), e
-                }, e.prototype.initListeners = function() {
-                    var t = this;
-                    this.domListen(this.el, "loadedmetadata", function() {
-                        t._delaySeek && (t.currentTime = t._delaySeek, t._delaySeek = 0)
+                    this.eventsQueue.push(i), this.gotNetworkStatus && (clearTimeout(this.flushTimeout), this.eventsQueue.length > 10 || "bitrate_change" == e ? this.flushEventsQueue() : this.flushTimeout = setTimeout(this.flushEventsQueue.bind(this), xe))
+                }
+            }
+            flushEventsQueue() {
+                this.gotNetworkStatus && this.supported && this.eventsQueue.length && this.sendRequest("notify", {
+                    svcid: this.svcid,
+                    cid: this.cid,
+                    wid: this.wid,
+                    client: this.getClientData(),
+                    co: this.getContentData(),
+                    ev: this.eventsQueue
+                }), this.clearEventsQueue()
+            }
+            clearEventsQueue() {
+                this.eventsQueue.length = 0
+            }
+            startHeartbeats() {
+                clearInterval(this.heartbeatInterval), this.heartbeatInterval = setInterval(() => {
+                    this.triggerEvent("heartbeat")
+                }, Ie)
+            }
+            stopHeartbeats() {
+                clearInterval(this.heartbeatInterval)
+            }
+            sendRequest(e, t) {
+                var i = `https://${we}/uxzoom/1/${e}?` + this.queryString(t);
+                return be(i)
+            }
+            getClientData() {
+                return this.paramString({
+                    player: "HTML5"
+                })
+            }
+            getContentData() {
+                return this.paramString({
+                    duration: this.media.getDuration() || this.player.vars.duration,
+                    quality: this.player.isAutoQualityEnabled() ? 100 : 2 + this.player.getQualityIndex(),
+                    host: this.media.getContentHost(),
+                    id: this.player.getVideoId()
+                })
+            }
+            paramString(e) {
+                var t = [];
+                return each(e, (e, i) => {
+                    null != i && t.push(e + "=" + i)
+                }), t.join(",")
+            }
+            queryString(e) {
+                var t = [];
+                return each(e, (e, i) => {
+                    isArray(i) || (i = [i]), each(i, (i, s) => {
+                        t.push(encodeURIComponent(e) + "=" + encodeURIComponent(s))
                     })
-                }, e.prototype.play = function() {
-                    var t = this,
-                        e = this.el.play();
-                    e && e.catch(function(e) {
-                        e && "NotAllowedError" == e.name && t.player.pause()
-                    })
-                }, e.prototype.pause = function() {
-                    this.el.pause()
-                }, e.prototype.load = function() {
-                    return this.el.load()
-                }, e.prototype.canChangePlaybackRate = function() {
-                    return !!this.el.playbackRate
-                }, e.prototype.reset = function() {
-                    this.el.pause(), this.el.src = "", this.el.load()
-                }, e.prototype.destroy = function() {
-                    t.prototype.destroy.call(this), this.reset()
-                }, bt(e, [{
-                    key: "src",
-                    set: function(t) {
-                        this.el.src = t
-                    },
-                    get: function() {
-                        return this.el.src
-                    }
-                }, {
-                    key: "currentSrc",
-                    get: function() {
-                        return this.el.currentSrc || this.src
-                    }
-                }, {
-                    key: "error",
-                    get: function() {
-                        return this.el.error
-                    }
-                }, {
-                    key: "currentTime",
-                    set: function(t) {
-                        this.el.readyState ? this.el.currentTime = t : this._delaySeek = t
-                    },
-                    get: function() {
-                        return this.el.readyState ? this.el.currentTime : this._delaySeek
-                    }
-                }, {
-                    key: "duration",
-                    get: function() {
-                        return this.el.duration
-                    }
-                }, {
-                    key: "volume",
-                    set: function(t) {
-                        this.el.muted = !t, this.el.volume = t
-                    },
-                    get: function() {
-                        return this.el.volume
-                    }
-                }, {
-                    key: "loop",
-                    set: function(t) {
-                        this.el.loop = t
-                    },
-                    get: function() {
-                        return this.el.loop
-                    }
-                }, {
-                    key: "playbackRate",
-                    set: function(t) {
-                        this.el.playbackRate = t
-                    },
-                    get: function() {
-                        return this.el.playbackRate
-                    }
-                }, {
-                    key: "videoRatio",
-                    get: function() {
-                        if (this.el.videoWidth && this.el.videoHeight) return this.el.videoWidth / this.el.videoHeight
-                    }
-                }, {
-                    key: "readyState",
-                    get: function() {
-                        return this.el.readyState
-                    }
-                }, {
-                    key: "buffered",
-                    get: function() {
-                        return this.el.buffered
-                    }
-                }, {
-                    key: "played",
-                    get: function() {
-                        return this.el.played
-                    }
-                }]), e
-            }(yt),
-            St = {
-                set: function(t, e) {
+                }), t.join("&")
+            }
+            destroy() {
+                this.reset()
+            }
+        }
+        class Me extends fe {
+            constructor(e) {
+                super(e);
+                var t = e.getVars();
+                this.el = this.buildEl(t), this.initListeners(), this._delaySeek = 0
+            }
+            buildEl(e) {
+                var t = ce("video", {
+                    preload: e.is_embed ? "none" : "metadata",
+                    className: "videoplayer_media_provider"
+                });
+                return attr(t, "tabindex", -1), attr(t, "aria-hidden", "true"), t
+            }
+            initListeners() {
+                this.domListen(this.el, "loadedmetadata", () => {
+                    this._delaySeek && (this.currentTime = this._delaySeek, this._delaySeek = 0)
+                })
+            }
+            play() {
+                var e = this.el.play();
+                e && e.catch(e => {
+                    e && "NotAllowedError" == e.name && this.player.pause()
+                })
+            }
+            pause() {
+                this.el.pause()
+            }
+            set src(e) {
+                this.el.src = e
+            }
+            get src() {
+                return this.el.src
+            }
+            get currentSrc() {
+                return this.el.currentSrc || this.src
+            }
+            get error() {
+                return this.el.error
+            }
+            load() {
+                return this.el.load()
+            }
+            set currentTime(e) {
+                this.el.readyState ? this.el.currentTime = e : this._delaySeek = e
+            }
+            get currentTime() {
+                return this.el.readyState ? this.el.currentTime : this._delaySeek
+            }
+            get duration() {
+                return this.el.duration
+            }
+            set volume(e) {
+                this.el.muted = !e, this.el.volume = e
+            }
+            get volume() {
+                return this.el.volume
+            }
+            set loop(e) {
+                this.el.loop = e
+            }
+            get loop() {
+                return this.el.loop
+            }
+            canChangePlaybackRate() {
+                return !!this.el.playbackRate
+            }
+            set playbackRate(e) {
+                this.el.playbackRate = e
+            }
+            get playbackRate() {
+                return this.el.playbackRate
+            }
+            get videoRatio() {
+                if (this.el.videoWidth && this.el.videoHeight) return this.el.videoWidth / this.el.videoHeight
+            }
+            get readyState() {
+                return this.el.readyState
+            }
+            get buffered() {
+                return this.el.buffered
+            }
+            get played() {
+                return this.el.played
+            }
+            reset() {
+                this.el.pause(), this.el.src = "", this.el.load()
+            }
+            destroy() {
+                super.destroy(), this.reset()
+            }
+        }
+        var Re = {
+                set(e, t) {
                     try {
-                        localStorage.setItem(t, JSON.stringify(e))
-                    } catch (t) {}
+                        localStorage.setItem(e, JSON.stringify(t))
+                    } catch (e) {}
                 },
-                get: function(t) {
+                get(e) {
                     try {
-                        return JSON.parse(localStorage.getItem(t))
-                    } catch (t) {
+                        return JSON.parse(localStorage.getItem(e))
+                    } catch (e) {
                         return null
                     }
                 },
-                getByPrefix: function(t) {
-                    for (var e = {}, i = localStorage.length, n = 0; n < i; n++) {
-                        var r = localStorage.key(n);
-                        0 === r.indexOf(t) && (e[r] = this.get(r))
+                getByPrefix(e) {
+                    for (var t = {}, i = localStorage.length, s = 0; s < i; s++) {
+                        var a = localStorage.key(s);
+                        0 === a.indexOf(e) && (t[a] = this.get(a))
                     }
-                    return e
+                    return t
                 },
-                remove: function(t) {
+                remove(e) {
                     try {
-                        localStorage.removeItem(t)
-                    } catch (t) {}
+                        localStorage.removeItem(e)
+                    } catch (e) {}
                 },
-                savePref: function(t, e) {
-                    for (var i = this.getPref("*"), n = i, r = t.split(".");;) {
-                        var o = r.shift();
-                        if (!r.length) {
-                            n[o] = e;
+                savePref(e, t) {
+                    for (var i = this.getPref("*"), s = i, a = e.split(".");;) {
+                        var r = a.shift();
+                        if (!a.length) {
+                            s[r] = t;
                             break
                         }
-                        null == n[o] && (n[o] = {}), n = n[o]
+                        null == s[r] && (s[r] = {}), s = s[r]
                     }
                     this.set("videoplayer_prefs", i)
                 },
-                deletePref: function(t) {
-                    this.savePref(t, void 0)
+                deletePref(e) {
+                    this.savePref(e, void 0)
                 },
-                getPref: function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "*",
-                        e = this.get("videoplayer_prefs") || {};
-                    if ("*" === t) return e;
-                    for (var i = e, n = t.split(".");;) {
-                        if (i = i[n.shift()], !n.length || !i) break
+                getPref(e = "*") {
+                    var t = this.get("videoplayer_prefs") || {};
+                    if ("*" === e) return t;
+                    for (var i = t, s = e.split(".");;) {
+                        if (i = i[s.shift()], !s.length || !i) break
                     }
                     return i
                 }
             },
-            kt = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
-                    }
-                }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
-
-        function Lt(t) {
-            if (Array.isArray(t)) {
-                for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                return i
+            Be = 5e3,
+            Fe = 5,
+            Ne = 1,
+            He = 2,
+            Oe = 6e3,
+            Ue = 3e3;
+        class $e extends Me {
+            constructor(e) {
+                super(e), this._fragLoadedBytes = this._fragLoadingBytes = 0, this._fragsTracksFlags = [], this._fragLoopErrorCount = 0, this._curFragSeqNum = 0, this._errors = [], this._duration = 0, this.initHls(), this.initHlsLoadStat(), this.initFragLoadingStuckHandler(), this.initTracksChangeHandler()
             }
-            return Array.from(t)
-        }
-        var Tt = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n._fragLoadedBytes = n._fragLoadingBytes = 0, n._fragsTracksFlags = [], n._fragLoopErrorCount = 0, n._curFragSeqNum = 0, n._errors = [], n._duration = 0, n.initHls(), n.initHlsLoadStat(), n.initFragLoadingStuckHandler(), n.initTracksChangeHandler(), n
-            }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initListeners = function() {
+            initListeners() {
                 this.domListen(this.el, "error", this.onVideoError), this.domListen(this.el, "loadedmetadata", this.onDurationChange.bind(this, "meta")), this.domListen(this.el, "durationchange", this.onDurationChange.bind(this, "change"))
-            }, e.prototype.initHls = function() {
-                var t = {
+            }
+            initHls() {
+                var e = {
                     autoStartLoad: !1,
                     capLevelToPlayerSize: !0,
                     debug: !!window.nav.objLoc.video_debug
                 };
-                this.getVar("hls_candy_server") && window.Candy ? this.hls = new window.Candy.hlsjsWrapper(Hls, t, {
+                this.getVar("hls_candy_server") && window.Candy ? this.hls = new window.Candy.hlsjsWrapper(Hls, e, {
                     server: this.getVar("hls_candy_server"),
                     videoId: this.player.getVideoId()
-                }) : this.hls = new Hls(t), this.hls.attachMedia(this.el), this.hls.on(Hls.Events.MANIFEST_LOADED, this.onManifestLoaded.bind(this)), this.hls.on(Hls.Events.LEVEL_SWITCHED, this.onLevelSwitch.bind(this)), this.hls.on(Hls.Events.ERROR, this.onHlsError.bind(this)), this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, this.onSubtitleTracksUpdated.bind(this)), this.hls.on(Hls.Events.SUBTITLE_TRACK_SWITCH, this.onSubtitleTrackSwitch.bind(this))
-            }, e.prototype.initHlsLoadStat = function() {
-                var t = this;
-                this.hls.on(Hls.Events.LEVEL_LOADED, function(e, i) {
-                    var n = Math.round(i.stats.tload - i.stats.trequest) / 1e3,
-                        r = t.hls.levels[i.level],
-                        o = ct(r.width, r.height),
-                        s = i.details.url.split("?")[0];
-                    t.player.trigger(z, {
-                        time: n,
-                        quality: o,
-                        url: s
+                }) : this.hls = new Hls(e), this.hls.attachMedia(this.el), this.hls.on(Hls.Events.MANIFEST_LOADED, this.onManifestLoaded.bind(this)), this.hls.on(Hls.Events.LEVEL_SWITCHED, this.onLevelSwitch.bind(this)), this.hls.on(Hls.Events.ERROR, this.onHlsError.bind(this)), this.hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, this.onSubtitleTracksUpdated.bind(this)), this.hls.on(Hls.Events.SUBTITLE_TRACK_SWITCH, this.onSubtitleTrackSwitch.bind(this))
+            }
+            initHlsLoadStat() {
+                this.hls.on(Hls.Events.LEVEL_LOADED, (e, t) => {
+                    var i = Math.round(t.stats.tload - t.stats.trequest) / 1e3,
+                        s = this.hls.levels[t.level],
+                        a = me(s.width, s.height),
+                        r = t.details.url.split("?")[0];
+                    this.player.trigger(U, {
+                        time: i,
+                        quality: a,
+                        url: r
                     })
-                }), this.hls.on(Hls.Events.FRAG_LOADED, function(e, i) {
-                    if ("main" === i.frag.type) {
-                        var n = Math.round(i.stats.tload - i.stats.trequest) / 1e3,
-                            r = t.hls.levels[i.frag.level],
-                            o = ct(r.width, r.height),
-                            s = (i.networkDetails.responseURL || i.frag._url).split("?")[0];
-                        t.player.trigger(Q, {
-                            time: n,
-                            quality: o,
-                            url: s
+                }), this.hls.on(Hls.Events.FRAG_LOADED, (e, t) => {
+                    if ("main" === t.frag.type) {
+                        var i = Math.round(t.stats.tload - t.stats.trequest) / 1e3,
+                            s = this.hls.levels[t.frag.level],
+                            a = me(s.width, s.height),
+                            r = (t.networkDetails.responseURL || t.frag._url).split("?")[0];
+                        this.player.trigger($, {
+                            time: i,
+                            quality: a,
+                            url: r
                         })
                     }
                 })
-            }, e.prototype.initFragLoadingStuckHandler = function() {
-                var t = this;
-                this.hls.on(Hls.Events.FRAG_LOAD_PROGRESS, function(e, i) {
-                    "main" === i.frag.type && (t._fragLoadingBytes = i.frag.loaded, t.undelayRecoverNetwork(), t._ignoreFragLoadStuck || t.delayRecoverNetwork(5e3))
-                }), this.hls.on(Hls.Events.FRAG_LOADED, function(e, i) {
-                    "main" === i.frag.type && (t._fragLoadedBytes += i.frag.loaded, t._fragLoadingBytes = 0, t.undelayRecoverNetwork())
+            }
+            initFragLoadingStuckHandler() {
+                this.hls.on(Hls.Events.FRAG_LOAD_PROGRESS, (e, t) => {
+                    "main" === t.frag.type && (this._fragLoadingBytes = t.frag.loaded, this.undelayRecoverNetwork(), this._ignoreFragLoadStuck || this.delayRecoverNetwork(Be))
+                }), this.hls.on(Hls.Events.FRAG_LOADED, (e, t) => {
+                    "main" === t.frag.type && (this._fragLoadedBytes += t.frag.loaded, this._fragLoadingBytes = 0, this.undelayRecoverNetwork())
                 })
-            }, e.prototype.initTracksChangeHandler = function() {
-                var t = this;
-                this.hls.on(Hls.Events.FRAG_PARSING_DATA, function(e, i) {
-                    t._fragsTracksFlags[i.frag.sn] || (t._fragsTracksFlags[i.frag.sn] = 0), "video" == i.type && (t._fragsTracksFlags[i.frag.sn] |= 1), "audio" == i.type && (t._fragsTracksFlags[i.frag.sn] |= 2)
-                }), this.hls.on(Hls.Events.FRAG_CHANGED, function(e, i) {
-                    t._fragsTracksFlags[t._curFragSeqNum] && t._fragsTracksFlags[i.frag.sn] && t._fragsTracksFlags[t._curFragSeqNum] != t._fragsTracksFlags[i.frag.sn] && (t.player.debugLog("switching to fragment with different tracks", {
+            }
+            initTracksChangeHandler() {
+                this.hls.on(Hls.Events.FRAG_PARSING_DATA, (e, t) => {
+                    this._fragsTracksFlags[t.frag.sn] || (this._fragsTracksFlags[t.frag.sn] = 0), "video" == t.type && (this._fragsTracksFlags[t.frag.sn] |= Ne), "audio" == t.type && (this._fragsTracksFlags[t.frag.sn] |= He)
+                }), this.hls.on(Hls.Events.FRAG_CHANGED, (e, t) => {
+                    this._fragsTracksFlags[this._curFragSeqNum] && this._fragsTracksFlags[t.frag.sn] && this._fragsTracksFlags[this._curFragSeqNum] != this._fragsTracksFlags[t.frag.sn] && (this.player.debugLog("switching to fragment with different tracks", {
                         force: !0
-                    }), t.recoverMedia()), t._curFragSeqNum = i.frag.sn
+                    }), this.recoverMedia()), this._curFragSeqNum = t.frag.sn
                 })
-            }, e.prototype.onManifestLoaded = function(t, e) {
+            }
+            onManifestLoaded(e, t) {
                 var i = this.player.getAvailableQualities();
-                if (this.player.trigger(p, i), !this.manifestLoaded && i.length) {
+                if (this.player.trigger(u, i), !this.manifestLoaded && i.length) {
                     this.manifestLoaded = !0;
-                    var n = this.player.preferredQuality,
-                        r = St.getPref("abr_disabled") && !this.player.isFromAutoplay() || this.getVar("hd_def") >= 0;
-                    if (!r) {
-                        var o = this.player.getPreloadedQuality(),
-                            s = St.getPref("abr_quality");
-                        n = o || s || n, this.getVar("is_inline") && (n = Math.min(n, 480))
+                    var s = this.player.preferredQuality,
+                        a = Re.getPref("abr_disabled") && !this.player.isFromAutoplay() || this.getVar("hd_def") >= 0;
+                    if (!a) {
+                        var r = this.player.getPreloadedQuality(),
+                            l = Re.getPref("abr_quality");
+                        s = r || l || s, this.getVar("is_inline") && (s = Math.min(s, pe))
                     }
-                    var a = Math.max.apply(Math, Lt(i));
-                    n = Math.min(n, a);
-                    var l = this.getLevelIndexForQuality(n);
-                    this.hls.startLevel = l, r && this.setCurrentLevel(l), this.player.onQualityChanged(n), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load()
+                    var n = Math.max(...i);
+                    s = Math.min(s, n);
+                    var o = this.getLevelIndexForQuality(s);
+                    this.hls.startLevel = o, a && this.setCurrentLevel(o), this.player.onQualityChanged(s), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load()
                 }
-            }, e.prototype.onLevelSwitch = function(t, e) {
-                var i = this.hls.levels[e.level],
-                    n = ct(i.width, i.height);
-                if (this.player.onQualityChanged(n), this.hls.autoLevelEnabled && this.hls.levels.length > 1 && n) {
-                    var r = St.getPref("abr_quality");
-                    (n < Math.max.apply(Math, Lt(this.getAvailableQualities())) || n > r) && St.savePref("abr_quality", n)
+            }
+            onLevelSwitch(e, t) {
+                var i = this.hls.levels[t.level],
+                    s = me(i.width, i.height);
+                if (this.player.onQualityChanged(s), this.hls.autoLevelEnabled && this.hls.levels.length > 1 && s) {
+                    var a = Re.getPref("abr_quality");
+                    (s < Math.max(...this.getAvailableQualities()) || s > a) && Re.savePref("abr_quality", s)
                 }
-            }, e.prototype.onVideoError = function(t) {
-                var e = this.el.error;
-                e.code === e.MEDIA_ERR_DECODE && (this.recoverMedia() || this.onFatalError())
-            }, e.prototype.onHlsError = function(t, e) {
+            }
+            onVideoError(e) {
+                var t = this.el.error;
+                t.code === t.MEDIA_ERR_DECODE && (this.recoverMedia() || this.onFatalError())
+            }
+            onHlsError(e, t) {
                 var i = [Hls.ErrorDetails.BUFFER_APPENDING_ERROR],
-                    n = [Hls.ErrorDetails.BUFFER_STALLED_ERROR, Hls.ErrorDetails.BUFFER_SEEK_OVER_HOLE],
-                    r = e.fatal || inArray(e.details, i);
-                if (!r && e.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR && ++this._fragLoopErrorCount > 5 && (r = !0, this._fragLoopErrorCount = 0), inArray(e.details, n) || this.player.debugLog(["hls", e.type, e.details], {
+                    s = [Hls.ErrorDetails.BUFFER_STALLED_ERROR, Hls.ErrorDetails.BUFFER_SEEK_OVER_HOLE],
+                    a = t.fatal || inArray(t.details, i);
+                if (!a && t.details == Hls.ErrorDetails.FRAG_LOOP_LOADING_ERROR && ++this._fragLoopErrorCount > Fe && (a = !0, this._fragLoopErrorCount = 0), inArray(t.details, s) || this.player.debugLog(["hls", t.type, t.details], {
                         force: !0,
-                        type: r ? "error" : "warn"
-                    }), this._errors.push("[" + this.currentTime + "] " + e.details), e.details === Hls.ErrorDetails.FRAG_LOAD_ERROR && this.undelayRecoverNetwork(), r) {
-                    var o = !1;
-                    this.player.isActiveLive() ? (o = !0, e.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, 6e3) : e.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(6e3)) : o = this.recoverMedia(), o || this.onFatalError(e)
+                        type: a ? "error" : "warn"
+                    }), this._errors.push(`[${this.currentTime}] ${t.details}`), t.details === Hls.ErrorDetails.FRAG_LOAD_ERROR && this.undelayRecoverNetwork(), a) {
+                    var r = !1;
+                    this.player.isActiveLive() ? (r = !0, t.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, Oe) : t.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(Oe)) : r = this.recoverMedia(), r || this.onFatalError(t)
                 }
-            }, e.prototype.onFatalError = function(t) {
-                this.getVar("live") && !this.getVar("postlive_mp4") ? this.player.media.onError() : (t && ajax.post("al_video.php?act=hls_fail_stat", {
+            }
+            onFatalError(e) {
+                this.getVar("live") && !this.getVar("postlive_mp4") ? this.player.media.onError() : (e && ajax.post("al_video.php?act=hls_fail_stat", {
                     hash: this.getVar("action_hash"),
                     video: this.player.getVideoId(),
-                    error: t.details,
-                    response_code: t.response ? t.response.code : "",
-                    url: t.frag && t.frag.url || t.context && t.context.url
+                    error: e.details,
+                    response_code: e.response ? e.response.code : "",
+                    url: e.frag && e.frag.url || e.context && e.context.url
                 }, {}), this.player.debugLog("reinit without hls", {
                     force: !0
                 }), this.player.reinitWithoutHls())
-            }, e.prototype.recoverMedia = function() {
-                return !(Date.now() - intval(this._lastMediaRecoverTry) < 3e3) && (this._lastMediaRecoverTry = Date.now(), this.player.debugLog("trying to recover hls media", {
+            }
+            recoverMedia() {
+                return !(Date.now() - intval(this._lastMediaRecoverTry) < Ue) && (this._lastMediaRecoverTry = Date.now(), this.player.debugLog("trying to recover hls media", {
                     force: !0
                 }), this.player.isActiveLive() ? this.restartLive() : this.hls.recoverMediaError(), this.player.media.isPlayingMedia() && this.play(), !0)
-            }, e.prototype.recoverNetwork = function() {
-                return !(Date.now() - intval(this._lastNetworkRecoverTry) < 3e3) && (this._lastNetworkRecoverTry = Date.now(), this.player.debugLog("trying to recover hls network", {
+            }
+            recoverNetwork() {
+                return !(Date.now() - intval(this._lastNetworkRecoverTry) < Ue) && (this._lastNetworkRecoverTry = Date.now(), this.player.debugLog("trying to recover hls network", {
                     force: !0
                 }), this.player.isActiveLive() ? this.restartLive() : this.hls.startLoad(), this.player.media.isPlayingMedia() && this.play(), !0)
-            }, e.prototype.delayRecoverNetwork = function() {
-                var t = this,
-                    e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
-                this.recoverNetworkTimeoutId || (this.recoverNetworkTimeoutId = this.delay(function() {
-                    delete t.recoverNetworkTimeoutId, t.recoverNetwork()
+            }
+            delayRecoverNetwork(e = 0) {
+                this.recoverNetworkTimeoutId || (this.recoverNetworkTimeoutId = this.delay(() => {
+                    delete this.recoverNetworkTimeoutId, this.recoverNetwork()
                 }, e))
-            }, e.prototype.undelayRecoverNetwork = function() {
+            }
+            undelayRecoverNetwork() {
                 this.undelay(this.recoverNetworkTimeoutId), delete this.recoverNetworkTimeoutId
-            }, e.prototype.restartLive = function() {
-                var t = this.hls.url || this._src;
-                t && (this.reset(), this.src = t)
-            }, e.prototype.setCurrentLevel = function(t) {
-                this.hls.currentLevel = t
-            }, e.prototype.filterLiveLevels = function(t) {
-                var e = void 0;
-                return each(t, function(t, i) {
-                    var n = i.url && i.url[0];
-                    if (/source/.test(n)) return e = i, !1
-                }), e && (t = t.filter(function(t) {
-                    return t.height < e.height
-                })).push(e), t
-            }, e.prototype.capLiveLevels = function() {
+            }
+            restartLive() {
+                var e = this.hls.url || this._src;
+                e && (this.reset(), this.src = e)
+            }
+            setCurrentLevel(e) {
+                this.hls.currentLevel = e
+            }
+            filterLiveLevels(e) {
+                var t;
+                return each(e, (e, i) => {
+                    var s = i.url && i.url[0];
+                    if (/source/.test(s)) return t = i, !1
+                }), t && (e = e.filter(e => e.height < t.height)).push(t), e
+            }
+            capLiveLevels() {
+                each(this.hls.levels, (e, t) => {
+                    var i = t.url && t.url[0];
+                    if (/source/.test(i)) return this.hls.autoLevelCapping = e, !1
+                })
+            }
+            forceNextLevel(e) {
                 var t = this;
-                each(this.hls.levels, function(e, i) {
-                    var n = i.url && i.url[0];
-                    if (/source/.test(n)) return t.hls.autoLevelCapping = e, !1
+                this.hls.on(Hls.Events.FRAG_LOADED, function i(s, a) {
+                    "main" === a.frag.type && (t.hls.off(Hls.Events.FRAG_LOADED, i), a.frag.autoLevel && a.frag.level == e && (t.hls.nextLoadLevel = e))
                 })
-            }, e.prototype.forceNextLevel = function(t) {
-                var e = this;
-                this.hls.on(Hls.Events.FRAG_LOADED, function i(n, r) {
-                    "main" === r.frag.type && (e.hls.off(Hls.Events.FRAG_LOADED, i), r.frag.autoLevel && r.frag.level == t && (e.hls.nextLoadLevel = t))
-                })
-            }, e.prototype.setQuality = function(t) {
-                -1 == t ? (this.setCurrentLevel(-1), St.deletePref("abr_disabled")) : (this.setCurrentLevel(this.getLevelIndexForQuality(t)), St.savePref("abr_disabled", 1))
-            }, e.prototype.getQuality = function() {
+            }
+            setQuality(e) {
+                e == de ? (this.setCurrentLevel(-1), Re.deletePref("abr_disabled")) : (this.setCurrentLevel(this.getLevelIndexForQuality(e)), Re.savePref("abr_disabled", 1))
+            }
+            getQuality() {
                 if (this.hls.levels) {
-                    var t = this.hls,
-                        e = t.levels,
-                        i = e[t.currentLevel] || e[t.loadLevel] || e[t.startLevel];
-                    if (i && i.width && i.height) return ct(i.width, i.height)
+                    var e = this.hls,
+                        t = e.levels,
+                        i = t[e.currentLevel] || t[e.loadLevel] || t[e.startLevel];
+                    if (i && i.width && i.height) return me(i.width, i.height)
                 }
                 return 0
-            }, e.prototype.getAvailableQualities = function() {
-                var t = this.hls.levels || [];
-                return this.getVar("live") && (t = this.filterLiveLevels(t)), t.length > 1 && (t = t.filter(function(t) {
-                    return t.width && t.height
-                })), t.map(function(t) {
-                    return ct(t.width, t.height)
-                })
-            }, e.prototype.isAutoQualityAvailable = function() {
+            }
+            getAvailableQualities() {
+                var e = this.hls.levels || [];
+                return this.getVar("live") && (e = this.filterLiveLevels(e)), e.length > 1 && (e = e.filter(e => e.width && e.height)), e.map(e => me(e.width, e.height))
+            }
+            isAutoQualityAvailable() {
                 return this.hls.levels && this.hls.levels.length > 1
-            }, e.prototype.isAutoQualityEnabled = function() {
+            }
+            isAutoQualityEnabled() {
                 return this.hls.autoLevelEnabled
-            }, e.prototype.getLevelIndexForQuality = function(t) {
-                var e = -1;
-                return each(this.hls.levels || [], function(i, n) {
-                    if (ct(n.width, n.height) == t) return e = i, !1
-                }), e
-            }, e.prototype.getAvailableSubtitleTracksInfo = function() {
+            }
+            getLevelIndexForQuality(e) {
+                var t = -1;
+                return each(this.hls.levels || [], (i, s) => {
+                    if (me(s.width, s.height) == e) return t = i, !1
+                }), t
+            }
+            getAvailableSubtitleTracksInfo() {
                 return this.hls.subtitleTrackController.tracks || []
-            }, e.prototype.getSubtitleTrack = function() {
+            }
+            getSubtitleTrack() {
                 return this.hls.subtitleTrack
-            }, e.prototype.switchSubtitleTrack = function(t) {
-                var e = t.trackId;
+            }
+            switchSubtitleTrack({
+                trackId: e
+            }) {
                 this.hls.subtitleTrack = e
-            }, e.prototype.onSubtitleTracksUpdated = function(t, e) {
-                var i = e.subtitleTracks;
-                this.player.trigger(f, i)
-            }, e.prototype.onSubtitleTrackSwitch = function(t, e) {
-                var i = this,
-                    n = e.id,
-                    r = this.getAvailableSubtitleTracksInfo(),
-                    o = null;
-                if (-1 !== n) {
-                    this.el.textTracks[n].mode = "hidden", this.el.textTracks[n].oncuechange = function(t) {
-                        i.player.trigger(g, t.target.activeCues)
-                    };
-                    var s = !0,
-                        a = !1,
-                        l = void 0;
-                    try {
-                        for (var u, h = r[Symbol.iterator](); !(s = (u = h.next()).done); s = !0) {
-                            var c = u.value;
-                            if (n === c.id) {
-                                o = c;
-                                break
-                            }
+            }
+            onSubtitleTracksUpdated(e, t) {
+                var i = t.subtitleTracks;
+                this.player.trigger(c, i)
+            }
+            onSubtitleTrackSwitch(e, t) {
+                var i = t.id,
+                    s = this.getAvailableSubtitleTracksInfo(),
+                    a = null;
+                if (-1 !== i)
+                    for (var r of (this.el.textTracks[i].mode = "hidden", this.el.textTracks[i].oncuechange = (e => {
+                            this.player.trigger(v, e.target.activeCues)
+                        }), s))
+                        if (i === r.id) {
+                            a = r;
+                            break
                         }
-                    } catch (t) {
-                        a = !0, l = t
-                    } finally {
-                        try {
-                            !s && h.return && h.return()
-                        } finally {
-                            if (a) throw l
-                        }
-                    }
-                }
-                this.player.trigger(v, r, o)
-            }, e.prototype.load = function() {
+                this.player.trigger(g, s, a)
+            }
+            set src(e) {
+                this._src = e, this.hls.loadSource(e)
+            }
+            load() {
                 this.startedLoading || (this.manifestLoaded ? (this.hls.startLoad(this._delaySeek || -1), this.hls.config.autoStartLoad = !0, this.startedLoading = !0) : this.needLoad = !0)
-            }, e.prototype.play = function() {
-                this.startedLoading || this.load(), t.prototype.play.call(this)
-            }, e.prototype.pauseLoad = function() {
+            }
+            play() {
+                this.startedLoading || this.load(), super.play()
+            }
+            pauseLoad() {
                 this.hls.stopLoad()
-            }, e.prototype.resumeLoad = function() {
+            }
+            resumeLoad() {
                 this.hls.startLoad(), this.hls.detachMedia(), this.hls.attachMedia(this.el)
-            }, e.prototype.reset = function() {
-                this._ignoreFragLoadStuck = !0, this.undelayRecoverNetwork(), this.hls.detachMedia(), t.prototype.reset.call(this), this.hls.attachMedia(this.el)
-            }, e.prototype.destroy = function() {
-                t.prototype.destroy.call(this), this.hls.destroy(), this.hls = null
-            }, e.prototype.getLoadedBytes = function() {
+            }
+            reset() {
+                this._ignoreFragLoadStuck = !0, this.undelayRecoverNetwork(), this.hls.detachMedia(), super.reset(), this.hls.attachMedia(this.el)
+            }
+            destroy() {
+                super.destroy(), this.hls.destroy(), this.hls = null
+            }
+            getLoadedBytes() {
                 return intval(this._fragLoadedBytes) + intval(this._fragLoadingBytes)
-            }, e.prototype.getCurLevel = function() {
+            }
+            getCurLevel() {
                 if (this.hls.levels) {
-                    var t = 0;
-                    return this.hls.levels.length > 1 && (t = this.getLevelIndexForQuality(this.player.getQuality())), this.hls.levels[t]
+                    var e = 0;
+                    return this.hls.levels.length > 1 && (e = this.getLevelIndexForQuality(this.player.getQuality())), this.hls.levels[e]
                 }
-            }, e.prototype.getBitrate = function() {
-                var t = this.getCurLevel();
-                if (t) return t.bitrate / 1e3
-            }, e.prototype.getContentUrl = function() {
-                var t = this.getCurLevel();
-                if (t) return t.url[0]
-            }, e.prototype.getErrorsLog = function() {
+            }
+            getBitrate() {
+                var e = this.getCurLevel();
+                if (e) return e.bitrate / 1e3
+            }
+            getContentUrl() {
+                var e = this.getCurLevel();
+                if (e) return e.url[0]
+            }
+            getErrorsLog() {
                 return this._errors.join(", ")
-            }, e.prototype.onDurationChange = function(t) {
-                var e = this.el.duration;
-                if (browser.safari && this._duration && "change" === t && parseInt((e - this._duration) / e * 100) > 10) return;
-                this._duration = e
-            }, kt(e, [{
-                key: "src",
-                set: function(t) {
-                    this._src = t, this.hls.loadSource(t)
-                }
-            }, {
-                key: "duration",
-                get: function() {
-                    return this._duration
-                }
-            }]), e
-        }(wt);
-
-        function Et(t, e) {
-            var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : t.length;
-            if (Array.prototype.fill) return Array.prototype.fill.call(t, e, i, n);
-            i = i < 0 ? Math.max(t.length + i, 0) : Math.min(i, t.length), n = n < 0 ? Math.max(t.length + n, 0) : Math.min(n, t.length);
-            for (var r = i; r < n; ++r) t[r] = e;
-            return t
+            }
+            onDurationChange(e) {
+                var t = this.el.duration;
+                if (browser.safari && this._duration && "change" === e && parseInt((t - this._duration) / t * 100) > 10) return;
+                this._duration = t
+            }
+            get duration() {
+                return this._duration
+            }
         }
 
-        function Ct(t, e) {
-            "textContent" in Node.prototype ? t.textContent = e : t.innerText = e
+        function ze(e, t, i = 0, s = e.length) {
+            if (Array.prototype.fill) return Array.prototype.fill.call(e, t, i, s);
+            i = i < 0 ? Math.max(e.length + i, 0) : Math.min(i, e.length), s = s < 0 ? Math.max(e.length + s, 0) : Math.min(s, e.length);
+            for (var a = i; a < s; ++a) e[a] = t;
+            return e
         }
 
-        function Pt(t) {
-            var e = ce("div");
-            if ("string" == typeof e.style[t]) return t;
-            for (var i, n = ["webkit", "moz", "ms"], r = t.charAt(0).toUpperCase() + t.slice(1), o = 0; i = n[o]; o++) {
-                var s = i + r;
-                if ("string" == typeof e.style[s]) return s
+        function Qe(e, t) {
+            "textContent" in Node.prototype ? e.textContent = t : e.innerText = t
+        }
+
+        function qe(e) {
+            var t = ce("div");
+            if ("string" == typeof t.style[e]) return e;
+            for (var i, s = ["webkit", "moz", "ms"], a = e.charAt(0).toUpperCase() + e.slice(1), r = 0; i = s[r]; r++) {
+                var l = i + a;
+                if ("string" == typeof t.style[l]) return l
             }
             return null
         }
-        var At = function(t) {
-                return function(e) {
-                    return e + t++
-                }
-            }(0),
-            xt = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
-                    }
-                }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
-        var Vt = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n._delaySrc = !1, n._delaySeek = 0, n._volume = 1, n._currentTime = 0, n._duration = 0, n._loop = !1, n._played = [], n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.buildEl = function(t) {
-                    var e = ce("div");
-                    renderFlash(e, {
-                        url: "/swf/video_lite.swf",
-                        id: At("flashprovider"),
-                        version: 11,
-                        preventhide: 1
-                    }, {
-                        bgcolor: "#000000",
-                        allowscriptaccess: "always",
-                        allowfullscreen: "true",
-                        wmode: "opaque"
-                    });
-                    var i = domFC(e);
-                    return addClass(i, "videoplayer_media_provider"), i
-                }, e.prototype.initListeners = function() {
-                    var t = this;
-                    this.domListen(this.el, "load", function() {
-                        t.delay(function() {
-                            !1 !== t._delaySrc && t._delayPlay && (t.src = t._delaySrc, t._delaySrc = !1), t._delayPlay && (t.play(), t._delayPlay = !1)
-                        }, 0)
-                    }), this.domListen(this.el, "durationchange", function() {
-                        t._duration = t.el.getDuration(), t.volume = t.volume, t.loop = t.loop, t._delaySeek && (t.currentTime = t._delaySeek, t._delaySeek = 0)
-                    }), this.domListen(this.el, "loadeddata", function() {
-                        t.volume = t.volume
-                    }), this.domListen(this.el, "timeupdate", function() {
-                        var e = t.el.getCurrentTime();
-                        t.updatePlayed(t._currentTime, e), t._currentTime = e
-                    }), this.domListen(this.el, "error", function() {
-                        t.player.debugLog("Flash error", {
-                            force: !0
-                        })
+        var We = function(e) {
+            return function(t) {
+                return t + e++
+            }
+        }(0);
+        class Ge extends Me {
+            constructor(e) {
+                super(e), this._delaySrc = !1, this._delaySeek = 0, this._volume = 1, this._currentTime = 0, this._duration = 0, this._loop = !1, this._played = []
+            }
+            buildEl(e) {
+                var t = ce("div");
+                renderFlash(t, {
+                    url: "/swf/video_lite.swf",
+                    id: We("flashprovider"),
+                    version: 11,
+                    preventhide: 1
+                }, {
+                    bgcolor: "#000000",
+                    allowscriptaccess: "always",
+                    allowfullscreen: "true",
+                    wmode: "opaque"
+                });
+                var i = domFC(t);
+                return addClass(i, "videoplayer_media_provider"), i
+            }
+            initListeners() {
+                this.domListen(this.el, "load", () => {
+                    this.delay(() => {
+                        !1 !== this._delaySrc && this._delayPlay && (this.src = this._delaySrc, this._delaySrc = !1), this._delayPlay && (this.play(), this._delayPlay = !1)
+                    }, 0)
+                }), this.domListen(this.el, "durationchange", () => {
+                    this._duration = this.el.getDuration(), this.volume = this.volume, this.loop = this.loop, this._delaySeek && (this.currentTime = this._delaySeek, this._delaySeek = 0)
+                }), this.domListen(this.el, "loadeddata", () => {
+                    this.volume = this.volume
+                }), this.domListen(this.el, "timeupdate", () => {
+                    var e = this.el.getCurrentTime();
+                    this.updatePlayed(this._currentTime, e), this._currentTime = e
+                }), this.domListen(this.el, "error", () => {
+                    this.player.debugLog("Flash error", {
+                        force: !0
                     })
-                }, e.prototype.isFlashReady = function() {
-                    return !!this.el.play
-                }, e.prototype.play = function() {
-                    this.el.play ? (!1 !== this._delaySrc && (this.src = this._delaySrc), this.el.play()) : this._delayPlay = !0
-                }, e.prototype.pause = function() {
-                    this.el.pause ? this.el.pause() : this._delayPlay = !1
-                }, e.prototype.updatePlayed = function(t, e) {
-                    if (t != e && !(Math.abs(e - t) > 1)) {
-                        if (t > e) {
-                            var i = [e, t];
-                            t = i[0], e = i[1]
-                        }
-                        for (var n = this._played, r = n.length, o = 0;; o += 2) {
-                            var s = n[o],
-                                a = n[o + 1];
-                            if (o >= r || e < s) return void n.splice(o, 0, t, e);
-                            if (t <= a) {
-                                for (var l = Math.min(n[o], t), u = Math.max(n[o + 1], e), h = 2, c = o + 2;; c += 2) {
-                                    var d = n[c],
-                                        p = n[c + 1];
-                                    if (c >= r || u < d) break;
-                                    u = Math.max(u, p), h += 2
-                                }
-                                return void n.splice(o, h, l, u)
+                })
+            }
+            isFlashReady() {
+                return !!this.el.play
+            }
+            get duration() {
+                return this._duration
+            }
+            get currentTime() {
+                return this.el.getCurrentTime ? this.el.getCurrentTime() : this._currentTime
+            }
+            set currentTime(e) {
+                this._currentTime = e, this.el.seek && this.duration ? this.el.seek(e) : this._delaySeek = e
+            }
+            get volume() {
+                return this._volume
+            }
+            set volume(e) {
+                this._volume = e, this.el.setVolume && this.el.setVolume(e)
+            }
+            set src(e) {
+                this.el.load ? (this.reset(), this.el.load(e), this.volume = this._volume) : this._delaySrc = e, this._src = e
+            }
+            get src() {
+                return this._src || ""
+            }
+            play() {
+                this.el.play ? (!1 !== this._delaySrc && (this.src = this._delaySrc), this.el.play()) : this._delayPlay = !0
+            }
+            get loop() {
+                return this._loop
+            }
+            set loop(e) {
+                this._loop = e, this.el.setLoop && this.el.setLoop(e)
+            }
+            pause() {
+                this.el.pause ? this.el.pause() : this._delayPlay = !1
+            }
+            get readyState() {
+                return this.el.getReadyState ? this.el.getReadyState() : 0
+            }
+            get networkState() {
+                return this.el.getNetworkState ? this.el.getNetworkState() : 0
+            }
+            get buffered() {
+                return {
+                    length: 1,
+                    start: () => 0,
+                    end: () => this.el.getBuffered ? this.el.getBuffered() : 0
+                }
+            }
+            get played() {
+                var e = this._played.slice();
+                return {
+                    length: e.length / 2,
+                    start: t => e[2 * t],
+                    end: t => e[2 * t + 1]
+                }
+            }
+            updatePlayed(e, t) {
+                if (e != t && !(Math.abs(t - e) > 1)) {
+                    e > t && ([e, t] = [t, e]);
+                    for (var i = this._played, s = i.length, a = 0;; a += 2) {
+                        var r = i[a],
+                            l = i[a + 1];
+                        if (a >= s || t < r) return void i.splice(a, 0, e, t);
+                        if (e <= l) {
+                            for (var n = Math.min(i[a], e), o = Math.max(i[a + 1], t), h = 2, d = a + 2;; d += 2) {
+                                var u = i[d],
+                                    c = i[d + 1];
+                                if (d >= s || o < u) break;
+                                o = Math.max(o, c), h += 2
                             }
+                            return void i.splice(a, h, n, o)
                         }
-                    }
-                }, e.prototype.load = function() {}, e.prototype.reset = function() {
-                    this.el.clear && document.body.contains(this.el) && (this.el.clear(), this.el.init()), this._currentTime = 0, this._duration = 0, this._played = []
-                }, e.prototype.recoverNetwork = function() {
-                    this.el.load && this._src && (this.el.clear(), this.el.init(), this.el.load(this._src), this.player.getState() === a.PLAYING && this.el.play())
-                }, xt(e, [{
-                    key: "duration",
-                    get: function() {
-                        return this._duration
-                    }
-                }, {
-                    key: "currentTime",
-                    get: function() {
-                        return this.el.getCurrentTime ? this.el.getCurrentTime() : this._currentTime
-                    },
-                    set: function(t) {
-                        this._currentTime = t, this.el.seek && this.duration ? this.el.seek(t) : this._delaySeek = t
-                    }
-                }, {
-                    key: "volume",
-                    get: function() {
-                        return this._volume
-                    },
-                    set: function(t) {
-                        this._volume = t, this.el.setVolume && this.el.setVolume(t)
-                    }
-                }, {
-                    key: "src",
-                    set: function(t) {
-                        this.el.load ? (this.reset(), this.el.load(t), this.volume = this._volume) : this._delaySrc = t, this._src = t
-                    },
-                    get: function() {
-                        return this._src || ""
-                    }
-                }, {
-                    key: "loop",
-                    get: function() {
-                        return this._loop
-                    },
-                    set: function(t) {
-                        this._loop = t, this.el.setLoop && this.el.setLoop(t)
-                    }
-                }, {
-                    key: "readyState",
-                    get: function() {
-                        return this.el.getReadyState ? this.el.getReadyState() : 0
-                    }
-                }, {
-                    key: "networkState",
-                    get: function() {
-                        return this.el.getNetworkState ? this.el.getNetworkState() : 0
-                    }
-                }, {
-                    key: "buffered",
-                    get: function() {
-                        var t = this;
-                        return {
-                            length: 1,
-                            start: function() {
-                                return 0
-                            },
-                            end: function() {
-                                return t.el.getBuffered ? t.el.getBuffered() : 0
-                            }
-                        }
-                    }
-                }, {
-                    key: "played",
-                    get: function() {
-                        var t = this._played.slice();
-                        return {
-                            length: t.length / 2,
-                            start: function(e) {
-                                return t[2 * e]
-                            },
-                            end: function(e) {
-                                return t[2 * e + 1]
-                            }
-                        }
-                    }
-                }]), e
-            }(wt),
-            It = function(t) {
-                var e = "string" == typeof t ? t.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/) : null;
-                return e ? (3600 * e[1] || 0) + (60 * e[2] || 0) + (+e[3] || 0) : 0
-            },
-            Mt = function(t) {
-                var e = "";
-                return t >= 3600 && (e += Math.floor(t / 3600) + "h", t %= 3600), t >= 60 && (e += Math.floor(t / 60) + "m", t %= 60), t > 0 && (e += Math.floor(t) + "s"), e
-            },
-            Rt = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
                     }
                 }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
+            }
+            load() {}
+            reset() {
+                this.el.clear && document.body.contains(this.el) && (this.el.clear(), this.el.init()), this._currentTime = 0, this._duration = 0, this._played = []
+            }
+            recoverNetwork() {
+                this.el.load && this._src && (this.el.clear(), this.el.init(), this.el.load(this._src), this.player.getState() === r.PLAYING && this.el.play())
+            }
+        }
+        i("SRfc");
+        var Ye = {
+            fromString(e) {
+                var t = "string" == typeof e ? e.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/) : null;
+                return t ? (3600 * t[1] || 0) + (60 * t[2] || 0) + (+t[3] || 0) : 0
+            },
+            toString(e) {
+                var t = "";
+                return e >= 3600 && (t += Math.floor(e / 3600) + "h", e %= 3600), e >= 60 && (t += Math.floor(e / 60) + "m", e %= 60), e > 0 && (t += Math.floor(e) + "s"), t
+            }
+        };
 
-        function Ot(t) {
+        function Ke(e, t, i, s, a, r, l) {
+            try {
+                var n = e[r](l),
+                    o = n.value
+            } catch (e) {
+                return void i(e)
+            }
+            n.done ? t(o) : Promise.resolve(o).then(s, a)
+        }
+
+        function je(e) {
             return function() {
-                var e = t.apply(this, arguments);
-                return new Promise(function(t, i) {
-                    return function n(r, o) {
-                        try {
-                            var s = e[r](o),
-                                a = s.value
-                        } catch (t) {
-                            return void i(t)
-                        }
-                        if (!s.done) return Promise.resolve(a).then(function(t) {
-                            n("next", t)
-                        }, function(t) {
-                            n("throw", t)
-                        });
-                        t(a)
-                    }("next")
+                var t = this,
+                    i = arguments;
+                return new Promise(function(s, a) {
+                    var r = e.apply(t, i);
+
+                    function l(e) {
+                        Ke(r, s, a, l, n, "next", e)
+                    }
+
+                    function n(e) {
+                        Ke(r, s, a, l, n, "throw", e)
+                    }
+                    l(void 0)
                 })
             }
         }
-        var Dt = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
+        var Xe = 3e3,
+            Je = 15e3,
+            Ze = 2e3,
+            et = 2e3;
+        class tt extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
                     className: "videoplayer_media"
-                }), n.playerListen(W, n.onUiSeekStart), n.playerListen(q, n.onUiSeekEnd), n.playerListen(R, n.onWaitingChange), n.playerListen(d, n.onStateChange), n.playerListen(y, n.onQualityChange), n.playerListen(b, n.updateAspectRatio), n.playerListen(_, n.updateAspectRatio), n._interruptionCheckerInterval = setInterval(n.checkInterruption.bind(n), 200), n.vigoStats = new mt(n.player, n), n
+                }), this.playerListen(z, this.onUiSeekStart), this.playerListen(Q, this.onUiSeekEnd), this.playerListen(I, this.onWaitingChange), this.playerListen(d, this.onStateChange), this.playerListen(p, this.onQualityChange), this.playerListen(y, this.updateAspectRatio), this.playerListen(_, this.updateAspectRatio), this._interruptionCheckerInterval = setInterval(this.checkInterruption.bind(this), 200), this.vigoStats = new De(this.player, this)
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initVideo = function(t) {
-                if (t.live !== lt) {
-                    var e = void 0;
+            initVideo(e) {
+                if (e.live !== oe) {
+                    var t;
                     switch (this.providerType()) {
                         case "hls":
-                            e = new Tt(this.player);
+                            t = new $e(this.player);
                             break;
                         case "base":
-                            e = new wt(this.player);
+                            t = new Me(this.player);
                             break;
                         case "flash":
-                            e = new Vt(this.player);
+                            t = new Ge(this.player);
                             break;
                         default:
-                            return void this.player.trigger(F, {
+                            return void this.player.trigger(B, {
                                 message: this.getLang("load_error")
                             })
                     }
-                    this.attachProvider(e);
-                    var i = this.getInitialSrc(t);
-                    i ? t.live === ut || t.live === ot || t.live === st ? this.checkLiveStarted(i) : e.src = i : this.setQuality(this.getInitialQuality(t));
-                    var n = this.getInitialTime(t);
-                    n > 0 && (e.currentTime = n, this.player.trigger(x, n)), this.setVolume(this.getInitialVolume()), this.toggleLoop(!!t.repeat), this.rotateVideo(!1, !0), this.updateAspectRatio(), this.vigoStats.init(t.vigo_cid, !!t.hls, !!t.extra, !!t.from_autoplay), this.vigoStats.enable(!t.live), this.filterSavedVideosPositions()
+                    this.attachProvider(t);
+                    var i = this.getInitialSrc(e);
+                    i ? e.live === he || e.live === ae || e.live === le ? this.checkLiveStarted(i) : t.src = i : this.setQuality(this.getInitialQuality(e));
+                    var s = this.getInitialTime(e);
+                    s > 0 && (t.currentTime = s, this.player.trigger(A, s)), this.setVolume(this.getInitialVolume()), this.toggleLoop(!!e.repeat), this.rotateVideo(!1, !0), this.updateAspectRatio(), this.vigoStats.init(e.vigo_cid, !!e.hls, !!e.extra, !!e.from_autoplay), this.vigoStats.enable(!e.live), this.filterSavedVideosPositions()
                 } else this.onLiveFailed()
-            }, e.prototype.updateAspectRatio = function() {
-                var t = this.getVar("stretch_vertical"),
-                    e = this.getVar("is_inline"),
+            }
+            updateAspectRatio() {
+                var e = this.getVar("stretch_vertical"),
+                    t = this.getVar("is_inline"),
                     i = this.getVar("aspect_ratio"),
-                    n = this.player.isFullscreen(),
+                    s = this.player.isFullscreen(),
+                    a = "",
                     r = "",
-                    o = "",
-                    s = "";
-                t && e && !n && i && i < 1 && (r = o = -(1 / i - 1) / 2 * 100 + "%", s = "auto"), setStyle(this.el, {
-                    top: r || "",
-                    bottom: o || "",
-                    height: s || ""
+                    l = "";
+                e && t && !s && i && i < 1 && (a = r = -(1 / i - 1) / 2 * 100 + "%", l = "auto"), setStyle(this.el, {
+                    top: a || "",
+                    bottom: r || "",
+                    height: l || ""
                 })
-            }, e.prototype.getInitialSrc = function(t) {
-                var e = this.providerType();
-                return t.rtmp && "flash" == e ? t.rtmp : "hls" == e ? t.hls_raw && window.URL && window.Blob ? URL.createObjectURL(new Blob([t.hls_raw], {
+            }
+            getInitialSrc(e) {
+                var t = this.providerType();
+                return e.rtmp && "flash" == t ? e.rtmp : "hls" == t ? e.hls_raw && window.URL && window.Blob ? URL.createObjectURL(new Blob([e.hls_raw], {
                     type: "application/vnd.apple.mpegurl"
-                })) : t.hls : void 0
-            }, e.prototype.getInitialVolume = function() {
+                })) : e.hls : void 0
+            }
+            getInitialVolume() {
                 return this.player.isMuted() ? 0 : this.player.getVolume()
-            }, e.prototype.getInitialQuality = function(t) {
-                var e = this.player.preferredQuality;
-                t.is_inline && (e = Math.min(480, e));
-                var i = dt(t.hd);
-                return Math.min(e, i)
-            }, e.prototype.getInitialTime = function(t) {
+            }
+            getInitialQuality(e) {
+                var t = this.player.preferredQuality;
+                e.is_inline && (t = Math.min(pe, t));
+                var i = ye(e.hd);
+                return Math.min(t, i)
+            }
+            getInitialTime(e) {
                 if (this.player.isActiveLive()) return 0;
-                if (t.t) {
-                    var e = It(t.t);
-                    if (e < t.duration) return e
+                if (e.t) {
+                    var t = Ye.fromString(e.t);
+                    if (t < e.duration) return t
                 } else {
-                    var i = St.getPref("position." + this.player.getVideoId());
-                    if (i && t.duration - i.pos > 30) return i.pos
+                    var i = Re.getPref("position." + this.player.getVideoId());
+                    if (i && e.duration - i.pos > 30) return i.pos
                 }
                 return 0
-            }, e.prototype.providerType = function() {
-                return this.provider instanceof Tt ? "hls" : this.provider instanceof Vt ? "flash" : this.provider instanceof wt ? "base" : this.chooseProvider()
-            }, e.prototype.chooseProvider = function() {
+            }
+            providerType() {
+                return this.provider instanceof $e ? "hls" : this.provider instanceof Ge ? "flash" : this.provider instanceof Me ? "base" : this.chooseProvider()
+            }
+            chooseProvider() {
                 if (this.player.isInited()) {
-                    var t = this.player.getVars(),
-                        e = t.hls && this.player.isHlsSupported(),
-                        i = t.can_play_mp4 && (!t.live || t.postlive_mp4),
-                        n = this.player.isFlashSupported() && (!t.live || t.rtmp || t.postlive_mp4),
-                        r = t.is_flv || t.force_rtmp && n && !t.from_autoplay,
-                        o = t.direct_mp4;
-                    return !e || o || r ? i && !r ? "base" : n ? "flash" : void 0 : "hls"
+                    var e = this.player.getVars(),
+                        t = e.hls && this.player.isHlsSupported(),
+                        i = e.can_play_mp4 && (!e.live || e.postlive_mp4),
+                        s = this.player.isFlashSupported() && (!e.live || e.rtmp || e.postlive_mp4),
+                        a = e.is_flv || e.force_rtmp && s && !e.from_autoplay,
+                        r = e.direct_mp4;
+                    return !t || r || a ? i && !a ? "base" : s ? "flash" : void 0 : "hls"
                 }
-            }, e.prototype.attachProvider = function(t) {
-                var e = this;
-                this.provider && this.destroyProvider(), this.provider = t, this.el.appendChild(t.el), this.domListen(t.el, "timeupdate", this.onTimeupdate), this.domListen(t.el, "progress", this.onProgress), this.domListen(t.el, "volumechange", this.onVolumechange), this.domListen(t.el, "durationchange", function() {
-                    e.player.trigger(M, e.getDuration())
-                }), this.domListen(t.el, "loadeddata", function(t) {
-                    e.buffering = !1
-                }), this.domListen(t.el, "playing", function() {
-                    e.buffering = !1, e.provider.el.paused || e.player.trigger(O)
-                }), this.domListen(t.el, "pause", function() {
-                    e._ui_seeking || e._disabled || e.player.getState() === a.ERROR || e.player.trigger(D)
-                }), this.domListen(t.el, "ended", function() {
-                    e.player.trigger(B)
-                }), this.domListen(t.el, "error", this.onError), this.player.trigger(H, {
+            }
+            attachProvider(e) {
+                this.provider && this.destroyProvider(), this.provider = e, this.el.appendChild(e.el), this.domListen(e.el, "timeupdate", this.onTimeupdate), this.domListen(e.el, "progress", this.onProgress), this.domListen(e.el, "volumechange", this.onVolumechange), this.domListen(e.el, "durationchange", () => {
+                    this.player.trigger(x, this.getDuration())
+                }), this.domListen(e.el, "loadeddata", e => {
+                    this.buffering = !1
+                }), this.domListen(e.el, "playing", () => {
+                    this.buffering = !1, this.provider.el.paused || this.player.trigger(D)
+                }), this.domListen(e.el, "pause", () => {
+                    this._ui_seeking || this._disabled || this.player.getState() === r.ERROR || this.player.trigger(M)
+                }), this.domListen(e.el, "ended", () => {
+                    this.player.trigger(R)
+                }), this.domListen(e.el, "error", this.onError), this.player.trigger(H, {
                     type: this.providerType()
                 })
-            }, e.prototype.destroyProvider = function() {
+            }
+            destroyProvider() {
                 this.provider && (this.domUnlisten(this.provider.el), re(this.provider.el), this.provider.destroy(), this.provider = null)
-            }, e.prototype.deinitVideo = function() {
+            }
+            deinitVideo() {
                 this._disabled = !1, this.buffering = !1, this.interrupted = !1, this.aborted = !1, this.preloadRequested = !1, this.bufEndReached = !1, this.lastNetworkRecoveryTry = 0, this.vigoStats.reset(), this.destroyProvider(), this.undelay(this.liveStartCheckTimeout), this.undelay(this.liveEndCheckTimeout), this.liveHlsCheckRequest && (this.liveHlsCheckRequest.abort(), delete this.liveHlsCheckRequest), delete this.postLiveCheckCount
-            }, e.prototype.checkLiveStarted = function(t) {
-                var e = this,
+            }
+            checkLiveStarted(e) {
+                var t = this,
                     i = this.player.getVideoId(),
-                    n = !!this.getVar("live_preparing"),
-                    r = !1,
-                    o = function t() {
-                        e.player.getVideoId() == i && e.player.checkLivePhase(function(i) {
-                            if (i.live_preparing) n = !0;
-                            else if ((n || e.player.getLivePhase() === ut && i.phase !== ut) && (n = !1, e.onLiveStarted(), !e.player.isInited())) return;
-                            switch (i.phase) {
-                                case st:
-                                    r ? n && e.delay(t, 3e3) : s();
+                    s = !!this.getVar("live_preparing"),
+                    a = !1,
+                    l = () => {
+                        this.player.getVideoId() == i && this.player.checkLivePhase(e => {
+                            if (e.live_preparing) s = !0;
+                            else if ((s || this.player.getLivePhase() === he && e.phase !== he) && (s = !1, this.onLiveStarted(), !this.player.isInited())) return;
+                            switch (e.phase) {
+                                case le:
+                                    a ? s && this.delay(l, Xe) : n();
                                     break;
-                                case ot:
-                                case ut:
-                                    r && (r = !1, e.player.changeLivePhase(i.phase));
-                                    var o = e.player.getLivePhase() !== ut || n ? 3e3 : 15e3;
-                                    e.liveStartCheckTimeout = e.delay(t, o)
+                                case ae:
+                                case he:
+                                    a && (a = !1, this.player.changeLivePhase(e.phase));
+                                    var t = this.player.getLivePhase() !== he || s ? Xe : Je;
+                                    this.liveStartCheckTimeout = this.delay(l, t)
                             }
-                            e.onLiveWaiting(i.stream_error_text, i.stream_error_level)
+                            this.onLiveWaiting(e.stream_error_text, e.stream_error_level)
                         })
                     },
-                    s = function() {
-                        var i = Ot(regeneratorRuntime.mark(function i() {
-                            var n;
-                            return regeneratorRuntime.wrap(function(i) {
-                                for (;;) switch (i.prev = i.next) {
-                                    case 0:
-                                        if (n = void 0, i.prev = 1, "hls" !== e.providerType()) {
-                                            i.next = 8;
-                                            break
-                                        }
-                                        return i.next = 5, e.checkHlsManifestValidity(t);
-                                    case 5:
-                                        n = i.sent, i.next = 11;
-                                        break;
-                                    case 8:
-                                        return i.next = 10, e.checkRtmpRedirect(t);
-                                    case 10:
-                                        n = i.sent;
-                                    case 11:
-                                        return i.prev = 11, n ? l(n) : e.delay(o, 3e3), i.finish(11);
-                                    case 14:
-                                    case "end":
-                                        return i.stop()
-                                }
-                            }, i, e, [
-                                [1, , 11, 14]
-                            ])
-                        }));
+                    n = function() {
+                        var i = je(function*() {
+                            var i;
+                            try {
+                                i = "hls" === t.providerType() ? yield t.checkHlsManifestValidity(e) : yield t.checkRtmpRedirect(e)
+                            } finally {
+                                i ? o(i) : t.delay(l, Xe)
+                            }
+                        });
                         return function() {
                             return i.apply(this, arguments)
                         }
                     }(),
-                    l = function(t) {
-                        e.player.getVideoId() == i && (e.player.getState() == a.ERROR && e.player.changeState(e.player.prevState), e.player.changeLivePhase(st), e.provider.src = t, e.provider.load(), e.player.getState() === a.PLAYING && e.play(), r = !0, n && e.delay(o, 3e3))
+                    o = e => {
+                        this.player.getVideoId() == i && (this.player.getState() == r.ERROR && this.player.changeState(this.player.prevState), this.player.changeLivePhase(le), this.provider.src = e, this.provider.load(), this.player.getState() === r.PLAYING && this.play(), a = !0, s && this.delay(l, Xe))
                     };
-                this.player.getLivePhase() == st ? s() : o()
-            }, e.prototype.checkHlsManifestValidity = function() {
-                var t = Ot(regeneratorRuntime.mark(function t(e) {
-                    var i, n;
-                    return regeneratorRuntime.wrap(function(t) {
-                        for (;;) switch (t.prev = t.next) {
-                            case 0:
-                                return t.next = 2, this.request(e).promise;
-                            case 2:
-                                if (i = t.sent, !((n = i.response).indexOf("#EXT-X-STREAM-INF:") > 0 || n.indexOf("#EXTINF:") > 0)) {
-                                    t.next = 6;
-                                    break
-                                }
-                                return t.abrupt("return", e);
-                            case 6:
-                                return t.abrupt("return", !1);
-                            case 7:
-                            case "end":
-                                return t.stop()
-                        }
-                    }, t, this)
-                }));
-                return function(e) {
-                    return t.apply(this, arguments)
-                }
-            }(), e.prototype.checkRtmpRedirect = function() {
-                var t = Ot(regeneratorRuntime.mark(function t(e) {
-                    var i, n, r;
-                    return regeneratorRuntime.wrap(function(t) {
-                        for (;;) switch (t.prev = t.next) {
-                            case 0:
-                                i = 0;
-                            case 1:
-                                if (!(i < 10)) {
-                                    t.next = 15;
-                                    break
-                                }
-                                if ("string" == typeof e) {
-                                    t.next = 4;
-                                    break
-                                }
-                                return t.abrupt("return", !1);
-                            case 4:
-                                if (0 !== e.indexOf("rtmp")) {
-                                    t.next = 6;
-                                    break
-                                }
-                                return t.abrupt("return", e);
-                            case 6:
-                                return e += (e.indexOf("?") > -1 ? "&" : "?") + "get_redirect_url=1", t.next = 9, this.request(e).promise;
-                            case 9:
-                                n = t.sent, r = n.response, e = trim(r);
-                            case 12:
-                                i++, t.next = 1;
-                                break;
-                            case 15:
-                                return t.abrupt("return", !1);
-                            case 16:
-                            case "end":
-                                return t.stop()
-                        }
-                    }, t, this)
-                }));
-                return function(e) {
-                    return t.apply(this, arguments)
-                }
-            }(), e.prototype.checkLiveEnded = function() {
+                this.player.getLivePhase() == le ? n() : l()
+            }
+            checkHlsManifestValidity(e) {
                 var t = this;
-                this.player.checkLivePhase(function(e) {
-                    switch (t.undelay(t.liveEndCheckTimeout), delete t.liveEndCheckTimeout, e.phase) {
-                        case at:
-                            t.onLiveEnded(e);
-                            break;
-                        case lt:
-                            t.onLiveFailed(e);
-                            break;
-                        case ot:
-                            t.liveEndCheckTimeout = t.delay(t.checkLiveEnded, 2e3);
-                            break;
-                        case st:
-                            t.player.getState() == a.ERROR && t.player.changeState(t.player.prevState), t.isWaiting() && (e.media_url ? (t.provider.reset(), t.provider.src = e.media_url) : t.provider.delayRecoverNetwork && t.provider.delayRecoverNetwork()), t.player.getState() === a.PLAYING && t.provider.play(), t.liveEndCheckTimeout = t.delay(t.checkLiveEnded, 2e3)
+                return je(function*() {
+                    var {
+                        response: i
+                    } = yield t.request(e).promise;
+                    return (i.indexOf("#EXT-X-STREAM-INF:") > 0 || i.indexOf("#EXTINF:") > 0) && e
+                })()
+            }
+            checkRtmpRedirect(e) {
+                var t = this;
+                return je(function*() {
+                    for (var i = 0; i < 10; i++) {
+                        if ("string" != typeof e) return !1;
+                        if (0 === e.indexOf("rtmp")) return e;
+                        e += (e.indexOf("?") > -1 ? "&" : "?") + "get_redirect_url=1";
+                        var {
+                            response: s
+                        } = yield t.request(e).promise;
+                        e = trim(s)
                     }
-                    t.onLiveWaiting(e.stream_error_text, e.stream_error_level)
+                    return !1
+                })()
+            }
+            checkLiveEnded() {
+                this.player.checkLivePhase(e => {
+                    switch (this.undelay(this.liveEndCheckTimeout), delete this.liveEndCheckTimeout, e.phase) {
+                        case ne:
+                            this.onLiveEnded(e);
+                            break;
+                        case oe:
+                            this.onLiveFailed(e);
+                            break;
+                        case ae:
+                            this.liveEndCheckTimeout = this.delay(this.checkLiveEnded, et);
+                            break;
+                        case le:
+                            this.player.getState() == r.ERROR && this.player.changeState(this.player.prevState), this.isWaiting() && (e.media_url ? (this.provider.reset(), this.provider.src = e.media_url) : this.provider.delayRecoverNetwork && this.provider.delayRecoverNetwork()), this.player.getState() === r.PLAYING && this.provider.play(), this.liveEndCheckTimeout = this.delay(this.checkLiveEnded, et)
+                    }
+                    this.onLiveWaiting(e.stream_error_text, e.stream_error_level)
                 })
-            }, e.prototype.onLiveStarted = function() {
+            }
+            onLiveStarted() {
                 this.player.externalCall("onLiveStarted", this.player.getVideoId())
-            }, e.prototype.onLiveEnded = function(t) {
-                this.player.vars.duration = t.duration, t.jpg && (this.player.vars.jpg = t.jpg), this.player.trigger(B), this.switchToPostLive(t), this.player.externalCall("onLiveEnded", this.player.getVideoId(), t.deleted)
-            }, e.prototype.onLiveFailed = function() {
-                this.destroyProvider(), this.player.trigger(F, {
+            }
+            onLiveEnded(e) {
+                this.player.vars.duration = e.duration, e.jpg && (this.player.vars.jpg = e.jpg), this.player.trigger(R), this.switchToPostLive(e), this.player.externalCall("onLiveEnded", this.player.getVideoId(), e.deleted)
+            }
+            onLiveFailed() {
+                this.destroyProvider(), this.player.trigger(B, {
                     message: this.getLang("live_failed")
                 })
-            }, e.prototype.onLiveWaiting = function(t, e) {
-                this.player.trigger(U, {
-                    message: "warning" == e && t
-                }), "fatal" == e && (this.player.trigger(F, {
-                    message: t,
+            }
+            onLiveWaiting(e, t) {
+                this.player.trigger(O, {
+                    message: "warning" == t && e
+                }), "fatal" == t && (this.player.trigger(B, {
+                    message: e,
                     waiting: !0
                 }), this.pause())
-            }, e.prototype.checkPostlive = function() {
-                var t = this,
-                    e = this.player.getVideoId();
+            }
+            checkPostlive() {
+                var e = this.player.getVideoId();
                 ajax.post("al_video.php?act=check_postlive", {
                     oid: this.getVar("oid"),
                     vid: this.getVar("vid"),
                     hash: this.getVar("action_hash")
                 }, {
-                    onDone: function(i) {
-                        t.player.getVideoId() == e && (i.hls || i.postlive_mp4 ? t.switchToPostLive(i) : i.deleted || t.checkPostliveDelayed())
+                    onDone: t => {
+                        this.player.getVideoId() == e && (t.hls || t.postlive_mp4 ? this.switchToPostLive(t) : t.deleted || this.checkPostliveDelayed())
                     },
-                    onFail: function() {
-                        if (t.player.getVideoId() == e) return t.checkPostliveDelayed(), !0
+                    onFail: () => {
+                        if (this.player.getVideoId() == e) return this.checkPostliveDelayed(), !0
                     }
                 })
-            }, e.prototype.checkPostliveDelayed = function() {
+            }
+            checkPostliveDelayed() {
                 this._postLiveCheckCount = (this._postLiveCheckCount || 0) + 1;
-                var t = 100 * this._postLiveCheckCount;
-                this.delay(this.checkPostlive, 3e3 + t)
-            }, e.prototype.switchToPostLive = function(t) {
-                var e = t.hls,
-                    i = (t.rtmp, t.postlive_mp4);
-                this.undelay(this.liveStartCheckTimeout), this.destroyProvider();
-                var n = void 0,
-                    r = void 0;
-                e && this.player.isHlsSupported() ? (n = new Tt(this.player), r = e) : i && this.getVar("can_play_mp4") ? (n = new wt(this.player), r = i) : i && this.player.isFlashSupported() && (n = new Vt(this.player), r = i), n && r ? (this.player.changeLivePhase(at), this.player.changeState(a.ENDED), this.attachProvider(n), n.src = r, n.volume = this.getInitialVolume(), !this.player.isStartedPlaying() && this.getVar("autoplay") && this.player.play()) : (this.player.trigger(F, {
+                var e = 100 * this._postLiveCheckCount;
+                this.delay(this.checkPostlive, 3e3 + e)
+            }
+            switchToPostLive({
+                hls: e,
+                rtmp: t,
+                postlive_mp4: i
+            }) {
+                var s, a;
+                this.undelay(this.liveStartCheckTimeout), this.destroyProvider(), e && this.player.isHlsSupported() ? (s = new $e(this.player), a = e) : i && this.getVar("can_play_mp4") ? (s = new Me(this.player), a = i) : i && this.player.isFlashSupported() && (s = new Ge(this.player), a = i), s && a ? (this.player.changeLivePhase(ne), this.player.changeState(r.ENDED), this.attachProvider(s), s.src = a, s.volume = this.getInitialVolume(), !this.player.isStartedPlaying() && this.getVar("autoplay") && this.player.play()) : (this.player.trigger(B, {
                     message: this.getLang("live_wait_record"),
                     waiting: !0
                 }), this.checkPostliveDelayed())
-            }, e.prototype.getAvailableQualities = function() {
-                var t = [];
-                if (this.provider && this.provider.getAvailableQualities) t = this.provider.getAvailableQualities();
+            }
+            getAvailableQualities() {
+                var e = [];
+                if (this.provider && this.provider.getAvailableQualities) e = this.provider.getAvailableQualities();
                 else
-                    for (var e = this.getVar("hd") || 0, i = 0; i <= e; ++i) {
-                        var n = dt(i);
-                        n && this.getMp4Url(n) && t.push(n)
+                    for (var t = this.getVar("hd") || 0, i = 0; i <= t; ++i) {
+                        var s = ye(i);
+                        s && this.getMp4Url(s) && e.push(s)
                     }
-                return t.sort(function(t, e) {
-                    return e - t
-                })
-            }, e.prototype.isAutoQualityAvailable = function() {
+                return e.sort((e, t) => t - e)
+            }
+            isAutoQualityAvailable() {
                 return this.provider && this.provider.isAutoQualityAvailable && this.provider.isAutoQualityAvailable() || !1
-            }, e.prototype.isAutoQualityEnabled = function() {
+            }
+            isAutoQualityEnabled() {
                 return this.provider && this.provider.isAutoQualityEnabled && this.provider.isAutoQualityEnabled() || !1
-            }, e.prototype.getQuality = function() {
+            }
+            getQuality() {
                 return this.provider && this.provider.getQuality ? this.provider.getQuality() : 0
-            }, e.prototype.getAvailableSubtitleTracksInfo = function() {
-                var t = [];
-                return this.provider && this.provider.getAvailableSubtitleTracksInfo && (t = this.provider.getAvailableSubtitleTracksInfo()), t
-            }, e.prototype.getSubtitleTrack = function() {
+            }
+            getAvailableSubtitleTracksInfo() {
+                var e = [];
+                return this.provider && this.provider.getAvailableSubtitleTracksInfo && (e = this.provider.getAvailableSubtitleTracksInfo()), e
+            }
+            getSubtitleTrack() {
                 return this.provider && this.provider.getSubtitleTrack ? this.provider.getSubtitleTrack() : -1
-            }, e.prototype.onTimeupdate = function() {
-                var t = this.curTime();
-                this.player.trigger(x, t), this.player.isActiveLive() || St.savePref("position." + this.player.getVideoId(), {
+            }
+            onTimeupdate() {
+                var e = this.curTime();
+                this.player.trigger(A, e), this.player.isActiveLive() || Re.savePref("position." + this.player.getVideoId(), {
                     date: Date.now(),
-                    pos: t
+                    pos: e
                 })
-            }, e.prototype.filterSavedVideosPositions = function() {
-                var t = St.getPref("position") || {},
-                    e = Object.keys(t);
-                if (e.length > 3) {
-                    var i = void 0;
-                    e.forEach(function(e) {
-                        (!i || t[e].date < t[i].date) && (i = e)
-                    }), St.deletePref("position." + i)
-                }
-            }, e.prototype.onProgress = function() {
-                var t = this.getBufferedRanges(),
-                    e = this.curTime();
-                if (t.length) {
-                    for (var i = 0; i < t.length; ++i)
-                        if (!(t.end(i) <= e)) {
-                            if (t.start(i) - e > 30) break;
-                            e = t.end(i)
+            }
+            filterSavedVideosPositions() {
+                var e, t = Re.getPref("position") || {},
+                    i = Object.keys(t);
+                i.length > 3 && (i.forEach(i => {
+                    (!e || t[i].date < t[e].date) && (e = i)
+                }), Re.deletePref("position." + e))
+            }
+            onProgress() {
+                var e = this.getBufferedRanges(),
+                    t = this.curTime();
+                if (e.length) {
+                    for (var i = 0; i < e.length; ++i)
+                        if (!(e.end(i) <= t)) {
+                            if (e.start(i) - t > 30) break;
+                            t = e.end(i)
                         }
-                    this.player.trigger(V, e / this.getDuration()), this.bufEndReached || t.end(t.length - 1) !== this.getDuration() || (this.bufEndReached = !0, this.player.getState() === a.PLAYING && this.vigoStats.triggerEvent("heartbeat"))
+                    this.player.trigger(P, t / this.getDuration()), this.bufEndReached || e.end(e.length - 1) !== this.getDuration() || (this.bufEndReached = !0, this.player.getState() === r.PLAYING && this.vigoStats.triggerEvent("heartbeat"))
                 }
-            }, e.prototype.onVolumechange = function() {
-                this.player.trigger(I, this.getVolume())
-            }, e.prototype.onError = function(t) {
-                if (!t || "hls" != this.providerType()) {
-                    var e = this.getErrorCode();
-                    if (this.player.debugLog("media error: " + e, {
+            }
+            onVolumechange() {
+                this.player.trigger(V, this.getVolume())
+            }
+            onError(e) {
+                if (!e || "hls" != this.providerType()) {
+                    var t = this.getErrorCode();
+                    if (this.player.debugLog(`media error: ${t}`, {
                             force: !0
-                        }), e == MediaError.MEDIA_ERR_NETWORK && Date.now() - intval(this.lastNetworkRecoveryTry) > 5e3) {
+                        }), t == MediaError.MEDIA_ERR_NETWORK && Date.now() - intval(this.lastNetworkRecoveryTry) > 5e3) {
                         this.lastNetworkRecoveryTry = Date.now();
                         var i = this.player.getQuality();
                         this.setQuality(i)
                     } else {
-                        if (e != MediaError.MEDIA_ERR_ABORTED && "hls" != this.providerType()) {
-                            var n = this.player.getQuality(),
-                                r = this.getVar("cache" + n);
-                            if (r && this.provider.currentSrc == r) return void this.setQuality(n, {
+                        if (t != MediaError.MEDIA_ERR_ABORTED && "hls" != this.providerType()) {
+                            var s = this.player.getQuality(),
+                                a = this.getVar(`cache${s}`);
+                            if (a && this.provider.currentSrc == a) return void this.setQuality(s, {
                                 ignoreCacheServer: !0
                             })
                         }
-                        if (e == MediaError.MEDIA_ERR_ABORTED) this.aborted = !0;
+                        if (t == MediaError.MEDIA_ERR_ABORTED) this.aborted = !0;
                         else {
-                            var o = this.getVar("extra") && !this.getVar("live") ? this.getLang("external_service_file_not_found") : this.getLang("load_error");
-                            if (e) {
-                                var s = this.getErrorCodeDescription(e);
-                                s && (s = " (" + s + ")"), o += "<br><small>" + this.getLang("err_code", {
-                                    code: e
-                                }) + s + "</small>"
+                            var r = this.getVar("extra") && !this.getVar("live") ? this.getLang("external_service_file_not_found") : this.getLang("load_error");
+                            if (t) {
+                                var l = this.getErrorCodeDescription(t);
+                                l && (l = ` (${l})`), r += "<br><small>" + this.getLang("err_code", {
+                                    code: t
+                                }) + l + "</small>"
                             }
-                            this.player.trigger(F, {
-                                message: o
+                            this.player.trigger(B, {
+                                message: r
                             }), this.vigoStats.triggerEvent("error"), ajax.post("al_video.php?act=player_error_stat", {
                                 provider: this.providerType(),
-                                code: e,
+                                code: t,
                                 host: this.getContentHost(),
                                 quality: this.player.getQuality(),
                                 is_auto_quality: this.isAutoQualityEnabled() ? 1 : 0,
@@ -2770,155 +1613,217 @@
                         }
                     }
                 }
-            }, e.prototype.onStateChange = function(t, e) {
-                switch (this.updateVisibility(), t) {
-                    case a.PLAYING:
+            }
+            onStateChange(e, t) {
+                switch (this.updateVisibility(), e) {
+                    case r.PLAYING:
                         this._disabled || (this.play(), this.vigoStats.triggerEvent("play"));
                         break;
-                    case a.PAUSED:
+                    case r.PAUSED:
                         this._disabled || (this.pause(), this.vigoStats.triggerEvent("pause"));
                         break;
-                    case a.ENDED:
+                    case r.ENDED:
                         this.vigoStats.triggerEvent("stop")
                 }
-            }, e.prototype.onQualityChange = function(t, e, i) {
+            }
+            onQualityChange(e, t, i) {
                 this.vigoStats.triggerEvent(i ? "heartbeat" : "bitrate_change")
-            }, e.prototype.onWaitingChange = function(t, e) {
-                this.updateVisibility(), this.vigoStats.triggerEvent(t ? "buf_start" : "buf_stop"), this.player.getLivePhase() === st && (t ? this.liveEndCheckTimeout || (this.liveEndCheckTimeout = this.delay(this.checkLiveEnded, 2e3)) : (this.undelay(this.liveEndCheckTimeout), delete this.liveEndCheckTimeout))
-            }, e.prototype.onUiSeekStart = function(t) {
-                this._ui_seeking = !0, this._frame_seeking = t, this.pause()
-            }, e.prototype.onUiSeekEnd = function() {
-                var t = this;
-                setTimeout(function() {
-                    t._ui_seeking = !1, t._frame_seeking = !1, t.player.getState() !== a.PLAYING || t.provider.el.ended || t.play()
+            }
+            onWaitingChange(e, t) {
+                this.updateVisibility(), this.vigoStats.triggerEvent(e ? "buf_start" : "buf_stop"), this.player.getLivePhase() === le && (e ? this.liveEndCheckTimeout || (this.liveEndCheckTimeout = this.delay(this.checkLiveEnded, Ze)) : (this.undelay(this.liveEndCheckTimeout), delete this.liveEndCheckTimeout))
+            }
+            onUiSeekStart(e) {
+                this._ui_seeking = !0, this._frame_seeking = e, this.pause()
+            }
+            onUiSeekEnd() {
+                setTimeout(() => {
+                    this._ui_seeking = !1, this._frame_seeking = !1, this.player.getState() !== r.PLAYING || this.provider.el.ended || this.play()
                 })
-            }, e.prototype.updateVisibility = function() {
-                var t = this.buffering || this._disabled || !this.player.isInited() || this.aborted || this.player.getState() === a.ERROR;
+            }
+            updateVisibility() {
+                var e = this.buffering || this._disabled || !this.player.isInited() || this.aborted || this.player.getState() === r.ERROR;
                 setStyle(this.el, {
-                    visibility: t && "flash" != this.providerType() ? "hidden" : ""
+                    visibility: e && "flash" != this.providerType() ? "hidden" : ""
                 })
-            }, e.prototype.isWaiting = function() {
+            }
+            get buffering() {
+                return !!this._buffering
+            }
+            set buffering(e) {
+                if (e != this._buffering) {
+                    var t = this.isWaiting();
+                    this._buffering = e;
+                    var i = this.isWaiting();
+                    t != i && this.player.trigger(I, i, !1)
+                }
+            }
+            get interrupted() {
+                return !!this._interrupted
+            }
+            set interrupted(e) {
+                if (e != this._interrupted) {
+                    var t = this.isWaiting();
+                    this._interrupted = e;
+                    var i = this.isWaiting();
+                    t != i && this.player.trigger(I, i, !0)
+                }
+            }
+            isWaiting() {
                 return this.buffering || this.interrupted
-            }, e.prototype.curTime = function() {
+            }
+            curTime() {
                 return this.provider && this.provider.currentTime || 0
-            }, e.prototype.getDuration = function() {
+            }
+            getDuration() {
                 return this.provider && this.provider.duration || 0
-            }, e.prototype.setQuality = function(t) {
-                var e = (arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}).ignoreCacheServer,
-                    i = void 0 !== e && e;
-                if (this.provider.setQuality) return this.provider.setQuality(t), void(-1 == t && this.vigoStats.triggerEvent("bitrate_change"));
-                var n = this.getMp4Url(t, i),
-                    r = this.curTime();
-                this.provider.src = n, this.player.onQualityChanged(t), this.player.getState() !== a.UNSTARTED && (this.vigoStats.triggerEvent("bitrate_change"), this.provider.load(), this.provider.currentTime = r, this.player.getState() === a.PLAYING && this.play(), this.buffering = !0, this._lastInterruptionCheckTime = null)
-            }, e.prototype.switchSubtitleTrack = function(t) {
-                var e = t.trackId;
+            }
+            setQuality(e, {
+                ignoreCacheServer: t = !1
+            } = {}) {
+                if (this.provider.setQuality) return this.provider.setQuality(e), void(e == de && this.vigoStats.triggerEvent("bitrate_change"));
+                var i = this.getMp4Url(e, t),
+                    s = this.curTime();
+                this.provider.src = i, this.player.onQualityChanged(e), this.player.getState() !== r.UNSTARTED && (this.vigoStats.triggerEvent("bitrate_change"), this.provider.load(), this.provider.currentTime = s, this.player.getState() === r.PLAYING && this.play(), this.buffering = !0, this._lastInterruptionCheckTime = null)
+            }
+            switchSubtitleTrack({
+                trackId: e
+            }) {
                 this.provider.switchSubtitleTrack && this.provider.switchSubtitleTrack({
                     trackId: e
                 })
-            }, e.prototype.seekTo = function(t) {
-                var e = this;
-                this._frame_seeking || this.vigoStats.triggerEvent("heartbeat"), this.provider.currentTime = Math.max(0, Math.min(this.player.getDuration(), t)), this._frame_seeking || this.vigoStats.triggerEvent("seek");
-                var i = this.isInBufferedArea(t);
-                i || (this.buffering = !0), this.player.trigger(N, i), this.domListenOnce(this.provider.el, "seeked", function(t) {
-                    e.buffering = !1, e.player.trigger(j, i)
+            }
+            seekTo(e) {
+                this._frame_seeking || this.vigoStats.triggerEvent("heartbeat"), this.provider.currentTime = Math.max(0, Math.min(this.player.getDuration(), e)), this._frame_seeking || this.vigoStats.triggerEvent("seek");
+                var t = this.isInBufferedArea(e);
+                t || (this.buffering = !0), this.player.trigger(F, t), this.domListenOnce(this.provider.el, "seeked", e => {
+                    this.buffering = !1, this.player.trigger(N, t)
                 }), this._lastInterruptionCheckTime = null, this.onProgress()
-            }, e.prototype.getVolume = function() {
+            }
+            getVolume() {
                 return this.provider ? this.provider.volume : 0
-            }, e.prototype.setVolume = function(t) {
-                this.provider && (this.provider.volume = t)
-            }, e.prototype.isLooped = function() {
+            }
+            setVolume(e) {
+                this.provider && (this.provider.volume = e)
+            }
+            isLooped() {
                 return !!this.provider && this.provider.loop
-            }, e.prototype.toggleLoop = function(t) {
-                return !!this.provider && (this.provider.loop = t)
-            }, e.prototype.canChangePlaybackRate = function() {
+            }
+            toggleLoop(e) {
+                return !!this.provider && (this.provider.loop = e)
+            }
+            canChangePlaybackRate() {
                 return !!this.provider && this.provider.canChangePlaybackRate()
-            }, e.prototype.setPlaybackRate = function(t) {
-                this.provider && (this.provider.playbackRate = t)
-            }, e.prototype.getPlaybackRate = function() {
+            }
+            setPlaybackRate(e) {
+                this.provider && (this.provider.playbackRate = e)
+            }
+            getPlaybackRate() {
                 return this.provider ? this.provider.playbackRate : 1
-            }, e.prototype.getVideoRatio = function() {
+            }
+            getVideoRatio() {
                 return this.provider && this.provider.videoRatio || this.getVar("aspect_ratio") || 16 / 9
-            }, e.prototype.canRotateVideo = function() {
+            }
+            canRotateVideo() {
                 return !(this.getVar("stretch_vertical") && this.getVar("is_inline"))
-            }, e.prototype.rotateVideo = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                this._rotateAlpha = !1 === t ? 0 : (this._rotateAlpha || 0) + t;
+            }
+            rotateVideo(e, t = !1) {
+                this._rotateAlpha = !1 === e ? 0 : (this._rotateAlpha || 0) + e;
                 var i = this._rotateAlpha % 180 ? 1 / this.getVideoRatio() : 1;
-                e && (addClass(this.el, "no_transition"), removeClassDelayed(this.el, "no_transition")), setStyle(this.el, {
-                    transform: this._rotateAlpha ? "rotate(" + this._rotateAlpha + "deg) scale(" + i + ")" : ""
+                t && (addClass(this.el, "no_transition"), removeClassDelayed(this.el, "no_transition")), setStyle(this.el, {
+                    transform: this._rotateAlpha ? `rotate(${this._rotateAlpha}deg) scale(${i})` : ""
                 })
-            }, e.prototype.isPiPModeAvailable = function() {
-                var t = this.provider && this.provider.el;
-                if (t) {
+            }
+            isPiPModeAvailable() {
+                var e = this.provider && this.provider.el;
+                if (e) {
                     if (document.pictureInPictureEnabled) return !0;
-                    if ("function" == typeof t.webkitSetPresentationMode) return !0
+                    if ("function" == typeof e.webkitSetPresentationMode) return !0
                 }
                 return !1
-            }, e.prototype.togglePiPMode = function() {
-                var t = this.provider.el;
-                if (document.pictureInPictureEnabled) document.pictureInPictureElement === t ? document.exitPictureInPicture() : t.requestPictureInPicture();
-                else if ("function" == typeof t.webkitSetPresentationMode) {
-                    var e = "picture-in-picture" === t.webkitPresentationMode ? "inline" : "picture-in-picture";
-                    t.webkitSetPresentationMode(e)
+            }
+            togglePiPMode() {
+                var e = this.provider.el;
+                if (document.pictureInPictureEnabled) document.pictureInPictureElement === e ? document.exitPictureInPicture() : e.requestPictureInPicture();
+                else if ("function" == typeof e.webkitSetPresentationMode) {
+                    var t = "picture-in-picture" === e.webkitPresentationMode ? "inline" : "picture-in-picture";
+                    e.webkitSetPresentationMode(t)
                 }
-            }, e.prototype.preload = function() {
-                this.provider && this.player.getState() === a.UNSTARTED && (this.preloadRequested || (this.preloadRequested = !0, this.vigoStats.triggerEvent("play"), this.provider.readyState || (this.buffering = !0), this.vigoStats.triggerEvent("pause"), this.provider.load()))
-            }, e.prototype.play = function() {
-                this.provider && (this._disabled || this.player.getLivePhase() !== ut && (this.provider.readyState || (this.buffering = !0), this.provider.play(), this._lastInterruptionCheckTime = null))
-            }, e.prototype.pause = function() {
+            }
+            preload() {
+                this.provider && this.player.getState() === r.UNSTARTED && (this.preloadRequested || (this.preloadRequested = !0, this.vigoStats.triggerEvent("play"), this.provider.readyState || (this.buffering = !0), this.vigoStats.triggerEvent("pause"), this.provider.load()))
+            }
+            play() {
+                this.provider && (this._disabled || this.player.getLivePhase() !== he && (this.provider.readyState || (this.buffering = !0), this.provider.play(), this._lastInterruptionCheckTime = null))
+            }
+            pause() {
                 this.provider && !this._disabled && this.provider.pause()
-            }, e.prototype.disablePlayback = function() {
+            }
+            disablePlayback() {
                 this._disabled || (this.pause(), this.player.isActiveLive() && this.provider.pauseLoad && this.provider.pauseLoad(), this._disabled = !0, this.updateVisibility(), this.vigoStats.triggerEvent("pause"))
-            }, e.prototype.enablePlayback = function() {
-                this._disabled && (this._disabled = !1, this.updateVisibility(), this.player.getState() === a.PLAYING && (this.player.isActiveLive() && this.provider.resumeLoad && this.provider.resumeLoad(), this.play(), this.vigoStats.triggerEvent("play")))
-            }, e.prototype.isPlayingMedia = function() {
-                return this.player.getState() === a.PLAYING && !this._disabled
-            }, e.prototype.getMp4Url = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                return this.getVar("direct_mp4") || this.getVar("postlive_mp4") || this.getVar("extra_data") || !e && this.getVar("cache" + t) || this.getVar("url" + t)
-            }, e.prototype.getBufferedRanges = function() {
+            }
+            enablePlayback() {
+                this._disabled && (this._disabled = !1, this.updateVisibility(), this.player.getState() === r.PLAYING && (this.player.isActiveLive() && this.provider.resumeLoad && this.provider.resumeLoad(), this.play(), this.vigoStats.triggerEvent("play")))
+            }
+            isPlayingMedia() {
+                return this.player.getState() === r.PLAYING && !this._disabled
+            }
+            getMp4Url(e, t = !1) {
+                return this.getVar("direct_mp4") || this.getVar("postlive_mp4") || this.getVar("extra_data") || !t && this.getVar(`cache${e}`) || this.getVar(`url${e}`)
+            }
+            getBufferedRanges() {
                 return this.provider ? this.provider.buffered : []
-            }, e.prototype.getPlayedRanges = function() {
+            }
+            getPlayedRanges() {
                 return this.provider ? this.provider.played : []
-            }, e.prototype.getPlayedRangesString = function() {
-                for (var t = this.getPlayedRanges(), e = [], i = 0; i < t.length; ++i) {
-                    var n = Math.round(t.start(i)) + "-" + Math.round(t.end(i));
-                    e.push(n)
+            }
+            getPlayedRangesString() {
+                for (var e = this.getPlayedRanges(), t = [], i = 0; i < e.length; ++i) {
+                    var s = Math.round(e.start(i)) + "-" + Math.round(e.end(i));
+                    t.push(s)
                 }
-                return e.join(",")
-            }, e.prototype.getPlayedSeconds = function() {
-                for (var t = this.getPlayedRanges(), e = 0, i = 0; i < t.length; ++i) e += t.end(i) - t.start(i);
-                return e
-            }, e.prototype.isInBufferedArea = function(t) {
-                for (var e = this.getBufferedRanges(), i = 0; i < e.length; ++i)
-                    if (e.start(i) <= t && t <= e.end(i)) return !0;
+                return t.join(",")
+            }
+            getPlayedSeconds() {
+                for (var e = this.getPlayedRanges(), t = 0, i = 0; i < e.length; ++i) t += e.end(i) - e.start(i);
+                return t
+            }
+            isInBufferedArea(e) {
+                for (var t = this.getBufferedRanges(), i = 0; i < t.length; ++i)
+                    if (t.start(i) <= e && e <= t.end(i)) return !0;
                 return !1
-            }, e.prototype.getBufferPercent = function() {
-                var t = this.curTime(),
-                    e = this.getDuration(),
+            }
+            getBufferPercent() {
+                var e = this.curTime(),
+                    t = this.getDuration(),
                     i = this.getBufferedRanges();
                 if (!i.length) return 0;
-                for (var n = 0; n < i.length; ++n) {
-                    var r = i.start(n),
-                        o = i.end(n);
-                    if (r <= t && t <= o) return (o - r) / e * 100
+                for (var s = 0; s < i.length; ++s) {
+                    var a = i.start(s),
+                        r = i.end(s);
+                    if (a <= e && e <= r) return (r - a) / t * 100
                 }
                 return 0
-            }, e.prototype.getLoadedBytes = function() {
+            }
+            getLoadedBytes() {
                 if (this.provider && this.provider.getLoadedBytes) return this.provider.getLoadedBytes()
-            }, e.prototype.getBitrate = function() {
+            }
+            getBitrate() {
                 if (this.provider && this.provider.getBitrate) return this.provider.getBitrate()
-            }, e.prototype.getContentUrl = function() {
+            }
+            getContentUrl() {
                 if (this.provider) return this.provider.getContentUrl ? this.provider.getContentUrl() : this.provider.currentSrc
-            }, e.prototype.getContentHost = function() {
-                var t = this.getContentUrl();
-                if (t) return ce("a", {
-                    href: t
+            }
+            getContentHost() {
+                var e = this.getContentUrl();
+                if (e) return ce("a", {
+                    href: e
                 }).hostname
-            }, e.prototype.getErrorCode = function() {
+            }
+            getErrorCode() {
                 return this.provider && this.provider.error && this.provider.error.code || null
-            }, e.prototype.getErrorCodeDescription = function(t) {
-                switch (t) {
+            }
+            getErrorCodeDescription(e) {
+                switch (e) {
                     case MediaError.MEDIA_ERR_ABORTED:
                         return "aborted";
                     case MediaError.MEDIA_ERR_NETWORK:
@@ -2930,1132 +1835,881 @@
                     default:
                         return ""
                 }
-            }, e.prototype.getErrorsLog = function() {
+            }
+            getErrorsLog() {
                 return this.provider && this.provider.getErrorsLog && this.provider.getErrorsLog() || null
-            }, e.prototype.checkInterruption = function() {
-                if (this.player.getState() !== a.PLAYING || this.player.getLivePhase() === ut || this._ui_seeking || this._disabled || this.buffering || !this.provider) !this.interrupted || this.provider && this.provider.readyState !== HTMLMediaElement.HAVE_ENOUGH_DATA || (this.interrupted = !1);
+            }
+            checkInterruption() {
+                if (this.player.getState() !== r.PLAYING || this.player.getLivePhase() === he || this._ui_seeking || this._disabled || this.buffering || !this.provider) !this.interrupted || this.provider && this.provider.readyState !== HTMLMediaElement.HAVE_ENOUGH_DATA || (this.interrupted = !1);
                 else {
                     if (null != this._lastInterruptionCheckTime) {
-                        var t = this.provider.currentTime;
-                        if (t - this._lastInterruptionCheckTime) this.interrupted = this.buffering = !1;
-                        else this.player.isAutoplay() && !t || (this.interrupted = !0)
+                        var e = this.provider.currentTime;
+                        if (e - this._lastInterruptionCheckTime) this.interrupted = this.buffering = !1;
+                        else this.player.isAutoplay() && !e || (this.interrupted = !0)
                     }
                     this._lastInterruptionCheckTime = this.provider.currentTime
                 }
-            }, e.prototype.destroy = function() {
-                clearInterval(this._interruptionCheckerInterval), t.prototype.destroy.call(this)
-            }, Rt(e, [{
-                key: "buffering",
-                get: function() {
-                    return !!this._buffering
-                },
-                set: function(t) {
-                    if (t != this._buffering) {
-                        var e = this.isWaiting();
-                        this._buffering = t;
-                        var i = this.isWaiting();
-                        e != i && this.player.trigger(R, i, !1)
-                    }
-                }
-            }, {
-                key: "interrupted",
-                get: function() {
-                    return !!this._interrupted
-                },
-                set: function(t) {
-                    if (t != this._interrupted) {
-                        var e = this.isWaiting();
-                        this._interrupted = t;
-                        var i = this.isWaiting();
-                        e != i && this.player.trigger(R, i, !0)
-                    }
-                }
-            }]), e
-        }(yt);
-
-        function Bt() {
-            return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">\n  <g fill="none" fill-rule="evenodd">\n    <g fill-rule="nonzero">\n      <path class="_pause" d="m0 0h24v24h-24z"/>\n      <path class="_pause" d="m7.14520205 5h1.7095959c.39821169 0 .54261289.04664487.68819313.13423418.14558024.08758932.25983248.21612308.33768965.37990085.07785716.16377778.11931927.32622912.11931927.77421728v11.42329539c0 .4479882-.04146211.6104395-.11931927.7742173-.07785717.1637777-.19210941.2923115-.33768965.3799008s-.28998144.1342342-.68819313.1342342h-1.7095959c-.39821169 0-.54261289-.0466449-.68819313-.1342342s-.25983248-.2161231-.33768965-.3799008c-.07785716-.1637778-.11931927-.3262291-.11931927-.7742173v-11.42329539c0-.44798816.04146211-.6104395.11931927-.77421728.07785717-.16377777.19210941-.29231153.33768965-.37990085.14558024-.08758931.28998144-.13423418.68819313-.13423418zm7.99999995 0h1.709596c.3982117 0 .5426128.04664487.6881931.13423418.1455802.08758932.2598325.21612308.3376896.37990085.0778572.16377778.1193193.32622912.1193193.77421728v11.42329539c0 .4479882-.0414621.6104395-.1193193.7742173-.0778571.1637777-.1921094.2923115-.3376896.3799008-.1455803.0875893-.2899814.1342342-.6881931.1342342h-1.709596c-.3982117 0-.5426128-.0466449-.6881931-.1342342-.1455802-.0875893-.2598325-.2161231-.3376896-.3799008-.0778572-.1637778-.1193193-.3262291-.1193193-.7742173v-11.42329539c0-.44798816.0414621-.6104395.1193193-.77421728.0778571-.16377777.1921094-.29231153.3376896-.37990085.1455803-.08758931.2899814-.13423418.6881931-.13423418z" fill="#fff"/>\n      <path class="_play" d="m8.13340613 5.10548415 10.49681277 6.24354325c.3559987.2117494.472936.6720001.2611866 1.0279989-.0638111.1072809-.1533894.1969388-.2606135.2608453l-10.4968128 6.256187c-.35581027.2120659-.81616483.095538-1.02823068-.2602722-.06921066-.1161237-.10574852-.2487949-.10574852-.3839792v-12.49973035c0-.41421357.33578644-.75.75-.75.13495801 0 .26741554.03641567.38340613.1054073z" fill="#fff"/>\n    </g>\n    <path class="_replay" d="m12 4.5000003c4.418278 0 8 3.581722 8 8s-3.581722 8-8 8-8-3.581722-8-8c0-.5522847.44771525-1 1-1s1 .4477153 1 1c0 3.3137085 2.6862915 6 6 6s6-2.6862915 6-6-2.6862915-6-6-6v3.09577928c0 .09950642-.0370887.19544034-.104024.26906913-.1486028.16346309-.4015821.17550969-.5650451.02690691l-4.28830818-3.89846194c-.01565124-.0142284-.03061645-.02919361-.04484485-.04484485-.24767129-.27243841-.22759356-.69407063.04484485-.94174191l4.28830818-3.89846194c.0736287-.06693527.1695627-.10402398.2690691-.10402398.2209139 0 .4.17908611.4.40000002z" fill="#fff"/>\n  </g>\n</svg>\n  '
-        }
-        var Ft = function(t) {
-            function e(i, n) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var r = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return r.el = r.buildEl(), r._transformProp = Pt("transform"), r._loaded = domByClass(r.el, "_loaded"), r._filled = domByClass(r.el, "_filled"), r._handle = domByClass(r.el, "_handle"), r._handleWrap = domByClass(r.el, "_handle_wrap"), r._callbacks = n || {}, r.domListen(r.el, "mousemove", r.onMove), r.domListen(r.el, "mouseleave", r.onOut), r.domListen(r.el, "mousedown", r.onMouseDown), r.domListen(r.el, "keydown", r.onKeydown), r
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.buildEl = function() {
+            destroy() {
+                clearInterval(this._interruptionCheckerInterval), super.destroy()
+            }
+        }
+
+        function it(e = "") {
+            return `\n<svg class="${e}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">\n  <g fill="none" fill-rule="evenodd">\n    <g fill-rule="nonzero">\n      <path class="_pause" d="m0 0h24v24h-24z"/>\n      <path class="_pause" d="m7.14520205 5h1.7095959c.39821169 0 .54261289.04664487.68819313.13423418.14558024.08758932.25983248.21612308.33768965.37990085.07785716.16377778.11931927.32622912.11931927.77421728v11.42329539c0 .4479882-.04146211.6104395-.11931927.7742173-.07785717.1637777-.19210941.2923115-.33768965.3799008s-.28998144.1342342-.68819313.1342342h-1.7095959c-.39821169 0-.54261289-.0466449-.68819313-.1342342s-.25983248-.2161231-.33768965-.3799008c-.07785716-.1637778-.11931927-.3262291-.11931927-.7742173v-11.42329539c0-.44798816.04146211-.6104395.11931927-.77421728.07785717-.16377777.19210941-.29231153.33768965-.37990085.14558024-.08758931.28998144-.13423418.68819313-.13423418zm7.99999995 0h1.709596c.3982117 0 .5426128.04664487.6881931.13423418.1455802.08758932.2598325.21612308.3376896.37990085.0778572.16377778.1193193.32622912.1193193.77421728v11.42329539c0 .4479882-.0414621.6104395-.1193193.7742173-.0778571.1637777-.1921094.2923115-.3376896.3799008-.1455803.0875893-.2899814.1342342-.6881931.1342342h-1.709596c-.3982117 0-.5426128-.0466449-.6881931-.1342342-.1455802-.0875893-.2598325-.2161231-.3376896-.3799008-.0778572-.1637778-.1193193-.3262291-.1193193-.7742173v-11.42329539c0-.44798816.0414621-.6104395.1193193-.77421728.0778571-.16377777.1921094-.29231153.3376896-.37990085.1455803-.08758931.2899814-.13423418.6881931-.13423418z" fill="#fff"/>\n      <path class="_play" d="m8.13340613 5.10548415 10.49681277 6.24354325c.3559987.2117494.472936.6720001.2611866 1.0279989-.0638111.1072809-.1533894.1969388-.2606135.2608453l-10.4968128 6.256187c-.35581027.2120659-.81616483.095538-1.02823068-.2602722-.06921066-.1161237-.10574852-.2487949-.10574852-.3839792v-12.49973035c0-.41421357.33578644-.75.75-.75.13495801 0 .26741554.03641567.38340613.1054073z" fill="#fff"/>\n    </g>\n    <path class="_replay" d="m12 4.5000003c4.418278 0 8 3.581722 8 8s-3.581722 8-8 8-8-3.581722-8-8c0-.5522847.44771525-1 1-1s1 .4477153 1 1c0 3.3137085 2.6862915 6 6 6s6-2.6862915 6-6-2.6862915-6-6-6v3.09577928c0 .09950642-.0370887.19544034-.104024.26906913-.1486028.16346309-.4015821.17550969-.5650451.02690691l-4.28830818-3.89846194c-.01565124-.0142284-.03061645-.02919361-.04484485-.04484485-.24767129-.27243841-.22759356-.69407063.04484485-.94174191l4.28830818-3.89846194c.0736287-.06693527.1695627-.10402398.2690691-.10402398.2209139 0 .4.17908611.4.40000002z" fill="#fff"/>\n  </g>\n</svg>\n  `
+        }
+        class st extends fe {
+            constructor(e, t) {
+                super(e), this.el = this.buildEl(), this._transformProp = qe("transform"), this._loaded = domByClass(this.el, "_loaded"), this._filled = domByClass(this.el, "_filled"), this._handle = domByClass(this.el, "_handle"), this._handleWrap = domByClass(this.el, "_handle_wrap"), this._callbacks = t || {}, this.domListen(this.el, "mousemove", this.onMove), this.domListen(this.el, "mouseleave", this.onOut), this.domListen(this.el, "mousedown", this.onMouseDown), this.domListen(this.el, "keydown", this.onKeydown)
+            }
+            buildEl() {
                 return se('\n<div class="videoplayer_slider" tabindex="0" role="slider">\n  <div class="_bars_wrap">\n    <div class="_loaded"></div>\n    <div class="_filled"></div>\n  </div>\n  <div class="_handle_wrap">\n    <div class="_handle"></div>\n  </div>\n</div>\n    ')
-            }, e.prototype.initAria = function(t) {
-                attr(this.el, "aria-label", t.label), attr(this.el, "aria-valuemin", t.valuemin), attr(this.el, "aria-valuemax", t.valuemax), this._ariaValues = t, this.updateAriaValue(this._filledPercent || 0)
-            }, e.prototype.updateAriaValue = function(t) {
+            }
+            initAria(e) {
+                attr(this.el, "aria-label", e.label), attr(this.el, "aria-valuemin", e.valuemin), attr(this.el, "aria-valuemax", e.valuemax), this._ariaValues = e, this.updateAriaValue(this._filledPercent || 0)
+            }
+            updateAriaValue(e) {
                 if (this._ariaValues) {
-                    var e = this._ariaValues,
-                        i = e.valuemin + Math.round((e.valuemax - e.valuemin) * t),
-                        n = e.valuetext(i, e.valuemin, e.valuemax);
-                    attr(this.el, "aria-valuenow", i), attr(this.el, "aria-valuetext", n)
+                    var t = this._ariaValues,
+                        i = t.valuemin + Math.round((t.valuemax - t.valuemin) * e),
+                        s = t.valuetext(i, t.valuemin, t.valuemax);
+                    attr(this.el, "aria-valuenow", i), attr(this.el, "aria-valuetext", s)
                 }
-            }, e.prototype.setLoaded = function(t) {
-                t = Math.min(1, Math.max(0, t));
-                var e = void 0,
-                    i = void 0;
-                this._transformProp ? (e = this._transformProp, i = "translateX(" + 100 * t + "%)") : (e = "marginLeft", i = 100 * t + "%"), setStyle(this._loaded, e, i)
-            }, e.prototype.setFilled = function(t) {
-                var e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-                t = Math.min(1, Math.max(0, t));
-                var i = void 0,
-                    n = void 0;
-                this._transformProp ? (i = this._transformProp, n = "translateX(" + 100 * t + "%)") : (i = "marginLeft", n = 100 * t + "%"), setStyle(this._filled, i, n), setStyle(this._handleWrap, i, n), this._filledPercent = t, e && this.updateAriaValue(t)
-            }, e.prototype.disable = function() {
+            }
+            setLoaded(e) {
+                var t, i;
+                e = Math.min(1, Math.max(0, e)), this._transformProp ? (t = this._transformProp, i = `translateX(${100*e}%)`) : (t = "marginLeft", i = 100 * e + "%"), setStyle(this._loaded, t, i)
+            }
+            setFilled(e, t = !0) {
+                var i, s;
+                e = Math.min(1, Math.max(0, e)), this._transformProp ? (i = this._transformProp, s = `translateX(${100*e}%)`) : (i = "marginLeft", s = 100 * e + "%"), setStyle(this._filled, i, s), setStyle(this._handleWrap, i, s), this._filledPercent = e, t && this.updateAriaValue(e)
+            }
+            disable() {
                 this._disabled = !0, addClass(this.el, "_disabled")
-            }, e.prototype.enable = function() {
+            }
+            enable() {
                 this._disabled = !1, removeClass(this.el, "_disabled")
-            }, e.prototype.onMove = function(t) {
+            }
+            onMove(e) {
                 if (!this._disabled) {
-                    var e = this._getMouseProgress(t);
-                    this._callbacks.mousemove && this._callbacks.mousemove(e)
+                    var t = this._getMouseProgress(e);
+                    this._callbacks.mousemove && this._callbacks.mousemove(t)
                 }
-            }, e.prototype.onOut = function(t) {
+            }
+            onOut(e) {
                 this._disabled || this._callbacks.mouseout && this._callbacks.mouseout()
-            }, e.prototype.onMouseDown = function(t) {
+            }
+            onMouseDown(e) {
                 if (!this._disabled) {
                     this.dragging = !0, addClass(this.el, "_dragging"), this.domListen(window, "mousemove", this.onMouseMove), this.domListen(document, "selectstart", this.onSelectStart), this.domListenOnce(window, "mouseup", this.onMouseUp);
-                    var e = this._getMouseProgress(t);
-                    this.setFilled(e);
-                    var i = t.target == this._handle;
-                    this._callbacks.dragStart && this._callbacks.dragStart(e, i), this.player.onTouchedByUser()
+                    var t = this._getMouseProgress(e);
+                    this.setFilled(t);
+                    var i = e.target == this._handle;
+                    this._callbacks.dragStart && this._callbacks.dragStart(t, i), this.player.onTouchedByUser()
                 }
-            }, e.prototype.onMouseMove = function(t) {
+            }
+            onMouseMove(e) {
                 if (!this._disabled) {
-                    var e = this._getMouseProgress(t);
-                    this.setFilled(e), this._callbacks.drag && this._callbacks.drag(e), t.preventDefault()
+                    var t = this._getMouseProgress(e);
+                    this.setFilled(t), this._callbacks.drag && this._callbacks.drag(t), e.preventDefault()
                 }
-            }, e.prototype.onMouseUp = function(t) {
+            }
+            onMouseUp(e) {
                 if (!this._disabled) {
                     this.dragging = !1, removeClass(this.el, "_dragging"), this.domUnlisten(window, "mousemove", this.onMouseMove), this.domUnlisten(document, "selectstart", this.onSelectStart);
-                    var e = this._getMouseProgress(t);
-                    this.setFilled(e), this.hidden && this.toggleVisibility(!1), this._callbacks.dragEnd && this._callbacks.dragEnd(e)
+                    var t = this._getMouseProgress(e);
+                    this.setFilled(t), this.hidden && this.toggleVisibility(!1), this._callbacks.dragEnd && this._callbacks.dragEnd(t)
                 }
-            }, e.prototype.onSelectStart = function(t) {
-                t.preventDefault()
-            }, e.prototype._getMouseProgress = function(t) {
-                var e = this.el.getBoundingClientRect(),
-                    i = void 0;
+            }
+            onSelectStart(e) {
+                e.preventDefault()
+            }
+            _getMouseProgress(e) {
+                var t, i = this.el.getBoundingClientRect();
                 if (this.vertical) {
-                    var n = t.pageY - window.scrollGetY();
-                    i = (e.height - (n - e.top)) / e.height
-                } else i = (t.pageX - window.scrollGetX() - e.left) / e.width;
-                return Math.max(0, Math.min(1, i))
-            }, e.prototype.onKeydown = function(t) {
-                var e = void 0;
-                switch (t.keyCode) {
+                    var s = e.pageY - window.scrollGetY();
+                    t = (i.height - (s - i.top)) / i.height
+                } else t = (e.pageX - window.scrollGetX() - i.left) / i.width;
+                return Math.max(0, Math.min(1, t))
+            }
+            onKeydown(e) {
+                var t;
+                switch (e.keyCode) {
                     case KEY.LEFT:
                     case KEY.DOWN:
-                        e = -1;
+                        t = -1;
                         break;
                     case KEY.RIGHT:
                     case KEY.UP:
-                        e = 1;
+                        t = 1;
                         break;
                     default:
                         return
                 }
-                this._callbacks.keyboardSlide && this._callbacks.keyboardSlide(e, t.altKey)
-            }, e.prototype.setVertical = function(t) {
-                this.vertical = t, toggleClass(this.el, "_vertical", t)
-            }, e.prototype.toggleVisibility = function(t) {
-                this.hidden = !t, this.dragging || toggleClass(this.el, "hidden", !t)
-            }, e
-        }(yt);
-        var Nt = function(t) {
-                function e(i, n, r) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var o = void 0,
-                        s = function(t, e) {
-                            if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                            return !e || "object" != typeof e && "function" != typeof e ? t : e
-                        }(this, t.call(this, i, {
-                            mousemove: function(t) {
-                                s.showPreviewAt(t)
-                            },
-                            mouseout: function(t) {
-                                s.preview.hide(), s.tooltip.hide()
-                            },
-                            dragStart: function(t, e) {
-                                s.player.trigger(W), e || s.player.seekToPercent(t), s.showPreviewAt(t), o = t
-                            },
-                            drag: function(t) {
-                                var e = t * s.player.getDuration();
-                                s.controls.updateTime(e), s.showPreviewAt(t)
-                            },
-                            dragEnd: function(t) {
-                                s.player.trigger(q), t != o ? s.player.seekToPercent(t) : s.controls.updateTime(s.player.curTime()), s.preview.hide(), s.tooltip.hide()
-                            }
-                        }));
-                    return s.controls = n, s.preview = r, addClass(s.el, "videoplayer_timeline_slider"), s.updateAria(), s
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.updateAria = function() {
-                    var t = this;
-                    this.initAria({
-                        label: this.getLang("aria_timeline_slider"),
-                        valuemin: 0,
-                        valuemax: this.player.getDuration(),
-                        valuetext: function(e, i, n) {
-                            return t.getLang("aria_timeline_value", {
-                                time: formatTime(e, !0),
-                                duration: formatTime(n, !0)
-                            })
-                        }
-                    })
-                }, e.prototype.showPreviewAt = function(t) {
-                    if (this.player.isInited()) {
-                        var e = formatTime(this.player.getDuration() * t);
-                        this.getVar("timeline_thumbs") ? this.preview.show({
-                            sliderEl: this.el,
-                            progress: t,
-                            text: e
-                        }) : this.tooltip.show({
-                            el: this.el,
-                            text: e,
-                            offsetXpercent: t,
-                            offsetY: 16
-                        })
+                this._callbacks.keyboardSlide && this._callbacks.keyboardSlide(t, e.altKey)
+            }
+            setVertical(e) {
+                this.vertical = e, toggleClass(this.el, "_vertical", e)
+            }
+            toggleVisibility(e) {
+                this.hidden = !e, this.dragging || toggleClass(this.el, "hidden", !e)
+            }
+        }
+        class at extends st {
+            constructor(e, t, i) {
+                var s;
+                super(e, {
+                    mousemove: e => {
+                        this.showPreviewAt(e)
+                    },
+                    mouseout: e => {
+                        this.preview.hide(), this.tooltip.hide()
+                    },
+                    dragStart: (e, t) => {
+                        this.player.trigger(z), t || this.player.seekToPercent(e), this.showPreviewAt(e), s = e
+                    },
+                    drag: e => {
+                        var t = e * this.player.getDuration();
+                        this.controls.updateTime(t), this.showPreviewAt(e)
+                    },
+                    dragEnd: e => {
+                        this.player.trigger(Q), e != s ? this.player.seekToPercent(e) : this.controls.updateTime(this.player.curTime()), this.preview.hide(), this.tooltip.hide()
                     }
-                }, e.prototype.disable = function() {
-                    t.prototype.disable.call(this), this.preview.hide()
-                }, e
-            }(Ft),
-            jt = function() {
-                return function(t, e) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return function(t, e) {
-                        var i = [],
-                            n = !0,
-                            r = !1,
-                            o = void 0;
-                        try {
-                            for (var s, a = t[Symbol.iterator](); !(n = (s = a.next()).done) && (i.push(s.value), !e || i.length !== e); n = !0);
-                        } catch (t) {
-                            r = !0, o = t
-                        } finally {
-                            try {
-                                !n && a.return && a.return()
-                            } finally {
-                                if (r) throw o
-                            }
-                        }
-                        return i
-                    }(t, e);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }), this.controls = t, this.preview = i, addClass(this.el, "videoplayer_timeline_slider"), this.updateAria()
+            }
+            updateAria() {
+                this.initAria({
+                    label: this.getLang("aria_timeline_slider"),
+                    valuemin: 0,
+                    valuemax: this.player.getDuration(),
+                    valuetext: (e, t, i) => this.getLang("aria_timeline_value", {
+                        time: formatTime(e, !0),
+                        duration: formatTime(i, !0)
+                    })
+                })
+            }
+            showPreviewAt(e) {
+                if (this.player.isInited()) {
+                    var t = formatTime(this.player.getDuration() * e);
+                    this.getVar("timeline_thumbs") ? this.preview.show({
+                        sliderEl: this.el,
+                        progress: e,
+                        text: t
+                    }) : this.tooltip.show({
+                        el: this.el,
+                        text: t,
+                        offsetXpercent: e,
+                        offsetY: 16
+                    })
                 }
-            }();
-        var Ht = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
+            }
+            disable() {
+                super.disable(), this.preview.hide()
+            }
+        }
+        var rt = 150;
+        class lt extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
                     className: "videoplayer_timeline_preview",
                     innerHTML: '\n<div class="_preview"></div>\n<div class="_text"></div>\n<div class="_arrow"></div>\n      '
                 }, {
                     display: "none"
-                }), n._preview = domByClass(n.el, "_preview"), n._text = domByClass(n.el, "_text"), n._arrow = domByClass(n.el, "_arrow"), n
+                }), this._preview = domByClass(this.el, "_preview"), this._text = domByClass(this.el, "_text"), this._arrow = domByClass(this.el, "_arrow")
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initVideo = function(t) {
-                if (t.timeline_thumbs) {
-                    var e = this.getThumbsData(),
-                        i = e.frameWidth,
-                        n = e.frameHeight;
-                    i > 150 ? (n = n / i * 150, i = 150) : n > 150 && (i = i / n * 150, n = 150), this.frameWidth = i, this.frameHeight = n, setStyle(this._preview, {
-                        width: i + "px",
-                        height: n + "px"
-                    }), this._imgUrls = e.links, this._imgUrls.forEach(function(t) {
-                        return vkImage().src = t
-                    })
+            initVideo(e) {
+                if (e.timeline_thumbs) {
+                    var t = this.getThumbsData(),
+                        i = t.frameWidth,
+                        s = t.frameHeight;
+                    i > rt ? (s = s / i * rt, i = rt) : s > rt && (i = i / s * rt, s = rt), this.frameWidth = i, this.frameHeight = s, setStyle(this._preview, {
+                        width: `${i}px`,
+                        height: `${s}px`
+                    }), this._imgUrls = t.links, this._imgUrls.forEach(e => vkImage().src = e)
                 }
-            }, e.prototype.getThumbsData = function() {
-                var t = this.getVar("timeline_thumbs").split("|"),
-                    e = jt(t, 6);
+            }
+            getThumbsData() {
+                var [e, t, i, s, a, r] = this.getVar("timeline_thumbs").split("|");
                 return {
-                    frameWidth: e[0],
-                    frameHeight: e[1],
-                    countPerRow: e[2],
-                    countPerImage: e[3],
-                    countTotal: e[4],
-                    links: e[5].split(",")
+                    frameWidth: e,
+                    frameHeight: t,
+                    countPerRow: i,
+                    countPerImage: s,
+                    countTotal: a,
+                    links: r.split(",")
                 }
-            }, e.prototype.show = function(t) {
-                function e(e) {
-                    return t.apply(this, arguments)
-                }
-                return e.toString = function() {
-                    return t.toString()
-                }, e
-            }(function(t) {
-                var e = t.sliderEl,
-                    i = t.progress,
-                    n = t.text,
-                    r = this.getThumbsData(),
-                    o = Math.min(r.countTotal, Math.max(0, Math.floor(r.countTotal * i - .5))),
-                    s = Math.floor(o / r.countPerImage),
-                    a = Math.floor(o % r.countPerImage / r.countPerRow),
-                    l = o % r.countPerRow,
-                    u = Math.floor(r.countPerImage / r.countPerRow);
-                s === Math.floor(r.countTotal / r.countPerImage) && (u = Math.floor(r.countTotal % r.countPerImage / r.countPerRow), r.countTotal % r.countPerImage % r.countPerRow > 0 && u++);
-                var h = r.countPerRow;
-                s === Math.floor(r.countTotal / r.countPerImage) && r.countTotal % r.countPerImage > 0 && (h = Math.min(r.countPerRow, r.countTotal % r.countPerImage));
-                var c = this.frameWidth * h,
-                    d = this.frameHeight * u,
-                    p = -l * this.frameWidth,
-                    f = -a * this.frameHeight;
+            }
+            show({
+                sliderEl: e,
+                progress: t,
+                text: i
+            }) {
+                var s = this.getThumbsData(),
+                    a = Math.min(s.countTotal, Math.max(0, Math.floor(s.countTotal * t - .5))),
+                    r = Math.floor(a / s.countPerImage),
+                    l = Math.floor(a % s.countPerImage / s.countPerRow),
+                    n = a % s.countPerRow,
+                    o = Math.floor(s.countPerImage / s.countPerRow);
+                r === Math.floor(s.countTotal / s.countPerImage) && (o = Math.floor(s.countTotal % s.countPerImage / s.countPerRow), s.countTotal % s.countPerImage % s.countPerRow > 0 && o++);
+                var h = s.countPerRow;
+                r === Math.floor(s.countTotal / s.countPerImage) && s.countTotal % s.countPerImage > 0 && (h = Math.min(s.countPerRow, s.countTotal % s.countPerImage));
+                var d = this.frameWidth * h,
+                    u = this.frameHeight * o,
+                    c = -n * this.frameWidth,
+                    p = -l * this.frameHeight;
                 setStyle(this._preview, {
-                    backgroundImage: "url(" + this._imgUrls[s] + ")",
-                    backgroundSize: c + "px " + d + "px",
-                    backgroundPosition: p + "px " + f + "px"
+                    backgroundImage: `url(${this._imgUrls[r]})`,
+                    backgroundSize: `${d}px ${u}px`,
+                    backgroundPosition: `${c}px ${p}px`
                 });
-                var y = this.player.el.getBoundingClientRect(),
+                var g = this.player.el.getBoundingClientRect(),
                     v = e.getBoundingClientRect(),
-                    g = v.left - y.left + v.width * i,
-                    _ = 0;
-                (g -= Math.round(this.frameWidth / 2) + 3) < 7 && (_ = g - 7 - 3.5, g = 7), setStyle(this.el, {
-                    left: g + "px"
+                    _ = v.left - g.left + v.width * t,
+                    m = 0;
+                (_ -= Math.round(this.frameWidth / 2) + 3) < 7 && (m = _ - 7 - 3.5, _ = 7), setStyle(this.el, {
+                    left: _ + "px"
                 }), setStyle(this._arrow, {
-                    marginLeft: _ ? _ + "px" : null
-                }), val(this._text, n), show(this.el)
-            }), e.prototype.hide = function(t) {
-                function e() {
-                    return t.apply(this, arguments)
-                }
-                return e.toString = function() {
-                    return t.toString()
-                }, e
-            }(function() {
+                    marginLeft: m ? m + "px" : null
+                }), val(this._text, i), show(this.el)
+            }
+            hide() {
                 hide(this.el)
-            }), e
-        }(yt);
-        var Ut = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t) {
-                        r.player.setVolume(t), r.vertical || r.tooltip.show({
-                            el: r.el,
-                            text: Math.round(100 * t) + "%",
-                            offsetXpercent: t,
-                            offsetY: 16
-                        })
-                    },
-                    r = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i, {
-                        dragStart: n,
-                        drag: n,
-                        dragEnd: function(t) {
-                            r.tooltip.hide()
-                        }
-                    }));
-                return addClass(r.el, "videoplayer_volume_slider"), r.initAria({
-                    label: r.getLang("aria_volume_slider"),
+            }
+        }
+        class nt extends st {
+            constructor(e) {
+                var t = e => {
+                    this.player.setVolume(e), this.vertical || this.tooltip.show({
+                        el: this.el,
+                        text: Math.round(100 * e) + "%",
+                        offsetXpercent: e,
+                        offsetY: 16
+                    })
+                };
+                super(e, {
+                    dragStart: t,
+                    drag: t,
+                    dragEnd: e => {
+                        this.tooltip.hide()
+                    }
+                }), addClass(this.el, "videoplayer_volume_slider"), this.initAria({
+                    label: this.getLang("aria_volume_slider"),
                     valuemin: 0,
                     valuemax: 100,
-                    valuetext: function(t, e, i) {
-                        var n = Math.round(100 * r.player.getVolume()) + "%";
-                        return r.player.isMuted() && (n += " (" + r.getLang("aria_volume_muted") + ")"), n
+                    valuetext: (e, t, i) => {
+                        var s = Math.round(100 * this.player.getVolume()) + "%";
+                        return this.player.isMuted() && (s += " (" + this.getLang("aria_volume_muted") + ")"), s
                     }
-                }), r
+                })
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e
-        }(Ft);
-        var zt = function(t) {
-            function e(i, n) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var r = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i, n));
-                return r.el = r._buildEl(n.title, n.items), r.domListen(r.el, "click", function(t) {
-                    r._onClick(t, n.onItemClick)
-                }), r.domListen(domByClass(r.el, "videoplayer_settings_menu_sublist_header"), "click", function() {
-                    r._onClose(n.onSublistClose)
-                }), setTimeout(function() {
-                    r.el.style.width = r.el.offsetWidth + "px", r._scroll = new uiScroll(domByClass(r.el, "videoplayer_settings_menu_sublist_items"), {
+        }
+        class ot extends fe {
+            constructor(e, t) {
+                super(e, t), this.el = this._buildEl(t.title, t.items), this.domListen(this.el, "click", e => {
+                    this._onClick(e, t.onItemClick)
+                }), this.domListen(domByClass(this.el, "videoplayer_settings_menu_sublist_header"), "click", () => {
+                    this._onClose(t.onSublistClose)
+                }), setTimeout(() => {
+                    this.el.style.width = `${this.el.offsetWidth}px`, this._scroll = new uiScroll(domByClass(this.el, "videoplayer_settings_menu_sublist_items"), {
                         global: !0,
                         theme: "dark"
                     })
-                }), r
+                })
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype._buildEl = function(t, e) {
+            _buildEl(e, t) {
                 var i = "";
-                i += '<div class="videoplayer_settings_menu_sublist_header">' + t + "</div>", i += '<div class="videoplayer_settings_menu_sublist_divider"></div>';
-                var n = "",
-                    r = !0,
-                    o = !1,
-                    s = void 0;
-                try {
-                    for (var a, l = e[Symbol.iterator](); !(r = (a = l.next()).done); r = !0) {
-                        var u = a.value;
-                        n += '\n        <div class="videoplayer_settings_menu_sublist_item ' + (u.additionalClasses ? u.additionalClasses : "") + '"\n             data-value="' + u.value + '"\n             data-setting="' + u.setting + '"\n             role="menuitemradio"\n             tabindex="0">\n            ' + u.title + "\n        </div>\n      "
+                i += `<div class="videoplayer_settings_menu_sublist_header">${e}</div>`, i += '<div class="videoplayer_settings_menu_sublist_divider"></div>';
+                var s = "";
+                for (var a of t) s += `\n        <div class="videoplayer_settings_menu_sublist_item ${a.additionalClasses?a.additionalClasses:""}"\n             data-value="${a.value}"\n             data-setting="${a.setting}"\n             role="menuitemradio"\n             tabindex="0">\n            ${a.title}\n        </div>\n      `;
+                return i += `<div class="videoplayer_settings_menu_sublist_items">${s}</div>`, se(`<div class="videoplayer_settings_menu_sublist">${i}</div>`)
+            }
+            _onClick(e, t) {
+                (this.destroy(), t) && t(attr(e.target, "data-setting"), +attr(e.target, "data-value"))
+            }
+            _onClose(e) {
+                this.destroy(), e && e()
+            }
+            destroy() {
+                super.destroy(), this._scroll && (this._scroll.destroy(), this._scroll = null), re(this.el)
+            }
+        }
+        var ht = 1e3,
+            dt = 1e3,
+            ut = .25,
+            ct = 2,
+            pt = .25,
+            gt = "quality",
+            vt = "subtitles",
+            _t = "playback_speed";
+        class mt extends fe {
+            constructor(e, t) {
+                var i;
+                super(e), i = this, this.el = se('\n<div class="videoplayer_settings">\n  <div class="videoplayer_settings_menu_list hidden" role="menu"></div>\n</div>\n    ');
+                var s = [gt, vt, _t];
+                this._settingsList = {};
+                var a = function(e) {
+                    i._settingsList[e] = {
+                        ariaLabel: "",
+                        initialValue: "",
+                        onClick: () => {
+                            i._openSublist(e)
+                        },
+                        title: i.getLang(e),
+                        type: e
                     }
-                } catch (t) {
-                    o = !0, s = t
-                } finally {
-                    try {
-                        !r && l.return && l.return()
-                    } finally {
-                        if (o) throw s
-                    }
+                };
+                for (var r of s) a(r);
+                this._settingsList[gt].initialValue = this.player.getQuality(), this._settingsList[_t].initialValue = this.getLang("playback_speed_normal"), this._settingsList[_t].titleShort = this.getLang("playback_speed_short"), this._btn = t, this._menu = domByClass(this.el, "videoplayer_settings_menu_list"), this.domListen(this.el, "keydown", this._onKeyDown), this.domListen(this.el, "mouseenter", this._onMouseEnter), this.domListen(this.el, "mouseleave", this._onMouseLeave), this.domListen(this._btn, "keydown", this._onKeyDown), this.domListen(this._btn, "mouseenter", this._onMouseEnter), this.domListen(this._btn, "mouseleave", this._onMouseLeave), this.domListen(this._btn, "click", this._onBtnClick), this.playerListen(c, this._updateSubtitles), this.playerListen(g, this._updateSubtitles), this.playerListen(u, this._updateQualities), this.playerListen(p, this._updateQualities), this.playerListen(d, this._onPlayerStateChange)
+            }
+            initVideo(e) {
+                this._buildMenu(this._settingsList), this._updateQualities(), this._subtitleLangs = e.subtitles_langs
+            }
+            _buildMenu(e) {
+                var t = "";
+                each(e, (e, i) => {
+                    this._isControlAvailable(i.type) && (t += `\n        <div class="videoplayer_settings_menu_list_item videoplayer_settings_menu_list_item_${i.type}" role="menuitemradio" tabindex="0">\n          <div class="videoplayer_settings_menu_list_icon videoplayer_settings_menu_list_icon_${i.type}"></div>\n          <div class="videoplayer_settings_menu_list_title">${i.title}</div>\n          <div class="videoplayer_settings_menu_list_value">${i.initialValue}</div>\n        </div>\n      `)
+                }), val(this._menu, t), each(e, (e, t) => {
+                    var i = domByClass(this._menu, `videoplayer_settings_menu_list_item_${t.type}`);
+                    this._toggleControl(i, this._isControlVisible(t.type)), this.domListen(i, "click", t.onClick)
+                }), this._menuItems = geByClass("videoplayer_settings_menu_list_item", this._menu)
+            }
+            _getPlaybackRates() {
+                for (var e = [], t = ut; t <= ct; t += pt) {
+                    var i = "";
+                    this.player.getPlaybackRate() === t && (i += " active"), e.push({
+                        additionalClasses: i,
+                        setting: _t,
+                        title: this._getPlaybackRateText(t),
+                        value: t
+                    })
                 }
-                return i += '<div class="videoplayer_settings_menu_sublist_items">' + n + "</div>", se('<div class="videoplayer_settings_menu_sublist">' + i + "</div>")
-            }, e.prototype._onClick = function(t, e) {
-                (this.destroy(), e) && e(attr(t.target, "data-setting"), +attr(t.target, "data-value"))
-            }, e.prototype._onClose = function(t) {
-                this.destroy(), t && t()
-            }, e.prototype.destroy = function() {
-                t.prototype.destroy.call(this), this._scroll && (this._scroll.destroy(), this._scroll = null), re(this.el)
-            }, e
-        }(yt);
-        var Qt = "quality",
-            Wt = "subtitles",
-            qt = "playback_speed",
-            Gt = function(t) {
-                function e(i, n) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var r = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    r.el = se('\n<div class="videoplayer_settings">\n  <div class="videoplayer_settings_menu_list hidden" role="menu"></div>\n</div>\n    ');
-                    var o = [Qt, Wt, qt];
-                    r._settingsList = {};
-                    var s = !0,
-                        a = !1,
-                        l = void 0;
-                    try {
-                        for (var u, h = function() {
-                                var t = u.value;
-                                r._settingsList[t] = {
-                                    ariaLabel: "",
-                                    initialValue: "",
-                                    onClick: function() {
-                                        r._openSublist(t)
-                                    },
-                                    title: r.getLang(t),
-                                    type: t
-                                }
-                            }, c = o[Symbol.iterator](); !(s = (u = c.next()).done); s = !0) h()
-                    } catch (t) {
-                        a = !0, l = t
-                    } finally {
-                        try {
-                            !s && c.return && c.return()
-                        } finally {
-                            if (a) throw l
-                        }
-                    }
-                    return r._settingsList[Qt].initialValue = r.player.getQuality(), r._settingsList[qt].initialValue = r.getLang("playback_speed_normal"), r._settingsList[qt].titleShort = r.getLang("playback_speed_short"), r._btn = n, r._menu = domByClass(r.el, "videoplayer_settings_menu_list"), r.domListen(r.el, "keydown", r._onKeyDown), r.domListen(r.el, "mouseenter", r._onMouseEnter), r.domListen(r.el, "mouseleave", r._onMouseLeave), r.domListen(r._btn, "keydown", r._onKeyDown), r.domListen(r._btn, "mouseenter", r._onMouseEnter), r.domListen(r._btn, "mouseleave", r._onMouseLeave), r.domListen(r._btn, "click", r._onBtnClick), r.playerListen(f, r._updateSubtitles), r.playerListen(v, r._updateSubtitles), r.playerListen(p, r._updateQualities), r.playerListen(y, r._updateQualities), r.playerListen(d, r._onPlayerStateChange), r
+                return e
+            }
+            _getPlaybackRateText(e) {
+                return 1 === e ? this.getLang("playback_speed_normal") : langNumeric(e, "%s", !0) + "x"
+            }
+            _getQualities() {
+                var e = [],
+                    t = this.player.isAutoQualityEnabled();
+                if (this.player.isAutoQualityAvailable()) {
+                    var i = "";
+                    t && (i += " active"), e.push({
+                        additionalClasses: i,
+                        setting: gt,
+                        title: this.getLang("quality_auto"),
+                        value: -1
+                    })
                 }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.initVideo = function(t) {
-                    this._buildMenu(this._settingsList), this._updateQualities(), this._subtitleLangs = t.subtitles_langs
-                }, e.prototype._buildMenu = function(t) {
-                    var e = this,
-                        i = "";
-                    each(t, function(t, n) {
-                        e._isControlAvailable(n.type) && (i += '\n        <div class="videoplayer_settings_menu_list_item videoplayer_settings_menu_list_item_' + n.type + '" role="menuitemradio" tabindex="0">\n          <div class="videoplayer_settings_menu_list_icon videoplayer_settings_menu_list_icon_' + n.type + '"></div>\n          <div class="videoplayer_settings_menu_list_title">' + n.title + '</div>\n          <div class="videoplayer_settings_menu_list_value">' + n.initialValue + "</div>\n        </div>\n      ")
-                    }), val(this._menu, i), each(t, function(t, i) {
-                        var n = domByClass(e._menu, "videoplayer_settings_menu_list_item_" + i.type);
-                        e._toggleControl(n, e._isControlVisible(i.type)), e.domListen(n, "click", i.onClick)
-                    }), this._menuItems = geByClass("videoplayer_settings_menu_list_item", this._menu)
-                }, e.prototype._getPlaybackRates = function() {
-                    for (var t = [], e = .25; e <= 2; e += .25) {
-                        var i = "";
-                        this.player.getPlaybackRate() === e && (i += " active"), t.push({
-                            additionalClasses: i,
-                            setting: qt,
-                            title: this._getPlaybackRateText(e),
-                            value: e
-                        })
-                    }
-                    return t
-                }, e.prototype._getPlaybackRateText = function(t) {
-                    return 1 === t ? this.getLang("playback_speed_normal") : langNumeric(t, "%s", !0) + "x"
-                }, e.prototype._getQualities = function() {
-                    var t = [],
-                        e = this.player.isAutoQualityEnabled();
-                    if (this.player.isAutoQualityAvailable()) {
-                        var i = "";
-                        e && (i += " active"), t.push({
-                            additionalClasses: i,
-                            setting: Qt,
-                            title: this.getLang("quality_auto"),
-                            value: -1
-                        })
-                    }
-                    var n = !0,
-                        r = !1,
-                        o = void 0;
-                    try {
-                        for (var s, a = this.player.getAvailableQualities()[Symbol.iterator](); !(n = (s = a.next()).done); n = !0) {
-                            var l = s.value,
-                                u = "";
-                            this.player.getQuality() !== l || e || (u += " active"), this._isQualityHD(l) && (u += " label_hd"), t.push({
-                                additionalClasses: u,
-                                setting: Qt,
-                                title: l + "p",
-                                value: l
-                            })
-                        }
-                    } catch (t) {
-                        r = !0, o = t
-                    } finally {
-                        try {
-                            !n && a.return && a.return()
-                        } finally {
-                            if (r) throw o
-                        }
-                    }
-                    return t
-                }, e.prototype._getSubtitles = function() {
-                    var t = [],
-                        e = ""; - 1 === this.player.getSubtitleTrack() && (e += " active"), t.push({
-                        additionalClasses: e,
-                        setting: Wt,
+                for (var s of this.player.getAvailableQualities()) {
+                    var a = "";
+                    this.player.getQuality() !== s || t || (a += " active"), this._isQualityHD(s) && (a += " label_hd"), e.push({
+                        additionalClasses: a,
+                        setting: gt,
+                        title: `${s}p`,
+                        value: s
+                    })
+                }
+                return e
+            }
+            _getSubtitles() {
+                var e = [],
+                    t = "";
+                for (var i of (-1 === this.player.getSubtitleTrack() && (t += " active"), e.push({
+                        additionalClasses: t,
+                        setting: vt,
                         title: this.getLang("subtitles_off"),
                         value: -1
-                    });
-                    var i = !0,
-                        n = !1,
-                        r = void 0;
-                    try {
-                        for (var o, s = this.player.getAvailableSubtitleTracksInfo()[Symbol.iterator](); !(i = (o = s.next()).done); i = !0) {
-                            var a = o.value,
-                                l = "";
-                            this.player.getSubtitleTrack() === a.id && (l += " active"), t.push({
-                                additionalClasses: l,
-                                setting: Wt,
-                                title: this._getSubtitleTitle(a),
-                                value: a.id
-                            })
-                        }
-                    } catch (t) {
-                        n = !0, r = t
-                    } finally {
-                        try {
-                            !i && s.return && s.return()
-                        } finally {
-                            if (n) throw r
-                        }
-                    }
-                    return t
-                }, e.prototype._getSettingItems = function(t) {
-                    switch (t) {
-                        case qt:
-                            return this._getPlaybackRates();
-                        case Qt:
-                            return this._getQualities();
-                        case Wt:
-                            return this._getSubtitles()
-                    }
-                    return []
-                }, e.prototype._getSubtitleTitle = function(t) {
-                    return t ? this._subtitleLangs[t.lang].name : ""
-                }, e.prototype._isControlAvailable = function(t) {
-                    switch (t) {
-                        case qt:
-                            return !this.player.isActiveLive() && this.player.canChangePlaybackRate()
-                    }
-                    return !0
-                }, e.prototype._isControlVisible = function(t) {
-                    switch (t) {
-                        case qt:
-                            var e = this.player.getLivePhase();
-                            return this.player.getState() !== a.ERROR && (!e || e === at)
-                    }
-                    return !1
-                }, e.prototype._isQualityHD = function(t) {
-                    return t >= 720
-                }, e.prototype._onBtnClick = function(t) {
-                    this._disabled || t.target === this._menu || isAncestor(t.target, this._menu) || (this._currentSublist ? this._onSublistClose() : this.toggle(!this.isOpen()))
-                }, e.prototype._onPlayerStateChange = function(t, e) {
-                    var i = domByClass(this.el, "videoplayer_settings_menu_list_item_" + qt),
-                        n = domByClass(this.el, "videoplayer_settings_menu_list_item_" + Wt);
-                    t === a.ERROR ? (this._toggleControl(i, !1), this._toggleControl(n, !1)) : e === a.ERROR && (this._toggleControl(i, !0), this._toggleControl(n, this.player.getAvailableSubtitleTracksInfo().length))
-                }, e.prototype._onKeyDown = function(t) {
-                    switch (t.keyCode) {
-                        case KEY.UP:
-                        case KEY.DOWN:
-                            if (this.isOpen() || this._currentSublist) {
-                                var e = this._currentSublist ? geByClass("videoplayer_settings_menu_sublist_item", this._currentSublist.el) : this._menuItems,
-                                    i = e.length,
-                                    n = t.keyCode === KEY.DOWN ? 1 : -1;
-                                e[(i + indexOf(e, t.target) + n) % i].focus()
-                            } else this.toggle(!0);
-                            t.preventDefault(), t.stopPropagation();
-                            break;
-                        case KEY.ESC:
-                            this.isOpen() ? (this.toggle(!1), t.preventDefault(), t.stopPropagation()) : this._currentSublist && (this._onSublistClose(), t.preventDefault(), t.stopPropagation())
-                    }
-                }, e.prototype._onMouseEnter = function() {
-                    this._disabled || (clearTimeout(this._hideTimeout), this.isOpen() || (Date.now() - this.tooltip.lastShown < 50 ? this.showTooltip() : this._tooltipTimeout = setTimeout(this.showTooltip.bind(this), 1e3)))
-                }, e.prototype._onMouseLeave = function() {
-                    this._hideTimeout = setTimeout(this.toggle.bind(this, !1), 1e3), this.tooltip.hide(), clearTimeout(this._tooltipTimeout)
-                }, e.prototype._onChangeSetting = function(t, e) {
-                    switch (t) {
-                        case qt:
-                            this.player.setPlaybackRate(e), this._updatePlaybackRate();
-                            break;
-                        case Qt:
-                            this.player.setQuality(e);
-                            break;
-                        case Wt:
-                            this.player.switchSubtitleTrack(e)
-                    }
-                }, e.prototype._onSublistClose = function() {
-                    var t = this,
-                        e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-                    if (this._currentSublist) {
-                        if (e) return toggleClass(this._currentSublist.el, "hidden", !0), void setTimeout(function() {
-                            t._currentSublist.destroy(), t._currentSublist = null
-                        }, 250);
-                        this._currentSublist.destroy(), this._currentSublist = null, setTimeout(function() {
-                            t.isOpen() ? t._menuItems[0].focus() : t._btn.focus()
-                        }, 100)
-                    }
-                }, e.prototype._openSublist = function(t) {
-                    var e = this;
-                    if (this._settingsList && this._settingsList[t]) {
-                        this.toggle(), this._currentSublist = new zt(this.player, {
-                            items: this._getSettingItems(t),
-                            onItemClick: function(t, i) {
-                                e._onChangeSetting(t, i), e._onSublistClose()
-                            },
-                            onSublistClose: function() {
-                                e.toggle(), e._onSublistClose()
-                            },
-                            title: this._settingsList[t].titleShort || this._settingsList[t].title
-                        }), this.el.appendChild(this._currentSublist.el);
-                        var i = this._currentSublist.el;
-                        domByClass(i, "active").focus()
-                    }
-                }, e.prototype._toggleControl = function(t, e) {
-                    setStyle(t, {
-                        display: e ? "" : "none"
+                    }), this.player.getAvailableSubtitleTracksInfo())) {
+                    var s = "";
+                    this.player.getSubtitleTrack() === i.id && (s += " active"), e.push({
+                        additionalClasses: s,
+                        setting: vt,
+                        title: this._getSubtitleTitle(i),
+                        value: i.id
                     })
-                }, e.prototype._updatePlaybackRate = function() {
-                    var t = this._getPlaybackRateText(this.player.getPlaybackRate()),
-                        e = domByClass(this.el, "videoplayer_settings_menu_list_item_" + qt),
-                        i = domByClass(e, "videoplayer_settings_menu_list_value");
-                    val(i, t)
-                }, e.prototype._updateQualities = function() {
-                    if (this._menu) {
-                        var t = domByClass(this._menu, "videoplayer_settings_menu_list_item_" + Qt),
-                            e = domByClass(t, "videoplayer_settings_menu_list_value");
-                        this._toggleControl(t, this.player.getAvailableQualities().length > 1);
-                        var i = this.player.getQuality(),
-                            n = this.player.isAutoQualityEnabled() ? this.getLang("quality_auto") + " " + i + "p" : i + "p";
-                        val(e, n), toggleClass(t, "label_hd", this._isQualityHD(i)), toggleClass(this._btn, "videoplayer_btn_settings_hd", this._isQualityHD(i))
-                    }
-                }, e.prototype._updateSubtitles = function(t, e) {
-                    var i = domByClass(this.el, "videoplayer_settings_menu_list_item_" + Wt),
-                        n = domByClass(i, "videoplayer_settings_menu_list_value");
-                    this._toggleControl(i, t.length);
-                    var r = this._getSubtitleTitle(e) || this.getLang("subtitles_off");
-                    val(n, r)
-                }, e.prototype.disable = function() {
-                    this.toggle(!1), this._disabled = !0, setStyle(this._wrap, {
-                        cursor: "default"
-                    })
-                }, e.prototype.enable = function() {
-                    this._disabled = !1, setStyle(this._wrap, {
-                        cursor: ""
-                    })
-                }, e.prototype.isOpen = function() {
-                    return !hasClass(this._menu, "hidden")
-                }, e.prototype.isSublistOpen = function() {
-                    return !!this._currentSublist
-                }, e.prototype.showTooltip = function() {
-                    var t = this;
-                    this._disabled || this.isOpen() || this.isSublistOpen() || this.tooltip.show({
-                        el: this._btn,
-                        text: function() {
-                            return t.getLang("open_settings")
-                        },
-                        offsetY: 10
-                    })
-                }, e.prototype.toggle = function() {
-                    var t = this,
-                        e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !this.isOpen();
-                    e || this._onSublistClose(!0), e !== this.isOpen() && (toggleClass(this._menu, "hidden", !e), attr(this._menu, "aria-hidden", !e), e ? (this.tooltip.hide(), attr(this._btn, "tabindex", -1), setTimeout(function() {
-                        return t._menuItems[0].focus()
-                    }, 100)) : (attr(this._btn, "tabindex", 0), domPN(document.activeElement) === this._menu && this._btn.focus()), attr(this._btn, "aria-expanded", e))
-                }, e
-            }(yt),
-            Yt = i("QOPk");
-
-        function Kt(t) {
-            if (Array.isArray(t)) {
-                for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                return i
+                }
+                return e
             }
-            return Array.from(t)
+            _getSettingItems(e) {
+                switch (e) {
+                    case _t:
+                        return this._getPlaybackRates();
+                    case gt:
+                        return this._getQualities();
+                    case vt:
+                        return this._getSubtitles()
+                }
+                return []
+            }
+            _getSubtitleTitle(e) {
+                return e ? this._subtitleLangs[e.lang].name : ""
+            }
+            _isControlAvailable(e) {
+                switch (e) {
+                    case _t:
+                        return !this.player.isActiveLive() && this.player.canChangePlaybackRate()
+                }
+                return !0
+            }
+            _isControlVisible(e) {
+                switch (e) {
+                    case _t:
+                        var t = this.player.getLivePhase();
+                        return this.player.getState() !== r.ERROR && (!t || t === ne)
+                }
+                return !1
+            }
+            _isQualityHD(e) {
+                return e >= ve
+            }
+            _onBtnClick(e) {
+                this._disabled || e.target === this._menu || isAncestor(e.target, this._menu) || (this._currentSublist ? this._onSublistClose() : this.toggle(!this.isOpen()))
+            }
+            _onPlayerStateChange(e, t) {
+                var i = domByClass(this.el, `videoplayer_settings_menu_list_item_${_t}`),
+                    s = domByClass(this.el, `videoplayer_settings_menu_list_item_${vt}`);
+                e === r.ERROR ? (this._toggleControl(i, !1), this._toggleControl(s, !1)) : t === r.ERROR && (this._toggleControl(i, !0), this._toggleControl(s, this.player.getAvailableSubtitleTracksInfo().length))
+            }
+            _onKeyDown(e) {
+                switch (e.keyCode) {
+                    case KEY.UP:
+                    case KEY.DOWN:
+                        if (this.isOpen() || this._currentSublist) {
+                            var t = this._currentSublist ? geByClass("videoplayer_settings_menu_sublist_item", this._currentSublist.el) : this._menuItems,
+                                i = t.length,
+                                s = e.keyCode === KEY.DOWN ? 1 : -1;
+                            t[(i + indexOf(t, e.target) + s) % i].focus()
+                        } else this.toggle(!0);
+                        e.preventDefault(), e.stopPropagation();
+                        break;
+                    case KEY.ESC:
+                        this.isOpen() ? (this.toggle(!1), e.preventDefault(), e.stopPropagation()) : this._currentSublist && (this._onSublistClose(), e.preventDefault(), e.stopPropagation())
+                }
+            }
+            _onMouseEnter() {
+                this._disabled || (clearTimeout(this._hideTimeout), this.isOpen() || (Date.now() - this.tooltip.lastShown < 50 ? this.showTooltip() : this._tooltipTimeout = setTimeout(this.showTooltip.bind(this), dt)))
+            }
+            _onMouseLeave() {
+                this._hideTimeout = setTimeout(this.toggle.bind(this, !1), ht), this.tooltip.hide(), clearTimeout(this._tooltipTimeout)
+            }
+            _onChangeSetting(e, t) {
+                switch (e) {
+                    case _t:
+                        this.player.setPlaybackRate(t), this._updatePlaybackRate();
+                        break;
+                    case gt:
+                        this.player.setQuality(t);
+                        break;
+                    case vt:
+                        this.player.switchSubtitleTrack(t)
+                }
+            }
+            _onSublistClose(e = !1) {
+                if (this._currentSublist) {
+                    if (e) return toggleClass(this._currentSublist.el, "hidden", !0), void setTimeout(() => {
+                        this._currentSublist.destroy(), this._currentSublist = null
+                    }, 250);
+                    this._currentSublist.destroy(), this._currentSublist = null, setTimeout(() => {
+                        this.isOpen() ? this._menuItems[0].focus() : this._btn.focus()
+                    }, 100)
+                }
+            }
+            _openSublist(e) {
+                if (this._settingsList && this._settingsList[e]) {
+                    this.toggle(), this._currentSublist = new ot(this.player, {
+                        items: this._getSettingItems(e),
+                        onItemClick: (e, t) => {
+                            this._onChangeSetting(e, t), this._onSublistClose()
+                        },
+                        onSublistClose: () => {
+                            this.toggle(), this._onSublistClose()
+                        },
+                        title: this._settingsList[e].titleShort || this._settingsList[e].title
+                    }), this.el.appendChild(this._currentSublist.el);
+                    var t = this._currentSublist.el;
+                    domByClass(t, "active").focus()
+                }
+            }
+            _toggleControl(e, t) {
+                setStyle(e, {
+                    display: t ? "" : "none"
+                })
+            }
+            _updatePlaybackRate() {
+                var e = this._getPlaybackRateText(this.player.getPlaybackRate()),
+                    t = domByClass(this.el, `videoplayer_settings_menu_list_item_${_t}`),
+                    i = domByClass(t, "videoplayer_settings_menu_list_value");
+                val(i, e)
+            }
+            _updateQualities() {
+                if (this._menu) {
+                    var e = domByClass(this._menu, `videoplayer_settings_menu_list_item_${gt}`),
+                        t = domByClass(e, "videoplayer_settings_menu_list_value");
+                    this._toggleControl(e, this.player.getAvailableQualities().length > 1);
+                    var i = this.player.getQuality(),
+                        s = this.player.isAutoQualityEnabled() ? `${this.getLang("quality_auto")} ${i}p` : `${i}p`;
+                    val(t, s), toggleClass(e, "label_hd", this._isQualityHD(i)), toggleClass(this._btn, "videoplayer_btn_settings_hd", this._isQualityHD(i))
+                }
+            }
+            _updateSubtitles(e, t) {
+                var i = domByClass(this.el, `videoplayer_settings_menu_list_item_${vt}`),
+                    s = domByClass(i, "videoplayer_settings_menu_list_value");
+                this._toggleControl(i, e.length);
+                var a = this._getSubtitleTitle(t) || this.getLang("subtitles_off");
+                val(s, a)
+            }
+            disable() {
+                this.toggle(!1), this._disabled = !0, setStyle(this._wrap, {
+                    cursor: "default"
+                })
+            }
+            enable() {
+                this._disabled = !1, setStyle(this._wrap, {
+                    cursor: ""
+                })
+            }
+            isOpen() {
+                return !hasClass(this._menu, "hidden")
+            }
+            isSublistOpen() {
+                return !!this._currentSublist
+            }
+            showTooltip() {
+                this._disabled || this.isOpen() || this.isSublistOpen() || this.tooltip.show({
+                    el: this._btn,
+                    text: () => this.getLang("open_settings"),
+                    offsetY: 10
+                })
+            }
+            toggle(e = !this.isOpen()) {
+                e || this._onSublistClose(!0), e !== this.isOpen() && (toggleClass(this._menu, "hidden", !e), attr(this._menu, "aria-hidden", !e), e ? (this.tooltip.hide(), attr(this._btn, "tabindex", -1), setTimeout(() => this._menuItems[0].focus(), 100)) : (attr(this._btn, "tabindex", 0), domPN(document.activeElement) === this._menu && this._btn.focus()), attr(this._btn, "aria-expanded", e))
+            }
         }
-        var Xt = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.buildEl(), n.buildTimelineSlider(), n.buildVolumeSlider(), n.buildSettingsMenu(), n._isTimeReversed = !!St.getPref("time_reversed"), n.playerListen(d, n.onStateChange), n.playerListen(_, n.onFullscreenChange), n.playerListen(x, n.onMediaTimeupdate), n.playerListen(V, n.updateBuffered), n.playerListen(I, n.updateVolume), n.playerListen(M, n.updateDuration), n.playerListen(m, n.onSeek), n.playerListen(b, function() {
-                        n.toggleControl(n.btnExpand, !1)
-                    }), n.playerListen(et, n.onLinearAdStarted), n.playerListen(it, n.onLinearAdCompleted), n.playerListen(tt, function(t, e, i) {
-                        n.updateTime(t)
-                    }), n.playerListen(P, n.onLivePhaseChange), n.playerListen(f, function(t) {
-                        n.toggleControl(n.btnSubtitles, n.isControlAvailable("subtitles"))
-                    }), n.playerListen(v, function() {
-                        var t = n.player.getSubtitleTrack();
-                        toggleClass(n.btnSubtitles, "active", t > -1), t > -1 ? attr(n.btnSubtitles, "aria-label", n.getLang("disable_subtitles")) : attr(n.btnSubtitles, "aria-label", n.getLang("enable_subtitles"))
-                    }), n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.buildEl = function() {
-                    var t = this;
-                    this.el = se('\n<div class="videoplayer_controls">\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_play" role="button" tabindex="0" aria-label="' + this.getLang("play") + '">\n    ' + Bt("videoplayer_btn_icon videoplayer_play_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_next" role="button" tabindex="0" aria-label="' + this.getLang("next") + '">\n    <div class="videoplayer_btn_icon videoplayer_next_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_live" style="display:none;">\n    ' + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="84 14 42 20" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="none" fill-rule="evenodd" transform="translate(84 14)">\n    <rect fill="#F75148" width="42" height="20" rx="2"/>\n    <path d="M26.874 6.486l-2.464 7.562c-.17.523-.756.952-1.307.952h-.206c-.552 0-1.136-.426-1.307-.952l-2.464-7.562c-.06-.11-.103-.233-.12-.363L19 6.1h.005C19.002 6.067 19 6.034 19 6c0-.552.448-1 1-1 .52 0 .945.395.995.9H21l2 6.4 2-6.4h.005c.05-.505.476-.9.995-.9.552 0 1 .448 1 1 0 .034-.002.067-.005.1H27l-.007.023c-.016.13-.058.253-.12.363zM31 9V7h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1h-4.02c-.268 0-.515.11-.696.29-.184.184-.294.432-.294.705v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31v-2h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31zM9 13V5.995C9 5.455 8.552 5 8 5c-.556 0-1 .446-1 .995v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H9zm6-7.005c0-.55.444-.995 1-.995.552 0 1 .456 1 .995v8.01c0 .55-.444.995-1 .995-.552 0-1-.456-1-.995v-8.01z" fill="#F0F2F5"/>\n  </g>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_live_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_timeline"></div>\n  <div class="videoplayer_controls_item videoplayer_time">\n    <span class="_time_current"></span><span class="_time_duration"></span>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_mute" role="button" tabindex="0" aria-label="' + this.getLang("volume_off") + '">\n    ' + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_wave2" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032zm3-1.99999997c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0 .2637116.26371158.6207023.73969919.9665078 1.43131016.5167785 1.03355701.842501 2.25503497.8892639 3.71655167-.0467629 1.4032299-.3724854 2.6247079-.8892639 3.6582649-.3458055.6916109-.7027962 1.1675985-.9665078 1.4313101-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.1375896-.1375897.3825507-.4642045.638697-.9764971.4071252-.8142505.6673665-1.7901701.7054825-2.8756411-.038116-1.1437578-.2983573-2.11967743-.7054825-2.93392787-.2561463-.51229266-.5011074-.83890747-.638697-.9764971z"/>\n    <path class="_wave1" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032z"/>\n    <path class="_cross" d="M20 10.7625631l2.3812816-2.38128153c.3417087-.34170876.8957281-.34170876 1.2374368 0 .3417088.34170875.3417088.89572811 0 1.23743686L21.2374369 12l2.3812815 2.3812816c.3417088.3417087.3417088.8957281 0 1.2374368-.3417087.3417088-.8957281.3417088-1.2374368 0L20 13.2374369l-2.3812816 2.3812815c-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368L18.7625631 12l-2.3812815-2.38128157c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0zm-7.019157 8.060199c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545z"/>\n  </g>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_volume_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_volume"></div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_expand" style="display:none;" role="button" tabindex="0" aria-label="' + this.getLang("expand") + '">\n    ' + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="729 480 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M729 481.994c0-1.1.895-1.994 1.994-1.994h12.012c1.1 0 1.994.895 1.994 1.994v12.012c0 1.1-.895 1.994-1.994 1.994h-12.012c-1.1 0-1.994-.895-1.994-1.994v-12.012zm2 4.004c0-.55.456-.998 1.002-.998h9.996c.553 0 1.002.446 1.002.998v7.004c0 .55-.456.998-1.002.998h-9.996c-.553 0-1.002-.446-1.002-.998v-7.004z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_expand_icon") + '\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_subtitles" role="button" tabindex="0" aria-haspopup="true" aria-label="' + this.getLang("enable_subtitles") + '">\n    <div class="videoplayer_btn_icon videoplayer_subtitles_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_settings" role="button" tabindex="0" aria-haspopup="true" aria-label="' + this.getLang("aria_open_settings") + '">\n    <div class="videoplayer_btn_icon videoplayer_settings_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_fullscreen" role="button" tabindex="0" aria-label="' + this.getLang("aria_enter_fullscreen") + '">\n    ' + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_enter" d="M10.5 19c0 .5522847-.4477153 1-1 1H5c-.55228475 0-1-.4477153-1-1v-4.5c0-.5522847.44771525-1 1-1s1 .4477153 1 1v2.0715l3.36290054-3.3643932.00012963-.0001296c.39052429-.3905243 1.02368923-.3905243 1.41421353 0l.0157791.0157791.0001297.0001296c.3904527.3905959.3903366 1.0237609-.0002593 1.4142136L7.4285 18H9.5c.5522847 0 1 .4477153 1 1zM18 7.4285l-3.3629005 3.3643932c-.0000432.0000432-.0000865.0000864-.0001297.0001296-.3905243.3905243-1.0236892.3905243-1.4142135 0l-.0157791-.0157791c-.0000433-.0000432-.0000865-.0000864-.0001297-.0001296-.3904527-.3905959-.3903366-1.02376087.0002593-1.41421356L16.5715 6H14.5c-.5522847 0-1-.44771525-1-1s.4477153-1 1-1H19c.5522847 0 1 .44771525 1 1v4.5c0 .5522847-.4477153 1-1 1s-1-.4477153-1-1z"/>\n    <path class="_exit" d="M4.57969048 13.9787492c0-.5464165.44295809-.9893746.9893746-.9893746h4.45218572c.5464165 0 .9893746.4429581.9893746.9893746v4.4521857c0 .5464165-.4429581.9893746-.9893746.9893746-.54641651 0-.98937461-.4429581-.98937461-.9893746v-2.0494895l-3.3196551 3.3211319-.00012963.0001297c-.39052429.3905243-1.02368927.3905243-1.41421356 0l-.00058487-.0005849-.00012964-.0001297c-.39045268-.3905958-.3903366-1.0237608.00025929-1.4142135l3.32113189-3.3196551H5.56906508c-.54641651 0-.9893746-.4429581-.9893746-.9893746zM14.9681238 7.61855457l3.3196551-3.32113189.0001296-.00012966c.3905243-.39052429 1.0236893-.39052429 1.4142136 0l.0005849.00058488.0001296.00012965c.3904527.39059589.3903366 1.02376086-.0002593 1.41421354l-3.3211319 3.3196551h2.0494895c.5464165 0 .9893746.4429581.9893746.98937461 0 .5464165-.4429581.9893746-.9893746.9893746h-4.4415603c-.5522847 0-1-.4477153-1-1V5.56906508c0-.54641651.4429581-.9893746.9893746-.9893746s.9893746.44295809.9893746.9893746z"/>\n  </g>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_fullscreen_icon") + '\n  </div>\n  \x3c!--<div class="videoplayer_controls_item videoplayer_quality" role="button" tabindex="0" aria-haspopup="true" aria-label="' + this.getLang("hdsd") + '"></div>--\x3e\n  <a class="videoplayer_controls_item videoplayer_btn videoplayer_btn_vk" style="display:none;" target="_blank" rel="noopener" aria-label="' + this.getLang("goto_orig_video") + '">\n    ' + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="916 568 28 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M938.55 575.79s3.6-5.068 3.974-6.79c.188-.625-.187-1-.813-1h-3.065c-.75 0-1.064.313-1.252.75 0 0-1.5 3.66-3.63 6.04-.687.687-1 .906-1.375.906-.188 0-.47-.22-.47-.844v-5.85c0-.752-.094-1.002-.72-1.002h-4.817c-.47 0-.688.264-.688.594 0 .712 1.064.876 1.064 2.88v4.348c0 .813-.063 1.126-.438 1.126-1 0-3.436-3.677-4.88-7.884-.284-.818-.59-1.064-1.346-1.064h-3.13c-.5 0-.812.313-.812.75 0 .783 1 4.663 4.662 9.793 2.44 3.504 5.756 5.32 8.885 5.32 1.877 0 2.315-.314 2.315-1.065v-2.628c0-.563.094-1.032.688-1.032.438 0 1.19.22 2.94 1.908 2.004 2.003 2.19 2.816 3.318 2.816h3.504c.375 0 .688-.188.688-.75 0-.814-1.064-2.19-2.565-3.88-.69-.814-1.72-1.69-2.034-2.128-.437-.563-.312-.813 0-1.314" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
-                    }("videoplayer_btn_icon videoplayer_vk_icon") + "\n  </a>\n</div>\n    "), this.btnSettings = domByClass(this.el, "videoplayer_btn_settings"), this.btnSubtitles = domByClass(this.el, "videoplayer_btn_subtitles"), this.btnPlay = domByClass(this.el, "videoplayer_btn_play"), this.btnNext = domByClass(this.el, "videoplayer_btn_next"), this.btnMute = domByClass(this.el, "videoplayer_btn_mute"), this.btnMuteIcon = domByClass(this.el, "videoplayer_volume_icon"), this.btnExpand = domByClass(this.el, "videoplayer_btn_expand"), this.btnFullscreen = domByClass(this.el, "videoplayer_btn_fullscreen"), this.btnLogo = domByClass(this.el, "videoplayer_btn_vk"), this.liveLabel = domByClass(this.el, "videoplayer_live"), this.timeLabel = domByClass(this.el, "videoplayer_time"), this.timeLabelCurrent = domByClass(this.timeLabel, "_time_current"), this.timeLabelDuration = domByClass(this.timeLabel, "_time_duration"), this.timelineContainer = domByClass(this.el, "videoplayer_timeline"), this.volumeContainer = domByClass(this.el, "videoplayer_volume"), this.domListen(this.btnPlay, "click", function() {
-                        return t.player.togglePlay()
-                    }), this.domListen(this.btnNext, "click", function() {
-                        return t.player.nextVideo()
-                    }), this.domListen(this.btnMute, "click", function() {
-                        return t.player.toggleMute()
-                    }), this.domListen(this.btnMute, "mouseenter", this.onVolumeOver), this.domListen(this.btnMute, "mouseleave", this.onVolumeOut), this.domListen(this.btnExpand, "click", function() {
-                        return t.player.expand()
-                    }), this.domListen(this.btnFullscreen, "click", function() {
-                        return t.player.toggleFullscreen()
-                    }), this.domListen(this.btnSubtitles, "click", function() {
-                        return t.player.switchSubtitleTrack(null, !0)
-                    }), this.domListen(this.timeLabel, "click", function() {
-                        return t.toggleTime()
-                    }), this.domListen(this.volumeContainer, "mouseenter", this.onVolumeOver), this.domListen(this.volumeContainer, "mouseleave", this.onVolumeOut), this.attachTooltip({
-                        el: this.btnNext,
-                        text: this.getLang("next"),
-                        offsetY: -4
-                    }), this.attachTooltip({
-                        el: this.btnMute,
-                        text: function() {
-                            return t._minSize ? "" : t.getLang(t.player.isMuted() ? "volume_on" : "volume_off")
-                        },
-                        offsetY: -4
-                    }), this.attachTooltip({
-                        el: this.btnExpand,
-                        text: this.getLang("open_popup"),
-                        offsetY: -2,
-                        hideOnClick: !0
-                    }), this.attachTooltip({
-                        el: this.btnFullscreen,
-                        text: this.getLang("fullscreen"),
-                        offsetY: -2,
-                        hideOnClick: !0
-                    }), this.attachTooltip({
-                        el: this.btnSubtitles,
-                        text: function() {
-                            return t.getLang(-1 === t.player.getSubtitleTrack() ? "enable_subtitles" : "disable_subtitles")
-                        },
-                        offsetY: -2,
-                        hideOnClick: !0
-                    }), this.attachTooltip({
-                        el: this.btnLogo,
-                        text: this.getLang("goto_orig_video"),
-                        offsetY: -4
-                    }), Yt.a.enabled || this.toggleControl(this.btnFullscreen, !1)
-                }, e.prototype.buildTimelineSlider = function() {
-                    this.timelinePreview = new Ht(this.player), this.timelineContainer.appendChild(this.timelinePreview.el), this.timelineSlider = new Nt(this.player, this, this.timelinePreview), this.timelineContainer.appendChild(this.timelineSlider.el)
-                }, e.prototype.buildVolumeSlider = function() {
-                    var t = this;
-                    this.volumeSlider = new Ut(this.player), this.volumeContainer.appendChild(this.volumeSlider.el), this.delay(function() {
-                        t.updateVolume(t.player.isMuted() ? 0 : t.player.getVolume())
-                    }, 0)
-                }, e.prototype.buildSettingsMenu = function() {
-                    this.settingsMenu = new Gt(this.player, this.btnSettings), this.el.appendChild(this.settingsMenu.el)
-                }, e.prototype.initVideo = function(t) {
-                    Ct(this.timeLabelCurrent, formatTime(0)), Ct(this.timeLabelDuration, formatTime(this.player.getDuration())), this.toggleControl(this.timelineSlider.el, this.isControlAvailable("timeline")), this.toggleControl(this.timeLabel, this.isControlAvailable("time_label")), this.toggleControl(this.liveLabel, this.isControlAvailable("live_label")), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), this.toggleControl(this.btnNext, this.isControlAvailable("next")), this.toggleControl(this.btnExpand, this.isControlAvailable("expand")), this.toggleControl(this.btnFullscreen, this.isControlAvailable("fullscreen")), this.toggleControl(this.btnLogo, this.isControlAvailable("logo")), this.toggleControl(this.btnSubtitles, !1), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), attr(this.btnLogo, "href", "/video" + t.oid + "_" + t.vid), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), toggleClass(this.el, "_lite_controls", !!t.app_promo), toggleClass(this.el, "_has_logo", this.isControlAvailable("logo")), toggleClass(this.el, "_has_fullscreen", this.isControlAvailable("fullscreen")), toggleClass(this.btnSubtitles, "active", !1), this.timelineSlider.enable(), this.settingsMenu.enable(), this.getVar("ads_snippet_video") && !this._isTimeReversed && this.toggleTime(!0, !0), this.startTimelineAnimation()
-                }, e.prototype.deinitVideo = function() {
-                    Ct(this.timeLabelCurrent, formatTime(0)), Ct(this.timeLabelDuration, formatTime(0)), this.stopTimelineAnimation(), this.timelineSlider.setLoaded(0), this.timelineSlider.setFilled(0), this.timelineSlider.disable(), this.timelinePreview.hide(), this.settingsMenu.disable()
-                }, e.prototype.toggleControl = function(t, e) {
-                    setStyle(t, {
-                        display: e ? "" : "none"
-                    })
-                }, e.prototype.isControlAvailable = function(t) {
-                    var e = this.player.getVars();
-                    switch (t) {
-                        case "play":
-                            return !e.ads_snippet_video;
-                        case "next":
-                            return !!e.show_next && !this.player.isActiveLive() && !e.ads_snippet_video;
-                        case "timeline":
-                            return (!e.live || this.player.getLivePhase() == at) && !e.ads_snippet_video || e.force_timeline;
-                        case "time_label":
-                            return !e.live || this.player.getLivePhase() == at;
-                        case "live_label":
-                            return this.player.isActiveLive();
-                        case "expand":
-                            return !!e.is_inline && !e.app_promo && !e.ads_snippet_video;
-                        case "fullscreen":
-                            return !!Yt.a.enabled && !e.app_promo && !e.ads_snippet_video;
-                        case "settings":
-                            return !e.app_promo && !e.ads_snippet_video && (!this.player.isActiveLive() || this.player.getAvailableQualities().length > 1);
-                        case "subtitles":
-                            return !e.live && this.player.getAvailableSubtitleTracksInfo().length;
-                        case "logo":
-                            return !!e.is_embed && !e.no_logo;
-                        default:
-                            return !1
-                    }
-                }, e.prototype.toggle = function(t) {
-                    this._hidden = !t, toggleClass(this.el, "hidden", this._hidden)
-                }, e.prototype.show = function() {
-                    this.toggle(!0)
-                }, e.prototype.hide = function() {
-                    this.toggle(!1)
-                }, e.prototype.onStateChange = function(t, e) {
-                    var i = this.getLang(this.player.getState() === a.PLAYING ? "pause" : "play");
-                    attr(this.btnPlay, "aria-label", i), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), t === a.ERROR ? this.timelineSlider.disable() : e === a.ERROR && this.timelineSlider.enable()
-                }, e.prototype.onFullscreenChange = function() {
-                    var t = this.getLang(this.player.isFullscreen() ? "aria_exit_fullscreen" : "aria_enter_fullscreen");
-                    attr(this.btnFullscreen, "aria-label", t)
-                }, e.prototype.onMediaTimeupdate = function(t) {
-                    this.timelineSlider.dragging || this.updateTime(t)
-                }, e.prototype.startTimelineAnimation = function() {
-                    var t = this;
-                    if (!this._timelineAnimationRequestId && window.cancelAnimationFrame) {
-                        ! function e() {
-                            if (!t._hidden && t.player.getState() === a.PLAYING && !t.player.isActiveLive() && !t.timelineSlider.dragging) {
-                                var i = t.player.curTime(),
-                                    n = t.player.getDuration();
-                                if (i && n) {
-                                    var r = i / n;
-                                    t.timelineSlider.setFilled(r, !1)
-                                }
-                            }
-                            t._timelineAnimationRequestId = requestAnimationFrame(e)
-                        }()
-                    }
-                }, e.prototype.stopTimelineAnimation = function() {
-                    this._timelineAnimationRequestId && (cancelAnimationFrame(this._timelineAnimationRequestId), this._timelineAnimationRequestId = null)
-                }, e.prototype.updateBuffered = function(t) {
-                    this.timelineSlider.setLoaded(t)
-                }, e.prototype.updateVolume = function(t) {
-                    this.volumeSlider.dragging || this.volumeSlider.setFilled(t);
-                    var e = void 0;
-                    e = t > .5 ? "max" : t > .2 ? "mid" : t > 0 ? "min" : "off", attr(this.btnMuteIcon, "data-value", e);
-                    var i = this.getLang(t ? "volume_off" : "volume_on");
-                    attr(this.btnMute, "aria-label", i)
-                }, e.prototype.updateDuration = function(t) {
-                    var e = this;
-                    this.player.isPlayingLinearAd() || (this.timelineSlider.updateAria(), Ct(this.timeLabelDuration, formatTime(t)), this.delay(function() {
-                        e.resize.apply(e, Kt(e.player.getSize()))
-                    }, 0))
-                }, e.prototype.updateTime = function(t) {
-                    var e = this.player.getDuration(),
-                        i = t / e;
-                    this.timelineSlider.setFilled(i);
-                    var n = formatTime(this._minSize && this._isTimeReversed ? e - t : t);
-                    this.timeLabelCurrent.textContent = n
-                }, e.prototype.updateTimeWidth = function() {
-                    var t = val(this.timeLabelCurrent),
-                        e = formatTime(this.player.getDuration()).replace(/\d/g, "8");
-                    setStyle(this.timeLabel, {
-                        minWidth: ""
-                    }), Ct(this.timeLabelCurrent, e), setStyle(this.timeLabel, {
-                        minWidth: getStyle(this.timeLabel, "width")
-                    }), Ct(this.timeLabelCurrent, t)
-                }, e.prototype.toggleTime = function(t, e) {
-                    (this._minSize || t) && (this._isTimeReversed = !this._isTimeReversed, e || St.savePref("time_reversed", this._isTimeReversed ? 1 : 0), toggleClass(this.timeLabelCurrent, "_reversed", this._isTimeReversed), this.updateTime(this.player.curTime()))
-                }, e.prototype.resize = function(t, e) {
-                    var i = this;
-                    this._minSize = t < 550, setStyle(this.timeLabel, {
-                        cursor: this._minSize ? "pointer" : ""
-                    }), toggle(this.timeLabelDuration, !this._minSize), toggleClass(this.timeLabelCurrent, "_reversed", this._isTimeReversed && this._minSize), this.updateTime(this.player.curTime()), this.updateTimeWidth();
-                    var n = this._minSize;
-                    setStyle(this.volumeContainer, {
-                        padding: n ? "0" : ""
-                    }), this.volumeSlider.setVertical(n), this.volumeSlider.toggleVisibility(!n);
-                    var r = [this.btnMute];
-                    this.player.isInited() && (this.isControlAvailable("timeline") && r.unshift(this.timelineSlider.el), this.isControlAvailable("time_label") && r.unshift(this.timeLabel), this.isControlAvailable("subtitles") && r.unshift(this.btnSubtitles), this.isControlAvailable("settings") && (r.unshift(this.btnSettings), r.unshift(this.settingsMenu.el))), each(r, function(t, e) {
-                        return show(e)
-                    }), each(r, function(t, e) {
-                        if (i.el.offsetWidth <= i.player.el.offsetWidth) return !1;
-                        i.toggleControl(e, !1)
-                    })
-                }, e.prototype.isActive = function() {
-                    return this.timelineSlider.dragging || this.volumeSlider.dragging || this.settingsMenu.isOpen() || this.settingsMenu.isSublistOpen()
-                }, e.prototype.onVolumeOver = function() {
-                    this._minSize && (this.volumeSlider.toggleVisibility(!0), this.undelay(this._hideVolumeSliderTimeout))
-                }, e.prototype.onVolumeOut = function() {
-                    var t = this;
-                    this._minSize && (this._hideVolumeSliderTimeout = this.delay(function() {
-                        t.volumeSlider.toggleVisibility(!1)
-                    }, 100))
-                }, e.prototype.onLivePhaseChange = function(t) {
-                    toggle(this.timelineSlider.el, this.isControlAvailable("timeline")), toggle(this.timeLabel, this.isControlAvailable("time_label")), toggle(this.liveLabel, this.isControlAvailable("live_label"))
-                }, e.prototype.onSeek = function(t) {
-                    var e = t / this.player.getDuration();
-                    this.timelineSlider.setFilled(e), Ct(this.timeLabelCurrent, formatTime(t))
-                }, e.prototype.onLinearAdStarted = function(t, e) {
-                    var i = this,
-                        n = e.duration;
-                    this.timelineSlider.disable(), this.timelinePreview.hide(), this.settingsMenu.disable(), Ct(this.timeLabelDuration, formatTime(intval(n))), this.updateTime(0), this.delay(function() {
-                        i.resize.apply(i, Kt(i.player.getSize()))
-                    }, 0)
-                }, e.prototype.onLinearAdCompleted = function(t) {
-                    var e = this;
-                    this.timelineSlider.enable(), this.settingsMenu.enable(), Ct(this.timeLabelDuration, formatTime(this.player.getDuration())), this.updateTime(this.player.curTime()), this.delay(function() {
-                        e.resize.apply(e, Kt(e.player.getSize()))
-                    }, 0)
-                }, e
-            }(yt),
-            Jt = 1,
-            Zt = 2,
-            $t = 3;
-        var te = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    n.el = se('\n<div class="videoplayer_share_actions">\n  <div class="_donate"></div>\n  <div class="_like"></div>\n  <div class="_share"></div>\n  <div class="_bookmark"></div>\n  <div class="_add"></div>\n</div>\n    '), n._like = domByClass(n.el, "_like"), n._share = domByClass(n.el, "_share"), n._add = domByClass(n.el, "_add"), n._donate = domByClass(n.el, "_donate"), n._bookmark = domByClass(n.el, "_bookmark"), n.domListen(n._like, "click", function(t) {
-                        n.player.likeVideo(r())
-                    }), n.attachTooltip({
-                        el: n._like,
-                        text: n.getLang("like"),
-                        toDown: !0,
-                        hideDelay: 200
-                    }), n.domListen(n._share, "click", function(t) {
-                        n.player.shareVideo(r())
-                    }), n.attachTooltip({
-                        el: n._share,
-                        text: n.getLang("share"),
-                        toDown: !0,
-                        hideDelay: 200
-                    }), n.domListen(n._add, "click", function(t) {
-                        n.player.addVideo(r())
-                    }), n.attachTooltip({
-                        el: n._add,
-                        text: function() {
-                            return n.getLang(n.player.videoAdded ? "added" : "add")
-                        },
-                        toDown: !0,
-                        hideDelay: 200
-                    }), n.domListen(n._donate, "click", function(t) {
-                        n.player.donate(r())
-                    }), n.attachTooltip({
-                        el: n._donate,
-                        text: n.getLang("donate"),
-                        toDown: !0,
-                        hideDelay: 200
-                    }), n.domListen(n._bookmark, "click", function() {
-                        n.player.bookmark(r())
-                    }), n.attachTooltip({
-                        el: n._bookmark,
-                        text: function() {
-                            return n.getLang(n.player.videoBookmarked ? "delete_bookmark" : "add_bookmark")
-                        },
-                        toDown: !0,
-                        hideDelay: 200
-                    });
-                    var r = function() {
-                        return n.player.getState() === a.ENDED ? Zt : Jt
-                    };
-                    return i.on(k, function(t) {
-                        n.setLiked(t)
-                    }).on(T, function(t) {
-                        n.setAdded(t)
-                    }).on(E, function(t) {
-                        n.setBookmarked(t)
-                    }), n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.initVideo = function(t) {
-                    this.setLiked(!!t.liked), this.setAdded(!!t.added), this.setBookmarked(!!t.bookmarked), toggle(this._add, !!t.can_add), toggle(this._donate, !!t.can_donate), toggle(this._bookmark, !!t.can_bookmark), this.updateVisibility()
-                }, e.prototype.setLiked = function(t) {
-                    toggleClass(this._like, "_liked", t)
-                }, e.prototype.setAdded = function(t) {
-                    toggleClass(this._add, "_added", t)
-                }, e.prototype.setBookmarked = function(t) {
-                    toggleClass(this._bookmark, "_bookmarked", t)
-                }, e.prototype.show = function() {
-                    removeClass(this.el, "hidden")
-                }, e.prototype.hide = function() {
-                    addClass(this.el, "hidden")
-                }, e.prototype.updateVisibility = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                        e = !this.getVar("nolikes"),
-                        i = this.getVar("ads_snippet_video"),
-                        n = t || !this.player.isPlayingLinearAd() && this.player.getState() !== a.ENDED && !i;
-                    toggle(this.el, e && n)
-                }, e
-            }(yt),
-            ee = {
-                get supported() {
-                    return !!document.queryCommandSupported && document.queryCommandSupported("copy")
-                },
-                copy: function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : window.utilsNode,
-                        i = !1,
-                        n = ce("textarea", {
-                            value: t
-                        }, {
-                            position: "absolute",
-                            top: -9999,
-                            zIndex: 2
-                        });
-                    e.appendChild(n), browser.msie ? n.setSelectionRange(0, t.length) : n.select();
-                    try {
-                        i = document.execCommand("copy")
-                    } catch (t) {
-                        i = !1
-                    }
-                    return re(n), i
-                }
-            };
-        var ie = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = se('\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">' + n.getLang("cmenu_copy_video_link") + '</div>\n  <div class="_item" data-action="copy_timecoded_link">' + n.getLang("cmenu_copy_timecode_link") + '</div>\n  <div class="_item" data-action="copy_embed_code">' + n.getLang("cmenu_copy_embed_code") + '</div>\n  <div class="_item" data-action="toggle_pip">' + n.getLang("cmenu_enable_pip_mode") + '</div>\n  <div class="_item" data-action="toggle_loop">' + n.getLang("cmenu_enable_loop") + '</div>\n  \x3c!--<div class="_item" data-action="playback_rate">' + n.getLang("cmenu_playback_speed") + '</div>--\x3e\n  <div class="_item" data-action="rotate_video">' + n.getLang("cmenu_rotate") + '</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">' + n.getLang("cmenu_report_error") + '</a>\n  <div class="_item" data-action="copy_debug_data">' + n.getLang("cmenu_copy_debug") + "</div>\n</div>\n    "), n.domListen(n.player.el, "contextmenu", n.onContextmenu), n.domListen(n.el, "click", n.onMenuClick), n.domListen(document.body, "click", n.onLostFocus), n.domListen(n.player.el, "click", n.onLostFocus), n.domListen(window, "blur", n.onLostFocus), n.playerListen(b, n.updateButtonsVisibility), n.playerListen(P, n.updateButtonsVisibility), n.playerListen(H, n.updateButtonsVisibility), n
+        var yt = i("QOPk");
+        class bt extends fe {
+            constructor(e) {
+                super(e), this.buildEl(), this.buildTimelineSlider(), this.buildVolumeSlider(), this.buildSettingsMenu(), this._isTimeReversed = !!Re.getPref("time_reversed"), this.playerListen(d, this.onStateChange), this.playerListen(_, this.onFullscreenChange), this.playerListen(A, this.onMediaTimeupdate), this.playerListen(P, this.updateBuffered), this.playerListen(V, this.updateVolume), this.playerListen(x, this.updateDuration), this.playerListen(m, this.onSeek), this.playerListen(y, () => {
+                    this.toggleControl(this.btnExpand, !1)
+                }), this.playerListen(Z, this.onLinearAdStarted), this.playerListen(ee, this.onLinearAdCompleted), this.playerListen(J, (e, t, i) => {
+                    this.updateTime(e)
+                }), this.playerListen(T, this.onLivePhaseChange), this.playerListen(c, e => {
+                    this.toggleControl(this.btnSubtitles, this.isControlAvailable("subtitles"))
+                }), this.playerListen(g, () => {
+                    var e = this.player.getSubtitleTrack();
+                    toggleClass(this.btnSubtitles, "active", e > -1), e > -1 ? attr(this.btnSubtitles, "aria-label", this.getLang("disable_subtitles")) : attr(this.btnSubtitles, "aria-label", this.getLang("enable_subtitles"))
+                })
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initVideo = function(t) {
-                this.updateLoopControl(!!t.repeat), this.updateButtonsVisibility()
-            }, e.prototype.updateButtonsVisibility = function() {
-                var t = this.player.getLivePhase() == ut,
-                    e = t || this.player.isActiveLive();
-                toggle(this.el.querySelector("[data-action=copy_timecoded_link]"), !e), toggle(this.el.querySelector("[data-action=copy_embed_code]"), !this.getVar("is_private")), toggle(this.el.querySelector("[data-action=toggle_pip]"), this.player.media.isPiPModeAvailable()), toggle(this.el.querySelector("[data-action=toggle_loop]"), !e), toggle(this.el.querySelector("[data-action=rotate_video]"), !t && this.player.canRotateVideo())
-            }, e.prototype.updateLoopControl = function(t) {
-                var e = this.el.querySelector("[data-action=toggle_loop]");
-                val(e, this.getLang(t ? "cmenu_disable_loop" : "cmenu_enable_loop"))
-            }, e.prototype.onMenuClick = function(t) {
-                var e = this;
-                switch (t.target.getAttribute("data-action")) {
+            buildEl() {
+                this.el = se(`\n<div class="videoplayer_controls">\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_play" role="button" tabindex="0" aria-label="${this.getLang("play")}">\n    ${it("videoplayer_btn_icon videoplayer_play_icon")}\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_next" role="button" tabindex="0" aria-label="${this.getLang("next")}">\n    <div class="videoplayer_btn_icon videoplayer_next_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_live" style="display:none;">\n    ${function(e=""){return`\n<svg class="${e}" viewBox="84 14 42 20" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="none" fill-rule="evenodd" transform="translate(84 14)">\n    <rect fill="#F75148" width="42" height="20" rx="2"/>\n    <path d="M26.874 6.486l-2.464 7.562c-.17.523-.756.952-1.307.952h-.206c-.552 0-1.136-.426-1.307-.952l-2.464-7.562c-.06-.11-.103-.233-.12-.363L19 6.1h.005C19.002 6.067 19 6.034 19 6c0-.552.448-1 1-1 .52 0 .945.395.995.9H21l2 6.4 2-6.4h.005c.05-.505.476-.9.995-.9.552 0 1 .448 1 1 0 .034-.002.067-.005.1H27l-.007.023c-.016.13-.058.253-.12.363zM31 9V7h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1h-4.02c-.268 0-.515.11-.696.29-.184.184-.294.432-.294.705v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31v-2h3.01c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H31zM9 13V5.995C9 5.455 8.552 5 8 5c-.556 0-1 .446-1 .995v8.01c0 .268.11.516.29.697.18.188.428.298.7.298h4.02c.54 0 .99-.448.99-1 0-.556-.444-1-.99-1H9zm6-7.005c0-.55.444-.995 1-.995.552 0 1 .456 1 .995v8.01c0 .55-.444.995-1 .995-.552 0-1-.456-1-.995v-8.01z" fill="#F0F2F5"/>\n  </g>\n</svg>\n  `}("videoplayer_btn_icon videoplayer_live_icon")}\n  </div>\n  <div class="videoplayer_controls_item videoplayer_timeline"></div>\n  <div class="videoplayer_controls_item videoplayer_time">\n    <span class="_time_current"></span><span class="_time_duration"></span>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_mute" role="button" tabindex="0" aria-label="${this.getLang("volume_off")}">\n    ${function(e=""){return`\n<svg class="${e}" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_wave2" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032zm3-1.99999997c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0 .2637116.26371158.6207023.73969919.9665078 1.43131016.5167785 1.03355701.842501 2.25503497.8892639 3.71655167-.0467629 1.4032299-.3724854 2.6247079-.8892639 3.6582649-.3458055.6916109-.7027962 1.1675985-.9665078 1.4313101-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.1375896-.1375897.3825507-.4642045.638697-.9764971.4071252-.8142505.6673665-1.7901701.7054825-2.8756411-.038116-1.1437578-.2983573-2.11967743-.7054825-2.93392787-.2561463-.51229266-.5011074-.83890747-.638697-.9764971z"/>\n    <path class="_wave1" d="M12.980843 18.8227621c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545zm2.9004386-8.7040437c-.3417088-.34170872-.3417088-.89572808 0-1.23743683.3417087-.34170876.8957281-.34170876 1.2374368 0 .1762598.17625972.4111566.46988072.6409943.87209686C18.1429358 10.4240187 18.375 11.1782274 18.375 12s-.2320642 1.5759813-.6152873 2.2466216c-.2298377.4022161-.4647345.6958371-.6409943.8720968-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368.0737402-.0737403.2138434-.2488693.3590057-.5029032C16.4820642 12.9552687 16.625 12.4907274 16.625 12s-.1429358-.9552687-.3847127-1.3783784c-.1451623-.2540339-.2852655-.4291629-.3590057-.5029032z"/>\n    <path class="_cross" d="M20 10.7625631l2.3812816-2.38128153c.3417087-.34170876.8957281-.34170876 1.2374368 0 .3417088.34170875.3417088.89572811 0 1.23743686L21.2374369 12l2.3812815 2.3812816c.3417088.3417087.3417088.8957281 0 1.2374368-.3417087.3417088-.8957281.3417088-1.2374368 0L20 13.2374369l-2.3812816 2.3812815c-.3417087.3417088-.8957281.3417088-1.2374368 0-.3417088-.3417087-.3417088-.8957281 0-1.2374368L18.7625631 12l-2.3812815-2.38128157c-.3417088-.34170875-.3417088-.89572811 0-1.23743686.3417087-.34170876.8957281-.34170876 1.2374368 0zm-7.019157 8.060199c-.032051 1.2070086-.6704932 1.608931-1.8287519.6202507-1.7185995-1.4687545-3.60887471-3.1942931-4.24215929-3.7215065-.63217937-.528454-1.64491897-.6202511-3.07284859-.6202511-1.42682441 0-1.81505873-.6202511-1.81505873-1.2405016s-.01369327-1.8288162-.01369327-2.001246c0-.0549443.00464608-.085056.01369327-.1291845.01954957-.0953551-.05817756-.9728525 0-1.591076.08510106-.90556663.38823432-1.24050252 1.81505873-1.24050252 1.42792962 0 2.44066922-.09179716 3.07284859-.62025109.63328458-.52845393 2.52355979-2.25275186 4.24215929-3.72150644 1.1582587-.98868024 1.7967003-.58675756 1.8287514.62025106.0431031 1.60645033 5e-7 3.85020301 5e-7 6.68226949 0 2.8295855.0431032 5.3568042 0 6.9632545z"/>\n  </g>\n</svg>\n  `}("videoplayer_btn_icon videoplayer_volume_icon")}\n  </div>\n  <div class="videoplayer_controls_item videoplayer_volume"></div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_expand" style="display:none;" role="button" tabindex="0" aria-label="${this.getLang("expand")}">\n    ${function(e=""){return`\n<svg class="${e}" viewBox="729 480 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M729 481.994c0-1.1.895-1.994 1.994-1.994h12.012c1.1 0 1.994.895 1.994 1.994v12.012c0 1.1-.895 1.994-1.994 1.994h-12.012c-1.1 0-1.994-.895-1.994-1.994v-12.012zm2 4.004c0-.55.456-.998 1.002-.998h9.996c.553 0 1.002.446 1.002.998v7.004c0 .55-.456.998-1.002.998h-9.996c-.553 0-1.002-.446-1.002-.998v-7.004z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  `}("videoplayer_btn_icon videoplayer_expand_icon")}\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_subtitles" role="button" tabindex="0" aria-haspopup="true" aria-label="${this.getLang("enable_subtitles")}">\n    <div class="videoplayer_btn_icon videoplayer_subtitles_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_settings" role="button" tabindex="0" aria-haspopup="true" aria-label="${this.getLang("aria_open_settings")}">\n    <div class="videoplayer_btn_icon videoplayer_settings_icon"></div>\n  </div>\n  <div class="videoplayer_controls_item videoplayer_btn videoplayer_btn_fullscreen" role="button" tabindex="0" aria-label="${this.getLang("aria_enter_fullscreen")}">\n    ${function(e=""){return`\n<svg class="${e}" xmlns="http://www.w3.org/2000/svg">\n  <g fill="#fff" fill-rule="evenodd">\n    <path class="_enter" d="M10.5 19c0 .5522847-.4477153 1-1 1H5c-.55228475 0-1-.4477153-1-1v-4.5c0-.5522847.44771525-1 1-1s1 .4477153 1 1v2.0715l3.36290054-3.3643932.00012963-.0001296c.39052429-.3905243 1.02368923-.3905243 1.41421353 0l.0157791.0157791.0001297.0001296c.3904527.3905959.3903366 1.0237609-.0002593 1.4142136L7.4285 18H9.5c.5522847 0 1 .4477153 1 1zM18 7.4285l-3.3629005 3.3643932c-.0000432.0000432-.0000865.0000864-.0001297.0001296-.3905243.3905243-1.0236892.3905243-1.4142135 0l-.0157791-.0157791c-.0000433-.0000432-.0000865-.0000864-.0001297-.0001296-.3904527-.3905959-.3903366-1.02376087.0002593-1.41421356L16.5715 6H14.5c-.5522847 0-1-.44771525-1-1s.4477153-1 1-1H19c.5522847 0 1 .44771525 1 1v4.5c0 .5522847-.4477153 1-1 1s-1-.4477153-1-1z"/>\n    <path class="_exit" d="M4.57969048 13.9787492c0-.5464165.44295809-.9893746.9893746-.9893746h4.45218572c.5464165 0 .9893746.4429581.9893746.9893746v4.4521857c0 .5464165-.4429581.9893746-.9893746.9893746-.54641651 0-.98937461-.4429581-.98937461-.9893746v-2.0494895l-3.3196551 3.3211319-.00012963.0001297c-.39052429.3905243-1.02368927.3905243-1.41421356 0l-.00058487-.0005849-.00012964-.0001297c-.39045268-.3905958-.3903366-1.0237608.00025929-1.4142135l3.32113189-3.3196551H5.56906508c-.54641651 0-.9893746-.4429581-.9893746-.9893746zM14.9681238 7.61855457l3.3196551-3.32113189.0001296-.00012966c.3905243-.39052429 1.0236893-.39052429 1.4142136 0l.0005849.00058488.0001296.00012965c.3904527.39059589.3903366 1.02376086-.0002593 1.41421354l-3.3211319 3.3196551h2.0494895c.5464165 0 .9893746.4429581.9893746.98937461 0 .5464165-.4429581.9893746-.9893746.9893746h-4.4415603c-.5522847 0-1-.4477153-1-1V5.56906508c0-.54641651.4429581-.9893746.9893746-.9893746s.9893746.44295809.9893746.9893746z"/>\n  </g>\n</svg>\n  `}("videoplayer_btn_icon videoplayer_fullscreen_icon")}\n  </div>\n  \x3c!--<div class="videoplayer_controls_item videoplayer_quality" role="button" tabindex="0" aria-haspopup="true" aria-label="${this.getLang("hdsd")}"></div>--\x3e\n  <a class="videoplayer_controls_item videoplayer_btn videoplayer_btn_vk" style="display:none;" target="_blank" rel="noopener" aria-label="${this.getLang("goto_orig_video")}">\n    ${function(e=""){return`\n<svg class="${e}" viewBox="916 568 28 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M938.55 575.79s3.6-5.068 3.974-6.79c.188-.625-.187-1-.813-1h-3.065c-.75 0-1.064.313-1.252.75 0 0-1.5 3.66-3.63 6.04-.687.687-1 .906-1.375.906-.188 0-.47-.22-.47-.844v-5.85c0-.752-.094-1.002-.72-1.002h-4.817c-.47 0-.688.264-.688.594 0 .712 1.064.876 1.064 2.88v4.348c0 .813-.063 1.126-.438 1.126-1 0-3.436-3.677-4.88-7.884-.284-.818-.59-1.064-1.346-1.064h-3.13c-.5 0-.812.313-.812.75 0 .783 1 4.663 4.662 9.793 2.44 3.504 5.756 5.32 8.885 5.32 1.877 0 2.315-.314 2.315-1.065v-2.628c0-.563.094-1.032.688-1.032.438 0 1.19.22 2.94 1.908 2.004 2.003 2.19 2.816 3.318 2.816h3.504c.375 0 .688-.188.688-.75 0-.814-1.064-2.19-2.565-3.88-.69-.814-1.72-1.69-2.034-2.128-.437-.563-.312-.813 0-1.314" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  `}("videoplayer_btn_icon videoplayer_vk_icon")}\n  </a>\n</div>\n    `), this.btnSettings = domByClass(this.el, "videoplayer_btn_settings"), this.btnSubtitles = domByClass(this.el, "videoplayer_btn_subtitles"), this.btnPlay = domByClass(this.el, "videoplayer_btn_play"), this.btnNext = domByClass(this.el, "videoplayer_btn_next"), this.btnMute = domByClass(this.el, "videoplayer_btn_mute"), this.btnMuteIcon = domByClass(this.el, "videoplayer_volume_icon"), this.btnExpand = domByClass(this.el, "videoplayer_btn_expand"), this.btnFullscreen = domByClass(this.el, "videoplayer_btn_fullscreen"), this.btnLogo = domByClass(this.el, "videoplayer_btn_vk"), this.liveLabel = domByClass(this.el, "videoplayer_live"), this.timeLabel = domByClass(this.el, "videoplayer_time"), this.timeLabelCurrent = domByClass(this.timeLabel, "_time_current"), this.timeLabelDuration = domByClass(this.timeLabel, "_time_duration"), this.timelineContainer = domByClass(this.el, "videoplayer_timeline"), this.volumeContainer = domByClass(this.el, "videoplayer_volume"), this.domListen(this.btnPlay, "click", () => this.player.togglePlay()), this.domListen(this.btnNext, "click", () => this.player.nextVideo()), this.domListen(this.btnMute, "click", () => this.player.toggleMute()), this.domListen(this.btnMute, "mouseenter", this.onVolumeOver), this.domListen(this.btnMute, "mouseleave", this.onVolumeOut), this.domListen(this.btnExpand, "click", () => this.player.expand()), this.domListen(this.btnFullscreen, "click", () => this.player.toggleFullscreen()), this.domListen(this.btnSubtitles, "click", () => this.player.switchSubtitleTrack(null, !0)), this.domListen(this.timeLabel, "click", () => this.toggleTime()), this.domListen(this.volumeContainer, "mouseenter", this.onVolumeOver), this.domListen(this.volumeContainer, "mouseleave", this.onVolumeOut), this.attachTooltip({
+                    el: this.btnNext,
+                    text: this.getLang("next"),
+                    offsetY: -4
+                }), this.attachTooltip({
+                    el: this.btnMute,
+                    text: () => this._minSize ? "" : this.getLang(this.player.isMuted() ? "volume_on" : "volume_off"),
+                    offsetY: -4
+                }), this.attachTooltip({
+                    el: this.btnExpand,
+                    text: this.getLang("open_popup"),
+                    offsetY: -2,
+                    hideOnClick: !0
+                }), this.attachTooltip({
+                    el: this.btnFullscreen,
+                    text: this.getLang("fullscreen"),
+                    offsetY: -2,
+                    hideOnClick: !0
+                }), this.attachTooltip({
+                    el: this.btnSubtitles,
+                    text: () => this.getLang(-1 === this.player.getSubtitleTrack() ? "enable_subtitles" : "disable_subtitles"),
+                    offsetY: -2,
+                    hideOnClick: !0
+                }), this.attachTooltip({
+                    el: this.btnLogo,
+                    text: this.getLang("goto_orig_video"),
+                    offsetY: -4
+                }), yt.a.enabled || this.toggleControl(this.btnFullscreen, !1)
+            }
+            buildTimelineSlider() {
+                this.timelinePreview = new lt(this.player), this.timelineContainer.appendChild(this.timelinePreview.el), this.timelineSlider = new at(this.player, this, this.timelinePreview), this.timelineContainer.appendChild(this.timelineSlider.el)
+            }
+            buildVolumeSlider() {
+                this.volumeSlider = new nt(this.player), this.volumeContainer.appendChild(this.volumeSlider.el), this.delay(() => {
+                    this.updateVolume(this.player.isMuted() ? 0 : this.player.getVolume())
+                }, 0)
+            }
+            buildSettingsMenu() {
+                this.settingsMenu = new mt(this.player, this.btnSettings), this.el.appendChild(this.settingsMenu.el)
+            }
+            initVideo(e) {
+                Qe(this.timeLabelCurrent, formatTime(0)), Qe(this.timeLabelDuration, formatTime(this.player.getDuration())), this.toggleControl(this.timelineSlider.el, this.isControlAvailable("timeline")), this.toggleControl(this.timeLabel, this.isControlAvailable("time_label")), this.toggleControl(this.liveLabel, this.isControlAvailable("live_label")), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), this.toggleControl(this.btnNext, this.isControlAvailable("next")), this.toggleControl(this.btnExpand, this.isControlAvailable("expand")), this.toggleControl(this.btnFullscreen, this.isControlAvailable("fullscreen")), this.toggleControl(this.btnLogo, this.isControlAvailable("logo")), this.toggleControl(this.btnSubtitles, !1), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), attr(this.btnLogo, "href", `/video${e.oid}_${e.vid}`), this.toggleControl(this.btnSettings, this.isControlAvailable("settings")), toggleClass(this.el, "_lite_controls", !!e.app_promo), toggleClass(this.el, "_has_logo", this.isControlAvailable("logo")), toggleClass(this.el, "_has_fullscreen", this.isControlAvailable("fullscreen")), toggleClass(this.btnSubtitles, "active", !1), this.timelineSlider.enable(), this.settingsMenu.enable(), this.getVar("ads_snippet_video") && !this._isTimeReversed && this.toggleTime(!0, !0), this.startTimelineAnimation()
+            }
+            deinitVideo() {
+                Qe(this.timeLabelCurrent, formatTime(0)), Qe(this.timeLabelDuration, formatTime(0)), this.stopTimelineAnimation(), this.timelineSlider.setLoaded(0), this.timelineSlider.setFilled(0), this.timelineSlider.disable(), this.timelinePreview.hide(), this.settingsMenu.disable()
+            }
+            toggleControl(e, t) {
+                setStyle(e, {
+                    display: t ? "" : "none"
+                })
+            }
+            isControlAvailable(e) {
+                var t = this.player.getVars();
+                switch (e) {
+                    case "play":
+                        return !t.ads_snippet_video;
+                    case "next":
+                        return !!t.show_next && !this.player.isActiveLive() && !t.ads_snippet_video;
+                    case "timeline":
+                        return (!t.live || this.player.getLivePhase() == ne) && !t.ads_snippet_video || t.force_timeline;
+                    case "time_label":
+                        return !t.live || this.player.getLivePhase() == ne;
+                    case "live_label":
+                        return this.player.isActiveLive();
+                    case "expand":
+                        return !!t.is_inline && !t.app_promo && !t.ads_snippet_video;
+                    case "fullscreen":
+                        return !!yt.a.enabled && !t.app_promo && !t.ads_snippet_video;
+                    case "settings":
+                        return !t.app_promo && !t.ads_snippet_video && (!this.player.isActiveLive() || this.player.getAvailableQualities().length > 1);
+                    case "subtitles":
+                        return !t.live && this.player.getAvailableSubtitleTracksInfo().length;
+                    case "logo":
+                        return !!t.is_embed && !t.no_logo;
+                    default:
+                        return !1
+                }
+            }
+            toggle(e) {
+                this._hidden = !e, toggleClass(this.el, "hidden", this._hidden)
+            }
+            show() {
+                this.toggle(!0)
+            }
+            hide() {
+                this.toggle(!1)
+            }
+            onStateChange(e, t) {
+                var i = this.getLang(this.player.getState() === r.PLAYING ? "pause" : "play");
+                attr(this.btnPlay, "aria-label", i), this.toggleControl(this.btnPlay, this.isControlAvailable("play")), e === r.ERROR ? this.timelineSlider.disable() : t === r.ERROR && this.timelineSlider.enable()
+            }
+            onFullscreenChange() {
+                var e = this.getLang(this.player.isFullscreen() ? "aria_exit_fullscreen" : "aria_enter_fullscreen");
+                attr(this.btnFullscreen, "aria-label", e)
+            }
+            onMediaTimeupdate(e) {
+                this.timelineSlider.dragging || this.updateTime(e)
+            }
+            startTimelineAnimation() {
+                if (!this._timelineAnimationRequestId && window.cancelAnimationFrame) {
+                    var e = () => {
+                        if (!this._hidden && this.player.getState() === r.PLAYING && !this.player.isActiveLive() && !this.timelineSlider.dragging) {
+                            var t = this.player.curTime(),
+                                i = this.player.getDuration();
+                            if (t && i) {
+                                var s = t / i;
+                                this.timelineSlider.setFilled(s, !1)
+                            }
+                        }
+                        this._timelineAnimationRequestId = requestAnimationFrame(e)
+                    };
+                    e()
+                }
+            }
+            stopTimelineAnimation() {
+                this._timelineAnimationRequestId && (cancelAnimationFrame(this._timelineAnimationRequestId), this._timelineAnimationRequestId = null)
+            }
+            updateBuffered(e) {
+                this.timelineSlider.setLoaded(e)
+            }
+            updateVolume(e) {
+                var t;
+                this.volumeSlider.dragging || this.volumeSlider.setFilled(e), t = e > .5 ? "max" : e > .2 ? "mid" : e > 0 ? "min" : "off", attr(this.btnMuteIcon, "data-value", t);
+                var i = this.getLang(e ? "volume_off" : "volume_on");
+                attr(this.btnMute, "aria-label", i)
+            }
+            updateDuration(e) {
+                this.player.isPlayingLinearAd() || (this.timelineSlider.updateAria(), Qe(this.timeLabelDuration, formatTime(e)), this.delay(() => {
+                    this.resize(...this.player.getSize())
+                }, 0))
+            }
+            updateTime(e) {
+                var t = this.player.getDuration(),
+                    i = e / t;
+                this.timelineSlider.setFilled(i);
+                var s = formatTime(this._minSize && this._isTimeReversed ? t - e : e);
+                this.timeLabelCurrent.textContent = s
+            }
+            updateTimeWidth() {
+                var e = val(this.timeLabelCurrent),
+                    t = formatTime(this.player.getDuration()).replace(/\d/g, "8");
+                setStyle(this.timeLabel, {
+                    minWidth: ""
+                }), Qe(this.timeLabelCurrent, t), setStyle(this.timeLabel, {
+                    minWidth: getStyle(this.timeLabel, "width")
+                }), Qe(this.timeLabelCurrent, e)
+            }
+            toggleTime(e, t) {
+                (this._minSize || e) && (this._isTimeReversed = !this._isTimeReversed, t || Re.savePref("time_reversed", this._isTimeReversed ? 1 : 0), toggleClass(this.timeLabelCurrent, "_reversed", this._isTimeReversed), this.updateTime(this.player.curTime()))
+            }
+            resize(e, t) {
+                this._minSize = e < 550, setStyle(this.timeLabel, {
+                    cursor: this._minSize ? "pointer" : ""
+                }), toggle(this.timeLabelDuration, !this._minSize), toggleClass(this.timeLabelCurrent, "_reversed", this._isTimeReversed && this._minSize), this.updateTime(this.player.curTime()), this.updateTimeWidth();
+                var i = this._minSize;
+                setStyle(this.volumeContainer, {
+                    padding: i ? "0" : ""
+                }), this.volumeSlider.setVertical(i), this.volumeSlider.toggleVisibility(!i);
+                var s = [this.btnMute];
+                this.player.isInited() && (this.isControlAvailable("timeline") && s.unshift(this.timelineSlider.el), this.isControlAvailable("time_label") && s.unshift(this.timeLabel), this.isControlAvailable("subtitles") && s.unshift(this.btnSubtitles), this.isControlAvailable("settings") && (s.unshift(this.btnSettings), s.unshift(this.settingsMenu.el))), each(s, (e, t) => show(t)), each(s, (e, t) => {
+                    if (this.el.offsetWidth <= this.player.el.offsetWidth) return !1;
+                    this.toggleControl(t, !1)
+                })
+            }
+            isActive() {
+                return this.timelineSlider.dragging || this.volumeSlider.dragging || this.settingsMenu.isOpen() || this.settingsMenu.isSublistOpen()
+            }
+            onVolumeOver() {
+                this._minSize && (this.volumeSlider.toggleVisibility(!0), this.undelay(this._hideVolumeSliderTimeout))
+            }
+            onVolumeOut() {
+                this._minSize && (this._hideVolumeSliderTimeout = this.delay(() => {
+                    this.volumeSlider.toggleVisibility(!1)
+                }, 100))
+            }
+            onLivePhaseChange(e) {
+                toggle(this.timelineSlider.el, this.isControlAvailable("timeline")), toggle(this.timeLabel, this.isControlAvailable("time_label")), toggle(this.liveLabel, this.isControlAvailable("live_label"))
+            }
+            onSeek(e) {
+                var t = e / this.player.getDuration();
+                this.timelineSlider.setFilled(t), Qe(this.timeLabelCurrent, formatTime(e))
+            }
+            onLinearAdStarted(e, {
+                duration: t
+            }) {
+                this.timelineSlider.disable(), this.timelinePreview.hide(), this.settingsMenu.disable(), Qe(this.timeLabelDuration, formatTime(intval(t))), this.updateTime(0), this.delay(() => {
+                    this.resize(...this.player.getSize())
+                }, 0)
+            }
+            onLinearAdCompleted(e) {
+                this.timelineSlider.enable(), this.settingsMenu.enable(), Qe(this.timeLabelDuration, formatTime(this.player.getDuration())), this.updateTime(this.player.curTime()), this.delay(() => {
+                    this.resize(...this.player.getSize())
+                }, 0)
+            }
+        }
+        var ft = 1,
+            St = 2,
+            Lt = 3;
+        class kt extends fe {
+            constructor(e) {
+                super(e), this.el = se('\n<div class="videoplayer_share_actions">\n  <div class="_donate"></div>\n  <div class="_like"></div>\n  <div class="_share"></div>\n  <div class="_bookmark"></div>\n  <div class="_add"></div>\n</div>\n    '), this._like = domByClass(this.el, "_like"), this._share = domByClass(this.el, "_share"), this._add = domByClass(this.el, "_add"), this._donate = domByClass(this.el, "_donate"), this._bookmark = domByClass(this.el, "_bookmark"), this.domListen(this._like, "click", e => {
+                    this.player.likeVideo(t())
+                }), this.attachTooltip({
+                    el: this._like,
+                    text: this.getLang("like"),
+                    toDown: !0,
+                    hideDelay: 200
+                }), this.domListen(this._share, "click", e => {
+                    this.player.shareVideo(t())
+                }), this.attachTooltip({
+                    el: this._share,
+                    text: this.getLang("share"),
+                    toDown: !0,
+                    hideDelay: 200
+                }), this.domListen(this._add, "click", e => {
+                    this.player.addVideo(t())
+                }), this.attachTooltip({
+                    el: this._add,
+                    text: () => this.getLang(this.player.videoAdded ? "added" : "add"),
+                    toDown: !0,
+                    hideDelay: 200
+                }), this.domListen(this._donate, "click", e => {
+                    this.player.donate(t())
+                }), this.attachTooltip({
+                    el: this._donate,
+                    text: this.getLang("donate"),
+                    toDown: !0,
+                    hideDelay: 200
+                }), this.domListen(this._bookmark, "click", () => {
+                    this.player.bookmark(t())
+                }), this.attachTooltip({
+                    el: this._bookmark,
+                    text: () => this.getLang(this.player.videoBookmarked ? "delete_bookmark" : "add_bookmark"),
+                    toDown: !0,
+                    hideDelay: 200
+                });
+                var t = () => this.player.getState() === r.ENDED ? St : ft;
+                e.on(S, e => {
+                    this.setLiked(e)
+                }).on(k, e => {
+                    this.setAdded(e)
+                }).on(w, e => {
+                    this.setBookmarked(e)
+                })
+            }
+            initVideo(e) {
+                this.setLiked(!!e.liked), this.setAdded(!!e.added), this.setBookmarked(!!e.bookmarked), toggle(this._add, !!e.can_add), toggle(this._donate, !!e.can_donate), toggle(this._bookmark, !!e.can_bookmark), this.updateVisibility()
+            }
+            setLiked(e) {
+                toggleClass(this._like, "_liked", e)
+            }
+            setAdded(e) {
+                toggleClass(this._add, "_added", e)
+            }
+            setBookmarked(e) {
+                toggleClass(this._bookmark, "_bookmarked", e)
+            }
+            show() {
+                removeClass(this.el, "hidden")
+            }
+            hide() {
+                addClass(this.el, "hidden")
+            }
+            updateVisibility(e = !1) {
+                var t = !this.getVar("nolikes"),
+                    i = this.getVar("ads_snippet_video"),
+                    s = e || !this.player.isPlayingLinearAd() && this.player.getState() !== r.ENDED && !i;
+                toggle(this.el, t && s)
+            }
+        }
+        var wt = {
+            get supported() {
+                return !!document.queryCommandSupported && document.queryCommandSupported("copy")
+            },
+            copy(e, t = window.utilsNode) {
+                var i = !1,
+                    s = ce("textarea", {
+                        value: e
+                    }, {
+                        position: "absolute",
+                        top: -9999,
+                        zIndex: 2
+                    });
+                t.appendChild(s), browser.msie ? s.setSelectionRange(0, e.length) : s.select();
+                try {
+                    i = document.execCommand("copy")
+                } catch (e) {
+                    i = !1
+                }
+                return re(s), i
+            }
+        };
+        class Ct extends fe {
+            constructor(e) {
+                super(e), this.el = se(`\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">${this.getLang("cmenu_copy_video_link")}</div>\n  <div class="_item" data-action="copy_timecoded_link">${this.getLang("cmenu_copy_timecode_link")}</div>\n  <div class="_item" data-action="copy_embed_code">${this.getLang("cmenu_copy_embed_code")}</div>\n  <div class="_item" data-action="toggle_pip">${this.getLang("cmenu_enable_pip_mode")}</div>\n  <div class="_item" data-action="toggle_loop">${this.getLang("cmenu_enable_loop")}</div>\n  \x3c!--<div class="_item" data-action="playback_rate">${this.getLang("cmenu_playback_speed")}</div>--\x3e\n  <div class="_item" data-action="rotate_video">${this.getLang("cmenu_rotate")}</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">${this.getLang("cmenu_report_error")}</a>\n  <div class="_item" data-action="copy_debug_data">${this.getLang("cmenu_copy_debug")}</div>\n</div>\n    `), this.domListen(this.player.el, "contextmenu", this.onContextmenu), this.domListen(this.el, "click", this.onMenuClick), this.domListen(document.body, "click", this.onLostFocus), this.domListen(this.player.el, "click", this.onLostFocus), this.domListen(window, "blur", this.onLostFocus), this.playerListen(y, this.updateButtonsVisibility), this.playerListen(T, this.updateButtonsVisibility), this.playerListen(H, this.updateButtonsVisibility)
+            }
+            initVideo(e) {
+                this.updateLoopControl(!!e.repeat), this.updateButtonsVisibility()
+            }
+            updateButtonsVisibility() {
+                var e = this.player.getLivePhase() == he,
+                    t = e || this.player.isActiveLive();
+                toggle(this.el.querySelector("[data-action=copy_timecoded_link]"), !t), toggle(this.el.querySelector("[data-action=copy_embed_code]"), !this.getVar("is_private")), toggle(this.el.querySelector("[data-action=toggle_pip]"), this.player.media.isPiPModeAvailable()), toggle(this.el.querySelector("[data-action=toggle_loop]"), !t), toggle(this.el.querySelector("[data-action=rotate_video]"), !e && this.player.canRotateVideo())
+            }
+            updateLoopControl(e) {
+                var t = this.el.querySelector("[data-action=toggle_loop]");
+                val(t, this.getLang(e ? "cmenu_disable_loop" : "cmenu_enable_loop"))
+            }
+            onMenuClick(e) {
+                switch (e.target.getAttribute("data-action")) {
                     case "copy_link":
                         this.copyToClipboard(this.player.getVideoLink());
                         break;
@@ -4069,451 +2723,311 @@
                         this.player.media.togglePiPMode();
                         break;
                     case "toggle_loop":
-                        var i = this.player.toggleLoop();
-                        this.delay(function() {
-                            e.updateLoopControl(i)
+                        var t = this.player.toggleLoop();
+                        this.delay(() => {
+                            this.updateLoopControl(t)
                         }, 200);
                         break;
                     case "rotate_video":
-                        t.stopPropagation(), this.player.rotateVideo();
+                        e.stopPropagation(), this.player.rotateVideo();
                         break;
                     case "copy_debug_data":
-                        var n = this.player.getDebugData();
-                        this.copyToClipboard(n)
+                        var i = this.player.getDebugData();
+                        this.copyToClipboard(i)
                 }
-            }, e.prototype.copyToClipboard = function(t) {
-                ee.copy(t, this.player.el)
-            }, e.prototype.onContextmenu = function(t) {
-                var e = 5,
-                    i = t.target;
+            }
+            copyToClipboard(e) {
+                wt.copy(e, this.player.el)
+            }
+            onContextmenu(e) {
+                var t = 5,
+                    i = e.target;
                 do {
                     if ("A" == i.nodeName) return void this.hide()
-                } while (--e && (i = domPN(i)));
-                t.preventDefault();
-                var n = this.player.el.getBoundingClientRect(),
-                    r = this.el.getBoundingClientRect(),
-                    o = t.pageX - n.left + 1,
-                    s = t.pageY - window.scrollGetY() - n.top + 1;
-                o + r.width > n.width && (o = Math.max(0, n.width - r.width)), s + r.height > n.height && (s = Math.max(0, n.height - r.height)), this.show(o, s), this.player.onTouchedByUser()
-            }, e.prototype.onLostFocus = function(t) {
-                var e = this;
-                this.delay(function() {
-                    e.isVisible() && e.hide()
+                } while (--t && (i = domPN(i)));
+                e.preventDefault();
+                var s = this.player.el.getBoundingClientRect(),
+                    a = this.el.getBoundingClientRect(),
+                    r = e.pageX - s.left + 1,
+                    l = e.pageY - window.scrollGetY() - s.top + 1;
+                r + a.width > s.width && (r = Math.max(0, s.width - a.width)), l + a.height > s.height && (l = Math.max(0, s.height - a.height)), this.show(r, l), this.player.onTouchedByUser()
+            }
+            onLostFocus(e) {
+                this.delay(() => {
+                    this.isVisible() && this.hide()
                 }, 0)
-            }, e.prototype.show = function(t, e) {
+            }
+            show(e, t) {
                 setStyle(this.el, {
-                    left: t + "px",
-                    top: e + "px"
+                    left: e + "px",
+                    top: t + "px"
                 }), removeClass(this.el, "hidden"), this._visible = !0
-            }, e.prototype.hide = function() {
+            }
+            hide() {
                 addClass(this.el, "hidden"), this._visible = !1
-            }, e.prototype.isVisible = function() {
+            }
+            isVisible() {
                 return !!this._visible
-            }, e
-        }(yt);
-        var ne = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = se('\n<div class="videoplayer_end_screen">\n  <div class="videoplayer_end_actions">\n    <div class="_like">\n      ' + n.getLang("like") + '\n    </div>\n    <div class="_share">\n      ' + n.getLang("share") + '\n    </div>\n    <div class="_add">\n      ' + n.getLang("add") + "\n    </div>\n  </div>\n</div>\n    "), n.getVar("md_author") && n.getVar("author_photo") && n.getVar("author_href") && (n._info = se('\n<div class="videoplayer_end_info">\n  <a href="' + n.getVar("author_href") + '" target="_blank" rel="noopener">\n    <img class="videoplayer_end_info_author_photo" src="' + n.getVar("author_photo") + '"/>\n  </a>\n  <div class="videoplayer_end_info_title">' + n.getVar("md_title") + '</div>\n  <div class="videoplayer_end_info_author_name">\n    <a href="' + n.getVar("author_href") + '" target="_blank" rel="noopener" class="videoplayer_end_info_author_link">' + n.getVar("md_author") + '</a>\n    <div class="videoplayer_end_info_subscribe">' + function() {
-                    return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="0 2 12 8" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M7 5V2H5v3H2v2h3v3h2V7h3V5H7z" fill="#FFF" fill-rule="evenodd" class="_plus"/>\n  <path stroke="#FFF" stroke-width="1.5" fill="none" d="M2 6l2.5 2.5L10 3" class="_mark"/>\n  <path d="M3 3l6 6M9 3L3 9" stroke="#FFF" stroke-width="1.5" fill="none" class="_cancel"/>\n</svg>\n  '
-                }("_icon_subscribe") + "</div>\n  </div>\n</div>\n      "), n._subscribeBtn = domByClass(n._info, "videoplayer_end_info_subscribe"), n.el.appendChild(n._info)), n._actions = domByClass(n.el, "videoplayer_end_actions"), n.setLiked(!!i.videoLiked), n.setAdded(!!i.videoAdded), n.setSubscribed(!!i.isSubscribed), n.domListen(n.el, "click", function(t) {
-                    t.target === n.el && n.player.togglePlay()
-                }), n.domListen("_like", "click", function() {
-                    i.likeVideo(n._largeActions ? $t : Zt)
-                }), n.domListen("_share", "click", function() {
-                    i.shareVideo(n._largeActions ? $t : Zt)
-                }), n.domListen("_add", "click", function() {
-                    i.addVideo(n._largeActions ? $t : Zt)
-                }), n.domListen(n._subscribeBtn, "click", function() {
-                    i.subscribeToAuthor(n._largeActions ? $t : Zt)
-                }), n.attachTooltip({
+            }
+        }
+        class Tt extends fe {
+            constructor(e) {
+                super(e), this.el = se(`\n<div class="videoplayer_end_screen">\n  <div class="videoplayer_end_actions">\n    <div class="_like">\n      ${this.getLang("like")}\n    </div>\n    <div class="_share">\n      ${this.getLang("share")}\n    </div>\n    <div class="_add">\n      ${this.getLang("add")}\n    </div>\n  </div>\n</div>\n    `), this.getVar("md_author") && this.getVar("author_photo") && this.getVar("author_href") && (this._info = se(`\n<div class="videoplayer_end_info">\n  <a href="${this.getVar("author_href")}" target="_blank" rel="noopener">\n    <img class="videoplayer_end_info_author_photo" src="${this.getVar("author_photo")}"/>\n  </a>\n  <div class="videoplayer_end_info_title">${this.getVar("md_title")}</div>\n  <div class="videoplayer_end_info_author_name">\n    <a href="${this.getVar("author_href")}" target="_blank" rel="noopener" class="videoplayer_end_info_author_link">${this.getVar("md_author")}</a>\n    <div class="videoplayer_end_info_subscribe">${function(e=""){return`\n<svg class="${e}" viewBox="0 2 12 8" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M7 5V2H5v3H2v2h3v3h2V7h3V5H7z" fill="#FFF" fill-rule="evenodd" class="_plus"/>\n  <path stroke="#FFF" stroke-width="1.5" fill="none" d="M2 6l2.5 2.5L10 3" class="_mark"/>\n  <path d="M3 3l6 6M9 3L3 9" stroke="#FFF" stroke-width="1.5" fill="none" class="_cancel"/>\n</svg>\n  `}("_icon_subscribe")}</div>\n  </div>\n</div>\n      `), this._subscribeBtn = domByClass(this._info, "videoplayer_end_info_subscribe"), this.el.appendChild(this._info)), this._actions = domByClass(this.el, "videoplayer_end_actions"), this.setLiked(!!e.videoLiked), this.setAdded(!!e.videoAdded), this.setSubscribed(!!e.isSubscribed), this.domListen(this.el, "click", e => {
+                    e.target === this.el && this.player.togglePlay()
+                }), this.domListen("_like", "click", () => {
+                    e.likeVideo(this._largeActions ? Lt : St)
+                }), this.domListen("_share", "click", () => {
+                    e.shareVideo(this._largeActions ? Lt : St)
+                }), this.domListen("_add", "click", () => {
+                    e.addVideo(this._largeActions ? Lt : St)
+                }), this.domListen(this._subscribeBtn, "click", () => {
+                    e.subscribeToAuthor(this._largeActions ? Lt : St)
+                }), this.attachTooltip({
                     el: "_like",
-                    text: function() {
-                        return n._largeActions ? null : n.getLang("like")
-                    },
+                    text: () => this._largeActions ? null : this.getLang("like"),
                     hideDelay: 200
-                }), n.attachTooltip({
+                }), this.attachTooltip({
                     el: "_share",
-                    text: function() {
-                        return n._largeActions ? null : n.getLang("share")
-                    },
+                    text: () => this._largeActions ? null : this.getLang("share"),
                     hideDelay: 200
-                }), n.attachTooltip({
+                }), this.attachTooltip({
                     el: "_add",
-                    text: function() {
-                        return n.getLang(n.player.videoAdded ? "added" : "add")
-                    },
+                    text: () => this.getLang(this.player.videoAdded ? "added" : "add"),
                     hideDelay: 200
-                }), n.attachTooltip({
-                    el: n._subscribeBtn,
-                    text: function() {
-                        return n.getLang(n.player.isSubscribed ? "subscribed" : "subscribe")
-                    },
+                }), this.attachTooltip({
+                    el: this._subscribeBtn,
+                    text: () => this.getLang(this.player.isSubscribed ? "subscribed" : "subscribe"),
                     toDown: !0
-                }), n.getVar("can_add") || addClass(n._actions, "_no_add"), n.updateShareActionsVisibility(), toggle(n._subscribeBtn, !!n.getVar("can_subscribe")), n.playerListen(k, function(t) {
-                    n.setLiked(t)
-                }), n.playerListen(T, function(t) {
-                    n.setAdded(t)
-                }), n.playerListen(C, function(t) {
-                    n.setSubscribed(t)
-                }), n
+                }), this.getVar("can_add") || addClass(this._actions, "_no_add"), this.updateShareActionsVisibility(), toggle(this._subscribeBtn, !!this.getVar("can_subscribe")), this.playerListen(S, e => {
+                    this.setLiked(e)
+                }), this.playerListen(k, e => {
+                    this.setAdded(e)
+                }), this.playerListen(C, e => {
+                    this.setSubscribed(e)
+                })
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.setLiked = function(t) {
-                toggleClass(domByClass(this.el, "_like"), "_liked", t)
-            }, e.prototype.setAdded = function(t) {
-                toggleClass(domByClass(this.el, "_add"), "_added", t)
-            }, e.prototype.setSubscribed = function(t) {
-                toggleClass(this._subscribeBtn, "_subscribed", t)
-            }, e.prototype.resize = function(t, e) {
-                this._largeActions = t > 250 && e > 200, toggleClass(this._actions, "_large", this._largeActions)
-            }, e.prototype.updateShareActionsVisibility = function() {
-                var t = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0];
-                toggle(this._actions, !this.getVar("nolikes") && t)
-            }, e.prototype.isStretchMode = function() {
+            setLiked(e) {
+                toggleClass(domByClass(this.el, "_like"), "_liked", e)
+            }
+            setAdded(e) {
+                toggleClass(domByClass(this.el, "_add"), "_added", e)
+            }
+            setSubscribed(e) {
+                toggleClass(this._subscribeBtn, "_subscribed", e)
+            }
+            resize(e, t) {
+                this._largeActions = e > 250 && t > 200, toggleClass(this._actions, "_large", this._largeActions)
+            }
+            updateShareActionsVisibility(e = !0) {
+                toggle(this._actions, !this.getVar("nolikes") && e)
+            }
+            isStretchMode() {
                 return !1
-            }, e
-        }(yt);
-        var oe = function(t) {
-            function e(i, n, r, o) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var s = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return s._nextVideosData = n, s._fromSuggestions = o, setStyle(s._actions, {
-                    marginTop: "-110px"
-                }), r && (s.buildNextBlock(), i.nextTimerStopped || s.startTimer()), s.buildSuggestionsBlock(), r || s.showSuggestions(), s.playerListen(w, s.resetTimer), s.playerListen(S, s.startTimer), s
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.buildNextBlock = function() {
-                var t = this._nextVideosData[0];
-                this._nextBlock = se('\n<div class="videoplayer_end_next_block">\n  <div class="_caption">' + this.getLang("next") + '</div>\n  <div class="_thumb" style="background-image:url(' + t.thumb + ')"></div>\n  <div class="_thumb_darken"></div>\n  <div class="_timer">\n    <canvas class="_timer_canvas" width="100" height="100"></canvas>\n    ' + Bt("_timer_play_icon") + '\n  </div>\n  <div class="_description">\n    <div class="_title">' + t.title + '</div>\n    <div class="_views">' + t.views + '</div>\n  </div>\n  <div class="_cancel"></div>\n</div>\n    '), this.domListen(this._nextBlock, "click", this.onNextClick), this.domListen(domByClass(this._nextBlock, "_cancel"), "click", this.onNextCancelClick), this.el.appendChild(this._nextBlock)
-            }, e.prototype.buildSuggestionsBlock = function() {
-                var t = this,
-                    e = this.player.getVideoId();
+        }
+        var Et = 5e3;
+        class At extends Tt {
+            constructor(e, t, i, s) {
+                super(e), this._nextVideosData = t, this._fromSuggestions = s, setStyle(this._actions, {
+                    marginTop: "-110px"
+                }), i && (this.buildNextBlock(), e.nextTimerStopped || this.startTimer()), this.buildSuggestionsBlock(), i || this.showSuggestions(), this.playerListen(b, this.resetTimer), this.playerListen(f, this.startTimer)
+            }
+            buildNextBlock() {
+                var e = this._nextVideosData[0];
+                this._nextBlock = se(`\n<div class="videoplayer_end_next_block">\n  <div class="_caption">${this.getLang("next")}</div>\n  <div class="_thumb" style="background-image:url(${e.thumb})"></div>\n  <div class="_thumb_darken"></div>\n  <div class="_timer">\n    <canvas class="_timer_canvas" width="100" height="100"></canvas>\n    ${it("_timer_play_icon")}\n  </div>\n  <div class="_description">\n    <div class="_title">${e.title}</div>\n    <div class="_views">${e.views}</div>\n  </div>\n  <div class="_cancel"></div>\n</div>\n    `), this.domListen(this._nextBlock, "click", this.onNextClick), this.domListen(domByClass(this._nextBlock, "_cancel"), "click", this.onNextCancelClick), this.el.appendChild(this._nextBlock)
+            }
+            buildSuggestionsBlock() {
+                var e = this.player.getVideoId();
                 this._suggestionsBlock = ce("div", {
                     className: "videoplayer_end_suggestions _before_intro"
-                }), each(this._nextVideosData, function(i, n) {
-                    var r = n.href || "/video" + n.vid,
-                        o = se('\n<a class="_item" href="' + r + '">\n  <div class="_item_thumb" style="background-image:url(' + n.thumb + ');"></div>\n  <div class="_item_title">' + n.title + '</div>\n  <div class="_item_views">' + n.views + "</div>\n</a>\n      ");
-                    n.vid == e && domByClass(o, "_item_thumb").appendChild(se('\n<div class="_item_replay">\n  <div class="_item_replay_text">' + Bt("_item_replay_icon") + t.getLang("replay") + "</div>\n</div>\n        ")), t.domListen(o, "click", t.onSuggestionClick.bind(t, n.vid, i + 1)), t._suggestionsBlock.appendChild(o)
+                }), each(this._nextVideosData, (t, i) => {
+                    var s = i.href || "/video" + i.vid,
+                        a = se(`\n<a class="_item" href="${s}">\n  <div class="_item_thumb" style="background-image:url(${i.thumb});"></div>\n  <div class="_item_title">${i.title}</div>\n  <div class="_item_views">${i.views}</div>\n</a>\n      `);
+                    i.vid == e && domByClass(a, "_item_thumb").appendChild(se(`\n<div class="_item_replay">\n  <div class="_item_replay_text">${it("_item_replay_icon")}${this.getLang("replay")}</div>\n</div>\n        `)), this.domListen(a, "click", this.onSuggestionClick.bind(this, i.vid, t + 1)), this._suggestionsBlock.appendChild(a)
                 }), this.el.appendChild(this._suggestionsBlock)
-            }, e.prototype.startTimer = function() {
-                var t = this;
+            }
+            startTimer() {
                 if (this._nextBlock && !this.minMode && window.CanvasRenderingContext2D) {
                     var e = domByClass(this._nextBlock, "_timer_canvas"),
-                        i = e.getContext("2d");
-                    i.lineWidth = 6, i.lineCap = "round", i.strokeStyle = "#fff";
-                    var n = Date.now();
-                    show(e), this.timerInProgress = !0,
-                        function e() {
-                            var r = (Date.now() - n) / 5e3;
-                            r < 1 ? (i.clearRect(0, 0, 100, 100), i.beginPath(), i.arc(50, 50, 47, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * r), i.stroke(), t._nextTO = setTimeout(e, 16)) : t.player.nextVideo(t._nextVideosData[0].vid, !0, !0)
-                        }()
+                        t = e.getContext("2d");
+                    t.lineWidth = 6, t.lineCap = "round", t.strokeStyle = "#fff";
+                    var i = Date.now(),
+                        s = () => {
+                            var e = (Date.now() - i) / Et;
+                            e < 1 ? (t.clearRect(0, 0, 100, 100), t.beginPath(), t.arc(50, 50, 47, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * e), t.stroke(), this._nextTO = setTimeout(s, 16)) : this.player.nextVideo(this._nextVideosData[0].vid, !0, !0)
+                        };
+                    show(e), this.timerInProgress = !0, s()
                 }
-            }, e.prototype.resetTimer = function() {
+            }
+            resetTimer() {
                 this._nextBlock && window.CanvasRenderingContext2D && (clearTimeout(this._nextTO), this.timerInProgress = !1, hide(domByClass(this._nextBlock, "_timer_canvas")))
-            }, e.prototype.showSuggestions = function() {
+            }
+            showSuggestions() {
                 removeClass(this._suggestionsBlock, "_before_intro");
-                var t = this.isStretchMode.apply(this, function(t) {
-                    if (Array.isArray(t)) {
-                        for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                        return i
-                    }
-                    return Array.from(t)
-                }(this.player.getSize()));
-                this.player.onSuggestionsShown(t, this._fromSuggestions)
-            }, e.prototype.onNextClick = function() {
-                var t = this._nextVideosData[0];
-                this.player.nextVideo(t.vid, !0)
-            }, e.prototype.onNextCancelClick = function(t) {
-                t.stopPropagation(), this.resetTimer(), re(this._nextBlock), this._nextBlock = null, this.showSuggestions()
-            }, e.prototype.onSuggestionClick = function(t, e, i) {
-                i.ctrlKey || browser.mac && i.metaKey || (i.preventDefault(), i.stopPropagation(), this.player.getVideoId() == t ? (this.player.onTouchedByUser(), this.player.onSuggestionsReplayClicked()) : t && (this.getVar("is_embed") ? window.open(i.currentTarget.href, "_blank") : this._fromSuggestions ? this.player.onSuggestionClicked(t, this._stretchMode, e) : this.player.nextVideo(t)), this.player.el.focus())
-            }, e.prototype.resize = function(t, e) {
-                var i = t < 600 || e < 350;
+                var e = this.isStretchMode(...this.player.getSize());
+                this.player.onSuggestionsShown(e, this._fromSuggestions)
+            }
+            onNextClick() {
+                var e = this._nextVideosData[0];
+                this.player.nextVideo(e.vid, !0)
+            }
+            onNextCancelClick(e) {
+                e.stopPropagation(), this.resetTimer(), re(this._nextBlock), this._nextBlock = null, this.showSuggestions()
+            }
+            onSuggestionClick(e, t, i) {
+                i.ctrlKey || browser.mac && i.metaKey || (i.preventDefault(), i.stopPropagation(), this.player.getVideoId() == e ? (this.player.onTouchedByUser(), this.player.onSuggestionsReplayClicked()) : e && (this.getVar("is_embed") ? window.open(i.currentTarget.href, "_blank") : this._fromSuggestions ? this.player.onSuggestionClicked(e, this._stretchMode, t) : this.player.nextVideo(e)), this.player.el.focus())
+            }
+            resize(e, t) {
+                var i = e < 600 || t < 350;
                 if (this.minMode = i, toggle(this._nextBlock, !i), this._suggestionsBlock) {
-                    var n = this.isStretchMode(t, e),
-                        r = n ? 4 : 10,
-                        o = n ? Math.floor((t - 6) / 3 - 2 * r) : 180,
-                        s = n ? Math.round(o / 1.777) : 100;
-                    each(geByClass("_item", this._suggestionsBlock), function(t, e) {
-                        setStyle(e, {
-                            width: o + "px",
-                            padding: "0 " + r + "px"
-                        }), setStyle(domFC(e), {
-                            height: s + "px"
+                    var s = this.isStretchMode(e, t),
+                        a = s ? 4 : 10,
+                        r = s ? Math.floor((e - 6) / 3 - 2 * a) : 180,
+                        l = s ? Math.round(r / 1.777) : 100;
+                    each(geByClass("_item", this._suggestionsBlock), (e, t) => {
+                        setStyle(t, {
+                            width: r + "px",
+                            padding: `0 ${a}px`
+                        }), setStyle(domFC(t), {
+                            height: l + "px"
                         })
                     }), setStyle(this._suggestionsBlock, {
-                        marginTop: n ? -Math.round(s / 2) + "px" : ""
-                    }), toggle(this._suggestionsBlock, !i || n), this.updateShareActionsVisibility(!n), toggleClass(this._info, "_right_offset", n && !this.getVar("nolikes")), this._stretchMode = n
+                        marginTop: s ? -Math.round(l / 2) + "px" : ""
+                    }), toggle(this._suggestionsBlock, !i || s), this.updateShareActionsVisibility(!s), toggleClass(this._info, "_right_offset", s && !this.getVar("nolikes")), this._stretchMode = s
                 }
                 setStyle(this._actions, {
                     marginTop: i ? "" : "-110px"
                 }), i && this.timerInProgress ? this.resetTimer() : this.timerInProgress || this.player.nextTimerStopped || this.startTimer()
-            }, e.prototype.isStretchMode = function(t, e) {
-                return !!this._suggestionsBlock && 400 <= t && t <= 600 && 250 <= e && e <= 510
-            }, e.prototype.destroy = function() {
-                t.prototype.destroy.call(this), this.resetTimer()
-            }, e
-        }(ne);
-        var ae = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = se('\n<div class="videoplayer_end_screen">\n  <div class="videoplayer_end_actions">\n    <div class="_replay">\n    </div>\n    <a class="_go" ' + n.getVar("link_attr") + '>\n      <div class="go_button_title">' + n.getVar("ads_snippet_video_button_title") + '</div>\n      <div class="go_button_domain">' + n.getVar("ads_snippet_video_button_domain") + "</div>\n    </a>\n  </div>\n</div>\n    "), n.domListen("_replay", "click", function() {
-                    i.play()
-                }), n
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.resize = function() {}, e.prototype.isStretchMode = function() {
+            isStretchMode(e, t) {
+                return !!this._suggestionsBlock && 400 <= e && e <= 600 && 250 <= t && t <= 510
+            }
+            destroy() {
+                super.destroy(), this.resetTimer()
+            }
+        }
+        class Pt extends fe {
+            constructor(e) {
+                super(e), this.el = se(`\n<div class="videoplayer_end_screen">\n  <div class="videoplayer_end_actions">\n    <div class="_replay">\n    </div>\n    <a class="_go" ${this.getVar("link_attr")}>\n      <div class="go_button_title">${this.getVar("ads_snippet_video_button_title")}</div>\n      <div class="go_button_domain">${this.getVar("ads_snippet_video_button_domain")}</div>\n    </a>\n  </div>\n</div>\n    `), this.domListen("_replay", "click", () => {
+                    e.play()
+                })
+            }
+            resize() {}
+            isStretchMode() {
                 return !1
-            }, e
-        }(yt);
-        var le = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.el = se('\n<div class="videoplayer_tooltip">\n  <div class="_text"></div>\n  <div class="_arrow"></div>\n</div>\n    '), n._text = domByClass(n.el, "_text"), n._arrow = domByClass(n.el, "_arrow"), n._shown = !1, n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.show = function(t) {
-                    function e(e) {
-                        return t.apply(this, arguments)
-                    }
-                    return e.toString = function() {
-                        return t.toString()
-                    }, e
-                }(function(t) {
-                    var e = t.el,
-                        i = t.text,
-                        n = t.toDown,
-                        r = void 0 !== n && n,
-                        o = t.offsetXpercent,
-                        s = void 0 === o ? .5 : o,
-                        a = t.offsetY,
-                        l = void 0 === a ? 9 : a;
-                    if (i = isFunction(i) ? i() : i) {
-                        show(this.el), val(this._text, i);
-                        var u = this.player.el.getBoundingClientRect(),
-                            h = e.getBoundingClientRect(),
-                            c = this.el.getBoundingClientRect(),
-                            d = h.left - u.left + Math.round(h.width * s) - Math.round(c.width / 2),
-                            p = (r ? h.bottom : h.top) - u.top - (r ? 0 : c.height) + l * (r ? 1 : -1),
-                            f = void 0;
-                        d < 10 ? (f = d - 10 - 6, d = 10) : d + c.width > u.width - 10 && (f = d + c.width - (u.width - 10) - 6, d = u.width - c.width - 10), setStyle(this.el, {
-                            left: d + "px",
-                            top: p + "px"
-                        }), setStyle(this._arrow, {
-                            marginLeft: f ? f + "px" : null
-                        }), toggleClass(this._arrow, "_arrow_up", r), this.undelay(this._hideDelayedTimeout), this.undelay(this._hideTimeout), this._hideTimeout = this.delay(this.hide, 3e3), this._shown = !0
-                    }
-                }), e.prototype.hide = function(t) {
-                    function e() {
-                        return t.apply(this, arguments)
-                    }
-                    return e.toString = function() {
-                        return t.toString()
-                    }, e
-                }(function() {
-                    this._shown && (this._shown = !1, hide(this.el), this.lastShown = Date.now())
-                }), e.prototype.hideWithDelay = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
-                    this._shown && (this._hideDelayedTimeout = this.delay(this.hide, t))
-                }, e.prototype.isVisible = function() {
-                    return this._shown
-                }, e
-            }(yt),
-            ue = function() {
-                return function(t, e) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return function(t, e) {
-                        var i = [],
-                            n = !0,
-                            r = !1,
-                            o = void 0;
-                        try {
-                            for (var s, a = t[Symbol.iterator](); !(n = (s = a.next()).done) && (i.push(s.value), !e || i.length !== e); n = !0);
-                        } catch (t) {
-                            r = !0, o = t
-                        } finally {
-                            try {
-                                !n && a.return && a.return()
-                            } finally {
-                                if (r) throw o
-                            }
-                        }
-                        return i
-                    }(t, e);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-        var he = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
-                    className: "videoplayer_donations_layer"
-                }), n._currentItems = [], n._queuedItems = [], n._supportsTransitions = "transition" == Pt("transition"), n.resize.apply(n, function(t) {
-                    if (Array.isArray(t)) {
-                        for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                        return i
-                    }
-                    return Array.from(t)
-                }(i.getSize())), n.playerListen(A, n.pushDonation), n.playerListen(d, n.onStateChange), n
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.pushDonation = function(t, e) {
+        }
+        var Vt = 10,
+            xt = 6,
+            It = 3e3;
+        class Dt extends fe {
+            constructor(e) {
+                super(e), this.el = se('\n<div class="videoplayer_tooltip">\n  <div class="_text"></div>\n  <div class="_arrow"></div>\n</div>\n    '), this._text = domByClass(this.el, "_text"), this._arrow = domByClass(this.el, "_arrow"), this._shown = !1
+            }
+            show({
+                el: e,
+                text: t,
+                toDown: i = !1,
+                offsetXpercent: s = .5,
+                offsetY: a = 9
+            }) {
+                if (t = isFunction(t) ? t() : t) {
+                    show(this.el), val(this._text, t);
+                    var r, l = this.player.el.getBoundingClientRect(),
+                        n = e.getBoundingClientRect(),
+                        o = this.el.getBoundingClientRect(),
+                        h = n.left - l.left + Math.round(n.width * s) - Math.round(o.width / 2),
+                        d = (i ? n.bottom : n.top) - l.top - (i ? 0 : o.height) + a * (i ? 1 : -1);
+                    h < Vt ? (r = h - Vt - xt, h = Vt) : h + o.width > l.width - Vt && (r = h + o.width - (l.width - Vt) - xt, h = l.width - o.width - Vt), setStyle(this.el, {
+                        left: h + "px",
+                        top: d + "px"
+                    }), setStyle(this._arrow, {
+                        marginLeft: r ? r + "px" : null
+                    }), toggleClass(this._arrow, "_arrow_up", i), this.undelay(this._hideDelayedTimeout), this.undelay(this._hideTimeout), this._hideTimeout = this.delay(this.hide, It), this._shown = !0
+                }
+            }
+            hide() {
+                this._shown && (this._shown = !1, hide(this.el), this.lastShown = Date.now())
+            }
+            hideWithDelay(e = 0) {
+                this._shown && (this._hideDelayedTimeout = this.delay(this.hide, e))
+            }
+            isVisible() {
+                return this._shown
+            }
+        }
+        var Mt = 5e3,
+            Rt = 3;
+        class Bt extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
+                    className: "videoplayer_donations_layer"
+                }), this._currentItems = [], this._queuedItems = [], this._supportsTransitions = "transition" == qe("transition"), this.resize(...e.getSize()), this.playerListen(E, this.pushDonation), this.playerListen(d, this.onStateChange)
+            }
+            pushDonation(e, t) {
                 if (!this._hidden) {
-                    var i = void 0;
-                    switch (t) {
+                    var i;
+                    switch (e) {
                         case "gift":
-                            i = this.giftTpl(e);
+                            i = this.giftTpl(t);
                             break;
                         case "comment":
-                            if (!e.commentText) return;
-                            i = this.commentTpl(e)
+                            if (!t.commentText) return;
+                            i = this.commentTpl(t)
                     }
                     if (i) {
-                        var n = {
+                        var s = {
                             el: se(i),
-                            type: t,
-                            senderId: e.senderId,
-                            giftId: e.giftId,
+                            type: e,
+                            senderId: t.senderId,
+                            giftId: t.giftId,
                             count: 1,
                             inserted: !1
                         };
-                        this.queueItem(n)
+                        this.queueItem(s)
                     }
                 }
-            }, e.prototype.queueItem = function(t) {
-                var e = this;
-                if ("gift" == t.type) {
-                    var i = this.findSenderGift(t.senderId, t.giftId);
-                    if (i) return void this.increaseGiftCount(i)
+            }
+            queueItem(e) {
+                if ("gift" == e.type) {
+                    var t = this.findSenderGift(e.senderId, e.giftId);
+                    if (t) return void this.increaseGiftCount(t)
                 }
-                if (this._currentItems.length >= 3) this._queuedItems.push(t);
-                else if (this._currentItems.push(t), "gift" == t.type) {
-                    var n = new Image;
-                    n.onload = function() {
-                        return e.insertItem(t)
-                    }, n.src = this.giftImgSrc(t.giftId)
-                } else this.insertItem(t)
-            }, e.prototype.insertItem = function(t) {
-                var e = this;
-                t.timeout = this.delay(function() {
-                    return e.removeItem(t)
-                }, 5e3), t.inserted = !0, this.el.insertBefore(t.el, domFC(this.el)), this._supportsTransitions && (setStyle(t.el, {
+                if (this._currentItems.length >= Rt) this._queuedItems.push(e);
+                else if (this._currentItems.push(e), "gift" == e.type) {
+                    var i = new Image;
+                    i.onload = (() => this.insertItem(e)), i.src = this.giftImgSrc(e.giftId)
+                } else this.insertItem(e)
+            }
+            insertItem(e) {
+                e.timeout = this.delay(() => this.removeItem(e), Mt), e.inserted = !0, this.el.insertBefore(e.el, domFC(this.el)), this._supportsTransitions && (setStyle(e.el, {
                     transition: "none",
                     opacity: 0,
-                    marginTop: -t.el.offsetHeight + "px",
+                    marginTop: -e.el.offsetHeight + "px",
                     marginBottom: 0
-                }), t.el.offsetHeight, setStyle(t.el, {
+                }), e.el.offsetHeight, setStyle(e.el, {
                     transition: "",
                     opacity: "",
                     marginTop: "",
                     marginBottom: ""
                 }))
-            }, e.prototype.checkQueue = function() {
-                for (; this._currentItems.length < 3 && this._queuedItems.length;) {
-                    var t = this._queuedItems.shift();
-                    this.queueItem(t)
+            }
+            checkQueue() {
+                for (; this._currentItems.length < Rt && this._queuedItems.length;) {
+                    var e = this._queuedItems.shift();
+                    this.queueItem(e)
                 }
-            }, e.prototype.findSenderGift = function(t, e) {
-                var i = !0,
-                    n = !1,
-                    r = void 0;
-                try {
-                    for (var o, s = this._currentItems[Symbol.iterator](); !(i = (o = s.next()).done); i = !0) {
-                        var a = o.value;
-                        if (a.senderId === t && a.giftId === e && a.count < 9) return a
-                    }
-                } catch (t) {
-                    n = !0, r = t
-                } finally {
-                    try {
-                        !i && s.return && s.return()
-                    } finally {
-                        if (n) throw r
-                    }
-                }
-            }, e.prototype.increaseGiftCount = function(t) {
-                var e = this;
-                t.count += 1;
-                var i = domByClass(t.el, "_gift_count");
-                val(i, function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
-                        i = "";
-                    switch (t) {
+            }
+            findSenderGift(e, t) {
+                for (var i of this._currentItems)
+                    if (i.senderId === e && i.giftId === t && i.count < 9) return i
+            }
+            increaseGiftCount(e) {
+                e.count += 1;
+                var t = domByClass(e.el, "_gift_count");
+                val(t, function(e, t = "") {
+                    var i = "";
+                    switch (e) {
                         case 2:
                             i = "M16.283 20.264c.14-.225.396-.53.765-.91l3.278-3.533c.487-.52.834-.966 1.042-1.335.208-.37.312-.735.312-1.098 0-.328-.076-.62-.23-.875-.15-.255-.364-.452-.636-.593-.272-.142-.587-.212-.945-.212-.446 0-.83.12-1.157.36-.325.24-.572.592-.742 1.055-.14.275-.29.475-.452.598-.16.124-.356.185-.584.185-.293 0-.532-.095-.717-.285-.184-.19-.277-.432-.277-.725 0-.528.176-1.032.528-1.512.35-.48.838-.87 1.46-1.165.62-.296 1.31-.444 2.073-.444.763 0 1.447.147 2.053.44.607.293 1.08.7 1.424 1.217.343.52.514 1.104.514 1.755 0 .404-.065.794-.197 1.17-.13.374-.345.77-.64 1.185-.297.416-.7.89-1.21 1.424l-2.795 2.988v.114h4.123c.346 0 .617.087.813.26.197.173.295.41.295.716 0 .3-.098.533-.295.703-.196.17-.467.255-.812.255h-5.923c-.387 0-.696-.097-.928-.29-.232-.193-.348-.45-.348-.773 0-.223.07-.447.21-.673z";
                             break;
@@ -4538,98 +3052,80 @@
                         case 9:
                             i = "M21.838 12.72c-.176-.34-.422-.606-.738-.797-.317-.19-.677-.285-1.08-.285-.4 0-.756.093-1.07.28-.313.188-.556.452-.73.792-.172.34-.258.727-.258 1.16 0 .434.086.816.26 1.147.172.33.415.59.73.774.312.185.67.277 1.075.277.405 0 .764-.092 1.077-.276.313-.184.558-.442.734-.773.176-.33.264-.71.264-1.138 0-.435-.088-.82-.264-1.16zm-5.498 6.727c.173-.167.39-.25.655-.25.147 0 .284.027.413.083.13.055.284.157.466.303.3.264.598.46.897.584.3.126.64.19 1.02.19.86 0 1.518-.37 1.97-1.112.45-.742.676-1.798.676-3.17h-.08c-.216.558-.584.997-1.103 1.32-.518.322-1.117.483-1.797.483-.732 0-1.383-.167-1.95-.5-.57-.335-1.012-.804-1.328-1.407-.317-.603-.475-1.288-.475-2.056 0-.82.182-1.545.545-2.175.363-.63.876-1.12 1.538-1.465s1.424-.518 2.285-.518c.974 0 1.803.24 2.49.72.684.48 1.207 1.18 1.567 2.1.36.92.54 2.03.54 3.332 0 1.364-.187 2.52-.562 3.462-.375.943-.925 1.658-1.652 2.145-.726.486-1.61.73-2.654.73-.51 0-.996-.06-1.456-.177-.46-.117-.868-.287-1.226-.51-.322-.2-.576-.426-.76-.68-.185-.255-.277-.512-.277-.77 0-.275.087-.496.26-.663z"
                     }
-                    return '\n<svg class="' + e + '" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="none" fill-rule="evenodd">\n    <path d="M8.832 19.334c-.2 0-.38-.08-.54-.24-.17-.168-.253-.35-.253-.546 0-.215.088-.406.266-.575l1.6-1.6-1.6-1.6c-.178-.186-.267-.382-.267-.587 0-.196.074-.37.225-.52.155-.154.33-.232.526-.232.21 0 .404.09.582.267l1.607 1.6 1.59-1.592c.184-.183.38-.274.59-.274.195 0 .375.082.54.246.16.16.238.34.238.54 0 .21-.088.404-.266.582l-1.6 1.6 1.6 1.606c.182.177.273.37.273.58 0 .192-.077.365-.232.52-.155.155-.33.233-.526.233-.21 0-.404-.088-.582-.266l-1.6-1.606-1.6 1.6c-.176.177-.368.266-.573.266z" fill="#000"/>\n    <path d="' + i + '" fill="#000"/>\n  </g>\n</svg>\n  '
-                }(t.count, "_gift_count_icon")), t.inserted && (this._supportsTransitions && !this._hidden && (setStyle(i, {
+                    return `\n<svg class="${t}" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="none" fill-rule="evenodd">\n    <path d="M8.832 19.334c-.2 0-.38-.08-.54-.24-.17-.168-.253-.35-.253-.546 0-.215.088-.406.266-.575l1.6-1.6-1.6-1.6c-.178-.186-.267-.382-.267-.587 0-.196.074-.37.225-.52.155-.154.33-.232.526-.232.21 0 .404.09.582.267l1.607 1.6 1.59-1.592c.184-.183.38-.274.59-.274.195 0 .375.082.54.246.16.16.238.34.238.54 0 .21-.088.404-.266.582l-1.6 1.6 1.6 1.606c.182.177.273.37.273.58 0 .192-.077.365-.232.52-.155.155-.33.233-.526.233-.21 0-.404-.088-.582-.266l-1.6-1.606-1.6 1.6c-.176.177-.368.266-.573.266z" fill="#000"/>\n    <path d="${i}" fill="#000"/>\n  </g>\n</svg>\n  `
+                }(e.count, "_gift_count_icon")), e.inserted && (this._supportsTransitions && !this._hidden && (setStyle(t, {
                     transform: "scale(1.5)"
-                }), this.domListenOnce(i, "transitionend", function() {
-                    setStyle(i, {
+                }), this.domListenOnce(t, "transitionend", () => {
+                    setStyle(t, {
                         transform: ""
                     })
-                })), this.undelay(t.timeout), t.timeout = this.delay(function() {
-                    return e.removeItem(t)
-                }, 5e3))
-            }, e.prototype.removeItem = function(t) {
-                var e = indexOf(this._currentItems, t),
-                    i = this.getItemVerticalMargin(e),
-                    n = Math.max(i, this.getItemVerticalMargin(e - 1)),
-                    r = Math.max(i, this.getItemVerticalMargin(e + 1));
-                this._currentItems.splice(e, 1), this._supportsTransitions && !this._hidden ? (setStyle(t.el, {
+                })), this.undelay(e.timeout), e.timeout = this.delay(() => this.removeItem(e), Mt))
+            }
+            removeItem(e) {
+                var t = indexOf(this._currentItems, e),
+                    i = this.getItemVerticalMargin(t),
+                    s = Math.max(i, this.getItemVerticalMargin(t - 1)),
+                    a = Math.max(i, this.getItemVerticalMargin(t + 1));
+                this._currentItems.splice(t, 1), this._supportsTransitions && !this._hidden ? (setStyle(e.el, {
                     opacity: 0,
-                    marginTop: n + "px",
-                    marginBottom: -(t.el.offsetHeight + Math.max(n, r)) + "px",
+                    marginTop: s + "px",
+                    marginBottom: -(e.el.offsetHeight + Math.max(s, a)) + "px",
                     marginLeft: "-150%"
-                }), this.domListenOnce(t.el, "transitionend", function() {
-                    return re(t.el)
-                })) : re(t.el), this.checkQueue()
-            }, e.prototype.getItemVerticalMargin = function(t) {
-                var e = this._currentItems[t];
-                if (e) {
-                    if ("gift" == e.type) return 32;
-                    if ("comment" === e.type) return 15
+                }), this.domListenOnce(e.el, "transitionend", () => re(e.el))) : re(e.el), this.checkQueue()
+            }
+            getItemVerticalMargin(e) {
+                var t = this._currentItems[e];
+                if (t) {
+                    if ("gift" == t.type) return 32;
+                    if ("comment" === t.type) return 15
                 }
                 return 0
-            }, e.prototype.donationTpl = function(t, e, i, n) {
-                return '\n<div class="videoplayer_donation videoplayer_donation_' + t + '">\n  <div class="_sender_info_wrap">\n    <img class="_sender_photo" src="' + e.senderPhoto + '"/>\n    <div class="_sender_name">' + e.senderName + '</div>\n    <div class="_sender_event">' + i + "</div>\n  </div>\n  " + n + "\n</div>\n    "
-            }, e.prototype.commentTpl = function(t) {
-                var e = this.getLang("live_user_sent_supercomment", !1, {
-                        sex: t.senderSex
-                    }) + function() {
-                        return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="230 33 12 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="#99C5FF" fill-rule="evenodd">\n    <path d="M234.665 47.746c-.367.416-.563.32-.435-.22L236.006 40h4.478c.556 0 .712.333.34.754l-6.16 6.992z"/>\n    <path d="M237.337 34.254c.366-.416.56-.32.433.22L235.998 42h-4.466c-.554 0-.7-.344-.34-.754l6.145-6.992z"/>\n  </g>\n</svg>\n  '
-                    }("_comment_icon"),
-                    i = '<div class="_comment_text">' + t.commentText + "</div>";
-                return this.donationTpl("comment", t, e, i)
-            }, e.prototype.giftTpl = function(t) {
-                var e = this.getLang("live_user_sent_gift", !1, {
-                        sex: t.senderSex
-                    }),
-                    i = '<img class="_gift_img" src="' + this.giftImgSrc(t.giftId) + '"/><div class="_gift_count"></div>';
-                return this.donationTpl("gift", t, e, i)
-            }, e.prototype.giftImgSrc = function(t) {
-                return "/images/gift/" + t + "/" + (isRetina() ? 256 : 96) + ".png"
-            }, e.prototype.updateVisibility = function() {
-                var t = this.player.getSize(),
-                    e = ue(t, 2),
-                    i = e[0],
-                    n = e[1],
-                    r = this.player.getState();
-                this._hidden = i < 640 || n < 360 || r !== a.PLAYING && r !== a.PAUSED, toggle(this.el, !this._hidden)
-            }, e.prototype.resize = function() {
-                this.updateVisibility()
-            }, e.prototype.onStateChange = function() {
-                this.updateVisibility()
-            }, e.prototype.destroy = function() {
-                var e = this;
-                t.prototype.destroy.call(this), each(this._currentItems, function(t, i) {
-                    return e.undelay(i.timeout)
-                }), this._currentItems = null, this._queuedItems = null, re(this.el)
-            }, e
-        }(yt);
-        var de = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
-                    className: "videoplayer_timed_buttons_conatainer"
-                }), n.playerListen(x, n.onTimeupdate), n.playerListen(d, n.onStatChange), n
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initVideo = function(t) {
-                var e = this.player.getVideoId();
-                "-107437894_456239018" === e ? this._timings = [{
+            donationTpl(e, t, i, s) {
+                return `\n<div class="videoplayer_donation videoplayer_donation_${e}">\n  <div class="_sender_info_wrap">\n    <img class="_sender_photo" src="${t.senderPhoto}"/>\n    <div class="_sender_name">${t.senderName}</div>\n    <div class="_sender_event">${i}</div>\n  </div>\n  ${s}\n</div>\n    `
+            }
+            commentTpl(e) {
+                var t = this.getLang("live_user_sent_supercomment", !1, {
+                        sex: e.senderSex
+                    }) + function(e = "") {
+                        return `\n<svg class="${e}" viewBox="230 33 12 16" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <g fill="#99C5FF" fill-rule="evenodd">\n    <path d="M234.665 47.746c-.367.416-.563.32-.435-.22L236.006 40h4.478c.556 0 .712.333.34.754l-6.16 6.992z"/>\n    <path d="M237.337 34.254c.366-.416.56-.32.433.22L235.998 42h-4.466c-.554 0-.7-.344-.34-.754l6.145-6.992z"/>\n  </g>\n</svg>\n  `
+                    }("_comment_icon"),
+                    i = `<div class="_comment_text">${e.commentText}</div>`;
+                return this.donationTpl("comment", e, t, i)
+            }
+            giftTpl(e) {
+                var t = this.getLang("live_user_sent_gift", !1, {
+                        sex: e.senderSex
+                    }),
+                    i = `<img class="_gift_img" src="${this.giftImgSrc(e.giftId)}"/><div class="_gift_count"></div>`;
+                return this.donationTpl("gift", e, t, i)
+            }
+            giftImgSrc(e) {
+                return `/images/gift/${e}/${isRetina()?256:96}.png`
+            }
+            updateVisibility() {
+                var [e, t] = this.player.getSize(), i = this.player.getState();
+                this._hidden = e < 640 || t < 360 || i !== r.PLAYING && i !== r.PAUSED, toggle(this.el, !this._hidden)
+            }
+            resize() {
+                this.updateVisibility()
+            }
+            onStateChange() {
+                this.updateVisibility()
+            }
+            destroy() {
+                super.destroy(), each(this._currentItems, (e, t) => this.undelay(t.timeout)), this._currentItems = null, this._queuedItems = null, re(this.el)
+            }
+        }
+        class Ft extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
+                    className: "videoplayer_timed_buttons_conatainer"
+                }), this.playerListen(A, this.onTimeupdate), this.playerListen(d, this.onStatChange)
+            }
+            initVideo(e) {
+                var t = this.player.getVideoId();
+                "-107437894_456239018" === t ? this._timings = [{
                     timeShow: .5,
                     timeHide: 5,
                     type: "link",
@@ -4659,2482 +3155,1943 @@
                     type: "link",
                     text: "learn_more",
                     url: "http://etoday.ru/2017/02/kollekciya-marc-jacobs-osen--z.php"
-                }] : "-132124064_456239166" === e && (this._timings = [{
+                }] : "-132124064_456239166" === t && (this._timings = [{
                     timeShow: 0,
                     timeHide: 134,
                     type: "link",
                     text: "checkin",
                     url: "https://vk.cc/6Nnalx"
                 }])
-            }, e.prototype.deinitVideo = function() {
+            }
+            deinitVideo() {
                 this._timings = null, this.hideButton()
-            }, e.prototype.onTimeupdate = function(t) {
+            }
+            onTimeupdate(e) {
                 if (this._timings) {
                     if (null != this._curIndex) {
-                        var e = this._timings[this._curIndex];
-                        if (e.timeShow <= t && t <= e.timeHide) return;
+                        var t = this._timings[this._curIndex];
+                        if (t.timeShow <= e && e <= t.timeHide) return;
                         this.hideButton()
                     }
                     for (var i = 0; i < this._timings.length; ++i) {
-                        var n = this._timings[i];
-                        if (n.timeShow <= t && t <= n.timeHide) {
-                            this.showButton(i, n);
+                        var s = this._timings[i];
+                        if (s.timeShow <= e && e <= s.timeHide) {
+                            this.showButton(i, s);
                             break
                         }
                     }
                 }
-            }, e.prototype.onStatChange = function(t, e) {
-                t !== a.ENDED && t !== a.ERROR || this.hideButton()
-            }, e.prototype.showButton = function(t, e) {
-                var i = this;
-                this.hideButton(), this._curIndex = t;
-                var n = this.getLang("timed_button_" + e.text);
-                "link" === e.type && (n = function() {
-                    return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M2.587 2.587L0 0h7v7L4.61 4.61c-.564.644-1.144 1.47-1.408 2.367C2.865 8.652 4.135 10 4.135 10S1 9.66 1 5.965c0-1.355.797-2.538 1.587-3.378z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
-                }("_link_icon") + n), this._curButton = ce("a", {
-                    className: "videoplayer_timed_button hidden",
-                    innerHTML: n,
-                    href: "/away.php?to=" + encodeURIComponent(e.url),
-                    target: "_blank"
-                }), this.domListen(this._curButton, "click", function(t) {
-                    ! function(t) {
-                        var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {
-                            blank: !0,
-                            throughAway: !0
-                        };
-                        e.throughAway && !/\/away\.php/.test(t) && (t = "/away.php?to=" + encodeURIComponent(t)), window.open(t, e.blank ? "_blank" : "").opener = null
-                    }(t.currentTarget.href), i.player.pause(), t.preventDefault(), t.stopPropagation()
-                }), this.el.appendChild(this._curButton), this._curButton.offsetHeight, removeClass(this._curButton, "hidden")
-            }, e.prototype.hideButton = function() {
-                if (null != this._curIndex) {
-                    var t = this._curButton;
-                    this._curButton = this._curIndex = null, addClass(t, "hidden"), setTimeout(function() {
-                        return re(t)
-                    }, 150)
-                }
-            }, e
-        }(yt);
-        var pe = "bottom",
-            fe = "top",
-            ye = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.el = se('\n<div class="videoplayer_subtitle_layer">\n    <div class="videoplayer_subtitle_layer__region_top"></div>\n    <div class="videoplayer_subtitle_layer__region_bottom"></div>\n</div>\n    '), n._bottomRegion = domByClass(n.el, "videoplayer_subtitle_layer__region_" + pe), n._topRegion = domByClass(n.el, "videoplayer_subtitle_layer__region_" + fe), n.playerListen(X, n._showTip), n.playerListen(G, n._updateMargins), n.playerListen(Y, n._updateMargins), n.playerListen(N, function() {
-                        n.clear()
-                    }), n.playerListen(j, function() {
-                        n.clear()
-                    }), n.playerListen(v, function() {
-                        n.clear()
-                    }), n._updateMargins(), n.resize.apply(n, function(t) {
-                        if (Array.isArray(t)) {
-                            for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                            return i
-                        }
-                        return Array.from(t)
-                    }(n.player.getSize())), n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype._addToRegion = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : pe,
-                        i = this._getRegionEl(e);
-                    i && i.appendChild(t)
-                }, e.prototype._buildCueEl = function(t) {
-                    return se('\n      <div>\n        <span class="videoplayer_subtitle_layer__cue">' + t.text + "</span>\n      </div>\n    ")
-                }, e.prototype._getRegionEl = function(t) {
-                    var e = null;
-                    switch (t) {
-                        case pe:
-                            e = this._bottomRegion;
-                            break;
-                        case fe:
-                            e = this._topRegion
-                    }
-                    return e
-                }, e.prototype._showTip = function(t) {
-                    var e = this;
-                    if (t) {
-                        var i = clean(t.name).replace(/&amp;/g, "&");
-                        if (t.lang) {
-                            var n = this.getVar("subtitles_langs")[t.lang].name;
-                            n !== t.name && (i = n + " (" + i + ")")
-                        }
-                        var r = this.getLang("subtitles_enabled_tip");
-                        r = (r = r.replace("{current}", i)).replace("{icon}", '<span class="videoplayer_subtitle_layer__tip_icon"></span>');
-                        var o = this._buildCueEl({
-                            text: r
-                        });
-                        this.clear(fe), this._addToRegion(o, fe), setTimeout(function() {
-                            e.clear(fe)
-                        }, 2e3)
-                    }
-                }, e.prototype._updateMargins = function() {
-                    toggleClass(this._bottomRegion, "_controls_offset", this.player.isControlsVisible())
-                }, e.prototype.clear = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : pe,
-                        e = this._getRegionEl(t);
-                    e && val(e, "")
-                }, e.prototype.update = function(t) {
-                    if (this.clear(), t.length) {
-                        for (var e = document.createDocumentFragment(), i = 0; i < t.length; i++) {
-                            var n = t[i];
-                            e.appendChild(this._buildCueEl(n))
-                        }
-                        this._addToRegion(e)
-                    }
-                }, e.prototype.destroy = function() {
-                    t.prototype.destroy.call(this), re(this.el)
-                }, e.prototype.resize = function(t, e) {
-                    var i = Math.floor(29 * Math.max(0, t - 350) / 1650),
-                        n = Math.min(40, 11 + i),
-                        r = .5 * Math.max(0, 2e3 - t) / 1650,
-                        o = Math.min(1.9, 1.4 + r);
-                    setStyle(this.el, {
-                        fontSize: n + "px",
-                        lineHeight: "" + o
-                    })
-                }, e
-            }(yt);
-        var ve = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.el = se('\n<a class="videoplayer_action_button" target="_blank" href=""></a>\n    '), hide(n.el), n.playerListen(G, n._updateMargins), n.playerListen(Y, n._updateMargins), n.domListen(n.el, "click", function() {
-                        n._onLinkOpened()
-                    }), n
-                }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.deinitVideo = function() {
-                    hide(this.el)
-                }, e.prototype.initVideo = function(t) {
-                    var e = t.action_button;
-                    this.setLink(e), this._updateMargins()
-                }, e.prototype.setLink = function(t) {
-                    if (this.domUnlisten(this.el, "mouseenter"), this.domUnlisten(this.el, "mouseleave"), removeClass(this.el, "_opened"), t) {
-                        switch (t.type) {
-                            case "app":
-                                this._linkTitle = this.getLang("action_button_open_app");
-                                break;
-                            case "article":
-                                this._linkTitle = this.getLang("action_button_open_article");
-                                break;
-                            case "group":
-                                this._linkTitle = this.getLang("action_button_open_group");
-                                break;
-                            case "page":
-                                this._linkTitle = this.getLang("action_button_open_page");
-                                break;
-                            case "poll":
-                                this._linkTitle = this.getLang("action_button_open_poll");
-                                break;
-                            case "product":
-                                this._linkTitle = this.getLang("action_button_open_product");
-                                break;
-                            case "post":
-                                this._linkTitle = this.getLang("action_button_open_post");
-                                break;
-                            case "user":
-                                this._linkTitle = this.getLang("action_button_open_user");
-                                break;
-                            case "link":
-                            default:
-                                this._linkTitle = this.getLang("action_button_open_link")
-                        }
-                        val(this.el, this._linkTitle), this.el.setAttribute("href", t.url), show(this.el), this.player.trigger(Z, {
-                            data: t
-                        })
-                    } else hide(this.el)
-                }, e.prototype._onLinkOpened = function() {
-                    this.player.trigger(J), hasClass(this.el, "_opened") || (addClass(this.el, "_opened"), this.attachTooltip())
-                }, e.prototype._onMouseEnter = function() {
-                    Date.now() - this.tooltip.lastShown < 50 ? this._showTooltip() : this._tooltipTimeout = setTimeout(this._showTooltip.bind(this), 500)
-                }, e.prototype._onMouseLeave = function() {
-                    this.tooltip.hide(), clearTimeout(this._tooltipTimeout)
-                }, e.prototype._showTooltip = function() {
-                    var t = this;
-                    this.tooltip.show({
-                        el: this.el,
-                        text: function() {
-                            return t._linkTitle
-                        },
-                        offsetY: 10
-                    })
-                }, e.prototype._updateMargins = function() {
-                    toggleClass(this.el, "_controls_offset", this.player.isControlsVisible())
-                }, e
-            }(yt),
-            _e = function() {
-                return function(t, e) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return function(t, e) {
-                        var i = [],
-                            n = !0,
-                            r = !1,
-                            o = void 0;
-                        try {
-                            for (var s, a = t[Symbol.iterator](); !(n = (s = a.next()).done) && (i.push(s.value), !e || i.length !== e); n = !0);
-                        } catch (t) {
-                            r = !0, o = t
-                        } finally {
-                            try {
-                                !n && a.return && a.return()
-                            } finally {
-                                if (r) throw o
-                            }
-                        }
-                        return i
-                    }(t, e);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
-                }
-            }();
-
-        function me(t) {
-            if (Array.isArray(t)) {
-                for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                return i
             }
-            return Array.from(t)
+            onStatChange(e, t) {
+                e !== r.ENDED && e !== r.ERROR || this.hideButton()
+            }
+            showButton(e, t) {
+                this.hideButton(), this._curIndex = e;
+                var i = this.getLang("timed_button_" + t.text);
+                "link" === t.type && (i = function(e = "") {
+                    return `\n<svg class="${e}" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M2.587 2.587L0 0h7v7L4.61 4.61c-.564.644-1.144 1.47-1.408 2.367C2.865 8.652 4.135 10 4.135 10S1 9.66 1 5.965c0-1.355.797-2.538 1.587-3.378z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  `
+                }("_link_icon") + i), this._curButton = ce("a", {
+                    className: "videoplayer_timed_button hidden",
+                    innerHTML: i,
+                    href: "/away.php?to=" + encodeURIComponent(t.url),
+                    target: "_blank"
+                }), this.domListen(this._curButton, "click", e => {
+                    ! function(e, t = {
+                        blank: !0,
+                        throughAway: !0
+                    }) {
+                        t.throughAway && !/\/away\.php/.test(e) && (e = "/away.php?to=" + encodeURIComponent(e)), window.open(e, t.blank ? "_blank" : "").opener = null
+                    }(e.currentTarget.href), this.player.pause(), e.preventDefault(), e.stopPropagation()
+                }), this.el.appendChild(this._curButton), this._curButton.offsetHeight, removeClass(this._curButton, "hidden")
+            }
+            hideButton() {
+                if (null != this._curIndex) {
+                    var e = this._curButton;
+                    this._curButton = this._curIndex = null, addClass(e, "hidden"), setTimeout(() => re(e), 150)
+                }
+            }
         }
-        var be = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
+        var Nt = "bottom",
+            Ht = "top";
+        class Ot extends fe {
+            constructor(e) {
+                super(e), this.el = se('\n<div class="videoplayer_subtitle_layer">\n    <div class="videoplayer_subtitle_layer__region_top"></div>\n    <div class="videoplayer_subtitle_layer__region_bottom"></div>\n</div>\n    '), this._bottomRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Nt}`), this._topRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Ht}`), this.playerListen(Y, this._showTip), this.playerListen(q, this._updateMargins), this.playerListen(W, this._updateMargins), this.playerListen(F, () => {
+                    this.clear()
+                }), this.playerListen(N, () => {
+                    this.clear()
+                }), this.playerListen(g, () => {
+                    this.clear()
+                }), this._updateMargins(), this.resize(...this.player.getSize())
+            }
+            _addToRegion(e, t = Nt) {
+                var i = this._getRegionEl(t);
+                i && i.appendChild(e)
+            }
+            _buildCueEl(e) {
+                return se(`\n      <div>\n        <span class="videoplayer_subtitle_layer__cue">${e.text}</span>\n      </div>\n    `)
+            }
+            _getRegionEl(e) {
+                var t = null;
+                switch (e) {
+                    case Nt:
+                        t = this._bottomRegion;
+                        break;
+                    case Ht:
+                        t = this._topRegion
+                }
+                return t
+            }
+            _showTip(e) {
+                if (e) {
+                    var t = clean(e.name).replace(/&amp;/g, "&");
+                    if (e.lang) {
+                        var i = this.getVar("subtitles_langs")[e.lang].name;
+                        i !== e.name && (t = `${i} (${t})`)
+                    }
+                    var s = this.getLang("subtitles_enabled_tip");
+                    s = (s = s.replace("{current}", t)).replace("{icon}", '<span class="videoplayer_subtitle_layer__tip_icon"></span>');
+                    var a = this._buildCueEl({
+                        text: s
+                    });
+                    this.clear(Ht), this._addToRegion(a, Ht), setTimeout(() => {
+                        this.clear(Ht)
+                    }, 2e3)
+                }
+            }
+            _updateMargins() {
+                toggleClass(this._bottomRegion, "_controls_offset", this.player.isControlsVisible())
+            }
+            clear(e = Nt) {
+                var t = this._getRegionEl(e);
+                t && val(t, "")
+            }
+            update(e) {
+                if (this.clear(), e.length) {
+                    for (var t = document.createDocumentFragment(), i = 0; i < e.length; i++) {
+                        var s = e[i];
+                        t.appendChild(this._buildCueEl(s))
+                    }
+                    this._addToRegion(t)
+                }
+            }
+            destroy() {
+                super.destroy(), re(this.el)
+            }
+            resize(e, t) {
+                var i = Math.floor(29 * Math.max(0, e - 350) / 1650),
+                    s = Math.min(40, 11 + i),
+                    a = .5 * Math.max(0, 2e3 - e) / 1650,
+                    r = Math.min(1.9, 1.4 + a);
+                setStyle(this.el, {
+                    fontSize: `${s}px`,
+                    lineHeight: `${r}`
+                })
+            }
+        }
+        var Ut = 500;
+        class $t extends fe {
+            constructor(e) {
+                super(e), this.el = se('\n<a class="videoplayer_action_button" target="_blank" href=""></a>\n    '), hide(this.el), this.playerListen(q, this._updateMargins), this.playerListen(W, this._updateMargins), this.domListen(this.el, "click", () => {
+                    this._onLinkOpened()
+                })
+            }
+            deinitVideo() {
+                hide(this.el)
+            }
+            initVideo(e) {
+                var t = e.action_button;
+                this.setLink(t), this._updateMargins()
+            }
+            setLink(e) {
+                if (this.domUnlisten(this.el, "mouseenter"), this.domUnlisten(this.el, "mouseleave"), removeClass(this.el, "_opened"), e) {
+                    switch (e.type) {
+                        case "app":
+                            this._linkTitle = this.getLang("action_button_open_app");
+                            break;
+                        case "article":
+                            this._linkTitle = this.getLang("action_button_open_article");
+                            break;
+                        case "group":
+                            this._linkTitle = this.getLang("action_button_open_group");
+                            break;
+                        case "page":
+                            this._linkTitle = this.getLang("action_button_open_page");
+                            break;
+                        case "poll":
+                            this._linkTitle = this.getLang("action_button_open_poll");
+                            break;
+                        case "product":
+                            this._linkTitle = this.getLang("action_button_open_product");
+                            break;
+                        case "post":
+                            this._linkTitle = this.getLang("action_button_open_post");
+                            break;
+                        case "user":
+                            this._linkTitle = this.getLang("action_button_open_user");
+                            break;
+                        case "link":
+                        default:
+                            this._linkTitle = this.getLang("action_button_open_link")
+                    }
+                    val(this.el, this._linkTitle), this.el.setAttribute("href", e.url), show(this.el), this.player.trigger(j, {
+                        data: e
+                    })
+                } else hide(this.el)
+            }
+            _onLinkOpened() {
+                this.player.trigger(K), hasClass(this.el, "_opened") || (addClass(this.el, "_opened"), this.attachTooltip())
+            }
+            _onMouseEnter() {
+                Date.now() - this.tooltip.lastShown < 50 ? this._showTooltip() : this._tooltipTimeout = setTimeout(this._showTooltip.bind(this), Ut)
+            }
+            _onMouseLeave() {
+                this.tooltip.hide(), clearTimeout(this._tooltipTimeout)
+            }
+            _showTooltip() {
+                this.tooltip.show({
+                    el: this.el,
+                    text: () => this._linkTitle,
+                    offsetY: 10
+                })
+            }
+            _updateMargins() {
+                toggleClass(this.el, "_controls_offset", this.player.isControlsVisible())
+            }
+        }
+        var zt = 3e3,
+            Qt = 10,
+            qt = 1 / 24,
+            Wt = .05,
+            Gt = .05;
+        class Yt extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
                     className: "videoplayer_ui"
-                }), n.waiting = se(getProgressHtml("", "videoplayer_waiting pr_big")), n.el.appendChild(n.waiting), n.title = ce("div", {
+                }), this.waiting = se(getProgressHtml("", "videoplayer_waiting pr_big")), this.el.appendChild(this.waiting), this.title = ce("div", {
                     className: "videoplayer_title"
-                }), n.titleLink = ce("a", {
+                }), this.titleLink = ce("a", {
                     className: "videoplayer_title_link",
                     target: "_blank"
-                }), n.title.appendChild(n.titleLink), n.el.appendChild(n.title), n.error = ce("div", {
+                }), this.title.appendChild(this.titleLink), this.el.appendChild(this.title), this.error = ce("div", {
                     className: "videoplayer_error hidden"
-                }), attr(n.error, "role", "alert"), n.el.appendChild(n.error), n.liveWaiting = ce("div", {
+                }), attr(this.error, "role", "alert"), this.el.appendChild(this.error), this.liveWaiting = ce("div", {
                     className: "videoplayer_live_waiting hidden"
-                }), n.el.appendChild(n.liveWaiting), n.thumb = ce("div", {
+                }), this.el.appendChild(this.liveWaiting), this.thumb = ce("div", {
                     className: "videoplayer_thumb hidden",
-                    innerHTML: '<div class="videoplayer_big_play_btn"><div class="videoplayer_big_play_btn_bg"></div>' + Bt("videoplayer_big_play_icon") + "</div>"
-                }), n.el.appendChild(n.thumb), n.controls = new Xt(i), n.el.appendChild(n.controls.el), n.shareActions = new te(i), n.el.appendChild(n.shareActions.el), n.contextMenu = new ie(i), n.el.appendChild(n.contextMenu.el), n.playerTooltip = new le(i), n.el.appendChild(n.playerTooltip.el), n.actionButton = new ve(n.player), n.el.appendChild(n.actionButton.el), n.autoplayTimer = ce("div", {
+                    innerHTML: `<div class="videoplayer_big_play_btn"><div class="videoplayer_big_play_btn_bg"></div>${it("videoplayer_big_play_icon")}</div>`
+                }), this.el.appendChild(this.thumb), this.controls = new bt(e), this.el.appendChild(this.controls.el), this.shareActions = new kt(e), this.el.appendChild(this.shareActions.el), this.contextMenu = new Ct(e), this.el.appendChild(this.contextMenu.el), this.playerTooltip = new Dt(e), this.el.appendChild(this.playerTooltip.el), this.actionButton = new $t(this.player), this.el.appendChild(this.actionButton.el), this.autoplayTimer = ce("div", {
                     className: "videoplayer_autoplay_timer hidden",
                     innerHTML: '<div class="videoplayer_autoplay_timer_equalizer" style="display:none;"><div class="_col"></div><div class="_col"></div><div class="_col"></div></div><span class="videoplayer_autoplay_timer_text"></span>'
-                }), n.autoplayTimerEqualizer = domByClass(n.autoplayTimer, "videoplayer_autoplay_timer_equalizer"), n.autoplayTimerText = domByClass(n.autoplayTimer, "videoplayer_autoplay_timer_text"), n.el.appendChild(n.autoplayTimer), n.autoplayHint = ce("div", {
+                }), this.autoplayTimerEqualizer = domByClass(this.autoplayTimer, "videoplayer_autoplay_timer_equalizer"), this.autoplayTimerText = domByClass(this.autoplayTimer, "videoplayer_autoplay_timer_text"), this.el.appendChild(this.autoplayTimer), this.autoplayHint = ce("div", {
                     className: "videoplayer_autoplay_hint hidden"
-                }), n.el.appendChild(n.autoplayHint), n.timedButtons = new de(i), n.el.appendChild(n.timedButtons.el), n.domListen(i.el, "keydown", n.onKeyDown), n.domListen(i.el, "keyup", n.onKeyUp), n.domListen(i.el, "blur", n.onBlur), n.domListen(i.el, "mousedown", n.onMouseDown), n.domListen(i.el, "click", n.onClick), n.domListen(i.el, "dblclick", n.onDoubleClick), n.domListen(i.el, "mouseenter", n.onMouseEnter), n.domListen(i.el, "mousemove", n.onMouseMove), n.domListen(i.el, "mouseleave", n.onMouseLeave), n.playerListen(d, n.onStateChange), n.playerListen(_, n.onFullscreenChange), n.playerListen(P, n.onLivePhaseChange), n.playerListen(O, n.onMediaPlaying), n.playerListen(x, n.onMediaTimeupdate), n.playerListen(R, n.updateWaiting), n.playerListen(U, n.showLiveWarning), n.playerListen($, n.updateWaiting), n.playerListen(et, n.onLinearAdStarted), n.playerListen(it, n.onLinearAdCompleted), n.playerListen(b, n.onPlayerExpanded), n.playerListen(g, n._onSubtitleCueChange), n.playerListen(v, n._onSubtitlesSwitched), n.playerListen(f, n._showSubtitlesIntro), n._mouseInside = !1, n._lastUserActivity = Date.now(), n._checkUserActivityInterval = setInterval(n.checkUserActivity.bind(n), 100), n
+                }), this.el.appendChild(this.autoplayHint), this.timedButtons = new Ft(e), this.el.appendChild(this.timedButtons.el), this.domListen(e.el, "keydown", this.onKeyDown), this.domListen(e.el, "keyup", this.onKeyUp), this.domListen(e.el, "blur", this.onBlur), this.domListen(e.el, "mousedown", this.onMouseDown), this.domListen(e.el, "click", this.onClick), this.domListen(e.el, "dblclick", this.onDoubleClick), this.domListen(e.el, "mouseenter", this.onMouseEnter), this.domListen(e.el, "mousemove", this.onMouseMove), this.domListen(e.el, "mouseleave", this.onMouseLeave), this.playerListen(d, this.onStateChange), this.playerListen(_, this.onFullscreenChange), this.playerListen(T, this.onLivePhaseChange), this.playerListen(D, this.onMediaPlaying), this.playerListen(A, this.onMediaTimeupdate), this.playerListen(I, this.updateWaiting), this.playerListen(O, this.showLiveWarning), this.playerListen(X, this.updateWaiting), this.playerListen(Z, this.onLinearAdStarted), this.playerListen(ee, this.onLinearAdCompleted), this.playerListen(y, this.onPlayerExpanded), this.playerListen(v, this._onSubtitleCueChange), this.playerListen(g, this._onSubtitlesSwitched), this.playerListen(c, this._showSubtitlesIntro), this._mouseInside = !1, this._lastUserActivity = Date.now(), this._checkUserActivityInterval = setInterval(this.checkUserActivity.bind(this), 100)
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.initVideo = function(t) {
+            initVideo(e) {
                 if (setStyle(this.thumb, {
-                        backgroundImage: "url(" + this.player.getThumbSrc() + ")"
-                    }), t.stretch_vertical && !t.is_aurora) {
-                    var e = this.calculateBackgroundSizeForVerticalThumb();
+                        backgroundImage: `url(${this.player.getThumbSrc()})`
+                    }), e.stretch_vertical && !e.is_aurora) {
+                    var t = this.calculateBackgroundSizeForVerticalThumb();
                     setStyle(this.thumb, {
-                        backgroundSize: e
+                        backgroundSize: t
                     })
                 }
-                if (this.updateTitle(t.md_title, t.explicit), toggleClass(this.titleLink, "_right_offset", !t.nolikes), toggleClass(this.titleLink, "_clickable", !!t.is_embed), t.live && this.onLivePhaseChange(t.live), t.stickers_promo && this.buildStickersPromo.apply(this, me(t.stickers_promo.split("|"))), this._mouseInside = isHover(this.el), this._lastUserActivity = Date.now(), this.updateWaiting(), this.player.isAutoplay()) {
+                if (this.updateTitle(e.md_title, e.explicit), toggleClass(this.titleLink, "_right_offset", !e.nolikes), toggleClass(this.titleLink, "_clickable", !!e.is_embed), e.live && this.onLivePhaseChange(e.live), e.stickers_promo && this.buildStickersPromo(...e.stickers_promo.split("|")), this._mouseInside = isHover(this.el), this._lastUserActivity = Date.now(), this.updateWaiting(), this.player.isAutoplay()) {
                     var i = this.player.isActiveLive() ? '<span class="videoplayer_autoplay_timer_live_icon"></span>' : formatTime(this.player.getDuration());
-                    val(this.autoplayTimerText, i), toggleClass(this.autoplayTimer, "_live", this.player.isActiveLive()), t.ads_snippet_video || val(this.autoplayHint, this.getLang("autoplay_expand_hint")), this._mouseInside || this.player.getState() !== a.PLAYING || this.hideUI({
+                    val(this.autoplayTimerText, i), toggleClass(this.autoplayTimer, "_live", this.player.isActiveLive()), e.ads_snippet_video || val(this.autoplayHint, this.getLang("autoplay_expand_hint")), this._mouseInside || this.player.getState() !== r.PLAYING || this.hideUI({
                         noTransition: !0
                     })
                 }
-                "apps_slider" === t.module && (this._uiDisabled = !0, this.hideUI({
+                "apps_slider" === e.module && (this._uiDisabled = !0, this.hideUI({
                     hideCursor: !1,
                     noTransition: !0
-                })), "story" === t.module && (this._uiDisabled = !0, this.hideUI({
+                })), "story" === e.module && (this._uiDisabled = !0, this.hideUI({
                     hideCursor: !1,
                     noTransition: !0
-                }), this.controls.destroy(), this.shareActions.destroy(), this.contextMenu.destroy(), re(this.controls.el), re(this.shareActions.el)), t.is_aurora && this.player.isActiveLive() && (this.donationsLayer = new he(this.player), this.el.appendChild(this.donationsLayer.el)), this.adsClickOverlay && re(this.adsClickOverlay), t.ads_snippet_video && (this._adsSnippetsVideo = !0, addClass(this.el, "no_gradient"), this.adsClickOverlay = se('<a class="videoplayer_ads_click_overlay" ' + t.link_attr + "></a>"), this.el.appendChild(this.adsClickOverlay)), this._ignoreNoticeTypes = [], this._ignoreLiveWarning = !1
-            }, e.prototype.deinitVideo = function() {
+                }), this.controls.destroy(), this.shareActions.destroy(), this.contextMenu.destroy(), re(this.controls.el), re(this.shareActions.el)), e.is_aurora && this.player.isActiveLive() && (this.donationsLayer = new Bt(this.player), this.el.appendChild(this.donationsLayer.el)), this.adsClickOverlay && re(this.adsClickOverlay), e.ads_snippet_video && (this._adsSnippetsVideo = !0, addClass(this.el, "no_gradient"), this.adsClickOverlay = se(`<a class="videoplayer_ads_click_overlay" ${e.link_attr}></a>`), this.el.appendChild(this.adsClickOverlay)), this._ignoreNoticeTypes = [], this._ignoreLiveWarning = !1
+            }
+            deinitVideo() {
                 this.endScreen && this.removeEndScreen(), this.donationsLayer && (clearTimeout(this._randDonationTimeout), this.donationsLayer.destroy(), this.donationsLayer = null), this._subtitleLayer && (this._subtitleLayer.destroy(), this._subtitleLayer = null), this.tooltip.hide(), this.toggleLiveDummy(!1), this.updateWaiting(), this.removeStickersPromo(), this.removeNotice(), this.hideLiveWarning(), this.undelay(this._featureSubtitlesTimeout)
-            }, e.prototype._showSubtitlesIntro = function() {
-                var t = this,
-                    e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.player.getAvailableSubtitleTracksInfo();
+            }
+            _showSubtitlesIntro(e = this.player.getAvailableSubtitleTracksInfo()) {
                 if (this.player.isInLayer() && e.length) {
-                    var i = St.getPref("video_feature_subtitles") || 0;
-                    i >= 5 || (this.showUI(), this._featureSubtitlesTimeout = this.delay(function() {
-                        if (cur.featurePlayerSubtitlesTT || t.player.isMinimized() || t.player.isFullscreen()) return t._featureSubtitlesTimeout = null, t.hideUI(), !1;
-                        St.savePref("video_feature_subtitles", ++i), t.player.externalCall("showSubtitlesIntro", domByClass(t.el, "videoplayer_btn_subtitles"), t.getLang("subtitles_intro_tooltip"))
+                    var t = Re.getPref("video_feature_subtitles") || 0;
+                    t >= 5 || (this.showUI(), this._featureSubtitlesTimeout = this.delay(() => {
+                        if (cur.featurePlayerSubtitlesTT || this.player.isMinimized() || this.player.isFullscreen()) return this._featureSubtitlesTimeout = null, this.hideUI(), !1;
+                        Re.savePref("video_feature_subtitles", ++t), this.player.externalCall("showSubtitlesIntro", domByClass(this.el, "videoplayer_btn_subtitles"), this.getLang("subtitles_intro_tooltip"))
                     }, 2500))
                 }
-            }, e.prototype.onTouchedByUser = function() {
+            }
+            onTouchedByUser() {
                 addClass(this.autoplayHint, "hidden"), addClass(this.autoplayTimer, "hidden"), setStyle(this.player.el, {
                     cursor: ""
                 })
-            }, e.prototype.onMouseDown = function(t) {
-                this.onKeyboardFocus(!1), this._clickTarget = t.target
-            }, e.prototype.onClick = function(t) {
-                if (t.stopPropagation(), this._lastUserActivity = Date.now(), !this.contextMenu.isVisible() && !this._uiDisabled) {
-                    var e = this.isBackgroundElement(this._clickTarget);
-                    this.player.isAutoplay() && !this._adsSnippetsVideo ? (e && this.player.expand(), this.player.onTouchedByUser()) : e && this.player.togglePlay()
+            }
+            onMouseDown(e) {
+                this.onKeyboardFocus(!1), this._clickTarget = e.target
+            }
+            onClick(e) {
+                if (e.stopPropagation(), this._lastUserActivity = Date.now(), !this.contextMenu.isVisible() && !this._uiDisabled) {
+                    var t = this.isBackgroundElement(this._clickTarget);
+                    this.player.isAutoplay() && !this._adsSnippetsVideo ? (t && this.player.expand(), this.player.onTouchedByUser()) : t && this.player.togglePlay()
                 }
-            }, e.prototype.onDoubleClick = function(t) {
-                t.target != this.player.el && t.target != this.player.media.el || this._adsSnippetsVideo || this.player.toggleFullscreen()
-            }, e.prototype.onKeyDown = function(t) {
-                var e = inArray(attr(t.target, "role"), ["button", "menuitemradio"]);
-                switch (t.keyCode) {
+            }
+            onDoubleClick(e) {
+                e.target != this.player.el && e.target != this.player.media.el || this._adsSnippetsVideo || this.player.toggleFullscreen()
+            }
+            onKeyDown(e) {
+                var t = inArray(attr(e.target, "role"), ["button", "menuitemradio"]);
+                switch (e.keyCode) {
                     case KEY.TAB:
                         this.onKeyboardFocus(!0);
                         break;
                     case KEY.SPACE:
                     case KEY.ENTER:
-                        e && this._keyboardFocus ? (this._clickTarget = t.target, t.target.click()) : t.keyCode == KEY.SPACE && this.player.togglePlay(), t.preventDefault();
+                        t && this._keyboardFocus ? (this._clickTarget = e.target, e.target.click()) : e.keyCode == KEY.SPACE && this.player.togglePlay(), e.preventDefault();
                         break;
                     case KEY.UP:
                     case KEY.DOWN:
-                        var i = t.keyCode == KEY.UP ? 1 : -1;
-                        this._keyboardFocus ? (this.onKeyboardFocus(!0), t.target === this.controls.btnSettings.el || t.target === this.controls.timelineSlider.el && this.keyboardSlideProgress(i, t.altKey)) : this.keyboardSlideVolume(i), t.preventDefault();
+                        var i = e.keyCode == KEY.UP ? 1 : -1;
+                        this._keyboardFocus ? (this.onKeyboardFocus(!0), e.target === this.controls.btnSettings.el || e.target === this.controls.timelineSlider.el && this.keyboardSlideProgress(i, e.altKey)) : this.keyboardSlideVolume(i), e.preventDefault();
                         break;
                     case KEY.LEFT:
                     case KEY.RIGHT:
-                        var n = t.keyCode == KEY.RIGHT ? 1 : -1;
-                        t.target === this.controls.volumeSlider.el && this._keyboardFocus ? (this.onKeyboardFocus(!0), this.keyboardSlideVolume(n, t.altKey)) : this.keyboardSlideProgress(n, t.altKey), t.preventDefault();
+                        var s = e.keyCode == KEY.RIGHT ? 1 : -1;
+                        e.target === this.controls.volumeSlider.el && this._keyboardFocus ? (this.onKeyboardFocus(!0), this.keyboardSlideVolume(s, e.altKey)) : this.keyboardSlideProgress(s, e.altKey), e.preventDefault();
                         break;
                     case 70:
-                        this.player.toggleFullscreen(), t.preventDefault();
+                        this.player.toggleFullscreen(), e.preventDefault();
                         break;
                     case 77:
-                        this.player.toggleMute(), t.preventDefault()
+                        this.player.toggleMute(), e.preventDefault()
                 }
                 this._lastUserActivity = Date.now(), this.tooltip.hide(), this.showUI(), this.player.onTouchedByUser()
-            }, e.prototype.isBackgroundElement = function(t) {
-                return t === this.player.el || t === this.controls.el || t === this.title || t === this.player.media.el || this.player.media.el.contains(t) || t === this.thumb
-            }, e.prototype.keyboardSlideProgress = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                if (e && !this.frameSeeking && (this.frameSeeking = !0, this.player.trigger(W, !0)), this.player.getState() != a.UNSTARTED && !this.player.isPlayingLinearAd()) {
-                    var i = e ? 1 / 24 : 10;
-                    this.player.seekBy(i * t)
+            }
+            isBackgroundElement(e) {
+                return e === this.player.el || e === this.controls.el || e === this.title || e === this.player.media.el || this.player.media.el.contains(e) || e === this.thumb
+            }
+            keyboardSlideProgress(e, t = !1) {
+                if (t && !this.frameSeeking && (this.frameSeeking = !0, this.player.trigger(z, !0)), this.player.getState() != r.UNSTARTED && !this.player.isPlayingLinearAd()) {
+                    var i = t ? qt : Qt;
+                    this.player.seekBy(i * e)
                 }
-            }, e.prototype.keyboardSlideVolume = function(t) {
-                var e = .05 * t;
-                this.player.setVolume(this.player.getVolume() + e)
-            }, e.prototype.onKeyUp = function(t) {
-                t.keyCode == KEY.ALT && this.frameSeeking && (this.frameSeeking = !1, this.player.trigger(q))
-            }, e.prototype.onKeyboardFocus = function(t) {
-                this._keyboardFocus = t, toggleClass(this.el, "_keyboard_focus", t)
-            }, e.prototype.onBlur = function(t) {
-                this.frameSeeking && (this.frameSeeking = !1, this.player.trigger(q))
-            }, e.prototype.onMouseEnter = function(t) {
+            }
+            keyboardSlideVolume(e) {
+                var t = Wt * e;
+                this.player.setVolume(this.player.getVolume() + t)
+            }
+            onKeyUp(e) {
+                e.keyCode == KEY.ALT && this.frameSeeking && (this.frameSeeking = !1, this.player.trigger(Q))
+            }
+            onKeyboardFocus(e) {
+                this._keyboardFocus = e, toggleClass(this.el, "_keyboard_focus", e)
+            }
+            onBlur(e) {
+                this.frameSeeking && (this.frameSeeking = !1, this.player.trigger(Q))
+            }
+            onMouseEnter(e) {
                 this._mouseInside = !0, this.showUI()
-            }, e.prototype.onMouseLeave = function(t) {
+            }
+            onMouseLeave(e) {
                 this._mouseInside = !1;
-                var e = this.player.getState() === a.PLAYING,
-                    i = this.player.getState() == a.PAUSED && this.player.isAutoplay();
-                !e && !i || this.controls.isActive() || this._adsSnippetsVideo || this.hideUI()
-            }, e.prototype.onMouseMove = function(t) {
+                var t = this.player.getState() === r.PLAYING,
+                    i = this.player.getState() == r.PAUSED && this.player.isAutoplay();
+                !t && !i || this.controls.isActive() || this._adsSnippetsVideo || this.hideUI()
+            }
+            onMouseMove(e) {
                 if (this._lastUserActivity = Date.now(), this.showUI(), !this._uiDisabled && this.player.isAutoplay()) {
-                    var e = this.player.getState();
-                    e !== a.ENDED && e !== a.ERROR && toggleClass(this.autoplayHint, "hidden", !this.isBackgroundElement(t.target))
+                    var t = this.player.getState();
+                    t !== r.ENDED && t !== r.ERROR && toggleClass(this.autoplayHint, "hidden", !this.isBackgroundElement(e.target))
                 }
-            }, e.prototype.onWheel = function(t) {
+            }
+            onWheel(e) {
                 if (!browser.mac && this.player.isFullscreen()) {
-                    var e = t.deltaY > 0 ? -1 : 1;
-                    this.player.setVolume(this.player.getVolume() + .05 * e), this._lastUserActivity = Date.now(), this.showUI()
+                    var t = e.deltaY > 0 ? -1 : 1;
+                    this.player.setVolume(this.player.getVolume() + Gt * t), this._lastUserActivity = Date.now(), this.showUI()
                 }
-            }, e.prototype.hideUI = function() {
-                var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-                    e = t.hideCursor,
-                    i = void 0 === e || e,
-                    n = t.noTransition,
-                    r = void 0 !== n && n;
-                this._featureSubtitlesTimeout || domByClass(ge("mv_box"), "feature_intro_subtitles") || this._controlsHidden || (r && (addClass(this.el, "no_transition"), removeClassDelayed(this.el, "no_transition")), this.shareActions.hide(), this.controls.hide(), addClass(this.title, "hidden"), this.player.isAutoplay() && (removeClass(this.autoplayTimer, "hidden"), addClass(this.autoplayHint, "hidden")), this.toggleStickersPromo(!1), setStyle(this.player.el, {
-                    cursor: i ? "none" : ""
-                }), this._controlsHidden = !0, this.player.trigger(G))
-            }, e.prototype.showUI = function() {
+            }
+            hideUI({
+                hideCursor: e = !0,
+                noTransition: t = !1
+            } = {}) {
+                this._featureSubtitlesTimeout || domByClass(ge("mv_box"), "feature_intro_subtitles") || this._controlsHidden || (t && (addClass(this.el, "no_transition"), removeClassDelayed(this.el, "no_transition")), this.shareActions.hide(), this.controls.hide(), addClass(this.title, "hidden"), this.player.isAutoplay() && (removeClass(this.autoplayTimer, "hidden"), addClass(this.autoplayHint, "hidden")), this.toggleStickersPromo(!1), setStyle(this.player.el, {
+                    cursor: e ? "none" : ""
+                }), this._controlsHidden = !0, this.player.trigger(q))
+            }
+            showUI() {
                 this._uiDisabled || this._controlsHiddenByAd || !this._controlsHidden || (this.shareActions.show(), this.controls.show(), removeClass(this.title, "hidden"), this.player.isAutoplay() ? (addClass(this.autoplayTimer, "hidden"), removeClass(this.autoplayHint, "hidden"), setStyle(this.player.el, {
                     cursor: "pointer"
                 })) : setStyle(this.player.el, {
                     cursor: ""
-                }), this.toggleStickersPromo(!0), this._controlsHidden = !1, this.player.trigger(Y))
-            }, e.prototype.updateWaiting = function() {
-                var t = this.player,
-                    e = (!t.isInited() || t.isBuffering() || t.isLoadingAds()) && !t.isPlayingLinearAd() && this.player.getState() !== a.ERROR && t.getLivePhase() !== ut;
-                toggle(this.waiting, e), attr(this.player.el, "aria-busy", e ? "true" : "false")
-            }, e.prototype.updateTitle = function(t, e) {
-                void 0 !== t && (toggleClass(this.title, "videoplayer_title_explicit", Boolean(e)), val(this.titleLink, t), attr(this.titleLink, "href", "/video" + this.player.getVideoId()));
+                }), this.toggleStickersPromo(!0), this._controlsHidden = !1, this.player.trigger(W))
+            }
+            updateWaiting() {
+                var e = this.player,
+                    t = (!e.isInited() || e.isBuffering() || e.isLoadingAds()) && !e.isPlayingLinearAd() && this.player.getState() !== r.ERROR && e.getLivePhase() !== he;
+                toggle(this.waiting, t), attr(this.player.el, "aria-busy", t ? "true" : "false")
+            }
+            updateTitle(e, t) {
+                void 0 !== e && (toggleClass(this.title, "videoplayer_title_explicit", Boolean(t)), val(this.titleLink, e), attr(this.titleLink, "href", "/video" + this.player.getVideoId()));
                 var i = this.player.isInited(),
-                    n = this.player.isPlayingLinearAd(),
-                    r = this.player.isFullscreen(),
-                    o = this.getVar("is_embed") || this.getVar("is_inline") && "videocat" == this.getVar("module"),
-                    s = i && !this.getVar("no_title") && !n && !this.endScreen && (r || o);
-                toggle(this.title, !!s)
-            }, e.prototype.showError = function(t) {
-                var e = t.message,
-                    i = t.waiting,
-                    n = "";
-                n += void 0 !== i && i ? getProgressHtml("", "_error_progress_icon pr_big") : '<div class="_error_icon"></div>', n = '<div class="_error_msg">' + (n += '<div class="_text">' + e + "</div>") + "</div>", n = '<div class="_background" style="background-image:url(' + (this.getVar("first_frame_800") || this.getVar("first_frame_320") || this.getVar("jpg") || "") + ')"></div>' + n, val(this.error, n), removeClass(this.error, "hidden"), attr(this.error, "aria-hidden", !1)
-            }, e.prototype.hideError = function() {
+                    s = this.player.isPlayingLinearAd(),
+                    a = this.player.isFullscreen(),
+                    r = this.getVar("is_embed") || this.getVar("is_inline") && "videocat" == this.getVar("module"),
+                    l = i && !this.getVar("no_title") && !s && !this.endScreen && (a || r);
+                toggle(this.title, !!l)
+            }
+            showError({
+                message: e,
+                waiting: t = !1
+            }) {
+                var i = "";
+                i += t ? getProgressHtml("", "_error_progress_icon pr_big") : '<div class="_error_icon"></div>', i = `<div class="_error_msg">${i+=`<div class="_text">${e}</div>`}</div>`, i = `<div class="_background" style="background-image:url(${this.getVar("first_frame_800")||this.getVar("first_frame_320")||this.getVar("jpg")||""})"></div>` + i, val(this.error, i), removeClass(this.error, "hidden"), attr(this.error, "aria-hidden", !1)
+            }
+            hideError() {
                 addClass(this.error, "hidden"), attr(this.error, "aria-hidden", !0)
-            }, e.prototype.showLiveWarning = function(t) {
-                var e = this,
-                    i = t.message;
-                this.hideLiveWarning(), !this._ignoreLiveWarning && i && (this.warning = ce("div", {
+            }
+            showLiveWarning({
+                message: e
+            }) {
+                this.hideLiveWarning(), !this._ignoreLiveWarning && e && (this.warning = ce("div", {
                     className: "videoplayer_warning",
-                    innerHTML: i + '<span class="videoplayer_warning_close"></span>'
-                }), this.domListen(domByClass(this.warning, "videoplayer_warning_close"), "click", function() {
-                    e.hideLiveWarning(), e._ignoreLiveWarning = !0
+                    innerHTML: e + '<span class="videoplayer_warning_close"></span>'
+                }), this.domListen(domByClass(this.warning, "videoplayer_warning_close"), "click", () => {
+                    this.hideLiveWarning(), this._ignoreLiveWarning = !0
                 }), this.el.appendChild(this.warning))
-            }, e.prototype.hideLiveWarning = function() {
+            }
+            hideLiveWarning() {
                 this.warning && (this.domUnlisten(domByClass(this.warning, "videoplayer_warning_close")), re(this.warning), this.warning = null)
-            }, e.prototype.onStateChange = function(t, e) {
-                domData(this.el, "state", t);
+            }
+            onStateChange(e, t) {
+                domData(this.el, "state", e);
                 var i = this.player.isAutoplay();
-                if (t === a.PLAYING || i && t == a.PAUSED || this.showUI(), t !== a.PLAYING || !i || this._mouseInside || this._adsSnippetsVideo || this.hideUI({
+                if (e === r.PLAYING || i && e == r.PAUSED || this.showUI(), e !== r.PLAYING || !i || this._mouseInside || this._adsSnippetsVideo || this.hideUI({
                         noTransition: !0
-                    }), this.endScreen && t !== a.ENDED && (this.removeEndScreen(), this._controlsHidden || this.controls.show()), t === a.ENDED && this.canShowEndScreen() && this.buildEndScreen(), i && !this.player.isStartedPlaying()) {
-                    var n = t === a.ENDED && !this.endScreen;
-                    this.toggleThumb(!0, n)
+                    }), this.endScreen && e !== r.ENDED && (this.removeEndScreen(), this._controlsHidden || this.controls.show()), e === r.ENDED && this.canShowEndScreen() && this.buildEndScreen(), i && !this.player.isStartedPlaying()) {
+                    var s = e === r.ENDED && !this.endScreen;
+                    this.toggleThumb(!0, s)
                 } else {
-                    var r = t === a.UNSTARTED && !this.getVar("autoplay") || t === a.ENDED,
-                        o = !this.endScreen;
-                    this.toggleThumb(r, o)
+                    var a = e === r.UNSTARTED && !this.getVar("autoplay") || e === r.ENDED,
+                        l = !this.endScreen;
+                    this.toggleThumb(a, l)
                 }
                 if (i) {
-                    var s = t !== a.ENDED && t !== a.ERROR;
-                    toggle(this.autoplayTimer, s), toggle(this.autoplayHint, s)
+                    var n = e !== r.ENDED && e !== r.ERROR;
+                    toggle(this.autoplayTimer, n), toggle(this.autoplayHint, n)
                 }
-                t === a.ERROR ? (this.showError(this.player.getErrorData()), this.showUI(), this.toggleThumb(!1), this.toggleLiveDummy(!1), addClass(this.autoplayHint, "hidden")) : this.hideError(), this.updateTitle(), this.updateWaiting(), this.updateShareActions()
-            }, e.prototype.toggleThumb = function(t) {
-                var e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-                toggleClass(this.thumb, "hidden", !t), t && toggle(domByClass(this.thumb, "videoplayer_big_play_btn"), e)
-            }, e.prototype.onFullscreenChange = function(t) {
-                if (toggleClass(this.el, "_fullscreen", t), this.updateTitle(), browser.mac || (t ? this.domListen(this.player.el, "wheel", this.onWheel) : this.domUnlisten(this.player.el, "wheel", this.onWheel)), this.player.isInited()) {
-                    var e = this.player.getVars();
-                    if (e.stretch_vertical && !e.is_aurora) {
-                        var i = this.calculateBackgroundSizeForVerticalThumb(t);
+                e === r.ERROR ? (this.showError(this.player.getErrorData()), this.showUI(), this.toggleThumb(!1), this.toggleLiveDummy(!1), addClass(this.autoplayHint, "hidden")) : this.hideError(), this.updateTitle(), this.updateWaiting(), this.updateShareActions()
+            }
+            toggleThumb(e, t = !0) {
+                toggleClass(this.thumb, "hidden", !e), e && toggle(domByClass(this.thumb, "videoplayer_big_play_btn"), t)
+            }
+            onFullscreenChange(e) {
+                if (toggleClass(this.el, "_fullscreen", e), this.updateTitle(), browser.mac || (e ? this.domListen(this.player.el, "wheel", this.onWheel) : this.domUnlisten(this.player.el, "wheel", this.onWheel)), this.player.isInited()) {
+                    var t = this.player.getVars();
+                    if (t.stretch_vertical && !t.is_aurora) {
+                        var i = this.calculateBackgroundSizeForVerticalThumb(e);
                         setStyle(this.thumb, {
                             backgroundSize: i
                         })
                     }
                 }
-            }, e.prototype.onLivePhaseChange = function(t) {
-                var e = !1;
-                t == ut && this.getVar("live_start"), t == ut ? (val(this.liveWaiting, this.getLang("live_starting_soon")), e = !0) : e = !1, this.player.getState() === a.ERROR && (e = !1), this.toggleLiveDummy(e), this.updateWaiting(), this.player.isAutoplay() && !this.player.isActiveLive() && (removeClass(this.autoplayTimer, "_live"), val(this.autoplayTimerText, formatTime(this.player.getDuration())), this.resizeAutoplayTimer())
-            }, e.prototype.toggleLiveDummy = function(t) {
-                toggleClass(this.liveWaiting, "hidden", !t)
-            }, e.prototype.onMediaPlaying = function() {
+            }
+            onLivePhaseChange(e) {
+                var t = !1;
+                e == he && this.getVar("live_start"), e == he ? (val(this.liveWaiting, this.getLang("live_starting_soon")), t = !0) : t = !1, this.player.getState() === r.ERROR && (t = !1), this.toggleLiveDummy(t), this.updateWaiting(), this.player.isAutoplay() && !this.player.isActiveLive() && (removeClass(this.autoplayTimer, "_live"), val(this.autoplayTimerText, formatTime(this.player.getDuration())), this.resizeAutoplayTimer())
+            }
+            toggleLiveDummy(e) {
+                toggleClass(this.liveWaiting, "hidden", !e)
+            }
+            onMediaPlaying() {
                 this.player.isFromAutoplay() && (this.toggleThumb(!1), this.player.isTouchedByUser() || this.resizeAutoplayTimer())
-            }, e.prototype.onMediaTimeupdate = function(t) {
+            }
+            onMediaTimeupdate(e) {
                 if (this.player.isAutoplay() && !this.player.isActiveLive()) {
-                    var e = positive(this.player.getDuration() - t);
-                    val(this.autoplayTimerText, formatTime(e))
+                    var t = positive(this.player.getDuration() - e);
+                    val(this.autoplayTimerText, formatTime(t))
                 }
-            }, e.prototype.resizeAutoplayTimer = function() {
+            }
+            resizeAutoplayTimer() {
                 if (!this.player.isActiveLive()) {
-                    var t = formatTime(this.player.getDuration()),
-                        e = val(this.autoplayTimerText);
-                    Ct(this.autoplayTimerText, t.replace(/\d/g, "8")), setStyle(this.autoplayTimerText, {
+                    var e = formatTime(this.player.getDuration()),
+                        t = val(this.autoplayTimerText);
+                    Qe(this.autoplayTimerText, e.replace(/\d/g, "8")), setStyle(this.autoplayTimerText, {
                         minWidth: this.autoplayTimerText.offsetWidth + "px"
-                    }), Ct(this.autoplayTimerText, e)
+                    }), Qe(this.autoplayTimerText, t)
                 }
                 setStyle(this.autoplayTimerEqualizer, {
                     display: ""
                 })
-            }, e.prototype.onLinearAdStarted = function(t, e) {
-                e.duration;
-                var i = e.hideControls;
+            }
+            onLinearAdStarted(e, {
+                duration: t,
+                hideControls: i
+            }) {
                 this.updateTitle(), this.updateShareActions(), this.player.isAutoplay() && (hide(this.autoplayTimer), hide(this.autoplayHint)), i && (this._controlsHiddenByAd = !0, this.hideUI({
                     hideCursor: !1
                 })), this.updateWaiting()
-            }, e.prototype.onLinearAdCompleted = function(t) {
+            }
+            onLinearAdCompleted(e) {
                 this.updateTitle(), this.updateShareActions(), this.player.isAutoplay() && (show(this.autoplayTimer), show(this.autoplayHint)), this._controlsHiddenByAd && (this._controlsHiddenByAd = !1, this.showUI()), this.updateWaiting()
-            }, e.prototype.checkUserActivity = function() {
-                var t = this;
+            }
+            checkUserActivity() {
                 if (!this._controlsHidden) {
                     var e = this.player;
-                    this.player.getState() !== a.PLAYING || this._mouseInside && !e.isFullscreen() || !(Date.now() - t._lastUserActivity > 3e3) || t.controls.isActive() || isHover(t.controls.el) || isHover(t.shareActions.el) || this._adsSnippetsVideo || this.hideUI({
+                    this.player.getState() !== r.PLAYING || this._mouseInside && !e.isFullscreen() || !(() => Date.now() - this._lastUserActivity > zt)() || (() => this.controls.isActive() || isHover(this.controls.el) || isHover(this.shareActions.el))() || this._adsSnippetsVideo || this.hideUI({
                         hideCursor: this.player.isFullscreen()
                     })
                 }
-            }, e.prototype.canShowEndScreen = function() {
-                return !!this._adsSnippetsVideo || (!this.getVar("live") || this.getVar("live") === at) && (!this.getVar("nolikes") || (this.getVar("show_next") && this.player.getNextVideos().length || this.getVar("show_suggestions") && this.player.getSuggestions().length))
-            }, e.prototype.buildEndScreen = function() {
-                var t, e, i = [],
-                    n = !1,
-                    r = !1;
-                (i = this.player.getNextVideos()).length && (n = this.player.nextTimerEnabled()), this.getVar("show_suggestions") && !i.length && (i = this.player.getSuggestions(), r = !0, n = !1), this._adsSnippetsVideo ? this.endScreen = new ae(this.player) : i.length ? this.endScreen = new oe(this.player, i, n, r) : this.endScreen = new ne(this.player), this.el.appendChild(this.endScreen.el);
-                var o = this.player.getSize();
-                (t = this.endScreen).resize.apply(t, me(o)), (e = this.endScreen).isStretchMode.apply(e, me(o)) && this.controls.hide()
-            }, e.prototype.removeEndScreen = function() {
+            }
+            canShowEndScreen() {
+                return !!this._adsSnippetsVideo || (!this.getVar("live") || this.getVar("live") === ne) && (!this.getVar("nolikes") || (this.getVar("show_next") && this.player.getNextVideos().length || this.getVar("show_suggestions") && this.player.getSuggestions().length))
+            }
+            buildEndScreen() {
+                var e = [],
+                    t = !1,
+                    i = !1;
+                (e = this.player.getNextVideos()).length && (t = this.player.nextTimerEnabled()), this.getVar("show_suggestions") && !e.length && (e = this.player.getSuggestions(), i = !0, t = !1), this._adsSnippetsVideo ? this.endScreen = new Pt(this.player) : e.length ? this.endScreen = new At(this.player, e, t, i) : this.endScreen = new Tt(this.player), this.el.appendChild(this.endScreen.el);
+                var s = this.player.getSize();
+                this.endScreen.resize(...s), this.endScreen.isStretchMode(...s) && this.controls.hide()
+            }
+            removeEndScreen() {
                 re(this.endScreen.el), this.endScreen.destroy(), delete this.endScreen
-            }, e.prototype.buildStickersPromo = function(t, e, i, n) {
-                var r = "/images/gift/-" + t + "/" + (isRetina() ? 256 : 96) + ".png";
+            }
+            buildStickersPromo(e, t, i, s) {
+                var a = `/images/gift/-${e}/${isRetina()?256:96}.png`;
                 this.stickersPromo = ce("div", {
                     className: "videoplayer_stickers_promo"
-                }), domData(this.stickersPromo, "pack-id", t);
-                var o = se('\n<a href="/stickers/' + e + '" target="_blank" class="videoplayer_stickers_promo__link">\n  <div class="videoplayer_stickers_promo__title">' + i + '</div>\n  <div class="videoplayer_stickers_promo__price">' + n + '</div>\n  <img src="' + r + '" class="videoplayer_stickers_promo__img"/>\n</a>');
-                this.domListen(o, "click", this.onStickersPromoClick.bind(this, t, e));
-                var s = ce("div", {
+                }), domData(this.stickersPromo, "pack-id", e);
+                var r = se(`\n<a href="/stickers/${t}" target="_blank" class="videoplayer_stickers_promo__link">\n  <div class="videoplayer_stickers_promo__title">${i}</div>\n  <div class="videoplayer_stickers_promo__price">${s}</div>\n  <img src="${a}" class="videoplayer_stickers_promo__img"/>\n</a>`);
+                this.domListen(r, "click", this.onStickersPromoClick.bind(this, e, t));
+                var l = ce("div", {
                     className: "videoplayer_sticker_promo__close"
                 });
-                this.domListen(s, "click", this.removeStickersPromo), this.stickersPromo.appendChild(o), this.stickersPromo.appendChild(s), this.el.appendChild(this.stickersPromo)
-            }, e.prototype.toggleStickersPromo = function(t) {
-                var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                if (this.stickersPromo && (e ? toggleClass(this.stickersPromo, "unshown", !t) : toggleClass(this.stickersPromo, "hidden", !t), !domData(this.stickersPromo, "shown") && !hasClass(this.stickersPromo, "unshown") && !hasClass(this.stickersPromo, "hidden"))) {
+                this.domListen(l, "click", this.removeStickersPromo), this.stickersPromo.appendChild(r), this.stickersPromo.appendChild(l), this.el.appendChild(this.stickersPromo)
+            }
+            toggleStickersPromo(e, t = !1) {
+                if (this.stickersPromo && (t ? toggleClass(this.stickersPromo, "unshown", !e) : toggleClass(this.stickersPromo, "hidden", !e), !domData(this.stickersPromo, "shown") && !hasClass(this.stickersPromo, "unshown") && !hasClass(this.stickersPromo, "hidden"))) {
                     var i = domData(this.stickersPromo, "pack-id");
-                    this.player.trigger(K, {
+                    this.player.trigger(G, {
                         packId: i,
                         event: "show"
                     }), domData(this.stickersPromo, "shown", 1)
                 }
-            }, e.prototype.onStickersPromoClick = function(t, e, i) {
-                this.player.isFullscreen() && this.player.toggleFullscreen(), Emoji.previewSticker(t, this, {
-                    name: e,
+            }
+            onStickersPromoClick(e, t, i) {
+                this.player.isFullscreen() && this.player.toggleFullscreen(), Emoji.previewSticker(e, this, {
+                    name: t,
                     sticker_referrer: "video_live"
-                }, i), this.player.trigger(K, {
-                    packId: t,
+                }, i), this.player.trigger(G, {
+                    packId: e,
                     event: "click"
                 })
-            }, e.prototype.onStickersPurchased = function(t) {
-                domData(this.stickersPromo, "pack-id") == t && (this.removeStickersPromo(), this.player.trigger(K, {
-                    packId: t,
+            }
+            onStickersPurchased(e) {
+                domData(this.stickersPromo, "pack-id") == e && (this.removeStickersPromo(), this.player.trigger(G, {
+                    packId: e,
                     event: "purchase"
                 }))
-            }, e.prototype.removeStickersPromo = function() {
+            }
+            removeStickersPromo() {
                 this.stickersPromo && (re(this.stickersPromo), this.domUnlisten(domFC(this.stickersPromo)), this.domUnlisten(domLC(this.stickersPromo)), delete this.stickersPromo)
-            }, e.prototype.pushNotice = function(t) {
-                var e = this,
-                    i = t.type,
-                    n = t.image,
-                    r = t.text;
-                if (!inArray(i, this._ignoreNoticeTypes) && this.player.isActiveLive()) {
-                    var o = this.player.getSize(),
-                        s = _e(o, 2),
-                        a = s[0],
-                        l = s[1];
-                    if (!(a <= 510 || l <= 287)) {
-                        this.removeNotice(), this._noticeEl = se('\n<div class="videoplayer_notice hidden">\n  <img src="' + n + '" class="videoplayer_notice__image"/>\n  <div class="videoplayer_notice__text">' + r + "</div>\n  " + function() {
-                            return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M5 3.69L1.578.27C1.22-.09.635-.09.273.272-.09.637-.09 1.22.27 1.578L3.69 5 .27 8.422c-.358.357-.358.943.003 1.305.364.364.946.363 1.305.004L5 6.31l3.422 3.42c.357.358.943.358 1.305-.003.364-.364.363-.946.004-1.305L6.31 5l3.42-3.422c.358-.357.358-.943-.003-1.305C9.363-.09 8.78-.09 8.422.27L5 3.69z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  '
-                        }("videoplayer_notice__close") + "\n</div>\n    "), this.domListen(this._noticeEl, "mouseenter", function() {
-                            var t = domData(e._noticeEl, "timeoutId");
-                            e.undelay(t)
-                        }), this.domListen(this._noticeEl, "mouseleave", function() {
-                            var t = e.delay(e.removeNotice, 2e3);
-                            domData(e._noticeEl, "timeoutId", t)
-                        }), this.domListen(domByClass(this._noticeEl, "videoplayer_notice__close"), "click", function() {
-                            e.removeNotice(), e._ignoreNoticeTypes.push(i)
+            }
+            pushNotice({
+                type: e,
+                image: t,
+                text: i
+            }) {
+                if (!inArray(e, this._ignoreNoticeTypes) && this.player.isActiveLive()) {
+                    var [s, a] = this.player.getSize();
+                    if (!(s <= 510 || a <= 287)) {
+                        this.removeNotice(), this._noticeEl = se(`\n<div class="videoplayer_notice hidden">\n  <img src="${t}" class="videoplayer_notice__image"/>\n  <div class="videoplayer_notice__text">${i}</div>\n  ${function(e=""){return`\n<svg class="${e}" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path d="M5 3.69L1.578.27C1.22-.09.635-.09.273.272-.09.637-.09 1.22.27 1.578L3.69 5 .27 8.422c-.358.357-.358.943.003 1.305.364.364.946.363 1.305.004L5 6.31l3.422 3.42c.357.358.943.358 1.305-.003.364-.364.363-.946.004-1.305L6.31 5l3.42-3.422c.358-.357.358-.943-.003-1.305C9.363-.09 8.78-.09 8.422.27L5 3.69z" fill="#FFF" fill-rule="evenodd"/>\n</svg>\n  `}("videoplayer_notice__close")}\n</div>\n    `), this.domListen(this._noticeEl, "mouseenter", () => {
+                            var e = domData(this._noticeEl, "timeoutId");
+                            this.undelay(e)
+                        }), this.domListen(this._noticeEl, "mouseleave", () => {
+                            var e = this.delay(this.removeNotice, 2e3);
+                            domData(this._noticeEl, "timeoutId", e)
+                        }), this.domListen(domByClass(this._noticeEl, "videoplayer_notice__close"), "click", () => {
+                            this.removeNotice(), this._ignoreNoticeTypes.push(e)
                         }), this.el.appendChild(this._noticeEl), this._noticeEl.offsetHeight, removeClass(this._noticeEl, "hidden");
-                        var u = this.delay(this.removeNotice, 5e3);
-                        domData(this._noticeEl, "timeoutId", u)
+                        var r = this.delay(this.removeNotice, 5e3);
+                        domData(this._noticeEl, "timeoutId", r)
                     }
                 }
-            }, e.prototype.removeNotice = function() {
-                var t = this._noticeEl;
-                if (t) {
-                    this._noticeEl = null, this.domUnlisten(t), this.domUnlisten(domByClass(t, "videoplayer_notice__close"));
-                    var e = domData(t, "timeoutId");
-                    this.undelay(e), addClass(t, "hidden"), setTimeout(function() {
-                        re(t)
+            }
+            removeNotice() {
+                var e = this._noticeEl;
+                if (e) {
+                    this._noticeEl = null, this.domUnlisten(e), this.domUnlisten(domByClass(e, "videoplayer_notice__close"));
+                    var t = domData(e, "timeoutId");
+                    this.undelay(t), addClass(e, "hidden"), setTimeout(function() {
+                        re(e)
                     }, 200)
                 }
-            }, e.prototype.isControlsVisible = function() {
+            }
+            isControlsVisible() {
                 return !this._controlsHidden
-            }, e.prototype.resize = function(t, e) {
-                if (toggleClass(this.el, "_minimized", this.player.isMinimized()), toggleClass(this.error, "_min_size", t < 720 || e < 405), toggleClass(this.liveWaiting, "_min_size", t < 720 || e < 405), this.updateShareActions(), this.endScreen && (this.endScreen.isStretchMode(t, e) ? this.controls.hide() : this.controls.show()), this.stickersPromo) {
-                    var i = t >= 640 && e >= 360;
+            }
+            resize(e, t) {
+                if (toggleClass(this.el, "_minimized", this.player.isMinimized()), toggleClass(this.error, "_min_size", e < 720 || t < 405), toggleClass(this.liveWaiting, "_min_size", e < 720 || t < 405), this.updateShareActions(), this.endScreen && (this.endScreen.isStretchMode(e, t) ? this.controls.hide() : this.controls.show()), this.stickersPromo) {
+                    var i = e >= 640 && t >= 360;
                     this.toggleStickersPromo(i, !0)
                 }
-            }, e.prototype.updateShareActions = function() {
-                var t, e = !!this.endScreen && (t = this.endScreen).isStretchMode.apply(t, me(this.player.getSize()));
+            }
+            updateShareActions() {
+                var e = !!this.endScreen && this.endScreen.isStretchMode(...this.player.getSize());
                 this.shareActions.updateVisibility(e)
-            }, e.prototype.onPlayerExpanded = function() {
+            }
+            onPlayerExpanded() {
                 this._showSubtitlesIntro(), this.updateTitle(), setStyle(this.thumb, {
-                    backgroundImage: "url(" + this.player.getThumbSrc() + ")",
+                    backgroundImage: `url(${this.player.getThumbSrc()})`,
                     backgroundSize: "cover"
                 })
-            }, e.prototype._onSubtitleCueChange = function(t) {
-                t && t.length || this._subtitleLayer.clear(), this._subtitleLayer.update(t)
-            }, e.prototype._onSubtitlesSwitched = function(t, e) {
-                e ? (this._subtitleLayer = new ye(this.player), this.el.appendChild(this._subtitleLayer.el), this.undelay(this._featureSubtitlesTimeout)) : this._subtitleLayer && this._subtitleLayer.destroy()
-            }, e.prototype.destroy = function() {
-                t.prototype.destroy.call(this), clearInterval(this._checkUserActivityInterval)
-            }, e.prototype.calculateBackgroundSizeForVerticalThumb = function(t) {
-                var e = this.player.getVars();
-                return e.is_inline && !t && e.thumb_ratio && e.aspect_ratio ? e.thumb_ratio * (1 / e.aspect_ratio) * 100 + 2 + "%" : "cover"
-            }, e
-        }(yt);
-        var we = function(t) {
-            function e(i) {
-                ! function(t, e) {
-                    if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                }(this, e);
-                var n = function(t, e) {
-                    if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                    return !e || "object" != typeof e && "function" != typeof e ? t : e
-                }(this, t.call(this, i));
-                return n.el = ce("div", {
-                    className: "videoplayer_ads"
-                }), n.videoEl = ce("video", {
-                    className: "videoplayer_ads_media_el"
-                }), n.el.appendChild(n.videoEl), n.pauseLayer = ce("div", {
-                    className: "videoplayer_ads_pause_layer"
-                }), n.domListen(n.pauseLayer, "click", function() {
-                    return n.player.play()
-                }), n.el.appendChild(n.pauseLayer), n.buildActions(), n.playerListen(b, n.onPlayerExpanded), n.playerListen(_, n.onFullscreenChange), n.playerListen(d, n.onStateChange), n.playerListen(G, n.updateOverlay), n.playerListen(Y, n.updateOverlay), n
             }
-            return function(t, e) {
-                if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                t.prototype = Object.create(e && e.prototype, {
-                    constructor: {
-                        value: t,
-                        enumerable: !1,
-                        writable: !0,
-                        configurable: !0
-                    }
-                }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-            }(e, t), e.prototype.buildActions = function() {
+            _onSubtitleCueChange(e) {
+                e && e.length || this._subtitleLayer.clear(), this._subtitleLayer.update(e)
+            }
+            _onSubtitlesSwitched(e, t) {
+                t ? (this._subtitleLayer = new Ot(this.player), this.el.appendChild(this._subtitleLayer.el), this.undelay(this._featureSubtitlesTimeout)) : this._subtitleLayer && this._subtitleLayer.destroy()
+            }
+            destroy() {
+                super.destroy(), clearInterval(this._checkUserActivityInterval)
+            }
+            calculateBackgroundSizeForVerticalThumb(e) {
+                var t = this.player.getVars();
+                return t.is_inline && !e && t.thumb_ratio && t.aspect_ratio ? `${t.thumb_ratio*(1/t.aspect_ratio)*100+2}%` : "cover"
+            }
+        }
+        var Kt = 6531,
+            jt = 2e3;
+        class Xt extends fe {
+            constructor(e) {
+                super(e), this.el = ce("div", {
+                    className: "videoplayer_ads"
+                }), this.videoEl = ce("video", {
+                    className: "videoplayer_ads_media_el"
+                }), this.el.appendChild(this.videoEl), this.pauseLayer = ce("div", {
+                    className: "videoplayer_ads_pause_layer"
+                }), this.domListen(this.pauseLayer, "click", () => this.player.play()), this.el.appendChild(this.pauseLayer), this.buildActions(), this.playerListen(y, this.onPlayerExpanded), this.playerListen(_, this.onFullscreenChange), this.playerListen(d, this.onStateChange), this.playerListen(q, this.updateOverlay), this.playerListen(W, this.updateOverlay)
+            }
+            buildActions() {
                 this.actions = se('\n<div class="videoplayer_ads_actions">\n  <div class="videoplayer_ads_timer"></div>\n  <div class="videoplayer_ads_skip"></div>\n</div>\n    '), this.actionsTimer = domByClass(this.actions, "videoplayer_ads_timer"), this.actionsSkip = domByClass(this.actions, "videoplayer_ads_skip"), this.domListen(this.actionsSkip, "click", this.onSkipClick), this.el.appendChild(this.actions)
-            }, e.prototype.initVideo = function(t) {
-                t.no_ads || window.AdmanHTML || !this._admanLoader || this.loadAdman()
-            }, e.prototype.deinitVideo = function() {
+            }
+            initVideo(e) {
+                e.no_ads || window.AdmanHTML || !this._admanLoader || this.loadAdman()
+            }
+            deinitVideo() {
                 this.cancelAds()
-            }, e.prototype.cancelAds = function() {
+            }
+            cancelAds() {
                 this.adman && (this.adman.destroy(), this.adman = null), this._needInit = !1, this._sectionToPlay = null, this._sectionCallback = null, this._adsReady = !1
-            }, e.prototype.destroy = function() {
+            }
+            destroy() {
                 this._admanLoader && (this._admanLoader.destroy(), this._admanLoader = null)
-            }, e.prototype.loadAdman = function() {
-                var t = this;
+            }
+            loadAdman() {
                 this._admanLoader = loadScript("//ad.mail.ru/static/admanhtml/rbadman-html5.min.js", {
-                    timeout: 2e3,
-                    onLoad: function() {
-                        return t.onAdmanLoaded()
-                    },
-                    onError: function() {
-                        return t.onAdmanLoadingError()
-                    }
+                    timeout: jt,
+                    onLoad: () => this.onAdmanLoaded(),
+                    onError: () => this.onAdmanLoadingError()
                 }), this.player.stats.sendAdsEvent("AdmanLoadStart")
-            }, e.prototype.onAdmanLoaded = function() {
+            }
+            onAdmanLoaded() {
                 window.AdmanHTML ? (this._admanLoader = null, this._needInit && this.initAdman(), this.player.stats.sendAdsEvent("AdmanLoaded")) : this.onAdmanLoadingError()
-            }, e.prototype.onAdmanLoadingError = function() {
-                this._admanLoader = null, this._admanLoadingError = !0, this._sectionCallback && (this._sectionCallback(), this._sectionCallback = null), this.player.trigger($, !1), this.player.stats.sendAdsEvent("AdmanLoadError")
-            }, e.prototype.initAdman = function() {
-                var t = this.player.getVars(),
-                    e = this.player.getSize(),
+            }
+            onAdmanLoadingError() {
+                this._admanLoader = null, this._admanLoadingError = !0, this._sectionCallback && (this._sectionCallback(), this._sectionCallback = null), this.player.trigger(X, !1), this.player.stats.sendAdsEvent("AdmanLoadError")
+            }
+            initAdman() {
+                var e = this.player.getVars(),
+                    t = this.player.getSize(),
                     i = {
-                        _SITEZONE: t.ads_sitezone || "",
-                        vk_catid: t.ads_cat || "",
-                        vk_id: t.viewer_id || "",
-                        pl: t.ads_pl,
-                        video_id: t.ads_eid1 || "",
-                        content_id: function(t, e) {
-                            var i = (t >>> 0).toString(16),
-                                n = e.toString(16);
-                            for (; n.length < 8;) n = "0" + n;
-                            return i + n
-                        }(t.oid, t.vid),
-                        dl: encodeURIComponent(t.embed_referer || function(t) {
-                            if ("string" != typeof t) return t;
-                            return t.replace(new RegExp("(\\/(?:write|mail|im|al_im.php))(\\?[a-z0-9&=\\-_]*)?$"), "$1").replace(new RegExp("(\\/write)(\\d*)(\\?[a-zA-Z0-9&=\\-_]*)?$"), "$1")
+                        _SITEZONE: e.ads_sitezone || "",
+                        vk_catid: e.ads_cat || "",
+                        vk_id: e.viewer_id || "",
+                        pl: e.ads_pl,
+                        video_id: e.ads_eid1 || "",
+                        content_id: function(e, t) {
+                            var i = (e >>> 0).toString(16),
+                                s = t.toString(16);
+                            for (; s.length < 8;) s = "0" + s;
+                            return i + s
+                        }(e.oid, e.vid),
+                        dl: encodeURIComponent(e.embed_referer || function(e) {
+                            if ("string" != typeof e) return e;
+                            return e.replace(new RegExp("(\\/(?:write|mail|im|al_im.php))(\\?[a-z0-9&=\\-_]*)?$"), "$1").replace(new RegExp("(\\/write)(\\d*)(\\?[a-zA-Z0-9&=\\-_]*)?$"), "$1")
                         }(document.URL)),
-                        duration: t.duration,
-                        g: t.g,
-                        a: t.a,
-                        os: t.target_mob_os || "no",
-                        lang: 3 == vk.lang && t.cis ? 1 : 0,
+                        duration: e.duration,
+                        g: e.g,
+                        a: e.a,
+                        os: e.target_mob_os || "no",
+                        lang: 3 == vk.lang && e.cis ? 1 : 0,
                         autoplay: this.player.isAutoplay() ? 1 : 0,
-                        player_width: e[0],
-                        player_height: e[1],
-                        puid1: t.ads_puid1 || "",
-                        puid2: t.ads_puid2 || "",
+                        player_width: t[0],
+                        player_height: t[1],
+                        puid1: e.ads_puid1 || "",
+                        puid2: e.ads_puid2 || "",
                         puid3: this._isLiveMidroll ? 2 : 1,
-                        puid4: t.ads_puid4 || "",
-                        puid5: t.ads_puid5 || "",
-                        puid6: t.ads_puid6 || "",
-                        puid7: t.ads_puid7 || 1,
-                        puid8: t.ads_puid8 || "",
-                        puid9: function(t) {
-                            return t.is_embed ? t.autoplay ? 3 : 1 : 0
-                        }(t),
-                        puid10: function(t, e) {
-                            return t < 400 || e < 225 ? 5 : t < 640 || e < 360 ? 0 : t < 960 || e < 540 ? 1 : t < 1280 || e < 720 ? 2 : 3
-                        }.apply(void 0, function(t) {
-                            if (Array.isArray(t)) {
-                                for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                                return i
-                            }
-                            return Array.from(t)
-                        }(e)),
+                        puid4: e.ads_puid4 || "",
+                        puid5: e.ads_puid5 || "",
+                        puid6: e.ads_puid6 || "",
+                        puid7: e.ads_puid7 || 1,
+                        puid8: e.ads_puid8 || "",
+                        puid9: function(e) {
+                            return e.is_embed ? e.autoplay ? 3 : 1 : 0
+                        }(e),
+                        puid10: function(e, t) {
+                            return e < 400 || t < 225 ? 5 : e < 640 || t < 360 ? 0 : e < 960 || t < 540 ? 1 : e < 1280 || t < 720 ? 2 : 3
+                        }(...t),
                         puid11: this.player.isFullscreen() ? 0 : 1,
                         puid12: 16,
-                        puid13: function(t) {
-                            return 1 == t ? 2 : 2 == t ? 1 : 3
-                        }(t.g),
-                        puid14: function(t) {
-                            return t < 18 ? 1 : t < 22 ? 2 : t < 25 ? 3 : t < 28 ? 4 : t < 31 ? 5 : t < 35 ? 6 : t < 40 ? 7 : t < 45 ? 8 : t < 50 ? 9 : t < 55 ? 10 : 11
-                        }(t.a),
-                        puid15: t.ads_puid15 || "",
-                        puid18: t.ads_puid18 || 0,
-                        puid21: t.ads_puid21 || "",
-                        puid22: t.ads_puid22 || ""
-                    }; - 1 == t.ads_type && (i.is_xz_video = 1);
-                var n = St.getPref("preroll_progress");
-                n && (St.deletePref("preroll_progress"), this.player.getVideoId() === n.video && n.time > Date.now() - 6e4 && (i.refr = 1)), nav.objLoc.preview && (i.preview = intval(nav.objLoc.preview));
-                var r = {
-                    slot: 6531,
+                        puid13: function(e) {
+                            return 1 == e ? 2 : 2 == e ? 1 : 3
+                        }(e.g),
+                        puid14: function(e) {
+                            return e < 18 ? 1 : e < 22 ? 2 : e < 25 ? 3 : e < 28 ? 4 : e < 31 ? 5 : e < 35 ? 6 : e < 40 ? 7 : e < 45 ? 8 : e < 50 ? 9 : e < 55 ? 10 : 11
+                        }(e.a),
+                        puid15: e.ads_puid15 || "",
+                        puid18: e.ads_puid18 || 0,
+                        puid21: e.ads_puid21 || "",
+                        puid22: e.ads_puid22 || ""
+                    }; - 1 == e.ads_type && (i.is_xz_video = 1);
+                var s = Re.getPref("preroll_progress");
+                s && (Re.deletePref("preroll_progress"), this.player.getVideoId() === s.video && s.time > Date.now() - 6e4 && (i.refr = 1)), nav.objLoc.preview && (i.preview = intval(nav.objLoc.preview));
+                var a = {
+                    slot: Kt,
                     wrapper: this.el,
                     videoEl: this.videoEl,
-                    videoQuality: e[1],
+                    videoQuality: t[1],
                     params: i,
-                    browser: Se,
-                    config: ke
+                    browser: Jt,
+                    config: Zt
                 };
-                this.adman && this.adman.destroy(), this.adman = new window.AdmanHTML, this.adman.setDebug(!1), this.adman.onReady(this.onAdsReady.bind(this)), this.adman.onStarted(this.onAdStarted.bind(this)), this.adman.onPaused(this.onAdPaused.bind(this)), this.adman.onPlayed(this.onAdPlayed.bind(this)), this.adman.onCompleted(this.onAdCompleted.bind(this)), this.adman.onTimeRemained(this.onAdTimeRemained.bind(this)), this.adman.onClicked(this.onAdClicked.bind(this)), this.adman.onClosed(this.onAdClosed.bind(this)), this.adman.onError(this.onAdError.bind(this)), this.adman.init(r), this.player.stats.sendAdsLoadStarted(), this.player.stats.sendAdsEvent("AdmanInit")
-            }, e.prototype.start = function(t, e) {
-                this.player.isInited() && !this._admanLoadingError ? ("_live_midroll" == t ? (this.cancelAds(), t = "preroll", this._isLiveMidroll = !0) : this._isLiveMidroll = !1, this._sectionToPlay = t, this._sectionCallback = e, window.AdmanHTML ? this._adsReady ? this.adman.start(t) : this.adman || this.initAdman() : (this._needInit = !0, this._admanLoader || this.loadAdman()), this.player.trigger($, !0)) : e && e()
-            }, e.prototype.play = function() {
+                this.adman && this.adman.destroy(), this.adman = new window.AdmanHTML, this.adman.setDebug(!1), this.adman.onReady(this.onAdsReady.bind(this)), this.adman.onStarted(this.onAdStarted.bind(this)), this.adman.onPaused(this.onAdPaused.bind(this)), this.adman.onPlayed(this.onAdPlayed.bind(this)), this.adman.onCompleted(this.onAdCompleted.bind(this)), this.adman.onTimeRemained(this.onAdTimeRemained.bind(this)), this.adman.onClicked(this.onAdClicked.bind(this)), this.adman.onClosed(this.onAdClosed.bind(this)), this.adman.onError(this.onAdError.bind(this)), this.adman.init(a), this.player.stats.sendAdsLoadStarted(), this.player.stats.sendAdsEvent("AdmanInit")
+            }
+            start(e, t) {
+                this.player.isInited() && !this._admanLoadingError ? ("_live_midroll" == e ? (this.cancelAds(), e = "preroll", this._isLiveMidroll = !0) : this._isLiveMidroll = !1, this._sectionToPlay = e, this._sectionCallback = t, window.AdmanHTML ? this._adsReady ? this.adman.start(e) : this.adman || this.initAdman() : (this._needInit = !0, this._admanLoader || this.loadAdman()), this.player.trigger(X, !0)) : t && t()
+            }
+            play() {
                 this.adman && this.adman.resume()
-            }, e.prototype.pause = function() {
+            }
+            pause() {
                 this.adman && this.adman.pause()
-            }, e.prototype.stop = function() {
+            }
+            stop() {
                 this.adman && this.adman.stop()
-            }, e.prototype.setVolume = function(t) {
-                this.isPlayingLinear() && this.adman.setVolume(t)
-            }, e.prototype.onAdsReady = function() {
-                this._adsReady = !0, this._sectionToPlay && this.adman.start(this._sectionToPlay), this.player.trigger($, !1), this.player.stats.sendAdsEvent("AdmanReady")
-            }, e.prototype.onAdStarted = function(t, e) {
-                this._curSection = t, this._curBanner = e, show(this.el), "preroll" == t || "postroll" == t ? (this._actionsInited = !1, "VPAID" == e.apiFramework && "application/javascript" != e.type || show(this.videoEl), this.player.trigger(et, t, {
-                    duration: e.duration,
-                    hideControls: !1 === e.showControls
-                }), this.adman.setVolume(this.player.isMuted() ? 0 : this.player.getVolume())) : (addClass(this.el, "no_transition"), addClass(this.el, "_overlay"), removeClassDelayed(this.el, "no_transition"), this.updateOverlay(), this.player.trigger(nt)), "preroll" == t && St.savePref("preroll_progress", {
+            }
+            setVolume(e) {
+                this.isPlayingLinear() && this.adman.setVolume(e)
+            }
+            onAdsReady() {
+                this._adsReady = !0, this._sectionToPlay && this.adman.start(this._sectionToPlay), this.player.trigger(X, !1), this.player.stats.sendAdsEvent("AdmanReady")
+            }
+            onAdStarted(e, t) {
+                this._curSection = e, this._curBanner = t, show(this.el), "preroll" == e || "postroll" == e ? (this._actionsInited = !1, "VPAID" == t.apiFramework && "application/javascript" != t.type || show(this.videoEl), this.player.trigger(Z, e, {
+                    duration: t.duration,
+                    hideControls: !1 === t.showControls
+                }), this.adman.setVolume(this.player.isMuted() ? 0 : this.player.getVolume())) : (addClass(this.el, "no_transition"), addClass(this.el, "_overlay"), removeClassDelayed(this.el, "no_transition"), this.updateOverlay(), this.player.trigger(te)), "preroll" == e && Re.savePref("preroll_progress", {
                     video: this.player.getVideoId(),
                     time: Date.now()
-                }), this.player.stats.sendAdShown(t, "start"), this.player.stats.sendAdsEvent("AdmanAdStarted", t)
-            }, e.prototype.onAdPaused = function() {
+                }), this.player.stats.sendAdShown(e, "start"), this.player.stats.sendAdsEvent("AdmanAdStarted", e)
+            }
+            onAdPaused() {
                 this.player.pause()
-            }, e.prototype.onAdPlayed = function() {
+            }
+            onAdPlayed() {
                 this.player.play()
-            }, e.prototype.onAdCompleted = function() {
-                var t = this._curSection,
-                    e = this._sectionToPlay;
-                this._curSection = null, this._sectionToPlay = null, this._curBanner = null, this._curTime = null, t ? (hide(this.el), "preroll" == t || "postroll" == t ? (hide(this.videoEl), hide(this.actions), hide(this.pauseLayer), this.player.trigger(it, t)) : (removeClass(this.el, "_overlay"), this.player.trigger(rt)), this.player.stats.sendAdShown(t, "end"), this.player.stats.sendAdsEvent("AdmanAdCompleted", t)) : this.player.stats.sendAdsEvent("AdmanAdEmpty", e), "preroll" == t && St.deletePref("preroll_progress"), this._sectionCallback && (this._sectionCallback(), this._sectionCallback = null), this.player.play()
-            }, e.prototype.onAdTimeRemained = function(t) {
-                var e = t.currentTime,
-                    i = t.duration,
-                    n = t.remained,
-                    r = this._curBanner,
-                    o = this._curSection;
-                if (this._curTime = e, r && !1 !== r.showControls && -1 !== e) {
-                    n = intval(n), val(this.actionsTimer, '<span class="_caption">' + this.getLang("ads") + '</span> <span class="_remained">' + formatTime(n) + "</span>");
-                    var s = !1;
-                    if (r.allowClose && (e < r.allowCloseDelay ? (val(this.actionsSkip, this.getLang("ads_skip_time", {
-                            time: "<b>" + Math.ceil(r.allowCloseDelay - e) + "</b>"
-                        })), removeClass(this.actionsSkip, "_can_skip")) : (val(this.actionsSkip, '<span class="_skip_text">' + this.getLang("ads_skip") + "</span>" + function() {
-                            return '\n<svg class="' + (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "") + '" viewBox="163 11 8 15" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M165 13l5 5.5-5 5.5"/>\n</svg>\n  '
-                        }("_skip_icon")), addClass(this.actionsSkip, "_can_skip"), s = !0)), "preroll" == o && s && St.deletePref("preroll_progress"), !this._actionsInited) {
+            }
+            onAdCompleted() {
+                var e = this._curSection,
+                    t = this._sectionToPlay;
+                this._curSection = null, this._sectionToPlay = null, this._curBanner = null, this._curTime = null, e ? (hide(this.el), "preroll" == e || "postroll" == e ? (hide(this.videoEl), hide(this.actions), hide(this.pauseLayer), this.player.trigger(ee, e)) : (removeClass(this.el, "_overlay"), this.player.trigger(ie)), this.player.stats.sendAdShown(e, "end"), this.player.stats.sendAdsEvent("AdmanAdCompleted", e)) : this.player.stats.sendAdsEvent("AdmanAdEmpty", t), "preroll" == e && Re.deletePref("preroll_progress"), this._sectionCallback && (this._sectionCallback(), this._sectionCallback = null), this.player.play()
+            }
+            onAdTimeRemained({
+                currentTime: e,
+                duration: t,
+                remained: i
+            }) {
+                var s = this._curBanner,
+                    a = this._curSection;
+                if (this._curTime = e, s && !1 !== s.showControls && -1 !== e) {
+                    i = intval(i), val(this.actionsTimer, `<span class="_caption">${this.getLang("ads")}</span> <span class="_remained">${formatTime(i)}</span>`);
+                    var r = !1;
+                    if (s.allowClose && (e < s.allowCloseDelay ? (val(this.actionsSkip, this.getLang("ads_skip_time", {
+                            time: `<b>${Math.ceil(s.allowCloseDelay-e)}</b>`
+                        })), removeClass(this.actionsSkip, "_can_skip")) : (val(this.actionsSkip, `<span class="_skip_text">${this.getLang("ads_skip")}</span>` + function(e = "") {
+                            return `\n<svg class="${e}" viewBox="163 11 8 15" xmlns="http://www.w3.org/2000/svg" focusable="false">\n  <path stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M165 13l5 5.5-5 5.5"/>\n</svg>\n  `
+                        }("_skip_icon")), addClass(this.actionsSkip, "_can_skip"), r = !0)), "preroll" == a && r && Re.deletePref("preroll_progress"), !this._actionsInited) {
                         show(this.actions);
-                        var a = r.allowClose && r.allowCloseDelay < i && n < i;
-                        toggleClass(this.actionsSkip, "unshown", !a), this._actionsInited = !0
+                        var l = s.allowClose && s.allowCloseDelay < t && i < t;
+                        toggleClass(this.actionsSkip, "unshown", !l), this._actionsInited = !0
                     }
-                    this.player.trigger(tt, e, i, n)
+                    this.player.trigger(J, e, t, i)
                 }
-            }, e.prototype.onAdClicked = function() {
+            }
+            onAdClicked() {
                 this.player.stats.sendAdsEvent("AdmanClicked", this._curSection), this.player.pause()
-            }, e.prototype.onAdClosed = function() {
+            }
+            onAdClosed() {
                 this.player.stats.sendAdsEvent("AdmanClosed", this._curSection), this.onAdCompleted()
-            }, e.prototype.onAdError = function() {
+            }
+            onAdError() {
                 debugLog("video ad error"), this.player.stats.sendAdsEvent("AdmanError"), this._adsReady = !0, this.onAdCompleted()
-            }, e.prototype.onSkipClick = function(t) {
+            }
+            onSkipClick(e) {
                 hasClass(this.actionsSkip, "_can_skip") && this.adman.skip()
-            }, e.prototype.isLoading = function() {
+            }
+            isLoading() {
                 return !!this._sectionToPlay && !this._admanLoadingError && (this._admanLoader || !this._adsReady)
-            }, e.prototype.isPlayingLinear = function() {
+            }
+            isPlayingLinear() {
                 return "preroll" == this._curSection || "postroll" == this._curSection
-            }, e.prototype.isPlayingOverlay = function() {
+            }
+            isPlayingOverlay() {
                 return "overlay" == this._curSection
-            }, e.prototype.curTime = function() {
+            }
+            curTime() {
                 return this._curTime || 0
-            }, e.prototype.getDuration = function() {
+            }
+            getDuration() {
                 return intval(this._curBanner && this._curBanner.duration)
-            }, e.prototype.resize = function(t, e) {
-                toggleClass(this.actions, "_min_size", t < 400), this.updateOverlay()
-            }, e.prototype.canShowOverlay = function() {
-                var t = this.player.getSize(),
-                    e = t[0] >= 500 && t[1] >= 280,
-                    i = this.player.getState() === a.PLAYING,
-                    n = this.player.isControlsVisible();
-                return e && i && n
-            }, e.prototype.updateOverlay = function() {
+            }
+            resize(e, t) {
+                toggleClass(this.actions, "_min_size", e < 400), this.updateOverlay()
+            }
+            canShowOverlay() {
+                var e = this.player.getSize(),
+                    t = e[0] >= 500 && e[1] >= 280,
+                    i = this.player.getState() === r.PLAYING,
+                    s = this.player.isControlsVisible();
+                return t && i && s
+            }
+            updateOverlay() {
                 this.canShowOverlay() ? (this.isPlayingOverlay() && this.adman.resume(), removeClass(this.el, "_overlay_hidden")) : (this.isPlayingOverlay() && this.adman.pause(), addClass(this.el, "_overlay_hidden"))
-            }, e.prototype.onPlayerExpanded = function() {
+            }
+            onPlayerExpanded() {
                 this.adman && this.adman.resume()
-            }, e.prototype.onFullscreenChange = function(t) {
-                (this.isPlayingLinear() || this.isPlayingOverlay()) && this.adman.setFullscreen(t)
-            }, e.prototype.onStateChange = function(t) {
-                this.updateOverlay(), this.isPlayingLinear() && toggle(this.pauseLayer, t !== a.PLAYING)
-            }, e
-        }(yt);
-        var Se = {
+            }
+            onFullscreenChange(e) {
+                (this.isPlayingLinear() || this.isPlayingOverlay()) && this.adman.setFullscreen(e)
+            }
+            onStateChange(e) {
+                this.updateOverlay(), this.isPlayingLinear() && toggle(this.pauseLayer, e !== r.PLAYING)
+            }
+        }
+        var Jt = {
                 mobile: browser.mobile,
                 FLASH_BLOCKED: 0,
                 FLASH_READY: 1,
                 FLASH_UNKNOWN: 2,
-                checkFlashStatus: function(t) {
-                    t(browser.flash ? this.FLASH_READY : this.FLASH_BLOCKED)
+                checkFlashStatus: function(e) {
+                    e(browser.flash ? this.FLASH_READY : this.FLASH_BLOCKED)
                 }
             },
-            ke = {
+            Zt = {
                 vpaidJsInterface: locProtocol + "//ad.mail.ru/static/vpaid-js-interface.swf"
-            },
-            Le = Object.assign || function(t) {
-                for (var e = 1; e < arguments.length; e++) {
-                    var i = arguments[e];
-                    for (var n in i) Object.prototype.hasOwnProperty.call(i, n) && (t[n] = i[n])
-                }
-                return t
             };
-        var Te = "videoplayer_track_events",
-            Ee = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.playerListen(v, n._onSubtitleTrackChanged), n.playerListen(J, n._onActionButtonClicked), n.playerListen(Z, n._onActionButtonShown), n._storageKey = Te + irand(1, 1e9), n
+
+        function ei() {
+            return (ei = Object.assign || function(e) {
+                for (var t = 1; t < arguments.length; t++) {
+                    var i = arguments[t];
+                    for (var s in i) Object.prototype.hasOwnProperty.call(i, s) && (e[s] = i[s])
                 }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.initVideo = function(t) {
-                    this._flushStorageEvents(), t.embed_referer ? this._refDomain = ce("a", {
-                        href: t.embed_referer
-                    }).hostname : this._refDomain = ""
-                }, e.prototype._onSubtitleTrackChanged = function(t, e) {
-                    var i = e && e.lang || "undefined",
-                        n = e ? i : "off",
-                        r = {};
-                    e && !this._subtitlesFirstEnabled && (this._subtitlesFirstEnabled = !0, r.first = !0), this.trackPlayerEvent("subtitles", n, r)
-                }, e.prototype._onActionButtonClicked = function() {
-                    this.trackLiveAction("open_link")
-                }, e.prototype._onActionButtonShown = function(t) {
-                    var e = t.data;
-                    this.trackLiveAction("show_link", {
-                        link: e.url,
-                        link_type: e.type
-                    })
-                }, e.prototype.trackVideoPlay = function(t) {
-                    var e = {
-                        position: t
-                    };
-                    this._pushEvent("video_play", e)
-                }, e.prototype.trackPlayerEvent = function(t, e) {
-                    var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                        n = Le({
-                            event: t,
-                            value: e
-                        }, i);
-                    this._pushEvent("video_event", n)
-                }, e.prototype.trackLiveAction = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-                        i = Le({
-                            action_type: t
-                        }, e);
-                    this._pushEvent("live_action", i)
-                }, e.prototype._pushEvent = function(t, e) {
-                    var i = this,
-                        n = this.player,
-                        r = this.getVars(),
-                        o = Le({
-                            ts: Math.round(Date.now() / 1e3),
-                            video_id: n.getVideoId(),
-                            position: n.curTime(),
-                            player_type: n.getEnvLayoutType(),
-                            ref: r.module || n.getEnvModule(),
-                            volume: Math.round(100 * n.getVolume()) / 100,
-                            quality: n.getQuality(),
-                            speed: n.getPlaybackRate(),
-                            e: t
-                        }, e);
-                    n.isFromAutoplay() && (o.autoplay = 1), r.post_id && (o.post_id = r.post_id), this._refDomain && (o.ref_domain = this._refDomain);
-                    var s = this._getFromStorage();
-                    s.push(o), this._saveToStorage(s);
-                    var a = function() {
-                        i._sendEvents(s), i._saveToStorage([])
-                    };
-                    clearTimeout(this._flushTimeout), s.length >= 30 ? a() : this._flushTimeout = setTimeout(a, 500)
-                }, e.prototype._sendEvents = function(t) {
-                    var e = this.getVars(),
-                        i = [e.action_hash, e.oid, e.vid, e.viewer_id].join("_");
-                    ajax.post("al_video.php?act=track_player_events", {
-                        events: JSON.stringify(t),
-                        sig: i
-                    })
-                }, e.prototype._saveToStorage = function(t) {
-                    this._storageKey && (t.length ? St.set(this._storageKey, {
-                        events: t,
-                        updated: Date.now()
-                    }) : St.remove(this._storageKey))
-                }, e.prototype._getFromStorage = function() {
-                    if (this._storageKey) {
-                        var t = St.get(this._storageKey);
-                        if (t) return t.events
-                    }
-                    return []
-                }, e.prototype._flushStorageEvents = function() {
-                    var t = this,
-                        e = St.getByPrefix(Te);
-                    each(e, function(e, i) {
-                        i.updated + 5e3 < Date.now() && (t._sendEvents(i.events, i.hash), St.remove(e))
-                    })
-                }, e
-            }(yt);
-        var Ce = function(t) {
-                function e(i) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, e);
-                    var n = function(t, e) {
-                        if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-                        return !e || "object" != typeof e && "function" != typeof e ? t : e
-                    }(this, t.call(this, i));
-                    return n.trackEvents = new Ee(i), n.playerListen(x, n.onMediaTimeupdate), n.playerListen(O, n.onMediaPlaying), n.playerListen(R, n.onMediaWaiting), n.playerListen(N, n.onMediaSeeking), n.playerListen(j, n.onMediaSeeked), n.playerListen(B, n.onMediaEnded), n.playerListen(I, n.onMediaVolumeChange), n.playerListen(z, n.onMediaHlsLevelLoaded), n.playerListen(Q, n.onMediaHlsFragLoaded), n.playerListen(_, n.onFullscreenChange), n.playerListen(y, n.onQualityChange), n.playerListen(d, n.onStateChange), n.playerListen(et, n.onLinearAdStarted), n.playerListen(it, n.onLinearAdCompleted), n.playerListen(K, n.onUiStickersPromoEvent), n
+                return e
+            }).apply(this, arguments)
+        }
+        var ti = 500,
+            ii = 30,
+            si = 5e3,
+            ai = "videoplayer_track_events";
+        class ri extends fe {
+            constructor(e) {
+                super(e), this.playerListen(g, this._onSubtitleTrackChanged), this.playerListen(K, this._onActionButtonClicked), this.playerListen(j, this._onActionButtonShown), this._storageKey = ai + irand(1, 1e9)
+            }
+            initVideo(e) {
+                this._flushStorageEvents(), e.embed_referer ? this._refDomain = ce("a", {
+                    href: e.embed_referer
+                }).hostname : this._refDomain = ""
+            }
+            _onSubtitleTrackChanged(e, t) {
+                var i = t && t.lang || "undefined",
+                    s = t ? i : "off",
+                    a = {};
+                t && !this._subtitlesFirstEnabled && (this._subtitlesFirstEnabled = !0, a.first = !0), this.trackPlayerEvent("subtitles", s, a)
+            }
+            _onActionButtonClicked() {
+                this.trackLiveAction("open_link")
+            }
+            _onActionButtonShown({
+                data: e
+            }) {
+                this.trackLiveAction("show_link", {
+                    link: e.url,
+                    link_type: e.type
+                })
+            }
+            trackVideoPlay(e) {
+                var t = {
+                    position: e
+                };
+                this._pushEvent("video_play", t)
+            }
+            trackPlayerEvent(e, t, i = {}) {
+                var s = ei({
+                    event: e,
+                    value: t
+                }, i);
+                this._pushEvent("video_event", s)
+            }
+            trackLiveAction(e, t = {}) {
+                var i = ei({
+                    action_type: e
+                }, t);
+                this._pushEvent("live_action", i)
+            }
+            _pushEvent(e, t) {
+                var i = this.player,
+                    s = this.getVars(),
+                    a = ei({
+                        ts: Math.round(Date.now() / 1e3),
+                        video_id: i.getVideoId(),
+                        position: i.curTime(),
+                        player_type: i.getEnvLayoutType(),
+                        ref: s.module || i.getEnvModule(),
+                        volume: Math.round(100 * i.getVolume()) / 100,
+                        quality: i.getQuality(),
+                        speed: i.getPlaybackRate(),
+                        e: e
+                    }, t);
+                i.isFromAutoplay() && (a.autoplay = 1), s.post_id && (a.post_id = s.post_id), this._refDomain && (a.ref_domain = this._refDomain);
+                var r = this._getFromStorage();
+                r.push(a), this._saveToStorage(r);
+                var l = () => {
+                    this._sendEvents(r), this._saveToStorage([])
+                };
+                clearTimeout(this._flushTimeout), r.length >= ii ? l() : this._flushTimeout = setTimeout(l, ti)
+            }
+            _sendEvents(e) {
+                var t = this.getVars(),
+                    i = [t.action_hash, t.oid, t.vid, t.viewer_id].join("_");
+                ajax.post("al_video.php?act=track_player_events", {
+                    events: JSON.stringify(e),
+                    sig: i
+                })
+            }
+            _saveToStorage(e) {
+                this._storageKey && (e.length ? Re.set(this._storageKey, {
+                    events: e,
+                    updated: Date.now()
+                }) : Re.remove(this._storageKey))
+            }
+            _getFromStorage() {
+                if (this._storageKey) {
+                    var e = Re.get(this._storageKey);
+                    if (e) return e.events
                 }
-                return function(t, e) {
-                    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
-                    t.prototype = Object.create(e && e.prototype, {
-                        constructor: {
-                            value: t,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0
-                        }
-                    }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e)
-                }(e, t), e.prototype.initVideo = function(t) {
-                    this.initTime = Date.now(), this.viewCounterIncremented = !1, this.lastPlayProgressSent = 0, this.needViewSegments = !(!t.vsegs_size || !t.vsegs_hash), this.playFinishedSent = !1, this.requestedPlay = 0, this.startedPlay = 0, this.startQuality = 0, this.pausedBeforeStart = !1, this.stallsCount = 0, this.seekDurations = [], this.hlsFirstLevelLoadTime = 0, this.hlsFirstFragLoadTime = 0, this.collectWatchStat = !0, this.maxTimePosition = 0, this.maxTimePercent = 0, this.lastVolume = this.player.isMuted() ? 0 : this.player.getVolume(), this.liveHeartbeatEventsQueue = [], this.ownerId = t.oid, this.videoId = t.vid, this.initViewSegments(t), this.flushWatchData(), this.flushCandyData(), this.sendTnsStat("init")
-                }, e.prototype.deinitVideo = function() {
-                    this._bigTvTimeout && (clearTimeout(this._bigTvTimeout), this._bigTvTimeout = null), this.flushWatchData(), this.flushCandyData()
-                }, e.prototype.initViewSegments = function(t) {
-                    this.curSegments = t.vsegs ? t.vsegs.split("|").pop() : ""
-                }, e.prototype.initBigTvStats = function() {
-                    var t = this,
-                        e = this.getVar("stats_bigtv");
-                    if (e) {
-                        ! function i() {
-                            var n = Math.floor(t.player.isActiveLive() ? Date.now() / 1e3 - t.getVar("date") : t.player.curTime()),
-                                r = Math.floor(Date.now() / 1e3);
-                            vkImage().src = e.replace("FTS", n).replace("VTS", r), t._bigTvTimeout = t.delay(i, 3e4)
-                        }()
-                    }
-                }, e.prototype.saveWatchData = function() {
-                    this.collectWatchStat && this.requestedPlay && this.startedPlay && St.set("video_last_watch_stat", {
-                        video: this.player.getVideoId(),
-                        hash: this.getVar("action_hash"),
-                        started: this.startedPlay - this.requestedPlay,
-                        played: this.player.getPlayedSeconds(),
-                        played_ranges: this.player.getPlayedRangesString(),
-                        start_quality: this.startQuality,
-                        stalls_count: this.stallsCount,
-                        seek_durations: this.seekDurations.join(";"),
-                        first_level_loaded: this.hlsFirstLevelLoadTime,
-                        first_frag_loaded: this.hlsFirstFragLoadTime,
-                        is_hls: this.getVar("hls") ? 1 : 0,
-                        is_autoplay: this.player.isFromAutoplay() ? 1 : 0,
-                        is_touched: this.player.isTouchedByUser() ? 1 : 0,
-                        is_active_live: this.getVar("live") && this.getVar("live") != at ? 1 : 0,
-                        last_pos: this.player.curTime(),
-                        post_id: this.getVar("post_id"),
-                        module: this.getVar("module"),
-                        ad_data: this.getVar("ad_data"),
-                        hls_candy: "hls" == this.player.getMediaProviderType() && this.getVar("hls_candy_server") ? 1 : 0
-                    })
-                }, e.prototype.flushWatchData = function() {
-                    var t = St.get("video_last_watch_stat");
-                    t && (ajax.post("al_video.php?act=watch_stat", t, {}), this.clearWatchData())
-                }, e.prototype.clearWatchData = function() {
-                    St.remove("video_last_watch_stat")
-                }, e.prototype.flushCandyData = function() {
-                    var t = St.get("video_live_candy_stat");
-                    t && (ajax.post("al_video.php?act=live_candy_stat", t, {}), St.remove("video_live_candy_stat"))
-                }, e.prototype.onMediaPlaying = function() {
-                    if (!this.startedPlay) {
-                        this.startedPlay = Date.now(), this.getVar("hls") || (this.startQuality = this.player.getQuality());
-                        var t = this.player.curTime(),
-                            e = this.player.isActiveLive();
-                        e && this.addLiveHeartbeatStatsEvent("play_started");
-                        var i = t < 1 || e ? "start" : "continue";
-                        this.trackEvents.trackVideoPlay(i), this.saveWatchData(), this.sendPlayStarted(), this.sendPladformStat(), this.sendAdPostStatEvent("video_start"), this.sendTnsStat("started"), this.sendMediascopeStat("started"), this.initBigTvStats()
-                    }
-                }, e.prototype.onMediaWaiting = function(t, e) {
-                    t && e && (this.stallsCount++, this.saveWatchData(), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("stall"))
-                }, e.prototype.onMediaSeeking = function(t) {
-                    this.seekingStarted = Date.now()
-                }, e.prototype.onMediaSeeked = function(t) {
-                    if (this.seekingStarted && !t) {
-                        var e = Date.now() - this.seekingStarted;
-                        this.seekDurations.push(e + "," + this.player.getQuality()), this.saveWatchData()
-                    }
-                }, e.prototype.onMediaEnded = function() {
-                    this.playFinishedSent || (this.playFinishedSent = !0, this.sendPlayFinished(), this.sendTnsStat("ended"), this.sendMediascopeStat("ended")), this.saveWatchData()
-                }, e.prototype.onMediaTimeupdate = function(t) {
-                    var e = this;
-                    if (this.viewCounterIncremented || this.player.isPlayingLinearAd() || (this.player.getPlayedSeconds() > 5 || this.player.getDuration() < 5) && (this.sendIncViewCounter(), this.viewCounterIncremented = !0), !this.player.isActiveLive() && Date.now() - this.lastPlayProgressSent > 1e3 && (this.lastPlayProgressSent = Date.now(), this.sendPlayProgress(t), this.saveWatchData(), this.needViewSegments)) {
-                        var i = this.getViewSegments();
-                        i != this.curSegments && (this.curSegments = i, this.sendViewSegments(i))
-                    }
-                    if (!this.player.isActiveLive() && t > this.maxTimePosition) {
-                        var n = this.player.getDuration() || 1,
-                            r = this.maxTimePosition,
-                            o = this.maxTimePercent,
-                            s = t / n * 100;
-                        this.player.isLooped() && n - t < .5 && (s = 100), t >= 3 && r < 3 && (this.trackEvents.trackVideoPlay("3s"), this.sendAdPostStatEvent("video_play_3s")), t >= 10 && r < 10 && this.trackEvents.trackVideoPlay("10s"), each([25, 50, 75, 95, 100], function(t, i) {
-                            s >= i && o < i && (e.trackEvents.trackVideoPlay(i), e.sendAdPostStatEvent("video_play_" + i), e.sendMediascopeStat(i + "%"))
-                        }), this.maxTimePosition = t, this.maxTimePercent = s
-                    }
-                }, e.prototype.onMediaVolumeChange = function(t) {
-                    this.player.isTouchedByUser() && (t ? t && !this.lastVolume && this.sendAdPostStatEvent("video_volume_on") : this.sendAdPostStatEvent("video_volume_off")), this.lastVolume = t
-                }, e.prototype.onMediaHlsLevelLoaded = function(t) {
-                    var e = t.time,
-                        i = t.quality,
-                        n = t.url;
-                    this.hlsFirstLevelLoadTime || (this.hlsFirstLevelLoadTime = e, this.saveWatchData()), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("level_loaded", {
-                        time: e,
-                        quality: i,
-                        url: n
-                    })
-                }, e.prototype.onMediaHlsFragLoaded = function(t) {
-                    var e = t.time,
-                        i = t.quality,
-                        n = t.url;
-                    this.hlsFirstFragLoadTime || (this.hlsFirstFragLoadTime = e, this.startQuality = i, this.saveWatchData()), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("frag_loaded", {
-                        time: e,
-                        quality: i,
-                        url: n
-                    })
-                }, e.prototype.onLiveCandyStat = function(t) {
-                    var e = St.get("video_live_candy_stat") || {
-                        p2p_bytes: 0,
-                        cdn_bytes: 0,
-                        video: this.player.getVideoId(),
-                        hash: this.getVar("action_hash")
+                return []
+            }
+            _flushStorageEvents() {
+                var e = Re.getByPrefix(ai);
+                each(e, (e, t) => {
+                    t.updated + si < Date.now() && (this._sendEvents(t.events, t.hash), Re.remove(e))
+                })
+            }
+        }
+        class li extends fe {
+            constructor(e) {
+                super(e), this.trackEvents = new ri(e), this.playerListen(A, this.onMediaTimeupdate), this.playerListen(D, this.onMediaPlaying), this.playerListen(I, this.onMediaWaiting), this.playerListen(F, this.onMediaSeeking), this.playerListen(N, this.onMediaSeeked), this.playerListen(R, this.onMediaEnded), this.playerListen(V, this.onMediaVolumeChange), this.playerListen(U, this.onMediaHlsLevelLoaded), this.playerListen($, this.onMediaHlsFragLoaded), this.playerListen(_, this.onFullscreenChange), this.playerListen(p, this.onQualityChange), this.playerListen(d, this.onStateChange), this.playerListen(Z, this.onLinearAdStarted), this.playerListen(ee, this.onLinearAdCompleted), this.playerListen(G, this.onUiStickersPromoEvent)
+            }
+            initVideo(e) {
+                this.initTime = Date.now(), this.viewCounterIncremented = !1, this.lastPlayProgressSent = 0, this.needViewSegments = !(!e.vsegs_size || !e.vsegs_hash), this.playFinishedSent = !1, this.requestedPlay = 0, this.startedPlay = 0, this.startQuality = 0, this.pausedBeforeStart = !1, this.stallsCount = 0, this.seekDurations = [], this.hlsFirstLevelLoadTime = 0, this.hlsFirstFragLoadTime = 0, this.collectWatchStat = !0, this.maxTimePosition = 0, this.maxTimePercent = 0, this.lastVolume = this.player.isMuted() ? 0 : this.player.getVolume(), this.liveHeartbeatEventsQueue = [], this.ownerId = e.oid, this.videoId = e.vid, this.initViewSegments(e), this.flushWatchData(), this.flushCandyData(), this.sendTnsStat("init")
+            }
+            deinitVideo() {
+                this._bigTvTimeout && (clearTimeout(this._bigTvTimeout), this._bigTvTimeout = null), this.flushWatchData(), this.flushCandyData()
+            }
+            initViewSegments(e) {
+                this.curSegments = e.vsegs ? e.vsegs.split("|").pop() : ""
+            }
+            initBigTvStats() {
+                var e = this.getVar("stats_bigtv");
+                if (e) {
+                    var t = () => {
+                        var i = Math.floor(this.player.isActiveLive() ? Date.now() / 1e3 - this.getVar("date") : this.player.curTime()),
+                            s = Math.floor(Date.now() / 1e3);
+                        vkImage().src = e.replace("FTS", i).replace("VTS", s), this._bigTvTimeout = this.delay(t, 3e4)
                     };
-                    e.p2p_bytes += t.p2pBytes, e.cdn_bytes += t.cdnBytes, St.set("video_live_candy_stat", e)
-                }, e.prototype.onStateChange = function(t, e) {
-                    this.requestedPlay || t !== a.PLAYING || (this.requestedPlay = Date.now()), this.startedPlay || t != a.PAUSED || (this.collectWatchStat = !1, this.pausedBeforeStart = !0), this.player.isTouchedByUser() && (t === a.PAUSED && this.sendAdPostStatEvent("video_pause"), t === a.PLAYING && e === a.PAUSED && this.sendAdPostStatEvent("video_resume"))
-                }, e.prototype.onQualityChange = function() {
-                    this.player.externalCall("onVideoResolutionChanged", this.getVar("oid"), this.getVar("vid"), this.getVar("action_hash"), this.player.getQualityIndex())
-                }, e.prototype.onFullscreenChange = function(t) {
-                    this.sendAdPostStatEvent(t ? "video_fullscreen_on" : "video_fullscreen_off")
-                }, e.prototype.onLinearAdStarted = function(t) {
-                    this.sendAdsPlayStarted(), "preroll" == t && (this.clearWatchData(), this.collectWatchStat = !1)
-                }, e.prototype.onLinearAdCompleted = function() {
-                    this.sendAdsPlayFinished()
-                }, e.prototype.onUiStickersPromoEvent = function(t) {
-                    var e = t.packId,
-                        i = t.event;
-                    ajax.post("video?act=player_stickers_promo_event", {
-                        event: i,
-                        pack_id: e,
+                    t()
+                }
+            }
+            saveWatchData() {
+                this.collectWatchStat && this.requestedPlay && this.startedPlay && Re.set("video_last_watch_stat", {
+                    video: this.player.getVideoId(),
+                    hash: this.getVar("action_hash"),
+                    started: this.startedPlay - this.requestedPlay,
+                    played: this.player.getPlayedSeconds(),
+                    played_ranges: this.player.getPlayedRangesString(),
+                    start_quality: this.startQuality,
+                    stalls_count: this.stallsCount,
+                    seek_durations: this.seekDurations.join(";"),
+                    first_level_loaded: this.hlsFirstLevelLoadTime,
+                    first_frag_loaded: this.hlsFirstFragLoadTime,
+                    is_hls: this.getVar("hls") ? 1 : 0,
+                    is_autoplay: this.player.isFromAutoplay() ? 1 : 0,
+                    is_touched: this.player.isTouchedByUser() ? 1 : 0,
+                    is_active_live: this.getVar("live") && this.getVar("live") != ne ? 1 : 0,
+                    last_pos: this.player.curTime(),
+                    post_id: this.getVar("post_id"),
+                    module: this.getVar("module"),
+                    ad_data: this.getVar("ad_data"),
+                    hls_candy: "hls" == this.player.getMediaProviderType() && this.getVar("hls_candy_server") ? 1 : 0
+                })
+            }
+            flushWatchData() {
+                var e = Re.get("video_last_watch_stat");
+                e && (ajax.post("al_video.php?act=watch_stat", e, {}), this.clearWatchData())
+            }
+            clearWatchData() {
+                Re.remove("video_last_watch_stat")
+            }
+            flushCandyData() {
+                var e = Re.get("video_live_candy_stat");
+                e && (ajax.post("al_video.php?act=live_candy_stat", e, {}), Re.remove("video_live_candy_stat"))
+            }
+            onMediaPlaying() {
+                if (!this.startedPlay) {
+                    this.startedPlay = Date.now(), this.getVar("hls") || (this.startQuality = this.player.getQuality());
+                    var e = this.player.curTime(),
+                        t = this.player.isActiveLive();
+                    t && this.addLiveHeartbeatStatsEvent("play_started");
+                    var i = e < 1 || t ? "start" : "continue";
+                    this.trackEvents.trackVideoPlay(i), this.saveWatchData(), this.sendPlayStarted(), this.sendPladformStat(), this.sendAdPostStatEvent("video_start"), this.sendTnsStat("started"), this.sendMediascopeStat("started"), this.initBigTvStats()
+                }
+            }
+            onMediaWaiting(e, t) {
+                e && t && (this.stallsCount++, this.saveWatchData(), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("stall"))
+            }
+            onMediaSeeking(e) {
+                this.seekingStarted = Date.now()
+            }
+            onMediaSeeked(e) {
+                if (this.seekingStarted && !e) {
+                    var t = Date.now() - this.seekingStarted;
+                    this.seekDurations.push(t + "," + this.player.getQuality()), this.saveWatchData()
+                }
+            }
+            onMediaEnded() {
+                this.playFinishedSent || (this.playFinishedSent = !0, this.sendPlayFinished(), this.sendTnsStat("ended"), this.sendMediascopeStat("ended")), this.saveWatchData()
+            }
+            onMediaTimeupdate(e) {
+                if (this.viewCounterIncremented || this.player.isPlayingLinearAd() || (this.player.getPlayedSeconds() > 5 || this.player.getDuration() < 5) && (this.sendIncViewCounter(), this.viewCounterIncremented = !0), !this.player.isActiveLive() && Date.now() - this.lastPlayProgressSent > 1e3 && (this.lastPlayProgressSent = Date.now(), this.sendPlayProgress(e), this.saveWatchData(), this.needViewSegments)) {
+                    var t = this.getViewSegments();
+                    t != this.curSegments && (this.curSegments = t, this.sendViewSegments(t))
+                }
+                if (!this.player.isActiveLive() && e > this.maxTimePosition) {
+                    var i = this.player.getDuration() || 1,
+                        s = this.maxTimePosition,
+                        a = this.maxTimePercent,
+                        r = e / i * 100;
+                    this.player.isLooped() && i - e < .5 && (r = 100), e >= 3 && s < 3 && (this.trackEvents.trackVideoPlay("3s"), this.sendAdPostStatEvent("video_play_3s")), e >= 10 && s < 10 && this.trackEvents.trackVideoPlay("10s"), each([25, 50, 75, 95, 100], (e, t) => {
+                        r >= t && a < t && (this.trackEvents.trackVideoPlay(t), this.sendAdPostStatEvent("video_play_" + t), this.sendMediascopeStat(t + "%"))
+                    }), this.maxTimePosition = e, this.maxTimePercent = r
+                }
+            }
+            onMediaVolumeChange(e) {
+                this.player.isTouchedByUser() && (e ? e && !this.lastVolume && this.sendAdPostStatEvent("video_volume_on") : this.sendAdPostStatEvent("video_volume_off")), this.lastVolume = e
+            }
+            onMediaHlsLevelLoaded({
+                time: e,
+                quality: t,
+                url: i
+            }) {
+                this.hlsFirstLevelLoadTime || (this.hlsFirstLevelLoadTime = e, this.saveWatchData()), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("level_loaded", {
+                    time: e,
+                    quality: t,
+                    url: i
+                })
+            }
+            onMediaHlsFragLoaded({
+                time: e,
+                quality: t,
+                url: i
+            }) {
+                this.hlsFirstFragLoadTime || (this.hlsFirstFragLoadTime = e, this.startQuality = t, this.saveWatchData()), this.player.isActiveLive() && this.addLiveHeartbeatStatsEvent("frag_loaded", {
+                    time: e,
+                    quality: t,
+                    url: i
+                })
+            }
+            onLiveCandyStat(e) {
+                var t = Re.get("video_live_candy_stat") || {
+                    p2p_bytes: 0,
+                    cdn_bytes: 0,
+                    video: this.player.getVideoId(),
+                    hash: this.getVar("action_hash")
+                };
+                t.p2p_bytes += e.p2pBytes, t.cdn_bytes += e.cdnBytes, Re.set("video_live_candy_stat", t)
+            }
+            onStateChange(e, t) {
+                this.requestedPlay || e !== r.PLAYING || (this.requestedPlay = Date.now()), this.startedPlay || e != r.PAUSED || (this.collectWatchStat = !1, this.pausedBeforeStart = !0), this.player.isTouchedByUser() && (e === r.PAUSED && this.sendAdPostStatEvent("video_pause"), e === r.PLAYING && t === r.PAUSED && this.sendAdPostStatEvent("video_resume"))
+            }
+            onQualityChange() {
+                this.player.externalCall("onVideoResolutionChanged", this.getVar("oid"), this.getVar("vid"), this.getVar("action_hash"), this.player.getQualityIndex())
+            }
+            onFullscreenChange(e) {
+                this.sendAdPostStatEvent(e ? "video_fullscreen_on" : "video_fullscreen_off")
+            }
+            onLinearAdStarted(e) {
+                this.sendAdsPlayStarted(), "preroll" == e && (this.clearWatchData(), this.collectWatchStat = !1)
+            }
+            onLinearAdCompleted() {
+                this.sendAdsPlayFinished()
+            }
+            onUiStickersPromoEvent({
+                packId: e,
+                event: t
+            }) {
+                ajax.post("video?act=player_stickers_promo_event", {
+                    event: t,
+                    pack_id: e,
+                    owner_id: this.getVar("oid"),
+                    video_id: this.getVar("vid"),
+                    hash: this.getVar("action_hash")
+                })
+            }
+            sendAdPostStatEvent(e) {
+                this.getVar("post_id") && this.player.externalCall("onAdPostStat", this.getVar("post_id"), e)
+            }
+            sendPladformStat() {
+                var e = !!this.getVar("ads_eid1") && !this.player.isFromAutoplay() && 0 == vk.lang;
+                if (this.getVar("pladform_views_stat_hash") && ajax.post("al_video.php?act=pladform_views_stat", {
                         owner_id: this.getVar("oid"),
                         video_id: this.getVar("vid"),
-                        hash: this.getVar("action_hash")
-                    })
-                }, e.prototype.sendAdPostStatEvent = function(t) {
-                    this.getVar("post_id") && this.player.externalCall("onAdPostStat", this.getVar("post_id"), t)
-                }, e.prototype.sendPladformStat = function() {
-                    var t = !!this.getVar("ads_eid1") && !this.player.isFromAutoplay() && 0 == vk.lang;
-                    if (this.getVar("pladform_views_stat_hash") && ajax.post("al_video.php?act=pladform_views_stat", {
-                            owner_id: this.getVar("oid"),
-                            video_id: this.getVar("vid"),
-                            sent: intval(t),
-                            autoplay: intval(this.player.isFromAutoplay()),
-                            hash: this.getVar("pladform_views_stat_hash")
-                        }), t) {
-                        var e = this.getVar("ads_pl"),
-                            i = this.getVar("ads_eid1"),
-                            n = this.player.getVideoId();
-                        vkImage().src = "//stat.pladform.ru/video/start?pl=" + e + "&videoid=" + i + "&vkvideoid=" + n
-                    }
-                }, e.prototype.sendTnsStat = function(t) {
-                    var e = this.getVar("stats_tns");
-                    if (e) {
-                        var i = {
-                            ru: {
-                                init: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoload/",
-                                started: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videostart/",
-                                ended: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoend/"
-                            },
-                            ru_1: {
-                                init: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerload/",
-                                started: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/",
-                                ended: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerend/"
-                            },
-                            ru_2: {
-                                init: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerload/",
-                                started: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/",
-                                ended: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerend/"
-                            },
-                            kz: {
-                                init: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoloading/",
-                                started: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/",
-                                ended: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoend/"
-                            }
-                        };
-                        i[e] && i[e][t] && (vkImage().src = i[e][t] + irand(1, 1e9))
-                    }
-                }, e.prototype.sendMediascopeStat = function(t) {
-                    var e = {
-                        "-169824905_456239043": "86529522-456239302",
-                        "-169824905_456239042": "86529522-456239303",
-                        "-169824905_456239041": "86529522-456239304",
-                        "-169824905_456239039": "86529522-456239305",
-                        "-169824905_456239040": "86529522-456239306"
-                    }[this.player.getVideoId()];
-                    if (e) {
-                        var i = {
-                            started: 1,
-                            "25%": 2,
-                            "50%": 3,
-                            "75%": 4,
-                            "100%": 5
-                        }[t];
-                        i && (vkImage().src = "https://www.tns-counter.ru/V13a****vk_test/ru/CP1251/tmsec=vkvideo_" + e + "-" + i + "/" + irand(1, 1e9))
-                    }
-                }, e.prototype.getViewSegments = function() {
-                    if (this.getVar("vsegs_size")) {
-                        var t = this.player.getPlayedRanges(),
-                            e = this.getVar("vsegs_size"),
-                            i = Math.ceil(this.getVar("duration") / e),
-                            n = Et(new Array(i), 0);
-                        this.curSegments && this.unpackViewSegments(this.curSegments, n);
-                        for (var r = 0; r < t.length; ++r)
-                            for (var o = Math.round(t.start(r)), s = Math.round(t.end(r)), a = Math.floor(o / e), l = Math.floor(s / e), u = a; u <= l; ++u) {
-                                var h = e * u,
-                                    c = Math.min(this.getVar("duration"), h + e);
-                                n[u] += (Math.min(c, s) - Math.max(h, o)) / (c - h)
-                            }
-                        return this.packViewSegments(n)
-                    }
-                }, e.prototype.packViewSegments = function(t) {
-                    for (var e = [], i = 0, n = !0, r = 0; r < t.length; ++r) {
-                        var o = t[r] >= .5;
-                        o == n ? ++i : (e.push(i), n = o, i = 1)
-                    }
-                    n && e.push(i);
-                    var s = e.join(",");
-                    return "0" === s ? "" : s
-                }, e.prototype.unpackViewSegments = function(t, e) {
-                    t = t.split(",");
-                    for (var i = 0, n = 0; i < t.length; ++i) {
-                        var r = i % 2 == 0,
-                            o = +t[i];
-                        Et(e, r ? 1 : 0, n, n + o), n += o
-                    }
-                    return e
-                }, e.prototype.sendIncViewCounter = function() {
-                    var t = this.getVars();
-                    this.player.externalCall("incViewCounter", t.oid, t.vid, t.view_hash, this.player.getQualityIndex(), t.hd, "html5")
-                }, e.prototype.sendPlayProgress = function(t) {
-                    var e = this.getVars();
-                    this.player.externalCall("onVideoPlayProgress", e.oid, e.vid, e.view_hash, t, e.duration)
-                }, e.prototype.sendPlayStarted = function() {
-                    var t = this.getVars(),
-                        e = t.hls ? t.live ? "live_hls" : "hls" : t.live ? "live_mp4" : "mp4",
-                        i = !!this.pausedBeforeStart;
-                    this.player.externalCall("onVideoPlayStarted", t.oid, t.vid, t.view_hash, e, i)
-                }, e.prototype.sendPlayFinished = function() {
-                    this.player.externalCall("onVideoPlayFinished")
-                }, e.prototype.sendAdsLoadStarted = function() {
-                    this.player.externalCall("onVideoAdsLoadStarted")
-                }, e.prototype.sendAdsPlayStarted = function() {
-                    this.player.externalCall("onVideoAdsPlayStarted")
-                }, e.prototype.sendAdsPlayFinished = function() {
-                    this.player.externalCall("onVideoAdsPlayFinished")
-                }, e.prototype.sendAdsEvent = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
-                    if (this.player.isInited()) {
-                        var i = this.getVar("ads_stat_hash") || "",
-                            n = this.getVar("pl_type") || "";
-                        "postroll" == e && (t = "post-" + t);
-                        var r = "preroll" == e || "postroll" == e ? "linear" : e;
-                        this.player.externalCall("onVideoAdEvent", this.getVar("oid"), this.getVar("vid"), i, t, r, "", n)
-                    }
-                }, e.prototype.sendAdShown = function(t, e) {
-                    if (this.player.isInited()) {
-                        var i = t;
-                        "preroll" == t ? i = "pre" : "postroll" == t && (i = "post"), this.player.externalCall("onVideoAdShown", this.getVar("oid"), this.getVar("vid"), i, e)
-                    }
-                }, e.prototype.sendViewSegments = function(t) {
-                    var e = this.getVars();
-                    e.vsegs_hash && this.player.externalCall("onViewSegmentsChanged", e.oid, e.vid, t, e.vsegs_hash)
-                }, e.prototype.addLiveHeartbeatStatsEvent = function(t, e) {
-                    var i = {
-                        type: t,
-                        details: e,
-                        ts: Math.floor(Date.now() / 1e3),
-                        view_time: (Date.now() - this.initTime) / 1e3
-                    };
-                    this.liveHeartbeatEventsQueue.push(i)
-                }, e.prototype.getLiveHeartbeatEventsQueue = function() {
-                    var t = this.liveHeartbeatEventsQueue;
-                    return this.liveHeartbeatEventsQueue = [], t
-                }, e.prototype.getLiveHeartbeatStats = function() {
-                    var t = {
-                        init_ts: Math.floor(this.initTime / 1e3),
-                        current_ts: Math.floor(Date.now() / 1e3),
-                        view_time: (Date.now() - this.initTime) / 1e3,
-                        events: this.getLiveHeartbeatEventsQueue()
-                    };
-                    if ("hls" === this.player.getMediaProviderType()) {
-                        var e = this.player.getQuality();
-                        e && (t.selected_quality = e, t.is_auto_quality = this.player.isAutoQualityEnabled(), t.available_qualities = this.player.getAvailableQualities()), t.upfront_buffer = this.getUpfrontBufferSeconds()
-                    }
-                    return "flash" === this.player.getMediaProviderType() && (t.rtmp = this.player.media.getContentUrl()), t
-                }, e.prototype.getUpfrontBufferSeconds = function() {
-                    if ("flash" === this.player.getMediaProviderType()) return 0;
-                    var t = this.player.getBufferedRanges();
-                    return t.length ? t.end(t.length - 1) - this.player.curTime() : 0
-                }, e
-            }(yt),
-            Pe = function() {
-                return function(t, e) {
-                    if (Array.isArray(t)) return t;
-                    if (Symbol.iterator in Object(t)) return function(t, e) {
-                        var i = [],
-                            n = !0,
-                            r = !1,
-                            o = void 0;
-                        try {
-                            for (var s, a = t[Symbol.iterator](); !(n = (s = a.next()).done) && (i.push(s.value), !e || i.length !== e); n = !0);
-                        } catch (t) {
-                            r = !0, o = t
-                        } finally {
-                            try {
-                                !n && a.return && a.return()
-                            } finally {
-                                if (r) throw o
-                            }
-                        }
-                        return i
-                    }(t, e);
-                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                        sent: intval(e),
+                        autoplay: intval(this.player.isFromAutoplay()),
+                        hash: this.getVar("pladform_views_stat_hash")
+                    }), e) {
+                    var t = this.getVar("ads_pl"),
+                        i = this.getVar("ads_eid1"),
+                        s = this.player.getVideoId();
+                    vkImage().src = `//stat.pladform.ru/video/start?pl=${t}&videoid=${i}&vkvideoid=${s}`
                 }
-            }(),
-            Ae = function() {
-                function t(t, e) {
-                    for (var i = 0; i < e.length; i++) {
-                        var n = e[i];
-                        n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n)
-                    }
-                }
-                return function(e, i, n) {
-                    return i && t(e.prototype, i), n && t(e, n), e
-                }
-            }();
-
-        function xe(t) {
-            if (Array.isArray(t)) {
-                for (var e = 0, i = Array(t.length); e < t.length; e++) i[e] = t[e];
-                return i
             }
-            return Array.from(t)
-        }
-        var Ve = function() {
-                function t(e) {
-                    ! function(t, e) {
-                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function")
-                    }(this, t), e = clone(e), this.setLangVars(e), this.el = ce("div", {
-                        className: "videoplayer"
-                    }), attr(this.el, "tabindex", -1), attr(this.el, "role", "complementary"), attr(this.el, "aria-label", this.langVars.aria_videoplayer), this.state = a.EMPTY, this._volume = this.preferredVolume, this._muted = !this._volume, this._events = new EventEmitter, this.media = new Dt(this), this.el.appendChild(this.media.el), this.ads = new we(this), this.el.appendChild(this.ads.el), this.ui = new be(this), this.el.appendChild(this.ui.el), this.stats = new Ce(this), this.on(O, this.onMediaPlaying.bind(this)).on(D, this.onMediaPause.bind(this)).on(x, this.checkSuggestionQuarterWatched.bind(this)).on(B, this.onEnded.bind(this)).on(F, this.onError.bind(this)).on(W, this.onUiSeekStart.bind(this)).on(et, this.onLinearAdsStarted.bind(this)).on(it, this.onLinearAdsCompleted.bind(this)), window.addEventListener("resize", this._resizeHandler = this.resize.bind(this)), Yt.a && document.addEventListener(Yt.a.raw.fullscreenchange, this._fsChangeHandler = this.onFullscreenChange.bind(this)), VideoPlayer._instances && VideoPlayer._instances.add(this), this.initVideo(e)
-                }
-                return t.prototype.initVideo = function(t) {
-                    var e = this;
-                    t = clone(t, !0), this.vars = t, this.changeState(a.UNSTARTED, !0), this.videoLiked = t.liked, this.videoAdded = t.added, this.isSubscribed = t.is_subscribed, this._livePhase = t.live, this.videoBookmarked = t.bookmarked, this.trigger(l, t), t.from_autoplay && this.toggleMute(!0, !1), this.isActiveLive() && this.startLiveHeartbeat(), t.show_suggestions && this.loadSuggestions(), (window.requestAnimationFrame || window.setTimeout)(function() {
-                        e.externalCall("onInitialized"), e.resize(), t.autoplay && e.play()
-                    }, 0)
-                }, t.prototype.deinitVideo = function() {
-                    this.stopLiveHeartbeat(), this.changeState(a.EMPTY), this._quality = null, this._livePhase = null, this._startedPlaying = !1, this._didEnded = !1, this._suggestions = null, this._suggestionsQid = null, this.trigger(u), this.vars = null
-                }, t.prototype.reinitWithoutHls = function() {
-                    var t = this.vars;
-                    this.deinitVideo(), delete t.hls, this.initVideo(t)
-                }, t.prototype.setLangVars = function(t) {
-                    var e = this;
-                    this.langVars = {}, each(t, function(t, i) {
-                        "lang_" === t.substr(0, 5) && (e.langVars[t.substr(5)] = i)
-                    })
-                }, t.prototype.loadSuggestions = function() {
-                    var t = function(t) {
-                        return function() {
-                            var e = t.apply(this, arguments);
-                            return new Promise(function(t, i) {
-                                return function n(r, o) {
-                                    try {
-                                        var s = e[r](o),
-                                            a = s.value
-                                    } catch (t) {
-                                        return void i(t)
-                                    }
-                                    if (!s.done) return Promise.resolve(a).then(function(t) {
-                                        n("next", t)
-                                    }, function(t) {
-                                        n("throw", t)
-                                    });
-                                    t(a)
-                                }("next")
-                            })
-                        }
-                    }(regeneratorRuntime.mark(function t() {
-                        var e, i, n, r, o, s, a, l, u;
-                        return regeneratorRuntime.wrap(function(t) {
-                            for (;;) switch (t.prev = t.next) {
-                                case 0:
-                                    if (e = this.getVideoId(), i = this.vars.suggestions_sig) {
-                                        t.next = 4;
-                                        break
-                                    }
-                                    return t.abrupt("return");
-                                case 4:
-                                    return n = {
-                                        id: e,
-                                        t_sex: this.vars.g || null,
-                                        t_age: this.vars.a || null,
-                                        uid: this.vars.viewer_id || null,
-                                        sig: i
-                                    }, r = pt("//vk.go.mail.ru/vk/video_recommend?" + ajx2q(n)), t.next = 8, r.promise;
-                                case 8:
-                                    o = t.sent, s = o.response, a = JSON.parse(s), this.getVideoId() === e && a && a.results && a.results.length && (this._suggestionsQid = a.qid, l = a.results, u = !(!this.vars.is_inline && !this.vars.is_embed), this.externalCall("fetchSuggestions", l.join(","), u));
-                                case 12:
-                                case "end":
-                                    return t.stop()
-                            }
-                        }, t, this)
-                    }));
-                    return function() {
-                        return t.apply(this, arguments)
-                    }
-                }(), t.prototype.checkSuggestionQuarterWatched = function(t) {
-                    this.isInited() && this.vars.suggestions_qid && !this._suggestionQuartedWatched && !this.isPlayingLinearAd() && t / this.getDuration() > .25 && (this._suggestionQuartedWatched = !0, this.onSuggestionQuarterWatched())
-                }, t.prototype.isInited = function() {
-                    return this.getState() !== a.EMPTY
-                }, t.prototype.getVars = function() {
-                    return this.vars ? clone(this.vars) : null
-                }, t.prototype.getVideoId = function() {
-                    return this.isInited() ? this.vars.oid + "_" + this.vars.vid : null
-                }, t.prototype.getVideoLink = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                        e = "https://vk.com/video" + this.getVideoId();
-                    return t && (e += "?t=" + Mt(this.curTime())), e
-                }, t.prototype.getEmbedCode = function() {
-                    var t = this.vars;
-                    return '<iframe src="' + ("https://vk.com/video_ext.php?oid=" + t.oid + "&id=" + t.vid + "&hash=" + t.embed_hash) + '" width="640" height="360" frameborder="0" allowfullscreen></iframe>'
-                }, t.prototype.getDuration = function() {
-                    return this.isInited() ? this.isPlayingLinearAd() ? this.ads.getDuration() : this.media.getDuration() || intval(this.vars && this.vars.duration) : 0
-                }, t.prototype.getAvailableQualities = function() {
-                    return this.media.getAvailableQualities()
-                }, t.prototype.isAutoQualityAvailable = function() {
-                    return this.media.isAutoQualityAvailable()
-                }, t.prototype.isAutoQualityEnabled = function() {
-                    return this.media.isAutoQualityEnabled()
-                }, t.prototype.getQuality = function() {
-                    return this._quality || this.media.getQuality()
-                }, t.prototype.getQualityIndex = function() {
-                    return function(t) {
-                        for (var e = 0; e < ht.length; e++)
-                            if (t <= ht[e].height) return e;
-                        return ht.length - 1
-                    }(this.getQuality())
-                }, t.prototype.setQuality = function(t) {
-                    var e = (arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}).setPreferred,
-                        i = void 0 === e || e;
-                    if ((inArray(t, this.getAvailableQualities()) || -1 === t) && (-1 !== t || !this.isAutoQualityEnabled()) && (t !== this._quality || this.isAutoQualityEnabled())) {
-                        if (this.media.setQuality(t), this.onQualityChanged(-1 === t ? this.getQuality() : t), -1 !== t && i)(t < Math.max.apply(Math, this.getAvailableQualities()) || t > this.preferredQuality) && (this.preferredQuality = t);
-                        this.getState() === a.ERROR && this.changeState(a.PLAYING)
-                    }
-                }, t.prototype.onQualityChanged = function(t) {
-                    var e = this.isAutoQualityEnabled(),
-                        i = this._quality;
-                    this._quality = t, this.trigger(y, t, i, e)
-                }, t.prototype.getAvailableSubtitleTracksInfo = function() {
-                    return this.media.getAvailableSubtitleTracksInfo()
-                }, t.prototype.getSubtitleTrack = function() {
-                    return this.media.getSubtitleTrack()
-                }, t.prototype.getPreferredSubtitleTrack = function() {
-                    var t = this.getAvailableSubtitleTracksInfo();
-                    if (!t.length) return null;
-                    if (1 === t.length) return t[0];
-                    var e = this.vars.subtitles_langs,
-                        i = this.preferredSubtitleLang,
-                        n = vk.lang,
-                        r = null,
-                        o = null,
-                        s = null,
-                        a = null,
-                        l = !0,
-                        u = !1,
-                        h = void 0;
-                    try {
-                        for (var c, d = t[Symbol.iterator](); !(l = (c = d.next()).done); l = !0) {
-                            var p = c.value,
-                                f = p.lang;
-                            r || 3 !== e[f].lang_id || (r = p), o || 0 !== e[f].lang_id || (o = p), s || e[f].lang_id !== i || (s = p), a || e[f].lang_id !== n || (a = p)
-                        }
-                    } catch (t) {
-                        u = !0, h = t
-                    } finally {
-                        try {
-                            !l && d.return && d.return()
-                        } finally {
-                            if (u) throw h
-                        }
-                    }
-                    return s || a || this.vars.cis && o || r || t[0]
-                }, t.prototype.switchSubtitleTrack = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null,
-                        e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
-                        i = this.getAvailableSubtitleTracksInfo();
-                    if (i.length)
-                        if (-1 === t || null === t && this.getSubtitleTrack() > -1) this.media.switchSubtitleTrack({
-                            trackId: -1
-                        });
-                        else {
-                            null === t && (t = this.getPreferredSubtitleTrack().id);
-                            var n = !0,
-                                r = !1,
-                                o = void 0;
-                            try {
-                                for (var s, a = i[Symbol.iterator](); !(n = (s = a.next()).done); n = !0) {
-                                    var l = s.value;
-                                    if (t === l.id) {
-                                        var u = this.vars.subtitles_langs[l.lang].lang_id;
-                                        return this.media.switchSubtitleTrack({
-                                            trackId: t
-                                        }), this.preferredSubtitleLang = u, void(e && this.trigger(X, l))
-                                    }
-                                }
-                            } catch (t) {
-                                r = !0, o = t
-                            } finally {
-                                try {
-                                    !n && a.return && a.return()
-                                } finally {
-                                    if (r) throw o
-                                }
-                            }
-                        }
-                }, t.prototype.play = function() {
-                    this.getState() !== a.PLAYING && this.getState() !== a.ERROR && this.isInited() && (this.getState() === a.UNSTARTED && this.requestPlayAds(), this.changeState(a.PLAYING), this.isPlayingLinearAd() ? this.ads.play() : this.media.play(), this.externalCall("onVideoStreamPlaying", this.vars.oid, this.vars.vid))
-                }, t.prototype.pause = function() {
-                    this.getState() === a.PLAYING && this.getState() !== a.ERROR && (this.isPlayingLinearAd() ? this.ads.pause() : this.media.pause(), this.changeState(a.PAUSED))
-                }, t.prototype.isBuffering = function() {
-                    return this.media.isWaiting()
-                }, t.prototype.getBufferedRanges = function() {
-                    return this.media.getBufferedRanges()
-                }, t.prototype.getThumbSrc = function() {
-                    var t = this.vars;
-                    if (t.stretch_vertical && t.is_inline && t.is_aurora) {
-                        var e = t.first_frame_800 || t.first_frame_320 || t.first_frame_160 || t.first_frame_130;
-                        if (e) return e
-                    }
-                    return t.jpg || ""
-                }, t.prototype.getLivePhase = function() {
-                    return this._livePhase
-                }, t.prototype.changeLivePhase = function(t) {
-                    if (t != this._livePhase) {
-                        var e = this._livePhase;
-                        this._livePhase = t, this.trigger(P, t, e), this.isActiveLive() || this.stopLiveHeartbeat()
-                    }
-                }, t.prototype.isActiveLive = function() {
-                    var t = this.getLivePhase();
-                    return t == ot || t == st
-                }, t.prototype.isInLayer = function() {
-                    return !!this.externalCall("isInLayer", this.getVideoId())
-                }, t.prototype.startLiveHeartbeat = function() {
-                    var t = this,
-                        e = [],
-                        i = {};
-                    ! function n() {
-                        var r = t.isInLayer(),
-                            o = t.stats.getLiveHeartbeatStats();
-                        ajax.post("al_video.php?act=live_heartbeat", {
-                            oid: t.vars.oid,
-                            vid: t.vars.vid,
-                            user_id: t.vars.viewer_id,
-                            need_friends: r ? 1 : 0,
-                            shown_friends: e.join(","),
-                            stats: o ? JSON.stringify(o) : null,
-                            hash: t.vars.action_hash
-                        }, {
-                            onDone: function(n, r) {
-                                r && (r = r.map(function(t) {
-                                    return i[t.id] || (i[t.id] = t)
-                                }), e = r.map(function(t) {
-                                    return t.id
-                                })), t.externalCall("onLiveViewersCountChange", t.getVideoId(), n, r)
-                            },
-                            onFail: function() {
-                                return !0
-                            }
-                        }), t._liveHeartbeatTimeout = setTimeout(n, 5e3)
-                    }()
-                }, t.prototype.stopLiveHeartbeat = function() {
-                    this._liveHeartbeatTimeout && (clearTimeout(this._liveHeartbeatTimeout), this._liveHeartbeatTimeout = null, ajax.post("al_video.php?act=live_stop_heartbeat", {
-                        oid: this.vars.oid,
-                        vid: this.vars.vid,
-                        user_id: this.vars.viewer_id,
-                        hash: this.vars.action_hash
-                    }, {
-                        onFail: function() {
-                            return !0
-                        }
-                    }))
-                }, t.prototype.checkLivePhase = function(t) {
-                    var e = this,
-                        i = this.getVideoId();
-                    ajax.post("al_video.php?act=check_live_phase", {
-                        oid: this.vars.oid,
-                        vid: this.vars.vid,
-                        hash: this.vars.action_hash,
-                        media_url: this.media.getContentUrl()
-                    }, {
-                        onDone: function(n) {
-                            e.getVideoId() == i && t(n)
+            sendTnsStat(e) {
+                var t = this.getVar("stats_tns");
+                if (t) {
+                    var i = {
+                        ru: {
+                            init: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoload/",
+                            started: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videostart/",
+                            ended: "https://www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoend/"
                         },
-                        onFail: function() {
-                            return setTimeout(function() {
-                                e.getVideoId() == i && e.checkLivePhase(t)
-                            }, 3e3), !0
+                        ru_1: {
+                            init: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerload/",
+                            started: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/",
+                            ended: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerend/"
+                        },
+                        ru_2: {
+                            init: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerload/",
+                            started: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/",
+                            ended: "https://www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerend/"
+                        },
+                        kz: {
+                            init: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoloading/",
+                            started: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/",
+                            ended: "https://www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoend/"
                         }
-                    })
-                }, t.prototype.togglePlay = function(t) {
-                    void 0 === t && (t = this.getState() !== a.PLAYING), t ? this.play() : this.pause()
-                }, t.prototype.getMediaProviderType = function() {
-                    return this.media.providerType()
-                }, t.prototype.requestPlayAds = function() {
-                    var t = this,
-                        e = this.vars.live && this.vars.live != at;
-                    this.canShowAds() && !e && (this.media.preload(), this.media.disablePlayback(), this.ads.start("preroll", function() {
-                        t.isInited() && setTimeout(function() {
-                            t.media.enablePlayback(), t.ads.start("overlay")
-                        })
-                    }))
-                }, t.prototype.onMediaPlaying = function() {
-                    this._startedPlaying = !0, this.changeState(a.PLAYING)
-                }, t.prototype.onMediaPause = function() {
-                    this.changeState(a.PAUSED)
-                }, t.prototype.onEnded = function() {
-                    var t = this;
-                    this.isPlayingOverlayAd() && this.ads.stop();
-                    var e = this.vars.live && this.vars.live != at;
-                    !this.canShowAds() || e || this._didEnded ? (this.changeState(a.ENDED), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler(null, !0)) : (this.media.disablePlayback(), this.ads.start("postroll", function() {
-                        t.changeState(a.ENDED), t.media.enablePlayback()
-                    })), this._didEnded = !0
-                }, t.prototype.onError = function(t) {
-                    this.errorData = t, this.changeState(a.ERROR), this.ads.cancelAds(), this.externalCall("onVideoPlayError")
-                }, t.prototype.onUiSeekStart = function() {
-                    this.getState() === a.ENDED && this.changeState(a.PAUSED)
-                }, t.prototype.canShowAds = function() {
-                    var t = browser.msie && browser.version <= 10;
-                    return !this.vars.no_ads && !t && this.getLivePhase() !== ut
-                }, t.prototype.curTime = function() {
-                    return this.isInited() ? this.isPlayingLinearAd() ? this.ads.curTime() : this.media.curTime() : 0
-                }, t.prototype.seekTo = function(t) {
-                    var e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-                    if (this.getState() !== a.ERROR) {
-                        var i = this.getLivePhase();
-                        i && i !== at || (t = Math.max(0, Math.min(this.getDuration(), t))) !== this.media.curTime() && (this.media.seekTo(t), this.trigger(m, t), e && this.getState() === a.UNSTARTED && this.play(), this.getState() === a.ENDED && this.changeState(a.PAUSED))
-                    }
-                }, t.prototype.seekToPercent = function(t) {
-                    var e = this.getDuration() * t;
-                    return this.seekTo(e)
-                }, t.prototype.seekBy = function(t) {
-                    return this.seekTo(this.curTime() + t)
-                }, t.prototype.getVolume = function() {
-                    return this._volume
-                }, t.prototype.setVolume = function(t) {
-                    var e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-                    t = Math.max(0, Math.min(1, t)), this.media.setVolume(t), this.ads.setVolume(t), this._volume = t, this._muted = !t, e && (this.preferredVolume = t)
-                }, t.prototype.toggleMute = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !this.isMuted(),
-                        e = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1],
-                        i = t ? 0 : this._volume || 1;
-                    this.media.setVolume(i), this.ads.setVolume(i), this._muted = t, e && (this.preferredVolume = i)
-                }, t.prototype.isMuted = function() {
-                    return !!this._muted
-                }, t.prototype.toggleLoop = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !this.isLooped();
-                    return this.media.toggleLoop(t)
-                }, t.prototype.isLooped = function() {
-                    return this.media.isLooped()
-                }, t.prototype.setPlaybackRate = function(t) {
-                    this.media.setPlaybackRate(t)
-                }, t.prototype.getPlaybackRate = function() {
-                    return this.media.getPlaybackRate()
-                }, t.prototype.canRotateVideo = function() {
-                    return this.media.canRotateVideo()
-                }, t.prototype.rotateVideo = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : -90;
-                    this.media.rotateVideo(t)
-                }, t.prototype.isStartedPlaying = function() {
-                    return !!this._startedPlaying
-                }, t.prototype.getPlayedRanges = function() {
-                    return this.media.getPlayedRanges()
-                }, t.prototype.getPlayedRangesString = function() {
-                    return this.media.getPlayedRangesString()
-                }, t.prototype.getPlayedSeconds = function() {
-                    return this.media.getPlayedSeconds()
-                }, t.prototype.canChangePlaybackRate = function() {
-                    return "flash" != this.media.providerType()
-                }, t.prototype.canExpand = function() {
-                    return "flash" != this.media.providerType() && !(this.isActiveLive() && this.vars.force_rtmp && this.isFlashSupported())
-                }, t.prototype.expand = function() {
-                    this.isAutoplay() && (this.expandFromAutoplay = !0, this.pause());
-                    var t = this.vars.list_id,
-                        e = Mt(this.curTime());
-                    this.externalCall("onOpenInPopup", this.getVideoId(), t, e)
-                }, t.prototype.onExpanded = function() {
-                    var t = this,
-                        e = this.expandFromAutoplay || this.isAutoplay();
-                    this.vars.is_inline = 0, setTimeout(function() {
-                        t.onTouchedByUser(), t.resize(), t.isPlayingLinearAd() ? t.ads.play() : t.media.play(), t.play(), t.trigger(b), e && t.vars.autoplay_expand_restart && !t.isActiveLive() && (t.ads.cancelAds(), t.seekTo(0), t.requestPlayAds())
-                    }, 0)
-                }, t.prototype.toggleFullscreen = function() {
-                    Yt.a && (this.isFullscreen() ? Yt.a.exit() : Yt.a.request(this.el))
-                }, t.prototype.isFullscreen = function() {
-                    return Yt.a.element === this.el
-                }, t.prototype.onFullscreenChange = function() {
-                    this.trigger(_, this.isFullscreen()), this.resize(), this.externalCall("fullscreen", this.isFullscreen())
-                }, t.prototype.getSize = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
-                    if (!this._size || t) {
-                        var e = this.el.getBoundingClientRect();
-                        this._size = [e.width, e.height]
-                    }
-                    return this._size
-                }, t.prototype.resize = function() {
-                    addClass(this.el, "no_transition");
-                    var t = this.getSize(!0);
-                    this.trigger.apply(this, [h].concat(xe(t))), removeClassDelayed(this.el, "no_transition")
-                }, t.prototype.isMinimized = function() {
-                    return !(!window.Videoview || !Videoview.isMinimized())
-                }, t.prototype.getEnvLayoutType = function() {
-                    return window.Videoview ? Videoview.getLayoutType() : ""
-                }, t.prototype.getEnvModule = function() {
-                    if (window.Videoview) {
-                        var t = Videoview.getVideoModule(this.getVideoId());
-                        if (t) return t
-                    }
-                    return cur.module || ""
-                }, t.prototype.isControlsVisible = function() {
-                    return this.ui.isControlsVisible()
-                }, t.prototype.isLoadingAds = function() {
-                    return this.ads.isLoading()
-                }, t.prototype.onLinearAdsStarted = function() {
-                    this.media.disablePlayback()
-                }, t.prototype.onLinearAdsCompleted = function() {
-                    this.media.enablePlayback()
-                }, t.prototype.isPlayingLinearAd = function() {
-                    return this.ads.isPlayingLinear()
-                }, t.prototype.isPlayingOverlayAd = function() {
-                    return this.ads.isPlayingOverlay()
-                }, t.prototype.isAutoplay = function() {
-                    return this.isFromAutoplay() && !this.isTouchedByUser()
-                }, t.prototype.isFromAutoplay = function() {
-                    return this.isInited() && !!this.vars.from_autoplay
-                }, t.prototype.onTouchedByUser = function() {
-                    var t = this;
-                    this.isTouchedByUser() || (this.touchedByUser = !0, this.isFromAutoplay() && (this.ui.onTouchedByUser(), this.externalCall("onPlayerTouchedByUser"), setTimeout(function() {
-                        t.toggleMute(!1), t.getState() === a.PLAYING && t.externalCall("onVideoStreamPlaying", t.vars.oid, t.vars.vid)
-                    }, 0)))
-                }, t.prototype.isTouchedByUser = function() {
-                    return !!this.touchedByUser
-                }, t.prototype.onSuggestionsShown = function() {
-                    var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
-                        e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1] ? this._suggestionsQid : null;
-                    this.externalCall("onSuggestionsShown", e, this.getVideoId(), t)
-                }, t.prototype.onSuggestionClicked = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
-                        i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1,
-                        n = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-                    this.externalCall("onSuggestionClick", t, this._suggestionsQid, i, n, e)
-                }, t.prototype.onSuggestionQuarterWatched = function() {
-                    this.externalCall("onSuggestionQuarterWatched", this.vars.suggestions_qid, this.getVideoId(), this.curTime())
-                }, t.prototype.onSuggestionsReplayClicked = function() {
-                    this.togglePlay(), this.externalCall("onSuggestionsReplayClicked")
-                }, t.prototype.nextVideo = function(t, e, i) {
-                    this.externalCall("onVideoNext", t, e, i)
-                }, t.prototype.likeVideo = function(t) {
-                    this.onLiked(!this.videoLiked), this.externalCall("onLike", t)
-                }, t.prototype.onLiked = function(t) {
-                    this.videoLiked = !!t, this.trigger(k, this.videoLiked)
-                }, t.prototype.shareVideo = function(t) {
-                    this.isFullscreen() && this.toggleFullscreen(), this.externalCall("onShare", t)
-                }, t.prototype.addVideo = function(t) {
-                    this.onAdded(), this.videoAdded ? this.externalCall("onAdd", this.getVideoId(), this.vars.add_hash, t) : this.externalCall("onRemove", t)
-                }, t.prototype.donate = function(t) {
-                    this.isFullscreen() && this.toggleFullscreen(), this.externalCall("onDonate", t)
-                }, t.prototype.bookmark = function(t) {
-                    this.videoBookmarked ? this.externalCall("onRemoveBookmark", t) : this.externalCall("onAddBookmark", t), this.onBookmarked()
-                }, t.prototype.onBookmarked = function() {
-                    this.videoBookmarked = !this.videoBookmarked, this.trigger(E, this.videoBookmarked)
-                }, t.prototype.onAdded = function() {
-                    this.videoAdded = !this.videoAdded, this.trigger(T, this.videoAdded)
-                }, t.prototype.subscribeToAuthor = function(t) {
-                    var e = !this.isSubscribed;
-                    this.externalCall("onSubscribe", e, t)
-                }, t.prototype.onSubscribed = function(t) {
-                    this.isSubscribed = !!t, this.trigger(C, this.isSubscribed)
-                }, t.prototype.nextTimerReset = function() {
-                    this.nextTimerStopped || (this.nextTimerStopped = !0, this.trigger(w))
-                }, t.prototype.nextTimerStart = function() {
-                    this.nextTimerStopped && (this.nextTimerStopped = !1, this.trigger(S))
-                }, t.prototype.setSuggestions = function(t) {
-                    this._suggestions = t
-                }, t.prototype.pushDonation = function(t, e) {
-                    this.isActiveLive() && this.trigger(A, t, e)
-                }, t.prototype.pushNotice = function(t) {
-                    this.ui.pushNotice(t)
-                }, t.prototype.pushLiveMidroll = function(t) {
-                    this.canShowAds() && this.isActiveLive() && (t ? this.ads.cancelAds() : this.ads.start("_live_midroll"))
-                }, t.prototype.onStickersPurchased = function(t) {
-                    this.ui.onStickersPurchased(t)
-                }, t.prototype.getSuggestions = function() {
-                    return this._suggestions || []
-                }, t.prototype.getNextVideos = function() {
-                    return window.Videoview ? Videoview.getNextVideosData() : []
-                }, t.prototype.nextTimerEnabled = function() {
-                    return !!window.VideoPlaylist && VideoPlaylist.isAutoplayEnabled()
-                }, t.prototype.externalCall = function(t) {
-                    try {
-                        for (var e = arguments.length, i = Array(e > 1 ? e - 1 : 0), n = 1; n < e; n++) i[n - 1] = arguments[n];
-                        return window.videoCallback && videoCallback([t].concat(i))
-                    } catch (e) {
-                        this.debugLog(["error calling callback " + t, e], {
-                            type: "warn"
-                        })
-                    }
-                }, t.prototype.debugLog = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
-                        i = e.type,
-                        n = void 0 === i ? "log" : i,
-                        r = e.force,
-                        o = void 0 !== r && r;
-                    if (this.isInited() && (window.__dev || o)) try {
-                        var s;
-                        (s = console)[n].apply(s, xe(["%c videoplayer ", "background:#9ddcf7;"].concat(t)))
-                    } catch (t) {}
-                }, t.prototype.changeState = function(t) {
-                    var e = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-                    if (this.isInited() || e)
-                        if (t) {
-                            if (t === this.state) {
-                                if (t != a.ERROR) return
-                            } else this.prevState = this.state, this.state = t, t != a.ERROR && (this.errorData = null);
-                            this.trigger(d, t, this.prevState)
-                        } else this.debugLog("trying to change state to undefined", {
-                            type: "warn"
-                        })
-                }, t.prototype.getState = function() {
-                    return this.state
-                }, t.prototype.getErrorData = function() {
-                    return this.errorData || ""
-                }, t.prototype.trigger = function(t) {
-                    var e;
-                    if (void 0 !== t) {
-                        for (var i = arguments.length, n = Array(i > 1 ? i - 1 : 0), r = 1; r < i; r++) n[r - 1] = arguments[r];
-                        (e = this._events).emit.apply(e, [t].concat(n))
-                    } else this.debugLog("trying to trigger undefined event", {
-                        type: "warn"
-                    })
-                }, t.prototype.on = function(t, e) {
-                    if (void 0 !== t) return this._events.on(t, e);
-                    this.debugLog("trying to set listener to undefined event", {
-                        type: "warn"
-                    })
-                }, t.prototype.off = function(t, e) {
-                    if (void 0 !== t) return this._events.off(t, e);
-                    this.debugLog("trying to unset listener from undefined event", {
-                        type: "warn"
-                    })
-                }, t.prototype.destroy = function() {
-                    this.deinitVideo(), this.trigger(c), this._events.removeAllListeners(), window.removeEventListener("resize", this._resizeHandler), Yt.a && document.removeEventListener(Yt.a.raw.fullscreenchange, this._fsChangeHandler)
-                }, t.prototype.getDebugData = function() {
-                    if (!this.isInited()) return "";
-                    var t = [];
-                    return t.push(["Video ID", this.getVideoId()]), t.push(["Content host", this.media.getContentHost()]), t.push(["Media provider", this.media.providerType() || "none"]), t.push(["Quality", this.getQuality()]), t.push(["Auto quality", this.isAutoQualityAvailable() ? this.isAutoQualityEnabled() ? "enabled" : "disabled" : null]), t.push(["Position", this.curTime()]), t.push(["Player state", this.getState()]), t.push(["Live Phase", this.getLivePhase()]), t.push(["Player size", this.getSize().join("x")]), t.push(["Module", window.Videoview ? Videoview.getVideoModule() : cur.module]), t.push(["Error code", this.media.getErrorCode()]), t.push(["Errors log", this.media.getErrorsLog()]), this.vars.live ? (t.push(["Live HLS", this.vars.hls]), t.push(["Live RTMP", this.vars.rtmp]), t.push(["Postlive MP4", this.vars.postlive_mp4])) : t.push(["Hls manifest", this.vars.hls]), t.filter(function(t) {
-                        var e = Pe(t, 2);
-                        e[0];
-                        return null != e[1]
-                    }).map(function(t) {
-                        return t.join(": ")
-                    }).join("\n")
-                }, t.prototype.isHlsSupported = function() {
-                    return window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"')
-                }, t.prototype.isFlashSupported = function() {
-                    return browser.flash >= 24
-                }, t.prototype.getPreloadedQuality = function() {
-                    return Me[this.getVideoId()]
-                }, t.prototype.setActionButton = function(t) {
-                    this.ui.actionButton.setLink(t)
-                }, t.preload = function(t) {
-                    var e = t.oid + "_" + t.vid;
-                    if (t.hls_raw && !Me[e]) {
-                        for (var i, n = [], r = {}, o = /#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)/g; i = o.exec(t.hls_raw);) {
-                            var s = Pe(i, 3),
-                                a = s[1],
-                                l = s[2];
-                            if ((a = _(a)).RESOLUTION) {
-                                var u = a.RESOLUTION.split("x"),
-                                    h = Pe(u, 2),
-                                    c = ct(+h[0], +h[1]);
-                                n.push(c), r[c] = l
-                            }
+                    };
+                    i[t] && i[t][e] && (vkImage().src = i[t][e] + irand(1, 1e9))
+                }
+            }
+            sendMediascopeStat(e) {
+                var t = {
+                    "-169824905_456239043": "86529522-456239302",
+                    "-169824905_456239042": "86529522-456239303",
+                    "-169824905_456239041": "86529522-456239304",
+                    "-169824905_456239039": "86529522-456239305",
+                    "-169824905_456239040": "86529522-456239306"
+                }[this.player.getVideoId()];
+                if (t) {
+                    var i = {
+                        started: 1,
+                        "25%": 2,
+                        "50%": 3,
+                        "75%": 4,
+                        "100%": 5
+                    }[e];
+                    i && (vkImage().src = `https://www.tns-counter.ru/V13a****vk_test/ru/CP1251/tmsec=vkvideo_${t}-${i}/` + irand(1, 1e9))
+                }
+            }
+            getViewSegments() {
+                if (this.getVar("vsegs_size")) {
+                    var e = this.player.getPlayedRanges(),
+                        t = this.getVar("vsegs_size"),
+                        i = Math.ceil(this.getVar("duration") / t),
+                        s = ze(new Array(i), 0);
+                    this.curSegments && this.unpackViewSegments(this.curSegments, s);
+                    for (var a = 0; a < e.length; ++a)
+                        for (var r = Math.round(e.start(a)), l = Math.round(e.end(a)), n = Math.floor(r / t), o = Math.floor(l / t), h = n; h <= o; ++h) {
+                            var d = t * h,
+                                u = Math.min(this.getVar("duration"), d + t);
+                            s[h] += (Math.min(u, l) - Math.max(d, r)) / (u - d)
                         }
-                        if (n.length) {
-                            var d = Math.min.apply(Math, n),
-                                p = Math.max.apply(Math, n),
-                                f = St.getPref("abr_quality") || 480,
-                                y = Math.max(d, Math.min(f, p, 480)),
-                                v = r[y];
-                            if (v) {
-                                var g = v.replace(/index-(.+).m3u8/, "seg-1-$1.ts");
-                                pt(v), pt(g), Me[e] = y
-                            }
-                        }
-                    }
+                    return this.packViewSegments(s)
+                }
+            }
+            packViewSegments(e) {
+                for (var t = [], i = 0, s = !0, a = 0; a < e.length; ++a) {
+                    var r = e[a] >= .5;
+                    r == s ? ++i : (t.push(i), s = r, i = 1)
+                }
+                s && t.push(i);
+                var l = t.join(",");
+                return "0" === l ? "" : l
+            }
+            unpackViewSegments(e, t) {
+                e = e.split(",");
+                for (var i = 0, s = 0; i < e.length; ++i) {
+                    var a = i % 2 == 0,
+                        r = +e[i];
+                    ze(t, a ? 1 : 0, s, s + r), s += r
+                }
+                return t
+            }
+            sendIncViewCounter() {
+                var e = this.getVars();
+                this.player.externalCall("incViewCounter", e.oid, e.vid, e.view_hash, this.player.getQualityIndex(), e.hd, "html5")
+            }
+            sendPlayProgress(e) {
+                var t = this.getVars();
+                this.player.externalCall("onVideoPlayProgress", t.oid, t.vid, t.view_hash, e, t.duration)
+            }
+            sendPlayStarted() {
+                var e = this.getVars(),
+                    t = e.hls ? e.live ? "live_hls" : "hls" : e.live ? "live_mp4" : "mp4",
+                    i = !!this.pausedBeforeStart;
+                this.player.externalCall("onVideoPlayStarted", e.oid, e.vid, e.view_hash, t, i)
+            }
+            sendPlayFinished() {
+                this.player.externalCall("onVideoPlayFinished")
+            }
+            sendAdsLoadStarted() {
+                this.player.externalCall("onVideoAdsLoadStarted")
+            }
+            sendAdsPlayStarted() {
+                this.player.externalCall("onVideoAdsPlayStarted")
+            }
+            sendAdsPlayFinished() {
+                this.player.externalCall("onVideoAdsPlayFinished")
+            }
+            sendAdsEvent(e, t = "") {
+                if (this.player.isInited()) {
+                    var i = this.getVar("ads_stat_hash") || "",
+                        s = this.getVar("pl_type") || "";
+                    "postroll" == t && (e = "post-" + e);
+                    var a = "preroll" == t || "postroll" == t ? "linear" : t;
+                    this.player.externalCall("onVideoAdEvent", this.getVar("oid"), this.getVar("vid"), i, e, a, "", s)
+                }
+            }
+            sendAdShown(e, t) {
+                if (this.player.isInited()) {
+                    var i = e;
+                    "preroll" == e ? i = "pre" : "postroll" == e && (i = "post"), this.player.externalCall("onVideoAdShown", this.getVar("oid"), this.getVar("vid"), i, t)
+                }
+            }
+            sendViewSegments(e) {
+                var t = this.getVars();
+                t.vsegs_hash && this.player.externalCall("onViewSegmentsChanged", t.oid, t.vid, e, t.vsegs_hash)
+            }
+            addLiveHeartbeatStatsEvent(e, t) {
+                var i = {
+                    type: e,
+                    details: t,
+                    ts: Math.floor(Date.now() / 1e3),
+                    view_time: (Date.now() - this.initTime) / 1e3
+                };
+                this.liveHeartbeatEventsQueue.push(i)
+            }
+            getLiveHeartbeatEventsQueue() {
+                var e = this.liveHeartbeatEventsQueue;
+                return this.liveHeartbeatEventsQueue = [], e
+            }
+            getLiveHeartbeatStats() {
+                var e = {
+                    init_ts: Math.floor(this.initTime / 1e3),
+                    current_ts: Math.floor(Date.now() / 1e3),
+                    view_time: (Date.now() - this.initTime) / 1e3,
+                    events: this.getLiveHeartbeatEventsQueue()
+                };
+                if ("hls" === this.player.getMediaProviderType()) {
+                    var t = this.player.getQuality();
+                    t && (e.selected_quality = t, e.is_auto_quality = this.player.isAutoQualityEnabled(), e.available_qualities = this.player.getAvailableQualities()), e.upfront_buffer = this.getUpfrontBufferSeconds()
+                }
+                return "flash" === this.player.getMediaProviderType() && (e.rtmp = this.player.media.getContentUrl()), e
+            }
+            getUpfrontBufferSeconds() {
+                if ("flash" === this.player.getMediaProviderType()) return 0;
+                var e = this.player.getBufferedRanges();
+                return e.length ? e.end(e.length - 1) - this.player.curTime() : 0
+            }
+        }
 
-                    function _(t) {
-                        var e = {};
-                        return t.split(",").forEach(function(t) {
-                            var i = t.split("="),
-                                n = Pe(i, 2),
-                                r = n[0],
-                                o = n[1];
-                            e[r] = o
-                        }), e
+        function ni(e, t, i, s, a, r, l) {
+            try {
+                var n = e[r](l),
+                    o = n.value
+            } catch (e) {
+                return void i(e)
+            }
+            n.done ? t(o) : Promise.resolve(o).then(s, a)
+        }
+        var oi = 1;
+        class hi {
+            constructor(e) {
+                e = clone(e), this.setLangVars(e), this.el = ce("div", {
+                    className: "videoplayer"
+                }), attr(this.el, "tabindex", -1), attr(this.el, "role", "complementary"), attr(this.el, "aria-label", this.langVars.aria_videoplayer), this.state = r.EMPTY, this._volume = this.preferredVolume, this._muted = !this._volume, this._events = new EventEmitter, this.media = new tt(this), this.el.appendChild(this.media.el), this.ads = new Xt(this), this.el.appendChild(this.ads.el), this.ui = new Yt(this), this.el.appendChild(this.ui.el), this.stats = new li(this), this.on(D, this.onMediaPlaying.bind(this)).on(M, this.onMediaPause.bind(this)).on(A, this.checkSuggestionQuarterWatched.bind(this)).on(R, this.onEnded.bind(this)).on(B, this.onError.bind(this)).on(z, this.onUiSeekStart.bind(this)).on(Z, this.onLinearAdsStarted.bind(this)).on(ee, this.onLinearAdsCompleted.bind(this)), window.addEventListener("resize", this._resizeHandler = this.resize.bind(this)), yt.a && document.addEventListener(yt.a.raw.fullscreenchange, this._fsChangeHandler = this.onFullscreenChange.bind(this)), VideoPlayer._instances && VideoPlayer._instances.add(this), this.initVideo(e)
+            }
+            initVideo(e) {
+                e = clone(e, !0), this.vars = e, this.changeState(r.UNSTARTED, !0), this.videoLiked = e.liked, this.videoAdded = e.added, this.isSubscribed = e.is_subscribed, this._livePhase = e.live, this.videoBookmarked = e.bookmarked, this.trigger(l, e), e.from_autoplay && this.toggleMute(!0, !1), this.isActiveLive() && this.startLiveHeartbeat(), e.show_suggestions && this.loadSuggestions(), (window.requestAnimationFrame || window.setTimeout)(() => {
+                    this.externalCall("onInitialized"), this.resize(), e.autoplay && this.play()
+                }, 0)
+            }
+            deinitVideo() {
+                this.stopLiveHeartbeat(), this.changeState(r.EMPTY), this._quality = null, this._livePhase = null, this._startedPlaying = !1, this._didEnded = !1, this._suggestions = null, this._suggestionsQid = null, this.trigger(n), this.vars = null
+            }
+            reinitWithoutHls() {
+                var e = this.vars;
+                this.deinitVideo(), delete e.hls, this.initVideo(e)
+            }
+            setLangVars(e) {
+                this.langVars = {}, each(e, (e, t) => {
+                    "lang_" === e.substr(0, 5) && (this.langVars[e.substr(5)] = t)
+                })
+            }
+            get preferredVolume() {
+                var e = Re.getPref("volume");
+                return "number" == typeof e ? Math.min(1, Math.max(0, e)) : oi
+            }
+            set preferredVolume(e) {
+                Re.savePref("volume", e)
+            }
+            get preferredQuality() {
+                return this.vars && this.vars.hd_def >= 0 ? ye(this.vars.hd_def) : Re.getPref("quality") || ue
+            }
+            set preferredQuality(e) {
+                Re.savePref("quality", e)
+            }
+            loadSuggestions() {
+                var e = this;
+                return function(e) {
+                    return function() {
+                        var t = this,
+                            i = arguments;
+                        return new Promise(function(s, a) {
+                            var r = e.apply(t, i);
+
+                            function l(e) {
+                                ni(r, s, a, l, n, "next", e)
+                            }
+
+                            function n(e) {
+                                ni(r, s, a, l, n, "throw", e)
+                            }
+                            l(void 0)
+                        })
                     }
-                }, t.dispatchEventFromId = function(t, e, i) {
-                    var n = ge(t),
-                        r = void 0;
-                    if (n) {
-                        try {
-                            r = new Event(e)
-                        } catch (t) {
-                            (r = document.createEvent("Event")).initEvent(e, !1, !1)
+                }(function*() {
+                    var t = e.getVideoId(),
+                        i = e.vars.suggestions_sig;
+                    if (i) {
+                        var s = {
+                                id: t,
+                                t_sex: e.vars.g || null,
+                                t_age: e.vars.a || null,
+                                uid: e.vars.viewer_id || null,
+                                sig: i
+                            },
+                            a = be("//vk.go.mail.ru/vk/video_recommend?" + ajx2q(s)),
+                            {
+                                response: r
+                            } = yield a.promise,
+                            l = JSON.parse(r);
+                        if (e.getVideoId() === t && l && l.results && l.results.length) {
+                            e._suggestionsQid = l.qid;
+                            var n = l.results,
+                                o = !(!e.vars.is_inline && !e.vars.is_embed);
+                            e.externalCall("fetchSuggestions", n.join(","), o)
                         }
-                        n.dispatchEvent(r)
                     }
-                }, Ae(t, [{
-                    key: "preferredVolume",
-                    get: function() {
-                        var t = St.getPref("volume");
-                        return "number" == typeof t ? Math.min(1, Math.max(0, t)) : 1
+                })()
+            }
+            checkSuggestionQuarterWatched(e) {
+                this.isInited() && this.vars.suggestions_qid && !this._suggestionQuartedWatched && !this.isPlayingLinearAd() && e / this.getDuration() > .25 && (this._suggestionQuartedWatched = !0, this.onSuggestionQuarterWatched())
+            }
+            isInited() {
+                return this.getState() !== r.EMPTY
+            }
+            getVars() {
+                return this.vars ? clone(this.vars) : null
+            }
+            getVideoId() {
+                return this.isInited() ? `${this.vars.oid}_${this.vars.vid}` : null
+            }
+            getVideoLink(e = !1) {
+                var t = "https://vk.com/video" + this.getVideoId();
+                return e && (t += "?t=" + Ye.toString(this.curTime())), t
+            }
+            getEmbedCode() {
+                var e = this.vars;
+                return `<iframe src="${`https://vk.com/video_ext.php?oid=${e.oid}&id=${e.vid}&hash=${e.embed_hash}`}" width="640" height="360" frameborder="0" allowfullscreen></iframe>`
+            }
+            getDuration() {
+                return this.isInited() ? this.isPlayingLinearAd() ? this.ads.getDuration() : this.media.getDuration() || intval(this.vars && this.vars.duration) : 0
+            }
+            getAvailableQualities() {
+                return this.media.getAvailableQualities()
+            }
+            isAutoQualityAvailable() {
+                return this.media.isAutoQualityAvailable()
+            }
+            isAutoQualityEnabled() {
+                return this.media.isAutoQualityEnabled()
+            }
+            getQuality() {
+                return this._quality || this.media.getQuality()
+            }
+            getQualityIndex() {
+                return function(e) {
+                    for (var t = 0; t < _e.length; t++)
+                        if (e <= _e[t].height) return t;
+                    return _e.length - 1
+                }(this.getQuality())
+            }
+            setQuality(e, {
+                setPreferred: t = !0
+            } = {}) {
+                if ((inArray(e, this.getAvailableQualities()) || e === de) && (e !== de || !this.isAutoQualityEnabled()) && (e !== this._quality || this.isAutoQualityEnabled())) {
+                    if (this.media.setQuality(e), this.onQualityChanged(e === de ? this.getQuality() : e), e !== de && t)(e < Math.max.apply(Math, this.getAvailableQualities()) || e > this.preferredQuality) && (this.preferredQuality = e);
+                    this.getState() === r.ERROR && this.changeState(r.PLAYING)
+                }
+            }
+            onQualityChanged(e) {
+                var t = this.isAutoQualityEnabled(),
+                    i = this._quality;
+                this._quality = e, this.trigger(p, e, i, t)
+            }
+            getAvailableSubtitleTracksInfo() {
+                return this.media.getAvailableSubtitleTracksInfo()
+            }
+            getSubtitleTrack() {
+                return this.media.getSubtitleTrack()
+            }
+            get preferredSubtitleLang() {
+                return Re.getPref("subtitle_lang")
+            }
+            set preferredSubtitleLang(e) {
+                Re.savePref("subtitle_lang", e)
+            }
+            getPreferredSubtitleTrack() {
+                var e = this.getAvailableSubtitleTracksInfo();
+                if (!e.length) return null;
+                if (1 === e.length) return e[0];
+                var t = this.vars.subtitles_langs,
+                    i = this.preferredSubtitleLang,
+                    s = vk.lang,
+                    a = null,
+                    r = null,
+                    l = null,
+                    n = null;
+                for (var o of e) {
+                    var h = o.lang;
+                    a || 3 !== t[h].lang_id || (a = o), r || 0 !== t[h].lang_id || (r = o), l || t[h].lang_id !== i || (l = o), n || t[h].lang_id !== s || (n = o)
+                }
+                return l || n || this.vars.cis && r || a || e[0]
+            }
+            switchSubtitleTrack(e = null, t = !1) {
+                var i = this.getAvailableSubtitleTracksInfo();
+                if (i.length)
+                    if (-1 === e || null === e && this.getSubtitleTrack() > -1) this.media.switchSubtitleTrack({
+                        trackId: -1
+                    });
+                    else
+                        for (var s of (null === e && (e = this.getPreferredSubtitleTrack().id), i))
+                            if (e === s.id) {
+                                var a = this.vars.subtitles_langs[s.lang].lang_id;
+                                return this.media.switchSubtitleTrack({
+                                    trackId: e
+                                }), this.preferredSubtitleLang = a, void(t && this.trigger(Y, s))
+                            }
+            }
+            play() {
+                this.getState() !== r.PLAYING && this.getState() !== r.ERROR && this.isInited() && (this.getState() === r.UNSTARTED && this.requestPlayAds(), this.changeState(r.PLAYING), this.isPlayingLinearAd() ? this.ads.play() : this.media.play(), this.externalCall("onVideoStreamPlaying", this.vars.oid, this.vars.vid))
+            }
+            pause() {
+                this.getState() === r.PLAYING && this.getState() !== r.ERROR && (this.isPlayingLinearAd() ? this.ads.pause() : this.media.pause(), this.changeState(r.PAUSED))
+            }
+            isBuffering() {
+                return this.media.isWaiting()
+            }
+            getBufferedRanges() {
+                return this.media.getBufferedRanges()
+            }
+            getThumbSrc() {
+                var e = this.vars;
+                if (e.stretch_vertical && e.is_inline && e.is_aurora) {
+                    var t = e.first_frame_800 || e.first_frame_320 || e.first_frame_160 || e.first_frame_130;
+                    if (t) return t
+                }
+                return e.jpg || ""
+            }
+            getLivePhase() {
+                return this._livePhase
+            }
+            changeLivePhase(e) {
+                if (e != this._livePhase) {
+                    var t = this._livePhase;
+                    this._livePhase = e, this.trigger(T, e, t), this.isActiveLive() || this.stopLiveHeartbeat()
+                }
+            }
+            isActiveLive() {
+                var e = this.getLivePhase();
+                return e == ae || e == le
+            }
+            isInLayer() {
+                return !!this.externalCall("isInLayer", this.getVideoId())
+            }
+            startLiveHeartbeat() {
+                var e = [],
+                    t = {},
+                    i = () => {
+                        var s = this.isInLayer(),
+                            a = this.stats.getLiveHeartbeatStats();
+                        ajax.post("al_video.php?act=live_heartbeat", {
+                            oid: this.vars.oid,
+                            vid: this.vars.vid,
+                            user_id: this.vars.viewer_id,
+                            need_friends: s ? 1 : 0,
+                            shown_friends: e.join(","),
+                            stats: a ? JSON.stringify(a) : null,
+                            hash: this.vars.action_hash
+                        }, {
+                            onDone: (i, s) => {
+                                s && (s = s.map(e => t[e.id] || (t[e.id] = e)), e = s.map(e => e.id)), this.externalCall("onLiveViewersCountChange", this.getVideoId(), i, s)
+                            },
+                            onFail: () => !0
+                        }), this._liveHeartbeatTimeout = setTimeout(i, 5e3)
+                    };
+                i()
+            }
+            stopLiveHeartbeat() {
+                this._liveHeartbeatTimeout && (clearTimeout(this._liveHeartbeatTimeout), this._liveHeartbeatTimeout = null, ajax.post("al_video.php?act=live_stop_heartbeat", {
+                    oid: this.vars.oid,
+                    vid: this.vars.vid,
+                    user_id: this.vars.viewer_id,
+                    hash: this.vars.action_hash
+                }, {
+                    onFail: () => !0
+                }))
+            }
+            checkLivePhase(e) {
+                var t = this.getVideoId();
+                ajax.post("al_video.php?act=check_live_phase", {
+                    oid: this.vars.oid,
+                    vid: this.vars.vid,
+                    hash: this.vars.action_hash,
+                    media_url: this.media.getContentUrl()
+                }, {
+                    onDone: i => {
+                        this.getVideoId() == t && e(i)
                     },
-                    set: function(t) {
-                        St.savePref("volume", t)
+                    onFail: () => (setTimeout(() => {
+                        this.getVideoId() == t && this.checkLivePhase(e)
+                    }, 3e3), !0)
+                })
+            }
+            togglePlay(e) {
+                void 0 === e && (e = this.getState() !== r.PLAYING), e ? this.play() : this.pause()
+            }
+            getMediaProviderType() {
+                return this.media.providerType()
+            }
+            requestPlayAds() {
+                var e = this.vars.live && this.vars.live != ne;
+                this.canShowAds() && !e && (this.media.preload(), this.media.disablePlayback(), this.ads.start("preroll", () => {
+                    this.isInited() && setTimeout(() => {
+                        this.media.enablePlayback(), this.ads.start("overlay")
+                    })
+                }))
+            }
+            onMediaPlaying() {
+                this._startedPlaying = !0, this.changeState(r.PLAYING)
+            }
+            onMediaPause() {
+                this.changeState(r.PAUSED)
+            }
+            onEnded() {
+                this.isPlayingOverlayAd() && this.ads.stop();
+                var e = this.vars.live && this.vars.live != ne;
+                !this.canShowAds() || e || this._didEnded ? (this.changeState(r.ENDED), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler(null, !0)) : (this.media.disablePlayback(), this.ads.start("postroll", () => {
+                    this.changeState(r.ENDED), this.media.enablePlayback()
+                })), this._didEnded = !0
+            }
+            onError(e) {
+                this.errorData = e, this.changeState(r.ERROR), this.ads.cancelAds(), this.externalCall("onVideoPlayError")
+            }
+            onUiSeekStart() {
+                this.getState() === r.ENDED && this.changeState(r.PAUSED)
+            }
+            canShowAds() {
+                var e = browser.msie && browser.version <= 10;
+                return !this.vars.no_ads && !e && this.getLivePhase() !== he
+            }
+            curTime() {
+                return this.isInited() ? this.isPlayingLinearAd() ? this.ads.curTime() : this.media.curTime() : 0
+            }
+            seekTo(e, t = !0) {
+                if (this.getState() !== r.ERROR) {
+                    var i = this.getLivePhase();
+                    i && i !== ne || (e = Math.max(0, Math.min(this.getDuration(), e))) !== this.media.curTime() && (this.media.seekTo(e), this.trigger(m, e), t && this.getState() === r.UNSTARTED && this.play(), this.getState() === r.ENDED && this.changeState(r.PAUSED))
+                }
+            }
+            seekToPercent(e) {
+                var t = this.getDuration() * e;
+                return this.seekTo(t)
+            }
+            seekBy(e) {
+                return this.seekTo(this.curTime() + e)
+            }
+            getVolume() {
+                return this._volume
+            }
+            setVolume(e, t = !0) {
+                e = Math.max(0, Math.min(1, e)), this.media.setVolume(e), this.ads.setVolume(e), this._volume = e, this._muted = !e, t && (this.preferredVolume = e)
+            }
+            toggleMute(e = !this.isMuted(), t = !0) {
+                var i = e ? 0 : this._volume || oi;
+                this.media.setVolume(i), this.ads.setVolume(i), this._muted = e, t && (this.preferredVolume = i)
+            }
+            isMuted() {
+                return !!this._muted
+            }
+            toggleLoop(e = !this.isLooped()) {
+                return this.media.toggleLoop(e)
+            }
+            isLooped() {
+                return this.media.isLooped()
+            }
+            setPlaybackRate(e) {
+                this.media.setPlaybackRate(e)
+            }
+            getPlaybackRate() {
+                return this.media.getPlaybackRate()
+            }
+            canRotateVideo() {
+                return this.media.canRotateVideo()
+            }
+            rotateVideo(e = -90) {
+                this.media.rotateVideo(e)
+            }
+            isStartedPlaying() {
+                return !!this._startedPlaying
+            }
+            getPlayedRanges() {
+                return this.media.getPlayedRanges()
+            }
+            getPlayedRangesString() {
+                return this.media.getPlayedRangesString()
+            }
+            getPlayedSeconds() {
+                return this.media.getPlayedSeconds()
+            }
+            canChangePlaybackRate() {
+                return "flash" != this.media.providerType()
+            }
+            canExpand() {
+                return "flash" != this.media.providerType() && !(this.isActiveLive() && this.vars.force_rtmp && this.isFlashSupported())
+            }
+            expand() {
+                this.isAutoplay() && (this.expandFromAutoplay = !0, this.pause());
+                var e = this.vars.list_id,
+                    t = Ye.toString(this.curTime());
+                this.externalCall("onOpenInPopup", this.getVideoId(), e, t)
+            }
+            onExpanded() {
+                var e = this.expandFromAutoplay || this.isAutoplay();
+                this.vars.is_inline = 0, setTimeout(() => {
+                    this.onTouchedByUser(), this.resize(), this.isPlayingLinearAd() ? this.ads.play() : this.media.play(), this.play(), this.trigger(y), e && this.vars.autoplay_expand_restart && !this.isActiveLive() && (this.ads.cancelAds(), this.seekTo(0), this.requestPlayAds())
+                }, 0)
+            }
+            toggleFullscreen() {
+                yt.a && (this.isFullscreen() ? yt.a.exit() : yt.a.request(this.el))
+            }
+            isFullscreen() {
+                return yt.a.element === this.el
+            }
+            onFullscreenChange() {
+                this.trigger(_, this.isFullscreen()), this.resize(), this.externalCall("fullscreen", this.isFullscreen())
+            }
+            getSize(e = !1) {
+                if (!this._size || e) {
+                    var t = this.el.getBoundingClientRect();
+                    this._size = [t.width, t.height]
+                }
+                return this._size
+            }
+            resize() {
+                addClass(this.el, "no_transition");
+                var e = this.getSize(!0);
+                this.trigger(o, ...e), removeClassDelayed(this.el, "no_transition")
+            }
+            isMinimized() {
+                return !(!window.Videoview || !Videoview.isMinimized())
+            }
+            getEnvLayoutType() {
+                return window.Videoview ? Videoview.getLayoutType() : ""
+            }
+            getEnvModule() {
+                if (window.Videoview) {
+                    var e = Videoview.getVideoModule(this.getVideoId());
+                    if (e) return e
+                }
+                return cur.module || ""
+            }
+            isControlsVisible() {
+                return this.ui.isControlsVisible()
+            }
+            isLoadingAds() {
+                return this.ads.isLoading()
+            }
+            onLinearAdsStarted() {
+                this.media.disablePlayback()
+            }
+            onLinearAdsCompleted() {
+                this.media.enablePlayback()
+            }
+            isPlayingLinearAd() {
+                return this.ads.isPlayingLinear()
+            }
+            isPlayingOverlayAd() {
+                return this.ads.isPlayingOverlay()
+            }
+            isAutoplay() {
+                return this.isFromAutoplay() && !this.isTouchedByUser()
+            }
+            isFromAutoplay() {
+                return this.isInited() && !!this.vars.from_autoplay
+            }
+            onTouchedByUser() {
+                this.isTouchedByUser() || (this.touchedByUser = !0, this.isFromAutoplay() && (this.ui.onTouchedByUser(), this.externalCall("onPlayerTouchedByUser"), setTimeout(() => {
+                    this.toggleMute(!1), this.getState() === r.PLAYING && this.externalCall("onVideoStreamPlaying", this.vars.oid, this.vars.vid)
+                }, 0)))
+            }
+            isTouchedByUser() {
+                return !!this.touchedByUser
+            }
+            onSuggestionsShown(e = !1, t = !1) {
+                var i = t ? this._suggestionsQid : null;
+                this.externalCall("onSuggestionsShown", i, this.getVideoId(), e)
+            }
+            onSuggestionClicked(e, t = !1, i = 1, s = 0) {
+                this.externalCall("onSuggestionClick", e, this._suggestionsQid, i, s, t)
+            }
+            onSuggestionQuarterWatched() {
+                this.externalCall("onSuggestionQuarterWatched", this.vars.suggestions_qid, this.getVideoId(), this.curTime())
+            }
+            onSuggestionsReplayClicked() {
+                this.togglePlay(), this.externalCall("onSuggestionsReplayClicked")
+            }
+            nextVideo(e, t, i) {
+                this.externalCall("onVideoNext", e, t, i)
+            }
+            likeVideo(e) {
+                this.onLiked(!this.videoLiked), this.externalCall("onLike", e)
+            }
+            onLiked(e) {
+                this.videoLiked = !!e, this.trigger(S, this.videoLiked)
+            }
+            shareVideo(e) {
+                this.isFullscreen() && this.toggleFullscreen(), this.externalCall("onShare", e)
+            }
+            addVideo(e) {
+                this.onAdded(), this.videoAdded ? this.externalCall("onAdd", this.getVideoId(), this.vars.add_hash, e) : this.externalCall("onRemove", e)
+            }
+            donate(e) {
+                this.isFullscreen() && this.toggleFullscreen(), this.externalCall("onDonate", e)
+            }
+            bookmark(e) {
+                this.videoBookmarked ? this.externalCall("onRemoveBookmark", e) : this.externalCall("onAddBookmark", e), this.onBookmarked()
+            }
+            onBookmarked() {
+                this.videoBookmarked = !this.videoBookmarked, this.trigger(w, this.videoBookmarked)
+            }
+            onAdded() {
+                this.videoAdded = !this.videoAdded, this.trigger(k, this.videoAdded)
+            }
+            subscribeToAuthor(e) {
+                var t = !this.isSubscribed;
+                this.externalCall("onSubscribe", t, e)
+            }
+            onSubscribed(e) {
+                this.isSubscribed = !!e, this.trigger(C, this.isSubscribed)
+            }
+            nextTimerReset() {
+                this.nextTimerStopped || (this.nextTimerStopped = !0, this.trigger(b))
+            }
+            nextTimerStart() {
+                this.nextTimerStopped && (this.nextTimerStopped = !1, this.trigger(f))
+            }
+            setSuggestions(e) {
+                this._suggestions = e
+            }
+            pushDonation(e, t) {
+                this.isActiveLive() && this.trigger(E, e, t)
+            }
+            pushNotice(e) {
+                this.ui.pushNotice(e)
+            }
+            pushLiveMidroll(e) {
+                this.canShowAds() && this.isActiveLive() && (e ? this.ads.cancelAds() : this.ads.start("_live_midroll"))
+            }
+            onStickersPurchased(e) {
+                this.ui.onStickersPurchased(e)
+            }
+            getSuggestions() {
+                return this._suggestions || []
+            }
+            getNextVideos() {
+                return window.Videoview ? Videoview.getNextVideosData() : []
+            }
+            nextTimerEnabled() {
+                return !!window.VideoPlaylist && VideoPlaylist.isAutoplayEnabled()
+            }
+            externalCall(e, ...t) {
+                try {
+                    return window.videoCallback && videoCallback([e, ...t])
+                } catch (t) {
+                    this.debugLog(["error calling callback " + e, t], {
+                        type: "warn"
+                    })
+                }
+            }
+            debugLog(e, {
+                type: t = "log",
+                force: i = !1
+            } = {}) {
+                if (this.isInited() && (window.__dev || i)) try {
+                    console[t](...["%c videoplayer ", "background:#9ddcf7;"].concat(e))
+                } catch (e) {}
+            }
+            changeState(e, t = !1) {
+                if (this.isInited() || t)
+                    if (e) {
+                        if (e === this.state) {
+                            if (e != r.ERROR) return
+                        } else this.prevState = this.state, this.state = e, e != r.ERROR && (this.errorData = null);
+                        this.trigger(d, e, this.prevState)
+                    } else this.debugLog("trying to change state to undefined", {
+                        type: "warn"
+                    })
+            }
+            getState() {
+                return this.state
+            }
+            getErrorData() {
+                return this.errorData || ""
+            }
+            trigger(e, ...t) {
+                void 0 !== e ? this._events.emit(e, ...t) : this.debugLog("trying to trigger undefined event", {
+                    type: "warn"
+                })
+            }
+            on(e, t) {
+                if (void 0 !== e) return this._events.on(e, t);
+                this.debugLog("trying to set listener to undefined event", {
+                    type: "warn"
+                })
+            }
+            off(e, t) {
+                if (void 0 !== e) return this._events.off(e, t);
+                this.debugLog("trying to unset listener from undefined event", {
+                    type: "warn"
+                })
+            }
+            destroy() {
+                this.deinitVideo(), this.trigger(h), this._events.removeAllListeners(), window.removeEventListener("resize", this._resizeHandler), yt.a && document.removeEventListener(yt.a.raw.fullscreenchange, this._fsChangeHandler)
+            }
+            getDebugData() {
+                if (!this.isInited()) return "";
+                var e = [];
+                return e.push(["Video ID", this.getVideoId()]), e.push(["Content host", this.media.getContentHost()]), e.push(["Media provider", this.media.providerType() || "none"]), e.push(["Quality", this.getQuality()]), e.push(["Auto quality", this.isAutoQualityAvailable() ? this.isAutoQualityEnabled() ? "enabled" : "disabled" : null]), e.push(["Position", this.curTime()]), e.push(["Player state", this.getState()]), e.push(["Live Phase", this.getLivePhase()]), e.push(["Player size", this.getSize().join("x")]), e.push(["Module", window.Videoview ? Videoview.getVideoModule() : cur.module]), e.push(["Error code", this.media.getErrorCode()]), e.push(["Errors log", this.media.getErrorsLog()]), this.vars.live ? (e.push(["Live HLS", this.vars.hls]), e.push(["Live RTMP", this.vars.rtmp]), e.push(["Postlive MP4", this.vars.postlive_mp4])) : e.push(["Hls manifest", this.vars.hls]), e.filter(([e, t]) => null != t).map(e => e.join(": ")).join("\n")
+            }
+            isHlsSupported() {
+                return window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"')
+            }
+            isFlashSupported() {
+                return browser.flash >= 24
+            }
+            getPreloadedQuality() {
+                return di[this.getVideoId()]
+            }
+            setActionButton(e) {
+                this.ui.actionButton.setLink(e)
+            }
+            static get Events() {
+                return s
+            }
+            static get States() {
+                return r
+            }
+            static get LivePhases() {
+                return a
+            }
+            static preload(e) {
+                var t = `${e.oid}_${e.vid}`;
+                if (e.hls_raw && !di[t]) {
+                    for (var i, s = [], a = {}, r = /#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)/g; i = r.exec(e.hls_raw);) {
+                        var [, l, n] = i;
+                        if ((l = m(l)).RESOLUTION) {
+                            var [o, h] = l.RESOLUTION.split("x"), d = me(+o, +h);
+                            s.push(d), a[d] = n
+                        }
                     }
-                }, {
-                    key: "preferredQuality",
-                    get: function() {
-                        return this.vars && this.vars.hd_def >= 0 ? dt(this.vars.hd_def) : St.getPref("quality") || 480
-                    },
-                    set: function(t) {
-                        St.savePref("quality", t)
+                    if (s.length) {
+                        var u = Math.min(...s),
+                            c = Math.max(...s),
+                            p = Re.getPref("abr_quality") || ue,
+                            g = Math.max(u, Math.min(p, c, ue)),
+                            v = a[g];
+                        if (v) {
+                            var _ = v.replace(/index-(.+).m3u8/, "seg-1-$1.ts");
+                            be(v), be(_), di[t] = g
+                        }
                     }
-                }, {
-                    key: "preferredSubtitleLang",
-                    get: function() {
-                        return St.getPref("subtitle_lang")
-                    },
-                    set: function(t) {
-                        St.savePref("subtitle_lang", t)
+                }
+
+                function m(e) {
+                    var t = {};
+                    return e.split(",").forEach(e => {
+                        var [i, s] = e.split("=");
+                        t[i] = s
+                    }), t
+                }
+            }
+            static dispatchEventFromId(e, t, i) {
+                var s, a = ge(e);
+                if (a) {
+                    try {
+                        s = new Event(t)
+                    } catch (e) {
+                        (s = document.createEvent("Event")).initEvent(t, !1, !1)
                     }
-                }], [{
-                    key: "Events",
-                    get: function() {
-                        return n
-                    }
-                }, {
-                    key: "States",
-                    get: function() {
-                        return a
-                    }
-                }, {
-                    key: "LivePhases",
-                    get: function() {
-                        return r
-                    }
-                }]), t
-            }(),
-            Ie = Ve;
-        window.WeakSet && (Ve._instances = new window.WeakSet);
-        var Me = {};
-        window.Promise || (window.Promise = o), window.Symbol || (window.Symbol = s), window.VideoPlayer = Ie;
+                    a.dispatchEvent(s)
+                }
+            }
+        }
+        window.WeakSet && (hi._instances = new window.WeakSet);
+        var di = {};
+        window.VideoPlayer = hi;
         try {
             stManager.done("videoplayer.js")
-        } catch (t) {}
-    },
-    ccE7: function(t, e, i) {
-        var n = i("Ojgd"),
-            r = i("Jes0");
-        t.exports = function(t) {
-            return function(e, i) {
-                var o, s, a = String(r(e)),
-                    l = n(i),
-                    u = a.length;
-                return l < 0 || l >= u ? t ? "" : void 0 : (o = a.charCodeAt(l)) < 55296 || o > 56319 || l + 1 === u || (s = a.charCodeAt(l + 1)) < 56320 || s > 57343 ? t ? a.charAt(l) : o : t ? a.slice(l, l + 2) : s - 56320 + (o - 55296 << 10) + 65536
-            }
-        }
-    },
-    eUtF: function(t, e, i) {
-        t.exports = !i("jmDH") && !i("KUxP")(function() {
-            return 7 != Object.defineProperty(i("Hsns")("div"), "a", {
-                get: function() {
-                    return 7
-                }
-            }).a
-        })
-    },
-    eaoh: function(t, e) {
-        t.exports = function(t) {
-            if ("function" != typeof t) throw TypeError(t + " is not a function!");
-            return t
-        }
-    },
-    fNZA: function(t, e, i) {
-        var n = i("QMMT"),
-            r = i("UWiX")("iterator"),
-            o = i("SBuE");
-        t.exports = i("WEpk").getIteratorMethod = function(t) {
-            if (void 0 != t) return t[r] || t["@@iterator"] || o[n(t)]
-        }
-    },
-    fpC5: function(t, e, i) {
-        var n = i("2faE"),
-            r = i("5K7Z"),
-            o = i("w6GO");
-        t.exports = i("jmDH") ? Object.defineProperties : function(t, e) {
-            r(t);
-            for (var i, s = o(e), a = s.length, l = 0; a > l;) n.f(t, i = s[l++], e[i]);
-            return t
-        }
-    },
-    hDam: function(t, e) {
-        t.exports = function() {}
-    },
-    j2DC: function(t, e, i) {
-        "use strict";
-        var n = i("oVml"),
-            r = i("rr1i"),
-            o = i("RfKB"),
-            s = {};
-        i("NegM")(s, i("UWiX")("iterator"), function() {
-            return this
-        }), t.exports = function(t, e, i) {
-            t.prototype = n(s, {
-                next: r(1, i)
-            }), o(t, e + " Iterator")
-        }
-    },
-    jmDH: function(t, e, i) {
-        t.exports = !i("KUxP")(function() {
-            return 7 != Object.defineProperty({}, "a", {
-                get: function() {
-                    return 7
-                }
-            }).a
-        })
-    },
-    kAMH: function(t, e, i) {
-        var n = i("a0xu");
-        t.exports = Array.isArray || function(t) {
-            return "Array" == n(t)
-        }
-    },
-    kTiW: function(t, e, i) {
-        t.exports = i("NegM")
-    },
-    ls82: function(t, e, i) {
-        (function(e) {
-            ! function(e) {
-                "use strict";
-                var i, n = Object.prototype,
-                    r = n.hasOwnProperty,
-                    o = "function" == typeof Symbol ? Symbol : {},
-                    s = o.iterator || "@@iterator",
-                    a = o.asyncIterator || "@@asyncIterator",
-                    l = o.toStringTag || "@@toStringTag",
-                    u = "object" == typeof t,
-                    h = e.regeneratorRuntime;
-                if (h) u && (t.exports = h);
-                else {
-                    (h = e.regeneratorRuntime = u ? t.exports : {}).wrap = b;
-                    var c = "suspendedStart",
-                        d = "suspendedYield",
-                        p = "executing",
-                        f = "completed",
-                        y = {},
-                        v = {};
-                    v[s] = function() {
-                        return this
-                    };
-                    var g = Object.getPrototypeOf,
-                        _ = g && g(g(V([])));
-                    _ && _ !== n && r.call(_, s) && (v = _);
-                    var m = L.prototype = S.prototype = Object.create(v);
-                    k.prototype = m.constructor = L, L.constructor = k, L[l] = k.displayName = "GeneratorFunction", h.isGeneratorFunction = function(t) {
-                        var e = "function" == typeof t && t.constructor;
-                        return !!e && (e === k || "GeneratorFunction" === (e.displayName || e.name))
-                    }, h.mark = function(t) {
-                        return Object.setPrototypeOf ? Object.setPrototypeOf(t, L) : (t.__proto__ = L, l in t || (t[l] = "GeneratorFunction")), t.prototype = Object.create(m), t
-                    }, h.awrap = function(t) {
-                        return {
-                            __await: t
-                        }
-                    }, T(E.prototype), E.prototype[a] = function() {
-                        return this
-                    }, h.AsyncIterator = E, h.async = function(t, e, i, n) {
-                        var r = new E(b(t, e, i, n));
-                        return h.isGeneratorFunction(e) ? r : r.next().then(function(t) {
-                            return t.done ? t.value : r.next()
-                        })
-                    }, T(m), m[l] = "Generator", m[s] = function() {
-                        return this
-                    }, m.toString = function() {
-                        return "[object Generator]"
-                    }, h.keys = function(t) {
-                        var e = [];
-                        for (var i in t) e.push(i);
-                        return e.reverse(),
-                            function i() {
-                                for (; e.length;) {
-                                    var n = e.pop();
-                                    if (n in t) return i.value = n, i.done = !1, i
-                                }
-                                return i.done = !0, i
-                            }
-                    }, h.values = V, x.prototype = {
-                        constructor: x,
-                        reset: function(t) {
-                            if (this.prev = 0, this.next = 0, this.sent = this._sent = i, this.done = !1, this.delegate = null, this.method = "next", this.arg = i, this.tryEntries.forEach(A), !t)
-                                for (var e in this) "t" === e.charAt(0) && r.call(this, e) && !isNaN(+e.slice(1)) && (this[e] = i)
-                        },
-                        stop: function() {
-                            this.done = !0;
-                            var t = this.tryEntries[0].completion;
-                            if ("throw" === t.type) throw t.arg;
-                            return this.rval
-                        },
-                        dispatchException: function(t) {
-                            if (this.done) throw t;
-                            var e = this;
-
-                            function n(n, r) {
-                                return a.type = "throw", a.arg = t, e.next = n, r && (e.method = "next", e.arg = i), !!r
-                            }
-                            for (var o = this.tryEntries.length - 1; o >= 0; --o) {
-                                var s = this.tryEntries[o],
-                                    a = s.completion;
-                                if ("root" === s.tryLoc) return n("end");
-                                if (s.tryLoc <= this.prev) {
-                                    var l = r.call(s, "catchLoc"),
-                                        u = r.call(s, "finallyLoc");
-                                    if (l && u) {
-                                        if (this.prev < s.catchLoc) return n(s.catchLoc, !0);
-                                        if (this.prev < s.finallyLoc) return n(s.finallyLoc)
-                                    } else if (l) {
-                                        if (this.prev < s.catchLoc) return n(s.catchLoc, !0)
-                                    } else {
-                                        if (!u) throw new Error("try statement without catch or finally");
-                                        if (this.prev < s.finallyLoc) return n(s.finallyLoc)
-                                    }
-                                }
-                            }
-                        },
-                        abrupt: function(t, e) {
-                            for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-                                var n = this.tryEntries[i];
-                                if (n.tryLoc <= this.prev && r.call(n, "finallyLoc") && this.prev < n.finallyLoc) {
-                                    var o = n;
-                                    break
-                                }
-                            }
-                            o && ("break" === t || "continue" === t) && o.tryLoc <= e && e <= o.finallyLoc && (o = null);
-                            var s = o ? o.completion : {};
-                            return s.type = t, s.arg = e, o ? (this.method = "next", this.next = o.finallyLoc, y) : this.complete(s)
-                        },
-                        complete: function(t, e) {
-                            if ("throw" === t.type) throw t.arg;
-                            return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y
-                        },
-                        finish: function(t) {
-                            for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-                                var i = this.tryEntries[e];
-                                if (i.finallyLoc === t) return this.complete(i.completion, i.afterLoc), A(i), y
-                            }
-                        },
-                        catch: function(t) {
-                            for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-                                var i = this.tryEntries[e];
-                                if (i.tryLoc === t) {
-                                    var n = i.completion;
-                                    if ("throw" === n.type) {
-                                        var r = n.arg;
-                                        A(i)
-                                    }
-                                    return r
-                                }
-                            }
-                            throw new Error("illegal catch attempt")
-                        },
-                        delegateYield: function(t, e, n) {
-                            return this.delegate = {
-                                iterator: V(t),
-                                resultName: e,
-                                nextLoc: n
-                            }, "next" === this.method && (this.arg = i), y
-                        }
-                    }
-                }
-
-                function b(t, e, i, n) {
-                    var r = e && e.prototype instanceof S ? e : S,
-                        o = Object.create(r.prototype),
-                        s = new x(n || []);
-                    return o._invoke = function(t, e, i) {
-                        var n = c;
-                        return function(r, o) {
-                            if (n === p) throw new Error("Generator is already running");
-                            if (n === f) {
-                                if ("throw" === r) throw o;
-                                return I()
-                            }
-                            for (i.method = r, i.arg = o;;) {
-                                var s = i.delegate;
-                                if (s) {
-                                    var a = C(s, i);
-                                    if (a) {
-                                        if (a === y) continue;
-                                        return a
-                                    }
-                                }
-                                if ("next" === i.method) i.sent = i._sent = i.arg;
-                                else if ("throw" === i.method) {
-                                    if (n === c) throw n = f, i.arg;
-                                    i.dispatchException(i.arg)
-                                } else "return" === i.method && i.abrupt("return", i.arg);
-                                n = p;
-                                var l = w(t, e, i);
-                                if ("normal" === l.type) {
-                                    if (n = i.done ? f : d, l.arg === y) continue;
-                                    return {
-                                        value: l.arg,
-                                        done: i.done
-                                    }
-                                }
-                                "throw" === l.type && (n = f, i.method = "throw", i.arg = l.arg)
-                            }
-                        }
-                    }(t, i, s), o
-                }
-
-                function w(t, e, i) {
-                    try {
-                        return {
-                            type: "normal",
-                            arg: t.call(e, i)
-                        }
-                    } catch (t) {
-                        return {
-                            type: "throw",
-                            arg: t
-                        }
-                    }
-                }
-
-                function S() {}
-
-                function k() {}
-
-                function L() {}
-
-                function T(t) {
-                    ["next", "throw", "return"].forEach(function(e) {
-                        t[e] = function(t) {
-                            return this._invoke(e, t)
-                        }
-                    })
-                }
-
-                function E(t) {
-                    function i(e, n, o, s) {
-                        var a = w(t[e], t, n);
-                        if ("throw" !== a.type) {
-                            var l = a.arg,
-                                u = l.value;
-                            return u && "object" == typeof u && r.call(u, "__await") ? Promise.resolve(u.__await).then(function(t) {
-                                i("next", t, o, s)
-                            }, function(t) {
-                                i("throw", t, o, s)
-                            }) : Promise.resolve(u).then(function(t) {
-                                l.value = t, o(l)
-                            }, s)
-                        }
-                        s(a.arg)
-                    }
-                    var n;
-                    "object" == typeof e.process && e.process.domain && (i = e.process.domain.bind(i)), this._invoke = function(t, e) {
-                        function r() {
-                            return new Promise(function(n, r) {
-                                i(t, e, n, r)
-                            })
-                        }
-                        return n = n ? n.then(r, r) : r()
-                    }
-                }
-
-                function C(t, e) {
-                    var n = t.iterator[e.method];
-                    if (n === i) {
-                        if (e.delegate = null, "throw" === e.method) {
-                            if (t.iterator.return && (e.method = "return", e.arg = i, C(t, e), "throw" === e.method)) return y;
-                            e.method = "throw", e.arg = new TypeError("The iterator does not provide a 'throw' method")
-                        }
-                        return y
-                    }
-                    var r = w(n, t.iterator, e.arg);
-                    if ("throw" === r.type) return e.method = "throw", e.arg = r.arg, e.delegate = null, y;
-                    var o = r.arg;
-                    return o ? o.done ? (e[t.resultName] = o.value, e.next = t.nextLoc, "return" !== e.method && (e.method = "next", e.arg = i), e.delegate = null, y) : o : (e.method = "throw", e.arg = new TypeError("iterator result is not an object"), e.delegate = null, y)
-                }
-
-                function P(t) {
-                    var e = {
-                        tryLoc: t[0]
-                    };
-                    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e)
-                }
-
-                function A(t) {
-                    var e = t.completion || {};
-                    e.type = "normal", delete e.arg, t.completion = e
-                }
-
-                function x(t) {
-                    this.tryEntries = [{
-                        tryLoc: "root"
-                    }], t.forEach(P, this), this.reset(!0)
-                }
-
-                function V(t) {
-                    if (t) {
-                        var e = t[s];
-                        if (e) return e.call(t);
-                        if ("function" == typeof t.next) return t;
-                        if (!isNaN(t.length)) {
-                            var n = -1,
-                                o = function e() {
-                                    for (; ++n < t.length;)
-                                        if (r.call(t, n)) return e.value = t[n], e.done = !1, e;
-                                    return e.value = i, e.done = !0, e
-                                };
-                            return o.next = o
-                        }
-                    }
-                    return {
-                        next: I
-                    }
-                }
-
-                function I() {
-                    return {
-                        value: i,
-                        done: !0
-                    }
-                }
-            }("object" == typeof e ? e : "object" == typeof window ? window : "object" == typeof self ? self : this)
-        }).call(this, i("yLpj"))
-    },
-    mqlF: function(t, e) {
-        e.f = Object.getOwnPropertySymbols
-    },
-    oVml: function(t, e, i) {
-        var n = i("5K7Z"),
-            r = i("fpC5"),
-            o = i("FpHa"),
-            s = i("VVlx")("IE_PROTO"),
-            a = function() {},
-            l = function() {
-                var t, e = i("Hsns")("iframe"),
-                    n = o.length;
-                for (e.style.display = "none", i("MvwC").appendChild(e), e.src = "javascript:", (t = e.contentWindow.document).open(), t.write("<script>document.F=Object<\/script>"), t.close(), l = t.F; n--;) delete l.prototype[o[n]];
-                return l()
-            };
-        t.exports = Object.create || function(t, e) {
-            var i;
-            return null !== t ? (a.prototype = n(t), i = new a, a.prototype = null, i[s] = t) : i = l(), void 0 === e ? i : r(i, e)
-        }
-    },
-    oioR: function(t, e, i) {
-        var n = i("2GTP"),
-            r = i("sNwI"),
-            o = i("NwJ3"),
-            s = i("5K7Z"),
-            a = i("tEej"),
-            l = i("fNZA");
-        t.exports = function(t, e, i, u, h) {
-            var c, d, p, f = h ? function() {
-                    return t
-                } : l(t),
-                y = n(i, u, e ? 2 : 1),
-                v = 0;
-            if ("function" != typeof f) throw TypeError(t + " is not iterable!");
-            if (o(f))
-                for (c = a(t.length); c > v; v++) e ? y(s(d = t[v])[0], d[1]) : y(t[v]);
-            else
-                for (p = f.call(t); !(d = p.next()).done;) r(p, y, d.value, e)
-        }
-    },
-    q6LJ: function(t, e, i) {
-        var n, r, o, s = i("5T2Y"),
-            a = i("QXhf").set,
-            l = s.MutationObserver || s.WebKitMutationObserver,
-            u = s.process,
-            h = s.Promise,
-            c = "process" == i("a0xu")(u),
-            d = function() {
-                var t;
-                for (c && (t = u.domain) && t.exit(); n;)(0, n.fn)(), n = n.next;
-                r = void 0, t && t.enter()
-            };
-        if (c) o = function() {
-            u.nextTick(d)
-        };
-        else if (l) {
-            var p = !0,
-                f = document.createTextNode("");
-            new l(d).observe(f, {
-                characterData: !0
-            }), o = function() {
-                f.data = p = !p
-            }
-        } else o = h && h.resolve ? function() {
-            h.resolve().then(d)
-        } : function() {
-            a.call(s, d)
-        };
-        t.exports = function(t) {
-            var e = {
-                fn: t,
-                next: void 0
-            };
-            r && (r.next = e), n || (n = e, o()), r = e
-        }
-    },
-    rr1i: function(t, e) {
-        t.exports = function(t, e) {
-            return {
-                enumerable: !(1 & t),
-                configurable: !(2 & t),
-                writable: !(4 & t),
-                value: e
-            }
-        }
-    },
-    sNwI: function(t, e, i) {
-        var n = i("5K7Z");
-        t.exports = function(t, e, i, r) {
-            try {
-                return r ? e(n(i)[0], i[1]) : e(i)
-            } catch (e) {
-                var o = t.return;
-                throw void 0 !== o && n(o.call(t)), e
-            }
-        }
-    },
-    tEej: function(t, e, i) {
-        var n = i("Ojgd"),
-            r = Math.min;
-        t.exports = function(t) {
-            return t > 0 ? r(n(t), 9007199254740991) : 0
-        }
-    },
-    uOPS: function(t, e) {
-        t.exports = !0
-    },
-    vwuL: function(t, e, i) {
-        var n = i("NV0k"),
-            r = i("rr1i"),
-            o = i("NsO/"),
-            s = i("G8Mo"),
-            a = i("B+OT"),
-            l = i("eUtF"),
-            u = Object.getOwnPropertyDescriptor;
-        e.f = i("jmDH") ? u : function(t, e) {
-            if (t = o(t), e = s(e, !0), l) try {
-                return u(t, e)
-            } catch (t) {}
-            if (a(t, e)) return r(!n.f.call(t, e), t[e])
-        }
-    },
-    "w2d+": function(t, e, i) {
-        "use strict";
-        var n = i("hDam"),
-            r = i("UO39"),
-            o = i("SBuE"),
-            s = i("NsO/");
-        t.exports = i("MPFp")(Array, "Array", function(t, e) {
-            this._t = s(t), this._i = 0, this._k = e
-        }, function() {
-            var t = this._t,
-                e = this._k,
-                i = this._i++;
-            return !t || i >= t.length ? (this._t = void 0, r(1)) : r(0, "keys" == e ? i : "values" == e ? t[i] : [i, t[i]])
-        }, "values"), o.Arguments = o.Array, n("keys"), n("values"), n("entries")
-    },
-    w6GO: function(t, e, i) {
-        var n = i("5vMV"),
-            r = i("FpHa");
-        t.exports = Object.keys || function(t) {
-            return n(t, r)
-        }
-    },
-    wgeU: function(t, e) {}
+        } catch (e) {}
+    }
 });

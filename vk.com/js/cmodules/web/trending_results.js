@@ -42,16 +42,16 @@
         return n.d(t, "a", t), t
     }, n.o = function(e, t) {
         return Object.prototype.hasOwnProperty.call(e, t)
-    }, n.p = "", n(n.s = 147)
+    }, n.p = "", n(n.s = 148)
 }({
-    147: function(e, t, n) {
+    148: function(e, t, n) {
         e.exports = n("lejR")
     },
     lejR: function(e, t, n) {
         "use strict";
         n.r(t);
         var r = {
-            initEmbedPost: function(e, t, n) {
+            initEmbedPost(e, t, n) {
                 ge("trending_results_embed") && e && t && n && VK && VK.Widgets && VK.Widgets.Post && VK.Widgets.Post("trending_results_embed", e, t, n)
             }
         };

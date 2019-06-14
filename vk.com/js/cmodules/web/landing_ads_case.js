@@ -51,15 +51,15 @@
         "use strict";
         n.r(t);
         var a = {
-            setTabContentHeight: function() {
-                geByClass("ads_case_block_tabs").forEach(function(e) {
+            setTabContentHeight() {
+                geByClass("ads_case_block_tabs").forEach(e => {
                     var t = geByClass("ads_case_tab_content", e),
                         n = [];
-                    t.forEach(function(e) {
+                    t.forEach(e => {
                         n.push(parseInt(getStyle(e, "height")))
                     });
                     var a = Math.max.apply(null, n);
-                    a > 0 && t.forEach(function(e) {
+                    a > 0 && t.forEach(e => {
                         setStyle(e, "height", a)
                     })
                 })
@@ -70,7 +70,7 @@
                 if (geByClass1("ui_tab_sel", a) === e) return !1;
                 uiTabs.switchTab(e), uiTabs.showProgress(a);
                 var r = gpeByClass("ads_case_block_tabs", e),
-                    s = geByClass1("ads_case_tab_content--" + t, r),
+                    s = geByClass1(`ads_case_tab_content--${t}`, r),
                     o = geByClass("ads_case_tab_content", r);
                 hasClass(r, "no-animation") && removeClass(r, "no-animation");
                 for (var i = 0; i < o.length; i++) toggleClass(o[i], "active", o[i] === s);

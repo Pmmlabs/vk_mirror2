@@ -1,55 +1,85 @@
 ﻿! function(e) {
-    var n = {};
+    function o(o) {
+        for (var r, s, i = o[0], d = o[1], l = o[2], h = 0, g = []; h < i.length; h++) s = i[h], t[s] && g.push(t[s][0]), t[s] = 0;
+        for (r in d) Object.prototype.hasOwnProperty.call(d, r) && (e[r] = d[r]);
+        for (_ && _(o); g.length;) g.shift()();
+        return a.push.apply(a, l || []), n()
+    }
 
-    function o(t) {
-        if (n[t]) return n[t].exports;
-        var r = n[t] = {
-            i: t,
+    function n() {
+        for (var e, o = 0; o < a.length; o++) {
+            for (var n = a[o], r = !0, i = 1; i < n.length; i++) {
+                var d = n[i];
+                0 !== t[d] && (r = !1)
+            }
+            r && (a.splice(o--, 1), e = s(s.s = n[0]))
+        }
+        return e
+    }
+    var r = {},
+        t = {
+            "web/landing_donors_day": 0
+        },
+        a = [];
+
+    function s(o) {
+        if (r[o]) return r[o].exports;
+        var n = r[o] = {
+            i: o,
             l: !1,
             exports: {}
         };
-        return e[t].call(r.exports, r, r.exports, o), r.l = !0, r.exports
+        return e[o].call(n.exports, n, n.exports, s), n.l = !0, n.exports
     }
-    o.m = e, o.c = n, o.d = function(e, n, t) {
-        o.o(e, n) || Object.defineProperty(e, n, {
+    s.m = e, s.c = r, s.d = function(e, o, n) {
+        s.o(e, o) || Object.defineProperty(e, o, {
             enumerable: !0,
-            get: t
+            get: n
         })
-    }, o.r = function(e) {
+    }, s.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
             value: "Module"
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, o.t = function(e, n) {
-        if (1 & n && (e = o(e)), 8 & n) return e;
-        if (4 & n && "object" == typeof e && e && e.__esModule) return e;
-        var t = Object.create(null);
-        if (o.r(t), Object.defineProperty(t, "default", {
+    }, s.t = function(e, o) {
+        if (1 & o && (e = s(e)), 8 & o) return e;
+        if (4 & o && "object" == typeof e && e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (s.r(n), Object.defineProperty(n, "default", {
                 enumerable: !0,
                 value: e
-            }), 2 & n && "string" != typeof e)
-            for (var r in e) o.d(t, r, function(n) {
-                return e[n]
+            }), 2 & o && "string" != typeof e)
+            for (var r in e) s.d(n, r, function(o) {
+                return e[o]
             }.bind(null, r));
-        return t
-    }, o.n = function(e) {
-        var n = e && e.__esModule ? function() {
+        return n
+    }, s.n = function(e) {
+        var o = e && e.__esModule ? function() {
             return e.default
         } : function() {
             return e
         };
-        return o.d(n, "a", n), n
-    }, o.o = function(e, n) {
-        return Object.prototype.hasOwnProperty.call(e, n)
-    }, o.p = "", o(o.s = 99)
+        return s.d(o, "a", o), o
+    }, s.o = function(e, o) {
+        return Object.prototype.hasOwnProperty.call(e, o)
+    }, s.p = "";
+    var i = window.webpackJsonp = window.webpackJsonp || [],
+        d = i.push.bind(i);
+    i.push = o, i = i.slice();
+    for (var l = 0; l < i.length; l++) o(i[l]);
+    var _ = d;
+    a.push([99, "bundles/common"]), n()
 }({
-    99: function(e, n, o) {
-        e.exports = o("ERMh")
+    99: function(e, o, n) {
+        e.exports = n("ERMh")
     },
     ERMh: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
-        __webpack_require__.r(__webpack_exports__), window.LandingDonorsDay = {
+        __webpack_require__.r(__webpack_exports__);
+        var core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("pIFo"),
+            core_js_modules_es6_regexp_match__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("SRfc");
+        window.LandingDonorsDay = {
             BLOOD_LINES: [{
                 svg: '<svg width="185" height="75" viewBox="0 0 185 75" xmlns="http://www.w3.org/2000/svg"><path d="M617,0 L617,45 L617,45 C617,53.2842712 623.715729,60 632,60 L785,60 L785,60 C793.284271,60 800,66.7157288 800,75 L800,75" transform="translate(-616)" stroke="#EE5D4A" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>',
                 length: 245.13072204589844,
@@ -92,102 +122,97 @@
                 right: 0,
                 lastLine: !0
             }],
-            init: function() {
+            init() {
                 if (!cur.donorsDayIsMob) {
                     if (cur.donorsDayNeedShowEdit) return WkView.hide(!1, !0), void LandingDonorsDay.showEditBox();
                     wkcur.legacyBrowser = browser.msie || browser.msie_edge, wkcur._hide.push(LandingDonorsDay.onDestroy), wkcur._show.push(LandingDonorsDay.restore)
                 }
                 this.restore()
             },
-            restore: function() {
+            restore() {
                 cur.donorsDayIsMob || (addClass(geByClass1("landing_wk_wrap", wkcur.wkContent), "landing_wk_wrap_donors_day"), setStyle(wkcur.wkCont, "padding-top", "70px"), setStyle(wkcur.wkContent, "width", "800px"), setStyle(wkcur.wkBox, {
                     borderRadius: "3px"
                 }), hide(wkcur.wkLeft), this.renderBloodLines())
             },
-            onDestroy: function() {
+            onDestroy() {
                 clearTimeout(wkcur.timer)
             },
-            renderBloodLines: function() {
-                var e = this;
+            renderBloodLines() {
                 clearTimeout(wkcur.timer);
-                for (var n = 0; n < this.BLOOD_LINES.length; n++) {
-                    var o = this.BLOOD_LINES[n];
-                    this.renderBloodLine(o), wkcur.legacyBrowser && !o.memAvaCircle && 2 !== n && (wkcur.animLine = n, this.animateIcon(!0))
+                for (var e = 0; e < this.BLOOD_LINES.length; e++) {
+                    var o = this.BLOOD_LINES[e];
+                    this.renderBloodLine(o), wkcur.legacyBrowser && !o.memAvaCircle && 2 !== e && (wkcur.animLine = e, this.animateIcon(!0))
                 }
                 if (wkcur.legacyBrowser) return wkcur.animLine = -1, void this.animateIcon(!0);
-                wkcur.timer = setTimeout(function() {
-                    clearTimeout(wkcur.timer), e.startAnimation()
+                wkcur.timer = setTimeout(() => {
+                    clearTimeout(wkcur.timer), this.startAnimation()
                 }, 1e3)
             },
-            renderBloodLine: function(e, n) {
-                var o = this,
-                    t = e.svg,
+            renderBloodLine(e, o) {
+                var n = e.svg,
                     r = parseInt(e.svg.match(/width="(\d+)"/)[1]),
-                    a = parseInt(e.svg.match(/height="(\d+)"/)[1]),
-                    i = {
+                    t = parseInt(e.svg.match(/height="(\d+)"/)[1]),
+                    a = {
                         top: e.top,
                         width: r,
-                        height: a
+                        height: t
                     };
-                if (e.addStyle && (i = extend(i, e.addStyle)), e.hasOwnProperty("right") && (i.right = e.right, e.noOffsetCorrect || (t = t.replace("<svg", '<svg style="right: -2px"'))), e.hasOwnProperty("left") && (i.left = e.left, e.noOffsetCorrect || (t = t.replace("<svg", '<svg style="left: -2px"'))), e.noOffsetCorrect && (t = t.replace("<svg", '<svg style="left: 0"')), n || wkcur.legacyBrowser || (t = t.replace("EE5D4A", "DBE0E8")), n) {
+                if (e.addStyle && (a = extend(a, e.addStyle)), e.hasOwnProperty("right") && (a.right = e.right, e.noOffsetCorrect || (n = n.replace("<svg", '<svg style="right: -2px"'))), e.hasOwnProperty("left") && (a.left = e.left, e.noOffsetCorrect || (n = n.replace("<svg", '<svg style="left: -2px"'))), e.noOffsetCorrect && (n = n.replace("<svg", '<svg style="left: 0"')), o || wkcur.legacyBrowser || (n = n.replace("EE5D4A", "DBE0E8")), o) {
                     var s = this.getAnimationDuration(e.length);
                     e.memAvaCircle && (s *= .8);
-                    var d = '<animate\n          attributeType="CSS"\n          attributeName="stroke-dashoffset"\n          dur="' + s + 'ms"\n          from="' + e.length + '"\n          to="0"\n          fill="freeze"\n        />';
-                    e.memAvaCircle && (d += '<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="' + 1.5 * s + 'ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />'), t = (t = (t = t.replace("<path", '<path stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"')).replace("<circle", '<circle stroke-dasharray="' + e.length + " " + e.length + '" stroke-dashoffset="' + e.length + '" id="donors_day_anim_path' + wkcur.animLine + '"')).replace("/></svg>", ">" + d + "</path></svg>"), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(function() {
-                        o.nextAnimation()
+                    var i = `<animate\n          attributeType="CSS"\n          attributeName="stroke-dashoffset"\n          dur="${s}ms"\n          from="${e.length}"\n          to="0"\n          fill="freeze"\n        />`;
+                    e.memAvaCircle && (i += `<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="${1.5*s}ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />`), n = (n = (n = n.replace("<path", `<path stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("<circle", `<circle stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("/></svg>", `>${i}</path></svg>`), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(() => {
+                        this.nextAnimation()
                     }, s)
                 }
-                var l = ce("div", {
+                var d = ce("div", {
                     className: "landing_donors_day_blood_line" + (e.lastLine ? " landing_donors_day_big_button_blood_line" : ""),
-                    innerHTML: t
-                }, i);
-                e.lastLine ? geByClass1("landing_donors_day_big_button_wrap").appendChild(l) : ge("landing_donors_day_blood_lines").appendChild(l)
+                    innerHTML: n
+                }, a);
+                e.lastLine ? geByClass1("landing_donors_day_big_button_wrap").appendChild(d) : ge("landing_donors_day_blood_lines").appendChild(d)
             },
-            getAnimationDuration: function(e) {
-                return 13 * e
-            },
-            startAnimation: function() {
+            getAnimationDuration: e => 13 * e,
+            startAnimation() {
                 wkcur.animLine = -1, this.animateIcon();
-                for (var e = LandingDonorsDay.BLOOD_LINES, n = 0, o = 0; o < e.length; o++) n += e[o].length;
-                var t = ge("landing_donors_day_blood_packet_dead");
-                setStyle(t, {
-                    transition: "height " + LandingDonorsDay.getAnimationDuration(n) + "ms linear"
-                }), setTimeout(function() {
-                    setStyle(t, "height", 174 * .6)
+                for (var e = LandingDonorsDay.BLOOD_LINES, o = 0, n = 0; n < e.length; n++) o += e[n].length;
+                var r = ge("landing_donors_day_blood_packet_dead");
+                setStyle(r, {
+                    transition: "height " + LandingDonorsDay.getAnimationDuration(o) + "ms linear"
+                }), setTimeout(() => {
+                    setStyle(r, "height", 174 * .6)
                 })
             },
-            nextAnimation: function(e) {
+            nextAnimation(e) {
                 if (!e && -1 !== [1, 4].indexOf(wkcur.animLine)) return this.animateIcon();
                 wkcur.animLine++, this.animateLine()
             },
-            animateLine: function() {
+            animateLine() {
                 var e = this.BLOOD_LINES[wkcur.animLine];
                 e && this.renderBloodLine(e, !0)
             },
-            animateIcon: function(e) {
-                var n = this,
-                    o = "landing_donors_day_member_blood_type_active_wrap",
-                    t = 48,
+            animateIcon(e) {
+                var o = "landing_donors_day_member_blood_type_active_wrap",
+                    n = 48,
                     r = "bottom";
-                2 === wkcur.animLine ? (o = "landing_donors_day_member_ava_blood_line_active_wrap", t = 150, r = "top") : 1 === wkcur.animLine ? o = "landing_donors_day_member_blood_group_active_wrap" : -1 === wkcur.animLine && (o = "landing_donors_day_blood_line_start_active_wrap", t = 12);
-                var a = geByClass1(o),
-                    i = this.getAnimationDuration(1.5 * t),
+                2 === wkcur.animLine ? (o = "landing_donors_day_member_ava_blood_line_active_wrap", n = 150, r = "top") : 1 === wkcur.animLine ? o = "landing_donors_day_member_blood_group_active_wrap" : -1 === wkcur.animLine && (o = "landing_donors_day_blood_line_start_active_wrap", n = 12);
+                var t = geByClass1(o),
+                    a = this.getAnimationDuration(1.5 * n),
                     s = {
-                        transition: r + " " + i + "ms linear"
+                        transition: r + " " + a + "ms linear"
                     };
-                e && delete s.transition, s[r] = -1 === wkcur.animLine ? 0 : "-2px", 2 === wkcur.animLine && (i *= .93), setStyle(a, s), wkcur.timer = setTimeout(function() {
-                    n.nextAnimation(!0)
-                }, -1 === wkcur.animLine ? 0 : i)
+                e && delete s.transition, s[r] = -1 === wkcur.animLine ? 0 : "-2px", 2 === wkcur.animLine && (a *= .93), setStyle(t, s), wkcur.timer = setTimeout(() => {
+                    this.nextAnimation(!0)
+                }, -1 === wkcur.animLine ? 0 : a)
             },
-            showEditBox: function() {
+            showEditBox() {
                 showBox("landings.php", {
                     act: "donors_day_edit_box"
                 })
             },
-            editBoxInit: function(e) {
+            editBoxInit(e) {
                 curBox().setOptions({
                     width: 450,
-                    onClean: function() {
+                    onClean() {
                         cur.bloodGroupDD && cur.bloodGroupDD.destroy()
                     }
                 }).removeButtons().addButton(getLang("global_save"), LandingDonorsDay.saveData).addButton(getLang("global_close"), !1, "no"), cur.bloodGroupDD = new Dropdown(ge("donors_day_edit_blood_group"), e.blood_groups, {
@@ -199,11 +224,11 @@
                         val: e.blood_type,
                         els: geByClass("radiobtn", "donors_day_blood_type_options")
                     }
-                }), (new vkImage).src = "/images/landings/donors_day/snippet_bg.png"
+                }), vkImage().src = "/images/landings/donors_day/snippet_bg.png"
             },
-            saveData: function(e) {
+            saveData(e) {
                 if (!isButtonLocked(e)) {
-                    var n = {
+                    var o = {
                         act: "donors_day_edit",
                         save_hash: cur.donorsDayEditHash,
                         group: cur.donorsDayIsMob ? ge("donors_day_edit_group").value : cur.bloodGroupDD.val(),
@@ -212,10 +237,10 @@
                         on_ready_to_give: hasClass("donors_day_ready_to_give", "on") ? 1 : 0,
                         api_view: cur.donorsDayApiViewHash
                     };
-                    lockButton(e), LandingDonorsDay.renderSnippet(n.group, n.type, function(o) {
-                        if (!o) return unlockButton(e), topError(getLang("global_error_occured"), 3);
-                        n.media = o, ajax.post("landings.php", extend(n, o), {
-                            onDone: function(e) {
+                    lockButton(e), LandingDonorsDay.renderSnippet(o.group, o.type, n => {
+                        if (!n) return unlockButton(e), topError(getLang("global_error_occured"), 3);
+                        o.media = n, ajax.post("landings.php", extend(o, n), {
+                            onDone(e) {
                                 cur.donorsDayIsMob ? location.reload() : (curBox().hide(), window.wkcur && "donors_day" === wkcur.wkRaw && wkcur.shown && WkView.hide(!1, !0), showWiki({
                                     w: "donors_day"
                                 }))
@@ -226,79 +251,77 @@
                     })
                 }
             },
-            showUserInfo: function(e, n) {
-                browser.mobile || (cancelEvent(n), WkView.hide(!0, !0), showWiki({
+            showUserInfo(e, o) {
+                browser.mobile || (cancelEvent(o), WkView.hide(!0, !0), showWiki({
                     w: "donors_day" + (e || vk.id),
                     from_snippet: 1
                 }))
             },
-            showMobEdit: function() {
+            showMobEdit() {
                 cur.donorsDayEditScroll = scrollGetY(), hide("donors_day_main_screen"), show("donors_day_edit_screen")
             },
-            hideMobEdit: function() {
+            hideMobEdit() {
                 hide("donors_day_edit_screen"), show("donors_day_main_screen"), scrollToY(cur.donorsDayEditScroll || 0)
             },
-            showMore: function(e) {
+            showMore(e) {
                 removeClass(geByClass1("donors_day_users_chunk_hidden", e.parentNode), "donors_day_users_chunk_hidden"), geByClass1("donors_day_users_chunk_hidden", e.parentNode) || re(e)
             },
-            renderSnippet: function(e, n, o) {
-                var t = this,
-                    r = new vkImage;
-                r.onload = function() {
-                    var a = ce("canvas", {
+            renderSnippet(e, o, n) {
+                var r = vkImage();
+                r.onload = (() => {
+                    var t = ce("canvas", {
                         width: 2040,
                         height: 912
                     }, {});
-                    ge("donors_day_canvas_helper").appendChild(a);
-                    var i = a.getContext("2d");
-                    i.direction = "ltr", i.drawImage(r, 0, 0, 2040, 912), i.textBaseline = "top", i.imageSmoothingEnabled = !0, i.font = "normal 120px Open Sans", i.textAlign = "left", i.fillStyle = "#fff";
+                    ge("donors_day_canvas_helper").appendChild(t);
+                    var a = t.getContext("2d");
+                    a.direction = "ltr", a.drawImage(r, 0, 0, 2040, 912), a.textBaseline = "top", a.imageSmoothingEnabled = !0, a.font = "normal 120px Open Sans", a.textAlign = "left", a.fillStyle = "#fff";
                     var s = unclean(cur.donorsDayUserName);
                     s.length > 27 && (s = cur.donorsDayUserName.substr(0, 27) + "..");
-                    var d = i.measureText(s).width;
-                    i.fillText(s, 1020 - d / 2, 300), i.font = "normal 80px Open Sans", i.textAlign = "left", i.fillStyle = "rgba(255,255,255,0.8)";
-                    var l = unclean(cur.lang.landings_donors_day_snippet_caption_line1.replace("%s", e)),
-                        _ = i.measureText(l).width;
-                    i.fillText(l, 1020 - _ / 2, 492);
-                    var c = 1 == intval(n) ? cur.lang.landings_donors_day_snippet_caption_line2_plus : cur.lang.landings_donors_day_snippet_caption_line2_minus;
-                    c = unclean(c);
-                    var u = i.measureText(c).width;
-                    i.fillText(c, 1020 - u / 2, 600);
-                    var g = a.toDataURL("image/png", .99);
-                    g = g.substr(g.indexOf("base64,", 0) + 7), t.uploadSnippetPhoto(g, o)
-                }, r.src = "/images/landings/donors_day/snippet_bg.png"
+                    var i = a.measureText(s).width;
+                    a.fillText(s, 1020 - i / 2, 300), a.font = "normal 80px Open Sans", a.textAlign = "left", a.fillStyle = "rgba(255,255,255,0.8)";
+                    var d = unclean(cur.lang.landings_donors_day_snippet_caption_line1.replace("%s", e)),
+                        l = a.measureText(d).width;
+                    a.fillText(d, 1020 - l / 2, 492);
+                    var _ = 1 == intval(o) ? cur.lang.landings_donors_day_snippet_caption_line2_plus : cur.lang.landings_donors_day_snippet_caption_line2_minus;
+                    _ = unclean(_);
+                    var h = a.measureText(_).width;
+                    a.fillText(_, 1020 - h / 2, 600);
+                    var g = t.toDataURL("image/png", .99);
+                    g = g.substr(g.indexOf("base64,", 0) + 7), this.uploadSnippetPhoto(g, n)
+                }), r.src = "/images/landings/donors_day/snippet_bg.png"
             },
-            uploadSnippetPhoto: function uploadSnippetPhoto(base64, callback) {
+            uploadSnippetPhoto(base64, callback) {
                 var XHR = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
                     xhr = new XHR;
-                xhr.open("POST", cur.donorsDayUploadServer, !0), xhr.onload = function() {
-                    var obj = void 0,
-                        res = xhr.responseText;
+                xhr.open("POST", cur.donorsDayUploadServer, !0), xhr.onload = (() => {
+                    var obj, res = xhr.responseText;
                     try {
                         obj = eval("(" + res + ")")
                     } catch (e) {
                         obj = q2ajx(res)
                     }
                     callback(obj)
-                };
+                });
                 var form = new FormData;
                 form.append("Photo_base64", base64), xhr.send(form)
             },
-            share: function(e) {
+            share(e) {
                 isButtonLocked(e) || ajax.post("landings.php", {
                     act: "donors_day_share",
                     hash: cur.donorsDayShareHash,
                     api_view: cur.donorsDayApiViewHash
                 }, {
-                    onDone: function() {
+                    onDone() {
                         addClass(geByClass1("landing_donors_day_big_button_wrap"), "shared"), show(geByClass1("landing_donors_day_share_result"))
                     },
                     showProgress: lockButton.pbind(e),
                     hideProgress: unlockButton.pbind(e)
                 })
             },
-            click18YearsCheckbox: function(e) {
-                var n = ge("donors_day_ready_to_give");
-                toggleClass(n, "disabled", !hasClass(e, "on")), toggleClass(n, "on", hasClass(e, "on"))
+            click18YearsCheckbox(e) {
+                var o = ge("donors_day_ready_to_give");
+                toggleClass(o, "disabled", !hasClass(e, "on")), toggleClass(o, "on", hasClass(e, "on"))
             }
         };
         try {

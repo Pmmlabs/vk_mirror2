@@ -88,7 +88,7 @@ var blog = {
             return function(e) {
                 var url = e.target.result;
 
-                var vkimg = new vkImage();
+                var vkimg = vkImage();
                 vkimg.src = url;
                 vkimg.onload = function() {
 
@@ -159,7 +159,7 @@ var blog = {
         });
 
         var ctx = canvasEl.getContext('2d'),
-            img = new vkImage();
+            img = vkImage();
 
         img.src = cur.newCover;
         img.onload = function() {
@@ -778,7 +778,7 @@ var blog = {
             return function(e) {
                 var url = e.target.result;
 
-                var vkimg = new vkImage();
+                var vkimg = vkImage();
                 vkimg.src = url;
                 vkimg.onload = function() {
                     if (cur.typeDD.val() != 'banner' && vkimg.width != vkimg.height) {

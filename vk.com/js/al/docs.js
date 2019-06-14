@@ -706,7 +706,7 @@ var Docs = {
             cur.fileTT = setTimeout(function() {
                 var href = url + '?wnd=1';
 
-                cur.fileTTImage = new vkImage();
+                cur.fileTTImage = vkImage();
                 cur.fileTTImage.src = href;
                 cur.fileTTImage.onload = function() {
                     if (!cur.fileTTImage || cur.fileTTImage.getAttribute('src') != href) {
