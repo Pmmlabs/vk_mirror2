@@ -713,6 +713,15 @@ if (!window.Upload) {
                 }
             }
 
+            if (window.partConfigEnabled('upload.send_upload_stat')) {
+                var stat = {
+                    duration: Date.now() - options.uploadStartedTs,
+                    type: options.type,
+                    total_size: options.filesTotalSize
+                };
+                this.sendUploadStat(iUpload, stat);
+            }
+
             if (options.onUploadCompleteAll) {
                 options.onUploadCompleteAll(info, result);
             }
@@ -1082,10 +1091,6 @@ if (!window.Upload) {
                 filesQueue = [],
                 re;
 
-            vars = extend(vars, {
-                _ts: Date.now()
-            });
-
             if (options.uploading) {
                 totalSize = options.filesTotalSize || 0;
                 totalCount = options.filesTotalCount || 0;
@@ -1122,7 +1127,8 @@ if (!window.Upload) {
                 filesTotalSize: totalSize,
                 filesLoadedSize: loadedSize,
                 filesLoadedCount: loadedCount,
-                filesTotalCount: totalCount
+                filesTotalCount: totalCount,
+                uploadStartedTs: Date.now()
             });
 
             // if (options.multi_sequence && options.onUploadProgress) {
@@ -1879,6 +1885,28 @@ if (!window.Upload) {
                 'onMouseOut': Upload.buttonOut,
                 'onSelectClick': Upload.onSelectClick
             }
+        },
+
+        sendUploadStat: function(iUpload, stat) {
+            var options = Upload.options[iUpload],
+                vars = Upload.vars[iUpload];
+
+            if (options.signed) {
+                return;
+            }
+
+            var query = extend({
+                act: 'stat',
+                mid: vars.mid,
+                oid: vars.oid,
+                gid: vars.gid,
+                aid: vars.aid,
+                server: options.server,
+                error: options.error,
+                hash: options.error_hash
+            }, stat);
+
+            ajax.post('upload_fails.php', query);
         },
 
         _eof: 1

@@ -1499,6 +1499,24 @@ a.group_ad_post_stats {
     padding-bottom: 1px
 }
 
+#groups_menu_items .groups_edit_menu_items .group_apps_list_row_drag_wrapper .groups_edit_menu_item_preview_hidden_mark {
+    display: none
+}
+
+#groups_menu_items .groups_edit_menu_items .group_apps_list_row_drag_wrapper.hidden_mark .groups_edit_menu_item_preview_hidden_mark {
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 48px;
+    padding: 4px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    margin-left: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212px%22%20height%3D%2212px%22%20viewBox%3D%220%200%2012%2012%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2055%20(78076)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Ehide_12%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22Menu%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Community%22%20transform%3D%22translate(-168.000000%2C%20-299.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22hide_12%22%20transform%3D%22translate(168.000000%2C%20299.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2212%22%20height%3D%2212%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M3.59870767%2C4.65936784%20C3.37662649%2C5.05606859%203.25%2C5.51333658%203.25%2C6%20C3.25%2C7.518%204.482%2C8.75%206%2C8.75%20C6.48666342%2C8.75%206.94393141%2C8.62337351%207.34063216%2C8.40129233%20L6.38872757%2C7.44938774%20C6.26480015%2C7.48240583%206.13450087%2C7.5%206%2C7.5%20C5.17%2C7.5%204.5%2C6.83%204.5%2C6%20C4.5%2C5.86549913%204.51759417%2C5.73519985%204.55061226%2C5.61127243%20L3.59870767%2C4.65936784%20Z%20M8.63047392%2C9.69113409%20C7.85813355%2C10.046595%206.97934805%2C10.25%206%2C10.25%20C3%2C10.25%200.943636364%2C8.34133333%200%2C6%20C0.445952133%2C4.89351171%201.14042114%2C3.88365532%202.06555979%2C3.12621996%20L1.21966991%2C2.28033009%20C0.926776695%2C1.98743687%200.926776695%2C1.51256313%201.21966991%2C1.21966991%20C1.51256313%2C0.926776695%201.98743687%2C0.926776695%202.28033009%2C1.21966991%20L10.7803301%2C9.71966991%20C11.0732233%2C10.0125631%2011.0732233%2C10.4874369%2010.7803301%2C10.7803301%20C10.4874369%2C11.0732233%2010.0125631%2C11.0732233%209.71966991%2C10.7803301%20L8.63047392%2C9.69113409%20Z%20M4.98659206%2C1.82593189%20C5.31131212%2C1.77609725%205.64920488%2C1.75%206%2C1.75%20C9%2C1.75%2011.0563636%2C3.65866667%2012%2C6%20C11.7396846%2C6.64588994%2011.3946894%2C7.25885351%2010.9685644%2C7.80790422%20L8.71382968%2C5.55316951%20C8.52398223%2C4.39286895%207.60713105%2C3.47601777%206.4468305%2C3.28617033%20L4.98659206%2C1.82593189%20Z%22%20id%3D%22Combined-Shape%22%20fill%3D%22%23FFFFFF%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+    cursor: default
+}
+
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item {
     padding-top: 12px;
     cursor: move
@@ -1649,6 +1667,10 @@ a.group_ad_post_stats {
 
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.expanded .groups_edit_menu_item_settings {
     display: block
+}
+
+#groups_menu_items .groups_edit_menu_items .groups_edit_menu_item.expanded .group_edit_hint {
+    width: 300px
 }
 
 #groups_menu_items .groups_edit_menu_items .groups_edit_menu_item .group_apps_list_row_controls {
