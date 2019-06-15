@@ -1010,6 +1010,10 @@
     float: left
 }
 
+.wall_module .reply .reply_link_wrap+.reply_link_wrap {
+    padding-left: 8px
+}
+
 .wall_module .reply .dld {
     padding: 10px 20px 10px 44px;
     min-height: 50px;

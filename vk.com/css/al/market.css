@@ -1403,6 +1403,37 @@
     line-height: 1
 }
 
+.market_go_to_card_btn {
+    -o-animation: market_go_to_card_btn 200ms;
+    animation: market_go_to_card_btn 200ms
+}
+
+@-o-keyframes market_go_to_card_btn {
+    0% {
+        opacity: 0;
+        -o-transform: translateX(-5px);
+        transform: translateX(-5px)
+    }
+    to {
+        opacity: 1;
+        -o-transform: translateX(0px);
+        transform: translateX(0px)
+    }
+}
+
+@keyframes market_go_to_card_btn {
+    0% {
+        opacity: 0;
+        -o-transform: translateX(-5px);
+        transform: translateX(-5px)
+    }
+    to {
+        opacity: 1;
+        -o-transform: translateX(0px);
+        transform: translateX(0px)
+    }
+}
+
 .market_card_buttons .market_go_to_card_btn:not(disable):focus,
 .market_card_buttons .market_go_to_card_btn:not(disable):hover {
     background: #51b851
@@ -1419,14 +1450,42 @@
     margin-top: 5px
 }
 
-#market_add_to_card_btn .market_card_counter_button {
+#market_add_to_card_btn .market_cart_counter_button {
     min-width: 67px;
     -ms-flex: 1 1;
     flex: 1 1;
-    margin-left: 10px
+    margin-left: 10px;
+    -o-animation: market_cart_counter_button 200ms;
+    animation: market_cart_counter_button 200ms
 }
 
-.flat_button.market_card_counter_button {
+@-o-keyframes market_cart_counter_button {
+    0% {
+        opacity: 0;
+        -o-transform: translateX(5px);
+        transform: translateX(5px)
+    }
+    to {
+        opacity: 1;
+        -o-transform: translateX(0px);
+        transform: translateX(0px)
+    }
+}
+
+@keyframes market_cart_counter_button {
+    0% {
+        opacity: 0;
+        -o-transform: translateX(5px);
+        transform: translateX(5px)
+    }
+    to {
+        opacity: 1;
+        -o-transform: translateX(0px);
+        transform: translateX(0px)
+    }
+}
+
+.flat_button.market_cart_counter_button {
     font-size: 13px
 }
 

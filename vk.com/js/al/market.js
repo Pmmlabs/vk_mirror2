@@ -1245,7 +1245,7 @@ var Market = {
         if (cur.mkOptions.cart && cur.mkOptions.cart.in_cart_quantity) {
             var container = ge('market_add_to_card_btn');
 
-            var controls = Market.updateAddToCardButton(cur.mkOptions.cart.in_cart_quantity);
+            var controls = Market.initAddToCartButton(cur.mkOptions.cart.in_cart_quantity);
 
             container.innerHTML = '';
             container.appendChild(controls);
@@ -1332,30 +1332,39 @@ var Market = {
             removeClass(actions, 'visible');
         }
     },
-    addToCard: function(event) {
+    addToCart: function(event) {
+        var addToCartBatton = event.target;
+
         ajax.post('al_market_cart.php', {
             act: 'add',
             group_id: -cur.oid,
             item_id: cur.mkOptions.itemId,
             hash: cur.mkOptions.cart.add_item_hash,
+        }, {
+            showProgress: lockButton.bind(null, addToCartBatton),
+            hideProgress: unlockButton.bind(null, addToCartBatton),
+            onFail: function() {
+
+            },
+            onDone: function() {
+                var container = event.target.parentElement;
+
+                var controls = Market.initAddToCartButton(1);
+
+                container.innerHTML = '';
+                container.appendChild(controls);
+            },
         });
-
-        var container = event.target.parentElement;
-
-        var controls = Market.updateAddToCardButton(1);
-
-        container.innerHTML = '';
-        container.appendChild(controls);
     },
-    updateAddToCardButton: function(count) {
+    initAddToCartButton: function(initialValue) {
         var fragment = document.createDocumentFragment();
-        var cartCouter = count;
+        var cartCounter = initialValue;
 
-        var cartCouterElement = document.createElement('span');
-        cartCouterElement.innerHTML = cartCouter.toString();
+        var cartCounterElement = document.createElement('span');
+        cartCounterElement.innerHTML = cartCounter.toString();
 
         var countText = document.createElement('span');
-        countText.innerHTML = langNumeric(cartCouter, getLang('market_shop_count_in_cart', 'raw'));
+        countText.innerHTML = langNumeric(cartCounter, getLang('market_shop_count_in_cart', 'raw'));
 
         var goToText = document.createElement('span');
         goToText.innerHTML = getLang('market_shop_go_to_cart');
@@ -1371,17 +1380,29 @@ var Market = {
 
         var counter = document.createElement('button');
         counter.innerHTML = getLang('market_add_one_more_product');
-        counter.classList.add('market_card_counter_button', 'flat_button', 'button_wide', 'secondary');
-        counter.addEventListener('click', function() {
-            ajax.post('al_market_cart.php', {
-                act: 'add',
-                group_id: -cur.oid,
-                item_id: cur.mkOptions.itemId,
-                hash: cur.mkOptions.cart.add_item_hash,
-            });
-            cartCouter += 1;
-            countText.innerHTML = langNumeric(cartCouter, getLang('market_shop_count_in_cart', 'raw'));
-        });
+        counter.classList.add('market_cart_counter_button', 'flat_button', 'button_wide', 'secondary');
+
+        var _saveCartCounterTimer;
+
+        function counterClickHandler() {
+            if (cartCounter < cur.mkOptions.cart.max_cart_item_quantity) {
+                clearTimeout(_saveCartCounterTimer);
+                cartCounter += 1;
+                _saveCartCounterTimer = setTimeout(
+                    function() {
+                        ajax.post('al_market_cart.php', {
+                            act: 'add',
+                            group_id: -cur.oid,
+                            item_id: cur.mkOptions.itemId,
+                            hash: cur.mkOptions.cart.add_item_hash,
+                            count: cartCounter,
+                        });
+                    }, 300);
+                countText.innerHTML = langNumeric(cartCounter, getLang('market_shop_count_in_cart', 'raw'));
+            }
+        }
+
+        counter.addEventListener('click', counterClickHandler);
 
         fragment.appendChild(counter);
         return fragment;

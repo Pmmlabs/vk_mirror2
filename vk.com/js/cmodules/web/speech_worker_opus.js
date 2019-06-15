@@ -69,13 +69,13 @@
     n.push = i, n = n.slice();
     for (var b = 0; b < n.length; b++) i(n[b]);
     var h = s;
-    l.push([136, "bundles/common"]), r()
+    l.push([135, "bundles/common"]), r()
 }({
     "/xjt": function(e, i, r) {
         "use strict";
         r.r(i), module.exports = null
     },
-    136: function(e, i, r) {
+    135: function(e, i, r) {
         e.exports = r("cIb1")
     },
     "33yf": function(e, i, r) {
@@ -89,36 +89,32 @@
                     for (; r--; r) e.unshift("..");
                 return e
             }
-            var f = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/,
-                a = function(e) {
-                    return f.exec(e).slice(1)
-                };
 
-            function l(e, i) {
+            function f(e, i) {
                 if (e.filter) return e.filter(i);
                 for (var r = [], f = 0; f < e.length; f++) i(e[f], f, e) && r.push(e[f]);
                 return r
             }
             i.resolve = function() {
-                for (var i = "", f = !1, a = arguments.length - 1; a >= -1 && !f; a--) {
-                    var t = a >= 0 ? arguments[a] : e.cwd();
+                for (var i = "", a = !1, l = arguments.length - 1; l >= -1 && !a; l--) {
+                    var t = l >= 0 ? arguments[l] : e.cwd();
                     if ("string" != typeof t) throw new TypeError("Arguments to path.resolve must be strings");
-                    t && (i = t + "/" + i, f = "/" === t.charAt(0))
+                    t && (i = t + "/" + i, a = "/" === t.charAt(0))
                 }
-                return i = r(l(i.split("/"), function(e) {
+                return i = r(f(i.split("/"), function(e) {
                     return !!e
-                }), !f).join("/"), (f ? "/" : "") + i || "."
+                }), !a).join("/"), (a ? "/" : "") + i || "."
             }, i.normalize = function(e) {
-                var f = i.isAbsolute(e),
-                    a = "/" === t(e, -1);
-                return (e = r(l(e.split("/"), function(e) {
+                var l = i.isAbsolute(e),
+                    t = "/" === a(e, -1);
+                return (e = r(f(e.split("/"), function(e) {
                     return !!e
-                }), !f).join("/")) || f || (e = "."), e && a && (e += "/"), (f ? "/" : "") + e
+                }), !l).join("/")) || l || (e = "."), e && t && (e += "/"), (l ? "/" : "") + e
             }, i.isAbsolute = function(e) {
                 return "/" === e.charAt(0)
             }, i.join = function() {
                 var e = Array.prototype.slice.call(arguments, 0);
-                return i.normalize(l(e, function(e, i) {
+                return i.normalize(f(e, function(e, i) {
                     if ("string" != typeof e) throw new TypeError("Arguments to path.join must be strings");
                     return e
                 }).join("/"))
@@ -138,17 +134,44 @@
                 for (s = n; s < a.length; s++) b.push("..");
                 return (b = b.concat(l.slice(n))).join("/")
             }, i.sep = "/", i.delimiter = ":", i.dirname = function(e) {
-                var i = a(e),
-                    r = i[0],
-                    f = i[1];
-                return r || f ? (f && (f = f.substr(0, f.length - 1)), r + f) : "."
+                if ("string" != typeof e && (e += ""), 0 === e.length) return ".";
+                for (var i = e.charCodeAt(0), r = 47 === i, f = -1, a = !0, l = e.length - 1; l >= 1; --l)
+                    if (47 === (i = e.charCodeAt(l))) {
+                        if (!a) {
+                            f = l;
+                            break
+                        }
+                    } else a = !1;
+                return -1 === f ? r ? "/" : "." : r && 1 === f ? "/" : e.slice(0, f)
             }, i.basename = function(e, i) {
-                var r = a(e)[2];
+                var r = function(e) {
+                    "string" != typeof e && (e += "");
+                    var i, r = 0,
+                        f = -1,
+                        a = !0;
+                    for (i = e.length - 1; i >= 0; --i)
+                        if (47 === e.charCodeAt(i)) {
+                            if (!a) {
+                                r = i + 1;
+                                break
+                            }
+                        } else -1 === f && (a = !1, f = i + 1);
+                    return -1 === f ? "" : e.slice(r, f)
+                }(e);
                 return i && r.substr(-1 * i.length) === i && (r = r.substr(0, r.length - i.length)), r
             }, i.extname = function(e) {
-                return a(e)[3]
+                "string" != typeof e && (e += "");
+                for (var i = -1, r = 0, f = -1, a = !0, l = 0, t = e.length - 1; t >= 0; --t) {
+                    var n = e.charCodeAt(t);
+                    if (47 !== n) - 1 === f && (a = !1, f = t + 1), 46 === n ? -1 === i ? i = t : 1 !== l && (l = 1) : -1 !== i && (l = -1);
+                    else if (!a) {
+                        r = t + 1;
+                        break
+                    }
+                }
+                return -1 === i || -1 === f || 0 === l || 1 === l && i === f - 1 && i === r + 1 ? "" : e.slice(i, f)
             };
-            var t = "b" === "ab".substr(-1) ? function(e, i, r) {
+            var a = "b" === "ab".substr(-1) ? function(e, i, r) {
                 return e.substr(i, r)
             } : function(e, i, r) {
                 return i < 0 && (i = e.length + i), e.substr(i, r)

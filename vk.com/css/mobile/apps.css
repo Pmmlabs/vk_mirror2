@@ -11815,7 +11815,7 @@ body.vk_app_fixed {
     border-radius: 10px;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    z-index: 3
+    z-index: 5
 }
 
 .vkAppHeader,
@@ -12278,12 +12278,15 @@ body.vk_app_fixed {
     }
 }
 
-.vk_app_add_to_mine_community_box {
-    position: relative;
-    z-index: 99999
+.VkMiniAppBox .apps_wallPostBoxWrapper {
+    padding-top: 44px
 }
 
-.vk_app_add_to_mine_community_box_header {
+.VkMiniAppBox .wall_item {
+    margin: 0
+}
+
+.VkMiniAppDialogHeader {
     position: fixed;
     top: 0;
     left: 0;
@@ -12292,11 +12295,12 @@ body.vk_app_fixed {
     background-color: #5181b8;
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06)
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08), 0 0 2px 0 rgba(0, 0, 0, .06);
+    z-index: 3
 }
 
-.vk_app_add_to_mine_community_box_header,
-.vk_app_add_to_mine_community_box_header__container {
+.VkMiniAppDialogHeader,
+.VkMiniAppDialogHeader__Container {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -12305,7 +12309,7 @@ body.vk_app_fixed {
     width: 100%
 }
 
-.vk_app_add_to_mine_community_box_header__container {
+.VkMiniAppDialogHeader__Container {
     position: relative;
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -12314,11 +12318,11 @@ body.vk_app_fixed {
     align-items: center
 }
 
-.vk_app_add_to_mine_community_box_header__left {
+.VkMiniAppDialogHeader__Left {
     padding-right: 12px
 }
 
-.vk_app_add_to_mine_community_box_header__content h3 {
+.VkMiniAppDialogHeader__Content h3 {
     font-size: 17px;
     font-weight: 600;
     margin: 0;
@@ -12330,12 +12334,18 @@ body.vk_app_fixed {
     white-space: nowrap
 }
 
-.vk_app_add_to_mine_community_box_cancel_button {
+.VkMiniAppDialogHeader__CancelButton {
     width: 44px;
     height: 44px;
     border: 0;
     font-size: 0;
-    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m18.3%205.7c-.3865993-.38659932-1.0134007-.38659932-1.4%200l-4.9%204.9-4.9-4.9c-.38659932-.38659932-1.01340068-.38659932-1.4%200-.38659932.38659932-.38659932%201.01340068%200%201.4l4.9%204.9-4.9%204.9c-.38659932.3865993-.38659932%201.0134007%200%201.4.38659932.3865993%201.01340068.3865993%201.4%200l4.9-4.9%204.9%204.9c.3865993.3865993%201.0134007.3865993%201.4%200%20.3865993-.3865993.3865993-1.0134007%200-1.4l-4.9-4.9%204.9-4.9c.3865993-.38659932.3865993-1.01340068%200-1.4z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20d%3D%22m18.3%205.7c-.3865993-.38659932-1.0134007-.38659932-1.4%200l-4.9%204.9-4.9-4.9c-.38659932-.38659932-1.01340068-.38659932-1.4%200-.38659932.38659932-.38659932%201.01340068%200%201.4l4.9%204.9-4.9%204.9c-.38659932.3865993-.38659932%201.0134007%200%201.4.38659932.3865993%201.01340068.3865993%201.4%200l4.9-4.9%204.9%204.9c.3865993.3865993%201.0134007.3865993%201.4%200%20.3865993-.3865993.3865993-1.0134007%200-1.4l-4.9-4.9%204.9-4.9c.3865993-.38659932.3865993-1.01340068%200-1.4z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
+    outline: none
+}
+
+.vk_app_add_to_mine_community_box {
+    position: relative;
+    z-index: 99999
 }
 
 .vk_app_add_to_mine_community_box_groups_list {

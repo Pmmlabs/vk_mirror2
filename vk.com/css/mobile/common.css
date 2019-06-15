@@ -47373,29 +47373,29 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .svgIcon-stories {
-    -webkit-background-size: 74px 50px;
-    -moz-background-size: 74px 50px;
-    background-size: 74px 50px;
-    background-image: url('/images/mobile/icons/sprites/stories-dec7cd6f.svg')
+    -webkit-background-size: 80px 56px;
+    -moz-background-size: 80px 56px;
+    background-size: 80px 56px;
+    background-image: url('/images/mobile/icons/sprites/stories-c55827a2.svg')
 }
 
 .vk_old.vk_1x .svgIcon-stories {
-    background-image: url('/images/mobile/icons/sprites/stories-dec7cd6f_1x.png')
+    background-image: url('/images/mobile/icons/sprites/stories-c55827a2_1x.png')
 }
 
 .vk_old.vk_2x .svgIcon-stories {
-    background-image: url('/images/mobile/icons/sprites/stories-dec7cd6f_2x.png')
+    background-image: url('/images/mobile/icons/sprites/stories-c55827a2_2x.png')
 }
 
 .svgIcon-stories__archive_outline_56 {
     background-position: 0 0;
     background-repeat: no-repeat;
-    width: 50px;
-    height: 50px
+    width: 56px;
+    height: 56px
 }
 
 .svgIcon-stories__error_24 {
-    background-position: -50px 0;
+    background-position: -56px 0;
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
