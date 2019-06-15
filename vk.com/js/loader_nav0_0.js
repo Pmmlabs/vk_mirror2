@@ -607,7 +607,7 @@ var stVersions = {
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.daff8c5e64985e496540.js': '991b5100e2c920e37c80',
     'cmodules/bundles/6d669e070da493537223b2032427707c.418d8642f8d0c5c4c226.js': '1e89a2d4ac1b60c6d156',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.4f5e6dbdf98568dfa0e0.js': '2268042e02b6c436b29e',
-    'cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.7533b2e417b692cc7f16.js': '97a3e5658fe1d29b9c88',
+    'cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.a3e64c7fd945a637754b.js': 'e88b484a494407cabeca',
     'cmodules/bundles/8f9b95e37f18d0c7165292d5115bec0e.3505ebaed1c706c2fe56.js': '9a62379e660e58931dc4',
     'cmodules/bundles/audioplayer.8c06878462545cf60647.js': '4b8f04c2a1477e3af69c',
     'cmodules/bundles/common.5786d70b7b25d846fddf.js': '9c3b530fab2b032fe822',
@@ -788,7 +788,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3833;
+var _rnd = 4267;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.0b6a1d9a11d500179570.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
@@ -846,14 +846,14 @@ var stDeps = {
     "/js/cmodules/web/likes.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/likes.d40cba67cb0322c892cb.js"],
     "/js/cmodules/web/login.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/login.04781f95545ffea17346.js"],
     "/js/cmodules/web/market_cart.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/market_cart.81faa29d622a92a384d6.js"],
-    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.7533b2e417b692cc7f16.js", "cmodules/web/money_transfer.d40dad5f6fd6373c1fa6.js"],
+    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.a3e64c7fd945a637754b.js", "cmodules/web/money_transfer.d40dad5f6fd6373c1fa6.js"],
     "/js/cmodules/web/mr_truth.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/mr_truth.3fd06a292309aa75bc04.js"],
     "/js/cmodules/web/music_2018.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/music_2018.37a87b2520c047311094.js"],
     "/js/cmodules/web/notifier.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.c6c0f824fadc8a333172.js", "cmodules/web/notifier.b3ae005ef84d6c7c6c72.js"],
     "/js/cmodules/web/old_places_admin.js": ["cmodules/web/old_places_admin.2af56d7865949ca8397f.js"],
     "/js/cmodules/web/page.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/page.a31e0191b4e40af1540a.js"],
     "/js/cmodules/web/page_layout.js": ["cmodules/web/page_layout.548601cd231e2a16afa9.js"],
-    "/js/cmodules/web/payments.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.7533b2e417b692cc7f16.js", "cmodules/web/payments.215587329a04b0643935.js"],
+    "/js/cmodules/web/payments.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.a3e64c7fd945a637754b.js", "cmodules/web/payments.215587329a04b0643935.js"],
     "/js/cmodules/web/payments_promo.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/payments_promo.b6cd78a360d1509f9ed7.js"],
     "/js/cmodules/web/photo_crop.js": ["cmodules/web/photo_crop.d21d021244a742386746.js"],
     "/js/cmodules/web/photos_module.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/photos_module.94cb9f3cb24d91f456c9.js"],
