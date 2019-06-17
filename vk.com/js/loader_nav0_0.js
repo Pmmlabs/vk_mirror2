@@ -655,7 +655,7 @@ var stVersions = {
     'cmodules/web/groups.41d7fb735c2d43219ffc.js': '4b6d8f1822adad67a876ce28072442c9',
     'cmodules/web/groups_admins.d1c837a7e84e2c3816f3.js': 'e774cad6b705abab68e35bb1cd2d01a6',
     'cmodules/web/groups_create.37a373e414871d7b57be.js': 'eff9d693ea542ded0889f272b644b35f',
-    'cmodules/web/groups_edit.672a5dc91c1ff0e12062.js': 'b3cf342dead42e5e24cf5f388664c20e',
+    'cmodules/web/groups_edit.752f9fe01c2983c099e6.js': '28195a3edaa667856f793857aa9348e5',
     'cmodules/web/groups_edit_addresses.993496b419de9a819077.js': '6684ff534ac7a8bc679cf84424d7aee2',
     'cmodules/web/groups_edit_cta_button.c32f5af5a4915cbeb922.js': '4faf660e0581169ec5726e5ada94f271',
     'cmodules/web/groups_edit_stories.8d143e73db7e912046a8.js': '8d58fb8409dba72ac6c5',
@@ -672,7 +672,7 @@ var stVersions = {
     'cmodules/web/likes.d40cba67cb0322c892cb.js': 'd0f563886e0eddfcc3e8ef5d46dce07d',
     'cmodules/web/login.04781f95545ffea17346.js': '09e8ffb214eb26be371f35a15b0dcaf9',
     'cmodules/web/market_cart.81faa29d622a92a384d6.js': '082be29e718b0540ad4450402fc779f6',
-    'cmodules/web/money_transfer.d40dad5f6fd6373c1fa6.js': '7d64e06954df3186826d7f9dab833d86',
+    'cmodules/web/money_transfer.af472c5ebb4d29a956ee.js': 'b1f4aaba46c90f4d3239f7f7d32785fd',
     'cmodules/web/mr_truth.3fd06a292309aa75bc04.js': 'a17b8542347cb53cb76ea0b99af3df52',
     'cmodules/web/music_2018.37a87b2520c047311094.js': 'bb31f87f7dc049bdf019fc34a09a17be',
     'cmodules/web/notifier.b3ae005ef84d6c7c6c72.js': '3f26feacc7cde1e17e43c082e09824ae',
@@ -788,7 +788,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7307;
+var _rnd = 7118;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.0b6a1d9a11d500179570.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
@@ -829,7 +829,7 @@ var stDeps = {
     "/js/cmodules/web/groups.js": ["cmodules/bundles/audioplayer.8c06878462545cf60647.js", "cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/groups.41d7fb735c2d43219ffc.js"],
     "/js/cmodules/web/groups_admins.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.4b35d0a43f88d42260c4.js", "cmodules/web/groups_admins.d1c837a7e84e2c3816f3.js"],
     "/js/cmodules/web/groups_create.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/groups_create.37a373e414871d7b57be.js"],
-    "/js/cmodules/web/groups_edit.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/groups_edit.672a5dc91c1ff0e12062.js"],
+    "/js/cmodules/web/groups_edit.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/groups_edit.752f9fe01c2983c099e6.js"],
     "/js/cmodules/web/groups_edit_addresses.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.4b35d0a43f88d42260c4.js", "cmodules/web/groups_edit_addresses.993496b419de9a819077.js"],
     "/js/cmodules/web/groups_edit_cta_button.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/groups_edit_cta_button.c32f5af5a4915cbeb922.js"],
     "/js/cmodules/web/groups_edit_stories.js": ["cmodules/web/groups_edit_stories.8d143e73db7e912046a8.js"],
@@ -846,7 +846,7 @@ var stDeps = {
     "/js/cmodules/web/likes.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/likes.d40cba67cb0322c892cb.js"],
     "/js/cmodules/web/login.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/login.04781f95545ffea17346.js"],
     "/js/cmodules/web/market_cart.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/market_cart.81faa29d622a92a384d6.js"],
-    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.a3e64c7fd945a637754b.js", "cmodules/web/money_transfer.d40dad5f6fd6373c1fa6.js"],
+    "/js/cmodules/web/money_transfer.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.a3e64c7fd945a637754b.js", "cmodules/web/money_transfer.af472c5ebb4d29a956ee.js"],
     "/js/cmodules/web/mr_truth.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/web/mr_truth.3fd06a292309aa75bc04.js"],
     "/js/cmodules/web/music_2018.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/music_2018.37a87b2520c047311094.js"],
     "/js/cmodules/web/notifier.js": ["cmodules/bundles/common.5786d70b7b25d846fddf.js", "cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.c6c0f824fadc8a333172.js", "cmodules/web/notifier.b3ae005ef84d6c7c6c72.js"],

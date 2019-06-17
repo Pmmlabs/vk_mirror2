@@ -33948,9 +33948,6 @@ body.apps_settingsPageBody .basis__content {
         display: -ms-flexbox;
         display: flex
     }
-    .vk .mhb_back {
-        float: none
-    }
     .vk .header__left {
         position: relative;
         z-index: 1;
