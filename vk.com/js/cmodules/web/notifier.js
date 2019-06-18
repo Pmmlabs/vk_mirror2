@@ -408,11 +408,12 @@
             d = i("hOuX"),
             u = i("BxOC"),
             f = i("DM26"),
-            h = i("MhhX"),
-            _ = i("P13b"),
-            p = i("vT4u");
+            h = i("XzvV"),
+            _ = i("MhhX"),
+            p = i("P13b"),
+            v = i("vT4u");
 
-        function v() {
+        function m() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
@@ -594,18 +595,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (v()) break;
+                        if (m()) break;
                         var i, a = t.id,
                             o = curFastChat.tabs[a],
                             r = !1;
@@ -636,18 +637,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (v()) break;
+                        if (m()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -677,12 +678,12 @@
             getResourcesThatShouldBeLoaded(e) {
                 var t = {},
                     i = e.filter(e => e.type === l.a),
-                    a = e.filter(h.l),
+                    a = e.filter(_.l),
                     o = i.filter(e => !this.isTabLoaded(e.peerId)).map(e => e.peerId);
 
                 function r(e, i) {
                     var a = FastChat.getTab(e);
-                    Object(_.ib)(e) && i && a && !a.data.members[i] && (t[e] ? -1 === t[e].indexOf(i) && t[e].push(i) : t[e] = [i])
+                    Object(p.ib)(e) && i && a && !a.data.members[i] && (t[e] ? -1 === t[e].indexOf(i) && t[e].push(i) : t[e] = [i])
                 }
                 return i.forEach(e => {
                     this.isTabLoaded(e.peerId) && r(e.peerId, e.userId)
@@ -703,7 +704,7 @@
             loadMembers(e) {
                 if (0 === Object.keys(e).length) return Promise.resolve();
                 var t = Object.keys(e).map(t => `${t}:${e[t].join(",")}`).join(";");
-                return Object(u.b)(p.e, {
+                return Object(u.b)(v.e, {
                     act: "a_load_member",
                     need: t
                 }).then(([t]) => {
@@ -1323,7 +1324,7 @@
                 } else i || (i = {}), i.fixed = !0, i.onPeerAdded = function() {
                     FastChat.movePointer(e, a)
                 }, i.onHistoryLoaded = FastChat.readLastMessages.pbind(e), FastChat.addPeer(e, !1, !0, i);
-                return curFastChat.tabs[e] && curFastChat.tabs[e].iman && (curFastChat.tabs[e].entrypoint = i && i.entrypoint, curFastChat.tabs[e].iman.unidle()), !1
+                return curFastChat.tabs[e] && curFastChat.tabs[e].iman && (curFastChat.tabs[e].entrypoint = i && i.entrypoint, curFastChat.tabs[e].iman.unidle()), FastChat.trackActivity("open"), !1
             },
             closeTabIcon: function(e, t, i) {
                 curFastChat.activeBox && curFastChat.activeBox.options.peer == e && !i && (curFastChat.activeBox.hide(), FastChat.setActive(!1));
@@ -1499,7 +1500,7 @@
                 }))
             },
             gotPeers: function(e) {
-                v() || each(curFastChat.needPeers, function(t) {
+                m() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1564,9 +1565,9 @@
                 }))
             },
             waitTyping(e) {
-                return Object(f.c)(p.b + 2).then(() => {
+                return Object(f.c)(v.b + 2).then(() => {
                     var t = this.getTab(e.peerId);
-                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * p.b && delete t.typing)
+                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * v.b && delete t.typing)
                 })
             },
             updateTypings() {
@@ -1590,10 +1591,10 @@
                 var {
                     peerId: t,
                     userIds: i
-                } = e, a = this.getTab(t), o = i[0], r = Object(_.ib)(t) ? a.data.members[o] : a, s = e => e.fname || e.name || "";
-                if (1 === i.length || !Object(_.ib)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", s(r));
+                } = e, a = this.getTab(t), o = i[0], r = Object(p.ib)(t) ? a.data.members[o] : a, s = e => e.fname || e.name || "";
+                if (1 === i.length || !Object(p.ib)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", s(r));
                 var n = i[i.length - 1],
-                    c = Object(_.ib)(t) ? a.data.members[n] : a;
+                    c = Object(p.ib)(t) ? a.data.members[n] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", s(r)).replace("{last_user}", s(c))
             },
             markMessagesAsRead(e) {
@@ -2113,7 +2114,7 @@
                         flags: 3,
                         randomId: u.random_id,
                         attaches: []
-                    })), delete curFastChat.myTypingEvents[e], a.editable ? FastChat.checkEditable(a.emojiId, a.txt) : a.txt.autosize.update(!1, !0), elfocus(a.txt), FastChat.scroll(e)
+                    })), delete curFastChat.myTypingEvents[e], a.editable ? FastChat.checkEditable(a.emojiId, a.txt) : a.txt.autosize.update(!1, !0), elfocus(a.txt), FastChat.scroll(e), FastChat.trackActivity("send")
                 } else a.editable ? Emoji.editableFocus(a.txt, !1, !0) : elfocus(a.txt)
             },
             saveDraft: function(e) {
@@ -2167,23 +2168,23 @@
                     messageId: a,
                     text: o,
                     date: r
-                } = e, s = Object(h.b)(e), [n, c] = this.getMessageMedia(e), l = "", d = e.randomId;
-                return Object(h.l)(e) && (l = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (d = Number(a.slice(3))), Object.assign({
+                } = e, s = Object(_.b)(e), [n, c] = this.getMessageMedia(e), l = "", d = e.randomId;
+                return Object(_.l)(e) && (l = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (d = Number(a.slice(3))), Object.assign({
                     id: a,
                     peer: t,
                     from_id: s,
-                    text: Object(h.l)(e) ? l : this.getMessageText(o, t) + n,
-                    out: Object(h.k)(e),
+                    text: Object(_.l)(e) ? l : this.getMessageText(o, t) + n,
+                    out: Object(_.k)(e),
                     unread: Boolean(1 & i),
                     date: r,
                     date_str: FastChat.mkdate(r),
                     randomId: d,
-                    isServiceMessage: Object(h.l)(e)
+                    isServiceMessage: Object(_.l)(e)
                 }, this.getMessageAuthor(e), c)
             },
             getMessageAuthor(e) {
                 var t = e.peerId,
-                    i = Object(h.b)(e),
+                    i = Object(_.b)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
                 var {
@@ -2192,9 +2193,9 @@
                     photo: s,
                     fname: n,
                     first_name: c
-                } = Object(h.k)(e) ? curFastChat.me : Object(_.ib)(t) ? a.data.members[i] : a;
+                } = Object(_.k)(e) ? curFastChat.me : Object(p.ib)(t) ? a.data.members[i] : a;
                 return {
-                    fname: Object(_.ib)(t) ? n || c : "",
+                    fname: Object(p.ib)(t) ? n || c : "",
                     name: o,
                     link: r,
                     photo: s,
@@ -2206,7 +2207,7 @@
                     peerId: t,
                     messageId: i
                 } = e, a = "", o = {};
-                return !Object(h.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(e => {
+                return !Object(_.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(e => {
                     switch (e.type) {
                         case "sticker":
                             a += i ? this.renderSticker(e.id, e.productId, e.kind, i) : this.renderSticker(e.id, e.productId), o.sticker = !0;
@@ -2215,7 +2216,7 @@
                             var r = e.object ? e.object.fwd_count : e.id.split(";").length;
                             a += rs(curFastChat.tpl.msg_fwd, {
                                 msg_id: i,
-                                peerId_nice: Object(_.I)(t),
+                                peerId_nice: Object(p.I)(t),
                                 label: getLang(r > 1 ? "mail_im_fwd_msgs" : "mail_im_fwd_msg")
                             });
                             break;
@@ -2254,64 +2255,64 @@
                     userId: a
                 } = e, o = t.source_act, r = Number(t.source_mid), s = this.getMember(i, a), n = "", c = a === r;
                 switch (o) {
-                    case _.j:
+                    case p.j:
                         n = "mail_im_chat_created";
                         break;
-                    case _.g:
+                    case p.g:
                         n = t.source_is_channel ? "mail_im_title_updated_channel" : "mail_im_title_updated_dot";
                         break;
-                    case _.b:
+                    case p.b:
                         n = c ? "mail_im_returned_to_chat" : "mail_im_invited";
                         break;
-                    case _.c:
+                    case p.c:
                         n = c ? "mail_im_left" : "mail_im_kicked_from_chat";
                         break;
-                    case _.e:
+                    case p.e:
                         n = "mail_im_photo_set";
                         break;
-                    case _.d:
+                    case p.d:
                         n = t.source_is_channel ? "mail_im_photo_removed_channel" : "mail_im_photo_removed";
                         break;
-                    case _.f:
+                    case p.f:
                         n = t.source_message ? "mail_im_pin_message" : "mail_im_pin_message_empty2";
                         break;
-                    case _.h:
+                    case p.h:
                         n = t.source_message ? "mail_im_unpin_message" : "mail_im_unpin_message_empty2";
                         break;
-                    case _.a:
+                    case p.a:
                         n = "mail_im_invite_by_link";
                         break;
                     default:
                         return "mail_no_support"
                 }
-                if (n = (n = langSex(s.sex, getLang(n, "raw"))).replace("{from}", Object(_.kc)(s.link, s.name, !0)), r && r !== a) {
+                if (n = (n = langSex(s.sex, getLang(n, "raw"))).replace("{from}", Object(p.kc)(s.link, s.name, !0)), r && r !== a) {
                     var l = t.source_email;
-                    if (l) n = n.replace("{user}", Object(_.kc)(`/im?email=${encodeURIComponent(l)}`, "email", !0));
+                    if (l) n = n.replace("{user}", Object(p.kc)(`/im?email=${encodeURIComponent(l)}`, "email", !0));
                     else {
                         var d = this.getMember(i, r) || {
                                 name_inv_case: "",
                                 name_kick_case: "",
                                 link: ""
                             },
-                            u = o === _.c ? d.name_kick_case : d.name_inv_case;
-                        n = n.replace("{user}", Object(_.kc)(d.link, u, !0))
+                            u = o === p.c ? d.name_kick_case : d.name_inv_case;
+                        n = n.replace("{user}", Object(p.kc)(d.link, u, !0))
                     }
                 }
                 if (t.source_text) {
                     var f = t.source_old_text ? `«<b class="im_srv_lnk">${t.source_old_text}</b>» &rarr; ` : "";
                     n = n.replace("{title}", f + `«<b class="im_srv_lnk">${t.source_text}</b>»`)
                 }
-                if (t.source_act === _.f || t.source_act === _.h)
+                if (t.source_act === p.f || t.source_act === p.h)
                     if (t.source_message) {
-                        var h = Object(_.hc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
-                            p = Object(_.kc)("", h, !1, "im_srv_mess_link");
-                        n = n.replace("{msg}", p)
-                    } else n = n.replace(/{link}(.+){\/link}/i, (e, t) => Object(_.kc)("", t, !1, "im_srv_mess_link"));
+                        var h = Object(p.hc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
+                            _ = Object(p.kc)("", h, !1, "im_srv_mess_link");
+                        n = n.replace("{msg}", _)
+                    } else n = n.replace(/{link}(.+){\/link}/i, (e, t) => Object(p.kc)("", t, !1, "im_srv_mess_link"));
                 return n
             },
             getMember(e, t) {
                 var i = this.getTab(e);
-                return Object(_.ib)(e) && i ? i.data.members[t] : i || null
+                return Object(p.ib)(e) && i ? i.data.members[t] : i || null
             },
             needMsgMedia: function(e, t) {
                 t <= 0 || (FastChat.lcSend("needMedia", {
@@ -2417,7 +2418,7 @@
                         unread: a && Math.max(+a.innerHTML, 0) || 0
                     }
                 }
-                Object(h.k)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
+                Object(_.k)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
             },
             updateTabUnreadCounterElement(e, t) {
                 if (e) {
@@ -2444,8 +2445,8 @@
             closeTab: function(e) {
                 curFastChat.tabs[e].box.close()
             },
-            updateQueueKeys() {
-                location.reload(!0)
+            trackActivity(e) {
+                Object(h.d)("im_fastchat_location", e, window.cur.module)
             },
             toggleFastChats(e) {
                 var t = !e;
@@ -2454,10 +2455,10 @@
             tplBox: '<div class="fc_tab_wrap"><div class="fc_tab_head clear_fix"><a class="fc_tab_close_wrap"><div class="chats_sp fc_tab_close"></div></a><a class="fc_tab_max_wrap" href="/im?sel=%id%" onmousedown="event.cancelBubble = true;" onclick="return nav.go(this, event);"><div class="chats_sp fc_tab_max"></div></a><a class="fc_tab_pin_wrap" onmousedown="event.cancelBubble = true;" onclick="return FastChat.pinTab(%id%, event);"><div class="chats_sp fc_tab_pin"></div></a><div class="fc_tab_title noselect">%name%</div></div><div class="fc_tab"><div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="pr fc_tab_typing_icon _fc_tab_typing_progress" id=""><div class="pr_bt"></div><div class="pr_bt"></div><div class="pr_bt"></div></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><a class="fc_tab_attach"></a><div class="fc_tab_txt">%cont%<div class="fc_tab_preview"></div></div></div></div><div class="fc_pointer_offset"><div class="fc_tab_pointer fc_tab_pointer_peer"></div></div></div>',
             tplTab: '<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="pr fc_tab_typing_icon _fc_tab_typing_progress" id=""><div class="pr_bt"></div><div class="pr_bt"></div><div class="pr_bt"></div></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'
         };
-        var m = i("W9Tc");
+        var g = i("W9Tc");
         window.DesktopNotifications = {
             supported: function() {
-                return !Object(m.a)("push_notifier") && !(!window.webkitNotifications && !window.Notification)
+                return !Object(g.a)("push_notifier") && !(!window.webkitNotifications && !window.Notification)
             },
             checkPermission: function() {
                 return window.webkitNotifications ? webkitNotifications.checkPermission() : "granted" == Notification.permission ? 0 : 1
@@ -3207,7 +3208,7 @@
                     try {
                         eval(evalExpr)
                     } catch (e) {
-                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, evalExpr)
+                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, evalExpr)
                     }
                     TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.trackViews(), show(geByClass1("top_notify_show_all")), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
                 }
@@ -3311,7 +3312,7 @@
                             try {
                                 eval(evalExpr)
                             } catch (e) {
-                                Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, evalExpr)
+                                Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, evalExpr)
                             }
                             if (rows) {
                                 for (var row = null, cont = TopNotifier.getContentNode(), au = cf(rows); row = au.firstChild;) cont.insertBefore(row, btn);
@@ -4005,7 +4006,7 @@
                         try {
                             ev.custom = eval(evalExpr)
                         } catch (e) {
-                            Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, evalExpr)
+                            Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, evalExpr)
                         }
                     }
                     if (!curNotifier.done_events[ev.id]) {
@@ -4079,7 +4080,7 @@
                                     try {
                                         ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
                                     } catch (e) {
-                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, evalText)
+                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, evalText)
                                     }
                                     push = 0
                                 }
@@ -4190,7 +4191,7 @@
                                 try {
                                     eval(ev.onclick)
                                 } catch (e) {
-                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, ev.onclick)
+                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, ev.onclick)
                                 }
                                 Notifier.trackEvent("click", {
                                     event_id: ev.id
@@ -4254,7 +4255,7 @@
                     else try {
                         eval(ev.onclick)
                     } catch (e) {
-                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.d)(e, ev.onclick)
+                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)(e, ev.onclick)
                     }
                     Notifier.hideEvent(ev)
                 }, notification.onclose = function() {

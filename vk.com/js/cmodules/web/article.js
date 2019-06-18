@@ -574,7 +574,7 @@
                 return this._el.appendChild(se(`<div class="article_ed__audioplaylist_play_note" contenteditable="false">${getLang("pages_articles_editor_audio_play_note")}</div>`)), this._el
             }
         }
-        class C extends n {
+        class j extends n {
             constructor(e, t) {
                 super(e, t, !0)
             }
@@ -584,7 +584,7 @@
                 return this._el = se(`\n      <div class="article_object_audio">${t}</div>\n    `), this._el
             }
         }
-        var j, O = [{
+        var C, O = [{
             pattern: /\s-\s$/,
             substitution: " — "
         }, {
@@ -845,15 +845,15 @@
 
         function L(e) {
             var t = [];
-            e.length > j.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", j.maxParagraphs));
+            e.length > C.maxParagraphs && t.push(getLang("pages_article_ed_limit_paragraphs").replace("{count}", e.length).replace("{limit}", C.maxParagraphs));
             var i = 0,
                 a = 0;
             return e.forEach(e => {
                 var s = 0;
                 e.lines.forEach(e => {
                     e && (i += e.text.length, s += e.text.length)
-                }), Object(r.D)(e) && a++, s > j.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", s).replace("{limit}", j.maxSymbolsPerParagraph))
-            }), i > j.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", i).replace("{limit}", j.maxSymbols)), a > j.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", j.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
+                }), Object(r.D)(e) && a++, s > C.maxSymbolsPerParagraph && t.push(getLang("pages_article_ed_limit_symbols_per_par").replace("{count}", s).replace("{limit}", C.maxSymbolsPerParagraph))
+            }), i > C.maxSymbols && t.push(getLang("pages_article_ed_limit_symbols").replace("{count}", i).replace("{limit}", C.maxSymbols)), a > C.maxObjects && t.push(getLang("pages_article_ed_limit_objects").replace("{count}", a).replace("{limit}", C.maxObjects)), t.length && t.push(getLang("pages_article_ed_limit")), t.join("<br>")
         }
         class M {
             static _saveChunk(e, t, i, a, r) {
@@ -987,19 +987,19 @@
             fe[t.type] = t
         });
         var me = 100,
-            Ce = 1;
+            je = 1;
 
-        function je() {
-            return Ce++ + "-" + Date.now() % 1e6 + "-" + irand(0, 99999)
+        function Ce() {
+            return je++ + "-" + Date.now() % 1e6 + "-" + irand(0, 99999)
         }
         window.ArticleEditor = class {
             constructor(e, t, i, a = {}) {
-                this._id = je(), N.lang = N.lang || {}, Z(N.lang, a.lang), this._options = a, this._els = {
+                this._id = Ce(), N.lang = N.lang || {}, Z(N.lang, a.lang), this._options = a, this._els = {
                         editor: de(e),
                         canvas: J('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
                     }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = J('<div class="article_photo_upload"></div>')), U(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [],
                     function(e) {
-                        j = e
+                        C = e
                     }(a.limits);
                 var s = i || [];
                 if (a.postData) {
@@ -1191,7 +1191,7 @@
                 }
                 if (!a || !s) return !1;
                 var o = Object(r.e)({
-                        _uuid: je(),
+                        _uuid: Ce(),
                         type: a,
                         mediaId: s
                     }),
@@ -2132,7 +2132,8 @@
                 delete t.sep, showBox("al_video.php", {
                     act: "a_choose_video_box",
                     from: "article",
-                    to_id: this.getArticleOwnerId()
+                    to_id: this.getArticleOwnerId(),
+                    blockPersonal: 1
                 }), N.chooseMedia = ((t, a, s, o, n) => {
                     var [l] = Object(_.e)(s.editable.sizes, this.getWidth()), d = Object(r.e)({
                         type: _.b.ObjectVideo,
@@ -2330,7 +2331,7 @@
                             s = parseInt(e.getAttribute("data-type"));
                         if (i[a]) {
                             var o = this._getObject(a);
-                            a = je(), this._getOrCreateParagraphObject({
+                            a = Ce(), this._getOrCreateParagraphObject({
                                 type: s,
                                 _uuid: a,
                                 mediaId: o.getMediaId()
@@ -2495,7 +2496,7 @@
                                     }
                                 } else this._resizeTooltip && this._resizeTooltip.isShown() && this._resizeTooltip.hide()
                             } else this._showObjectPicker()
-                        }
+                        } else this._showObjectPicker()
                     });
                     var t = !1,
                         i = !1,
@@ -2554,8 +2555,8 @@
                             }
                             if ((a == ge.Delete || a == ge.Backspace) && this._resizeTooltip && this._resizeTooltip.isShown() && this._resizeTooltip.hide(), a == ge.Tab && g && 0 == u) return Object(r.o)(this._getParagraphElByIndex(1)), cancelEvent(e);
                             if (h && a == ge.KeyA && Object(r.D)(v) && v._object.isCaptionFocused()) {
-                                var C = v._object.getCaptionEl();
-                                return Object(r.S)(C), cancelEvent(e)
+                                var j = v._object.getCaptionEl();
+                                return Object(r.S)(j), cancelEvent(e)
                             }
                             if (h) switch (a) {
                                 case ge.KeyB:
@@ -2569,11 +2570,11 @@
                                 case ge.KeyY:
                                     return this.redo(), cancelEvent(e)
                             }
-                            var j = a == ge.KeyC && e.altKey,
+                            var C = a == ge.KeyC && e.altKey,
                                 E = v ? v.type : _.b.Text,
                                 y = Object(D.U)("pre", p.startContainer),
                                 P = !!(y || Object(D.U)("pre", p.endContainer) || p.startContainer.nodeType == Node.ELEMENT_NODE && "PRE" == p.startContainer.tagName);
-                            if (j) {
+                            if (C) {
                                 if (E === _.b.Header1) return cancelEvent(e);
                                 if (g) return this._toggleCodeBlocks(), cancelEvent(e);
                                 if (!P && inArray(E, [_.b.Text, _.b.NumericList, _.b.BulletList])) {
@@ -2719,7 +2720,7 @@
                 })
             }
             _getOrCreateParagraphObject(e) {
-                e._uuid || (e._uuid = je());
+                e._uuid || (e._uuid = Ce());
                 var t = this._getObject(e._uuid);
                 if (!t) {
                     var i = e.mediaId || "";
@@ -2734,7 +2735,7 @@
                             t = new f(i, this);
                             break;
                         case _.b.ObjectAudio:
-                            t = new C(i, this);
+                            t = new j(i, this);
                             break;
                         case _.b.ObjectAudioPlaylist:
                             t = new p(i, this);
