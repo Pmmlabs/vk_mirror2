@@ -16815,6 +16815,14 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-position: 0 -48px
 }
 
+.r .lm_player .ai_label {
+    height: 39px
+}
+
+.r .lm_player .ai_title.ad_placeholder {
+    line-height: 33px
+}
+
 .audioPlaylist__wrap {
     position: relative
 }
@@ -34714,6 +34722,7 @@ body.apps_settingsPageBody .basis__content {
     height: 36px
 }
 
+.ad_mode .aic_progress_wrap .aic_load_line,
 .Audio__lineBackground,
 .r .aic_back_line {
     background: #ebebeb
@@ -34923,7 +34932,8 @@ body.apps_settingsPageBody .basis__content {
 
 .r .ai_current .ai_title {
     font-size: inherit;
-    letter-spacing: inherit
+    letter-spacing: inherit;
+    margin: 0
 }
 
 .r .ai_current .ai_artist,
@@ -34979,6 +34989,20 @@ body.apps_settingsPageBody .basis__content {
     padding: 0
 }
 
+.ad_mode .r .article_view .ai_play,
+.ad_mode .r .msg_item .ai_play,
+.ad_mode .r .post_item .ai_play,
+.ad_mode .r .wall_item .ai_play {
+    background-image: url('/images/mobile/icons/placeholder_audio.png?1')!important
+}
+
+.ad_mode .vk_2x.r .article_view .ai_play,
+.ad_mode .vk_2x.r .msg_item .ai_play,
+.ad_mode .vk_2x.r .post_item .ai_play,
+.ad_mode .vk_2x.r .wall_item .ai_play {
+    background-image: url('/images/mobile/icons/placeholder_audio_2x.png?1')!important
+}
+
 .r .article_view .ai_current .ai_dur,
 .r .msg_item .ai_current .ai_dur,
 .r .post_item .ai_current .ai_dur,
@@ -35007,6 +35031,41 @@ body.apps_settingsPageBody .basis__content {
         left: 33px;
         right: 36px
     }
+}
+
+.ad_mode .ai_play {
+    background-image: url('/images/mobile/icons/placeholder_audio.png?1')!important
+}
+
+.ad_mode .ai_label .ai_artist,
+.ad_mode .ai_label .ai_title,
+.ad_mode .ai_label .divider,
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .ai_artist,
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .ai_title,
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .divider {
+    display: none
+}
+
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .ai_artist.ad_placeholder,
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .ai_title.ad_placeholder,
+.audioPlaylist.audioPlaylist_official:not(.ad_placeholder) .ad_mode .ai_label .divider.ad_placeholder,
+.ad_mode .ai_label .ai_title.ad_placeholder {
+    display: block
+}
+
+.ad_mode .ai_label .ai_title.ad_placeholder:after {
+    display: none
+}
+
+.ad_mode .aic_progress_wrap .aic_slider {
+    width: 8px;
+    height: 2px;
+    background-color: #f5a623;
+    top: 0
+}
+
+.ad_mode .aic_progress_wrap .aic_progress_line {
+    background: #f5a623
 }
 
 .r .ai_theme_white .i_play {

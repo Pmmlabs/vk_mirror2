@@ -609,6 +609,7 @@
 }
 
 .market_item_controls {
+    margin: 20px 0 15px;
     width: 290px;
     text-align: center
 }
@@ -637,6 +638,20 @@
 .market_item_controls .flat_button:active {
     padding-top: 12px;
     padding-bottom: 11px
+}
+
+.market_item_controls button.tertiary {
+    background: transparent;
+    color: #2a5885
+}
+
+.market_item_controls button.tertiary:not(:disabled):focus,
+.market_item_controls button.tertiary:not(:disabled):hover {
+    background: #e5ebf1
+}
+
+.market_item_controls button.tertiary:not(:disabled):active {
+    background-color: #dae2ea
 }
 
 .market_contact_btn {
@@ -2263,38 +2278,6 @@
 .market_item_content_bottom {
     position: absolute;
     bottom: 0
-}
-
-.market_item_controls {
-    margin: 20px 0 15px;
-    width: 290px;
-    text-align: center
-}
-
-.market_item_controls .selector_container {
-    margin-bottom: 10px
-}
-
-.market_item_controls .selector_container.big td.selector {
-    padding: 6px 0 0 5px
-}
-
-.market_item_controls .selector_container.big td.selector input {
-    height: 22px;
-    font-size: 14px
-}
-
-.market_item_controls .flat_button {
-    padding: 11px 13px 12px;
-    border-radius: 3px;
-    font-size: 14px;
-    line-height: 16px
-}
-
-.market_item_controls .flat_button.active,
-.market_item_controls .flat_button:active {
-    padding-top: 12px;
-    padding-bottom: 11px
 }
 
 .market_fav_btn_text {

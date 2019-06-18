@@ -69,9 +69,9 @@
     c.push = t, c = c.slice();
     for (var d = 0; d < c.length; d++) t(c[d]);
     var l = u;
-    a.push([165, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
+    a.push([167, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
 }({
-    165: function(e, t, r) {
+    167: function(e, t, r) {
         e.exports = r("rUY3")
     },
     N1NS: function(e, t, r) {
@@ -266,7 +266,7 @@
                             teHeight: 100,
                             toggleLnk: !0
                         };
-                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
+                        cur.mbForceAttach && "market_item" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
                             for (var e in cur.mbMedia.chosenMedias)
                                 if ("market" == cur.mbMedia.chosenMedias[e][0]) {
                                     var t = cur.mbMedia.chosenMedias[e][2];
@@ -286,7 +286,16 @@
                     var t = a.getPeer();
                     if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
                         var r = Object(i.b)(cur.ldb, t);
-                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (r.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), r.removeAllAttaches(), r.addAttach("market", cur.mbForceAttach[1])), a.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(r.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(r.dData.txt))), r.prepareObjects().then(() => {
+                        if (cur.mbForceAttach)
+                            if ("market_item" == cur.mbForceAttach[0]) r.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), r.removeAllAttaches(), r.addAttach("market", cur.mbForceAttach[1]);
+                            else if ("market_order" == cur.mbForceAttach[0]) {
+                            var {
+                                user_id: o,
+                                order_id: n
+                            } = cur.mbForceAttach[1];
+                            r.setText(unclean(getLang("mail_order_tmpl")).replace(/<br>/g, "\n").replace("{id}", `${o}-${n}`).replace("{href}", `${window.location.host}/orders${o}_${n}`)), r.removeAllAttaches()
+                        }
+                        a.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(r.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(r.dData.txt))), r.prepareObjects().then(() => {
                             if (cur.mbField && a.getPeer() == t)
                                 for (var e = r.dData.attaches, o = 0; o < e.length; o++) cur.mbMedia.chooseMedia(e[o].type, e[o].id, e[o].object || {}, null, !0)
                         }), a.checkEditable(cur.emojiWId, cur.mbField), a.checkLen(cur.mbField)

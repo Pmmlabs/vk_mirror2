@@ -31,12 +31,17 @@
 }
 
 .stories_layer_shown #chat_onl_wrap,
-.stories_layer_shown #notifiers_wrap,
 .stories_layer_shown #rb_box_fc_clist,
 .stories_layer_shown .rb_box_wrap {
-    opacity: 0!important;
-    filter: alpha(opacity=0)!important;
     pointer-events: none
+}
+
+.stories_layer_shown #notifiers_wrap .notifier_baloon {
+    display: none
+}
+
+.stories_layer_shown #notifiers_wrap .notifier_baloon.notifier_type_done_box {
+    display: block
 }
 
 .stories_layers_background {

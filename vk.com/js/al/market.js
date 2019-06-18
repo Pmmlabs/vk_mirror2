@@ -1205,14 +1205,14 @@ var Market = {
 
         return false;
     },
-    showWriteMessage: function(e, id, item_id, hash) {
+    showWriteMessage: function(e, id, itemId, type, hash) {
         stManager.add(['page.js', 'wide_dd.js']);
-        cur.mbForceAttach = ['market', item_id, hash];
+        cur.mbForceAttach = [type, itemId, hash];
         var box = showBox('al_im.php', {
             act: 'a_write_box',
             to: id,
             hash: hash,
-            from: 'market' + item_id
+            from: 'market' + itemId
         }, {
             stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', jsc('web/emoji.js'), 'notifier.css'],
             cache: 1
