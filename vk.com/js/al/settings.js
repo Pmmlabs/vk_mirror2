@@ -1531,6 +1531,21 @@ var Settings = {
         iform.submit();
         return false;
     },
+    resetSession: function(sessionId, resetData, hash) {
+        var ajaxParams = {
+            'reset_data': resetData,
+            'hash': hash
+        };
+        var onDone = function(message) {
+            var el = document.querySelector('.settings_history_row[data-id="' + sessionId + '"]');
+
+            addClass(el, 'settings_old_session');
+            showDoneBox(message);
+        };
+        ajax.post('/settings?act=a_reset_session', ajaxParams, {
+            onDone: onDone
+        });
+    },
     ipTTClick: function(el, e) {
         cancelEvent(e);
 

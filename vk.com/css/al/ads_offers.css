@@ -184,6 +184,19 @@ th.offers_table_col_no_sorted {
     padding-bottom: 7px
 }
 
+.offers_info_row.offers_info_row__middle {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: start;
+    justify-content: flex-start
+}
+
+.offers_info_row.offers_info_row__middle .value {
+    margin-left: 5px
+}
+
 .offers_info_row .label {
     width: 180px;
     color: #666

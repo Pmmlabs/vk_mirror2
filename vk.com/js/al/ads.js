@@ -1603,7 +1603,7 @@ Ads.createInlineStaticEdit = function(editElem, bindingId, params) {
                 uiTimeDay = new Dropdown(
                     geByClass('inline_time_day', this.contentTable)[0],
                     getDays(), {
-                        width: 45,
+                        width: 56,
                         height: 150,
                         selectedItem: 1
                     }
@@ -1611,7 +1611,7 @@ Ads.createInlineStaticEdit = function(editElem, bindingId, params) {
                 uiTimeMonth = new Dropdown(
                     geByClass('inline_time_month', this.contentTable)[0],
                     getMonths(), {
-                        width: 80,
+                        width: 100,
                         height: 150,
                         selectedItem: 1,
                         onChange: function(value) {
@@ -1622,7 +1622,7 @@ Ads.createInlineStaticEdit = function(editElem, bindingId, params) {
                 uiTimeYear = new Dropdown(
                     geByClass('inline_time_year', this.contentTable)[0],
                     getYears(), {
-                        width: 65,
+                        width: 72,
                         height: 150,
                         selectedItem: (new Date()).getFullYear()
                     }
@@ -2083,7 +2083,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             uiTimeDay = new Dropdown(
                 geByClass('inline_time_day', this.contentTable)[0],
                 getDays(), {
-                    width: 45,
+                    width: 56,
                     height: 150,
                     selectedItem: 1
                 }
@@ -2091,7 +2091,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             uiTimeMonth = new Dropdown(
                 geByClass('inline_time_month', this.contentTable)[0],
                 getMonths(), {
-                    width: 80,
+                    width: 100,
                     height: 150,
                     selectedItem: 1,
                     onChange: function(value) {
@@ -2102,7 +2102,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             uiTimeHour = new Dropdown(
                 geByClass('inline_time_hour', this.contentTable)[0],
                 getHours(), {
-                    width: 65,
+                    width: 72,
                     height: 150,
                     selectedItem: 0
                 }
@@ -2217,7 +2217,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<tr>' +
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table" style="width: 100%;">' +
-                '<tr><td><input class="inlInput text" type="text" /></td></tr>' +
+                '<tr><td><input class="inlInput text" type="text" id="ads_inline_edit_cost_per_click"/><label class="inlInput__label" for="ads_inline_edit_cost_per_click"></label></td></tr>' +
                 '<tr><td style="padding-top: 7px; height: 22px;">' +
                 '<img class="inline_recommended_cost_progress" src="/images/upload.gif" />' +
                 '<span class="ads_inline_recommended_cost_text"></span>' +
@@ -2234,7 +2234,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table">' +
                 '<tr>' +
-                '<td><input class="inlInput text" type="text" /></td>' +
+                '<td><input class="inlInput text" type="text" id="ads_inline_edit_limit" /><label class="inlInput__label" for="ads_inline_edit_limit"></label></td>' +
                 '<td><a class="ads_inline_edit_remove_value" href="#">' + getLang('ads_inline_edit_remove_limit') + '</a></td>' +
                 '</tr>' +
                 '<tr class="ads_inline_fast_error_row"><td colspan="2"><div class="ads_inline_fast_error"></div></td></tr>' +
@@ -2260,14 +2260,14 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<td style="white-space: nowrap; width: 200px;">' +
                 '<table class="ads_inline_edit_table">' +
                 '<tr>' +
-                '<td style="padding-right: 5px;"><input type="text" class="inline_time_day text" style="width: 30px;" /></td>' +
-                '<td style="padding-right: 5px;"><input type="text" class="inline_time_month text" style="width: 30px;" /></td>' +
-                '<td style="padding-right: 5px;"><input type="text" class="inline_time_hour text" style="width: 30px;" /></td>' +
+                '<td class="ads_inline_edit_time_input_block"><input type="text" class="inline_time_day text" style="width: 30px;" /></td>' +
+                '<td class="ads_inline_edit_time_input_block"><input type="text" class="inline_time_month text" style="width: 30px;" /></td>' +
+                '<td class="ads_inline_edit_time_input_block"><input type="text" class="inline_time_hour text" style="width: 30px;" /></td>' +
                 '</tr>' +
                 '</table>' +
                 '</td>' +
                 '</tr>' +
-                '<tr><td style="padding-top: 7px;"><a class="ads_inline_edit_remove_value" style="padding-left: 0;" href="#">' + removeValueText + '</a></td></tr>' +
+                '<tr><td class="ads_inline_edit_time_remove"><a class="ads_inline_edit_remove_value" style="margin-left: 0; padding-left: 0;" href="#">' + removeValueText + '</a></td></tr>' +
                 '<tr class="ads_inline_fast_error_row"><td colspan="2"><div class="ads_inline_fast_error"></div></td></tr>' +
                 '</table>' +
                 '</td>' +

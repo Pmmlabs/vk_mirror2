@@ -914,7 +914,7 @@
                 return (t !== e.endpoint || !i || o - i > So) && (E.a.set(Eo + vk.id, o), n = !0), n
             }
             listenPermission() {
-                navigator.permissions && navigator.permissions.query && navigator.permissions.query({
+                Object(G.a)("push_notifier") && navigator.permissions && navigator.permissions.query && navigator.permissions.query({
                     name: "notifications"
                 }).then(e => {
                     e.onchange = (() => this.update())

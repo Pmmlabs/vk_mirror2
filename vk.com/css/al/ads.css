@@ -3121,41 +3121,6 @@
     box-shadow: 4px 0px 5px -2px rgba(0, 0, 0, .05)
 }
 
-.Table__Edit .inlFrame00,
-.Table__Edit .inlFrame01,
-.Table__Edit .inlFrame02,
-.Table__Edit .inlFrame10,
-.Table__Edit .inlFrame12,
-.Table__Edit .inlFrame20,
-.Table__Edit .inlFrame21,
-.Table__Edit .inlFrame22 {
-    display: none
-}
-
-.Table__Edit .inlMainTable td.inlContent {
-    display: block;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #e7e8ec;
-    background: #fff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12)
-}
-
-.Table__Edit .ads_inline_edit_table .inlInput {
-    padding: 5px 10px 6px;
-    height: 19px;
-    border-radius: 2px;
-    border: 1px solid #d3d9de
-}
-
-.Table__Edit .ads_inline_fast_error_row .ads_inline_fast_error {
-    padding: 0;
-    color: #656565;
-    font-size: 12.5px;
-    border: transparent;
-    background-color: #fff
-}
-
 .Table__Row {
     display: table-row
 }
@@ -5157,6 +5122,30 @@ table.ads_inline_edit_table td {
 
 .admin_table_cell_last {
     border-bottom: none
+}
+
+.ads_admin_table_cell_photo_block {
+    padding: 5px 8px 5px 0;
+    width: 1px
+}
+
+.ads_admin_table_cell_photo {
+    width: 25px;
+    height: 25px
+}
+
+.ads_admin_table_cell_link {
+    width: 140px;
+    overflow: hidden
+}
+
+.ads_admin_table_cell_link_block {
+    width: 150px
+}
+
+.ads_admin_table_cell_actions {
+    white-space: nowrap;
+    text-align: right
 }
 
 .ads_admin_box_label {
@@ -7743,4 +7732,21 @@ td.ads_settings_notifications_label {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap
+}
+
+.ads_general_info_budget_block {
+    margin: 0;
+    padding: 0
+}
+
+.ads_inline_edit_table .ads_inline_edit_time_remove {
+    padding-top: 7px
+}
+
+.ads_inline_edit_table .ads_inline_edit_time_input_block {
+    padding-right: 5px
+}
+
+.ads_inline_edit_table .ads_inline_edit_time_input_block:last-child {
+    padding-right: 0
 }
