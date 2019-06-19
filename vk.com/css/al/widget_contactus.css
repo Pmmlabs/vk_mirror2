@@ -13,6 +13,12 @@
     padding: 0
 }
 
+.WidgetButton--fastAnim {
+    -o-transition: background 0.08s linear!important;
+    transition: background 0.08s linear!important
+}
+
+.WidgetButton,
 .widgets_button_logo {
     vertical-align: top;
     color: #fff;
@@ -23,8 +29,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -o-transition: background 200ms linear;
-    transition: background 200ms linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -38,84 +44,115 @@
     background: #5181b8
 }
 
+.WidgetButton:hover,
 .widgets_button_logo:hover {
     background: #5b88bd;
     text-decoration: none
 }
 
+.WidgetButton:active,
 .widgets_button_logo:active {
     background: #4872a3
 }
 
+.WidgetButton:before,
 .widgets_button_logo:before {
     content: '';
-    display: inline-block;
+    display: inline-block
+}
+
+.WidgetButton .pr,
+.widgets_button_logo .pr {
+    margin-top: 4px
+}
+
+.flat_btn_lock:before {
+    display: none
+}
+
+.WidgetButton--logo:before,
+.widgets_button_logo:before {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M13.302.505C13.396.19%2013.207%200%2012.892%200h-1.547c-.38%200-.536.158-.63.38%200%200-.758%201.845-1.83%203.044-.35.347-.506.458-.696.458-.096%200-.19-.142-.19-.458V.536C8%20.158%207.904%200%207.59%200H5.16c-.237%200-.347.133-.347.3%200%20.36.536.442.536%201.45v2.195c0%20.41-.033.568-.223.568-.505%200-1.733-1.855-2.46-3.977C2.523.124%202.367%200%201.987%200H.41C.158%200%200%20.158%200%20.38c0%20.393.505%202.35%202.35%204.938C3.583%207.085%205.255%208%206.833%208%207.78%208%208%207.842%208%207.463V6.138c0-.284.047-.52.347-.52.22%200%20.6.11%201.483.962C10.84%207.59%2010.935%208%2011.503%208h1.767c.19%200%20.347-.095.347-.38%200-.41-.536-1.103-1.294-1.955-.347-.41-.867-.852-1.025-1.073-.22-.284-.158-.41%200-.663%200%200%201.814-2.558%202.004-3.426z%22%2F%3E%3C%2Fsvg%3E");
     height: 8px;
     width: 14px
 }
 
+.WidgetButton--height18,
 .widgets_button_height18 {
     padding: 3px 6px;
     height: 18px
 }
 
+.WidgetButton--height18:before,
 .widgets_button_height18:before {
     margin-right: 6px
 }
 
+.WidgetButton--height18:active,
 .widgets_button_height18:active {
     padding: 4px 6px 2px
 }
 
+.WidgetButton--height20,
 .widgets_button_height20 {
     padding: 4px 6px;
     height: 20px
 }
 
+.WidgetButton--height20:before,
 .widgets_button_height20:before {
     margin-right: 6px
 }
 
+.WidgetButton--height20:active,
 .widgets_button_height20:active {
     padding: 5px 6px 3px
 }
 
+.WidgetButton--height22,
 .widgets_button_height22 {
     padding: 5px 7px;
     height: 22px
 }
 
+.WidgetButton--height22:before,
 .widgets_button_height22:before {
     margin-right: 7px
 }
 
+.WidgetButton--height22:active,
 .widgets_button_height22:active {
     padding: 6px 7px 4px
 }
 
+.WidgetButton--height24,
 .widgets_button_height24 {
     padding: 6px 9px;
     height: 24px
 }
 
+.WidgetButton--height24:before,
 .widgets_button_height24:before {
     margin-right: 9px
 }
 
+.WidgetButton--height24:active,
 .widgets_button_height24:active {
     padding: 7px 9px 5px
 }
 
+.WidgetButton--height30,
 .widgets_button_height30 {
     padding: 9px 11px;
     height: 30px
 }
 
+.WidgetButton--height30:before,
 .widgets_button_height30:before {
     margin-right: 10px
 }
 
+.WidgetButton--height30:active,
 .widgets_button_height30:active {
     padding: 10px 11px 8px
 }

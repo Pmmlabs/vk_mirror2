@@ -1036,6 +1036,10 @@ img {
     vertical-align: initial
 }
 
+.widgets_popup_box_body .popup_box_container .box_body {
+    word-break: break-word
+}
+
 .widgets_popup_box_body.widgets_popup_box_center #box_layer {
     display: table;
     margin: 0 auto;

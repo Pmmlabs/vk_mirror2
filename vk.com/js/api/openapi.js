@@ -2080,6 +2080,31 @@ if (!VK.Widgets) {
         });
     };
 
+    VK.Widgets.Bookmarks = function(objId, options) {
+        if (!options) {
+            options = {};
+        }
+
+        var params = {
+                height: ({
+                    18: 18,
+                    20: 20,
+                    22: 22,
+                    24: 24,
+                    30: 30
+                })[parseInt(options.height, 10) || 30],
+                url: options.url || window.location.href
+            },
+            rpc;
+
+        return VK.Widgets._constructor('widget_bookmarks.php', objId, options, params, {}, {
+            startHeight: params.height,
+            height: params.height
+        }, function(o, i, r) {
+            rpc = r;
+        });
+    };
+
     VK.Widgets.Playlist = function(objId, ownerId, playlistId, hash, options) {
         var params = {
                 oid: parseInt(ownerId, 10),

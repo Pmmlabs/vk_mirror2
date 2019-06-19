@@ -2342,6 +2342,49 @@ var Dev = {
         wArticle.linkChanged();
     },
 
+    initWidgetBookmarksConstructor: function(options) {
+        var code_el = geByClass1('_dev_widget_code'),
+            preview_el = geByClass1('_dev_widget_preview'),
+            height_el = geByClass1('_dev_widget_height'),
+            form_el = geByClass1('_dev_widget_form');
+
+        state = {
+            height: options.height
+        };
+
+        function updateCode() {
+            var _options = {
+                height: state.height && state.height != options.height_default ? state.height : void 0,
+                base_domain: options.base_domain || void 0,
+            };
+            val(code_el, rs(options.tpl, {
+                options: Object.keys(_options).length ? ', ' + JSON.stringify(_options) : ''
+            }));
+            val(preview_el, '<div id="dev_widget_preview" style="margin: 0 auto;" class="dev_widget_preview_button"></div>');
+            _options.url = 'https://habr.com/ru/company/vk/blog/449720/';
+            VK.Widgets.Bookmarks('dev_widget_preview', clone(_options));
+            nav.objLoc.height = _options.height;
+            nav.setLoc(nav.objLoc);
+        }
+
+        function updateHeight() {
+            var height = intval(heightSelect.val());
+            if (height != state.height) {
+                state.height = height;
+                updateCode();
+            }
+        }
+
+        var heightSelect = new Dropdown(height_el, options.height_list, {
+            width: 200,
+            big: 1,
+            selectedItem: state.height,
+            onChange: updateHeight
+        });
+
+        updateCode();
+    },
+
     _eof: 1
 };
 try {
