@@ -3860,7 +3860,9 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_activity_row_wrap .group_activity_content .group_activity_content_owner {
-    white-space: nowrap
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .group_activity_row_wrap .group_activity_content .group_activity_content_owner_name {
@@ -3868,7 +3870,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-right: 7px;
-    max-width: 230px;
+    max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

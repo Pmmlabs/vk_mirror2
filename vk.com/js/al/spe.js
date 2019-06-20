@@ -988,7 +988,7 @@
             return;
         }
 
-        var text = clean(val(textareaEl)).replace(/\n/g, '</br>');
+        var text = clean(val(textareaEl)).replace(/\n/g, '<br>');
 
         val(geByClass1('pe_layer_text_inner', _selectedLayerEl), text);
         if (domPN(textareaEl)) re(textareaEl);
@@ -1042,7 +1042,7 @@
                 return removeSelectedLayer();
             }
 
-            text = clean(text).replace(/\n/g, '</br>') + (inArray(text[text.length - 1], ['\n', ' ']) ? '&nbsp;' : '');
+            text = clean(text).replace(/\n/g, '<br>') + (inArray(text[text.length - 1], ['\n', ' ']) ? '&nbsp;' : '');
 
             var temp = se('<div class="pe_text_temp">' + text + '</div>');
 

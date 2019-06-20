@@ -609,7 +609,8 @@ input.place_map_point_search {
 }
 
 .places_map {
-    height: 350px
+    width: 590px;
+    height: 355px
 }
 
 .places_summary {

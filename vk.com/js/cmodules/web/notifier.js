@@ -3486,11 +3486,11 @@
                     }
                 }))
             },
-            unifiedDeleteRow: function(e, t, i, a) {
+            unifiedDeleteRow: function(e, t, i, a, o) {
                 cancelEvent(e);
-                var o = gpeByClass("feedback_row_wrap", a),
-                    r = domPN(o),
-                    s = geByClass1("post_actions", r);
+                var r = gpeByClass("feed_row", o),
+                    s = geByClass1("post_actions", r),
+                    n = geByClass1("feedback_row_wrap", r);
                 ajax.post("al_feed.php", {
                     act: "a_feedback_unified_delete",
                     query: t,
@@ -3498,16 +3498,90 @@
                     from: "top_notifier"
                 }, {
                     onDone: function(e) {
-                        var t = geByClass1("_post_content", o),
-                            i = geByClass1("_feedback_deleted", r);
-                        i ? (i.innerHTML = '<span class="dld_inner">' + e + "</span>", show(i)) : r.appendChild(ce("div", {
+                        "." !== a.substr(-1) && (a += ".");
+                        var o = getLang("global_cancel"),
+                            s = `${a} <a onclick="TopNotifier.unifiedRestoreRow('${t}', '${i}', this);return cancelEvent(event);">${o}</a>`;
+                        e && (s += "<br>" + e);
+                        var c = ce("div", {
+                            className: "feedback_deleted_container"
+                        });
+                        c.appendChild(ce("div", {
                             className: "feedback_row dld _feedback_deleted _top_feedback_deleted",
-                            innerHTML: '<span class="dld_inner">' + e + "</span>"
-                        })), hide(t), hasClass(r, "feedback_row_clickable") && addClass(r, "feedback_row_touched")
+                            innerHTML: s
+                        })), r.appendChild(c), hide(n), hasClass(r, "feedback_row_clickable") && addClass(r, "feedback_row_touched")
                     },
                     showProgress: addClass.pbind(s, "post_actions_progress"),
                     hideProgress: removeClass.pbind(s, "post_actions_progress")
                 })
+            },
+            unifiedRestoreRow: function(e, t, i) {
+                var a = gpeByClass("feed_row", i),
+                    o = gpeByClass("feedback_deleted_container", geByClass1("_feedback_deleted", a)),
+                    r = geByClass1("feedback_row_wrap", a);
+                if (o && r) {
+                    var s = ce("span", {
+                        className: "progress_inline"
+                    });
+                    ajax.post("al_feed.php", {
+                        act: "a_feedback_unified_restore",
+                        query: e,
+                        hash: t,
+                        from: "top_notifier"
+                    }, {
+                        onDone: function() {
+                            show(r), re(o), removeClass(a, "feedback_row_touched")
+                        },
+                        showProgress: () => i.parentNode.replaceChild(s, i),
+                        hideProgress: () => s.parentNode.replaceChild(i, s)
+                    })
+                }
+            },
+            notifyMarkSpam: function(e, t) {
+                ajax.post("al_feed.php", {
+                    act: "a_feedback_mark_spam",
+                    item: e,
+                    hash: t
+                }, {
+                    onDone: function(t) {
+                        ge("notify_mark_spam_" + e).innerHTML = t
+                    }
+                })
+            },
+            notifyDeleteAll: function(e, t, i, a) {
+                if (cur.notifyDeletingAll || (cur.notifyDeletingAll = {}), !cur.notifyDeletingAll[e]) {
+                    cur.notifyDeletingAll[e] = 1;
+                    var o = ce("span", {
+                        className: "progress_inline"
+                    });
+                    ajax.post("al_feed.php", {
+                        act: "a_feedback_delete_all",
+                        uid: e,
+                        item: i,
+                        hash: t
+                    }, {
+                        onDone: function(t, i) {
+                            var o = gpeByClass("_feedback_deleted", a);
+                            if (1 != i) {
+                                var r, s = !1;
+                                if ((s = hasClass(o, "_top_feedback_deleted") ? ge("top_notify_cont") : cur.rowsCont) && (r = s.firstChild)) {
+                                    var n, c, l = !1,
+                                        d = scrollGetY();
+                                    do {
+                                        r.className && hasClass(r, "_feed_row") && r.firstChild && e == r.firstChild.getAttribute("author") && (n = r.offsetHeight, c = r.offsetTop, !1 === l && (l = getXY(r.offsetParent)[1]), hide(r), c + l < d && (d -= n, scrollToY(d, 0)))
+                                    } while (r = r.nextSibling);
+                                    (0 === cur.wasScroll || cur.wasScroll > 0) && (cur.wasScroll = d)
+                                }
+                                o.innerHTML = '<span class="dld_inner">' + t + "</span>"
+                            } else re(gpeByClass("_feed_row", o))
+                        },
+                        showProgress: function() {
+                            a && "button" === a.tagName.toLowerCase() ? lockButton(a) : a.parentNode.replaceChild(o, a)
+                        },
+                        hideProgress: function() {
+                            a && "button" === a.tagName.toLowerCase() ? unlockButton(a) : o.parentNode.replaceChild(a, o)
+                        }
+                    })
+                }
             },
             checkClick: function(e, t) {
                 if (t = t || window.event, !e || !t) return !0;

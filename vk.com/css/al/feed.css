@@ -664,6 +664,11 @@
     position: relative
 }
 
+.feed_row .feedback_deleted_container {
+    padding: 0 20px;
+    line-height: 18px
+}
+
 .feed_row~.feed_row .feedback_row,
 .feed_row~.feed_row .feedback_sticky_row,
 .feed_row~.feed_row_fb_hidden .feed_row:first-child .feedback_row,
@@ -753,6 +758,10 @@
 
 .feed_row~.feed_row .feedback_row_clickable:not(.feedback_row_touched):hover {
     border-top: 1px solid #e7e8ec
+}
+
+.top_notify_cont .feedback_row_clickable:not(.feedback_row_touched):hover {
+    border-bottom: 1px solid transparent
 }
 
 .feedback_row_clickable:not(.feedback_row_touched) {

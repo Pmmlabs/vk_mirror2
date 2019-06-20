@@ -69,7 +69,7 @@
     n.push = e, n = n.slice();
     for (var h = 0; h < n.length; h++) e(n[h]);
     var u = l;
-    o.push([162, "bundles/common"]), i()
+    o.push([162, "bundles/audioplayer", "bundles/common"]), i()
 }({
     162: function(t, e, i) {
         t.exports = i("3KRu")
@@ -78,8 +78,9 @@
         "use strict";
         i.r(e);
         i("KKXr"), i("Btvt"), i("pIFo");
-        var s = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-        class a {
+        var s = i("1V+M"),
+            a = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+        class o {
             static isSupported(t) {
                 var e = document.createElement("audio");
                 return !!e.canPlayType && (t = t || 'audio/mpeg; codecs="mp3"', !!e.canPlayType(t).replace(/no/, ""))
@@ -99,7 +100,7 @@
                 return e
             }
             _setAudioNodeUrl(t, e) {
-                window.data && data(t, "setUrlTimesetUrlTime", e == s ? 0 : vkNow()), t.src = e
+                window.data && data(t, "setUrlTimesetUrlTime", e == a ? 0 : vkNow()), t.src = e
             }
             _createAudioNode(t) {
                 var e = new Audio,
@@ -133,7 +134,7 @@
                 t(!0)
             }
             prefetch(t) {
-                this._prefetchAudioEl && this._setAudioNodeUrl(this._prefetchAudioEl, s), this._prefetchAudioEl = this._createAudioNode(t)
+                this._prefetchAudioEl && this._setAudioNodeUrl(this._prefetchAudioEl, a), this._prefetchAudioEl = this._createAudioNode(t)
             }
             seek(t) {
                 var e = this._currentAudioEl;
@@ -165,21 +166,21 @@
             setUrl(t, e) {
                 var i = this._currentAudioEl;
                 if (this._seekOnReady = !1, this._trackOptions = {}, e && "object" == typeof e && (this._trackOptions = e, e = e.callback), i.src == t) return this.opts.onCanPlay && this.opts.onCanPlay(), e && e(!0);
-                if (this._prefetchAudioEl && this._prefetchAudioEl.readyState > a.STATE_HAVE_NOTHING)
+                if (this._prefetchAudioEl && this._prefetchAudioEl.readyState > o.STATE_HAVE_NOTHING)
                     if (this._prefetchAudioEl.src == t) {
-                        this._currentAudioEl.pause(0), this._setAudioNodeUrl(this._currentAudioEl, s);
-                        var o = this;
-                        this._prefetchAudioEl.readyState >= a.STATE_HAVE_FUTURE_DATA && setTimeout(function() {
-                            o.opts.onCanPlay && o.opts.onCanPlay()
+                        this._currentAudioEl.pause(0), this._setAudioNodeUrl(this._currentAudioEl, a);
+                        var s = this;
+                        this._prefetchAudioEl.readyState >= o.STATE_HAVE_FUTURE_DATA && setTimeout(function() {
+                            s.opts.onCanPlay && s.opts.onCanPlay()
                         }), i = this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = !1
-                    } else this._prefetchAudioEl.src && this._setAudioNodeUrl(this._prefetchAudioEl, s);
+                    } else this._prefetchAudioEl.src && this._setAudioNodeUrl(this._prefetchAudioEl, a);
                 return i.src != t && (this._setAudioNodeUrl(i, t), i.load()), e && e(!0)
             }
             play(t) {
-                this._prefetchAudioEl.src == t && this._prefetchAudioEl.readyState > a.STATE_HAVE_NOTHING && (this._setAudioNodeUrl(this._currentAudioEl, s), this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = this._createAudioNode(), this.opts.onCanPlay && this.opts.onCanPlay());
+                this._prefetchAudioEl.src == t && this._prefetchAudioEl.readyState > o.STATE_HAVE_NOTHING && (this._setAudioNodeUrl(this._currentAudioEl, a), this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = this._createAudioNode(), this.opts.onCanPlay && this.opts.onCanPlay());
                 var e = this._currentAudioEl;
                 if (e.src) try {
-                    e.play()
+                    Object(s.a)(e)
                 } catch (t) {
                     debugLog("Audio: url set failed (html5 impl)")
                 }
@@ -190,7 +191,7 @@
             }
             stop() {
                 var t = this._currentAudioEl;
-                this._setAudioNodeUrl(t, s)
+                this._setAudioNodeUrl(t, a)
             }
             _setFadeVolumeInterval(t) {
                 if (t) {
@@ -218,8 +219,8 @@
                 }.bind(this))
             }
         }
-        a.STATE_HAVE_NOTHING = 0, a.STATE_HAVE_FUTURE_DATA = 3, a.HAVE_ENOUGH_DATA = 4, a.AUDIO_EL_ID = "ap_audio";
-        class o {
+        o.STATE_HAVE_NOTHING = 0, o.STATE_HAVE_FUTURE_DATA = 3, o.HAVE_ENOUGH_DATA = 4, o.AUDIO_EL_ID = "ap_audio";
+        class r {
             constructor(t) {
                 this.opts = t || {}, window._flashVoiceInstance = this
             }
@@ -230,7 +231,7 @@
                 return "flash"
             }
             destroy() {
-                re(o.PLAYER_EL_ID)
+                re(r.PLAYER_EL_ID)
             }
             get loaded() {
                 return !!this._player
@@ -239,12 +240,12 @@
                 if (this._player) return t(!0);
                 if (!1 === this._player) return t(!1);
                 this._onReady = t;
-                ge(o.PLAYER_EL_ID) || document.body.appendChild(ce("div", {
-                    id: o.PLAYER_EL_ID,
+                ge(r.PLAYER_EL_ID) || document.body.appendChild(ce("div", {
+                    id: r.PLAYER_EL_ID,
                     className: "fixed"
                 }));
                 var e = this;
-                renderFlash(o.PLAYER_EL_ID, {
+                renderFlash(r.PLAYER_EL_ID, {
                     url: "/swf/audio_lite.swf",
                     id: "flash_voice_player",
                     height: 2
@@ -317,15 +318,15 @@
                 i._currBuffered = t / e, i.opts.onBufferUpdate && i.opts.onBufferUpdate(i._currBuffered)
             }
         }
-        window.VoicePlayerFlash = o, o.PLAYER_EL_ID = "flash_voice";
-        var r = 35;
+        window.VoicePlayerFlash = r, r.PLAYER_EL_ID = "flash_voice";
+        var n = 35;
         void 0 === window.isTouch && (window.isTouch = !1);
-        class n {
+        class l {
             constructor(t, e) {
                 if (!t) throw new Error("No element was provided for Slider");
                 t = ge(t), this.options = e || {
                     size: 1
-                }, void 0 === this.options.logfbase && (this.options.logfbase = r), this.options.backValue = this.options.backValue || 0;
+                }, void 0 === this.options.logfbase && (this.options.logfbase = n), this.options.backValue = this.options.backValue || 0;
                 var i = 100 * this.options.backValue,
                     s = '<div class="slider_slide"><div class="slider_loading_bar" style="opacity: 0; display: none;"></div> ' + (this.options.withBackLine ? '<div class="slider_back" style="width:' + i + '%"></div>' : "") + ' <div class="slider_amount"></div> <div class="slider_handler"></div> </div>';
                 this._el = ce("div", {
@@ -335,7 +336,7 @@
                 });
                 var a = this;
                 if (t.classList)
-                    for (var o = t.classList, n = 0, l = o.length; n < l; n++) addClass(this._el, o[n]);
+                    for (var o = t.classList, r = 0, l = o.length; r < l; r++) addClass(this._el, o[r]);
                 else this._el.className = t.className;
                 each(this._el.attributes, function(t, e) {
                     "id" == e.name && "class" == e.name || a._el.setAttribute(e.name, e.value)
@@ -378,7 +379,7 @@
                 toggleClass(this._currHintEl, "visible", t)
             }
             _onMouseOver(t) {
-                n._currenSliderDrag || hasClass(this._el, "active") || this._updateHint(t)
+                l._currenSliderDrag || hasClass(this._el, "active") || this._updateHint(t)
             }
             _onMouseLeave(t) {
                 hasClass(this._el, "active") || this._toggleHint(!1)
@@ -391,10 +392,10 @@
                 return this._widthCache
             }
             _onMouseDown(t) {
-                (0 == t.button || t.touches) && (delete cur._sliderMouseUpNowEl, addEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove = this._onMouseMove.bind(this)), addEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp = this._onMouseUp.bind(this)), this._onMouseMove(t), n._currenSliderDrag = this, addClass(this._el, "active"), cancelEvent(t))
+                (0 == t.button || t.touches) && (delete cur._sliderMouseUpNowEl, addEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove = this._onMouseMove.bind(this)), addEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp = this._onMouseUp.bind(this)), this._onMouseMove(t), l._currenSliderDrag = this, addClass(this._el, "active"), cancelEvent(t))
             }
             _onMouseUp(t) {
-                cur._sliderMouseUpNowEl = this._el, removeEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove), removeEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp), this._onValueChange(), removeClass(this._el, "active"), n._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue), cancelEvent(t)
+                cur._sliderMouseUpNowEl = this._el, removeEvent(window, isTouch ? "touchmove" : "mousemove", this._ev_onMouseMove), removeEvent(window, isTouch ? "touchend touchcancel" : "mouseup", this._ev_onMouseUp), this._onValueChange(), removeClass(this._el, "active"), l._currenSliderDrag = !1, this._toggleHint(!1), this.options.onEndDragging && this.options.onEndDragging(this._currValue), cancelEvent(t)
             }
             _onMouseMove(t) {
                 var e = this._getPos(),
@@ -441,10 +442,10 @@
                 this._lastValue = this._lastValue || 0, this._lastValue != this._currValue && (this._lastValue = this._currValue, this.options.onChange && this.options.onChange(this._currValue))
             }
         }
-        var l, h = i("rEJs"),
-            u = !1,
-            d = '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>';
-        class _ {
+        var h, u = i("rEJs"),
+            d = !1,
+            _ = '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>';
+        class c {
             constructor({
                 onListened: t
             } = {}) {
@@ -461,7 +462,7 @@
                         this._updateProgress(t)
                     }
                 };
-                l = !1, a.isSupported() ? (a.isSupported('audio/ogg;codecs="opus"') && !a.isSupported('audio/ogg;codecs="codec_check"') && (l = !0), this._impl = new a(e)) : browser.flash && window.renderFlash && (this._impl = new o(e)), this.onPlayPause = (t => (cancelEvent(t), this.toggle())), this.onDurationClick = (t => {
+                h = !1, o.isSupported() ? (o.isSupported('audio/ogg;codecs="opus"') && !o.isSupported('audio/ogg;codecs="codec_check"') && (h = !0), this._impl = new o(e)) : browser.flash && window.renderFlash && (this._impl = new r(e)), this.onPlayPause = (t => (cancelEvent(t), this.toggle())), this.onDurationClick = (t => {
                     this.durationType = !this.durationType, cancelEvent(t)
                 }), this._onListened = (() => {
                     t && t(this._audioEl)
@@ -481,8 +482,8 @@
             }
             _initInterface() {
                 this._el = ce("div", {
-                    innerHTML: d
-                }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new n(geByClass1("audio-msg-track--slider", this._el), {
+                    innerHTML: _
+                }).firstChild, window.getLang && attr(this._el, "aria-label", getLang("mail_audio_message")), this._playBtn = geByClass1("audio-msg-track--btn", this._el), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), this._durationEl = geByClass1("audio-msg-track--duration", this._el), this._durationEl.innerHTML = formatTime(this._duration), this._progressSlider = new l(geByClass1("audio-msg-track--slider", this._el), {
                     value: 0,
                     size: 0,
                     hintClass: "audio_player_hint",
@@ -503,13 +504,13 @@
                     var e = this._audioEl.id.split("_");
                     if (e && e.length > 1 && (this._owner_id = e[1]), this._reattach = !1, !this._impl.loaded) return new Promise((e, i) => {
                         this._impl.onReady(() => {
-                            this._impl.setUrl(attr(t, l ? "data-ogg" : "data-mp3"), {
+                            this._impl.setUrl(attr(t, h ? "data-ogg" : "data-mp3"), {
                                 duration: this._duration,
                                 callback: e
                             })
                         })
                     });
-                    this._impl.setUrl(attr(t, l ? "data-ogg" : "data-mp3"), {
+                    this._impl.setUrl(attr(t, h ? "data-ogg" : "data-mp3"), {
                         duration: this._duration
                     })
                 }
@@ -523,10 +524,10 @@
                 this._detaching = !1
             }
             play() {
-                this._audioEl && (this._reattach || _.pauseGlobalMedia(), addClass(this._el, "audio-msg-track_playing"), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_pause")), this._playing = !0, this._createTimer(), this._owner_id && statlogsValueEvent("audio_message_play", this._owner_id), this._impl.play())
+                this._audioEl && (this._reattach || c.pauseGlobalMedia(), addClass(this._el, "audio-msg-track_playing"), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_pause")), this._playing = !0, this._createTimer(), this._owner_id && statlogsValueEvent("audio_message_play", this._owner_id), this._impl.play())
             }
             pause() {
-                this._audioEl && (!this._reattach && this._playing && _.resumeGlobalMedia(), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), removeClass(this._el, "audio-msg-track_playing"), this._playing = !1, this._impl.pause(), this._killTimer())
+                this._audioEl && (!this._reattach && this._playing && c.resumeGlobalMedia(), window.getLang && attr(this._playBtn, "aria-label", getLang("global_audio_play")), removeClass(this._el, "audio-msg-track_playing"), this._playing = !1, this._impl.pause(), this._killTimer())
             }
             stop() {
                 this.pause(), this._impl.stop()
@@ -544,7 +545,7 @@
                 this._timer && (clearInterval(this._timer), this._timer = null)
             }
             _initEvents() {
-                window.ap ? ap.on(this, h.a.PLAY, () => {
+                window.ap ? ap.on(this, u.a.PLAY, () => {
                     delete ap.pausedByMsg, this.pause()
                 }) : window.audio && audio.onPlay(() => {
                     delete audio.pausedByMsg, this.pause()
@@ -562,16 +563,16 @@
                 return !1
             }
             static pauseGlobalMedia() {
-                window.Notifier && (u = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
+                window.Notifier && (d = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
             }
             static resumeGlobalMedia() {
-                window.Notifier && u && (u = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (audio.play(), delete audio.pausedByMsg)
+                window.Notifier && d && (d = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (Object(s.a)(audio), delete audio.pausedByMsg)
             }
         }
-        var c = i("i/qW"),
-            p = null;
+        var p = i("i/qW"),
+            g = null;
 
-        function g(t) {
+        function m(t) {
             for (var e = geByClass("audio-msg-track--wave-wrapper", t), i = 0, s = 0; s < e.length; s++) {
                 try {
                     i = parseInt(window.getComputedStyle(e[s], null).getPropertyValue("width"))
@@ -583,20 +584,20 @@
             return i
         }
 
-        function m(t, e) {
-            e = Math.round(e), t.length != e && (t = Object(c.b)(t, e));
+        function v(t, e) {
+            e = Math.round(e), t.length != e && (t = Object(p.b)(t, e));
             for (var i = "", s = 0, a = 0; a < t.length; a++) 0 == (s = Math.floor(10 * t[a] * .95)) && (s = .5), i += "M" + (3 * a + 1) + "," + (10 - s) + "v" + 2 * s + "Z";
             return `<svg class="audio-msg-track--wave" width="${3*t.length}px"><path d="${i}"></path></svg>`
         }
 
-        function v() {
+        function f() {
             for (var t = geByClass("audio-msg-track"), e = 0; e < t.length; e++) {
                 var i = attr(t[e], "data-wave");
                 hasClass(t[e], "audio-msg-player") && e > 0 && (i = attr(t[e - 1], "data-wave"));
-                var s = g(t[e]);
+                var s = m(t[e]);
                 if (i && s) {
                     i = i.split(",");
-                    for (var a = geByClass("audio-msg-track--wave", t[e]), o = m(i, s / 3), r = 0; r < a.length; r++) {
+                    for (var a = geByClass("audio-msg-track--wave", t[e]), o = v(i, s / 3), r = 0; r < a.length; r++) {
                         var n = ce("div", {
                             innerHTML: o
                         }).firstChild;
@@ -606,34 +607,34 @@
             }
         }
 
-        function f() {
-            return p || (p = new _({
+        function y() {
+            return g || (g = new c({
                 onListened: t => {
                     AudioMessagePlayer.events.emit("listened", t)
                 }
-            })), p
+            })), g
         }
-        addEvent(window, "orientationchange", () => setTimeout(v, 500)), window.mail && window.mail.onMessagesRepainted && (onDOMReady(v), window.mail.onMessagesRepainted(v)), window.AudioMessagePlayer = {
+        addEvent(window, "orientationchange", () => setTimeout(f, 500)), window.mail && window.mail.onMessagesRepainted && (onDOMReady(f), window.mail.onMessagesRepainted(f)), window.AudioMessagePlayer = {
             loaded: !0,
             events: new EventEmitter,
             togglePlay: function(t, e) {
-                var i = f(),
+                var i = y(),
                     s = i.attachTo(t);
                 !0 === s ? i.play() : s.then(() => {
                     i.play()
                 })
             },
             detachPlayer: function(t) {
-                f().detach(t)
+                y().detach(t)
             },
             pauseGlobalMedia: function() {
-                _.pauseGlobalMedia()
+                c.pauseGlobalMedia()
             },
             resumeGlobalMedia: function() {
-                _.resumeGlobalMedia()
+                c.resumeGlobalMedia()
             },
-            redrawWaves: v,
-            getWave: m
+            redrawWaves: f,
+            getWave: v
         };
         try {
             stManager.done("voice_message_player.js")

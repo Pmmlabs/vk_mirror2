@@ -11792,6 +11792,22 @@ body.vk_app_fixed {
     top: 12px
 }
 
+.vk_ios_yes.vk_safari_yes.vk_app_layout .AppPreloadInfo {
+    max-height: 100vh
+}
+
+.vk_ios_yes.vk_safari_yes.vk_app_layout .app_container {
+    min-height: 100vh
+}
+
+.vk_ios_yes.vk_safari_yes.vk_app_layout .app_container iframe {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
 .vkAppHeader {
     position: fixed;
     top: 6px;

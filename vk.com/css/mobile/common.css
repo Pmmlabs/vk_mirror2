@@ -42855,13 +42855,15 @@ body.apps_settingsPageBody .basis__content {
 
 .Unfold_withTitle .Unfold__triggerContent .Unfold__triggerContentTitle {
     line-height: 19px;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 600
 }
 
 .Unfold_withTitle .Unfold__triggerContent .Unfold__triggerContentSubTitle {
     line-height: 16px;
     font-size: 14px;
-    opacity: 0.7
+    opacity: 0.7;
+    font-weight: 400
 }
 
 .Unfold__triggerTextCount {

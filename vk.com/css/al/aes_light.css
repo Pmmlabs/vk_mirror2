@@ -662,7 +662,7 @@ a.ads_ad_box2:hover {
     overflow: hidden
 }
 
-.ads_ad_photo_box.ver:not(.adaptive_ad) {
+.ads_ad_photo_box.ver:not(.adaptive_ad):not(.big_app) {
     padding-top: 9px
 }
 

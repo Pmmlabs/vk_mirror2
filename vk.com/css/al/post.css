@@ -8,12 +8,14 @@
 .page_docs_preview .page_media_x_wrap .page_media_x,
 .page_market_album_nocover,
 .page_pics_preview .page_media_x_wrap .page_media_x,
-.page_post_video_play_inline {
+.page_post_video_play_inline,
+.page_preview_map_wrap .page_media_x_wrap .page_media_x {
     -ms-high-contrast-adjust: none
 }
 
 .page_docs_preview .page_media_x_wrap .page_media_x,
-.page_pics_preview .page_media_x_wrap .page_media_x {
+.page_pics_preview .page_media_x_wrap .page_media_x,
+.page_preview_map_wrap .page_media_x_wrap .page_media_x {
     -o-transition: opacity 0.15s ease;
     transition: opacity 0.15s ease
 }
@@ -1267,6 +1269,7 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
 
 .page_pics_preview .page_media_x_wrap {
     position: absolute;
+    z-index: 1;
     top: 0;
     right: 0;
     background: rgba(29, 32, 34, .6);
@@ -1404,6 +1407,7 @@ svg+.media_voting_footer_voted_friend+.media_voting_footer_voted_friend+.media_v
 
 div.media_preview {
     padding: 10px 0;
+    max-width: 510px;
     display: none
 }
 
@@ -1416,12 +1420,42 @@ div.med_no_attach {
 }
 
 .page_preview_map {
-    vertical-align: top
+    vertical-align: top;
+    display: inline-block;
+    border-radius: 4px
 }
 
 .page_preview_map_wrap {
-    position: relative;
-    margin: 0 5px 5px 0
+    position: relative
+}
+
+.page_preview_map_wrap .page_media_x_wrap {
+    margin: 0;
+    padding: 0;
+    background: none
+}
+
+.page_preview_map_wrap .page_media_x_wrap .page_media_x {
+    display: block;
+    background: url(/images/attach_icons.png?4) no-repeat 0 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    width: 9px;
+    height: 9px;
+    margin: 2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .page_preview_map_wrap .page_media_x_wrap .page_media_x {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
+.im-page .page_preview_map_wrap {
+    max-width: 340px
 }
 
 .post_inline_ban_user {

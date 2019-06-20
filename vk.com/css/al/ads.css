@@ -1246,7 +1246,66 @@
     border-radius: 0
 }
 
-.Select--secondary .Select--placeholder {
+.Select__input {
+    font-size: 13px;
+    line-height: 19px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    width: 100%;
+    padding: 0 10px;
+    height: 30px;
+    color: #000;
+    box-sizing: border-box
+}
+
+.Select__input,
+.Select__input:focus {
+    border: 1px solid #d3d9de;
+    border-radius: 2px
+}
+
+.Select__input:focus {
+    outline: none
+}
+
+.Select__input:focus::-webkit-input-placeholder {
+    color: #b8b9bb
+}
+
+.Select__input:focus::-moz-placeholder {
+    color: #b8b9bb
+}
+
+.Select__input:focus:-ms-input-placeholder {
+    color: #b8b9bb
+}
+
+.Select__input:focus:-moz-placeholder {
+    color: #b8b9bb
+}
+
+.Select__input {
+    text-decoration: none
+}
+
+.Select__menu {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 145px;
+    box-shadow: 0 1px 1px rgba(43, 47, 51, .17);
+    border-radius: 0 0 2px 2px
+}
+
+.Select__option {
+    padding-top: 8px;
+    padding-bottom: 9px;
+    color: #000
+}
+
+.Select__option:last-child {
+    border-radius: 0
+}
+
+.Select--placeholder {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
@@ -7265,6 +7324,10 @@ td.ads_settings_notifications_label {
     -ms-flex-pack: center;
     justify-content: center;
     height: 128px
+}
+
+.ads_relevance_score_info_empty_text {
+    margin: 0
 }
 
 .ads_relevance_score_info_empty .hint_icon {

@@ -157,7 +157,7 @@ var photos = {
         addEvent(inputEl, 'input', _updateInputSize.pbind(parentContEl, placeholderEl, inputEl));
 
         function _updateInputSize(parentContEl, placeholderEl, inputEl, ev) {
-            var inputValue = clean(val(inputEl)).split('\n').join('</br>') + '&nbsp;';
+            var inputValue = clean(val(inputEl)).split('\n').join('<br>') + '&nbsp;';
             var tempEl = ce('div', {
                 innerHTML: inputValue,
                 className: 'photos_photo_edit_row_desc_input'

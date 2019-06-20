@@ -1866,55 +1866,6 @@ var Feed = {
             appendParentCls: 'scroll_fix_wrap'
         }, tt_opts));
     },
-    unifiedRestoreRow: function(query, hash, btn) {
-        var progress = ce('span', {
-            className: 'progress_inline'
-        });
-        ajax.post('al_feed.php', {
-            act: 'a_feedback_unified_restore',
-            query: query,
-            hash: hash,
-            from: 'top_notifier'
-        }, {
-            onDone: function(text) {
-                var fd = gpeByClass('_feedback_deleted', btn);
-                if (!fd) return;
-                var r = gpeByClass('_feed_row', fd),
-                    t = geByClass1('_post_wrap', r);
-                c = geByClass1('_post_content', t),
-
-                    show(c, geByClass1('_answer_wrap', r));
-                hide(fd);
-                removeClass(r, 'feedback_row_touched');
-            },
-            showProgress: function() {
-                if (btn && btn.tagName.toLowerCase() === 'button') {
-                    lockButton(btn);
-                } else {
-                    btn.parentNode.replaceChild(progress, btn);
-                }
-            },
-            hideProgress: function() {
-                if (btn && btn.tagName.toLowerCase() === 'button') {
-                    unlockButton(btn);
-                } else {
-                    progress.parentNode.replaceChild(btn, progress);
-                }
-            }
-        })
-    },
-    notifyMarkSpam: function(item, types, hash) {
-        ajax.post('al_feed.php', {
-            act: 'a_feedback_mark_spam',
-            item: item,
-            hash: hash,
-            types: types
-        }, {
-            onDone: function(html) {
-                ge('notify_mark_spam_' + item).innerHTML = html;
-            }
-        })
-    },
     sendInsertBeforeError: function() {
         ajax.post('al_page.php', {
             act: 'insert_before_error',
@@ -1923,82 +1874,6 @@ var Feed = {
             module: cur.module
         });
     },
-    notifyDeleteAll: function(uid, hash, item, btn) {
-        if (!cur.notifyDeletingAll) cur.notifyDeletingAll = {};
-        if (cur.notifyDeletingAll[uid]) {
-            return;
-        }
-        cur.notifyDeletingAll[uid] = 1;
-        var progress = ce('span', {
-            className: 'progress_inline'
-        });
-
-        ajax.post('al_feed.php', {
-            act: 'a_feedback_delete_all',
-            uid: uid,
-            item: item,
-            hash: hash
-        }, {
-            onDone: function(text, act) {
-                // showDoneBox(text);
-                var fd = gpeByClass('_feedback_deleted', btn);
-                if (act == 1) {
-                    re(gpeByClass('_feed_row', fd));
-                    return;
-                }
-                var rows, row, isTop = false;
-                if (hasClass(fd, '_top_feedback_deleted')) {
-                    isTop = true;
-                    rows = ge('top_notify_cont');
-                } else {
-                    rows = cur.rowsCont;
-                }
-                if (rows && (row = rows.firstChild)) {
-                    var startY = false,
-                        st = scrollGetY(),
-                        h, y;
-                    do {
-                        if (row.className &&
-                            hasClass(row, '_feed_row') &&
-                            row.firstChild &&
-                            uid == row.firstChild.getAttribute('author')) {
-                            h = row.offsetHeight;
-                            y = row.offsetTop;
-                            if (startY === false) {
-                                startY = getXY(row.offsetParent)[1]
-                            }
-                            hide(row);
-                            if (y + startY < st) {
-                                st -= h;
-                                scrollToY(st, 0);
-                            }
-                        }
-                    } while (row = row.nextSibling);
-
-                    if (cur.wasScroll === 0 || cur.wasScroll > 0) {
-                        cur.wasScroll = st;
-                    }
-                    feed.scrollCheck();
-                }
-                fd.innerHTML = '<span class="dld_inner">' + text + '</span>';
-            },
-            showProgress: function() {
-                if (btn && btn.tagName.toLowerCase() === 'button') {
-                    lockButton(btn);
-                } else {
-                    btn.parentNode.replaceChild(progress, btn);
-                }
-            },
-            hideProgress: function() {
-                if (btn && btn.tagName.toLowerCase() === 'button') {
-                    unlockButton(btn);
-                } else {
-                    progress.parentNode.replaceChild(btn, progress);
-                }
-            }
-        })
-    },
-
     getModuleRef: function() {
         var module = cur.module || 'feed_other';
         if (cur.module == 'feed') {

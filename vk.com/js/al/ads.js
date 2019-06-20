@@ -235,7 +235,7 @@ Ads.scrollToError = function(errorElem) {
     var scrollY = scrollGetY();
     var errorY = getXY(errorElem)[1];
     if (errorY < scrollY || errorY > (scrollY + lastWindowHeight / 2)) {
-        errorY -= 15;
+        errorY -= 50;
         scrollToY(errorY);
     }
 }
@@ -286,7 +286,7 @@ Ads.initFixed = function(elemWrap, customPositionTop) {
     elemWrap.setAttribute('fixed_inited', 1);
 
     if (!inited) {
-        var scrolledNode = browser.msie6 ? pageNode : window;
+        var scrolledNode = window.scrollBodyNode || window;
         addEvent(scrolledNode, 'scroll', onScroll);
         cur.destroy.push(function() {
             removeEvent(scrolledNode, 'scroll', onScroll);
@@ -1451,6 +1451,10 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePi
 
     params.onSelect(values[0][1]);
 
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    params.left = -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft;
+    params.top = -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop;
+
     elem.uiDropdown = new DropdownMenu(values, params);
 }
 
@@ -2200,11 +2204,14 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         return true;
     }
 
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
     var options = {
         afterInit: afterInit,
         onBeforeShow: onBeforeShow,
         onShow: onShow,
-        onConfirm: onConfirm
+        onConfirm: onConfirm,
+        left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+        top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
     };
 
     if (className) {
@@ -2399,7 +2406,11 @@ Ads.createInlineDropdownMenu = function(menuElem, boxElem, progressElem, unionId
         saveValue(newValue);
     }
 
-    var options = {};
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var options = {
+        left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+        top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
+    };
     options.target = menuElem;
     options.onSelect = onMenuChange;
     options.showHover = false;
@@ -3197,6 +3208,7 @@ Ads.statusDropdown = function(container, options) {
         deltaLeft += 1;
     }
 
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
     var dd = new DropdownMenu(items, {
         title: imgSpanHTML + options.status.title,
         target: container,
@@ -3204,7 +3216,9 @@ Ads.statusDropdown = function(container, options) {
         showHover: false,
         updateTarget: false,
         offsetTop: -2 + deltaTop,
-        offsetLeft: -1 + deltaLeft
+        offsetLeft: -1 + deltaLeft,
+        left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+        top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
     });
     dd.hide();
     addClass(dd.header, 'ads_dd_wide');

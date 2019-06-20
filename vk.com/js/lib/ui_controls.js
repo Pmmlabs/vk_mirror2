@@ -2925,6 +2925,8 @@ createChildClass('DropdownMenu', UiControl, {
 
         offsetLeft: -7,
         offsetTop: -4,
+        left: 0,
+        top: 0,
         onSelect: function() {},
         updateHeader: function(i, t) {
             return t;
@@ -2936,7 +2938,7 @@ createChildClass('DropdownMenu', UiControl, {
     beforeInit: function() {
         this.guid = _ui.reg(this);
         if (!this.common.pageContainer) {
-            this.common.pageContainer = document.body;
+            this.common.pageContainer = window.scrollBodyNode || document.body;
             if (browser.msie6 && ge('pageContainer')) {
                 this.pageContainer = ge('pageContainer');
             }
@@ -3085,7 +3087,7 @@ createChildClass('DropdownMenu', UiControl, {
     },
     moveToTarget: function() {
         var tc = getXY(this.options.target);
-        this.moveTo(tc[0] + this.options.offsetLeft, tc[1] + this.options.offsetTop);
+        this.moveTo(tc[0] + this.options.offsetLeft + this.options.left, tc[1] + this.options.offsetTop + this.options.top);
     },
     alignBody: function() {
         this.body.style.marginLeft = (getSize(this.header)[0] - getSize(this.body)[0] + 1) + 'px';
@@ -3618,7 +3620,7 @@ createChildClass('InlineEdit', UiControl, {
     // Standart object methods
     beforeInit: function() {
         if (!this.common.pageContainer) {
-            this.common.pageContainer = document.body;
+            this.common.pageContainer = window.scrollBodyNode || document.body;
             if (browser.msie6 && ge('pageContainer')) {
                 this.pageContainer = ge('pageContainer');
             }

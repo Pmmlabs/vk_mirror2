@@ -17766,6 +17766,11 @@ div.chat_tab_img {
     margin-bottom: 0
 }
 
+.top_notify_cont .feed_row .feedback_deleted_container {
+    padding: 0;
+    margin-top: 1px
+}
+
 .top_notify_cont .feedback_row {
     padding: 10px 14px
 }
@@ -17849,10 +17854,6 @@ div.chat_tab_img {
 
 .top_notify_cont .feedback_payment_thumb {
     margin: 0
-}
-
-.top_notify_cont .feedback_row_clickable:hover {
-    border-color: transparent!important
 }
 
 .top_notify_cont .feedback_sticky_rows {
