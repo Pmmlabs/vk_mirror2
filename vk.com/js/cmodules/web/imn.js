@@ -13803,21 +13803,24 @@
                     filteredOptions: e.options,
                     allOptions: e.options,
                     selected: void 0 !== e.value ? this.getOptionByValue(e.options, e.value) : {
-                        label: this.getLabel(),
+                        label: this.getLabel(e),
                         value: ""
                     },
                     opened: !1
                 }, this.mounted = !0
             }
-            getLabel() {
-                return this.props.searchable ? this.props.value || "" : this.props.placeholder || s
+            getLabel(e) {
+                return this.props.searchable ? this.props.value || "" : e.placeholder || s
             }
             componentWillReceiveProps(e) {
-                void 0 !== e.value && e.value !== this.state.selected ? this.setState({
+                this.setState({
+                    filteredOptions: e.options,
+                    allOptions: e.options
+                }), void 0 !== e.value && e.value !== this.state.selected ? this.setState({
                     selected: this.getOptionByValue(e.options, e.value)
                 }) : void 0 === e.value && this.setState({
                     selected: {
-                        label: this.getLabel(),
+                        label: this.getLabel(e),
                         value: ""
                     }
                 })

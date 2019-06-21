@@ -1891,7 +1891,7 @@ if (!window.Upload) {
             var options = Upload.options[iUpload],
                 vars = Upload.vars[iUpload];
 
-            if (options.signed) {
+            if (options.signed || !options.error_hash) {
                 return;
             }
 
