@@ -1391,19 +1391,20 @@ h2.payments_getvotes_title {
 }
 
 .payments_getvotes_success {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    font-size: 12.5px
 }
 
 .payments_getvotes_success,
 .payments_getvotes_done {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 14px
+    -moz-osx-font-smoothing: grayscale
 }
 
 .payments_getvotes_done {
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    font-size: 14px
 }
 
 .payments_getvotes_term_list {

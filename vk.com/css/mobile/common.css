@@ -12994,6 +12994,10 @@ a.Popup__headerCorner {
 .Groups .GroupsInvite__item .si_links .si_link,
 .GroupsInvite .GroupsInvite__item .si_links .si_link,
 .GroupsNear .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.Btn_theme_regular,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link,
 .vk__page_redesign .basis .button {
     height: 34px;
     line-height: 34px;
@@ -13005,7 +13009,11 @@ a.Popup__headerCorner {
 ._hover .Btn_theme_regular:hover,
 ._hover .Groups .GroupsInvite__item .si_links .si_link:hover,
 ._hover .GroupsInvite .GroupsInvite__item .si_links .si_link:hover,
-._hover .GroupsNear .GroupsInvite__item .si_links .si_link:hover {
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link:hover,
+._hover .ModalMenu .ModalMenu__item.Btn_theme_regular:hover,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link:hover {
     background: #5b88bd
 }
 
@@ -13013,10 +13021,18 @@ a.Popup__headerCorner {
 ._hover .Groups .GroupsInvite__item .si_links .si_link:active,
 ._hover .GroupsInvite .GroupsInvite__item .si_links .si_link:active,
 ._hover .GroupsNear .GroupsInvite__item .si_links .si_link:active,
+._hover .ModalMenu .ModalMenu__item.Btn_theme_regular:active,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link:active,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link:active,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link:active,
 ._touch .Btn_theme_regular.hover,
 ._touch .Groups .GroupsInvite__item .si_links .si_link.hover,
 ._touch .GroupsInvite .GroupsInvite__item .si_links .si_link.hover,
-._touch .GroupsNear .GroupsInvite__item .si_links .si_link.hover {
+._touch .GroupsNear .GroupsInvite__item .si_links .si_link.hover,
+._touch .ModalMenu .ModalMenu__item.Btn_theme_regular.hover,
+._touch .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link.hover {
     background: #4872a3
 }
 
@@ -13027,12 +13043,19 @@ a.Popup__headerCorner {
 .GroupsInvite .GroupsInvite__item .si_links .si_link_gray,
 .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
 .GroupsNear .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .ModalMenu__item.Btn_theme_secondary,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray,
 .vk__page_redesign .basis .gray_button {
     height: 34px;
     line-height: 34px;
     padding: 0 14px;
-    color: #306096;
-    background: #e6ebf1
+    color: #55677d;
+    background: #e5ebf1
 }
 
 ._hover .Btn_theme_secondary:hover,
@@ -13041,7 +13064,14 @@ a.Popup__headerCorner {
 ._hover .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:hover,
 ._hover .GroupsInvite .GroupsInvite__item .si_links .si_link_gray:hover,
 ._hover .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:hover,
-._hover .GroupsNear .GroupsInvite__item .si_links .si_link_gray:hover {
+._hover .GroupsNear .GroupsInvite__item .si_links .si_link_gray:hover,
+._hover .ModalMenu .ModalMenu__item.Btn_theme_secondary:hover,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link_gray:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link_gray:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:hover,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray:hover {
     background: #dfe6ed
 }
 
@@ -13052,13 +13082,27 @@ a.Popup__headerCorner {
 ._hover .GroupsInvite .GroupsInvite__item .si_links .si_link_gray:active,
 ._hover .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:active,
 ._hover .GroupsNear .GroupsInvite__item .si_links .si_link_gray:active,
+._hover .ModalMenu .ModalMenu__item.Btn_theme_secondary:active,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link_gray:active,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link_gray:active,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap:active,
+._hover .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray:active,
 ._touch .Btn_theme_secondary.hover,
 ._touch .Groups .GroupsInvite__item .si_links .ai_menu_wrap.hover,
 ._touch .Groups .GroupsInvite__item .si_links .si_link_gray.hover,
 ._touch .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap.hover,
 ._touch .GroupsInvite .GroupsInvite__item .si_links .si_link_gray.hover,
 ._touch .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap.hover,
-._touch .GroupsNear .GroupsInvite__item .si_links .si_link_gray.hover {
+._touch .GroupsNear .GroupsInvite__item .si_links .si_link_gray.hover,
+._touch .ModalMenu .ModalMenu__item.Btn_theme_secondary.hover,
+._touch .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link_gray.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link_gray.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap.hover,
+._touch .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray.hover {
     background: #dae2ea
 }
 
@@ -13231,7 +13275,11 @@ a.Popup__headerCorner {
 .Btn_theme_regular .vk__page_redesign .basis .ii_btn,
 .Groups .GroupsInvite__item .si_links .si_link .Icon,
 .GroupsInvite .GroupsInvite__item .si_links .si_link .Icon,
-.GroupsNear .GroupsInvite__item .si_links .si_link .Icon {
+.GroupsNear .GroupsInvite__item .si_links .si_link .Icon,
+.ModalMenu .ModalMenu__item.Btn_theme_regular .Icon,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link .Icon,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link .Icon,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link .Icon {
     margin: 5px -2px
 }
 
@@ -15518,6 +15566,66 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden
+}
+
+.svgIcon-groups-common {
+    -webkit-background-size: 56px 56px;
+    -moz-background-size: 56px 56px;
+    background-size: 56px 56px;
+    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5.svg')
+}
+
+.vk_old.vk_1x .svgIcon-groups-common {
+    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5_1x.png')
+}
+
+.vk_old.vk_2x .svgIcon-groups-common {
+    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5_2x.png')
+}
+
+.svgIcon-groups-common__hide_outline_56 {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 56px;
+    height: 56px
+}
+
+.WarningModal {
+    text-align: center;
+    margin: 0 0 34px
+}
+
+.WarningModal__title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #000;
+    margin: 11px 0 7px
+}
+
+.WarningModal__text {
+    color: #909499;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 7px 0 0
+}
+
+.WarningModal__icon {
+    margin: 16px 0 10px
+}
+
+.WarningModal__icon .svgIcon {
+    margin: auto
+}
+
+.ModalMenu .ModalMenu__btn.WarningModal__button {
+    text-align: center;
+    margin: 12px 0;
+    display: block
+}
+
+.ModalMenu .ModalMenu__btn.WarningModal__button:last-child {
+    margin-bottom: 8px
 }
 
 .AudioBlock {
@@ -43547,7 +43655,7 @@ body.apps_settingsPageBody .basis__content {
 
 .ModalMenu .Popup__content {
     margin-bottom: 8px;
-    padding: 8px 12px;
+    padding: 8px 16px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -43583,12 +43691,9 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .ModalMenu .ModalMenu__item {
-    height: 40px;
-    line-height: 40px;
-    padding: 0 14px;
     background: transparent;
     text-align: left;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -43598,6 +43703,22 @@ body.apps_settingsPageBody .basis__content {
 ._hover .ModalMenu .ModalMenu__item:active,
 ._touch .ModalMenu .ModalMenu__item.hover {
     background: #ebedf0
+}
+
+.ModalMenu .ModalMenu__item.Btn_theme_regular,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link,
+.ModalMenu .ModalMenu__item.Btn_theme_secondary,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link_gray,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px
 }
 
 @-webkit-keyframes appear-bottom {
@@ -49671,7 +49792,11 @@ a .BookmarkListItem__subtitle:hover {
 .notification__row a.Btn_theme_regular,
 .notification__row a.Groups .GroupsInvite__item .si_links .si_link,
 .notification__row a.GroupsInvite .GroupsInvite__item .si_links .si_link,
-.notification__row a.GroupsNear .GroupsInvite__item .si_links .si_link {
+.notification__row a.GroupsNear .GroupsInvite__item .si_links .si_link,
+.notification__row a.ModalMenu .ModalMenu__item.Btn_theme_regular,
+.notification__row a.ModalMenu .ModalMenu__item.Groups .GroupsInvite__item .si_links .si_link,
+.notification__row a.ModalMenu .ModalMenu__item.GroupsInvite .GroupsInvite__item .si_links .si_link,
+.notification__row a.ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link {
     color: #fff
 }
 

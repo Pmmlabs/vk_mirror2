@@ -3586,27 +3586,28 @@ textarea.EditableLabel__textarea {
     font-size: 16px
 }
 
-:root {
+.WarningNotification {
     --box-border-radius: 8px;
     --box-width: 655px;
     --box-height: 538px;
-    --text-width: 527px
-}
-
-.WarningNotification {
+    --text-width: 527px;
     box-shadow: none
 }
 
 .WarningNotification__box {
     height: var(--box-height);
+    width: var(--box-width);
     background: #fff;
-    text-align: center
+    text-align: center;
+    border-top-left-radius: calc(var(--box-border-radius) + 4px);
+    border-top-right-radius: calc(var(--box-border-radius) + 4px);
+    border-bottom-left-radius: var(--box-border-radius);
+    border-bottom-right-radius: var(--box-border-radius)
 }
 
-.WarningNotification__box,
 .WarningNotification__image {
-    width: var(--box-width);
-    border-radius: var(--box-border-radius)
+    border-radius: var(--box-border-radius);
+    width: var(--box-width)
 }
 
 .WarningNotification__title {
@@ -3614,6 +3615,8 @@ textarea.EditableLabel__textarea {
     font-size: 28px;
     margin-bottom: 12px;
     max-width: var(--text-width);
+    line-height: 34px;
+    font-weight: 600;
     color: #222
 }
 

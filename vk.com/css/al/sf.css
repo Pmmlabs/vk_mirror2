@@ -1529,7 +1529,8 @@ body.sf .mention_tt_actions {
     width: 200px
 }
 
-.spamfeed_search_checkbox {
+.spamfeed_search_checkbox,
+.scumfeed_porno_checkbox {
     line-height: 12px
 }
 

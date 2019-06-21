@@ -4190,7 +4190,7 @@
                         s = this.maxTimePosition,
                         a = this.maxTimePercent,
                         r = e / i * 100;
-                    this.player.isLooped() && i - e < .5 && (r = 100), e >= 3 && s < 3 && (this.trackEvents.trackVideoPlay("3s"), this.sendAdPostStatEvent("video_play_3s")), e >= 10 && s < 10 && this.trackEvents.trackVideoPlay("10s"), each([25, 50, 75, 95, 100], (e, t) => {
+                    this.player.isLooped() && i - e < .5 && (r = 100), e >= 3 && s < 3 && (this.trackEvents.trackVideoPlay("3s"), this.sendAdPostStatEvent("video_play_3s")), e >= 10 && s < 10 && (this.trackEvents.trackVideoPlay("10s"), this.sendAdPostStatEvent("video_play_10s")), each([25, 50, 75, 95, 100], (e, t) => {
                         r >= t && a < t && (this.trackEvents.trackVideoPlay(t), this.sendAdPostStatEvent("video_play_" + t), this.sendMediascopeStat(t + "%"))
                     }), this.maxTimePosition = e, this.maxTimePercent = r
                 }
@@ -4257,7 +4257,8 @@
                 })
             }
             sendAdPostStatEvent(e) {
-                this.getVar("post_id") && this.player.externalCall("onAdPostStat", this.getVar("post_id"), e)
+                var t = this.getVar("ad_block_id") || this.getVar("post_id");
+                t && this.player.externalCall("onAdStat", t, e)
             }
             sendPladformStat() {
                 var e = !!this.getVar("ads_eid1") && !this.player.isFromAutoplay() && 0 == vk.lang;

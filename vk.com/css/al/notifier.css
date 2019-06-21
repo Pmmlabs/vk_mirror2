@@ -18339,3 +18339,9 @@ div.chat_tab_img {
     margin-right: 2px;
     padding: 2px 0 2px 16px
 }
+
+.notifier_baloon .notification_bold_text {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}

@@ -1,8 +1,8 @@
 ﻿! function(e) {
     function t(t) {
-        for (var i, o, r = t[0], d = t[1], l = t[2], c = 0, m = []; c < r.length; c++) o = r[c], n[o] && m.push(n[o][0]), n[o] = 0;
+        for (var i, o, r = t[0], d = t[1], l = t[2], m = 0, c = []; m < r.length; m++) o = r[m], n[o] && c.push(n[o][0]), n[o] = 0;
         for (i in d) Object.prototype.hasOwnProperty.call(d, i) && (e[i] = d[i]);
-        for (h && h(t); m.length;) m.shift()();
+        for (h && h(t); c.length;) c.shift()();
         return a.push.apply(a, l || []), s()
     }
 
@@ -199,12 +199,10 @@
                             this.doNontransactionalPayment(s, cur.ps_list[s]);
                             break;
                         case "paypal_ipn":
+                        case "yandexmoney":
                         case "mailmoney_vkpay":
                         case "card":
                             this.doTransactionalPayment(s, cur.ps_list[s]);
-                            break;
-                        case "yandexmoney":
-                            1 === cur.ps_list[s].new_api ? this.doTransactionalPayment(s, cur.ps_list[s]) : this.doNontransactionalPayment(s, cur.ps_list[s]);
                             break;
                         case "terminals":
                             this.paymentCardsTurnOver()
