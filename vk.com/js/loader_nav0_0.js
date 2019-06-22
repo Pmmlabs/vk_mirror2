@@ -381,7 +381,7 @@ var stVersions = {
     'aes_light.css': 28943715547,
     'aes_light.js': 3322982554,
     'ads.css': 114975996872,
-    'ads_office.css': 60873513916,
+    'ads_office.css': 62181115835,
     'ads_bonus.css': 4128802163,
     'ads.js': 287775813,
     'ads_payments.js': 1483293789,
@@ -620,7 +620,7 @@ var stVersions = {
     'cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js': '1a6c3cf4537effde805e665e0bbf2bed',
     'cmodules/web/add_to_community_app.0abe51896f7168b287c1.js': '7c3e73efd1d7c29d80e5306141645ea3',
     'cmodules/web/addresses.4ce7aaaee779ec73856e.js': '0f243caa24b01d7ae036d56aa7a7204b',
-    'cmodules/web/ads_components.ed947b757b0ee004096a.js': '94957cab71ed3a70377fc5a6e98c58e4',
+    'cmodules/web/ads_components.1a99399ba8fdfd32ad1a.js': 'b31bc1b77722b7ef3e3b380890cc24af',
     'cmodules/web/ads_edit_components.314ba89c4d02d7aca86e.js': '0f3d1e5d07bb0781f6fdc102108d60fd',
     'cmodules/web/ads_edit_easy.d05e64279e2ba6e81025.js': '4132bb561d036a31c9699f34a002399d',
     'cmodules/web/ads_office.7d80d93e43047c56b475.js': 'f51592f26d91093a13bce8e4bf14f0cf',
@@ -665,7 +665,7 @@ var stVersions = {
     'cmodules/web/landing_ads_case.4b50adf14bbe4542240c.js': '1b2ffb5605adc4bf1943',
     'cmodules/web/landing_aes.050faea50b78ee2b42bf.js': '974d3cc535e532f516db3518d7435f22',
     'cmodules/web/landing_donors_day.f99be79ac6dccfeddaad.js': '570d33e2263e62c5e4090f3edd0bf76e',
-    'cmodules/web/landing_transparency.46bd78feb88bf67cf3f9.js': 'ddd1b7c41487f27db232850565d5544d',
+    'cmodules/web/landing_transparency.c1cfc8d9562163fb00e6.js': '55114595115012759c5037146bfd9b1d',
     'cmodules/web/landing_vkmask.ce32402fb6a3e58d4bc3.js': '820689dae68f7ee4c4773f3dfb0edebd',
     'cmodules/web/language.fe0a62e2fe2931044c84.js': 'a02d7f637b5bfce0ce7f6d7501842745',
     'cmodules/web/lazyload.84773571c979b01f196a.js': '27eaecf5dde8f97e54e79f01fe785ca7',
@@ -791,12 +791,12 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 7266;
+var _rnd = 332;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/addresses.4ce7aaaee779ec73856e.js"],
-    "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/d1b2e3689f4d3cd444736b8de27626b2.86a638cfb33d7be96e3d.js", "cmodules/web/ads_components.ed947b757b0ee004096a.js"],
+    "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/d1b2e3689f4d3cd444736b8de27626b2.86a638cfb33d7be96e3d.js", "cmodules/web/ads_components.1a99399ba8fdfd32ad1a.js"],
     "/js/cmodules/web/ads_edit_components.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/ads_edit_components.314ba89c4d02d7aca86e.js"],
     "/js/cmodules/web/ads_edit_easy.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/ads_edit_easy.d05e64279e2ba6e81025.js"],
     "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/d1b2e3689f4d3cd444736b8de27626b2.86a638cfb33d7be96e3d.js", "cmodules/web/ads_office.7d80d93e43047c56b475.js"],
@@ -841,7 +841,7 @@ var stDeps = {
     "/js/cmodules/web/landing_ads_case.js": ["cmodules/web/landing_ads_case.4b50adf14bbe4542240c.js"],
     "/js/cmodules/web/landing_aes.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/landing_aes.050faea50b78ee2b42bf.js"],
     "/js/cmodules/web/landing_donors_day.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/landing_donors_day.f99be79ac6dccfeddaad.js"],
-    "/js/cmodules/web/landing_transparency.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/landing_transparency.46bd78feb88bf67cf3f9.js"],
+    "/js/cmodules/web/landing_transparency.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/landing_transparency.c1cfc8d9562163fb00e6.js"],
     "/js/cmodules/web/landing_vkmask.js": ["cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/web/landing_vkmask.ce32402fb6a3e58d4bc3.js"],
     "/js/cmodules/web/language.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/language.fe0a62e2fe2931044c84.js"],
     "/js/cmodules/web/lazyload.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/lazyload.84773571c979b01f196a.js"],
