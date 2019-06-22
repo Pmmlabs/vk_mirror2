@@ -791,7 +791,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 332;
+var _rnd = 7848;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.76531f161bc9ed9cc9ac.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
