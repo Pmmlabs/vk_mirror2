@@ -1849,34 +1849,6 @@ textarea.EditableLabel__textarea {
     color: #b8b9bb
 }
 
-.Select__input {
-    text-decoration: none
-}
-
-.Select__menu {
-    overflow-x: hidden;
-    overflow-y: auto;
-    max-height: 145px;
-    box-shadow: 0 1px 1px rgba(43, 47, 51, .17);
-    border-radius: 0 0 2px 2px
-}
-
-.Select__option {
-    padding-top: 8px;
-    padding-bottom: 9px;
-    color: #000
-}
-
-.Select__option:last-child {
-    border-radius: 0
-}
-
-.Select--placeholder {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
-}
-
 .Spinner {
     width: 100%;
     height: 100%;
