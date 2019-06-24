@@ -55,7 +55,7 @@ var tooltips = {
                 elsize = opts.forcesize ? opts.forcesize : getSize(el, false, true),
                 toup = opts.toup,
                 asrtl = vk.rtl && !opts.asrtl || opts.asrtl && !vk.rtl,
-                hsize = ge('page_header_wrap') && isAncestor(el, 'page_layout') ? getSize('page_header_wrap') : [0, 0];
+                hsize = ge('page_header_wrap') && isAncestor(el, 'page_layout') ? getSize('page_header_wrap') : (ge('ads-app-header') ? getSize('ads-app-header') : [0, 0]);
 
             if (!elsize[0] && !elsize[1]) {
                 hide(el.tt.container);
@@ -81,7 +81,8 @@ var tooltips = {
                 shift.push(shift[1]);
             }
 
-            var st = (bodyNode.scrollTop || htmlNode.scrollTop || 0),
+            var par = domPN(container);
+            var st = ((window.scrollBodyNode || bodyNode).scrollTop || htmlNode.scrollTop || 0),
                 ttsize = getSize(container),
                 offsetTop = xy[1] - ttsize[1] - shift[1] - hsize[1] - st,
                 offsetBottom = lastWindowHeight - (xy[1] + elsize[1] + ttsize[1] + shift[2]) + st,
@@ -134,11 +135,10 @@ var tooltips = {
                 addClass(container, toup ? 'tt_toup' : '');
             }
 
-            var parXY = getXY(domPN(container));
-            xy[0] -= parXY[0];
-            xy[1] -= parXY[1];
+            var parXY = getXY(par);
+            xy[0] -= parXY[0] - par.scrollLeft;
+            xy[1] -= parXY[1] - par.scrollTop;
 
-            var par = domPN(container);
             el.tt.zIndexEls = [];
             if (!opts.noZIndex) {
                 while (par && par != bodyNode && !hasClass(par, 'scroll_fix')) {
@@ -500,7 +500,7 @@ var tooltips = {
             }
 
             if (!appendEl) {
-                appendEl = bodyNode;
+                appendEl = window.scrollBodyNode || bodyNode;
             }
 
             appendEl.appendChild(c);

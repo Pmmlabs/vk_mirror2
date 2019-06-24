@@ -96,6 +96,9 @@ AdsEdit.init = function() {
         tagsElem.value = AdsEdit.unescapeValueInit(tagsElem.innerHTML);
     }
 
+    // TODO enable on realese new prediction widget
+    // AdsEditComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_wrap'), {}, {});
+
     Ads.initFixed('ads_edit_audience_wrap', 59);
 }
 

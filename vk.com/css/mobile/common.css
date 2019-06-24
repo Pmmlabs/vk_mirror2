@@ -39299,6 +39299,11 @@ body.apps_settingsPageBody .basis__content {
     color: #ff3347
 }
 
+.pi_info .item_like .i_like,
+.pi_info .item_replies .i_replies,
+.pi_info .item_repost .i_repost,
+.pi_info .item_share .i_share,
+.pi_info .item_views .i_views,
 .vi_values .item_like .i_like,
 .vi_values .item_replies .i_replies,
 .vi_values .item_repost .i_repost,
@@ -39309,6 +39314,11 @@ body.apps_settingsPageBody .basis__content {
     margin: 0 4px 0 1px
 }
 
+.vk_2x .pi_info .item_like .i_like,
+.vk_2x .pi_info .item_replies .i_replies,
+.vk_2x .pi_info .item_repost .i_repost,
+.vk_2x .pi_info .item_share .i_share,
+.vk_2x .pi_info .item_views .i_views,
 .vk_2x .vi_values .item_like .i_like,
 .vk_2x .vi_values .item_replies .i_replies,
 .vk_2x .vi_values .item_repost .i_repost,
@@ -39320,22 +39330,27 @@ body.apps_settingsPageBody .basis__content {
     background-size: 95px 14px!important
 }
 
+.pi_info .item_like .i_like,
 .vi_values .item_like .i_like {
     background-position: 0
 }
 
+.pi_info .item_share .i_share,
 .vi_values .item_share .i_share {
     background-position: -26px
 }
 
+.pi_info .item_replies .i_replies,
 .vi_values .item_replies .i_replies {
     background-position: -13px
 }
 
+.pi_info .item_repost .i_repost,
 .vi_values .item_repost .i_repost {
     background-position: -26px
 }
 
+.pi_info .item_views .i_views,
 .vi_values .item_views .i_views {
     background-position: -78px;
     padding: 0 17px 0 0

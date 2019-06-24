@@ -262,6 +262,7 @@ Ads.initFixed = function(elemWrap, customPositionTop) {
     var elemFixed = elemWrap.firstChild;
     if (!elemFixed) return;
 
+    var initElemWrapXY = getXY(elemWrap);
     var inited = elemWrap.getAttribute('fixed_inited');
     var positionTop = customPositionTop || 66;
 
@@ -288,17 +289,26 @@ Ads.initFixed = function(elemWrap, customPositionTop) {
     if (!inited) {
         var scrolledNode = window.scrollBodyNode || window;
         addEvent(scrolledNode, 'scroll', onScroll);
+        addEvent(window, 'resize', onResize);
         cur.destroy.push(function() {
             removeEvent(scrolledNode, 'scroll', onScroll);
+        });
+        cur.destroy.push(function() {
+            removeEvent(window, 'resize', onResize);
         });
     }
 
     onScroll();
 
+    function onResize() {
+        initElemWrapXY = getXY(elemWrap);
+        onScroll();
+    }
+
     function onScroll() {
-        var elemWrapXY = getXY(elemWrap);
+        var elemWrapXY = getXY(elemWrap, true);
         var scrollY = scrollGetY();
-        if (scrollY + positionTop < elemWrapXY[1]) {
+        if (scrollY + positionTop < initElemWrapXY[1]) {
             setStyle(elemFixed, {
                 position: 'static',
                 top: 'auto',
@@ -2579,7 +2589,11 @@ Ads.MultiDropdownMenu = function(items, options) {
         selectedItems[curItems[i].i] = false;
     }
 
-    dropdownMenu = new DropdownMenu(curItems, options);
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    dropdownMenu = new DropdownMenu(curItems, extend({
+        left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+        top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
+    }, options));
     dropdownMenu.getSelectedItems = function() {
         var selectedItemsResult = [];
         for (var i in selectedItems) {

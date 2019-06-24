@@ -426,7 +426,16 @@
     line-height: 20px
 }
 
-.UnblockForm .DelayedRequestFinished__button,
+.UnblockForm .DelayedRequestFinished__button {
+    text-align: center;
+    margin-top: 40px
+}
+
+.UnblockForm .DelayedRequestFinished__notMeButton {
+    text-align: center;
+    margin-top: 16px
+}
+
 .UnblockForm .DelayedWaitExplanation .DelayedWaitExplanation__progressWrap {
     text-align: center;
     margin-top: 40px
@@ -756,7 +765,6 @@
 .login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_story {
     margin: auto;
     width: -webkit-fit-content;
-    width: -moz-fit-content;
     width: fit-content;
     line-height: 0px
 }
