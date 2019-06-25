@@ -36,8 +36,7 @@
 .im-send-btn.im-send-btn_audio.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_send.im-send-btn_loading:before,
-.im-to-end .im-to-end--label,
-.im-to-end.im-to-end_loading .im-to-end--label:before,
+.im-to-end.im-to-end_loading .im-to-end__button:before,
 .im_community_message_info_close,
 .im_community_message_info_pic,
 .im_stickers_act_gift:before,
@@ -6841,7 +6840,7 @@ img.im_photo_thumb {
     line-height: 17px
 }
 
-.im-page_classic .im-page--title.im-page--title--1line {
+.im-page_classic:not(.im-page_reconnecting) .im-page--title.im-page--title--1line {
     padding: 15px 0;
     font-size: 14px
 }
@@ -6935,11 +6934,18 @@ img.im_photo_thumb {
     font-size: 13px
 }
 
+.im-page_reconnecting .im-page--title-meta,
+.im-page_reconnecting.im-page_classic .im-page--chat-header_chat .im-page--title-meta {
+    display: none
+}
+
 .im-page--title-meta .im_status_mob_onl {
     color: #939393
 }
 
-.im-page_classic .im-page--title-meta {
+.im-page_classic .im-page--title-meta,
+.im-page_classic .im-page--title-reconnect,
+.im-page_classic .im-page--title-status {
     margin: 0;
     line-height: 17px;
     font-size: 12px
@@ -6951,6 +6957,56 @@ img.im_photo_thumb {
 
 .im-page_classic .im-page--chat-header_derelict .im-page--title-meta {
     display: none
+}
+
+.im-page--title-status {
+    display: none;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin-left: 8px;
+    color: #939393;
+    font-size: 13px
+}
+
+.im-page--title-status:before {
+    display: inline-block;
+    vertical-align: middle;
+    width: 7px;
+    height: 7px;
+    border: 1px solid #939393;
+    border-top-color: transparent;
+    border-radius: 50%;
+    -o-animation: rotation .7s linear infinite;
+    animation: rotation .7s linear infinite;
+    margin-right: 5px;
+    content: ''
+}
+
+.im-page_reconnecting .im-page--chat-header_reconnected .im-page--toolsw:hover .im-page--title-status,
+.im-page_reconnecting .im-page--toolsw:not(:hover) .im-page--title-status {
+    display: block
+}
+
+.im-page--title-reconnect {
+    display: none;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin: 0 0 0 8px;
+    padding: 0;
+    color: #2a5885;
+    font-size: 13px;
+    line-height: 18px;
+    background: none;
+    border: 0;
+    cursor: pointer
+}
+
+.im-page--title-reconnect:hover {
+    text-decoration: underline
+}
+
+.im-page_reconnecting .im-page--chat-header:not(.im-page--chat-header_reconnected) .im-page--toolsw:hover .im-page--title-reconnect {
+    display: block
 }
 
 .im-page--chat-header_muted .im-page--title:after {
@@ -7225,6 +7281,20 @@ img.im_photo_thumb {
 .im-page--chat-header_actions .im-page--selected-messages {
     display: -ms-flexbox;
     display: flex
+}
+
+@-o-keyframes rotation {
+    to {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes rotation {
+    to {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
 }
 
 .im-page-pinned {
@@ -11259,84 +11329,98 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-to-end {
     position: absolute;
-    margin-top: -43px;
-    padding-bottom: 11px;
-    cursor: pointer;
-    box-sizing: border-box;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    color: #2a5885;
-    font-size: 12.5px;
-    z-index: 102;
-    text-align: center;
-    overflow: hidden;
-    -o-transition: 0.2s opacity;
-    transition: 0.2s opacity;
-    pointer-events: none;
-    -o-transition-delay: 0.1s;
-    transition-delay: 0.1s
-}
-
-.im-to-end .im-to-end--label {
-    -o-transform: translateY(50px);
-    transform: translateY(50px);
-    -o-transition: 0.2s transform;
-    transition: 0.2s transform;
-    -o-transition-delay: 0.1s;
-    transition-delay: 0.1s;
-    position: relative;
-    border: solid 1px #cfd9e1;
-    padding: 8px 14px 8px 33px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+    right: 0;
+    margin-top: -64px;
+    width: 64px;
+    height: 64px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: #fff url(/images/icons/history_end.png) no-repeat 14px;
-    border-radius: 102.5px;
-    display: inline-block
+    pointer-events: none;
+    opacity: 0;
+    -o-transition: opacity .2s ease .1s;
+    transition: opacity .2s ease .1s;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    z-index: 1
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .im-to-end .im-to-end--label {
-        background-image: url(/images/icons/history_end_2x.png);
-        background-size: 12px 12px
-    }
+.im-to-end__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #cfd9e1;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background: #fff url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%227%22%20viewBox%3D%220%200%2014%207%22%20width%3D%2214%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1.64.232c-.424-.354-1.055-.296-1.408.128s-.296%201.055.128%201.408l6%205c.371.309.91.309%201.28%200l6-5c.424-.354.482-.984.128-1.408s-.984-.482-1.408-.128l-5.36%204.467z%22%20fill%3D%22%239db4cc%22%2F%3E%3C%2Fsvg%3E') center 17px no-repeat;
+    margin: -20px 0 0 -20px;
+    content: ''
 }
 
-.im-to-end:hover .im-to-end--label {
+.im-to-end:focus .im-to-end__button,
+.im-to-end:hover .im-to-end__button {
     background-color: #f5f7fa
 }
 
-.im-to-end.im-to-end_shown {
-    opacity: 1;
-    pointer-events: auto
+.im-to-end--label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    text-align: right;
+    overflow: hidden
 }
 
-.im-to-end.im-to-end_shown .im-to-end--label {
-    -o-transform: translateY(0);
-    transform: translateY(0)
+.im-to-end--label-in {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    padding: 2px 5px;
+    min-width: 20px;
+    max-width: 100%;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #5181b8;
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    line-height: 16px;
+    border-radius: 10px;
+    opacity: 1;
+    -o-transition: opacity .2s ease .1s;
+    transition: opacity .2s ease .1s
+}
+
+.im-to-end--label-in:empty {
+    display: none
+}
+
+.im-to-end.im-to-end_shown,
+.im-to-end.im-to-end_shown .im-to-end--label-in {
+    pointer-events: auto;
+    opacity: 1
 }
 
 .im-to-end.im-to-end_fast,
-.im-to-end.im-to-end_fast .im-to-end--label {
-    -o-transition: none!important;
-    transition: none!important
+.im-to-end.im-to-end_fast .im-to-end--label-in {
+    -o-transition: none;
+    transition: none
 }
 
-.im-to-end.im-to-end_loading .im-to-end--label {
-    background: #fff
+.im-to-end.im-to-end_loading .im-to-end__button {
+    background: none
 }
 
-.im-to-end.im-to-end_loading .im-to-end--label:before {
-    content: "";
+.im-to-end.im-to-end_loading .im-to-end__button:before {
     position: absolute;
-    left: 12px;
     top: 50%;
-    margin-top: -8px;
+    left: 50%;
+    margin: -8px 0 0 -8px;
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -11348,13 +11432,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     animation-iteration-count: infinite;
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
-    background-image: url(/images/icons/round_spinner.png)
+    background-image: url(/images/icons/round_spinner.png);
+    content: ''
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .im-to-end.im-to-end_loading .im-to-end--label:before {
+    .im-to-end.im-to-end_loading .im-to-end__button:before {
         background-image: url(/images/icons/round_spinner_2x.png);
         background-size: 16px 16px
     }

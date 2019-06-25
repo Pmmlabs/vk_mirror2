@@ -437,7 +437,7 @@
                     (t.shouldLoad ? this.loadResources(t) : Promise.resolve()).then(() => {
                         e.forEach(e => {
                             switch (e.type) {
-                                case l.Y:
+                                case l.ab:
                                     var t = this.getTab(e.peerId);
                                     this.setTyping(e), t && (this.updateTypings(), this.waitTyping(e).then(this.updateTypings)), this.blinkTyping(e.peerId);
                                     break;
@@ -446,16 +446,16 @@
                                     this.setTyping(e), i && (this.addMessage(this.prepareMessageData(e)), this.scroll(e.peerId), this.blinkTab(e.peerId), this.updateTypings(), this.waitTyping(e).then(this.updateTypings)), this.updateTabUnreadCounter(i, e);
                                     break;
                                 case l.g:
-                                case l.P:
+                                case l.R:
                                     var {
                                         peerId: a,
                                         messageId: o
                                     } = e, r = this.getTab(a);
                                     r && r.msgs[o] && (delete curFastChat.gotMedia[o], this.editMessage(this.prepareMessageData(e)));
                                     break;
-                                case l.O:
-                                case l.W:
-                                case l.S:
+                                case l.Q:
+                                case l.Y:
+                                case l.U:
                                     e.flags & l.j && this.deleteMessage(this.prepareMessageData(e));
                                     break;
                                 case l.J:
@@ -467,19 +467,19 @@
                                     var s = this.getTab(e.peerId);
                                     this.handleEventChatUpdated(s, e);
                                     break;
-                                case l.ab:
-                                case l.Z:
+                                case l.cb:
+                                case l.bb:
                                 case l.I:
                                 case l.h:
-                                case l.U:
-                                case l.M:
-                                case l.X:
-                                case l.T:
+                                case l.W:
+                                case l.O:
+                                case l.Z:
+                                case l.V:
                                 case l.H:
                                 case l.b:
                                 case l.c:
                                 case l.i:
-                                case l.Q:
+                                case l.S:
                                 case l.f:
                             }
                         })
@@ -2934,13 +2934,16 @@
             r = i("f01n"),
             s = 202,
             n = 7,
-            c = 4;
+            c = 4,
+            l = -3,
+            d = -4,
+            u = -5;
 
-        function l(e, t) {
+        function f(e, t) {
             e.waitAbortFns.push(t)
         }
 
-        function d(e) {
+        function h(e) {
             if (e.isStoppedFn()) return Promise.resolve({
                 ts: 0,
                 updates: []
@@ -2965,20 +2968,20 @@
                 } = t.failed ? Object(a.a)(c, null) : {};
                 switch (t.failed) {
                     case 1:
-                        return l(e, i), e.onHistoryLost(e, t).then(() => e.onResult({
+                        return f(e, i), e.onHistoryLost(e, t).then(() => e.onResult({
                             ts: t.ts,
                             updates: [
                                 [-1]
                             ]
-                        })).then(o).then(() => d(e));
+                        })).then(o).then(() => h(e));
                     case 2:
-                        return l(e, i), e.onKeyExpired(e, t).then(([t, i, a, o]) => e.onResult({
+                        return f(e, i), e.onKeyExpired(e, t).then(([t, i, a, o]) => e.onResult({
                             ts: +o,
                             updates: [
                                 [-2, t, `${i}/${a}`],
                                 [-1]
                             ]
-                        })).then(o).then(() => d(e));
+                        })).then(o).then(() => h(e));
                     case 3:
                         return e.onLpBroken(e, t);
                     default:
@@ -2987,19 +2990,28 @@
             })(e, t))
         }
 
-        function u(e) {
-            e.isStoppedFn() || d(e).then(e.onResult).catch(t => (function(e, t) {
+        function _(e) {
+            e.isStoppedFn() || h(e).then(e.onResult).then(() => e.isReconnecting && p(e, u)).catch(t => (function(e, t) {
                 if (e.isStoppedFn()) return;
-                e.onRequestError(t), e.waitTimeout = Math.min(64, 2 * e.waitTimeout);
+                e.onRequestError(t), e.waitTimeout = Math.min(60, 2 * e.waitTimeout), p(e, l);
                 var {
                     abort: i,
                     pause: o
                 } = Object(a.a)(e.waitTimeout, null);
-                return l(e, i), o()
-            })(e, t)).then(() => u(e))
+                return f(e, i), o().then(() => p(e, d))
+            })(e, t)).then(() => _(e))
         }
 
-        function f(e, t) {
+        function p(e, t) {
+            e.isReconnecting = t === d, e.onResult({
+                ts: e.ts,
+                updates: [
+                    [t, e.waitTimeout]
+                ]
+            })
+        }
+
+        function v(e, t) {
             var i = !!e.stopped,
                 a = {
                     id: e.id,
@@ -3017,68 +3029,74 @@
                             return e.map(e => {
                                 switch (e[0]) {
                                     case 0:
-                                        return r.ib(e);
+                                        return r.lb(e);
                                     case 1:
-                                        return r.xb(e);
+                                        return r.Cb(e);
                                     case 2:
-                                        return r.Fb(e);
+                                        return r.Kb(e);
                                     case 3:
-                                        return r.Bb(e);
+                                        return r.Gb(e);
                                     case 4:
-                                        return r.bb(e);
+                                        return r.eb(e);
                                     case 5:
-                                        return r.jb(e);
+                                        return r.mb(e);
                                     case 6:
-                                        return r.rb(e);
-                                    case 7:
-                                        return r.sb(e);
-                                    case 8:
-                                        return r.ob(e);
-                                    case 9:
-                                        return r.nb(e);
-                                    case 10:
-                                        return r.Ab(e);
-                                    case 11:
-                                        return r.wb(e);
-                                    case 12:
-                                        return r.Eb(e);
-                                    case 13:
-                                        return r.hb(e);
-                                    case 18:
-                                        return r.yb(e);
-                                    case 51:
-                                        return r.fb(e);
-                                    case 52:
-                                        return r.gb(e);
-                                    case 63:
-                                        return r.Hb(e);
-                                    case 64:
-                                        return r.tb(e);
-                                    case 70:
-                                        return r.Jb(e);
-                                    case 80:
-                                        return r.Ib(e);
-                                    case 114:
-                                        return r.qb(e);
-                                    case 116:
-                                        return r.vb(e);
-                                    case 117:
-                                        return r.cb(e);
-                                    case -1:
-                                        return r.Db();
-                                    case -2:
                                         return r.ub(e);
+                                    case 7:
+                                        return r.vb(e);
+                                    case 8:
+                                        return r.rb(e);
+                                    case 9:
+                                        return r.qb(e);
+                                    case 10:
+                                        return r.Fb(e);
+                                    case 11:
+                                        return r.Bb(e);
+                                    case 12:
+                                        return r.Jb(e);
+                                    case 13:
+                                        return r.kb(e);
+                                    case 18:
+                                        return r.Db(e);
+                                    case 51:
+                                        return r.ib(e);
+                                    case 52:
+                                        return r.jb(e);
+                                    case 63:
+                                        return r.Mb(e);
+                                    case 64:
+                                        return r.yb(e);
+                                    case 70:
+                                        return r.Ob(e);
+                                    case 80:
+                                        return r.Nb(e);
+                                    case 114:
+                                        return r.tb(e);
+                                    case 116:
+                                        return r.Ab(e);
+                                    case 117:
+                                        return r.fb(e);
+                                    case -1:
+                                        return r.Ib();
+                                    case -2:
+                                        return r.zb(e);
+                                    case l:
+                                        return r.Pb(e);
+                                    case d:
+                                        return r.xb();
+                                    case u:
+                                        return r.wb();
                                     default:
-                                        return r.lb(e)
+                                        return r.ob(e)
                                 }
                             })
                         }(e.updates))
                     },
-                    onData: h(t.onData),
-                    onRequestError: h(t.onRequestError),
-                    onHistoryLost: _(t.onHistoryLost),
-                    onKeyExpired: _(t.onKeyExpired),
-                    onLpBroken: _(t.onHistoryLost)
+                    onData: m(t.onData),
+                    onRequestError: m(t.onRequestError),
+                    onHistoryLost: g(t.onHistoryLost),
+                    onKeyExpired: g(t.onKeyExpired),
+                    onLpBroken: g(t.onHistoryLost)
                 },
                 {
                     onEvents: o
@@ -3086,79 +3104,79 @@
 
             function c(e, t, i) {
                 a.ts = t;
-                for (var s = 0; s < i.length; ++s) i[s].type === r.M && (a.key = i[s].key, a.url = i[s].url);
+                for (var s = 0; s < i.length; ++s) i[s].type === r.O && (a.key = i[s].key, a.url = i[s].url);
                 o(e, t, i)
             }
-            var l = {
+            var f = {
                 options: a,
                 isStopped: () => i,
                 stopConnection() {
                     i = !0, a.stopFn && a.stopFn(), a.stopFn = void 0, this.abortWaiting()
                 },
                 reinitConnection() {
-                    this.stopConnection(), i = !1, u(a)
+                    this.stopConnection(), p(a, d), i = !1, _(a)
                 },
                 abortWaiting() {
                     a.waitAbortFns.forEach(e => e()), a.waitAbortFns = [], a.waitTimeout = 2
                 },
                 onLp: c
             };
-            return u(a), l
+            return _(a), f
         }
 
-        function h(e) {
+        function m(e) {
             return e || (() => {})
         }
 
-        function _(e) {
+        function g(e) {
             return e ? (...t) => Promise.resolve(e(...t)) : () => Promise.reject()
         }
-        var p = i("P+eJ"),
-            v = i("vT4u");
+        var b = i("P+eJ"),
+            C = i("vT4u");
 
-        function m(e, t) {
-            return f(e, {
+        function w(e, t) {
+            return v(e, {
                 onEvents: t,
-                onData: w,
-                onRequestError: N,
-                onHistoryLost: y,
-                onKeyExpired: T,
-                onLpBroken: F
+                onData: F,
+                onRequestError: k,
+                onHistoryLost: x,
+                onKeyExpired: E,
+                onLpBroken: S
             })
         }
         i.d(t, "a", function() {
-            return m
+            return w
         });
-        var g = 3e4,
-            b = {},
-            C = Date.now();
+        var N = 3e4,
+            y = {},
+            T = Date.now();
 
-        function w(e, t) {
+        function F(e, t) {
             if (t && t.status && e.lpstat) {
                 var i = t.status;
-                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), b[i] = i in b ? b[i] + 1 : 1, Date.now() - C >= g && (Object.keys(b).forEach(e => {
-                    statlogsValueEvent("fc_longpoll", b[e], e, t.getResponseHeader("x-frontend"))
-                }), b = {}, C = Date.now())
+                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), y[i] = i in y ? y[i] + 1 : 1, Date.now() - T >= N && (Object.keys(y).forEach(e => {
+                    statlogsValueEvent("fc_longpoll", y[e], e, t.getResponseHeader("x-frontend"))
+                }), y = {}, T = Date.now())
             }
         }
 
-        function N(e) {
-            Object(p.b)("red", "LP error", e.message || "no message (probably browser reset)")
+        function k(e) {
+            Object(b.b)("red", "LP error", e.message || "no message (probably browser reset)")
         }
 
-        function y(e, t) {
-            Object(p.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
+        function x(e, t) {
+            Object(b.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
         }
 
-        function T(e) {
-            return Object(p.b)("red", "LP failed: key is incorrect; refresh key"), Object(o.b)(v.e, {
+        function E(e) {
+            return Object(b.b)("red", "LP failed: key is incorrect; refresh key"), Object(o.b)(C.e, {
                 act: "a_get_key",
                 uid: e.id,
                 gid: e.id < 0 ? -e.id : 0
             })
         }
 
-        function F() {
+        function S() {
             throw window.nav.reload({
                 force: !0
             }), new Error("ts is very wrong")

@@ -524,6 +524,9 @@ var ShareBox = {
                 if (window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj)) {
                     Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList);
                 }
+                if (cur.app && cur.app.hasOwnProperty('vkMiniAppShareSuccess')) {
+                    cur.app.vkMiniAppShareSuccess(likeData);
+                }
                 delete cur.shareAction;
             },
             onFail: function(text) {
