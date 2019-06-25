@@ -7883,11 +7883,11 @@
             var t = {
                 sound: ls.get("sound_notify_off") ? getLang("mail_im_sound_off") : getLang("mail_im_sound_on")
             };
-            return window.pushNotifier && window.pushNotifier.loadEndpoint() ? t.browser = getLang("mail_notification_settings") : t.browser = fc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off"), getTemplate(e, t)
+            return window.pushNotifier && window.pushNotifier.loadEndpoint() || Object(oc.a)("push_notifier") && ls.get("im_ui_notify_off") ? t.browser = getLang("mail_notification_settings") : t.browser = fc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off"), getTemplate(e, t)
         }
 
         function fc() {
-            return !Object(oc.a)("push_notifier") && (DesktopNotifications.supported() && !DesktopNotifications.checkPermission() && !ls.get("im_ui_notify_off"))
+            return DesktopNotifications.supported() && !DesktopNotifications.checkPermission() && !ls.get("im_ui_notify_off")
         }
 
         function vc(e, t, n) {

@@ -1318,17 +1318,20 @@
             1 === o[1] && 12 === Ho.time[1] ? Ho.time[1] = 0 : 12 === o[1] && 1 === Ho.time[1] ? o[1] = 0 : (o[1] > Ho.time[1] + 1 || Ho.time[1] > o[1] + 1) && (o[1] = Ho.time[1] = o[2] = Ho.time[2] = 0), o[1] > Ho.time[1] && 1 === o[2] ? 31 === Ho.time[2] || (4 === Ho.time[1] || 6 === Ho.time[1] || 9 === Ho.time[1] || 11 === Ho.time[1]) && 30 === Ho.time[2] || 2 === Ho.time[1] && (29 === Ho.time[2] || 28 === Ho.time[2] && Ho.time[0] % 4) ? Ho.time[2] = 0 : Ho.time[2] = o[2] = 0 : Ho.time[1] > o[1] && 1 === Ho.time[2] && (31 === o[2] || (4 === o[1] || 6 === o[1] || 9 === o[1] || 11 === o[1]) && 30 === o[2] || 2 === o[1] && (29 === o[2] || 28 === o[2] && Ho.time[0] % 4) ? o[2] = 0 : o[2] = Ho.time[2] = 0), (o[2] > Ho.time[2] + 1 || Ho.time[2] > o[2] + 1) && (o[2] = Ho.time[2] = 0);
             var t = 60 * (60 * (24 * (o[2] - Ho.time[2]) + (o[3] - Ho.time[3])) + (o[4] - Ho.time[4]));
             t < -55800 ? t += 86400 : t > 37800 && (t -= 86400);
-            var i = 0,
-                n = Math.abs(t);
+            var i = new Date,
+                n = Date.UTC(i.getFullYear(), i.getMonth(), i.getDate(), i.getHours(), i.getMinutes(), i.getSeconds()) / 1e3 - Object(W.b)();
+            n -= 10800, n = (n /= 60).toFixed(0), (n *= 60) < -55800 ? n += 86400 : n > 37800 && (n -= 86400), Object(T.d)("timeoffset_new_method", t === n ? 1 : 0);
+            var a = 0,
+                s = Math.abs(t);
             Object(p.f)([-12, -11, -10, -9, -8, -7, -6, -5, -4.5, -4, -3.5, -3, -2.5, -2, -1, 0, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 5.75, 6, 6.5, 7, 8, 8.5, 9, 9.5, 10, 11, 12, 13], (e, o) => {
-                var r = Math.round(3600 * (o - 3)),
-                    a = Math.abs(t - r);
-                a < n && (n = a, i = r)
-            }), Ho.dt = i, Object(r.a)("remixdt") !== Ho.dt && Object(r.d)("remixdt", Ho.dt, 365);
-            var a = Object(p.r)(Object(r.a)("remixrt"));
-            window.devicePixelRatio >= 2 && (!d.a.iphone || Object(r.a)("remixme")) ? 1 & a || (Object(r.d)("remixrt", 1 | a, 365), window._retinaInit = function() {
+                var i = Math.round(3600 * (o - 3)),
+                    n = Math.abs(t - i);
+                n < s && (s = n, a = i)
+            }), Ho.dt = a, Object(r.a)("remixdt") !== Ho.dt && Object(r.d)("remixdt", Ho.dt, 365);
+            var c = Object(p.r)(Object(r.a)("remixrt"));
+            window.devicePixelRatio >= 2 && (!d.a.iphone || Object(r.a)("remixme")) ? 1 & c || (Object(r.d)("remixrt", 1 | c, 365), window._retinaInit = function() {
                 k.d.add(["retina.css"]), Object(w.a)(document.body, "is_2x")
-            }, Uo && window._retinaInit()) : 1 & a && Object(r.d)("remixrt", 1 ^ a, 365)
+            }, Uo && window._retinaInit()) : 1 & c && Object(r.d)("remixrt", 1 ^ c, 365)
         }, 0), window.boxQueue = Object(Y.c)(), window.__bq = boxQueue, window.curBox = Y.b, Object(Y.d)(), window.boxRefreshCoords = Y.a, window.MessageBox = K.a, window.showBox = K.b, window.showTabbedBox = K.f, window.showFastBox = K.d, window.showCaptchaBox = K.c, window.showReCaptchaBox = K.e, window.showDoneBox = Y.e, window.TopMenu = z.a, window.TopSearch = I.a, window.handleScroll = ie.e, window.loadScript = L.a, window.SpecialEvent = Do, Object(P.j)(), window.notaBene = P.q, window.updSideTopLink = P.y, window.createButton = P.d, window.actionsMenuItemLocked = P.a, window.lockActionsMenuItem = P.n, window.unlockActionsMenuItem = P.v, window.linkLocked = P.m, window.lockLink = P.p, window.unlockLink = P.x, window.lockButton = P.o, window.unlockButton = P.w, window.buttonLocked = P.b, window.isButtonLocked = P.k, window.disableButton = P.f, window.sbWidth = P.t, window.isChecked = P.l, window.checkbox = P.c, window.disable = P.e, window.radioval = P.s, window.radiobtn = P.r, window.showProgress = P.u, window.hideProgress = P.i, window.disableEl = P.g, window.enableEl = P.h, Object(v.d)(), window.VideoConstants = v.a, window.showVideo = v.j, window.showInlineVideo = v.i, window.loadInlineVideo = v.e, window.revertLastInlineVideo = v.h, window.destroyInlineVideoPlayer = v.c, window.pauseLastInlineVideo = v.f, window.playLastInlineVideo = v.g, window.checkMp4 = v.b, window.performance && window.performance.memory && Object(p.D)(0, 100) < 5 && Object(mo.a)(), Pe ? (Object(h.b)(window, "blur", ze), Object(h.b)(window, "focus", Ke), onDomReady(() => setTimeout(Ve, 500)), window.LongView = {
             register: We,
             onScroll: Object(ie.n)(qe, 50),

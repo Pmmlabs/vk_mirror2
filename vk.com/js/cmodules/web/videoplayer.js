@@ -3404,7 +3404,7 @@
                 "apps_slider" === e.module && (this._uiDisabled = !0, this.hideUI({
                     hideCursor: !1,
                     noTransition: !0
-                })), "story" === e.module && (this._uiDisabled = !0, this.hideUI({
+                })), ["story", "ads_intro"].includes(e.module) && (this._uiDisabled = !0, this.hideUI({
                     hideCursor: !1,
                     noTransition: !0
                 }), this.controls.destroy(), this.shareActions.destroy(), this.contextMenu.destroy(), re(this.controls.el), re(this.shareActions.el)), e.is_aurora && this.player.isActiveLive() && (this.donationsLayer = new Bt(this.player), this.el.appendChild(this.donationsLayer.el)), this.adsClickOverlay && re(this.adsClickOverlay), e.ads_snippet_video && (this._adsSnippetsVideo = !0, addClass(this.el, "no_gradient"), this.adsClickOverlay = se(`<a class="videoplayer_ads_click_overlay" ${e.link_attr}></a>`), this.el.appendChild(this.adsClickOverlay)), this._ignoreNoticeTypes = [], this._ignoreLiveWarning = !1

@@ -43570,7 +43570,10 @@ body.apps_settingsPageBody .basis__content {
     font-size: 16px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    border-radius: 8px
+    border-radius: 8px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px
 }
 
 ._hover .ModalMenu .ModalMenu__item:active,
