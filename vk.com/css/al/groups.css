@@ -3577,8 +3577,12 @@ textarea.EditableLabel__textarea {
     border-bottom-right-radius: var(--box-border-radius)
 }
 
-.WarningNotification__image {
+.WarningNotification__image-container {
     border-radius: var(--box-border-radius);
+    overflow: hidden
+}
+
+.WarningNotification__image {
     width: var(--box-width)
 }
 
