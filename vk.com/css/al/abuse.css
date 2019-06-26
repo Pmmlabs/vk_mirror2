@@ -1625,14 +1625,6 @@
     color: #777
 }
 
-.abuse_threat_score_value_low {
-    color: #7dbc7b
-}
-
-.abuse_threat_score_value_mid {
-    color: #f6b03b
-}
-
 .abuse_threat_score_value_high {
     color: #f05c44
 }

@@ -15116,12 +15116,18 @@ span.fc_contact_photo.online.mobile:after {
     cursor: pointer
 }
 
+.notifier_baloon.notifier_type_done_box {
+    position: relative
+}
+
 .notifier_baloon_head {
     padding: 10px 12px 0
 }
 
 .notifier_type_done_box .notifier_baloon_head {
-    float: right
+    position: absolute;
+    top: 0;
+    right: 0
 }
 
 .notifier_baloon_title {
@@ -15161,6 +15167,7 @@ span.fc_contact_photo.online.mobile:after {
 
 .notifier_type_done_box .notifier_baloon_body {
     padding-top: 10px;
+    padding-right: 22px;
     display: -webkit-box;
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;

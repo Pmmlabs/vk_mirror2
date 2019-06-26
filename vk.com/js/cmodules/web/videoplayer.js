@@ -900,7 +900,7 @@
                     var n = Math.max(...i);
                     s = Math.min(s, n);
                     var o = this.getLevelIndexForQuality(s);
-                    this.hls.startLevel = o, a && this.setCurrentLevel(o), this.player.onQualityChanged(s), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load()
+                    this.hls.startLevel = o, a && this.setCurrentLevel(o), this.player.onQualityChanged(s), this.getVar("live") && this.hls.levels.length > 1 && this.capLiveLevels(), this.needLoad && this.load(), a || this.player.isActiveLive() || this.forceNextLevel(o)
                 }
             }
             onLevelSwitch(e, t) {
@@ -977,9 +977,9 @@
                 })
             }
             forceNextLevel(e) {
-                var t = this;
-                this.hls.on(Hls.Events.FRAG_LOADED, function i(s, a) {
-                    "main" === a.frag.type && (t.hls.off(Hls.Events.FRAG_LOADED, i), a.frag.autoLevel && a.frag.level == e && (t.hls.nextLoadLevel = e))
+                var t = this.hls;
+                t.on(Hls.Events.FRAG_LOADED, function i(s, a) {
+                    "main" === a.frag.type && ((a.frag.sn > 2 || !t.autoLevelEnabled) && t.off(Hls.Events.FRAG_LOADED, i), t.autoLevelEnabled && a.frag.level == e && (t.nextLoadLevel = e))
                 })
             }
             setQuality(e) {

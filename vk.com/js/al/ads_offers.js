@@ -372,7 +372,7 @@ var Offers = {
         re('offers_msg');
         var msg = ge('offers_msg');
         if (!msg) {
-            var parent = parentEl || ge('ads_page');
+            var parent = parentEl || ge('ads_page') || ge('ads_office_page_wrapper_general');
             msg = parent.insertBefore(ce('div', {
                 id: 'offers_msg',
                 className: 'msg'
@@ -389,7 +389,7 @@ var Offers = {
         re('offers_error');
         var err = ge('offers_error');
         if (!err) {
-            var parent = parentEl || ge('ads_page');
+            var parent = parentEl || ge('ads_page') || ge('ads_office_page_wrapper_general');
             err = parent.insertBefore(ce('div', {
                 id: 'offers_error',
                 className: 'error'
