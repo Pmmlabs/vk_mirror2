@@ -1504,6 +1504,64 @@
     font-size: 13px
 }
 
+.market_variants_title {
+    height: 15px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #656565
+}
+
+.market_variants_tile {
+    max-width: 300px;
+    margin: 0 0 10px;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-auto-rows: 30px;
+    grid-gap: 10px
+}
+
+.market_variants_tile_grid_mt3 {
+    grid-auto-flow: column
+}
+
+.market_variants_tile li {
+    list-style: none
+}
+
+.market_variants_tile_item {
+    padding: 7px 12px;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 100%;
+    border: none;
+    background-color: #e5ebf1;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #55677d;
+    font-size: 12.5px
+}
+
+.market_variants_test_render {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+.market_variants_tile_item--disable {
+    pointer-events: none;
+    opacity: 0.4
+}
+
+.market_variants_tile_item--selected {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #528bcc
+}
+
+.market_item_variants>* {
+    margin-bottom: 10px
+}
+
 #market_css {
     display: none
 }
