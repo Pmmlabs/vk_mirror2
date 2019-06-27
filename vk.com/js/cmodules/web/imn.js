@@ -6870,7 +6870,7 @@
             var n = t.get(),
                 a = n.peer,
                 r = n.tabs[a];
-            e.querySelector(Hs).querySelector("._im_to_end_label").innerHTML = Number(r.unread) > 0 ? Ts(r.unread) : ""
+            (e || document).querySelector(Hs).querySelector("._im_to_end_label").innerHTML = Number(r.unread) > 0 ? Ts(r.unread) : ""
         }
 
         function Co(e, t = 0) {

@@ -3920,7 +3920,7 @@ InlineDropdown.prototype._onClick = function(event) {
 
     function isOpenToUp() {
         var elPosY = getXY(_this._iddEl)[1];
-        var windowScrollTop = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
+        var windowScrollTop = (window.pageYOffset || (window.scrollBodyNode || document.documentElement).scrollTop) - (document.documentElement.clientTop || 0);
         return (elPosY - windowScrollTop + 200) > window.innerHeight;
     }
 
