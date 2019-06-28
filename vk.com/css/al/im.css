@@ -1993,7 +1993,6 @@ textarea.EditableLabel__textarea {
     position: absolute;
     width: 0;
     height: 0;
-    white-space: nowrap;
     display: -ms-flexbox;
     display: flex;
     pointer-events: none;
@@ -2012,23 +2011,36 @@ textarea.EditableLabel__textarea {
 
 .Tooltip__in {
     position: relative;
-    padding: 4px 9px 5px;
+    padding: 3px 9px 4px;
     color: #fff;
     background: hsla(0, 0%, 5%, .7);
     border-radius: 4px;
     font-size: 12.5px;
-    line-height: 15px;
+    line-height: 17px;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     direction: ltr
 }
 
+.Tooltip__in:after,
 .Tooltip__in:before {
     content: '';
     position: absolute;
     width: 0;
     height: 0;
     border: 5px solid transparent
+}
+
+.Tooltip--light .Tooltip__in {
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+    border: solid 1px #c5d0db;
+    color: #000;
+    padding: 15px
+}
+
+.Tooltip--dark .Tooltip__in:before {
+    display: none
 }
 
 .Tooltip--t {
@@ -2040,9 +2052,23 @@ textarea.EditableLabel__textarea {
     bottom: 5px
 }
 
+.Tooltip--t .Tooltip__in:after,
 .Tooltip--t .Tooltip__in:before {
     top: 100%;
     border-top-color: hsla(0, 0%, 5%, .7)
+}
+
+.Tooltip--t .Tooltip__in:before {
+    -o-transform: translateY(1px);
+    transform: translateY(1px)
+}
+
+.Tooltip--t.Tooltip--light .Tooltip__in:after {
+    border-top-color: #fff
+}
+
+.Tooltip--t.Tooltip--light .Tooltip__in:before {
+    border-top-color: #c5d0db
 }
 
 .Tooltip--r {
@@ -2056,11 +2082,25 @@ textarea.EditableLabel__textarea {
     left: 5px
 }
 
+.Tooltip--r .Tooltip__in:after,
 .Tooltip--r .Tooltip__in:before {
     right: 100%;
     top: 50%;
     margin-top: -5px;
     border-right-color: hsla(0, 0%, 5%, .7)
+}
+
+.Tooltip--r .Tooltip__in:before {
+    -o-transform: translateX(-1px);
+    transform: translateX(-1px)
+}
+
+.Tooltip--r.Tooltip--light .Tooltip__in:after {
+    border-right-color: #fff
+}
+
+.Tooltip--r.Tooltip--light .Tooltip__in:before {
+    border-right-color: #c5d0db
 }
 
 .Tooltip--b {
@@ -2072,9 +2112,23 @@ textarea.EditableLabel__textarea {
     top: 5px
 }
 
+.Tooltip--b .Tooltip__in:after,
 .Tooltip--b .Tooltip__in:before {
     bottom: 100%;
     border-bottom-color: hsla(0, 0%, 5%, .7)
+}
+
+.Tooltip--b .Tooltip__in:before {
+    -o-transform: translateY(-1px);
+    transform: translateY(-1px)
+}
+
+.Tooltip--b.Tooltip--light .Tooltip__in:after {
+    border-bottom-color: #fff
+}
+
+.Tooltip--b.Tooltip--light .Tooltip__in:before {
+    border-bottom-color: #c5d0db
 }
 
 .Tooltip--l {
@@ -2089,11 +2143,25 @@ textarea.EditableLabel__textarea {
     right: 5px
 }
 
+.Tooltip--l .Tooltip__in:after,
 .Tooltip--l .Tooltip__in:before {
     left: 100%;
     top: 50%;
     margin-top: -5px;
     border-left-color: hsla(0, 0%, 5%, .7)
+}
+
+.Tooltip--l .Tooltip__in:before {
+    -o-transform: translateX(1px);
+    transform: translateX(1px)
+}
+
+.Tooltip--l.Tooltip--light .Tooltip__in:after {
+    border-left-color: #fff
+}
+
+.Tooltip--l.Tooltip--light .Tooltip__in:before {
+    border-left-color: #c5d0db
 }
 
 .Tooltip--align-left {
@@ -2105,6 +2173,7 @@ textarea.EditableLabel__textarea {
     right: 14px
 }
 
+.Tooltip--align-left .Tooltip__in:after,
 .Tooltip--align-left .Tooltip__in:before {
     left: 14px;
     margin-left: -5px
@@ -2119,6 +2188,7 @@ textarea.EditableLabel__textarea {
     -ms-transform: translateX(-50%)
 }
 
+.Tooltip--align-center .Tooltip__in:after,
 .Tooltip--align-center .Tooltip__in:before {
     left: 50%;
     margin-left: -5px
@@ -2132,6 +2202,7 @@ textarea.EditableLabel__textarea {
     left: 14px
 }
 
+.Tooltip--align-right .Tooltip__in:after,
 .Tooltip--align-right .Tooltip__in:before {
     right: 14px;
     margin-right: -5px
@@ -2237,7 +2308,7 @@ textarea.EditableLabel__textarea {
 
 .CheckBox__input:checked+.CheckBox__indicator {
     border-color: #5181b8;
-    background: #5181b8 url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50% / cover
+    background: #5181b8 url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
 }
 
 .is_rtl1 .CheckBox__indicator {
@@ -2307,8 +2378,8 @@ textarea.EditableLabel__textarea {
 
 .Modal__header--blue {
     color: #fff;
-    background-color: #6187ae;
-    border-bottom: 1px solid #6187ae
+    background-color: #5b88bd;
+    border-bottom: 1px solid #5b88bd
 }
 
 .Modal__header--blue .Modal__headerTitle {
@@ -2329,9 +2400,10 @@ textarea.EditableLabel__textarea {
 
 .Modal__headerTitle {
     margin: 0;
-    padding: 19px 10px 19px 0;
+    padding: 19px 10px 18px 0;
     font-size: 14px;
-    font-weight: 400
+    font-weight: 400;
+    line-height: 16px
 }
 
 .Modal__headerCross {
@@ -2345,7 +2417,7 @@ textarea.EditableLabel__textarea {
     -ms-flex-pack: center;
     justify-content: center;
     width: 62px;
-    height: 54px;
+    height: 53px;
     font-size: 0;
     background: none;
     border: none;

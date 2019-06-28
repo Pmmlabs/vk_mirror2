@@ -2804,6 +2804,20 @@ AdsViewEditor.prototype.initHelpParam = function(paramNameHelp) {
             }.bind(this);
             AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
             break;
+        case 'stats_url_long':
+        case 'stats_url_long2':
+            targetElem = ge(this.options.targetIdPrefix + paramNameHelp).parentNode;
+            var showTooltip = function() {
+                AdsEdit.showHelpCriterionTooltip(paramNameHelp, targetElem, handler, this.help[paramNameHelp], helpText, shiftLeft, shiftTop, this.cur);
+            }.bind(this);
+            var hideTooltip = function() {
+                AdsEdit.hideHelpTooltip(this.help[paramNameHelp].tt);
+            }.bind(this);
+            handler = function(event) {
+                AdsEdit.onHelpTooltipEvent(event, paramNameHelp, context, showTooltip, hideTooltip);
+            }.bind(this);
+            AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
+            break;
         case 'cost_type_promoted_posts_cpc':
             targetElem = ge(this.options.targetIdPrefix + 'cost_type').parentNode;
             var showTooltip = function() {
