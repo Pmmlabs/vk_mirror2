@@ -1232,14 +1232,21 @@
 }
 
 .audio_page_layout .audio_page_block__custom_items {
-    padding: 0 5px
+    padding: 0 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: -20px
 }
 
 .audio_page_layout .audio_page_block__custom_items .audio_block_small_item {
-    float: left;
-    width: 220px;
-    margin: 0 0 24px;
-    padding-right: 25px
+    width: 25%;
+    max-width: 25%;
+    min-width: 25%;
+    padding-right: 5px;
+    box-sizing: border-box;
+    margin: 0 0 20px
 }
 
 .audio_page_layout .audio_section_search__playlists_items {
@@ -1512,11 +1519,13 @@
     padding-right: 0!important
 }
 
+.audio_page_layout .audio_section__my,
 .audio_page_layout .audio_section__recoms_block,
 .audio_page_layout .audio_section__search_block {
     margin-top: 20px
 }
 
+.audio_page_layout .audio_section__my .pr.audio_more_rows,
 .audio_page_layout .audio_section__recoms_block .pr.audio_more_rows,
 .audio_page_layout .audio_section__search_block .pr.audio_more_rows {
     opacity: 1;

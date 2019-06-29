@@ -7283,29 +7283,48 @@ td.apps_cat_new_h {
     right: 0
 }
 
-#apps_layer .apps_header {
+#apps_layer .apps_header_wrapper {
     background-color: #f2f4f7;
     height: 55px;
     line-height: 55px;
     font-size: 15px;
-    border-bottom: 1px solid #e7e8ec
+    border-bottom: 1px solid #e7e8ec;
+    position: relative
+}
+
+#apps_layer .apps_header {
+    position: absolute;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 100%
 }
 
 #apps_layer .apps_header .apps_name {
     margin-left: 25px;
-    color: #000
+    color: #000;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    max-width: 65%
 }
 
+#apps_layer .apps_header .apps_name,
 #apps_layer .apps_header .group_name {
-    margin-left: 7px;
-    margin-left: 8px;
-    color: #656565;
-    max-width: 45%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top
+}
+
+#apps_layer .apps_header .group_name {
+    margin-left: 7px;
+    margin-left: 8px;
+    margin-right: 49px;
+    color: #656565;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto
 }
 
 #apps_layer .apps_header .group_name:before {
@@ -8421,4 +8440,8 @@ body.apps_vkpayMobileTransfer .app_container:after {
     width: 294px;
     height: 98px;
     border-radius: 4px
+}
+
+.FullscreenVKMiniApp.page_block {
+    margin: 0
 }

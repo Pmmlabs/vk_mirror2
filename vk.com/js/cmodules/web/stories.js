@@ -611,9 +611,9 @@
                     cur.storyLayer && cur.storyLayer.onKeyUp(e)
                 }
             },
-            L = (s("tUrg"), s("17x9"), s("T/g7"));
+            C = (s("tUrg"), s("17x9"), s("T/g7"));
 
-        function C({
+        function L({
             story: e
         }) {
             var {
@@ -639,35 +639,35 @@
                     [h] = s.split("_").map(e => intval(e)),
                     c = n && !n.is_cover;
                 !d || c || l || t.push({
-                    label: Object(L.b)("stories_add_blacklist_button"),
+                    label: Object(C.b)("stories_add_blacklist_button"),
                     onClick: () => e._addToBlacklist()
                 });
                 i && t.push({
-                    label: Object(L.b)("stories_hide_reply_button"),
+                    label: Object(C.b)("stories_hide_reply_button"),
                     onClick: () => e._hideReply()
                 });
                 n && t.push({
-                    label: n.is_bookmarked ? Object(L.b)("stories_narrative_remove_bookmark_button") : Object(L.b)("stories_narrative_add_bookmark_button"),
+                    label: n.is_bookmarked ? Object(C.b)("stories_narrative_remove_bookmark_button") : Object(C.b)("stories_narrative_add_bookmark_button"),
                     onClick: () => e._sendNarrativeBookmarkButtonDidPress()
                 });
                 a && t.push({
-                    label: Object(L.b)("stories_share"),
+                    label: Object(C.b)("stories_share"),
                     onClick: () => e.shareBox()
                 });
                 n && n.can_edit && t.push({
-                    label: Object(L.b)("stories_narrative_edit_button"),
+                    label: Object(C.b)("stories_narrative_edit_button"),
                     onClick: () => e._sendNarrativeEditButtonDidPress()
                 });
                 o && e.getOwnerId() < 0 && t.push({
-                    label: n ? Object(L.b)("global_narrative_delete") : Object(L.b)("global_delete"),
+                    label: n ? Object(C.b)("global_narrative_delete") : Object(C.b)("global_delete"),
                     onClick: () => n ? e.removeNarrativeBox() : e.removeStoryBox()
                 });
                 r && t.push({
-                    label: Object(L.b)("stories_report"),
+                    label: Object(C.b)("stories_report"),
                     onClick: () => e.report()
                 });
                 h === vk.id || c || t.push({
-                    label: Object(L.b)("stories_settings"),
+                    label: Object(C.b)("stories_settings"),
                     onClick: () => window.Stories.showBlackList()
                 });
                 return t
@@ -768,7 +768,7 @@
                     ref: "controls"
                 }, i.createElement(T, {
                     story: e
-                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(C, {
+                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(L, {
                     story: e
                 })))
             }
@@ -1018,8 +1018,8 @@
                         size: "s",
                         wide: !0,
                         onClick: this.openReplyModal.bind(this)
-                    }, Object(L.b)("stories_question_reply"))), e && i.createElement(A.a, {
-                        title: Object(L.b)("stories_question_reply_box_title").replace("{name}", Object(K.a)(n.nameDat)),
+                    }, Object(C.b)("stories_question_reply"))), e && i.createElement(A.a, {
+                        title: Object(C.b)("stories_question_reply_box_title").replace("{name}", Object(K.a)(n.nameDat)),
                         actionButtons: this.getReplyModalActions(),
                         className: "StoryQuestion__replyModal",
                         onClose: this.closeReplyModal.bind(this),
@@ -1029,7 +1029,7 @@
                     }, i.createElement("textarea", {
                         ref: this.replyTextarea,
                         className: "StoryQuestion__textarea",
-                        placeholder: Object(L.b)("stories_question_reply_placeholder"),
+                        placeholder: Object(C.b)("stories_question_reply_placeholder"),
                         onChange: this.handleChange.bind(this),
                         onKeyDown: this.handleKeyDown.bind(this),
                         value: r
@@ -1037,7 +1037,7 @@
                         srcSet: a,
                         className: "StoryQuestion__image"
                     }))), t && i.createElement(A.a, {
-                        title: Object(L.b)("stories_question_author_ban"),
+                        title: Object(C.b)("stories_question_author_ban"),
                         actionButtons: this.getReportModalActions(),
                         className: "StoryQuestion__reportModal StoryQuestionReportForm",
                         onClose: this.closeReportModal.bind(this),
@@ -1046,7 +1046,7 @@
                         className: "StoryQuestionReportForm__content"
                     }, i.createElement("h4", {
                         className: "StoryQuestionReportForm__title"
-                    }, Object(L.b)("stories_question_report_reason")), i.createElement("div", {
+                    }, Object(C.b)("stories_question_report_reason")), i.createElement("div", {
                         className: "StoryQuestionReportForm__items",
                         role: "radiogroup"
                     }, this.reportReasons.map(e => i.createElement("div", {
@@ -1058,7 +1058,7 @@
                         "aria-checked": "false",
                         tabIndex: "0",
                         key: e
-                    }, Object(L.b)(e[1])))))))
+                    }, Object(C.b)(e[1])))))))
                 }), this.renderAuthor = (() => {
                     var {
                         id: e,
@@ -1112,12 +1112,12 @@
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReplyModal
-                    }, Object(L.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
                         key: "replySend",
                         loading: e,
                         disabled: !Object(Q.H)(t),
                         onClick: this.sendReply.bind(this)
-                    }, Object(L.b)("stories_question_reply_send"))]
+                    }, Object(C.b)("stories_question_reply_send"))]
                 }), this.getReportModalActions = (() => {
                     var {
                         isReportButtonLoading: e
@@ -1126,11 +1126,11 @@
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReportModal.bind(this)
-                    }, Object(L.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
                         key: "reportSend",
                         loading: e,
                         onClick: this.sendReport.bind(this)
-                    }, Object(L.b)("stories_question_report_send"))]
+                    }, Object(C.b)("stories_question_report_send"))]
                 }), this.handleChange = (e => {
                     this.setState({
                         replyText: e.target.value
@@ -1162,7 +1162,7 @@
                         to: o
                     }, {
                         onDone: () => {
-                            this.closeReplyModal(), this.resetReplyText(), s(Object(L.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
+                            this.closeReplyModal(), this.resetReplyText(), s(Object(C.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
                                 questionId: r
                             })
                         },
@@ -1180,14 +1180,14 @@
                     } = this.props, {
                         isAuthorBan: t
                     } = this.state, s = [{
-                        text: Object(L.b)("stories_question_delete"),
+                        text: Object(C.b)("stories_question_delete"),
                         onClick: () => this.props.removeQuestion(e)
                     }];
                     return e.canBlocked && (t ? s.push({
-                        text: Object(L.b)("stories_question_author_unban"),
+                        text: Object(C.b)("stories_question_author_unban"),
                         onClick: this.unbanAuthor.bind(this)
                     }) : s.push({
-                        text: Object(L.b)("stories_question_author_ban"),
+                        text: Object(C.b)("stories_question_author_ban"),
                         onClick: this.openReportModal.bind(this)
                     })), s
                 }), this.sendReport = (() => {
@@ -1214,7 +1214,7 @@
                         onDone: () => {
                             this.closeReportModal(), this.setState({
                                 isAuthorBan: !0
-                            }), s(Object(L.b)("stories_question_author_blocked"));
+                            }), s(Object(C.b)("stories_question_author_blocked"));
                             var e = "question_ban_author";
                             n && (e = "question_ban_anonymous_author"), cur.storyLayer._sendNavigationStatEvents(e, !0, {
                                 questionId: o
@@ -1247,7 +1247,7 @@
                         onDone: () => {
                             this.setState({
                                 isAuthorBan: !1
-                            }), t(Object(L.b)("stories_question_author_unblocked"))
+                            }), t(Object(C.b)("stories_question_author_unblocked"))
                         }
                     })
                 }), this.reportReasons = [
@@ -1375,38 +1375,38 @@
                     }
                 }), this.handleClick = (e => {
                     var {
-                        toggleTooltip: t,
-                        showQuestionModal: s
-                    } = this.props, {
-                        type: i,
-                        hashtag: r,
-                        mention: o
+                        type: t,
+                        hashtag: s,
+                        mention: i
                     } = this.props.sticker;
-                    switch (i) {
+                    switch (t) {
                         case G.hashtag:
-                            t(e, this.handleClickHashtag(r));
+                            this.handleClickHashtag(e, s);
                             break;
                         case G.mention:
-                            t(e, this.handleClickMention(o));
+                            this.handleClickMention(e, i);
                             break;
                         case G.question:
-                            s()
+                            this.handleClickQuestion()
                     }
-                }), this.handleClickHashtag = (e => {
-                    var t = e.replace("#", "%23"),
-                        s = Object(L.b)("stories_show_hashtag_link");
-                    return i.createElement("a", {
-                        href: `/feed?q=${t}&section=search`,
+                }), this.handleClickHashtag = ((e, t) => {
+                    var s = t.replace("#", "%23"),
+                        r = Object(C.b)("stories_show_hashtag_link"),
+                        o = i.createElement("a", {
+                            href: `/feed?q=${s}&section=search`,
+                            target: "_blank",
+                            className: "StoriesTooltip__link"
+                        }, r);
+                    this.props.toggleTooltip(e, o)
+                }), this.handleClickMention = ((e, t) => {
+                    var [s] = t.slice(1, -1).split("|"), r = s.startsWith("id") ? Object(C.b)("stories_go_to_profile") : Object(C.b)("stories_go_to_group"), o = i.createElement("a", {
+                        href: `/${s}`,
                         target: "_blank",
                         className: "StoriesTooltip__link"
-                    }, s)
-                }), this.handleClickMention = (e => {
-                    var [t] = e.slice(1, -1).split("|"), s = t.startsWith("id") ? Object(L.b)("stories_go_to_profile") : Object(L.b)("stories_go_to_group");
-                    return i.createElement("a", {
-                        href: `/${t}`,
-                        target: "_blank",
-                        className: "StoriesTooltip__link"
-                    }, s)
+                    }, r);
+                    this.props.toggleTooltip(e, o)
+                }), this.handleClickQuestion = (() => {
+                    this.props.showQuestionModal()
                 })
             }
         }
@@ -1474,7 +1474,7 @@
                         clientY: u,
                         layerEl: s
                     }, c), _ && i.createElement(A.a, {
-                        title: Object(L.b)("stories_question_ask_box_title").replace("{name}", Object(K.a)(t.name_get)),
+                        title: Object(C.b)("stories_question_ask_box_title").replace("{name}", Object(K.a)(t.name_get)),
                         actionButtons: this.getQuestionModalActions(),
                         className: "StoryQuestionAskForm",
                         onClose: this.closeQuestionModal,
@@ -1485,7 +1485,7 @@
                         ref: this.askTextarea,
                         className: "StoryQuestionAskForm__textarea",
                         maxLength: "80",
-                        placeholder: Object(L.b)("stories_question_ask_placeholder"),
+                        placeholder: Object(C.b)("stories_question_ask_placeholder"),
                         onChange: this.handleChange,
                         onKeyDown: this.handleKeyDown
                     }))))
@@ -1501,19 +1501,24 @@
                     var {
                         clientX: s,
                         clientY: i
-                    } = e;
-                    this.props.hideFeedbackTooltip(), this.setState({
+                    } = e, {
+                        pauseStory: r,
+                        playStory: o,
+                        hideFeedbackTooltip: a,
+                        sendNavigationStatEvents: n
+                    } = this.props;
+                    a(), this.setState({
                         showTooltip: !this.state.showTooltip,
                         tooltipContent: t,
                         clientX: s,
                         clientY: i
                     }), setTimeout(() => {
-                        this.state.showTooltip && this.props.sendNavigationStatEvents("click_on_clickable_sticker")
+                        this.state.showTooltip ? (n("click_on_clickable_sticker"), r()) : o()
                     }, 0)
                 }), this.hideTooltip = (() => {
                     this.setState({
                         showTooltip: !1
-                    })
+                    }), this.props.playStory()
                 }), this.isShownTooltip = (() => this.state.showTooltip || this.state.showQuestionModal), this.showQuestionModal = (() => {
                     var {
                         story: e,
@@ -1522,10 +1527,10 @@
                     } = this.props, {
                         can_ask: i
                     } = e;
-                    if (!i) return t(Object(L.b)("stories_question_forbidden"));
+                    if (!i) return t(Object(C.b)("stories_question_forbidden"));
                     this.setState({
                         showQuestionModal: !0
-                    }), s()
+                    }), this.hideTooltip(), s()
                 }), this.closeQuestionModal = (() => {
                     var {
                         playStory: e
@@ -1563,7 +1568,7 @@
                             questionText: a,
                             isAnonymous: n
                         } = this.state;
-                    return e = r ? clean(Object(L.b)("stories_question_anonymous_info").replace("{name}", Object(K.a)(s.firstName))) : Object(L.b)("stories_question_cannot_anonymous"), i.createElement("div", {
+                    return e = r ? clean(Object(C.b)("stories_question_anonymous_info").replace("{name}", Object(K.a)(s.firstName))) : Object(C.b)("stories_question_cannot_anonymous"), i.createElement("div", {
                         className: "StoryQuestionAskForm__footer"
                     }, i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
@@ -1572,7 +1577,7 @@
                         checked: n,
                         onChange: this.handleCheckBox,
                         disabled: !r
-                    }, Object(L.b)("stories_question_anonymous_checkbox")), i.createElement(te.a, {
+                    }, Object(C.b)("stories_question_anonymous_checkbox")), i.createElement(te.a, {
                         text: e,
                         position: "b",
                         align: "left",
@@ -1586,12 +1591,12 @@
                         key: "b",
                         appearance: "tertiary",
                         onClick: this.closeQuestionModal
-                    }, Object(L.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
                         key: "s",
                         loading: o,
                         disabled: !Object(Q.H)(a),
                         onClick: this.sendQuestion
-                    }, Object(L.b)("stories_question_reply_send"))))
+                    }, Object(C.b)("stories_question_reply_send"))))
                 }), this.sendQuestion = (() => {
                     var {
                         questionText: e,
@@ -1614,7 +1619,7 @@
                         hash: n
                     }, {
                         onDone: () => {
-                            this.closeQuestionModal(), this.resetAskText(), s(Object(L.b)("stories_question_sent").replace("{name}", Object(K.a)(r.first_name_ins))), o(t ? "question_reply_anonymous" : "question_reply")
+                            this.closeQuestionModal(), this.resetAskText(), s(Object(C.b)("stories_question_sent").replace("{name}", Object(K.a)(r.first_name_ins))), o(t ? "question_reply_anonymous" : "question_reply")
                         },
                         onFail: e => (this.closeQuestionModal(), this.resetAskText(), s(e), !0),
                         showProgress: () => this.setState({
@@ -3117,8 +3122,8 @@
             Ee = "group_personal_card",
             Oe = s("Tn+0");
         var je = [];
-        var Le = [];
-        var Ce = () => Le.length || je.length;
+        var Ce = [];
+        var Le = () => Ce.length || je.length;
         var Te = o.Promise,
             xe = {
                 show(e, t = {}) {
@@ -3469,7 +3474,7 @@
                                 this.activeStory && this.activeStory.changeStory(e)
                             }
                             _readStories() {
-                                if (this.storiesToRead.length && Ce()) {
+                                if (this.storiesToRead.length && Le()) {
                                     var e = this._getSource(),
                                         t = this.storiesToRead.join(","),
                                         s = this.storiesSkip.join(",");
@@ -3488,13 +3493,13 @@
                                             return je = [], e
                                         }(),
                                         loading_stats: function() {
-                                            var e = Le.map(({
+                                            var e = Ce.map(({
                                                 ownerId: e,
                                                 storyId: t,
                                                 source: s,
                                                 time: i
                                             }) => [e, t, s, i].join(",")).join(";");
-                                            return Le = [], e
+                                            return Ce = [], e
                                         }(),
                                         connection_type: function() {
                                             var {
@@ -3618,7 +3623,7 @@
                                         source: t,
                                         time: s
                                     };
-                                    Le.push(o)
+                                    Ce.push(o)
                                 }({
                                     storyRawId: e,
                                     source: this.viewerSource,
