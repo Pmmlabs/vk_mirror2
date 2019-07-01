@@ -1518,7 +1518,7 @@
                 }), this.hideTooltip = (() => {
                     this.setState({
                         showTooltip: !1
-                    }), this.props.playStory()
+                    })
                 }), this.isShownTooltip = (() => this.state.showTooltip || this.state.showQuestionModal), this.showQuestionModal = (() => {
                     var {
                         story: e,
@@ -2316,7 +2316,7 @@
                 }
             }
             _hideTooltip(e) {
-                this.stickerLayers && this.stickerLayers.hideTooltip(), this.tooltip && (e || this.playStory(), this.layer.layerEl.removeChild(this.tooltip), delete this.tooltip)
+                this.isTooltipOpened() && (this.stickerLayers && this.stickerLayers.hideTooltip(), this.tooltip && (this.layer.layerEl.removeChild(this.tooltip), delete this.tooltip), e || this.playStory())
             }
             getReplies() {
                 return this.story.getReplies()

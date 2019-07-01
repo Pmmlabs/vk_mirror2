@@ -707,7 +707,7 @@ var stVersions = {
     'cmodules/web/stats.301c88bf715e2539a854.js': 'c0f3bcb15e1ae81a70adeb0670b51117',
     'cmodules/web/stickers.ddaf2056c4c4f5e22bc7.js': '9803fd91964d807b3ec677ea2bc61396',
     'cmodules/web/stickers_office.6c84880d97d9924b4008.js': 'cde91c9d8fff83dcc763653af39ddc69',
-    'cmodules/web/stories.db6e9b2062473057c923.js': 'a49326a29092b9108f02f5f448a05289',
+    'cmodules/web/stories.f5347b6d032552334b7a.js': '6413e3a7589678b804038d1128f666f5',
     'cmodules/web/stories_archive.86caa0a85debd1c47778.js': 'f352fddedab9fa8a079b83dcd8e4df64',
     'cmodules/web/stories_manage.db4e10f1b73107351cb2.js': 'c649ba012bc0da613e1382c382bf61f1',
     'cmodules/web/support.9a2c765541383e8ed0a5.js': '4efd34e7d5b77d068a0d2527b8c5c56a',
@@ -792,7 +792,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6012;
+var _rnd = 5188;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
@@ -884,7 +884,7 @@ var stDeps = {
     "/js/cmodules/web/stats.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/8f9b95e37f18d0c7165292d5115bec0e.3505ebaed1c706c2fe56.js", "cmodules/web/stats.301c88bf715e2539a854.js"],
     "/js/cmodules/web/stickers.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/stickers.ddaf2056c4c4f5e22bc7.js"],
     "/js/cmodules/web/stickers_office.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/stickers_office.6c84880d97d9924b4008.js"],
-    "/js/cmodules/web/stories.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/750f3ffdacb90c821f04ef61f1ad6851.fbfaa738a6fc686219e7.js", "cmodules/web/stories.db6e9b2062473057c923.js"],
+    "/js/cmodules/web/stories.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/750f3ffdacb90c821f04ef61f1ad6851.fbfaa738a6fc686219e7.js", "cmodules/web/stories.f5347b6d032552334b7a.js"],
     "/js/cmodules/web/stories_archive.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/stories_archive.86caa0a85debd1c47778.js"],
     "/js/cmodules/web/stories_manage.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/4399327027c20c0ef875ced7b7eec522.606aee97592ce5772080.js", "cmodules/web/stories_manage.db4e10f1b73107351cb2.js"],
     "/js/cmodules/web/support.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/support.9a2c765541383e8ed0a5.js"],
