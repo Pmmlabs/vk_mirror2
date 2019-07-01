@@ -605,7 +605,7 @@ var stVersions = {
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.c25a2dd7e40fed5d08af.js': '82b69f6f3cf4d608b7c9',
     'cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js': '9834a39e96d3aa86bb2e',
     'cmodules/bundles/4399327027c20c0ef875ced7b7eec522.606aee97592ce5772080.js': 'ddbfcfa5b48bab0ca56c',
-    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.34437e74beb6a6fc938f.js': 'eb39644154950aa07cb6',
+    'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.e96839eedc3c78c230ab.js': 'dc8f84a8ac1216abcb00',
     'cmodules/bundles/6d669e070da493537223b2032427707c.52f85c28bf5518b0c8e8.js': '38cbbc48f08dc5e14e7a',
     'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.4f5e6dbdf98568dfa0e0.js': '2268042e02b6c436b29e',
     'cmodules/bundles/750f3ffdacb90c821f04ef61f1ad6851.fbfaa738a6fc686219e7.js': 'e8cc57454cbfb3f1ee17',
@@ -792,7 +792,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5188;
+var _rnd = 2688;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
@@ -803,9 +803,9 @@ var stDeps = {
     "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/750f3ffdacb90c821f04ef61f1ad6851.fbfaa738a6fc686219e7.js", "cmodules/web/ads_office.10af1b9f8475f03482bb.js"],
     "/js/cmodules/web/app_info.js": ["cmodules/web/app_info.54fd8e3b7b7cf2d83985.js"],
     "/js/cmodules/web/app_use_time.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/web/app_use_time.77d9262ae086ad72fb82.js"],
-    "/js/cmodules/web/apps.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.34437e74beb6a6fc938f.js", "cmodules/web/apps.de8c994a42cb1f8e0324.js"],
+    "/js/cmodules/web/apps.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.e96839eedc3c78c230ab.js", "cmodules/web/apps.de8c994a42cb1f8e0324.js"],
     "/js/cmodules/web/apps_achievements.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/apps_achievements.877e882d406045e81753.js"],
-    "/js/cmodules/web/apps_connect.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.34437e74beb6a6fc938f.js", "cmodules/web/apps_connect.21fd00a03b0089667aa2.js"],
+    "/js/cmodules/web/apps_connect.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.e96839eedc3c78c230ab.js", "cmodules/web/apps_connect.21fd00a03b0089667aa2.js"],
     "/js/cmodules/web/apps_edit.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/apps_edit.e2dff4099f880bda2ed1.js"],
     "/js/cmodules/web/article.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.4f5e6dbdf98568dfa0e0.js", "cmodules/web/article.adc61caaf2e9df18a5ce.js"],
     "/js/cmodules/web/article_editor_layer.js": ["cmodules/bundles/common.65fc4c08ef0275bdbadb.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.4f5e6dbdf98568dfa0e0.js", "cmodules/web/article_editor_layer.79fe5fd151dfc50da1db.js"],
