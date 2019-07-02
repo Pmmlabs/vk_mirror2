@@ -21769,7 +21769,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .musicSubscription_boom .musicSubscription__icon {
-    background-image: url('/images/mobile/music_subscription/boom.png')
+    background-image: url('/images/mobile/music_subscription/boom.png?1')
 }
 
 .musicSubscription_ios .musicSubscription__icon {
@@ -21782,7 +21782,7 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .vk_2x .musicSubscription_boom .musicSubscription__icon {
-    background-image: url('/images/mobile/music_subscription/boom_2x.png')
+    background-image: url('/images/mobile/music_subscription/boom_2x.png?1')
 }
 
 .vk_2x .musicSubscription_ios .musicSubscription__icon {

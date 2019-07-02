@@ -3018,6 +3018,10 @@
     padding-bottom: 4px
 }
 
+.audio_artist_block .audio_artist_block__actions {
+    min-width: 200px
+}
+
 .audio_artist_block .audio_artist_block__title {
     font-size: 32px;
     font-weight: 800;
