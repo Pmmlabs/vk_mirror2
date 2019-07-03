@@ -2331,7 +2331,7 @@ createChildClass('Select', UiControl, {
                 ' val="',
                 value.replace(/&/g, '&amp;').replace(/"/g, '&quot;'),
                 '" title="',
-                text.replace(/&/g, '&amp;').replace(/"/g, '&quot;'),
+                text.replace(/<[^>]+>/g, '').replace(/&/g, '&amp;').replace(/"/g, '&quot;'),
                 '" class="',
                 (isLabel ? (this.CSS.LABEL + ' ') : ''),
                 (isSectioned ? (this.CSS.SECTIONED + ' ') : ''),

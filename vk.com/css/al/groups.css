@@ -3607,6 +3607,31 @@ textarea.EditableLabel__textarea {
     margin-top: 10px
 }
 
+.configurations .Configuration:not(:first-child) {
+    margin-top: 20px
+}
+
+.configurations .Configuration .Configuration__title {
+    font-weight: 500
+}
+
+.configurations .Configuration .Configuration__input {
+    margin-top: 10px
+}
+
+.configurations .Duration {
+    margin-top: 15px;
+    margin-left: 1px
+}
+
+.configurations .Duration--visible {
+    display: block
+}
+
+.configurations .Duration--empty {
+    display: none
+}
+
 .already-active-layer .already-active-layer__background {
     position: absolute;
     top: 0;

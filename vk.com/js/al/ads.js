@@ -3379,25 +3379,24 @@ Ads.changeDemographyView = function(name, unionId, updateOnly) {
 
     // Change navigation
     var navCur = ge('ads_demography_navigation_tab_' + name);
-    if (!navCur) {
-        return;
+    if (navCur) {
+        navCur = navCur.parentNode;
+        var navCurSelected = hasClass(navCur, 'summary_tab_sel');
+        if (navCurSelected && !updateOnly || !navCurSelected && updateOnly) {
+            return;
+        }
+        var navElems = [
+            ge('ads_demography_navigation_tab_bars_all').parentNode,
+            ge('ads_demography_navigation_tab_graphs').parentNode
+        ];
+        for (var i in navElems) {
+            var navElem = navElems[i];
+            addClass(navElem, 'summary_tab');
+            removeClass(navElem, 'summary_tab_sel');
+        }
+        addClass(navCur, 'summary_tab_sel');
+        removeClass(navCur, 'summary_tab');
     }
-    navCur = navCur.parentNode;
-    var navCurSelected = hasClass(navCur, 'summary_tab_sel');
-    if (navCurSelected && !updateOnly || !navCurSelected && updateOnly) {
-        return;
-    }
-    var navElems = [
-        ge('ads_demography_navigation_tab_bars_all').parentNode,
-        ge('ads_demography_navigation_tab_graphs').parentNode
-    ];
-    for (var i in navElems) {
-        var navElem = navElems[i];
-        addClass(navElem, 'summary_tab');
-        removeClass(navElem, 'summary_tab_sel');
-    }
-    addClass(navCur, 'summary_tab_sel');
-    removeClass(navCur, 'summary_tab');
 
     // Change graph
     var bars1 = ge('ads_demography_bars_all_wrap1');
@@ -3417,14 +3416,22 @@ Ads.changeDemographyView = function(name, unionId, updateOnly) {
             visibility: 'hidden',
             height: '0'
         });
+
+        if (window.adsApp) {
+            toggleClass(ge('ads_demography_view_switcher_item_bars_all'), 'ads_demography_source_switcher_item_selected', true);
+            toggleClass(ge('ads_demography_view_switcher_item_graphs'), 'ads_demography_source_switcher_item_selected', false);
+
+            toggleClass(ge('ads_demography_bars_all'), 'ads_demography_section_hidden', false);
+            toggleClass(ge('ads_demography_graphs'), 'ads_demography_section_hidden', true);
+        }
     } else if (name === 'graphs') {
         if (!Ads.loadDemography(unionId)) {
             return;
         }
 
-        !cur.graphUsersStatsSexEmpty && cur.pageGraphs['ads_graph_users_stats_day_sex'].loadGraph(intval(cur.lastDemographySourceOffset));
-        !cur.graphUsersStatsAgeEmpty && cur.pageGraphs['ads_graph_users_stats_day_age'].loadGraph(intval(cur.lastDemographySourceOffset) * 3 + intval(cur.lastDemographyAgeOffset));
-        !cur.graphUsersStatsCitiesEmpty && cur.pageGraphs['ads_graph_users_stats_day_cities'].loadGraph(intval(cur.lastDemographySourceOffset));
+        !cur.graphUsersStatsSexEmpty && cur.pageGraphs['ads_graph_users_stats_day_sex'] && cur.pageGraphs['ads_graph_users_stats_day_sex'].loadGraph(intval(cur.lastDemographySourceOffset));
+        !cur.graphUsersStatsAgeEmpty && cur.pageGraphs['ads_graph_users_stats_day_age'] && cur.pageGraphs['ads_graph_users_stats_day_age'].loadGraph(intval(cur.lastDemographySourceOffset) * 3 + intval(cur.lastDemographyAgeOffset));
+        !cur.graphUsersStatsCitiesEmpty && cur.pageGraphs['ads_graph_users_stats_day_cities'] && cur.pageGraphs['ads_graph_users_stats_day_cities'].loadGraph(intval(cur.lastDemographySourceOffset));
 
         setStyle(graphs2, {
             width: getSize(graphs1)[0] + 'px'
@@ -3444,6 +3451,14 @@ Ads.changeDemographyView = function(name, unionId, updateOnly) {
 
         if (cur.can_show_views_stats_only) {
             Ads.changeDemographySource('views');
+        }
+
+        if (window.adsApp) {
+            toggleClass(ge('ads_demography_view_switcher_item_bars_all'), 'ads_demography_source_switcher_item_selected', false);
+            toggleClass(ge('ads_demography_view_switcher_item_graphs'), 'ads_demography_source_switcher_item_selected', true);
+
+            toggleClass(ge('ads_demography_bars_all'), 'ads_demography_section_hidden', true);
+            toggleClass(ge('ads_demography_graphs'), 'ads_demography_section_hidden', false);
         }
     }
 }
@@ -3545,6 +3560,15 @@ Ads.changeDemographySource = function(name) {
             cur.pageGraphs['ads_graph_users_stats_day_cities'].loadGraph(intval(cur.lastDemographySourceOffset));
         } catch (e) {}
     }
+
+    if (window.adsApp) {
+        var otherName = (name === 'clicks') ? 'views' : 'clicks';
+        toggleClass(ge('ads_demography_block_wrap_' + name), 'ads_demography_block_wrap_hidden', false);
+        toggleClass(ge('ads_demography_block_wrap_' + otherName), 'ads_demography_block_wrap_hidden', true);
+
+        toggleClass(ge('ads_demography_source_switcher_item_' + name), 'ads_demography_source_switcher_item_selected', true);
+        toggleClass(ge('ads_demography_source_switcher_item_' + otherName), 'ads_demography_source_switcher_item_selected', false);
+    }
 }
 
 Ads.changeDemographyAge = function(name) {
@@ -3629,20 +3653,26 @@ Ads.loadDemography = function(unionId) {
         setStyle('ads_demography_navigation_tab_progress', {
             visibility: 'visible'
         });
+        (ge('ads_demography_view_switcher_item_loader') || {}).innerHTML = getProgressHtml('', 'upload_pr');
     }
 
     function unlock() {
         setStyle('ads_demography_navigation_tab_progress', {
             visibility: 'hidden'
         });
+        (ge('ads_demography_view_switcher_item_loader') || {}).innerHTML = '';
     }
 
     function onComplete(response) {
         Ads.unlock('load_demography');
         if (response && response.graphs_html && response.graphs_js) {
             cur.demographyDelayed = false;
-            ge('ads_demography_graphs_wrap2').innerHTML = response.graphs_html;
+            (ge('ads_demography_graphs_wrap2') || ge('ads_demography_graphs')).innerHTML = response.graphs_html;
             eval(response.graphs_js);
+            Ads.changeDemographyView('graphs', unionId, true);
+        } else {
+            cur.demographyDelayed = false;
+            (ge('ads_demography_graphs_wrap2') || ge('ads_demography_graphs')).innerHTML = '<div class="error">' + response + '</div>';
             Ads.changeDemographyView('graphs', unionId, true);
         }
         return true;
@@ -4893,6 +4923,7 @@ Ads.createDropdown = function(element, namespace, name, values, options) {
         onSelect: null
     }, options);
 
+    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
     var params = {
         target: element,
         value: options.selected_value,
@@ -4900,7 +4931,9 @@ Ads.createDropdown = function(element, namespace, name, values, options) {
             if (options.onSelect) {
                 options.onSelect(event);
             }
-        }
+        },
+        left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+        top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
     };
 
     var namespace = this.getNamespace(namespace);

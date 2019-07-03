@@ -69,7 +69,7 @@
     n.push = t, n = n.slice();
     for (var d = 0; d < n.length; d++) t(n[d]);
     var h = l;
-    o.push([142, "bundles/common", "bundles/vendors", "bundles/750f3ffdacb90c821f04ef61f1ad6851"]), s()
+    o.push([142, "bundles/common", "bundles/vendors", "bundles/a2da1e9ec65446643a8e127493bad1e7"]), s()
 }({
     "0Rlc": function(e, t, s) {
         "use strict";
@@ -1619,7 +1619,7 @@
                         hash: n
                     }, {
                         onDone: () => {
-                            this.closeQuestionModal(), this.resetAskText(), s(Object(C.b)("stories_question_sent").replace("{name}", Object(K.a)(r.first_name_ins))), o(t ? "question_reply_anonymous" : "question_reply")
+                            this.closeQuestionModal(), this.resetAskText(), s(Object(C.b)("stories_question_sent").replace("{name}", r.first_name_ins)), o(t ? "question_reply_anonymous" : "question_reply")
                         },
                         onFail: e => (this.closeQuestionModal(), this.resetAskText(), s(e), !0),
                         showProgress: () => this.setState({

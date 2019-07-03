@@ -510,6 +510,7 @@
             });
 
         if (_t.sizeChooserLink) {
+            var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
             var showSizeDdOptions = {
                 updateHeader: function(i, t) {
                     if (!i) i = 0;
@@ -522,7 +523,9 @@
                     return t;
                 },
                 target: _t.sizeChooserLink,
-                showHover: true
+                showHover: true,
+                left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
+                top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
             };
             new DropdownMenu(showSizeValues, showSizeDdOptions);
         }

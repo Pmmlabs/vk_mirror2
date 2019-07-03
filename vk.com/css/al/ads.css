@@ -7857,3 +7857,29 @@ td.ads_settings_notifications_label {
 .ads_inline_edit_table .ads_inline_edit_time_input_block:last-child {
     padding-right: 0
 }
+
+.ads_redesign_invite_used_link_content {
+    padding: 60px 0 48px;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center
+}
+
+.ads_redesign_invite_used_link_image {
+    width: 172px;
+    height: auto
+}
+
+.ads_redesign_invite_used_link_title {
+    margin: 32px 0 16px;
+    font-size: 22px;
+    font-weight: 500
+}
+
+.ads_redesign_invite_used_link_text {
+    margin: 0 auto;
+    max-width: 540px;
+    font-size: 16px;
+    color: #656565;
+    line-height: 1.4
+}

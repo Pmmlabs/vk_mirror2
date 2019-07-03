@@ -102,7 +102,8 @@ var Friends = {
                 act: 'load_friends_silent',
                 id: cur.oid,
                 gid: cur.gid,
-                sort: nav.objLoc.sort
+                sort: nav.objLoc.sort,
+                platform_id: nav.objLoc.platform_id
             }, {
                 onDone: (function(data, occupations, filters) {
                     removeClass(cur.showMore, 'load_more');
