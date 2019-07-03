@@ -3019,7 +3019,8 @@
 }
 
 .audio_artist_block .audio_artist_block__actions {
-    min-width: 200px
+    min-width: 200px;
+    text-align: right
 }
 
 .audio_artist_block .audio_artist_block__title {

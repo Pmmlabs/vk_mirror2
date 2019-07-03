@@ -3216,7 +3216,7 @@
 .Table__wrapper {
     border: 1px solid #e7e8ec;
     border-radius: 4px;
-    overflow: scroll;
+    overflow: auto;
     max-height: 75vh
 }
 
@@ -6894,7 +6894,7 @@ td.ads_settings_notifications_label {
 }
 
 #ad_preview_top .ads_ad_snippet_top {
-    min-height: 216px
+    min-height: 215px
 }
 
 #ad_preview_top .ads_ad_box2.ver.repeat_ver.size_site.adaptive_ad {

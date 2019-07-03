@@ -171,7 +171,7 @@ var stVersions = {
     'blog.js': 3266372996,
     'audioplayer.js': 175,
     'audio.js': 270,
-    'audio.css': 27224728615,
+    'audio.css': 30103014909,
     'audio_admins.css': 23762018837,
     'gifts.css': 19324551937,
     'gifts.js': 2251554329,
@@ -378,10 +378,10 @@ var stVersions = {
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.css': 3256039661,
-    'aes_light.css': 28943715547,
+    'aes_light.css': 29277764474,
     'aes_light.js': 3322982554,
-    'ads.css': 123809082944,
-    'ads_office.css': 84022555855,
+    'ads.css': 121693008273,
+    'ads_office.css': 81451431986,
     'ads_bonus.css': 4128802163,
     'ads.js': 3343794139,
     'ads_payments.js': 1483293789,
@@ -624,7 +624,7 @@ var stVersions = {
     'cmodules/web/ads_components.a6675afb42502ee06534.js': '65ae35077c68249cb32a25aa885a115b',
     'cmodules/web/ads_edit_components.c3e820822287fcfded1d.js': 'ab256923194f72311b8b4032f4a449a9',
     'cmodules/web/ads_edit_easy.ceb285802540476aab20.js': '9e6ea70a9b681bb25dbf08b07593fc3f',
-    'cmodules/web/ads_office.4c4b477e64fb0d535617.js': 'cacf905ebe38cacf6a5a9d68a8ebff3c',
+    'cmodules/web/ads_office.63ab621b2041371e20a3.js': 'f1e8b1865579c0840553cf04b18c74cd',
     'cmodules/web/app_info.54fd8e3b7b7cf2d83985.js': '6455f659fd411ca47ed4',
     'cmodules/web/app_use_time.77d9262ae086ad72fb82.js': 'b9fc90df2812282a3763b2429d24b83c',
     'cmodules/web/apps.d8661c4643bd174b956c.js': '39b6b437835092b1e257e4b5559ee173',
@@ -793,7 +793,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5393;
+var _rnd = 4644;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/web/add_to_community_app.0abe51896f7168b287c1.js"],
@@ -801,7 +801,7 @@ var stDeps = {
     "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/a2da1e9ec65446643a8e127493bad1e7.3a6a38379fe0d0767d29.js", "cmodules/web/ads_components.a6675afb42502ee06534.js"],
     "/js/cmodules/web/ads_edit_components.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/3c3425c9f3cf4d66a7f6633fe2397772.3608c5c5cd50cc6b5772.js", "cmodules/web/ads_edit_components.c3e820822287fcfded1d.js"],
     "/js/cmodules/web/ads_edit_easy.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/web/ads_edit_easy.ceb285802540476aab20.js"],
-    "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/3c3425c9f3cf4d66a7f6633fe2397772.3608c5c5cd50cc6b5772.js", "cmodules/web/ads_office.4c4b477e64fb0d535617.js"],
+    "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/3c3425c9f3cf4d66a7f6633fe2397772.3608c5c5cd50cc6b5772.js", "cmodules/web/ads_office.63ab621b2041371e20a3.js"],
     "/js/cmodules/web/app_info.js": ["cmodules/web/app_info.54fd8e3b7b7cf2d83985.js"],
     "/js/cmodules/web/app_use_time.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/web/app_use_time.77d9262ae086ad72fb82.js"],
     "/js/cmodules/web/apps.js": ["cmodules/bundles/common.e6a6d12c63d7b3782296.js", "cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.f861b96ad1e01db70ad0.js", "cmodules/web/apps.d8661c4643bd174b956c.js"],
