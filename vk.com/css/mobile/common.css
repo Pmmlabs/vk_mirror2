@@ -44014,7 +44014,7 @@ body.apps_settingsPageBody .basis__content {
 .ModalMenu .ModalMenu__item {
     background: transparent;
     text-align: left;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -44042,7 +44042,8 @@ body.apps_settingsPageBody .basis__content {
 .ModalMenu .ModalMenu__item.GroupsNear .GroupsInvite__item .si_links .si_link_gray {
     height: 40px;
     line-height: 40px;
-    padding: 0 14px
+    padding: 0 14px;
+    font-weight: 500
 }
 
 @-webkit-keyframes appear-bottom {

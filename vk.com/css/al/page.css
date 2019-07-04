@@ -5465,7 +5465,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 }
 
 .media_link__photo {
-    max-width: 100%
+    width: 100%
 }
 
 .media_link--sized .media_link__photo {

@@ -1315,6 +1315,29 @@ window.stManager = {
         }
     },
 
+    getJsPath: function(fileName) {
+        var path = '';
+        if (stTypes.fromLib[fileName]) {
+            path += 'lib/';
+        } else if (stTypes.fromCompiled && stTypes.fromCompiled[fileName]) {
+            path += jsc('web/');
+        } else if (!/^lang\d/i.test(fileName) && !stTypes.fromRoot[fileName] && fileName.indexOf('/') === -1) {
+            path += 'al/';
+        }
+        return path;
+    },
+
+    hasCompiledPath: function(filename) {
+        var stDeps = window.stDeps || [];
+        return !!stDeps['/js/' + __stm.getJsPath(filename) + filename];
+    },
+
+    getCompiledPath: function(filename) {
+        var stDeps = window.stDeps || [];
+        var deps = stDeps['/js/' + __stm.getJsPath(filename) + filename];
+        return deps[deps.length - 1];
+    },
+
     add: function(files, callback, async) {
         var wait = [],
             de = document.documentElement;
@@ -1327,20 +1350,38 @@ window.stManager = {
             if (f.indexOf('?') != -1) {
                 f = f.split('?')[0];
             }
+            var jsPath = '';
+            if (~f.indexOf('.js')) {
+                jsPath = __stm.getJsPath(f);
+            }
+
             if (/^lang\d/i.test(f)) {
                 stVersions[f] = stVersions['lang'];
             } else if (!stVersions[f]) {
                 stVersions[f] = 1;
             }
+
+            var fullPath = '/js/' + jsPath + f;
+            if (window.stDeps && window.stDeps[fullPath]) {
+                window.stDeps[fullPath].forEach(function(asset) {
+                    stManager.add(asset);
+                });
+            }
+
             // Opera Speed Dial fix
             var opSpeed = browser.opera && de.clientHeight == 768 && de.clientWidth == 1024;
             if ((opSpeed || __debugMode) && !(browser.iphone || browser.ipad) && f != 'common.js' && f != 'common.css' && stVersions[f] > 0 && stVersions[f] < 1000000000) stVersions[f] += irand(1000000000, 2000000000);
-            var old = StaticFiles[f];
-            if (!old || old.v != stVersions[f]) {
-                __stm._add(f, old);
+            var realFilePath = f;
+            if (__stm.hasCompiledPath(f)) {
+                realFilePath = __stm.getCompiledPath(f);
+            } else {
+                var old = StaticFiles[f];
+                if (!old || old.v != stVersions[f]) {
+                    __stm._add(f, old);
+                }
             }
-            if (callback && !StaticFiles[f].l) {
-                wait.push(f);
+            if (callback && !StaticFiles[realFilePath].l && !~realFilePath.indexOf('cmodules/bundles/')) {
+                wait.push(realFilePath);
             }
         }
         if (!callback) return;
@@ -1353,11 +1394,15 @@ window.stManager = {
         }
     },
     done: function(f) {
+        var realFilePath = f;
+        if (__stm.hasCompiledPath(f)) {
+            realFilePath = __stm.getCompiledPath(f);
+        }
         if (stVersions[f] < 0) {
             topMsg('<b>Warning:</b> Something is bad, please <b><a href="/page-777107_43991681">clear your cache</a></b> and restart your browser.', 10);
         }
-        StaticFiles[f].l = 1;
-        stManager.emitter.emitEvent('update', [f, StaticFiles[f]]);
+        StaticFiles[realFilePath].l = 1;
+        stManager.emitter.emitEvent('update', [realFilePath, StaticFiles[realFilePath]]);
     }
 }, __stm = stManager;
 

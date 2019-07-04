@@ -3613,11 +3613,12 @@
                     var s = i.className.split(" "),
                         n = "unknown",
                         c = -1,
-                        l = geByClass("feedback_row");
+                        l = geByClass("feedback_row"),
+                        d = domPN(i);
                     for (a = 0; a < s.length; ++a) {
-                        var d = s[a].match("feedback_(.+)_row");
-                        if (s[a] && d && d[1]) {
-                            n = d[1];
+                        var u = s[a].match("feedback_(.+)_row");
+                        if (s[a] && u && u[1]) {
+                            n = u[1];
                             break
                         }
                     }
@@ -3626,7 +3627,7 @@
                             c = a;
                             break
                         }
-                    hasClass(e, "feed_row_from_group") ? statlogsValueEvent("feed_group_notify", 0, "click", n, c) : statlogsValueEvent("feed_top_notify", 0, "click", n, c)
+                    hasClass(e, "feed_row_from_group") ? statlogsValueEvent("feed_group_notify", 0, "click", n, c, d.dataset.notification_id) : statlogsValueEvent("feed_top_notify", 0, "click", n, c, d.dataset.notification_id)
                 }
                 return i || !0
             },
