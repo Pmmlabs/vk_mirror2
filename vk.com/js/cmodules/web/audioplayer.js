@@ -69,9 +69,9 @@
     i.push = r, i = i.slice();
     for (var c = 0; c < i.length; c++) r(i[c]);
     var f = l;
-    u.push([71, "bundles/audioplayer", "bundles/common"]), t()
+    u.push([72, "bundles/audioplayer", "bundles/common"]), t()
 }({
-    71: function(e, r, t) {
+    72: function(e, r, t) {
         e.exports = t("cul0")
     },
     cul0: function(e, r, t) {

@@ -36459,7 +36459,8 @@ body.apps_settingsPageBody .basis__content {
 .vk__page_group .basisGroup__main.owner_panel,
 .vk__page_group .profile_info_cont .pinfo_row,
 .vk__page_publish .cp_attached_post .BookmarksStar,
-.vk__page_publish .head_panel {
+.vk__page_publish .head_panel,
+.wall_item .PostAttachPrometheusLink {
     margin: 0 12px
 }
 
@@ -36647,7 +36648,8 @@ body.apps_settingsPageBody .basis__content {
     .vk__page_group .basisGroup__main.owner_panel,
     .vk__page_group .profile_info_cont .pinfo_row,
     .vk__page_publish .cp_attached_post .BookmarksStar,
-    .vk__page_publish .head_panel {
+    .vk__page_publish .head_panel,
+    .wall_item .PostAttachPrometheusLink {
         margin: 0 8px
     }
     #mcont .fi_row.fi_row_row,
@@ -36834,7 +36836,8 @@ body.apps_settingsPageBody .basis__content {
     .vk__page_group .basisGroup__main.owner_panel,
     .vk__page_group .profile_info_cont .pinfo_row,
     .vk__page_publish .cp_attached_post .BookmarksStar,
-    .vk__page_publish .head_panel {
+    .vk__page_publish .head_panel,
+    .wall_item .PostAttachPrometheusLink {
         margin: 0 16px
     }
     #mcont .fi_row.fi_row_row,
@@ -38203,7 +38206,8 @@ body.apps_settingsPageBody .basis__content {
 .r .e .medias_link_thumbed.mlt_no_photo,
 .r .e .medias_row,
 .r .wall_item .medias_link_thumbed.mlt_no_photo,
-.r .wall_item .medias_row {
+.r .wall_item .medias_row,
+.wall_item .PostAttachPrometheusLink {
     min-height: 40px;
     padding: 6px 0;
     background: transparent!important
@@ -38375,7 +38379,8 @@ body.apps_settingsPageBody .basis__content {
     .r .e .medias_link_thumbed.mlt_no_photo,
     .r .e .medias_row,
     .r .wall_item .medias_link_thumbed.mlt_no_photo,
-    .r .wall_item .medias_row {
+    .r .wall_item .medias_row,
+    .wall_item .PostAttachPrometheusLink {
         min-height: 32px;
         margin-top: 4px;
         margin-bottom: 6px
@@ -39297,6 +39302,8 @@ body.apps_settingsPageBody .basis__content {
     display: none!important
 }
 
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after,
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:before,
 .Socials__icon,
 .svgIcon-wall,
 .wi_buttons i.i_like,
@@ -39305,10 +39312,10 @@ body.apps_settingsPageBody .basis__content {
 .wi_buttons i.i_views,
 .wi_like_wrap i.i_like,
 .wi_like_wrap i.i_share {
-    -webkit-background-size: 72px 48px;
-    -moz-background-size: 72px 48px;
-    background-size: 72px 48px;
-    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe.svg')
+    -webkit-background-size: 72px 62px;
+    -moz-background-size: 72px 62px;
+    background-size: 72px 62px;
+    background-image: url('/images/mobile/icons/sprites/wall-4ceb5a2d.svg')
 }
 
 .vk_old.vk_1x .Socials__icon,
@@ -39319,7 +39326,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_old.vk_1x .wi_buttons i.i_views,
 .vk_old.vk_1x .wi_like_wrap i.i_like,
 .vk_old.vk_1x .wi_like_wrap i.i_share {
-    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe_1x.png')
+    background-image: url('/images/mobile/icons/sprites/wall-4ceb5a2d_1x.png')
 }
 
 .vk_old.vk_2x .Socials__icon,
@@ -39330,7 +39337,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_old.vk_2x .wi_buttons i.i_views,
 .vk_old.vk_2x .wi_like_wrap i.i_like,
 .vk_old.vk_2x .wi_like_wrap i.i_share {
-    background-image: url('/images/mobile/icons/sprites/wall-5564ffbe_2x.png')
+    background-image: url('/images/mobile/icons/sprites/wall-4ceb5a2d_2x.png')
 }
 
 .r .wi_buttons i.i_replies,
@@ -39369,6 +39376,22 @@ body.apps_settingsPageBody .basis__content {
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
+}
+
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:before,
+.svgIcon-wall__top_author_14 {
+    background-position: 0 -48px;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px
+}
+
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after,
+.svgIcon-wall__top_author_20 {
+    background-position: -48px -24px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px
 }
 
 .r .wi_buttons i.i_views,
@@ -42585,7 +42608,7 @@ body.apps_settingsPageBody .basis__content {
 }
 
 .Icon_notify_mini_birthday:before {
-    background-position: 0 -420px
+    background-position: 0 -400px
 }
 
 .Icon_notify_mini_interesting:before {
@@ -50458,6 +50481,167 @@ a .BookmarkListItem__subtitle:hover {
     display: inline-block;
     vertical-align: middle;
     text-align: left
+}
+
+.PostAttachPrometheusLink {
+    position: relative;
+    display: block;
+    padding-bottom: 56%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.PostAttachPrometheusLink:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 2
+}
+
+.PostAttachPrometheusLink .Btn,
+.PostAttachPrometheusLink .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+.PostAttachPrometheusLink .Groups .GroupsInvite__item .si_links .si_link,
+.PostAttachPrometheusLink .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+.PostAttachPrometheusLink .GroupsInvite .GroupsInvite__item .si_links .si_link,
+.PostAttachPrometheusLink .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+.PostAttachPrometheusLink .GroupsNear .GroupsInvite__item .si_links .si_link {
+    margin-top: 10px
+}
+
+.PostAttachPrometheusLink_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    background-position: 50%;
+    background-color: #e7ebf0;
+    z-index: 1
+}
+
+.PostAttachPrometheusLink_info {
+    position: absolute;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 3
+}
+
+.PostAttachPrometheusLink_author {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    border: 4px solid #fff
+}
+
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #fff;
+    bottom: -2px;
+    right: -2px
+}
+
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after,
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:before {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 3px;
+    right: 3px
+}
+
+.PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after {
+    display: none
+}
+
+.PostAttachPrometheusLink_title {
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.13;
+    color: #fff;
+    text-align: center
+}
+
+.wall_item .PostAttachPrometheusLink {
+    padding-bottom: 56%
+}
+
+@media (min-width: 480px) {
+    .PostAttachPrometheusLink .Btn,
+    .PostAttachPrometheusLink .Groups .GroupsInvite__item .si_links .ai_menu_wrap,
+    .PostAttachPrometheusLink .Groups .GroupsInvite__item .si_links .si_link,
+    .PostAttachPrometheusLink .GroupsInvite .GroupsInvite__item .si_links .ai_menu_wrap,
+    .PostAttachPrometheusLink .GroupsInvite .GroupsInvite__item .si_links .si_link,
+    .PostAttachPrometheusLink .GroupsNear .GroupsInvite__item .si_links .ai_menu_wrap,
+    .PostAttachPrometheusLink .GroupsNear .GroupsInvite__item .si_links .si_link {
+        margin-top: 20px
+    }
+    .PostAttachPrometheusLink_info {
+        padding-top: 15px
+    }
+    .PostAttachPrometheusLink_author {
+        width: 100px;
+        height: 100px
+    }
+    .PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon {
+        width: 30px;
+        height: 30px;
+        bottom: 0;
+        right: 0
+    }
+    .PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after,
+    .PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:before {
+        bottom: 5px;
+        right: 5px
+    }
+    .PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:before {
+        display: none
+    }
+    .PostAttachPrometheusLink_author .PostAttachPrometheusLink_authorIcon:after {
+        display: block
+    }
+    .PostAttachPrometheusLink_title {
+        font-size: 22px
+    }
 }
 
 .notification {

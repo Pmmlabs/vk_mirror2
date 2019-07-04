@@ -460,6 +460,18 @@
     }
 }
 
+.landing_author_guide_actions {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px
+}
+
+.landing_author_guide_actions .flat_button {
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 12px 20px 13px
+}
+
 .trending_stats_title_group {
     text-align: center;
     margin: 40px 0

@@ -3745,13 +3745,12 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_footer .apps_footer_right {
-    max-width: 500px;
+    max-width: 450px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top;
-    overflow: visible;
     padding-left: 50px;
     display: table-cell;
     width: 1%
