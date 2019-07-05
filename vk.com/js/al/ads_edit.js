@@ -2199,7 +2199,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             value: AdsEdit.ADS_AD_COST_TYPE_CLICK,
             cpm_only: false,
             cpc_only: false,
-            allow_promoted_posts_cpc: false
+            allow_promoted_posts_cpc: false,
+            promoted_posts_cpc_default: false
         },
         link_type: {
             value: 0,
@@ -5212,8 +5213,10 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
 
             this.params.cost_type.cpm_only = !this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc;
             this.params.cost_type.hidden = this.params.cost_type.cpm_only;
-            // cpm by default
-            if (true || this.params.cost_type.cpm_only) {
+
+            if (this.params.cost_type.promoted_posts_cpc_default && !this.params.cost_type.cpm_only) {
+                this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
+            } else {
                 this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
             }
 
