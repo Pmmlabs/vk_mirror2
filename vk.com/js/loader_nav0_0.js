@@ -600,7 +600,7 @@ var stVersions = {
     'cmodules/web/lazyload.js': 2,
     'cmodules/web/money_transfer.js': 2,
     'cmodules/web/activation.js': 1,
-    'lang': 6978,
+    'lang': 6980,
     'cmodules/bundles/183a4fa464c2bab7d7b52051e4c12ab1.8f021e16e4e905e7eb69.js': '2ae12927882f208dd922',
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3d4fba9a3d4689db92d.js': 'f155ebeebf82e30bf85b',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.c25a2dd7e40fed5d08af.js': '82b69f6f3cf4d608b7c9',
@@ -795,7 +795,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 8778;
+var _rnd = 9833;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.bf2fd1de47b1d9dd4996.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.bf2fd1de47b1d9dd4996.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.0e47397d122e7ba98e8c.js"],
