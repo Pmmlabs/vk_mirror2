@@ -601,8 +601,37 @@ a.groups_messages_block:before {
     width: 220px!important
 }
 
+#group_section_menu.group_section_menu_admin .header_right_link {
+    color: #2a5885
+}
+
 #group_section_menu.group_section_menu_admin .module_body {
     padding: 12px 0 20px
+}
+
+#group_section_menu.group_section_menu_admin .groups_menu_hidden_placeholder {
+    display: none;
+    padding: 8px 15px 0;
+    font-size: 13px;
+    line-height: 19px
+}
+
+#group_section_menu.group_section_menu_admin .groups_menu_hidden_placeholder .title {
+    margin-bottom: 10px
+}
+
+#group_section_menu.group_section_menu_admin .groups_menu_hidden_placeholder .title .message {
+    color: #939393
+}
+
+#group_section_menu.group_section_menu_admin.hided .groups_menu_hidden_placeholder {
+    display: block
+}
+
+#group_section_menu.group_section_menu_admin.hided #group_section_menu_gallery,
+#group_section_menu.group_section_menu_admin.hided .module_header,
+#group_section_menu.group_section_menu_admin.hided .header_right_link {
+    display: none
 }
 
 #group_section_menu .module_body {
@@ -653,6 +682,10 @@ a.groups_messages_block:before {
     background-color: #fff
 }
 
+#group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item.groups_menu_item_add .groups_menu_item_title {
+    color: #3670b3
+}
+
 #group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image {
     height: 92px;
     width: 135px;
@@ -671,6 +704,10 @@ a.groups_messages_block:before {
     background-position-y: 50%;
     background-repeat: no-repeat;
     background-size: 48px
+}
+
+#group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image .groups_menu_item_image_content.groups_menu_item_placeholder_add {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M11%2011V3a1%201%200%200%201%202%200v8h8a1%201%200%200%201%200%202h-8v8a1%201%200%200%201-2%200v-8H3a1%201%200%200%201%200-2h8z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cmask%20id%3D%22b%22%20fill%3D%22%23fff%22%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%2F%3E%3C%2Fmask%3E%3Cuse%20fill%3D%22%23528BCC%22%20fill-rule%3D%22nonzero%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Cg%20mask%3D%22url(%23b)%22%20fill%3D%22%23528BCC%22%20fill-rule%3D%22nonzero%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')
 }
 
 #group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image .groups_menu_item_image_content.groups_menu_item_placeholder_article {

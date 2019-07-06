@@ -155,8 +155,7 @@ body.vkme #reg_bar {
     min-width: 190px;
     font-size: 13px;
     padding: 10px 25px 11px;
-    border-radius: 3px;
-    margin-bottom: 10px
+    border-radius: 3px
 }
 
 .vkme .flat_button.button_big.active,
@@ -182,6 +181,11 @@ body.vkme #reg_bar {
 .vkme.vkme_mobile .flat_button.button_big.active,
 .vkme.vkme_mobile .flat_button.button_big:active {
     padding: 13px 25px 12px
+}
+
+.vkme .vkme_button_link {
+    display: inline-block;
+    margin-bottom: 10px
 }
 
 .vkme_top_nav_wrap {

@@ -2415,7 +2415,8 @@
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
     color: #fff;
-    padding: 3px 8px
+    padding: 3px 8px;
+    white-space: pre-wrap
 }
 
 .videoplayer_subtitle_layer__region_bottom,

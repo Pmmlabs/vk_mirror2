@@ -1443,11 +1443,11 @@ a.settings_blb_title {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23A5ABB8%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M13%2021a6%206%200%201%201%200%2012%206%206%200%200%201%200-12zm0%208a1%201%200%201%200%200%202%201%201%200%200%200%200-2zm0-1a.75.75%200%200%200%20.75-.75v-3a.75.75%200%201%200-1.5%200v3c0%20.414.336.75.75.75z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3Cpath%20d%3D%22M24%2029h2a1%201%200%200%200%201-1V11a1%201%200%200%200-1-1H16a1%201%200%200%200-1%201v6a1%201%200%200%201-2%200v-6.154c0-1.337.14-1.822.4-2.311A2.726%202.726%200%200%201%2014.536%207.4c.489-.262.974-.401%202.31-.401h8.31c1.336%200%201.821.14%202.31.4.49.262.873.646%201.134%201.135.262.489.401.974.401%202.31V28a3%203%200%200%201-3%203h-3a1%201%200%200%201%200-2h1z%22%20fill%3D%22%23A5ABB8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
-.settings_activity_history .settings_history_row .settings_history_reset {
+.settings_activity_history .settings_history_row .settings_reset_session {
     visibility: hidden
 }
 
-.settings_activity_history .settings_history_row:hover .settings_history_reset {
+.settings_activity_history .settings_history_row:hover .settings_reset_session {
     visibility: visible
 }
 
@@ -1493,6 +1493,18 @@ a.settings_blb_title {
     height: 48px;
     line-height: 48px;
     color: #4f8cd1
+}
+
+.settings_activity_history .settings_reset_session {
+    float: right;
+    height: 48px;
+    line-height: 48px;
+    color: #939393
+}
+
+.settings_activity_history .settings_reset_session:hover {
+    text-decoration: underline;
+    cursor: pointer
 }
 
 .settings_activity_history .settings_old_session .settings_history_main_info,
