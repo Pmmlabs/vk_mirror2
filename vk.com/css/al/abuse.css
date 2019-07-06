@@ -671,41 +671,6 @@
     font-size: 12px
 }
 
-.ab_test_test_wrap {
-    padding: 20px
-}
-
-.ab_test_question {
-    margin-top: 20px;
-    margin-bottom: 5px
-}
-
-.ab_test_action {
-    margin-top: 20px
-}
-
-.ab_test_fragment_link {
-    margin-top: 10px;
-    margin-bottom: 5px
-}
-
-.ab_test_answer,
-.ab_test_fragment_answer {
-    width: 579px;
-    height: 80px;
-    resize: vertical
-}
-
-.ab_test_timing {
-    margin-bottom: 20px
-}
-
-.ab_test_saved {
-    padding: 7px 10px 6px;
-    display: inline-block;
-    opacity: 0
-}
-
 .tabs .ui_actions_menu_icons {
     background: url(/images/icons/common.png?6) no-repeat 0 -60px;
     width: 14px;

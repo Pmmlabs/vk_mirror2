@@ -369,7 +369,7 @@ var stVersions = {
     'upload_photo_transform.js': 1497838791,
     'graffiti_new.js': 67279821,
     'graffiti_new.css': 26508196852,
-    'abuse.css': 18667179170,
+    'abuse.css': 17040419280,
     'verify.css': 16493909189,
     'away.css': 20989997114,
     'stats.css': 22804586453,
@@ -795,7 +795,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6815;
+var _rnd = 1004;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.6b4491cd6f66bc904332.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.4fa3dd978b452a173aa5.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.6b4491cd6f66bc904332.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.0e47397d122e7ba98e8c.js"],
