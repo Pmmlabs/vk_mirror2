@@ -69,8 +69,147 @@
     n.push = t, n = n.slice();
     for (var d = 0; d < n.length; d++) t(n[d]);
     var h = l;
-    o.push([143, "bundles/common", "bundles/vendors", "bundles/a2da1e9ec65446643a8e127493bad1e7"]), s()
+    o.push([144, "bundles/common", "bundles/vendors", "bundles/04d78db716697165ed7c8d695aba4040"]), s()
 }({
+    "+/AQ": function(e, t, s) {
+        "use strict";
+        s.d(t, "b", function() {
+            return r
+        }), s.d(t, "a", function() {
+            return l
+        });
+        var i = s("N1NS");
+
+        function r(e, t) {
+            return bodyNode[e] || document.documentElement[e]
+        }
+        class o {
+            constructor(e, t) {
+                this.el = e, this.opts = t, this.module = Object(i.a)({
+                    handlers: (e, t) => {
+                        e(window, "scroll", this.onScroll.bind(this)), e(window, "resize", this.resize.bind(this))
+                    }
+                }), this.innerHeight = window.innerHeight, this.prevScroll = this.scrollTop()
+            }
+            update() {}
+            resize() {
+                this.innerHeight = window.innerHeight
+            }
+            scrollTop(e) {
+                if (void 0 === e) return r("scrollTop", this.el);
+                ! function(e, t, s) {
+                    "scrollTop" === e && window.scrollTo(0, t)
+                }("scrollTop", e, this.el)
+            }
+            contHeight() {
+                return r("scrollHeight")
+            }
+            smoothScroll(e) {
+                scrollToY(e + this.scrollTop(), 300)
+            }
+            getContainer() {
+                return this.el
+            }
+            scrollBottom(e) {
+                if (void 0 === e) return this.contHeight() - this.scrollTop() - this.getScrollHeight();
+                var t = this.contHeight() - e - this.getScrollHeight();
+                this.scrollTop(t)
+            }
+            scrollBottomFixSave(e) {
+                var t = () => {
+                        Date.now() - s < 500 && this.scrollBottom(e), window.removeEventListener("scroll", t)
+                    },
+                    s = Date.now();
+                window.addEventListener("scroll", t), this.scrollBottom(e)
+            }
+            onScroll(e) {
+                var t = this.scrollTop(),
+                    s = t - this.prevScroll,
+                    i = this.contHeight();
+                this.opts.onScroll && this.opts.onScroll(-s, this), this.opts.scrollChange && this.opts.scrollChange(t), this.opts.more && i - t < 2 * this.innerHeight && this.opts.more(this), this.prevScroll = t
+            }
+            getScrollHeight() {
+                return this.innerHeight
+            }
+            destroy() {
+                Object(i.c)(this.module)
+            }
+        }
+        class a {
+            constructor(e, t) {
+                this.prevTop = 0, this.scroll = new uiScroll(e, {
+                    hidden: void 0 === t.hidden || t.hidden,
+                    shadows: t.shadows,
+                    stopScrollPropagation: !1,
+                    theme: t.scrollTheme,
+                    onmore: () => t.more && t.more(this),
+                    onscroll: e => {
+                        var s = this.scrollTop(),
+                            i = this.prevTop - s;
+                        this.prevTop = s, t.scrollChange && t.scrollChange(s), t.onScroll && t.onScroll(i, this)
+                    }
+                })
+            }
+            update() {
+                this.scroll.update("sync")
+            }
+            scrollTop(e) {
+                return void 0 !== e ? this.scroll.scrollTop(e) : this.scroll.data.scrollTop
+            }
+            getContainer() {
+                return this.scroll.content
+            }
+            contHeight() {
+                return this.scroll.data.scrollHeight
+            }
+            smoothScroll(e) {
+                this.scroll.scrollTop(this.scrollTop() + e, 300)
+            }
+            scrollBottom(e) {
+                return void 0 !== e ? this.scroll.scrollBottom(e) : this.scroll.data.scrollBottom
+            }
+            scrollBottomFixSave(e) {
+                var t = Date.now();
+                this.scroll.emitter.addOnceListener("resize", () => {
+                    Date.now() - t < 500 && this.scroll && this.scrollBottom(e)
+                }), this.scrollBottom(e)
+            }
+            getScrollHeight() {
+                return this.scroll.data.viewportHeight
+            }
+            destroy() {
+                this.scroll.destroy()
+            }
+        }
+        class n {
+            constructor(e, t) {
+                this.el = e
+            }
+            update() {}
+            getContainer() {
+                return this.el
+            }
+            scrollTop(e) {
+                return 0
+            }
+            contHeight() {
+                return 0
+            }
+            smoothScroll(e) {}
+            scrollBottom(e) {
+                return 0
+            }
+            scrollBottomFixSave(e) {}
+            getScrollHeight() {
+                return 0
+            }
+            destroy() {}
+        }
+
+        function l(e, t) {
+            return t.noScroll ? new n(e) : t.nativeScroll ? new o(e, t) : new a(e, t)
+        }
+    },
     "0Rlc": function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
@@ -203,8 +342,79 @@
             appearance: "white"
         }), t.a = h
     },
-    143: function(e, t, s) {
+    144: function(e, t, s) {
         e.exports = s("EJ7F")
+    },
+    "6aSF": function(e, t, s) {
+        "use strict";
+        s.d(t, "a", function() {
+            return n
+        });
+        s("rGqo"), s("Btvt");
+        var i = s("q1tI"),
+            r = (s("17x9"), s("+/AQ")),
+            o = s("pemR");
+
+        function a() {
+            return (a = Object.assign || function(e) {
+                for (var t = 1; t < arguments.length; t++) {
+                    var s = arguments[t];
+                    for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
+                }
+                return e
+            }).apply(this, arguments)
+        }
+        class n extends i.Component {
+            constructor(...e) {
+                super(...e), this.getWrapperRef = (e => {
+                    this.wrapper = e
+                })
+            }
+            componentDidMount() {
+                var {
+                    isNative: e,
+                    isShadows: t,
+                    neverHide: s,
+                    onScroll: i
+                } = this.props;
+                this.scroller || (this.scroller = Object(r.a)(this.wrapper, {
+                    shadows: t,
+                    nativeScroll: e,
+                    hidden: !s,
+                    onScroll: i
+                }))
+            }
+            componentDidUpdate() {
+                this.scroller.update()
+            }
+            componentWillUnmount() {
+                this.scroller.destroy(), this.scroller = null
+            }
+            render() {
+                var e = this.props,
+                    {
+                        children: t,
+                        className: s = ""
+                    } = e,
+                    r = function(e, t) {
+                        if (null == e) return {};
+                        var s, i, r = {},
+                            o = Object.keys(e);
+                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                        return r
+                    }(e, ["children", "isNative", "isShadows", "neverHide", "className"]);
+                return i.createElement("div", a({}, r, {
+                    className: Object(o.a)("Scroll", s),
+                    ref: this.getWrapperRef
+                }), t)
+            }
+        }
+        n.defaultProps = {
+            isNative: !1,
+            isShadows: !1,
+            neverHide: !1,
+            onScroll: null
+        }
     },
     "6raB": function(e, t, s) {
         "use strict";
@@ -262,183 +472,6 @@
             size: "m",
             wide: !1,
             loading: !1
-        }
-    },
-    As6E: function(e, t, s) {
-        "use strict";
-        s.d(t, "a", function() {
-            return h
-        });
-        s("rGqo"), s("Btvt");
-        var i = s("q1tI"),
-            r = s("i8i4"),
-            o = (s("17x9"), s("pemR")),
-            a = s("clTp"),
-            n = 80,
-            l = 250,
-            d = () => "undefined" != typeof window;
-        class h extends i.Component {
-            constructor(e) {
-                super(e), this.onClick = (() => {
-                    if (!this.state.dropdown || this.state.dropdown.removed) {
-                        var {
-                            text: e,
-                            position: t,
-                            align: s,
-                            marginTop: i,
-                            marginLeft: r
-                        } = this.props, o = Object(a.a)(this.el);
-                        this.update({
-                            text: e,
-                            position: t,
-                            align: s,
-                            rect: o,
-                            marginTop: i,
-                            marginLeft: r
-                        })
-                    } else this.update()
-                }), this.onMouseEnter = (e => {
-                    this.callerHovered = !0, this.timeouts.appear = setTimeout(() => {
-                        if (this.el && this.callerHovered) {
-                            var {
-                                position: e,
-                                align: t,
-                                marginTop: s,
-                                marginLeft: i
-                            } = this.props, r = Object(a.a)(this.el);
-                            this.update({
-                                position: e,
-                                align: t,
-                                rect: r,
-                                marginTop: s,
-                                marginLeft: i
-                            })
-                        }
-                    }, n)
-                }), this.onMouseLeave = (e => {
-                    this.callerHovered = !1, this.timeouts.callerDisappear = setTimeout(() => {
-                        this.callerHovered || this.hovered || this.update()
-                    }, l)
-                }), this.onDropdownMouseEnter = (() => {
-                    "hover" === this.props.trigger && (this.hovered = !0)
-                }), this.onDropdownMouseLeave = (e => {
-                    "hover" === this.props.trigger && (this.hovered = !1, this.timeouts.disappear = setTimeout(() => {
-                        this.callerHovered || this.hovered || this.update()
-                    }, l))
-                }), this.onDocumentClick = (e => {
-                    !this.state.dropdown || this.state.dropdown.removed || this.el.contains(e.target) || this.update()
-                }), this.onResize = (e => {
-                    if (this.state.dropdown && !this.state.dropdown.removed) {
-                        var {
-                            text: t,
-                            position: s,
-                            align: i,
-                            marginTop: r,
-                            marginLeft: o
-                        } = this.props, n = Object(a.a)(this.el);
-                        this.update({
-                            text: t,
-                            position: s,
-                            align: i,
-                            rect: n,
-                            marginTop: r,
-                            marginLeft: o
-                        })
-                    }
-                }), this.onTransitionEnd = (e => {
-                    "visibility" === e.propertyName && this.state.dropdown && this.state.dropdown.removed && this.setState({
-                        dropdown: void 0
-                    })
-                }), this.onItemClick = ((e, t) => {
-                    t.separator || (this.update(), t.onClick(e))
-                }), this.state = {}, this.timeouts = {}
-            }
-            componentDidMount() {
-                this.el = r.findDOMNode(this), "click" === this.props.trigger ? (this.el.addEventListener("click", this.onClick), document.addEventListener("mousedown", this.onDocumentClick), window.addEventListener("resize", this.onResize)) : (this.el.addEventListener("mouseenter", this.onMouseEnter), this.el.addEventListener("mouseleave", this.onMouseLeave))
-            }
-            componentWillUnmount() {
-                Object.keys(this.timeouts).forEach(e => {
-                    clearTimeout(this.timeouts[e])
-                }), "click" === this.props.trigger ? (this.el.removeEventListener("click", this.onClick), document.removeEventListener("mousedown", this.onDocumentClick), window.removeEventListener("resize", this.onResize)) : (this.el.removeEventListener("mouseenter", this.onMouseEnter), this.el.removeEventListener("mouseleave", this.onMouseLeave)), this.defaultNode && (this.defaultNode.parentNode.removeChild(this.defaultNode), delete this.defaultNode)
-            }
-            update(e) {
-                if (!e) return this.setState({
-                    dropdown: Object.assign({}, this.state.dropdown, {
-                        removed: !0
-                    })
-                });
-                var {
-                    position: t,
-                    align: s,
-                    rect: i,
-                    marginTop: r,
-                    marginLeft: o
-                } = e, a = i.left, n = i.top;
-                switch (t) {
-                    case "t":
-                        a += .5 * i.width;
-                        break;
-                    case "r":
-                        a += i.width, n += .5 * i.height;
-                        break;
-                    case "b":
-                        a += .5 * i.width, n += i.height;
-                        break;
-                    case "l":
-                        n += .5 * i.height
-                }
-                a = Math.round(a + o), n = Math.round(n + r), this.setState({
-                    dropdown: {
-                        position: t,
-                        align: s,
-                        x: a,
-                        y: n
-                    }
-                })
-            }
-            renderDropdown() {
-                if (!this.state.dropdown) return null;
-                var {
-                    x: e,
-                    y: t,
-                    position: s,
-                    align: r,
-                    removed: a
-                } = this.state.dropdown, n = Object(o.a)("Dropdown", `Dropdown--${s}`, {
-                    "Dropdown--removed": !!a,
-                    [`Dropdown--align-${r}`]: "t" === s || "b" === s
-                }, this.props.className);
-                return i.createElement("div", {
-                    className: n,
-                    style: {
-                        top: t,
-                        left: e
-                    },
-                    onTransitionEnd: e => this.onTransitionEnd(e),
-                    onMouseEnter: this.onDropdownMouseEnter,
-                    onMouseLeave: this.onDropdownMouseLeave
-                }, i.createElement("ul", {
-                    className: "Dropdown__in"
-                }, this.props.data.map((e, t) => i.createElement("li", {
-                    className: Object(o.a)("Dropdown__item", {
-                        Dropdown__item_separator: e.separator
-                    }),
-                    onClick: t => this.onItemClick(t, e),
-                    key: void 0 !== e.id ? e.id : t
-                }, e.text))))
-            }
-            render() {
-                var e = this.renderDropdown();
-                return e ? (!this.defaultNode && d() && (this.defaultNode = document.createElement("div"), document.body.appendChild(this.defaultNode)), i.createElement(i.Fragment, null, this.props.children, r.createPortal(e, this.defaultNode))) : this.props.children
-            }
-        }
-        h.defaultProps = {
-            position: "b",
-            align: "center",
-            marginTop: 0,
-            marginLeft: 0,
-            trigger: "click",
-            className: ""
         }
     },
     EJ7F: function(e, t, s) {
@@ -611,9 +644,9 @@
                     cur.storyLayer && cur.storyLayer.onKeyUp(e)
                 }
             },
-            C = (s("tUrg"), s("17x9"), s("T/g7"));
+            T = (s("tUrg"), s("17x9"), s("T/g7"));
 
-        function L({
+        function C({
             story: e
         }) {
             var {
@@ -639,35 +672,35 @@
                     [h] = s.split("_").map(e => intval(e)),
                     c = n && !n.is_cover;
                 !d || c || l || t.push({
-                    label: Object(C.b)("stories_add_blacklist_button"),
+                    label: Object(T.b)("stories_add_blacklist_button"),
                     onClick: () => e._addToBlacklist()
                 });
                 i && t.push({
-                    label: Object(C.b)("stories_hide_reply_button"),
+                    label: Object(T.b)("stories_hide_reply_button"),
                     onClick: () => e._hideReply()
                 });
                 n && t.push({
-                    label: n.is_bookmarked ? Object(C.b)("stories_narrative_remove_bookmark_button") : Object(C.b)("stories_narrative_add_bookmark_button"),
+                    label: n.is_bookmarked ? Object(T.b)("stories_narrative_remove_bookmark_button") : Object(T.b)("stories_narrative_add_bookmark_button"),
                     onClick: () => e._sendNarrativeBookmarkButtonDidPress()
                 });
                 a && t.push({
-                    label: Object(C.b)("stories_share"),
+                    label: Object(T.b)("stories_share"),
                     onClick: () => e.shareBox()
                 });
                 n && n.can_edit && t.push({
-                    label: Object(C.b)("stories_narrative_edit_button"),
+                    label: Object(T.b)("stories_narrative_edit_button"),
                     onClick: () => e._sendNarrativeEditButtonDidPress()
                 });
                 o && e.getOwnerId() < 0 && t.push({
-                    label: n ? Object(C.b)("global_narrative_delete") : Object(C.b)("global_delete"),
+                    label: n ? Object(T.b)("global_narrative_delete") : Object(T.b)("global_delete"),
                     onClick: () => n ? e.removeNarrativeBox() : e.removeStoryBox()
                 });
                 r && t.push({
-                    label: Object(C.b)("stories_report"),
+                    label: Object(T.b)("stories_report"),
                     onClick: () => e.report()
                 });
                 h === vk.id || c || t.push({
-                    label: Object(C.b)("stories_settings"),
+                    label: Object(T.b)("stories_settings"),
                     onClick: () => window.Stories.showBlackList()
                 });
                 return t
@@ -697,7 +730,7 @@
             }, e))))
         }
 
-        function T({
+        function L({
             story: e
         }) {
             var t = e.getReplies(),
@@ -735,9 +768,9 @@
             removeEvent: R,
             cancelEvent: M,
             isObject: F,
-            showNarrative: I
+            showNarrative: H
         } = window;
-        class D extends i.Component {
+        class I extends i.Component {
             constructor(e) {
                 super(e), this.emojiId = !1, this.state = {
                     story: e.story,
@@ -766,9 +799,9 @@
                 }, i.createElement("div", {
                     className: "stories_story_bottom_controls",
                     ref: "controls"
-                }, i.createElement(T, {
+                }, i.createElement(L, {
                     story: e
-                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(L, {
+                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(C, {
                     story: e
                 })))
             }
@@ -957,7 +990,7 @@
                     if (r) {
                         e.preventDefault();
                         var o = r[1];
-                        o && (this.props.story.pauseStory(), I(o, {
+                        o && (this.props.story.pauseStory(), H(o, {
                             fromEl: this.props.story.wrapEl,
                             isOpenNarrativeFromFeed: !0,
                             source: "narrative_story"
@@ -975,10 +1008,10 @@
                 this.props.story._onAnswerSend(void 0, () => this._emojiDidKeyAction())
             }
         }
-        var A = s("0toi"),
-            H = s("Hx9h"),
-            q = s("6raB"),
-            W = s("As6E"),
+        var D = s("0toi"),
+            A = s("Hx9h"),
+            W = s("6raB"),
+            q = s("As6E"),
             $ = s("pemR"),
             K = s("nAFc"),
             Q = s("t7n3");
@@ -1012,14 +1045,14 @@
                         title: h
                     }, h)), i.createElement("div", {
                         className: "StoryQuestion__controls"
-                    }, l && i.createElement(H.a, {
+                    }, l && i.createElement(A.a, {
                         className: "StoryQuestion__reply",
                         appearance: "primary",
                         size: "s",
                         wide: !0,
                         onClick: this.openReplyModal.bind(this)
-                    }, Object(C.b)("stories_question_reply"))), e && i.createElement(A.a, {
-                        title: Object(C.b)("stories_question_reply_box_title").replace("{name}", Object(K.a)(n.nameDat)),
+                    }, Object(T.b)("stories_question_reply"))), e && i.createElement(D.a, {
+                        title: Object(T.b)("stories_question_reply_box_title").replace("{name}", Object(K.a)(n.nameDat)),
                         actionButtons: this.getReplyModalActions(),
                         className: "StoryQuestion__replyModal",
                         onClose: this.closeReplyModal.bind(this),
@@ -1029,15 +1062,15 @@
                     }, i.createElement("textarea", {
                         ref: this.replyTextarea,
                         className: "StoryQuestion__textarea",
-                        placeholder: Object(C.b)("stories_question_reply_placeholder"),
+                        placeholder: Object(T.b)("stories_question_reply_placeholder"),
                         onChange: this.handleChange.bind(this),
                         onKeyDown: this.handleKeyDown.bind(this),
                         value: r
                     }), i.createElement("img", {
                         srcSet: a,
                         className: "StoryQuestion__image"
-                    }))), t && i.createElement(A.a, {
-                        title: Object(C.b)("stories_question_author_ban"),
+                    }))), t && i.createElement(D.a, {
+                        title: Object(T.b)("stories_question_author_ban"),
                         actionButtons: this.getReportModalActions(),
                         className: "StoryQuestion__reportModal StoryQuestionReportForm",
                         onClose: this.closeReportModal.bind(this),
@@ -1046,7 +1079,7 @@
                         className: "StoryQuestionReportForm__content"
                     }, i.createElement("h4", {
                         className: "StoryQuestionReportForm__title"
-                    }, Object(C.b)("stories_question_report_reason")), i.createElement("div", {
+                    }, Object(T.b)("stories_question_report_reason")), i.createElement("div", {
                         className: "StoryQuestionReportForm__items",
                         role: "radiogroup"
                     }, this.reportReasons.map(e => i.createElement("div", {
@@ -1058,7 +1091,7 @@
                         "aria-checked": "false",
                         tabIndex: "0",
                         key: e
-                    }, Object(C.b)(e[1])))))))
+                    }, Object(T.b)(e[1])))))))
                 }), this.renderAuthor = (() => {
                     var {
                         id: e,
@@ -1075,7 +1108,7 @@
                         onClick: () => cur.storyLayer._sendNavigationStatEvents("question_go_to_author", !0, {
                             questionId: e
                         })
-                    }, r), i.createElement(W.a, {
+                    }, r), i.createElement(q.a, {
                         position: "b",
                         align: "right",
                         trigger: "hover",
@@ -1108,29 +1141,29 @@
                         isReplyButtonLoading: e,
                         replyText: t
                     } = this.state;
-                    return [i.createElement(H.a, {
+                    return [i.createElement(A.a, {
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReplyModal
-                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(T.b)("global_cancel")), i.createElement(W.a, {
                         key: "replySend",
                         loading: e,
                         disabled: !Object(Q.H)(t),
                         onClick: this.sendReply.bind(this)
-                    }, Object(C.b)("stories_question_reply_send"))]
+                    }, Object(T.b)("stories_question_reply_send"))]
                 }), this.getReportModalActions = (() => {
                     var {
                         isReportButtonLoading: e
                     } = this.state;
-                    return [i.createElement(H.a, {
+                    return [i.createElement(A.a, {
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReportModal.bind(this)
-                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(T.b)("global_cancel")), i.createElement(W.a, {
                         key: "reportSend",
                         loading: e,
                         onClick: this.sendReport.bind(this)
-                    }, Object(C.b)("stories_question_report_send"))]
+                    }, Object(T.b)("stories_question_report_send"))]
                 }), this.handleChange = (e => {
                     this.setState({
                         replyText: e.target.value
@@ -1162,7 +1195,7 @@
                         to: o
                     }, {
                         onDone: () => {
-                            this.closeReplyModal(), this.resetReplyText(), s(Object(C.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
+                            this.closeReplyModal(), this.resetReplyText(), s(Object(T.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
                                 questionId: r
                             })
                         },
@@ -1180,14 +1213,14 @@
                     } = this.props, {
                         isAuthorBan: t
                     } = this.state, s = [{
-                        text: Object(C.b)("stories_question_delete"),
+                        text: Object(T.b)("stories_question_delete"),
                         onClick: () => this.props.removeQuestion(e)
                     }];
                     return e.canBlocked && (t ? s.push({
-                        text: Object(C.b)("stories_question_author_unban"),
+                        text: Object(T.b)("stories_question_author_unban"),
                         onClick: this.unbanAuthor.bind(this)
                     }) : s.push({
-                        text: Object(C.b)("stories_question_author_ban"),
+                        text: Object(T.b)("stories_question_author_ban"),
                         onClick: this.openReportModal.bind(this)
                     })), s
                 }), this.sendReport = (() => {
@@ -1214,7 +1247,7 @@
                         onDone: () => {
                             this.closeReportModal(), this.setState({
                                 isAuthorBan: !0
-                            }), s(Object(C.b)("stories_question_author_blocked"));
+                            }), s(Object(T.b)("stories_question_author_blocked"));
                             var e = "question_ban_author";
                             n && (e = "question_ban_anonymous_author"), cur.storyLayer._sendNavigationStatEvents(e, !0, {
                                 questionId: o
@@ -1247,7 +1280,7 @@
                         onDone: () => {
                             this.setState({
                                 isAuthorBan: !1
-                            }), t(Object(C.b)("stories_question_author_unblocked"))
+                            }), t(Object(T.b)("stories_question_author_unblocked"))
                         }
                     })
                 }), this.reportReasons = [
@@ -1340,8 +1373,8 @@
             }
         }
         var X = "stories_manage",
-            Y = 200,
-            G = {
+            G = 200,
+            Y = {
                 hashtag: 1,
                 mention: 2,
                 question: 3
@@ -1380,18 +1413,18 @@
                         mention: i
                     } = this.props.sticker;
                     switch (t) {
-                        case G.hashtag:
+                        case Y.hashtag:
                             this.handleClickHashtag(e, s);
                             break;
-                        case G.mention:
+                        case Y.mention:
                             this.handleClickMention(e, i);
                             break;
-                        case G.question:
+                        case Y.question:
                             this.handleClickQuestion()
                     }
                 }), this.handleClickHashtag = ((e, t) => {
                     var s = t.replace("#", "%23"),
-                        r = Object(C.b)("stories_show_hashtag_link"),
+                        r = Object(T.b)("stories_show_hashtag_link"),
                         o = i.createElement("a", {
                             href: `/feed?q=${s}&section=search`,
                             target: "_blank",
@@ -1399,7 +1432,7 @@
                         }, r);
                     this.props.toggleTooltip(e, o)
                 }), this.handleClickMention = ((e, t) => {
-                    var [s] = t.slice(1, -1).split("|"), r = s.startsWith("id") ? Object(C.b)("stories_go_to_profile") : Object(C.b)("stories_go_to_group"), o = i.createElement("a", {
+                    var [s] = t.slice(1, -1).split("|"), r = s.startsWith("id") ? Object(T.b)("stories_go_to_profile") : Object(T.b)("stories_go_to_group"), o = i.createElement("a", {
                         href: `/${s}`,
                         target: "_blank",
                         className: "StoriesTooltip__link"
@@ -1473,8 +1506,8 @@
                         clientX: p,
                         clientY: u,
                         layerEl: s
-                    }, c), _ && i.createElement(A.a, {
-                        title: Object(C.b)("stories_question_ask_box_title").replace("{name}", Object(K.a)(t.name_get)),
+                    }, c), _ && i.createElement(D.a, {
+                        title: Object(T.b)("stories_question_ask_box_title").replace("{name}", Object(K.a)(t.name_get)),
                         actionButtons: this.getQuestionModalActions(),
                         className: "StoryQuestionAskForm",
                         onClose: this.closeQuestionModal,
@@ -1485,7 +1518,7 @@
                         ref: this.askTextarea,
                         className: "StoryQuestionAskForm__textarea",
                         maxLength: "80",
-                        placeholder: Object(C.b)("stories_question_ask_placeholder"),
+                        placeholder: Object(T.b)("stories_question_ask_placeholder"),
                         onChange: this.handleChange,
                         onKeyDown: this.handleKeyDown
                     }))))
@@ -1527,7 +1560,7 @@
                     } = this.props, {
                         can_ask: i
                     } = e;
-                    if (!i) return t(Object(C.b)("stories_question_forbidden"));
+                    if (!i) return t(Object(T.b)("stories_question_forbidden"));
                     this.setState({
                         showQuestionModal: !0
                     }), this.hideTooltip(), s()
@@ -1568,7 +1601,7 @@
                             questionText: a,
                             isAnonymous: n
                         } = this.state;
-                    return e = r ? clean(Object(C.b)("stories_question_anonymous_info").replace("{name}", Object(K.a)(s.firstName))) : Object(C.b)("stories_question_cannot_anonymous"), i.createElement("div", {
+                    return e = r ? clean(Object(T.b)("stories_question_anonymous_info").replace("{name}", Object(K.a)(s.firstName))) : Object(T.b)("stories_question_cannot_anonymous"), i.createElement("div", {
                         className: "StoryQuestionAskForm__footer"
                     }, i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
@@ -1577,7 +1610,7 @@
                         checked: n,
                         onChange: this.handleCheckBox,
                         disabled: !r
-                    }, Object(C.b)("stories_question_anonymous_checkbox")), i.createElement(te.a, {
+                    }, Object(T.b)("stories_question_anonymous_checkbox")), i.createElement(te.a, {
                         text: e,
                         position: "b",
                         align: "left",
@@ -1587,16 +1620,16 @@
                         className: "StoryQuestionAskForm__info"
                     }))), i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
-                    }, i.createElement(H.a, {
+                    }, i.createElement(A.a, {
                         key: "b",
                         appearance: "tertiary",
                         onClick: this.closeQuestionModal
-                    }, Object(C.b)("global_cancel")), i.createElement(q.a, {
+                    }, Object(T.b)("global_cancel")), i.createElement(W.a, {
                         key: "s",
                         loading: o,
                         disabled: !Object(Q.H)(a),
                         onClick: this.sendQuestion
-                    }, Object(C.b)("stories_question_reply_send"))))
+                    }, Object(T.b)("stories_question_reply_send"))))
                 }), this.sendQuestion = (() => {
                     var {
                         questionText: e,
@@ -1619,7 +1652,7 @@
                         hash: n
                     }, {
                         onDone: () => {
-                            this.closeQuestionModal(), this.resetAskText(), s(Object(C.b)("stories_question_sent").replace("{name}", r.first_name_ins)), o(t ? "question_reply_anonymous" : "question_reply")
+                            this.closeQuestionModal(), this.resetAskText(), s(Object(T.b)("stories_question_sent").replace("{name}", r.first_name_ins)), o(t ? "question_reply_anonymous" : "question_reply")
                         },
                         onFail: e => (this.closeQuestionModal(), this.resetAskText(), s(e), !0),
                         showProgress: () => this.setState({
@@ -2097,7 +2130,7 @@
             }
             updateBottom(e) {
                 var t = Object(V.H)("stories_bottom_wrap", this.wrapEl);
-                !this.isActive || e || this.story.isNarrativeMetaStory ? (r.unmountComponentAtNode(t), val(t, "")) : r.render(i.createElement(D, {
+                !this.isActive || e || this.story.isNarrativeMetaStory ? (r.unmountComponentAtNode(t), val(t, "")) : r.render(i.createElement(I, {
                     story: this
                 }), t)
             }
@@ -2192,7 +2225,7 @@
                 return !this.story || this.story.isLoaded()
             }
             _onMouseDownHandle(e) {
-                this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), Y)))
+                this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), G)))
             }
             _onMouseUpHandle(e) {
                 clearTimeout(this.longTapTimer);
@@ -2200,7 +2233,7 @@
                     downTs: t
                 } = this;
                 delete this.downTs;
-                var s = !(vkNow() - t < Y && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
+                var s = !(vkNow() - t < G && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
                 if (this.isActive && hasClass(e.target, "stories_item_back") && !s && !this.isTooltipOpened()) return this.prevStory();
                 if (hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back"))
                     if (this._feedbackTTShown && this.hideFeedbackTooltip(), Object(V.hb)(this.wrapEl, "paused"), this.isTooltipOpened()) this._hideTooltip();
@@ -3122,9 +3155,9 @@
             Ee = "group_personal_card",
             Oe = s("Tn+0");
         var je = [];
-        var Ce = [];
-        var Le = () => Ce.length || je.length;
-        var Te = o.Promise,
+        var Te = [];
+        var Ce = () => Te.length || je.length;
+        var Le = o.Promise,
             xe = {
                 show(e, t = {}) {
                     if (e.match(/story/) && (e = this._parseList(e)), cur.storyLayer && cur.storyLayer.list === e.split("/")[1]) return !1;
@@ -3455,14 +3488,14 @@
                                             case KEY.SPACE:
                                                 cancelEvent(e);
                                                 var t = cur.storyLayer.activeStory;
-                                                cur.storiesKeyDownLong = setTimeout(t._longTapHandle.bind(t), Y)
+                                                cur.storiesKeyDownLong = setTimeout(t._longTapHandle.bind(t), G)
                                         }
                                         cur.storiesKeyDownTs = vkNow()
                                     }
                                 }
                             }
                             onKeyUp(e) {
-                                cur.storiesKeyDown = !1, clearTimeout(cur.storiesKeyDownLong), cur.storyLayer && cur.storyLayer.inited && cur.storyLayer._checkKeyEvents(e) && e.keyCode === KEY.SPACE && (cancelEvent(e), vkNow() - cur.storiesKeyDownTs > Y ? cur.storyLayer.playStory(!0) : cur.storyLayer.nextStory())
+                                cur.storiesKeyDown = !1, clearTimeout(cur.storiesKeyDownLong), cur.storyLayer && cur.storyLayer.inited && cur.storyLayer._checkKeyEvents(e) && e.keyCode === KEY.SPACE && (cancelEvent(e), vkNow() - cur.storiesKeyDownTs > G ? cur.storyLayer.playStory(!0) : cur.storyLayer.nextStory())
                             }
                             nextStory() {
                                 this.activeStory && this.activeStory.nextStory()
@@ -3474,7 +3507,7 @@
                                 this.activeStory && this.activeStory.changeStory(e)
                             }
                             _readStories() {
-                                if (this.storiesToRead.length && Le()) {
+                                if (this.storiesToRead.length && Ce()) {
                                     var e = this._getSource(),
                                         t = this.storiesToRead.join(","),
                                         s = this.storiesSkip.join(",");
@@ -3493,13 +3526,13 @@
                                             return je = [], e
                                         }(),
                                         loading_stats: function() {
-                                            var e = Ce.map(({
+                                            var e = Te.map(({
                                                 ownerId: e,
                                                 storyId: t,
                                                 source: s,
                                                 time: i
                                             }) => [e, t, s, i].join(",")).join(";");
-                                            return Ce = [], e
+                                            return Te = [], e
                                         }(),
                                         connection_type: function() {
                                             var {
@@ -3623,7 +3656,7 @@
                                         source: t,
                                         time: s
                                     };
-                                    Ce.push(o)
+                                    Te.push(o)
                                 }({
                                     storyRawId: e,
                                     source: this.viewerSource,
@@ -3764,7 +3797,7 @@
                         }
                     return s
                 },
-                getList: e => new Te((t, s) => {
+                getList: e => new Le((t, s) => {
                     var [i, r, o] = e.split("/"), a = {
                         blockKey: i,
                         list: r,
@@ -3980,6 +4013,57 @@
             stManager.done("stories.js")
         } catch (e) {}
     },
+    Hx9h: function(e, t, s) {
+        "use strict";
+        s.d(t, "a", function() {
+            return a
+        });
+        s("rGqo"), s("Btvt");
+        var i = s("q1tI"),
+            r = (s("17x9"), s("pemR"));
+
+        function o() {
+            return (o = Object.assign || function(e) {
+                for (var t = 1; t < arguments.length; t++) {
+                    var s = arguments[t];
+                    for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
+                }
+                return e
+            }).apply(this, arguments)
+        }
+        class a extends i.Component {
+            render() {
+                var e = this.props,
+                    {
+                        className: t,
+                        appearance: s,
+                        wide: a,
+                        overflow: n,
+                        size: l
+                    } = e,
+                    d = function(e, t) {
+                        if (null == e) return {};
+                        var s, i, r = {},
+                            o = Object.keys(e);
+                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                        return r
+                    }(e, ["className", "appearance", "wide", "overflow", "size"]),
+                    h = Object(r.a)("Button", ...Array.isArray(s) ? s.map(e => `Button--${e}`) : [`Button--${s}`], `Button--size-${l}`, {
+                        "Button--wide": !!a,
+                        "Button--overflow": !!n,
+                        "Button--disabled": !!e.disabled
+                    }, t);
+                return i.createElement("button", o({}, d, {
+                    className: h
+                }), e.children)
+            }
+        }
+        a.defaultProps = {
+            appearance: "primary",
+            size: "m",
+            wide: !1
+        }
+    },
     KFTi: function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
@@ -4004,6 +4088,79 @@
         }
         o.defaultProps = {
             inverted: !1
+        }
+    },
+    N1NS: function(e, t, s) {
+        "use strict";
+        s("rGqo"), s("Btvt"), s("KKXr");
+        var i = new window.Map;
+
+        function r(e) {
+            var t = i.get(e.currentTarget);
+            if (t) {
+                var s = t[e.type];
+                if (s)
+                    for (var r, o = 0; o < s.length; o++) {
+                        var [a, n] = s[o], l = void 0;
+                        if (hasClass(e.target, a) ? l = n(e, e.target) : (r = gpeByClass(a, e.target, e.currentTarget)) && (l = n(e, r)), !1 === l) break
+                    }
+            }
+        }
+        s.d(t, "b", function() {
+            return n
+        }), s.d(t, "a", function() {
+            return d
+        }), s.d(t, "c", function() {
+            return h
+        });
+        var {
+            addEvent: o,
+            removeEvent: a
+        } = window;
+
+        function n(e) {
+            return {
+                callMutations() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations(...t) {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e(...t)
+                }
+            }
+        }
+
+        function l(e, t, s, o, a) {
+            ! function(e, t, s, o) {
+                var a = i.get(e);
+                a || (i.set(e, {}), a = i.get(e));
+                for (var n = t.split(" "), l = 0; l < n.length; l++) {
+                    var d = n[l];
+                    a[d] || (a[d] = [], addEvent(e, d, r)), a[d].push([s, o])
+                }
+            }(t, s, o, a), e._registeredHandlers.push(["delegate", t, s, o, a])
+        }
+
+        function d(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(function(e, t, s, i) {
+                o(t, s, i), e._registeredHandlers.push(["bind", t, s, i])
+            }.bind(null, t), l.bind(null, t)), t
+        }
+
+        function h(e) {
+            e._registeredHandlers.forEach(e => {
+                var t = e.slice(1);
+                "delegate" === e[0] ? function(e, t, s, o) {
+                    var a = i.get(e);
+                    a && (t.split(" ").forEach(t => {
+                        a[t] && (a[t] = a[t].filter(e => e[0] !== s || e[1] !== o), 0 === a[t].length && removeEvent(e, t, r))
+                    }), 0 === Object.keys(a).map(e => a[e].length).reduce((e, t) => e + t) && i.delete(e))
+                }(...t) : a(...t)
+            }), e._registeredHandlers = []
         }
     },
     "T/g7": function(e, t, s) {
@@ -4055,6 +4212,137 @@
             var t = gpeByClass(r, e),
                 s = geByClass1("decision_result", t);
             return domData(s, "decision_raw_id")
+        }
+    },
+    XpgC: function(e, t, s) {
+        "use strict";
+        s.d(t, "a", function() {
+            return l
+        });
+        var i = s("q1tI"),
+            r = s("i8i4"),
+            o = (s("17x9"), s("pemR")),
+            a = s("clTp"),
+            n = () => "undefined" != typeof window;
+        class l extends i.Component {
+            constructor(e) {
+                super(e), this.onMouseEnter = (e => {
+                    if (this.el) {
+                        var {
+                            text: t,
+                            position: s,
+                            align: i,
+                            marginTop: r,
+                            marginLeft: o,
+                            maxWidth: n,
+                            appearance: l
+                        } = this.props, d = Object(a.a)(this.el);
+                        this.update({
+                            text: t,
+                            position: s,
+                            align: i,
+                            rect: d,
+                            marginTop: r,
+                            marginLeft: o,
+                            maxWidth: n,
+                            appearance: l
+                        })
+                    }
+                }), this.onMouseLeave = (e => this.update()), this.onTransitionEnd = (e => {
+                    "visibility" === e.propertyName && this.state.tooltip && this.setState({
+                        tooltip: void 0
+                    })
+                }), this.renderTooltip = (() => {
+                    if (!this.state.tooltip) return null;
+                    var {
+                        x: e,
+                        y: t,
+                        position: s,
+                        align: r,
+                        text: a,
+                        removed: n,
+                        maxWidth: l,
+                        appearance: d
+                    } = this.state.tooltip, h = Object(o.a)("Tooltip", `Tooltip--${s}`, `Tooltip--${d}`, {
+                        "Tooltip--removed": !!n,
+                        [`Tooltip--align-${r}`]: "t" === s || "b" === s
+                    });
+                    return i.createElement("div", {
+                        className: h,
+                        style: {
+                            top: t,
+                            left: e
+                        },
+                        onTransitionEnd: this.onTransitionEnd
+                    }, i.createElement("div", {
+                        className: "Tooltip__in",
+                        style: {
+                            maxWidth: l
+                        },
+                        dangerouslySetInnerHTML: {
+                            __html: a
+                        }
+                    }))
+                }), this.state = {}
+            }
+            componentDidMount() {
+                this.el = r.findDOMNode(this), this.el.addEventListener("mouseenter", this.onMouseEnter), this.el.addEventListener("mouseleave", this.onMouseLeave)
+            }
+            componentWillUnmount() {
+                this.el.removeEventListener("mouseenter", this.onMouseEnter), this.el.removeEventListener("mouseleave", this.onMouseLeave)
+            }
+            update(e) {
+                if (!e) return this.setState({
+                    tooltip: Object.assign({}, this.state.tooltip, {
+                        removed: !0
+                    })
+                });
+                var {
+                    position: t,
+                    align: s,
+                    text: i,
+                    rect: r,
+                    marginTop: o,
+                    marginLeft: a,
+                    maxWidth: n,
+                    appearance: l
+                } = e, d = r.left, h = r.top;
+                switch (t) {
+                    case "t":
+                        d += .5 * r.width;
+                        break;
+                    case "r":
+                        d += r.width, h += .5 * r.height;
+                        break;
+                    case "b":
+                        d += .5 * r.width, h += r.height;
+                        break;
+                    case "l":
+                        h += .5 * r.height
+                }
+                d = Math.round(d + a), h = Math.round(h + o), this.setState({
+                    tooltip: {
+                        position: t,
+                        align: s,
+                        text: i,
+                        x: d,
+                        y: h,
+                        maxWidth: n,
+                        appearance: l
+                    }
+                })
+            }
+            render() {
+                var e = this.renderTooltip();
+                return e ? (!this.defaultNode && n() && (this.defaultNode = document.createElement("div"), document.body.appendChild(this.defaultNode)), i.createElement(i.Fragment, null, this.props.children, r.createPortal(e, this.defaultNode))) : this.props.children
+            }
+        }
+        l.defaultProps = {
+            position: "b",
+            align: "center",
+            marginTop: 0,
+            marginLeft: 0,
+            appearance: "dark"
         }
     },
     nAFc: function(e, t, s) {

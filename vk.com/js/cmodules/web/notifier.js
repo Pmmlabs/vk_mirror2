@@ -69,9 +69,9 @@
     n.push = t, n = n.slice();
     for (var l = 0; l < n.length; l++) t(n[l]);
     var d = c;
-    r.push([115, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    r.push([116, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
-    115: function(e, t, i) {
+    116: function(e, t, i) {
         e.exports = i("8S/u")
     },
     "8S/u": function(e, t, i) {
@@ -262,11 +262,11 @@
                         left: i,
                         right: "auto"
                     })) : i = intval(getStyle(a.wrap, "left")), u = t, f = i, cur._fcdrag = 1;
-                    var v = function(e) {
+                    var m = function(e) {
                         return u = Math.max(0, Math.min(h, t + e.pageY - n)), h - u < 10 ? u = h : u < 10 && (u = 0), a.wrap.style.top = u + "px", f = Math.max(0, Math.min(_, i + e.pageX - c)), _ - f < 10 ? f = _ : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
                     };
-                    return addEvent(document, "mousemove", v), addEvent(document, "mouseup", function e(t) {
-                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
+                    return addEvent(document, "mousemove", m), addEvent(document, "mouseup", function e(t) {
+                        cur._fcdrag = 0, removeEvent(document, "mousemove", m), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
                         }), addClass(a.wrap, "fc_tobottom")), (a.toRight = f >= _ - 5) && setStyle(a.wrap, {
@@ -302,16 +302,16 @@
                         left: i,
                         right: "auto"
                     })) : i = intval(getStyle(a.wrap, "left")), a.options.onResizeStart && a.options.onResizeStart(f, h);
-                    var v = f + r[0] - t - c,
-                        m = h + r[1] - i - l,
+                    var m = f + r[0] - t - c,
+                        v = h + r[1] - i - l,
                         g = function(e) {
-                            return d = Math.max(a.options.minH, Math.min(v, f + e.pageY - s)), v - d < 10 && (d = v), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(m, h + e.pageX - n)), m - u < 10 && (u = m), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
+                            return d = Math.max(a.options.minH, Math.min(m, f + e.pageY - s)), m - d < 10 && (d = m), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(v, h + e.pageX - n)), v - u < 10 && (u = v), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
                         };
                     return addEvent(document, "mousemove", g), addEvent(document, "mouseup", function e(t) {
-                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == v) && (setStyle(a.wrap, {
+                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == m) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
-                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == m) && setStyle(a.wrap, {
+                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == v) && setStyle(a.wrap, {
                             left: "auto",
                             right: 0,
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
@@ -411,9 +411,9 @@
             h = i("XzvV"),
             _ = i("MhhX"),
             p = i("P13b"),
-            v = i("vT4u");
+            m = i("vT4u");
 
-        function m() {
+        function v() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
@@ -595,18 +595,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (m()) break;
+                        if (v()) break;
                         var i, a = t.id,
                             o = curFastChat.tabs[a],
                             r = !1;
@@ -637,18 +637,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (m()) break;
+                        if (v()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (m()) break;
+                        if (v()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -704,7 +704,7 @@
             loadMembers(e) {
                 if (0 === Object.keys(e).length) return Promise.resolve();
                 var t = Object.keys(e).map(t => `${t}:${e[t].join(",")}`).join(";");
-                return Object(u.b)(v.e, {
+                return Object(u.b)(m.e, {
                     act: "a_load_member",
                     need: t
                 }).then(([t]) => {
@@ -1500,7 +1500,7 @@
                 }))
             },
             gotPeers: function(e) {
-                m() || each(curFastChat.needPeers, function(t) {
+                v() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1565,9 +1565,9 @@
                 }))
             },
             waitTyping(e) {
-                return Object(f.c)(v.b + 2).then(() => {
+                return Object(f.c)(m.b + 2).then(() => {
                     var t = this.getTab(e.peerId);
-                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * v.b && delete t.typing)
+                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * m.b && delete t.typing)
                 })
             },
             updateTypings() {
@@ -1896,15 +1896,15 @@
                         u[0] + u[2] > d && (curFastChat.clistBox.visible || !f) && l.push([u[1], u[1] + u[3]]), each(curFastChat.tabs, function(t) {
                             (u = this.box && this.box.pos) && t != e && u[0] + u[2] > d && l.push([u[1], u[1] + u[3]])
                         });
-                        var _, p, v, m = lastWindowWidth - 262 - sbWidth(),
+                        var _, p, m, v = lastWindowWidth - 262 - sbWidth(),
                             g = !1,
                             b = !1,
-                            C = 0 > m ? 1 : -1;
-                        for (_ = m; C * _ < 0 * C; _ += 135 * C) {
-                            for (p = 0, v = 0; v < l.length; v++) _ > l[v][0] - 260 && _ < l[v][1] && p++, _ > l[v][0] - 10 && _ < l[v][0] + 10 && (p += 1.1);
+                            C = 0 > v ? 1 : -1;
+                        for (_ = v; C * _ < 0 * C; _ += 135 * C) {
+                            for (p = 0, m = 0; m < l.length; m++) _ > l[m][0] - 260 && _ < l[m][1] && p++, _ > l[m][0] - 10 && _ < l[m][0] + 10 && (p += 1.1);
                             (!1 === g || p < b) && (g = _, b = p)
                         }
-                        f && b && (g = m), extend(c, {
+                        f && b && (g = v), extend(c, {
                             startBottom: 0,
                             startLeft: g
                         })
@@ -2567,79 +2567,6 @@
             return a
         })
     },
-    N1NS: function(e, t, i) {
-        "use strict";
-        i("rGqo"), i("Btvt"), i("KKXr");
-        var a = new window.Map;
-
-        function o(e) {
-            var t = a.get(e.currentTarget);
-            if (t) {
-                var i = t[e.type];
-                if (i)
-                    for (var o, r = 0; r < i.length; r++) {
-                        var [s, n] = i[r], c = void 0;
-                        if (hasClass(e.target, s) ? c = n(e, e.target) : (o = gpeByClass(s, e.target, e.currentTarget)) && (c = n(e, o)), !1 === c) break
-                    }
-            }
-        }
-        i.d(t, "b", function() {
-            return n
-        }), i.d(t, "a", function() {
-            return l
-        }), i.d(t, "c", function() {
-            return d
-        });
-        var {
-            addEvent: r,
-            removeEvent: s
-        } = window;
-
-        function n(e) {
-            return {
-                callMutations() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations(...t) {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e(...t)
-                }
-            }
-        }
-
-        function c(e, t, i, r, s) {
-            ! function(e, t, i, r) {
-                var s = a.get(e);
-                s || (a.set(e, {}), s = a.get(e));
-                for (var n = t.split(" "), c = 0; c < n.length; c++) {
-                    var l = n[c];
-                    s[l] || (s[l] = [], addEvent(e, l, o)), s[l].push([i, r])
-                }
-            }(t, i, r, s), e._registeredHandlers.push(["delegate", t, i, r, s])
-        }
-
-        function l(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(function(e, t, i, a) {
-                r(t, i, a), e._registeredHandlers.push(["bind", t, i, a])
-            }.bind(null, t), c.bind(null, t)), t
-        }
-
-        function d(e) {
-            e._registeredHandlers.forEach(e => {
-                var t = e.slice(1);
-                "delegate" === e[0] ? function(e, t, i, r) {
-                    var s = a.get(e);
-                    s && (t.split(" ").forEach(t => {
-                        s[t] && (s[t] = s[t].filter(e => e[0] !== i || e[1] !== r), 0 === s[t].length && removeEvent(e, t, o))
-                    }), 0 === Object.keys(s).map(e => s[e].length).reduce((e, t) => e + t) && a.delete(e))
-                }(...t) : s(...t)
-            }), e._registeredHandlers = []
-        }
-    },
     "P+eJ": function(e, t, i) {
         "use strict";
         i.d(t, "b", function() {
@@ -2812,9 +2739,9 @@
         }), i.d(t, "c", function() {
             return p
         }), i.d(t, "d", function() {
-            return v
-        }), i.d(t, "b", function() {
             return m
+        }), i.d(t, "b", function() {
+            return v
         });
         i("Btvt");
         var a = i("iN1s"),
@@ -2885,14 +2812,14 @@
         function p() {
             d() && (Object(r.b)("orange", "init longpoll connection on load"), _(), window.curNotifier.idle_manager.on("unidle", () => {
                 c.abortWaiting()
-            }), v())
+            }), m())
         }
 
-        function v() {
-            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(s.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(s.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
+        function m() {
+            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(s.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(s.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(m, 500))
         }
 
-        function m(e) {
+        function v(e) {
             u() && !f() && d() && (Object(r.b)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
         }
 
@@ -3009,7 +2936,7 @@
             })
         }
 
-        function v(e, t) {
+        function m(e, t) {
             var i = !!e.stopped,
                 a = {
                     id: e.id,
@@ -3090,8 +3017,8 @@
                             })
                         }(e.updates))
                     },
-                    onData: m(t.onData),
-                    onRequestError: m(t.onRequestError),
+                    onData: v(t.onData),
+                    onRequestError: v(t.onRequestError),
                     onHistoryLost: g(t.onHistoryLost),
                     onKeyExpired: g(t.onKeyExpired),
                     onLpBroken: g(t.onHistoryLost)
@@ -3122,7 +3049,7 @@
             return _(a), f
         }
 
-        function m(e) {
+        function v(e) {
             return e || (() => {})
         }
 
@@ -3133,7 +3060,7 @@
             C = i("vT4u");
 
         function w(e, t) {
-            return v(e, {
+            return m(e, {
                 onEvents: t,
                 onData: F,
                 onRequestError: k,

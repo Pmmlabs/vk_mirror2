@@ -1,16 +1,16 @@
 ﻿! function(e) {
     function t(t) {
-        for (var o, n, c = t[0], u = t[1], d = t[2], m = 0, s = []; m < c.length; m++) n = c[m], i[n] && s.push(i[n][0]), i[n] = 0;
-        for (o in u) Object.prototype.hasOwnProperty.call(u, o) && (e[o] = u[o]);
-        for (l && l(t); s.length;) s.shift()();
-        return a.push.apply(a, d || []), r()
+        for (var o, n, c = t[0], m = t[1], u = t[2], l = 0, b = []; l < c.length; l++) n = c[l], i[n] && b.push(i[n][0]), i[n] = 0;
+        for (o in m) Object.prototype.hasOwnProperty.call(m, o) && (e[o] = m[o]);
+        for (d && d(t); b.length;) b.shift()();
+        return a.push.apply(a, u || []), r()
     }
 
     function r() {
         for (var e, t = 0; t < a.length; t++) {
             for (var r = a[t], o = !0, c = 1; c < r.length; c++) {
-                var u = r[c];
-                0 !== i[u] && (o = !1)
+                var m = r[c];
+                0 !== i[m] && (o = !1)
             }
             o && (a.splice(t--, 1), e = n(n.s = r[0]))
         }
@@ -65,87 +65,14 @@
         return Object.prototype.hasOwnProperty.call(e, t)
     }, n.p = "";
     var c = window.webpackJsonp = window.webpackJsonp || [],
-        u = c.push.bind(c);
+        m = c.push.bind(c);
     c.push = t, c = c.slice();
-    for (var d = 0; d < c.length; d++) t(c[d]);
-    var l = u;
-    a.push([169, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
+    for (var u = 0; u < c.length; u++) t(c[u]);
+    var d = m;
+    a.push([170, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
 }({
-    169: function(e, t, r) {
+    170: function(e, t, r) {
         e.exports = r("rUY3")
-    },
-    N1NS: function(e, t, r) {
-        "use strict";
-        r("rGqo"), r("Btvt"), r("KKXr");
-        var o = new window.Map;
-
-        function i(e) {
-            var t = o.get(e.currentTarget);
-            if (t) {
-                var r = t[e.type];
-                if (r)
-                    for (var i, a = 0; a < r.length; a++) {
-                        var [n, c] = r[a], u = void 0;
-                        if (hasClass(e.target, n) ? u = c(e, e.target) : (i = gpeByClass(n, e.target, e.currentTarget)) && (u = c(e, i)), !1 === u) break
-                    }
-            }
-        }
-        r.d(t, "b", function() {
-            return c
-        }), r.d(t, "a", function() {
-            return d
-        }), r.d(t, "c", function() {
-            return l
-        });
-        var {
-            addEvent: a,
-            removeEvent: n
-        } = window;
-
-        function c(e) {
-            return {
-                callMutations() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations(...t) {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e(...t)
-                }
-            }
-        }
-
-        function u(e, t, r, a, n) {
-            ! function(e, t, r, a) {
-                var n = o.get(e);
-                n || (o.set(e, {}), n = o.get(e));
-                for (var c = t.split(" "), u = 0; u < c.length; u++) {
-                    var d = c[u];
-                    n[d] || (n[d] = [], addEvent(e, d, i)), n[d].push([r, a])
-                }
-            }(t, r, a, n), e._registeredHandlers.push(["delegate", t, r, a, n])
-        }
-
-        function d(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(function(e, t, r, o) {
-                a(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
-            }.bind(null, t), u.bind(null, t)), t
-        }
-
-        function l(e) {
-            e._registeredHandlers.forEach(e => {
-                var t = e.slice(1);
-                "delegate" === e[0] ? function(e, t, r, a) {
-                    var n = o.get(e);
-                    n && (t.split(" ").forEach(t => {
-                        n[t] && (n[t] = n[t].filter(e => e[0] !== r || e[1] !== a), 0 === n[t].length && removeEvent(e, t, i))
-                    }), 0 === Object.keys(n).map(e => n[e].length).reduce((e, t) => e + t) && o.delete(e))
-                }(...t) : n(...t)
-            }), e._registeredHandlers = []
-        }
     },
     rUY3: function(e, t, r) {
         "use strict";
@@ -185,9 +112,9 @@
                             mbBannedHim: t.bannedhim,
                             ldb: Object(o.c)(vk.id)
                         }), t.emojiRcnt && !cur.mbRcntEmoji) {
-                        for (var n = [], c = t.emojiRcnt, u = 0, d = c.length; u < d; ++u) {
-                            var l = c[u];
-                            l && n.push('<a id="mbe_rc_em_' + l + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + l + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(l, !1, !0) + "</a>")
+                        for (var n = [], c = t.emojiRcnt, m = 0, u = c.length; m < u; ++m) {
+                            var d = c[m];
+                            d && n.push('<a id="mbe_rc_em_' + d + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + d + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(d, !1, !0) + "</a>")
                         }
                         cur.mbRcntEmoji = n.join("")
                     }
@@ -245,7 +172,7 @@
                             a.extractEmoji()
                         }
                     }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
-                    var m = cur.postTo;
+                    var l = cur.postTo;
                     cur.postTo = !1, e.setOptions({
                         onHide: function() {
                             removeEvent(document, "keydown", a.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
@@ -254,7 +181,7 @@
                             addEvent(document, "keydown", a.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
                         },
                         onClean: function() {
-                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = m, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
+                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = l, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
                         }
                     }), addEvent(document, "keydown", a.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
                         var t = {
@@ -317,10 +244,10 @@
                             o = trim(Emoji.editableVal(cur.mbField));
                         if (o && (r.message = o), cur.mbMedia.chosenMedias) {
                             for (var i = cur.mbMedia.getMedias(), a = [], n = 0, c = i.length; n < c; ++n) {
-                                var u = i[n],
-                                    d = [];
-                                for (var l in u) "object" != typeof u[l] && d.push(u[l]);
-                                a.push(d.join(","))
+                                var m = i[n],
+                                    u = [];
+                                for (var d in m) "object" != typeof m[d] && u.push(m[d]);
+                                a.push(u.join(","))
                             }
                             r.media = a.join("*")
                         }
@@ -345,7 +272,7 @@
                             to_ids: []
                         };
                         cur.mbForceAttach && (o.attach1_type = cur.mbForceAttach[0], o.attach1 = cur.mbForceAttach[1], o.attach1_hash = cur.mbForceAttach[2]);
-                        for (var n, c = 0, u = r.length; c < u; ++c)(n = r[c]) && o.media.push(n[0] + ":" + n[1]);
+                        for (var n, c = 0, m = r.length; c < m; ++c)(n = r[c]) && o.media.push(n[0] + ":" + n[1]);
                         if (o.media = o.media.join(","), !t && !o.media) return cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField);
                         o.to_ids = cur.toData[0], cur.mbBannedHim != o.to_ids || !0 === e ? ajax.post("al_im.php", o, {
                             onDone: function(e, t) {
