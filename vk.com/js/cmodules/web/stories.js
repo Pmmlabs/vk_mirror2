@@ -601,10 +601,10 @@
         var w = [];
 
         function f(e, t) {
-            cur.storyLayer && cur.storyLayer.pauseLayer(), cur.storyLayer = e, ge("stories_layers_background") || (bodyNode.appendChild(ce("div", {
+            cur.storyLayer && cur.storyLayer.pauseLayer(), ge("stories_layers_background") || (bodyNode.appendChild(ce("div", {
                 id: "stories_layers_background",
                 className: "stories_layers_background"
-            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = k, addEvent(window, "visibilitychange", j.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", j.resize), addEvent(document, "keydown", j.keydown), addEvent(document, "keyup", j.keyup)), e.animateStory("expand", t.fromEl), w.push(e), e.length > 1 && addClass(e.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + w.length, ([t] = []) => {
+            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = k, addEvent(window, "visibilitychange", j.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", j.resize), addEvent(document, "keydown", j.keydown), addEvent(document, "keyup", j.keyup)), cur.storyLayer = e, e.animateStory("expand", t.fromEl), w.push(e), e.length > 1 && addClass(e.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + w.length, ([t] = []) => {
                 var s = arguments[0] && arguments[0].isCloseBtnClick;
                 t ? e._sendNavigationStatEvents("close_auto_by_time") : e._sendNavigationStatEvents("close_tap"), w.length > 1 && !s ? e.back(!0) : (e.hideAllLayers = s, e.hide(!1, !0))
             })
@@ -1377,9 +1377,11 @@
             Y = {
                 hashtag: 1,
                 mention: 2,
-                question: 3
-            };
-        class J extends i.Component {
+                question: 3,
+                place: 4
+            },
+            J = s("/PiP");
+        class Z extends i.Component {
             constructor(e) {
                 super(e), this.render = (() => i.createElement("div", {
                     className: "StorySticker",
@@ -1410,8 +1412,11 @@
                     var {
                         type: t,
                         hashtag: s,
-                        mention: i
-                    } = this.props.sticker;
+                        mention: i,
+                        placeId: r
+                    } = this.props.sticker, {
+                        list: o
+                    } = this.props;
                     switch (t) {
                         case Y.hashtag:
                             this.handleClickHashtag(e, s);
@@ -1420,7 +1425,10 @@
                             this.handleClickMention(e, i);
                             break;
                         case Y.question:
-                            this.handleClickQuestion()
+                            this.handleClickQuestion();
+                            break;
+                        case Y.place:
+                            this.handleClickPlace(e, r, o)
                     }
                 }), this.handleClickHashtag = ((e, t) => {
                     var s = t.replace("#", "%23"),
@@ -1440,10 +1448,31 @@
                     this.props.toggleTooltip(e, o)
                 }), this.handleClickQuestion = (() => {
                     this.props.showQuestionModal()
+                }), this.handleClickPlace = ((e, t, s) => {
+                    var r = Object(T.b)("stories_go_to_place");
+                    if (layerQueue.count() || s.includes("archive")) {
+                        var o = "/feed?section=search&w=place" + t,
+                            a = i.createElement("a", {
+                                href: `${o}`,
+                                target: "_blank",
+                                className: "StoriesTooltip__link"
+                            }, r);
+                        this.props.toggleTooltip(e, a)
+                    } else {
+                        var n = i.createElement("div", {
+                            className: "StoriesTooltip__link",
+                            onClick: () => {
+                                layerQueue.count() ? layerQueue.pop() : layerQueue.push(), Object(J.C)({
+                                    w: "place" + t
+                                })
+                            }
+                        }, r);
+                        this.props.toggleTooltip(e, n)
+                    }
                 })
             }
         }
-        class Z extends i.Component {
+        class ee extends i.Component {
             constructor(e) {
                 super(e), this.render = (() => {
                     var {
@@ -1461,9 +1490,9 @@
                 })
             }
         }
-        var ee = s("0Rlc"),
-            te = s("XpgC");
-        class ie extends i.Component {
+        var te = s("0Rlc"),
+            ie = s("XpgC");
+        class oe extends i.Component {
             constructor(e) {
                 super(e), this.componentDidMount = (() => {
                     window.addEventListener("resize", this.handleResize)
@@ -1475,38 +1504,40 @@
                     var {
                         story: e,
                         author: t,
-                        layerEl: s
+                        layerEl: s,
+                        list: r
                     } = this.props, {
-                        clickable_stickers: r
+                        clickable_stickers: o
                     } = e, {
-                        stickers: o,
-                        original_width: a,
-                        original_height: n
-                    } = r, {
-                        widthViewBox: l,
-                        heightViewBox: d,
-                        showTooltip: h,
-                        tooltipContent: c,
-                        showQuestionModal: _,
-                        clientX: p,
-                        clientY: u
+                        stickers: a,
+                        original_width: n,
+                        original_height: l
+                    } = o, {
+                        widthViewBox: d,
+                        heightViewBox: h,
+                        showTooltip: c,
+                        tooltipContent: _,
+                        showQuestionModal: p,
+                        clientX: u,
+                        clientY: v
                     } = this.state;
                     return i.createElement("div", {
                         className: "StoryStickers"
-                    }, o.map((e, t) => i.createElement(J, {
+                    }, a.map((e, t) => i.createElement(Z, {
                         sticker: e,
-                        originalWidth: a,
-                        originalHeight: n,
-                        widthViewBox: l,
-                        heightViewBox: d,
+                        originalWidth: n,
+                        originalHeight: l,
+                        widthViewBox: d,
+                        heightViewBox: h,
                         toggleTooltip: this.toggleTooltip,
+                        list: r,
                         showQuestionModal: this.showQuestionModal,
                         key: t
-                    })), h && i.createElement(Z, {
-                        clientX: p,
-                        clientY: u,
+                    })), c && i.createElement(ee, {
+                        clientX: u,
+                        clientY: v,
                         layerEl: s
-                    }, c), _ && i.createElement(D.a, {
+                    }, _), p && i.createElement(D.a, {
                         title: Object(T.b)("stories_question_ask_box_title").replace("{name}", Object(K.a)(t.name_get)),
                         actionButtons: this.getQuestionModalActions(),
                         className: "StoryQuestionAskForm",
@@ -1605,12 +1636,12 @@
                         className: "StoryQuestionAskForm__footer"
                     }, i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
-                    }, i.createElement(ee.a, {
+                    }, i.createElement(te.a, {
                         key: "c",
                         checked: n,
                         onChange: this.handleCheckBox,
                         disabled: !r
-                    }, Object(T.b)("stories_question_anonymous_checkbox")), i.createElement(te.a, {
+                    }, Object(T.b)("stories_question_anonymous_checkbox")), i.createElement(ie.a, {
                         text: e,
                         position: "b",
                         align: "left",
@@ -1678,7 +1709,7 @@
                 }
             }
         }
-        class oe {
+        class ae {
             constructor(e, t) {
                 this.data = e, this.opts = t, this.paused = !0, this.loaded = !1, this.elems = {}, this.startTs = 0;
                 var {
@@ -1855,8 +1886,8 @@
                 return this.failed
             }
         }
-        var ae = 5e3;
-        class ne extends oe {
+        var ne = 5e3;
+        class le extends ae {
             constructor(e, t, s) {
                 super(e, t, s), this.wrapEl = s, this.videoRaw = `${this.data.video.owner_id}_${this.data.video.video_id}`
             }
@@ -1934,7 +1965,7 @@
                     t.lineWidth = 6, t.lineCap = "round", t.strokeStyle = "#fff";
                     var s = Date.now(),
                         i = () => {
-                            var e = (Date.now() - s) / ae;
+                            var e = (Date.now() - s) / ne;
                             e < 1 ? (t.clearRect(0, 0, 100, 100), t.beginPath(), t.arc(50, 50, 47, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * e), t.stroke(), this._nextTO = setTimeout(i, 16)) : cur.storyLayer.nextStory()
                         };
                     show(e), this.timerInProgress = !0, i()
@@ -1944,7 +1975,7 @@
                 window.CanvasRenderingContext2D && (clearTimeout(this._nextTO), this.timerInProgress = !1, hide(domByClass(this.el, "_timer_canvas")))
             }
         }
-        class le extends oe {
+        class de extends ae {
             constructor(e, t) {
                 super(e, t), this.isFirstChunkLoaded = !1
             }
@@ -2004,8 +2035,8 @@
                 this.video.volume = y()
             }
         }
-        var de = 5e3;
-        class he extends oe {
+        var he = 5e3;
+        class _e extends ae {
             constructor(e, t) {
                 super(e, t), this.pauseTime = 0
             }
@@ -2042,7 +2073,7 @@
                 return Date.now() - this.startTs || 0
             }
             getDuration() {
-                return de
+                return he
             }
             _onCanPlay() {
                 super._onCanPlay(), cur.storyLayer._sendNavigationStatEvents("view_story", !0, {
@@ -2050,19 +2081,19 @@
                 }), setStyle(this.photo, "opacity", 1)
             }
         }
-        var _e = s("v+DW"),
-            pe = s("Egk5"),
-            ue = s("4+be"),
-            ve = s("EasH"),
-            me = s("kcIO");
-        class ye {
+        var pe = s("v+DW"),
+            ue = s("Egk5"),
+            ve = s("4+be"),
+            me = s("EasH"),
+            ye = s("kcIO");
+        class be {
             constructor(e, t) {
-                this.data = e, this.opts = t, this.id = t.id, this.isActive = !1, this.story = !1, this.index = 0, this.preloadedStories = {}, this.layer = t.layer, this.longTapTimer
+                this.data = e, this.opts = t, this.id = t.id, this.isActive = !1, this.story = !1, this.pressedStory = null, this.index = 0, this.preloadedStories = {}, this.layer = t.layer, this.longTapTimer
             }
             destroy() {
-                this._destroyStory(), Object(pe.h)(Object(V.H)("stories_item_cont", this.contWrap)), Object(pe.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), Object(pe.h)(this.shareButton), delete this.shareButton, Object(pe.h)(this.followBtn), delete this.followBtn, Object(pe.h)(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
-                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(pe.h)(e[t]);
-                Object(pe.h)(this.viewsButton), Object(pe.h)(Object(V.H)("stories_feedback_close", this.wrapEl)), Object(pe.h)(Object(V.H)("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
+                this._destroyStory(), Object(ue.h)(Object(V.H)("stories_item_cont", this.contWrap)), Object(ue.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), Object(ue.h)(this.shareButton), delete this.shareButton, Object(ue.h)(this.followBtn), delete this.followBtn, Object(ue.h)(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
+                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(ue.h)(e[t]);
+                Object(ue.h)(this.viewsButton), Object(ue.h)(Object(V.H)("stories_feedback_close", this.wrapEl)), Object(ue.h)(Object(V.H)("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
                 for (var s = !1, i = 0; i < this.data.items.length; i++)
                     if (this.data.items[i].unread) {
                         s = !0;
@@ -2075,7 +2106,7 @@
                 }
             }
             _destroyTimeLine() {
-                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(pe.h)(e[t])
+                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(ue.h)(e[t])
             }
             getOwnerId() {
                 return this.data.author.id
@@ -2115,7 +2146,7 @@
                 var e = ce("div", {
                     className: "stories_item_cont"
                 });
-                return Object(pe.b)(e, "mousedown", this._onMouseDownHandle.bind(this)), Object(pe.b)(e, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(e), e.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
+                return Object(ue.b)(e, "mousedown", this._onMouseDownHandle.bind(this)), Object(ue.b)(e, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(e), e.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
                     className: "stories_bottom_wrap"
                 })), this.contWrap.appendChild(this._renderPreview()), this.indexToUnread(), cur.noStoriesBack || (this.backButton = ce("div", {
                     className: "stories_item_back"
@@ -2179,18 +2210,19 @@
                         name: i,
                         verify: r
                     } = this.data.author,
-                    o = this.data && this.data.items[0] && this.data.items[0].narrative;
-                this.data.is_narrative && o && !o.is_cover ? e = `\n      <div>\n          <div class="stories_narrative_title">${o.title}</div>\n          <span class="stories_narrative_author"><a href="${s}" class="stories_narrative_author_link">${i}</a> · ${Object(ue.d)("global_type_narrative")}</span>\n      </div>` : e = `\n      <div class="stories_author_cont">\n        ${`<a href="${s}" class="stories_author_photo_wrap"><img src="${t}" class="stories_author_photo" /></a>`}\n        <a href="${s}" class="stories_author_name"><span>${i}</span></a>\n        ${r||""}\n        <div class="stories_desc"></div>\n      </div>`;
-                var a = Object(V.mb)(`\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">${e}</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    `);
-                return Object(pe.b)(a, "click", e => {
+                    o = this.data && this.data.items[0] && this.data.items[0].narrative,
+                    a = "_self";
+                (this.layer.list.includes("place") && (a = "_blank"), this.data.is_narrative && o && !o.is_cover) ? e = `\n      <div>\n          <div class="stories_narrative_title">${o.title}</div>\n          <span class="stories_narrative_author"><a href="${s}" target="${a}" class="stories_narrative_author_link">${i}</a> · ${Object(ve.d)("global_type_narrative")}</span>\n      </div>`: e = `\n      <div class="stories_author_cont">\n        ${`<a href="${s}" class="stories_author_photo_wrap"><img src="${t}" class="stories_author_photo" /></a>`}\n        <a href="${s}" target="${a}" class="stories_author_name"><span>${i}</span></a>\n        ${r||""}\n        <div class="stories_desc"></div>\n      </div>`;
+                var n = Object(V.mb)(`\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">${e}</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    `);
+                return Object(ue.b)(n, "click", e => {
                     Object(V.o)("a", e.target) && this.layer._sendNavigationStatEvents("go_to_author")
-                }), !0 === this.data.hide_owner && val(Object(V.H)("stories_author_cont", a), ""), Object(V.wb)(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.descEl = Object(V.H)("stories_desc", a), this.authorButtons = Object(V.H)("stories_author_buttons", a), a
+                }), !0 === this.data.hide_owner && val(Object(V.H)("stories_author_cont", n), ""), Object(V.wb)(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.descEl = Object(V.H)("stories_desc", n), this.authorButtons = Object(V.H)("stories_author_buttons", n), n
             }
             _renderFollowButton() {
                 return this.followBtn = ce("div", {
                     className: "stories_author_button stories_follow"
-                }), Object(pe.b)(this.followBtn, "click", this._onFollowBtnClick.bind(this)), Object(pe.b)(this.followBtn, "mouseover", () => {
-                    var e = hasClass(this.followBtn, "followed") ? Object(ue.d)("stories_unfollow") : Object(ue.d)("stories_follow");
+                }), Object(ue.b)(this.followBtn, "click", this._onFollowBtnClick.bind(this)), Object(ue.b)(this.followBtn, "mouseover", () => {
+                    var e = hasClass(this.followBtn, "followed") ? Object(ve.d)("stories_unfollow") : Object(ve.d)("stories_follow");
                     showTooltip(this.followBtn, {
                         black: 1,
                         center: 1,
@@ -2207,7 +2239,7 @@
                     var s = ce("div", {
                         className: "stories_time_line_item"
                     });
-                    Object(pe.b)(s, "click", () => {
+                    Object(ue.b)(s, "click", () => {
                         this.layer._sendNavigationStatEvents("go_to_story_click"), this.changeStory(t)
                     });
                     var i = ce("div", {
@@ -2225,32 +2257,34 @@
                 return !this.story || this.story.isLoaded()
             }
             _onMouseDownHandle(e) {
-                this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), G)))
+                this.pressedStory = e.target, this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), G)))
             }
             _onMouseUpHandle(e) {
                 clearTimeout(this.longTapTimer);
                 var {
                     downTs: t
                 } = this;
-                delete this.downTs;
-                var s = !(vkNow() - t < G && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
-                if (this.isActive && hasClass(e.target, "stories_item_back") && !s && !this.isTooltipOpened()) return this.prevStory();
-                if (hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back"))
-                    if (this._feedbackTTShown && this.hideFeedbackTooltip(), Object(V.hb)(this.wrapEl, "paused"), this.isTooltipOpened()) this._hideTooltip();
-                    else {
-                        if (!this.isActive) {
-                            this.id >= this.layer.activeStory.id && this.layer._markStoryAsSkipped();
-                            var i = this.layer.storiesBlocks;
-                            return i.indexOf(this.layer.getBlockKey(this)) > i.indexOf(this.layer.blockKey) ? this.layer._sendNavigationStatEvents("go_to_next_author") : this.layer._sendNavigationStatEvents("go_to_previous_author"), void this.opts.onSelect(this)
+                if (delete this.downTs, e.target === this.pressedStory) {
+                    this.pressedStory = null;
+                    var s = !(vkNow() - t < G && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
+                    if (this.isActive && hasClass(e.target, "stories_item_back") && !s && !this.isTooltipOpened()) return this.prevStory();
+                    if (hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back"))
+                        if (this._feedbackTTShown && this.hideFeedbackTooltip(), Object(V.hb)(this.wrapEl, "paused"), this.isTooltipOpened()) this._hideTooltip();
+                        else {
+                            if (!this.isActive) {
+                                this.id >= this.layer.activeStory.id && this.layer._markStoryAsSkipped();
+                                var i = this.layer.storiesBlocks;
+                                return i.indexOf(this.layer.getBlockKey(this)) > i.indexOf(this.layer.blockKey) ? this.layer._sendNavigationStatEvents("go_to_next_author") : this.layer._sendNavigationStatEvents("go_to_previous_author"), void this.opts.onSelect(this)
+                            }
+                            s ? this.isPaused() && this.playStory(!1, !!t) : this._onPlayEnd()
                         }
-                        s ? this.isPaused() && this.playStory(!1, !!t) : this._onPlayEnd()
-                    }
+                }
             }
             _longTapHandle() {
                 this.story && this.story.pause(), Object(V.a)(this.wrapEl, "paused"), this.isTooltipOpened() || this.layer._sendNavigationStatEvents("pause_long_tap")
             }
             isLocked() {
-                return !!(this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(me.b)() && "stories" !== Object(me.b)().wkRaw)
+                return !!(this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(ye.b)() && "stories" !== Object(ye.b)().wkRaw)
             }
             autoResumeStory(e = !1) {
                 this.audioPlaying || this.story && this.story.isNarrativeMetaStory || this.isTooltipOpened() || this.playStory(!1, e)
@@ -2299,8 +2333,8 @@
                     onLongLoading: this._showLoader.bind(this),
                     onAutoPlayFail: this._onAutoPlayFail.bind(this)
                 };
-                ("live" === t ? this.story = new ne(e, s, this.wrapEl) : ("video" === t ? (this.story = new le(e, s), Object(V.a)(this.wrapEl, "video")) : (this.story = new he(e, s), this.opts.onVideoEnd(), Object(V.hb)(this.wrapEl, "video")), val(this.descEl, e.is_ads ? Object(ue.d)("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === t || "video" === t) && (y() > 0 && this.opts.onVideoPlay());
-                this.opts.onStartStory(), Object(V.wb)(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && (this.stickerLayers = r.render(i.createElement(ie, {
+                ("live" === t ? this.story = new le(e, s, this.wrapEl) : ("video" === t ? (this.story = new de(e, s), Object(V.a)(this.wrapEl, "video")) : (this.story = new _e(e, s), this.opts.onVideoEnd(), Object(V.hb)(this.wrapEl, "video")), val(this.descEl, e.is_ads ? Object(ve.d)("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === t || "video" === t) && (y() > 0 && this.opts.onVideoPlay());
+                this.opts.onStartStory(), Object(V.wb)(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && (this.stickerLayers = r.render(i.createElement(oe, {
                     story: e,
                     author: this.data.author,
                     showMessage: this._showMessage.bind(this),
@@ -2308,16 +2342,17 @@
                     pauseStory: this.pauseStory.bind(this),
                     hideFeedbackTooltip: this.hideFeedbackTooltip.bind(this),
                     sendNavigationStatEvents: this.layer._sendNavigationStatEvents.bind(this.layer),
+                    list: this.layer.list,
                     layerEl: this.layer.layerEl,
                     el: this.contWrap
-                }), this.contStickers)), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), Object(pe.b)(Object(V.H)("stories_narrative_cover", this.contWrap), "click", e => {
+                }), this.contStickers)), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), Object(ue.b)(Object(V.H)("stories_narrative_cover", this.contWrap), "click", e => {
                     this._showTooltip(e, this._createNarrativeTooltipLink())
                 })), this.story.isNarrativeMetaStory && !this.story.failed && (re(Object(V.H)("stories_photo", this.contWrap)), re(Object(V.H)("stories_video", this.contWrap)), Object(V.a)(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
             }
             _createNarrativeTooltipLink() {
                 return ce("div", {
                     className: "StoriesTooltip__link",
-                    innerHTML: Object(ue.d)("stories_narrative_show"),
+                    innerHTML: Object(ve.d)("stories_narrative_show"),
                     onclick: () => {
                         this._hideTooltip(!0), showNarrative(`${this.story.data.narrative.owner_id}_${this.story.data.narrative.id}`, {
                             isOpenNarrativeFromFeed: !0,
@@ -2394,13 +2429,13 @@
             }
             _destroyStory() {
                 if (this.story) {
-                    this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), Object(V.hb)(this.contWrap, "stories_item_cont_wrap_meta_story"), re(Object(V.H)("narrative-meta-story", this.contWrap)), Object(V.hb)(this.contWrap, "stories_narrative_cover_blur"), re(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(pe.h)(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(pe.h)(window, "resize", this._onResizeHandle);
+                    this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), Object(V.hb)(this.contWrap, "stories_item_cont_wrap_meta_story"), re(Object(V.H)("narrative-meta-story", this.contWrap)), Object(V.hb)(this.contWrap, "stories_narrative_cover_blur"), re(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(ue.h)(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(ue.h)(window, "resize", this._onResizeHandle);
                     var e = this.getCurStoryData();
                     e && e.clickable_stickers && (r.unmountComponentAtNode(this.contStickers), delete this.stickerLayers), cancelAnimationFrame(this.timeLineAnim);
                     try {
                         this.contWrap.removeChild(this.story.getContainer()), this.story.destroy()
                     } catch (e) {}
-                    this._replyHideEnd(), Object(pe.h)(this.followBtn), val(this.authorButtons, ""), Object(pe.h)(this.answersEl), Object(pe.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
+                    this._replyHideEnd(), Object(ue.h)(this.followBtn), val(this.authorButtons, ""), Object(ue.h)(this.answersEl), Object(ue.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
                 }
             }
             _timeLineUpdate() {
@@ -2454,11 +2489,11 @@
             }
             removeStoryBox() {
                 this.pauseStory(), showFastBox({
-                    title: Object(ue.d)("global_warning"),
+                    title: Object(ve.d)("global_warning"),
                     onHide: () => {
                         this.playStory()
                     }
-                }, Object(ue.d)("stories_remove_warning"), Object(ue.d)("stories_remove_confirm"), this.removeStory.bind(this), Object(ue.d)("global_cancel"))
+                }, Object(ve.d)("stories_remove_warning"), Object(ve.d)("stories_remove_confirm"), this.removeStory.bind(this), Object(ve.d)("global_cancel"))
             }
             removeStory(e) {
                 this.pauseStory();
@@ -2471,19 +2506,19 @@
                     moder_remove_hash: this.data.moder_remove_hash
                 }, {
                     onDone: e => {
-                        window.cur.module === X && window.GeStories.storyDidRemove(s, e), Object(me.b)().hide(), this._popStoryAndClearList(t)
+                        window.cur.module === X && window.GeStories.storyDidRemove(s, e), Object(ye.b)().hide(), this._popStoryAndClearList(t)
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             removeNarrativeBox() {
                 this.pauseStory(), showFastBox({
-                    title: Object(ue.d)("global_warning"),
+                    title: Object(ve.d)("global_warning"),
                     onHide: () => {
                         this.playStory()
                     }
-                }, Object(ue.d)("stories_narrative_remove_warning"), Object(ue.d)("stories_remove_confirm"), this.removeNarrative.bind(this), Object(ue.d)("global_cancel"))
+                }, Object(ve.d)("stories_narrative_remove_warning"), Object(ve.d)("stories_remove_confirm"), this.removeNarrative.bind(this), Object(ve.d)("global_cancel"))
             }
             removeNarrative(e) {
                 this.pauseStory();
@@ -2499,10 +2534,10 @@
                     moder_remove_hash: this.data.moder_remove_hash
                 }, {
                     onDone: () => {
-                        Object(me.b)().hide(), this._popCoverAndCleanNarrativeList(t)
+                        Object(ye.b)().hide(), this._popCoverAndCleanNarrativeList(t)
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             _popCoverAndCleanNarrativeList(e) {
@@ -2527,7 +2562,7 @@
                     ref: cur.module
                 }, {
                     onDone: t => {
-                        showDoneBox(t || Object(ue.d)("stories_narrative_bookmark_deleted"), {
+                        showDoneBox(t || Object(ve.d)("stories_narrative_bookmark_deleted"), {
                             className: "stories_done_msg"
                         }), e.is_bookmarked = !e.is_bookmarked, this.updateBottom()
                     }
@@ -2554,7 +2589,7 @@
                 var e, {
                     narrative: t
                 } = this.getCurStoryData();
-                e = t ? `narrative${t.raw_id}` : `story${this.story.getId()}`, this.pauseStory(), Object(ve.b)("like.php", {
+                e = t ? `narrative${t.raw_id}` : `story${this.story.getId()}`, this.pauseStory(), Object(me.b)("like.php", {
                     act: "publish_box",
                     object: e,
                     from: "wkview"
@@ -2598,7 +2633,7 @@
                 }
             }
             _onAnswerSended(e) {
-                this.isActiveLive() || (this.layer._sendNavigationStatEvents("comment_send"), this._showMessage(Object(ue.d)("stories_answer_sent")).then(() => {
+                this.isActiveLive() || (this.layer._sendNavigationStatEvents("comment_send"), this._showMessage(Object(ve.d)("stories_answer_sent")).then(() => {
                     this._unlockSendForm(), this.playStory()
                 })), val(Object(V.H)("stories_send_form_text", this.wrapEl), ""), this._blurSendForm(), this.updateFeedbackTTPos(), this.pauseStory(), e && e()
             }
@@ -2645,11 +2680,11 @@
             }
             _addToBlacklist() {
                 cur.storyLayer && cur.storyLayer.pauseStory(), showFastBox({
-                    title: Object(ue.d)("stories_add_blacklist_title"),
+                    title: Object(ve.d)("stories_add_blacklist_title"),
                     onHide: function() {
                         cur.storyLayer && cur.storyLayer.playStory()
                     }
-                }, this.getOwnerId() < 0 ? Object(ue.d)("stories_add_blacklist_message_group") : Object(ue.d)("stories_add_blacklist_message"), Object(ue.d)("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), Object(ue.d)("global_cancel"))
+                }, this.getOwnerId() < 0 ? Object(ve.d)("stories_add_blacklist_message_group") : Object(ve.d)("stories_add_blacklist_message"), Object(ve.d)("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), Object(ve.d)("global_cancel"))
             }
             _doAddToBlacklist(e) {
                 ajax.post("al_stories.php", {
@@ -2659,45 +2694,45 @@
                     source_story: this.getRawId()
                 }, {
                     onDone: () => {
-                        this.data.can_blacklist = !1, this.layer._sendNavigationStatEvents("hide_from_stories"), Object(me.b)().hide(), this.opts.removeList(), this._remove()
+                        this.data.can_blacklist = !1, this.layer._sendNavigationStatEvents("hide_from_stories"), Object(ye.b)().hide(), this.opts.removeList(), this._remove()
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             _resetErrors() {
                 var e = Object(V.H)("stories_error_wrap", this.contWrap);
-                e && (Object(pe.h)(Object(V.H)("stories_error_button", e)), re(e)), Object(V.hb)(this.wrapEl, "failed"), Object(V.hb)(this.wrapEl, "fatal_error")
+                e && (Object(ue.h)(Object(V.H)("stories_error_button", e)), re(e)), Object(V.hb)(this.wrapEl, "failed"), Object(V.hb)(this.wrapEl, "fatal_error")
             }
             _showError(e) {
                 if (this.contWrap) {
                     var t, s, i = e;
                     switch (e) {
                         case "load":
-                            t = Object(ue.d)("stories_error_cant_load"), s = ce("div", {
+                            t = Object(ve.d)("stories_error_cant_load"), s = ce("div", {
                                 className: "stories_error_button",
-                                innerHTML: Object(ue.d)("stories_try_again")
-                            }), Object(pe.b)(s, "click", () => {
+                                innerHTML: Object(ve.d)("stories_try_again")
+                            }), Object(ue.b)(s, "click", () => {
                                 this._destroyStory(), this.playStory()
                             });
                             break;
                         case "expired":
-                            t = Object(ue.d)("stories_error_expired");
+                            t = Object(ve.d)("stories_error_expired");
                             break;
                         case "deleted":
-                            t = Object(ue.d)("stories_error_deleted");
+                            t = Object(ve.d)("stories_error_deleted");
                             break;
                         case "private":
-                            t = Object(ue.d)("stories_error_private");
+                            t = Object(ve.d)("stories_error_private");
                             break;
                         case "deleted-narrative":
-                            t = Object(ue.d)("stories_error_deleted_narrative");
+                            t = Object(ve.d)("stories_error_deleted_narrative");
                             break;
                         case "private-narrative":
-                            t = Object(ue.d)("stories_error_private_narrative");
+                            t = Object(ve.d)("stories_error_private_narrative");
                             break;
                         default:
-                            t = Object(ue.d)("global_unknown_error")
+                            t = Object(ve.d)("global_unknown_error")
                     }
                     this._resetErrors(), this._stopLoader();
                     var r = ce("div", {
@@ -2741,7 +2776,7 @@
                     from: "stories"
                 }, {
                     onDone: () => {
-                        this.data.author.can_follow && this._sendStatEvent("follow"), this.data.author.can_follow = !this.data.author.can_follow, Object(V.wb)(this.followBtn, "followed", !this.data.author.can_follow), this._showMessage(Object(ue.d)(this.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(() => this.playStory()), window.tooltips && tooltips.destroy(this.followBtn), triggerEvent(this.followBtn, "mouseover")
+                        this.data.author.can_follow && this._sendStatEvent("follow"), this.data.author.can_follow = !this.data.author.can_follow, Object(V.wb)(this.followBtn, "followed", !this.data.author.can_follow), this._showMessage(Object(ve.d)(this.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(() => this.playStory()), window.tooltips && tooltips.destroy(this.followBtn), triggerEvent(this.followBtn, "mouseover")
                     },
                     showProgress: () => this.showInlineLoader(),
                     hideProgress: () => {
@@ -2771,7 +2806,7 @@
                     is_private: o,
                     raw_id: a
                 } = this.getCurStoryData().reply_to, n = Object(V.mb)(`<div class="stories_reply_to" style="background-image: url(${t})">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">${s}</div>\n  </div>\n</div>`);
-                if (Object(pe.b)(n, "click", () => {
+                if (Object(ue.b)(n, "click", () => {
                         this.layer._sendNavigationStatEvents("open_parent_story");
                         var t = E();
                         w.length > 1 && t.getStoryRaw() === a ? cancelStackPop() : showStory(e, {
@@ -2780,7 +2815,7 @@
                         })
                     }), i) return n;
                 var l = !1;
-                return r ? (Object(V.a)(n, "deleted"), l = Object(ue.d)("stories_deleted_story")) : o && (Object(V.a)(n, "private"), l = Object(ue.d)("stories_private_story")), l && (val(Object(V.H)("stories_reply_to_error_msg", n), l), re(Object(V.H)("stories_reply_to_owner_name_wrap", n))), n
+                return r ? (Object(V.a)(n, "deleted"), l = Object(ve.d)("stories_deleted_story")) : o && (Object(V.a)(n, "private"), l = Object(ve.d)("stories_private_story")), l && (val(Object(V.H)("stories_reply_to_error_msg", n), l), re(Object(V.H)("stories_reply_to_owner_name_wrap", n))), n
             }
             sendMask() {
                 if (!this._maskSending) {
@@ -2798,7 +2833,7 @@
                                 onHide: () => {
                                     this.playStory()
                                 }
-                            }, s, i) : this._showMessage(Object(ue.d)("stories_mask_sent")).then(() => this.playStory())
+                            }, s, i) : this._showMessage(Object(ve.d)("stories_mask_sent")).then(() => this.playStory())
                         },
                         showProgress: () => this.showInlineLoader(),
                         hideProgress: () => {
@@ -2856,7 +2891,7 @@
                                 this._feedbackTTShown = !1
                             },
                             onShowStart: () => {
-                                this.isActive && (this._feedbackTTShown = !0, this._feedbackTTLoaded ? this._feedbackRequestEnd && (this.feedbackScroll.update(), this._feedbackTooltipInitHeaders(), tooltips.rePositionTT(t.tt), this._onFeedbackScroll(), setTimeout(() => tooltips.rePositionTT(t.tt), 200)) : (Object(V.H)("stories_feedback_tt", this.wrapEl).appendChild(Object(V.mb)('<div class="stories_feedback_tt_arrow"></div>')), this._feedbackTTLoaded = !0, this._feedbackRequestEnd = !1, this._feedbackTooltipHeadersInited = !1, Object(pe.b)(Object(V.H)("stories_feedback_close", this.wrapEl), "click", () => this.hideFeedbackTooltip()), setTimeout(() => {
+                                this.isActive && (this._feedbackTTShown = !0, this._feedbackTTLoaded ? this._feedbackRequestEnd && (this.feedbackScroll.update(), this._feedbackTooltipInitHeaders(), tooltips.rePositionTT(t.tt), this._onFeedbackScroll(), setTimeout(() => tooltips.rePositionTT(t.tt), 200)) : (Object(V.H)("stories_feedback_tt", this.wrapEl).appendChild(Object(V.mb)('<div class="stories_feedback_tt_arrow"></div>')), this._feedbackTTLoaded = !0, this._feedbackRequestEnd = !1, this._feedbackTooltipHeadersInited = !1, Object(ue.b)(Object(V.H)("stories_feedback_close", this.wrapEl), "click", () => this.hideFeedbackTooltip()), setTimeout(() => {
                                     ajax.post("al_stories.php", {
                                         act: "feedback",
                                         story_raw: this.getRawId()
@@ -2971,18 +3006,18 @@
             }
             _hideReply() {
                 showFastBox({
-                    title: Object(ue.d)("global_warning"),
+                    title: Object(ve.d)("global_warning"),
                     onHide: () => {
                         this.autoResumeStory()
                     }
-                }, Object(ue.d)("stories_hide_reply_warning"), Object(ue.d)("global_continue"), this._doHideReply.bind(this), Object(ue.d)("global_cancel"))
+                }, Object(ve.d)("stories_hide_reply_warning"), Object(ve.d)("global_continue"), this._doHideReply.bind(this), Object(ve.d)("global_cancel"))
             }
             _doHideReply() {
-                this.pauseStory(), Object(V.a)(this.wrapEl, "hiding_reply"), Object(me.b)().hide();
+                this.pauseStory(), Object(V.a)(this.wrapEl, "hiding_reply"), Object(ye.b)().hide();
                 var e = this.getIndex(),
                     t = this.data.author.gender,
-                    s = Object(V.mb)(`<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">${getProgressHtml()}</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">${Object(ue.d)("stories_reply_hidden")}</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">${Object(ue.d)("stories_hide_reply_continue")}</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">${langSex(t,window.lang.stories_hide_all_replies)}</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">${Object(ue.d)("stories_reply_add_to_blacklist")}</div>\n  </div>\n</div>`);
-                Object(pe.b)(Object(V.H)("_stories_reply_restore", s), "click", this._restoreReply.bind(this)), Object(pe.b)(Object(V.H)("_stories_reply_continue", s), "click", () => this._replyHideEnd(e)), Object(pe.b)(Object(V.H)("_stories_hide_replies", s), "click", this._hideAllReplies.bind(this)), Object(pe.b)(Object(V.H)("_stories_reply_ban", s), "click", this._ban.bind(this)), this.contWrap.appendChild(s), ajax.post("al_stories.php", {
+                    s = Object(V.mb)(`<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">${getProgressHtml()}</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">${Object(ve.d)("stories_reply_hidden")}</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">${Object(ve.d)("stories_hide_reply_continue")}</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">${langSex(t,window.lang.stories_hide_all_replies)}</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">${Object(ve.d)("stories_reply_add_to_blacklist")}</div>\n  </div>\n</div>`);
+                Object(ue.b)(Object(V.H)("_stories_reply_restore", s), "click", this._restoreReply.bind(this)), Object(ue.b)(Object(V.H)("_stories_reply_continue", s), "click", () => this._replyHideEnd(e)), Object(ue.b)(Object(V.H)("_stories_hide_replies", s), "click", this._hideAllReplies.bind(this)), Object(ue.b)(Object(V.H)("_stories_reply_ban", s), "click", this._ban.bind(this)), this.contWrap.appendChild(s), ajax.post("al_stories.php", {
                     act: "hide_reply",
                     raw_id: this.getRawId(),
                     hash: this.data.reply_hide_hash
@@ -3016,8 +3051,8 @@
             _hideAllReplies() {
                 var e = this.data.author.first_name_gen;
                 showFastBox({
-                    title: Object(ue.d)("global_warning")
-                }, Object(ue.d)("stories_delete_all_replies_confirm").replace("{name}", e), Object(ue.d)("global_continue"), this._doHideAllReplies.bind(this), Object(ue.d)("global_cancel"))
+                    title: Object(ve.d)("global_warning")
+                }, Object(ve.d)("stories_delete_all_replies_confirm").replace("{name}", e), Object(ve.d)("global_continue"), this._doHideAllReplies.bind(this), Object(ve.d)("global_cancel"))
             }
             _doHideAllReplies(e) {
                 ajax.post("al_stories.php", {
@@ -3026,19 +3061,19 @@
                     hash: this.data.reply_hide_hash
                 }, {
                     onDone: () => {
-                        Object(me.b)().hide(), this.opts.removeList(), this.data.items = [];
+                        Object(ye.b)().hide(), this.opts.removeList(), this.data.items = [];
                         var e = Object(V.H)("_stories_hide_replies", this.contWrap);
-                        val(e, Object(ue.d)("stories_all_replies_hidden")), Object(V.a)(e, "disabled")
+                        val(e, Object(ve.d)("stories_all_replies_hidden")), Object(V.a)(e, "disabled")
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             _ban() {
                 var e = this.data.author.first_name_gen;
                 showFastBox({
-                    title: Object(ue.d)("global_warning")
-                }, Object(ue.d)("stories_ban_confirm").replace("{name}", e), Object(ue.d)("global_continue"), this._doBan.bind(this), Object(ue.d)("global_cancel"))
+                    title: Object(ve.d)("global_warning")
+                }, Object(ve.d)("stories_ban_confirm").replace("{name}", e), Object(ve.d)("global_continue"), this._doBan.bind(this), Object(ve.d)("global_cancel"))
             }
             _doBan(e) {
                 ajax.post("al_stories.php", {
@@ -3047,12 +3082,12 @@
                     hash: this.data.stories_ban_hash
                 }, {
                     onDone: () => {
-                        Object(me.b)().hide(), this.opts.removeList(), this.data.items = [];
+                        Object(ye.b)().hide(), this.opts.removeList(), this.data.items = [];
                         var e = Object(V.H)("_stories_reply_ban", this.contWrap);
-                        val(e, Object(ue.d)("stories_banned")), Object(V.a)(e, "disabled")
+                        val(e, Object(ve.d)("stories_banned")), Object(V.a)(e, "disabled")
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             _replyHideEnd(e) {
@@ -3098,7 +3133,7 @@
                 var e = this.getCurStoryData(),
                     t = "story";
                 this.isActiveLive() ? t = "live" : e.narrative && (t = "narrative");
-                var s = Object(ve.b)("al_stories.php", {
+                var s = Object(me.b)("al_stories.php", {
                     act: "report_box",
                     type: t
                 }, {
@@ -3115,7 +3150,7 @@
                         }
                     }
                 });
-                s.removeButtons(), s.addButton(Object(ue.d)("box_send"), this._sendReportButtonDidPress.bind(this)), s.addButton(Object(ue.d)("global_cancel"), !1, "no")
+                s.removeButtons(), s.addButton(Object(ve.d)("box_send"), this._sendReportButtonDidPress.bind(this)), s.addButton(Object(ve.d)("global_cancel"), !1, "no")
             }
             _sendReportButtonDidPress(e) {
                 var t, s, i = this.index,
@@ -3132,12 +3167,12 @@
                     hash: s
                 }, {
                     onDone: () => {
-                        Object(me.b)().hide(), this.layer._sendNavigationStatEvents("claim"), a ? this._popCoverAndCleanNarrativeList(r) : this._popStoryAndClearList(i), showDoneBox(Object(ue.d)("stories_report_sent"), {
+                        Object(ye.b)().hide(), this.layer._sendNavigationStatEvents("claim"), a ? this._popCoverAndCleanNarrativeList(r) : this._popStoryAndClearList(i), showDoneBox(Object(ve.d)("stories_report_sent"), {
                             className: "stories_done_msg"
                         })
                     },
-                    showProgress: _e.o.pbind(e),
-                    hideProgress: _e.w.pbind(e)
+                    showProgress: pe.o.pbind(e),
+                    hideProgress: pe.w.pbind(e)
                 })
             }
             onLiveEnded(e) {
@@ -3147,18 +3182,18 @@
                 val(this.descEl, e)
             }
         }
-        var be = .563,
-            we = 1.78,
-            fe = 540,
-            Se = 320,
-            ke = "user_personal_card",
-            Ee = "group_personal_card",
-            Oe = s("Tn+0");
-        var je = [];
+        var we = .563,
+            fe = 1.78,
+            Se = 540,
+            ke = 320,
+            Ee = "user_personal_card",
+            Oe = "group_personal_card",
+            je = s("Tn+0");
         var Te = [];
-        var Ce = () => Te.length || je.length;
-        var Le = o.Promise,
-            xe = {
+        var Ce = [];
+        var Le = () => Ce.length || Te.length;
+        var xe = o.Promise,
+            Be = {
                 show(e, t = {}) {
                     if (e.match(/story/) && (e = this._parseList(e)), cur.storyLayer && cur.storyLayer.list === e.split("/")[1]) return !1;
                     this.getList(e).then(({
@@ -3216,7 +3251,7 @@
                                 })
                             }
                             getBlockKey(e) {
-                                return e.hasOwnProperty("data") && (e = e.data), e.items && e.items.length && "live" === e.items[0].type ? `${e.author.id}live` : e.narrative || e.is_narrative ? `${e.author?e.author.id:e.narrative.owner_id}narrative${e.items?e.items[0].narrative.id:e.narrative.id}` : `${e.author.id}`
+                                return e.hasOwnProperty("data") && (e = e.data), e.items && e.items.length && "live" === e.items[0].type ? `${e.author.id}live` : e.narrative || e.is_narrative ? `${e.author?e.author.id:e.narrative.owner_id}narrative${e.items?e.items[0].narrative.id:e.narrative.id}` : this.list.includes("place") ? `${e.author.id}` + "place" : `${e.author.id}`
                             }
                             _renderStories() {
                                 for (var e = [], t = 0; t < this.storiesList.length; t++) this.storiesList[t] && e.push(this.storiesList[t]);
@@ -3234,7 +3269,7 @@
                                         if (!this.renderedStories[i]) {
                                             var r = this.storiesBlocks.indexOf(i),
                                                 a = e.author.id,
-                                                n = new ye(e, {
+                                                n = new be(e, {
                                                     id: t,
                                                     layer: this,
                                                     onSelect: this._onSelectStory.bind(this),
@@ -3328,7 +3363,7 @@
                                 addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && S(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close", !1), !0 !== e && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(e), removeClass(this.layerEl, "shown"), this.activeStory && (this.activeStory.pauseStory(), this.activeStory._hideTooltip(), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close", !1))
                             }
                             doHide(e) {
-                                if (this._readStories(), this.destroy(), !e && (w.pop(), cur.storyLayer = w[w.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (layerQueue.hide(), layerQueue.clear())), window.wkcur && window.wkcur.shown && WkView.restoreLayer({}), "group_stories" === this.list && Stories.groupStoriesBlockUpdate(), this.list.startsWith("archive") && !1 !== this.hideAllLayers && !e) {
+                                if (this._readStories(), this.destroy(), !e && (w.pop(), cur.storyLayer = w[w.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (k(0, !0), layerQueue.pop())), window.wkcur && window.wkcur.shown && WkView.restoreLayer({}), "group_stories" === this.list && Stories.groupStoriesBlockUpdate(), this.list.startsWith("archive") && !1 !== this.hideAllLayers && !e) {
                                     if (!_message_boxes[cur.storiesArchiveBoxGUID]) return;
                                     _message_boxes[cur.storiesArchiveBoxGUID].forceHide = !1, _message_boxes[cur.storiesArchiveBoxGUID]._show(!0, !1, !0), window.updateStoriesArchiveBoxPosition && window.updateStoriesArchiveBoxPosition()
                                 }
@@ -3339,7 +3374,7 @@
                                 t && "stories_form_focus" === t.name && cancelStackPop(), this.hide(!1, e)
                             }
                             _getScreenStoriesCount() {
-                                return 2 * Math.floor(window.innerWidth / (window.innerHeight * be)) + 1
+                                return 2 * Math.floor(window.innerWidth / (window.innerHeight * we)) + 1
                             }
                             _getCurStoryPos(e) {
                                 return (e || this.storiesBlocks).indexOf(this.blockKey)
@@ -3507,7 +3542,7 @@
                                 this.activeStory && this.activeStory.changeStory(e)
                             }
                             _readStories() {
-                                if (this.storiesToRead.length && Ce()) {
+                                if (this.storiesToRead.length && Le()) {
                                     var e = this._getSource(),
                                         t = this.storiesToRead.join(","),
                                         s = this.storiesSkip.join(",");
@@ -3517,22 +3552,22 @@
                                         source: e,
                                         stories_skip: s,
                                         navigation_stats: function() {
-                                            var e = je.map(({
+                                            var e = Te.map(({
                                                 ownerId: e,
                                                 storyId: t,
                                                 source: s,
                                                 action: i
                                             }) => [e, t, s, i].join(",")).join(";");
-                                            return je = [], e
+                                            return Te = [], e
                                         }(),
                                         loading_stats: function() {
-                                            var e = Te.map(({
+                                            var e = Ce.map(({
                                                 ownerId: e,
                                                 storyId: t,
                                                 source: s,
                                                 time: i
                                             }) => [e, t, s, i].join(",")).join(";");
-                                            return Te = [], e
+                                            return Ce = [], e
                                         }(),
                                         connection_type: function() {
                                             var {
@@ -3561,7 +3596,7 @@
                             }
                             _getSource() {
                                 var e = "list";
-                                return this._source ? this._source : (-1 !== [ke, Ee, X, Oe.b].indexOf(cur.module) && (e = cur.module), e)
+                                return this._source ? this._source : (-1 !== [Ee, Oe, X, je.b].indexOf(cur.module) && (e = cur.module), e)
                             }
                             _sendNavigationStatEvents(e, t = !0, s = {}) {
                                 var i = this.activeStory,
@@ -3581,7 +3616,7 @@
                                             source: t,
                                             action: s
                                         };
-                                        je.push(o)
+                                        Te.push(o)
                                     }({
                                         storyRawId: r,
                                         source: o,
@@ -3656,7 +3691,7 @@
                                         source: t,
                                         time: s
                                     };
-                                    Te.push(o)
+                                    Ce.push(o)
                                 }({
                                     storyRawId: e,
                                     source: this.viewerSource,
@@ -3714,7 +3749,7 @@
                                             }(), S()
                                     }
                                     removeClass(i, "stories_feed_item_ava_animate");
-                                    var [o, a] = getXY(i), n = getSize(i), l = window.innerHeight, d = Math.min(fe, Math.max(Se, l * be)), h = d * we, c = Math.max(0, (l - h) / 2), _ = Math.max(0, (window.innerWidth - d) / 2);
+                                    var [o, a] = getXY(i), n = getSize(i), l = window.innerHeight, d = Math.min(Se, Math.max(ke, l * we)), h = d * fe, c = Math.max(0, (l - h) / 2), _ = Math.max(0, (window.innerWidth - d) / 2);
                                     o = _ - o + d / 2 - n[0] / 2 + scrollGetX(), a = c - a + h / 2 - n[1] / 2 + scrollGetY(), o = -o, a = -a;
                                     var p = {};
                                     "expand" === e && (p.transform = `translate(${o}px, ${a}px) scale(0)`, this.animateFromEl = t), setStyle(this.activeStory.wrapEl, p), "minimize" === e && setStyle(i, "transform", "scale(0)"), this.animationTimer = setTimeout(() => {
@@ -3777,10 +3812,10 @@
                                 return !(!this.extra || !this.extra.context || this.extra.context !== e)
                             }
                         }(e, s, i, r, t), t);
-                        var o = Object(me.b)();
+                        var o = Object(ye.b)();
                         o && (t.fromEl = null, "stories" === o.wkRaw ? (o._hide(!1, !0, !0), o.forceHide = !0, cur.storiesArchiveBoxGUID = o.guid) : o.hide())
                     }).catch(e => {
-                        vk.dev && debugLog(e), showFastBox(Object(ue.d)("global_error"), Object(ue.d)("global_unknown_error"))
+                        vk.dev && debugLog(e), showFastBox(Object(ve.d)("global_error"), Object(ve.d)("global_unknown_error"))
                     })
                 },
                 _getUnreadStory(e, t) {
@@ -3797,12 +3832,12 @@
                         }
                     return s
                 },
-                getList: e => new Le((t, s) => {
+                getList: e => new xe((t, s) => {
                     var [i, r, o] = e.split("/"), a = {
                         blockKey: i,
                         list: r,
                         extra: o
-                    }, n = xe._getList(r);
+                    }, n = Be._getList(r);
                     isArray(n) ? (a.items = n, t(a)) : ajax.post("al_stories.php", {
                         act: "get_list",
                         list: r,
@@ -3830,87 +3865,102 @@
                         a = s + "_" + i;
                     return e.match(/from_feed\=1/) ? r = "feed" : e.match(/profile\=1/) ? r = "profile" : r || (r = a), a + "/" + r + "/" + o
                 },
-                initFeed() {
-                    var e = Object(V.F)("stories_feed_items_container");
+                initFeed(e = "stories_feed_items_container") {
+                    e = Object(V.F)(e);
+                    var t = Object(V.H)("stories_feed_items", e),
+                        s = attr(t, "id");
 
-                    function t() {
-                        addEvent(e, browserFeatures.wheelEvent, xe.feedMouseWheel)
+                    function i() {
+                        addEvent(e, browserFeatures.wheelEvent, Be.feedMouseWheel)
                     }
 
-                    function s() {
-                        removeEvent(e, browserFeatures.wheelEvent, xe.feedMouseWheel)
+                    function r() {
+                        removeEvent(e, browserFeatures.wheelEvent, Be.feedMouseWheel)
                     }
-                    xe.updateFeedArrows(), addEvent(e, "mouseenter", t), addEvent(e, "mouseleave", s), cur.destroy.push(function() {
-                        removeEvent(e, browserFeatures.wheelEvent, xe.feedMouseWheel), removeEvent(e, "mouseenter", t), removeEvent(e, "mouseleave", s)
+                    Be.updateFeedArrows(s), addEvent(e, "mouseenter", i), addEvent(e, "mouseleave", r), cur.destroy.push(function() {
+                        removeEvent(e, browserFeatures.wheelEvent, Be.feedMouseWheel), removeEvent(e, "mouseenter", i), removeEvent(e, "mouseleave", r)
                     })
                 },
-                feedNext() {
-                    return this.feedPaging("next")
+                feedNext(e) {
+                    var t = Object(V.F)("stories_feed_wrap");
+                    return e && (t = domClosest("stories_feed_wrap", e.target)), this.feedPaging("next", null, t)
                 },
-                feedPrev() {
-                    return this.feedPaging("prev")
+                feedPrev(e) {
+                    var t = Object(V.F)("stories_feed_wrap");
+                    return e && (t = domClosest("stories_feed_wrap", e.target)), this.feedPaging("prev", null, t)
                 },
-                feedPaging(e, t) {
-                    var s = Object(V.H)("stories_feed_wrap"),
-                        i = Object(V.F)("stories_feed_items"),
-                        r = getSize(s)[0],
-                        o = cur.storiesPos || 0;
-                    if (isNumeric(e)) o += e;
+                feedPaging(e, t, s) {
+                    s || (s = Object(V.F)("stories_feed_wrap"));
+                    var i = Object(V.H)("stories_feed_items", s),
+                        r = attr(i, "id"),
+                        o = r + "_position",
+                        a = cur[o] || 0,
+                        n = getSize(s)[0];
+                    if (isNumeric(e)) a += e;
                     else {
-                        var a = r - 100;
-                        "next" === e ? o += a : o -= a
+                        var l = n - 100;
+                        "next" === e ? a += l : a -= l
                     }
-                    cur.storiesPos = Math.max(0, Math.min(o, i.scrollWidth - r)), t ? Object(V.hb)(i, "animated") : Object(V.a)(i, "animated"), setStyle(i, "transform", "translateX(-" + cur.storiesPos + "px)"), xe.updateFeedArrows()
+                    cur[o] = Math.max(0, Math.min(a, i.scrollWidth - n)), t ? Object(V.hb)(i, "animated") : Object(V.a)(i, "animated"), setStyle(i, "transform", "translateX(-" + cur[o] + "px)"), Be.updateFeedArrows(r)
                 },
                 feedScrollToOwner(e) {
-                    var t = Object(V.F)("stories_feed_items").offsetWidth,
-                        s = Object(V.F)("feed_story_" + e);
-                    if (s) {
-                        var i = s.offsetWidth,
-                            r = s.offsetLeft;
-                        cur.storiesPos = r - t + t / 2 + i / 2, xe.feedPaging(0, !0)
+                    var t = Object(V.F)("feed_story_" + e);
+                    if (t) {
+                        var s = domClosest("stories_feed_items", t),
+                            i = s.offsetWidth,
+                            r = attr(s, "id") + "_position",
+                            o = t.offsetWidth,
+                            a = t.offsetLeft,
+                            n = domClosest("stories_feed_wrap", s);
+                        cur[r] = a - i + i / 2 + o / 2, Be.feedPaging(0, !0, n)
                     }
                 },
-                updateFeedStories(e, t) {
-                    if (e = e || "news", Object(V.F)("stories_feed_items"))
+                updateFeedStories(e, t, s = "stories_feed_items") {
+                    var i = Object(V.F)(s),
+                        r = domClosest("stories_feed_wrap", i);
+                    if (e = e || "news", i)
                         if (inArray(e, ["news", "search"])) {
-                            var s = (e, s) => {
-                                t && t.cb && t.cb(), this._setList("feed", s);
-                                var i = Object(V.F)("stories_feed_items");
-                                i && (e ? (setStyle(i, "transform", "translateX(0px)"), Object(V.zb)(i, e), i.children.length < 6 ? Object(V.a)("stories_feed_wrap", "stories_feed_not_nav_buttons") : Object(V.hb)("stories_feed_wrap", "stories_feed_not_nav_buttons"), cur.storiesPos = 0, xe.updateFeedArrows(), show("stories_feed_wrap")) : hide("stories_feed_wrap"))
+                            var o = (e, i) => {
+                                t && t.cb && t.cb(), this._setList("feed", i);
+                                var o = Object(V.F)(s);
+                                o && (e ? (setStyle(o, "transform", "translateX(0px)"), Object(V.zb)(o, e), o.children.length < 6 ? Object(V.a)(r, "stories_feed_not_nav_buttons") : Object(V.hb)(r, "stories_feed_not_nav_buttons"), cur[s + "_position"] = 0, Be.updateFeedArrows(s), show(r)) : hide(r))
                             };
                             if (t && t.stories) {
                                 var {
-                                    section: i,
-                                    q: r,
-                                    stories: o
+                                    section: a,
+                                    q: n,
+                                    stories: l
                                 } = t, {
-                                    html: a,
-                                    js: n
-                                } = o;
-                                return "search" !== i || r && n.length ? void s(a, n) : void hide("stories_feed_wrap")
+                                    html: d,
+                                    js: h
+                                } = l;
+                                return "search" !== a || n && h.length ? void o(d, h) : void hide(r)
                             }
                             ajax.post("al_stories.php", {
                                 act: "feed_stories"
                             }, {
-                                onDone: s
+                                onDone: o
                             })
-                        } else hide("stories_feed_wrap")
+                        } else hide(r)
                 },
                 feedMouseWheel(e) {
-                    if (!hasClass("stories_feed_wrap", "stories_feed_not_nav_buttons")) {
+                    var t = domClosest("stories_feed_wrap", e.target);
+                    if (!hasClass(t, "stories_feed_not_nav_buttons")) {
                         cancelEvent(e);
-                        var t = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-                        xe.feedPaging(t, 1)
+                        var s = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+                        Be.feedPaging(s, 1, t)
                     }
                 },
-                updateFeedArrows() {
-                    var e = Object(V.F)("stories_feed_items");
-                    if (e) {
-                        cur.storiesPos || (cur.storiesPos = 0);
-                        var t = Object(V.H)("stories_feed_wrap").offsetWidth,
-                            s = e.scrollWidth - t;
-                        0 === cur.storiesPos ? Object(V.a)("stories_feed_arrow_left", "disabled") : Object(V.hb)("stories_feed_arrow_left", "disabled"), cur.storiesPos === s || s <= 0 ? Object(V.a)("stories_feed_arrow_right", "disabled") : Object(V.hb)("stories_feed_arrow_right", "disabled")
+                updateFeedArrows(e = "stories_feed_items") {
+                    var t = Object(V.F)(e),
+                        s = e + "_position";
+                    if (t) {
+                        cur[s] || (cur[s] = 0);
+                        var i = Object(V.H)("stories_feed_wrap").offsetWidth,
+                            r = t.scrollWidth - i,
+                            o = Object(V.H)("stories_feed_arrow_left", domPN(t)),
+                            a = Object(V.H)("stories_feed_arrow_right", domPN(t));
+                        0 === cur[s] ? Object(V.a)(o, "disabled") : Object(V.hb)(o, "disabled"), cur[s] === r || r <= 0 ? Object(V.a)(a, "disabled") : Object(V.hb)(a, "disabled")
                     }
                 },
                 showBlackList() {
@@ -3940,11 +3990,11 @@
                         list: t.join(",")
                     }, {
                         onDone() {
-                            Object(me.b)().hide(), xe.updateFeedStories()
+                            Object(ye.b)().hide(), Be.updateFeedStories()
                         },
                         showProgress: lockButton.pbind(e),
                         hideProgress: unlockButton.pbind(e)
-                    }) : Object(me.b)().hide()
+                    }) : Object(ye.b)().hide()
                 },
                 blacklistUpdateUsers(e) {
                     var t = e;
@@ -3959,19 +4009,19 @@
                                 d = e ? l.name.replace(o, e => `<em>${e}</em>`) : l.name;
                             a += cur.storiesBlackList.tpl.replace(/\{id\}/g, l.id).replace("{photo}", l.photo).replace("{name}", d).replace("{href}", l.href).replace("{class_name}", cur.storiesBlackListShown[l.id] ? " olist_item_wrap_on" : "")
                         }
-                        a || (a = '<div class="no_rows">' + Object(ue.d)("global_search_not_found").replace("{search}", clean(t)) + "</div>"), Object(V.zb)(Object(V.H)("olist", "stories_black_list_result"), a)
+                        a || (a = '<div class="no_rows">' + Object(ve.d)("global_search_not_found").replace("{search}", clean(t)) + "</div>"), Object(V.zb)(Object(V.H)("olist", "stories_black_list_result"), a)
                     }
                 },
                 blackListInit(e) {
-                    cur.storiesBlackListShown = {}, cur.storiesBlackList = e, Object(me.b)().setOptions({
+                    cur.storiesBlackListShown = {}, cur.storiesBlackList = e, Object(ye.b)().setOptions({
                         width: 450,
                         bodyStyle: "padding: 0px",
                         onClean: function() {
                             this.storyLayer && this.storyLayer.playStory(), cur.storiesBlackListScroll && cur.storiesBlackListScroll.destroy()
                         }
                     }).removeButtons(), cur.storiesBlackList.users.length ? (cur.storiesBlacklistLastQ = !1, cur.storiesIndexer = new vkIndexer(cur.storiesBlackList.users, e => e.name, () => {
-                        xe.blacklistUpdateUsers("")
-                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), Object(me.b)().addButton(Object(ue.d)("global_save"), xe.saveBlackList).addButton(Object(ue.d)("global_cancel"), void 0, "no")) : Object(me.b)().addButton(Object(ue.d)("global_close"))
+                        Be.blacklistUpdateUsers("")
+                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), Object(ye.b)().addButton(Object(ve.d)("global_save"), Be.saveBlackList).addButton(Object(ve.d)("global_cancel"), void 0, "no")) : Object(ye.b)().addButton(Object(ve.d)("global_close"))
                 },
                 preloadUrl(e) {
                     u(e)
@@ -3980,10 +4030,10 @@
                     var t = gpeByClass("stories_feedback_replies_items", e);
                     Object(V.hb)(Object(V.H)("stories_replies_chunk_hidden", t), "stories_replies_chunk_hidden");
                     var s = Object(V.H)("stories_replies_chunk_hidden", t);
-                    s ? Object(V.zb)(e, langNumeric(Object(ue.d)("stories_replies_more_button", intval(attr(s, "data-size"))))) : re(e), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
+                    s ? Object(V.zb)(e, langNumeric(Object(ve.d)("stories_replies_more_button", intval(attr(s, "data-size"))))) : re(e), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
                 },
                 groupStoriesBlockUpdate() {
-                    var e = xe._getList("group_stories"),
+                    var e = Be._getList("group_stories"),
                         t = e && e[0] && e[0].items;
                     if (t) {
                         for (var s = 0, i = 0; i < t.length; i++) {
@@ -4004,11 +4054,11 @@
                     cur.storyLayer.activeStory.onLiveEnded(e)
                 },
                 updateLiveViewersCount(e) {
-                    var t = e ? Object(ue.d)("stories_live_N_watching", e, !0) : "";
+                    var t = e ? Object(ve.d)("stories_live_N_watching", e, !0) : "";
                     cur.storyLayer.activeStory.updateLiveViewersCount(t)
                 }
             };
-        window.Stories = xe;
+        window.Stories = Be;
         try {
             stManager.done("stories.js")
         } catch (e) {}

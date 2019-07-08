@@ -686,6 +686,14 @@ a.groups_messages_block:before {
     color: #3670b3
 }
 
+#group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item.groups_menu_item_add .groups_menu_item_image:after {
+    border-width: 0
+}
+
+#group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item.groups_menu_item_add._transparent {
+    cursor: default
+}
+
 #group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image {
     height: 92px;
     width: 135px;
@@ -704,6 +712,10 @@ a.groups_messages_block:before {
     background-position-y: 50%;
     background-repeat: no-repeat;
     background-size: 48px
+}
+
+#group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image .groups_menu_item_image_content.groups_menu_item_placeholder_add_transparent {
+    background-color: #fafbfc
 }
 
 #group_section_menu .module_body .ui_gallery .ui_gallery_item .groups_menu_item .groups_menu_item_image .groups_menu_item_image_content.groups_menu_item_placeholder_add {

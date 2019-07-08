@@ -15682,18 +15682,25 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .svgIcon-groups-common {
-    -webkit-background-size: 56px 56px;
-    -moz-background-size: 56px 56px;
-    background-size: 56px 56px;
-    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5.svg')
+    -webkit-background-size: 76px 56px;
+    -moz-background-size: 76px 56px;
+    background-size: 76px 56px;
+    background-image: url('/images/mobile/icons/sprites/groups-common-d81d459c.svg')
 }
 
 .vk_old.vk_1x .svgIcon-groups-common {
-    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5_1x.png')
+    background-image: url('/images/mobile/icons/sprites/groups-common-d81d459c_1x.png')
 }
 
 .vk_old.vk_2x .svgIcon-groups-common {
-    background-image: url('/images/mobile/icons/sprites/groups-common-42e385b5_2x.png')
+    background-image: url('/images/mobile/icons/sprites/groups-common-d81d459c_2x.png')
+}
+
+.svgIcon-groups-common__clock_20 {
+    background-position: -56px 0;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px
 }
 
 .svgIcon-groups-common__hide_outline_56 {
@@ -15701,6 +15708,13 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     background-repeat: no-repeat;
     width: 56px;
     height: 56px
+}
+
+.svgIcon-groups-common__place_20 {
+    background-position: -56px -20px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px
 }
 
 .WarningModal {
@@ -16470,6 +16484,111 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 56px;
     height: 56px;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2256%22%20viewBox%3D%220%200%2056%2056%22%20width%3D%2256%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22m0%200h56v56h-56z%22%20opacity%3D%22.4%22%2F%3E%3Cpath%20d%3D%22m16.8000009%2031.0795898.0000209-12.2185302c-.0005813-.1303392-.0005813-.1303392-.0023122-.673769-.0023942-.8591376-.003146-1.747937-.0012664-2.5790709.0012991-.4807797.0012991-.4807797.0035901-.9502385.0193364-3.4812645%203.0948277-6.13194438%207.5799554-6.99443189%209.3682138-2.0338045%2014.4639473-3.13118338%2015.3727751-3.31023602%201.6439511-.3238829%203.1121561-.39585052%204.6500468.06890085%202.5658272.7753943%204.1305263%202.92659795%204.1305263%206.21467756v14.5989481h-.1045923l.1045799.0570283c-.0000027%203.4641594.0000013%205.7826815.000012%206.9555663-.0004444.0951449-.0004444.0951449-.002034.1534901-.0002071.0036494-.0002071.0036494-.0003064.0313946%200%208.2677124-2.7310229%2012.8188728-9.0822099%2013.9695692-4.6864401.8490806-9.6584991-2.7838066-9.0954757-8.1231099.5932511-5.6259607%205.0098624-7.8624987%2013.9800264-9.5042772v-3.5396614-8.4407319l-22.8650459%205.1206183c-.04733.0110751-.2717119.0602784-.4682901.1041814v9.0596822%202.2455972c0%20.5404378-.0013741.6897782-.0258358.8571245-.0022249.1733054-.00565%201.3210603.0024915%203.9044574.0226376%207.1831751-1.9946302%2010.8470457-6.234083%2013.1221012-5.09847248%202.7360389-11.70591672.2485768-12.39661248-6.0209795-.68191607-6.1898616%205.6246636-10.4474289%2014.42719698-10.6694662-.0053292-2.2517538.0005724-2.9004615.0238711-3.1253755.0010569-.00842.002045-.0162922.0029717-.0236677v-.2122461c-.0001049-.0229042-.0001017-.048873-.0000739-.0775453zm27.533336-20.4426981c0-1.45295882-.3683643-1.95939905-1.1455015-2.19425031-.7057138-.21326709-1.6047151-.16920037-2.623215.0314593-.8664912.17071171-5.9928772%201.27469168-15.3422788%203.30381021-2.777199.5344247-4.2161031%201.7745759-4.2223731%202.9033986-.0022525.4615381-.0022525.4615381-.003536.9364086-.0015297.6764116-.0012984%201.392691.0001513%202.0997093l23.3367531-5.2263469zm-9.8031843%2028.0833299c-.2407861%202.2834394%202.0245538%203.9386337%204.1698753%203.5499483%203.90395-.7073104%205.5244786-3.2190771%205.6258646-9.2191474-6.5751132%201.277533-9.4983099%202.8485898-9.7957399%205.6691991zm-28.00944884%206.0077518c.33194896%203.0131539%203.54651944%204.2233226%206.23588154%202.7801062%202.7156285-1.457312%203.9452822-3.5615202%204.0169503-8.7886377-6.5908059.1855944-10.59593458%202.8941328-10.25283184%206.0085315z%22%20fill%3D%22%2399a2ad%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat
+}
+
+.PlaceDescription {
+    padding: 12px
+}
+
+.PlaceDescription__map {
+    position: relative;
+    display: block;
+    min-height: 90px;
+    text-align: center
+}
+
+.PlaceDescription__map:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px inset rgba(0, 0, 0, .08);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    pointer-events: none
+}
+
+.PlaceDescription__mapImage {
+    width: 100%;
+    max-width: 700px;
+    vertical-align: top;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px
+}
+
+.PlaceDescription__infoRow {
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 14px;
+    color: #76787a
+}
+
+.PlaceDescription__infoRow:first-child {
+    margin-top: 14px
+}
+
+.PlaceDescription__infoRowIcon {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 12px
+}
+
+.PlaceOwnerInfo {
+    padding: 0 12px
+}
+
+.PlaceOwnerInfo__friends {
+    display: block;
+    padding: 8px 0;
+    -webkit-box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, .08);
+    -moz-box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, .08);
+    box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, .08)
+}
+
+.PlaceOwnerInfo__friendsAvatars {
+    float: left
+}
+
+.PlaceOwnerInfo__friendsCount {
+    color: #909499;
+    font-size: 13px;
+    line-height: 24px;
+    margin-left: 56px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.PlaceOwnerInfo__friendsCount:hover {
+    cursor: pointer
+}
+
+.PlaceOwnerInfo__friendAvatar {
+    width: 24px;
+    height: 24px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border-right: 2px solid #fff;
+    margin-right: -4px;
+    float: right
+}
+
+.PlaceOwnerInfo__friendAvatar:first-child {
+    margin-right: 0;
+    border-right: 0
+}
+
+.PlaceOwnerInfo__friendAvatar:last-child {
+    border-left: 0
 }
 
 .audioAttention__cell {
@@ -46112,7 +46231,7 @@ body.apps_settingsPageBody .basis__content {
 
 .StoriesSearchBlock {
     position: relative;
-    padding-top: 12px;
+    padding-top: 15px;
     margin: 10px 0
 }
 
@@ -46134,7 +46253,7 @@ body.apps_settingsPageBody .basis__content {
     letter-spacing: -0.2px;
     color: #909499;
     text-transform: uppercase;
-    padding: 0 12px 12px
+    padding: 0 12px 14px
 }
 
 .StoriesSearchBlock__wrap {
@@ -46153,7 +46272,7 @@ body.apps_settingsPageBody .basis__content {
     position: relative;
     display: inline-block;
     width: 84px;
-    height: 149px;
+    height: 120px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;

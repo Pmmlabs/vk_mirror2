@@ -985,22 +985,6 @@ window.searchActions = {
             dark: 1
         });
     },
-    addCommunity: function() {
-        showBox('al_search.php', {
-            act: 'suggest_community'
-        }, {
-            params: {
-                bodyStyle: 'padding: 20px;',
-                dark: 1
-            },
-            onFail: function(msg) {
-                if (msg) {
-                    showDoneBox('<b>' + msg + '</b>');
-                }
-                return true;
-            }
-        });
-    },
     selectCategory: function(el, id, isSubcategory) {
         ge('c[category]').value = id;
         if (el && hasClass(el, '_ui_rmenu_subitem')) {

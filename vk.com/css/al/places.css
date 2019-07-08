@@ -625,6 +625,10 @@ input.place_map_point_search {
     padding-top: 14px
 }
 
+.places_only_photos .places_other_list {
+    padding-top: 0
+}
+
 .places_map_other_list {
     margin: -2.5px
 }

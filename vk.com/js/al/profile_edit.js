@@ -847,9 +847,8 @@ var ProfileEditor = {
         cur.onFrLoaded = [
             [type, selected]
         ];
-        ajax.post('friends_ajax.php', {
-            act: 'custom',
-            no_lists: 1
+        ajax.post(ProfileEditor.controller, {
+            act: 'a_reltives_friends'
         }, {
             onDone: function(friends) {
                 if (!cur.onFrLoaded) return;

@@ -4042,7 +4042,7 @@ textarea.EditableLabel__textarea {
     padding: 19px 0 17px
 }
 
-.stories_feed_items {
+.stories_feed_items_inner {
     white-space: nowrap;
     position: relative
 }
@@ -4417,6 +4417,14 @@ textarea.EditableLabel__textarea {
     fill: #fff;
     font-size: 8px;
     font-weight: 700
+}
+
+.stories_place_box {
+    display: block
+}
+
+.stories_place_box .stories_feed_preview_item {
+    height: 120px
 }
 
 .stories_feed_with_thumb .stories_feed_arrow_right:hover~#stories_feed_items {
