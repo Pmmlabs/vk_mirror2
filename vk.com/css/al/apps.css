@@ -3760,6 +3760,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     text-align: left
 }
 
+.app_footer_with_moderation .apps_footer_right {
+    overflow: initial
+}
+
 @media screen and (max-width: 1045px) {
     .apps_footer.app_footer_with_moderation .apps_footer_left {
         width: 30%
@@ -4145,6 +4149,12 @@ a.page_block_header:hover .apps_cat_header_link:after {
     display: block;
     width: 100%;
     margin-bottom: 10px
+}
+
+.apps_i_desktop {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .apps_i_desktop:after {
@@ -6302,10 +6312,6 @@ a.app_decline:hover {
 #show_more_progress {
     text-align: center;
     width: 603px
-}
-
-.apps_i_app_run {
-    margin-left: -107px
 }
 
 .apps_i_single_run {

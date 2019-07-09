@@ -2323,7 +2323,7 @@
                     store: e,
                     flagsUpdated: t,
                     onHideStatus: n
-                } = this.props, a = e.get(), i = a.tabs[a.peer], s = Object(r.rb)(a, a.peer), o = i.inviteLink && Object(L.l)(e) || Object(L.f)(e), c = Object(L.n)(i, a.id) && !s, l = Object(we.a)("ChatSettingsMenu", {
+                } = this.props, a = e.get(), i = a.tabs[a.peer], s = Object(r.rb)(a, a.peer), o = i.inviteLink && Object(L.l)(e) || Object(L.f)(e), c = Object(L.o)(i, a.id) && !s, l = Object(we.a)("ChatSettingsMenu", {
                     "ChatSettingsMenu--copied": this.state.copied
                 });
                 return ye.createElement("div", {
@@ -2523,7 +2523,7 @@
                     if (!s[e]) return "";
                     var o = Object(r.U)(n, [s[e][0]])[0],
                         c = tt(s[e][2], n.timeshift, !0);
-                    if (Object(L.n)(i, e)) return this.invitersCache[e] = nt("mail_settings_owner"), nt("mail_settings_owner");
+                    if (Object(L.o)(i, e)) return this.invitersCache[e] = nt("mail_settings_owner"), nt("mail_settings_owner");
                     if (!o) return this.invitersCache[e] = c, c;
                     var l = Ze(s[e][1], nt("mail_chat_member_invited_by_X", "raw")).replace(/{inviter}/, replaceEntities(o.name)) + " " + c;
                     return this.invitersCache[e] = l, l
@@ -12049,8 +12049,12 @@
         }
 
         function Zn(e, t) {
-            var n = Object(s.u)(e, t.peerId) || {};
-            if (!t || !Object(o.k)(t)) return !1;
+            var n = Object(s.u)(e, t.peerId) || {},
+                a = e.get(),
+                r = Object(l.b)(t.peerId) && Object(v.n)(n, a.id),
+                i = Object(l.b)(t.peerId) && Object(v.n)(n, t.userId);
+            if (!t) return !1;
+            if (!Object(o.k)(t) && (!r || i)) return !1;
             if (333 == t.peerId) return !1;
             if (Date.now() / 1e3 - t.date > 86400) return !1;
             if (Xe(e, t.peerId, t.messageId)) return !1;
@@ -14131,6 +14135,8 @@
         }), n.d(t, "m", function() {
             return E
         }), n.d(t, "n", function() {
+            return I
+        }), n.d(t, "o", function() {
             return x
         });
         n("OEbY");
