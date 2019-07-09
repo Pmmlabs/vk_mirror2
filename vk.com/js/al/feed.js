@@ -1136,6 +1136,9 @@ var Feed = {
                 break;
 
             case 'mentions':
+                var urlParams = new URLSearchParams(location.search);
+                urlParams.delete('ref');
+                history.replaceState(null, '', '?' + urlParams + location.hash);
                 if (cur.mentionObj && cur.mentionObj != vk.id) {
                     params.obj = cur.mentionObj;
                 }
