@@ -2234,7 +2234,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<tr>' +
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table" style="width: 100%;">' +
-                '<tr><td><input class="inlInput text" type="text" id="ads_inline_edit_cost_per_click"/><label class="inlInput__label" for="ads_inline_edit_cost_per_click"></label></td></tr>' +
+                '<tr><td><input autocomplete="off" class="inlInput text" type="text" id="ads_inline_edit_cost_per_click"/><label class="inlInput__label" for="ads_inline_edit_cost_per_click"></label></td></tr>' +
                 '<tr><td style="padding-top: 7px; height: 22px;">' +
                 '<img class="inline_recommended_cost_progress" src="/images/upload.gif" />' +
                 '<span class="ads_inline_recommended_cost_text"></span>' +
@@ -2251,7 +2251,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table">' +
                 '<tr>' +
-                '<td><input class="inlInput text" type="text" id="ads_inline_edit_limit" /><label class="inlInput__label" for="ads_inline_edit_limit"></label></td>' +
+                '<td><input autocomplete="off" class="inlInput text" type="text" id="ads_inline_edit_limit" /><label class="inlInput__label" for="ads_inline_edit_limit"></label></td>' +
                 '<td><a class="ads_inline_edit_remove_value" href="#">' + getLang('ads_inline_edit_remove_limit') + '</a></td>' +
                 '</tr>' +
                 '<tr class="ads_inline_fast_error_row"><td colspan="2"><div class="ads_inline_fast_error"></div></td></tr>' +
@@ -2295,7 +2295,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<tr>' +
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table" style="width: 100%;">' +
-                '<tr><td><input class="inlInput text" type="text" /></td></tr>' +
+                '<tr><td><input autocomplete="off" class="inlInput text" type="text" /></td></tr>' +
                 '<tr class="ads_inline_fast_error_row"><td><div class="ads_inline_fast_error"></div></td></tr>' +
                 '</table>' +
                 '</td>' +

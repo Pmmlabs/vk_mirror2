@@ -2588,6 +2588,12 @@ a.group_ad_post_stats {
     width: 300px
 }
 
+.group_edit_field_error.dark,
+.group_edit_field_error .selector_table {
+    background-color: #ffefe9;
+    border-color: #f2ab99
+}
+
 .group_edit_rss_column_wrap {
     overflow: hidden
 }

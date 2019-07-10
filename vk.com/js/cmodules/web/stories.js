@@ -2300,7 +2300,13 @@
                     onLongLoading: this._showLoader.bind(this),
                     onAutoPlayFail: this._onAutoPlayFail.bind(this)
                 };
-                ("live" === t ? this.story = new le(e, s, this.wrapEl) : ("video" === t ? (this.story = new de(e, s), Object(V.a)(this.wrapEl, "video")) : (this.story = new _e(e, s), this.opts.onVideoEnd(), Object(V.hb)(this.wrapEl, "video")), val(this.descEl, e.is_ads ? Object(ve.d)("stories_is_ad") : this.story.getDate()), this.fillTimeLine()), "live" === t || "video" === t) && (y() > 0 && this.opts.onVideoPlay());
+                if ("live" === t) this.story = new le(e, s, this.wrapEl);
+                else {
+                    "video" === t ? (this.story = new de(e, s), Object(V.a)(this.wrapEl, "video")) : (this.story = new _e(e, s), this.opts.onVideoEnd(), Object(V.hb)(this.wrapEl, "video"));
+                    var o = this.story.getDate();
+                    e.isPromo ? o = e.promoCaption : e.isAds && (o = Object(ve.d)("stories_is_ad")), val(this.descEl, o), this.fillTimeLine()
+                }
+                "live" !== t && "video" !== t || y() > 0 && this.opts.onVideoPlay();
                 this.opts.onStartStory(), Object(V.wb)(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && (this.stickerLayers = r.render(i.createElement(oe, {
                     story: e,
                     author: this.data.author,
