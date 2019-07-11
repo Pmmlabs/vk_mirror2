@@ -612,8 +612,7 @@
                 var e = {
                     enable: 1,
                     hash: this.options.enable_ad_hash,
-                    union_id: this.options.created_ad_id,
-                    promo_business_day_disabled: 1
+                    union_id: this.options.created_ad_id
                 };
                 ajax.post("/ads?act=a_union_change_status", e, {
                     onDone: this.onEnableAdDone.bind(this, !0),

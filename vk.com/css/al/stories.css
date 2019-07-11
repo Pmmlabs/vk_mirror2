@@ -2539,9 +2539,7 @@ textarea.EditableLabel__textarea {
 
 .StoryQuestion__title--free {
     height: auto;
-    text-overflow: inherit;
-    -webkit-box-orient: inherit;
-    overflow: auto
+    -webkit-line-clamp: 5
 }
 
 .StoryQuestion__controls {

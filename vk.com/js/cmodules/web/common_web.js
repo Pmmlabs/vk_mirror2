@@ -572,7 +572,7 @@
 
         function ee(e) {
             var t = "";
-            Object(w.T)("_im_mess_stack", e) && (t = "_im_mess_stack"), Object(Q.c)(e, {
+            Object(w.T)("_im_mess_stack", e) ? t = "_im_mess_stack" : Object(w.T)("wall_text", e) && (t = "scroll_fix_wrap"), Object(Q.c)(e, {
                 className: "bookmarks_tt ",
                 shift: [32, 8],
                 text: () => "1" === Object(w.s)(e, "state") ? Object(w.s)(e, "remove") : Object(w.s)(e, "add"),

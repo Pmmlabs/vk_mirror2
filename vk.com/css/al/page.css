@@ -6737,6 +6737,10 @@ div.submit_post_field font {
     z-index: 2
 }
 
+.wpe_wrap .wall_text {
+    z-index: 3
+}
+
 .wall_module .audio {
     margin-left: -6px
 }

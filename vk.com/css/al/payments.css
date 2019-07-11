@@ -2140,7 +2140,6 @@ h2.payments_getvotes_title {
 
 .payments_vkpay_votes_buy_promo_container {
     width: 400px;
-    height: 428px;
     text-align: center
 }
 
@@ -2186,6 +2185,18 @@ h2.payments_getvotes_title {
     margin: 118px 0 10px;
     background-color: #fff;
     color: #000
+}
+
+.payments_vkpay_votes_buy_promo_container_block {
+    height: 428px
+}
+
+.payments_vkpay_votes_buy_promo_container_short_block {
+    height: 248px
+}
+
+.payments_vkpay_votes_buy_promo_container_short_block .payments_vkpay_votes_buy_promo_info_block {
+    display: none
 }
 
 .payments_box_gray_x_button {

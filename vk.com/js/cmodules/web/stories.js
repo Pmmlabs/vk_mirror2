@@ -472,7 +472,7 @@
         }
 
         function u(e) {
-            return h || ((h = new Worker("/js/al/stories_loader_worker.js")).onmessage = (e => {
+            return h || ((h = new Worker("/js/cmodules/web/stories_loader_worker.js")).onmessage = (e => {
                 var t = e.data;
                 switch (t.type) {
                     case "loaded":
@@ -1639,15 +1639,17 @@
                         sendNavigationStatEvents: o
                     } = this.props, {
                         raw_id: a,
-                        ask_question_hash: n
-                    } = i, [l, d] = a.split("_");
+                        askQuestionHash: n,
+                        accessKey: l
+                    } = i, [d, h] = a.split("_");
                     ajax.post("al_stories.php", {
                         act: "ask_question",
-                        story_owner_id: l,
-                        story_id: d,
+                        story_owner_id: d,
+                        story_id: h,
                         question_text: e,
                         is_anonymous: +t,
-                        hash: n
+                        hash: n,
+                        access_key: l
                     }, {
                         onDone: () => {
                             this.closeQuestionModal(), this.resetAskText(), s(Object(L.b)("stories_question_sent").replace("{name}", r.first_name_ins)), o(t ? "question_reply_anonymous" : "question_reply")
