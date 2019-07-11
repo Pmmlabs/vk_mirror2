@@ -18323,6 +18323,7 @@ div.chat_tab_img {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%2210%22%2F%3E%3Cpath%20d%3D%22m6.70710678%209.29289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356%200s-.39052429%201.02368928%200%201.41421358l3%203c.39052429.3905243%201.02368927.3905243%201.41421356%200l5.50000002-5.50000002c.3905243-.39052429.3905243-1.02368927%200-1.41421356s-1.0236893-.39052429-1.4142136%200l-4.7928932%204.79289318z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat, linear-gradient(to bottom right, #86d1d1, #65c2c2)
 }
 
+.feedback_friend_accepted_row .feedback_photo_icon,
 .feedback_approved_row .feedback_photo_icon {
     display: block;
     background-color: #4bb34b;
@@ -18349,6 +18350,7 @@ div.chat_tab_img {
 .notifier_baloon .feedback_discussions_row .feedback_photo_icon,
 .notifier_baloon .feedback_event_unify_row .feedback_photo_icon,
 .notifier_baloon .feedback_followers_row .feedback_photo_icon,
+.notifier_baloon .feedback_friend_accepted_row .feedback_photo_icon,
 .notifier_baloon .feedback_friends_row .feedback_photo_icon,
 .notifier_baloon .feedback_gift_row .feedback_photo_icon,
 .notifier_baloon .feedback_import_row .feedback_photo_icon,

@@ -14414,6 +14414,10 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     padding: 0 4px
 }
 
+.basis .OwnerRow .OwnerRow__actions .ii_btn {
+    margin: 0 -12px
+}
+
 .BookmarkListItem__tags .BookmarksTags,
 .Owner__tags {
     overflow: hidden;
@@ -42364,6 +42368,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_mention,
 .Icon_notify_message,
 .Icon_notify_message_request,
+.Icon_notify_new_post,
 .Icon_notify_photo_tag,
 .Icon_notify_podcasts,
 .Icon_notify_private_post,
@@ -42400,6 +42405,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_mention:before,
 .Icon_notify_message:before,
 .Icon_notify_message_request:before,
+.Icon_notify_new_post:before,
 .Icon_notify_photo_tag:before,
 .Icon_notify_podcasts:before,
 .Icon_notify_private_post:before,
@@ -42437,6 +42443,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_notify_mention:before,
 .vk_2x .Icon_notify_message:before,
 .vk_2x .Icon_notify_message_request:before,
+.vk_2x .Icon_notify_new_post:before,
 .vk_2x .Icon_notify_photo_tag:before,
 .vk_2x .Icon_notify_podcasts:before,
 .vk_2x .Icon_notify_private_post:before,
@@ -42483,6 +42490,10 @@ body.apps_settingsPageBody .basis__content {
 
 .Icon_notify_invite_app:before {
     background-position: 0 -252px
+}
+
+.Icon_notify_new_post:before {
+    background-position: 0 -280px
 }
 
 .Icon_notify_gift:before {
