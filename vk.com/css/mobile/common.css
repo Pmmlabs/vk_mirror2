@@ -9532,7 +9532,7 @@ div.pm_item .pm_counter {
 }
 
 .payment_opt .ii_icon {
-    background: url(/images/mobile/payments.png?3) no-repeat 0;
+    background: url(/images/mobile/payments.png?4) no-repeat 0;
     margin: 0 10px 0 0
 }
 
@@ -9552,8 +9552,12 @@ div.pm_item .pm_counter {
     background-position: -82px
 }
 
-.payment_opt .i_googleplay {
+.payment_opt .i_spasibo {
     background-position: -123px
+}
+
+.payment_opt .i_googleplay {
+    background-position: -164px
 }
 
 .payment_opt_label {
@@ -59618,10 +59622,10 @@ screen and (min-device-pixel-ratio: 1.5) {
         background-size: 9px 12px!important
     }
     .payment_opt .ii_icon {
-        background-image: url(/images/mobile/payments_2x.png?3);
-        -webkit-background-size: 164px 41px!important;
-        -moz-background-size: 164px 41px!important;
-        background-size: 164px 41px!important
+        background-image: url(/images/mobile/payments_2x.png?4);
+        -webkit-background-size: 205px 41px!important;
+        -moz-background-size: 205px 41px!important;
+        background-size: 205px 41px!important
     }
     .faq_cat_item .body_icon,
     .faq_item .i_icon {

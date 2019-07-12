@@ -6,6 +6,7 @@
 .app_snippet_preview__bookmark_button,
 .app_snippet_preview__bookmark_button[data-state="1"],
 .apps_edit_bottom_tt_pointer,
+.apps_edit_cashout_method_img,
 .apps_edit_full_wrap .thumb_x_button .thumb_x,
 .apps_edit_side_tt_pointer,
 .AppsSalesProduct .app_rate,
@@ -5940,6 +5941,10 @@ input.execute_field_input {
     display: block
 }
 
+.apps_edit_cashout_method.unshown {
+    display: none
+}
+
 .apps_edit_cashout_method:hover {
     padding: 10px 13px;
     text-decoration: none;
@@ -5949,9 +5954,18 @@ input.execute_field_input {
 
 .apps_edit_cashout_method_img {
     margin-right: 12px;
-    width: 45px;
-    height: 45px;
-    background: url(/images/icons/apps_cashout.png) no-repeat 0 0
+    width: 44px;
+    height: 44px;
+    background: url(/images/icons/apps_cashout.png?1) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_edit_cashout_method_img {
+        background-image: url(/images/icons/apps_cashout_2x.png?1);
+        background-size: 44px 176px
+    }
 }
 
 .apps_edit_cashout_method_purse {
@@ -5959,7 +5973,11 @@ input.execute_field_input {
 }
 
 .apps_edit_cashout_method_contract {
-    background-position: 0 -94px
+    background-position: 0 -88px
+}
+
+.apps_edit_cashout_method_selectel {
+    background-position: 0 -132px
 }
 
 .apps_edit_cashout_method h2 {
@@ -5992,7 +6010,35 @@ input.execute_field_input {
 }
 
 .apps_edit_cashout_method_disabled .apps_edit_cashout_method_purse {
-    background-position: 0 -47px
+    background-position: 0 -44px
+}
+
+.apps_edit_cashout_transfer {
+    display: none;
+    margin-top: 11px
+}
+
+.apps_edit_table .apps_edit_cashout_transfer_label {
+    width: 120px;
+    max-width: 120px;
+    line-height: 1.154
+}
+
+.apps_edit_table .apps_edit_cashout_transfer_input {
+    width: 50px;
+    margin-right: 10px
+}
+
+.apps_edit_cashout_transfer_votes {
+    color: #000
+}
+
+.apps_edit_cashout_transfer_button {
+    margin-top: 14px
+}
+
+#apps_edit_cashout_error .msg {
+    margin: 0 0 10px
 }
 
 .apps_edit_clone_funcs_dialog {

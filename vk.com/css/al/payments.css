@@ -1954,6 +1954,12 @@ h2.payments_getvotes_title {
     padding-left: 140px
 }
 
+.payments_box_wide .payments_spasibo_accept_rules {
+    text-align: left;
+    padding-left: 30px;
+    margin: 10px 10px 5px 0
+}
+
 .payments_box_wide .payments_remember_wallet {
     text-align: left;
     padding-left: 140px;
@@ -2038,7 +2044,7 @@ h2.payments_getvotes_title {
     display: none
 }
 
-.payments_remember_wallet {
+.payments_spasibo_accept_rules .payments_remember_wallet {
     margin: 10px 10px 5px 0
 }
 

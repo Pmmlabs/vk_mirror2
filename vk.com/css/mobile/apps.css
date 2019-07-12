@@ -9517,7 +9517,7 @@ div.pm_item .pm_counter {
 }
 
 .payment_opt .ii_icon {
-    background: url(/images/mobile/payments.png?3) no-repeat 0;
+    background: url(/images/mobile/payments.png?4) no-repeat 0;
     margin: 0 10px 0 0
 }
 
@@ -9537,8 +9537,12 @@ div.pm_item .pm_counter {
     background-position: -82px
 }
 
-.payment_opt .i_googleplay {
+.payment_opt .i_spasibo {
     background-position: -123px
+}
+
+.payment_opt .i_googleplay {
+    background-position: -164px
 }
 
 .payment_opt_label {
