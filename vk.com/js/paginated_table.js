@@ -510,7 +510,7 @@
             });
 
         if (_t.sizeChooserLink) {
-            var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+            var scrollBodyNode = window.bodyNode;
             var showSizeDdOptions = {
                 updateHeader: function(i, t) {
                     if (!i) i = 0;

@@ -97,7 +97,7 @@ AdsEdit.init = function() {
     }
 
     // TODO enable on realese new prediction widget
-    // AdsEditComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_wrap'), {}, {});
+    // AdsComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_wrap'), {}, {});
 
     Ads.initFixed('ads_edit_audience_wrap', 59);
 }
@@ -2595,8 +2595,8 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
     AdsLight.overrideClickEvents(targetElem, true);
 
     var storiesParentEl = this.preview.storiesContainer;
-    if (storiesParentEl && window.AdsEditComponents) {
-        AdsEditComponents.renderStories(storiesParentEl, this.params.link_url.stories.list, this.params.link_url.stories.options);
+    if (storiesParentEl && window.AdsComponents) {
+        AdsComponents.renderStories(storiesParentEl, this.params.link_url.stories.list, this.params.link_url.stories.options);
     }
 }
 
@@ -5427,7 +5427,7 @@ AdsViewEditor.prototype.triggerAudienceNotify = function(data, result) {
 
     if (!cur.AdsEditAudienceCountNotifyContainer) {
         var audienceNotifyEl = ge('ads_edit_panel_notify');
-        AdsEditComponents.renderNotify(audienceNotifyEl, extend({}, ConstDataForComponent, LetDataForComponent));
+        AdsComponents.renderNotify(audienceNotifyEl, extend({}, ConstDataForComponent, LetDataForComponent));
         return false;
     }
 

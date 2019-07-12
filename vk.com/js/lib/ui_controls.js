@@ -2938,7 +2938,7 @@ createChildClass('DropdownMenu', UiControl, {
     beforeInit: function() {
         this.guid = _ui.reg(this);
         if (!this.common.pageContainer) {
-            this.common.pageContainer = window.scrollBodyNode || document.body;
+            this.common.pageContainer = document.body;
             if (browser.msie6 && ge('pageContainer')) {
                 this.pageContainer = ge('pageContainer');
             }
@@ -3620,7 +3620,7 @@ createChildClass('InlineEdit', UiControl, {
     // Standart object methods
     beforeInit: function() {
         if (!this.common.pageContainer) {
-            this.common.pageContainer = window.scrollBodyNode || document.body;
+            this.common.pageContainer = document.body;
             if (browser.msie6 && ge('pageContainer')) {
                 this.pageContainer = ge('pageContainer');
             }
@@ -3920,7 +3920,7 @@ InlineDropdown.prototype._onClick = function(event) {
 
     function isOpenToUp() {
         var elPosY = getXY(_this._iddEl)[1];
-        var windowScrollTop = (window.pageYOffset || (window.scrollBodyNode || document.documentElement).scrollTop) - (document.documentElement.clientTop || 0);
+        var windowScrollTop = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
         return (elPosY - windowScrollTop + 200) > window.innerHeight;
     }
 

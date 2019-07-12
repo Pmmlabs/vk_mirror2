@@ -82,7 +82,7 @@ var tooltips = {
             }
 
             var par = domPN(container);
-            var st = ((window.scrollBodyNode || bodyNode).scrollTop || htmlNode.scrollTop || 0),
+            var st = (bodyNode.scrollTop || htmlNode.scrollTop || 0),
                 ttsize = getSize(container),
                 offsetTop = xy[1] - ttsize[1] - shift[1] - hsize[1] - st,
                 offsetBottom = lastWindowHeight - (xy[1] + elsize[1] + ttsize[1] + shift[2]) + st,
@@ -500,7 +500,7 @@ var tooltips = {
             }
 
             if (!appendEl) {
-                appendEl = window.scrollBodyNode || bodyNode;
+                appendEl = bodyNode;
             }
 
             appendEl.appendChild(c);

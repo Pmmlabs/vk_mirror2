@@ -3071,10 +3071,6 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     max-width: 315px
 }
 
-.wk_cont .poster__layer {
-    z-index: 640
-}
-
 .poster__sidebar .post_settings._border-left {
     border-left: 1px solid #e7e8ec
 }

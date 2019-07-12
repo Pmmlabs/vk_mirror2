@@ -18,7 +18,7 @@ AdsModer.initDelayedImages = function() {
         return;
     }
 
-    var scrolledNode = window.scrollBodyNode || window;
+    var scrolledNode = window;
     var handler = checkImages.pbind(false);
 
     function deinit() {

@@ -4153,12 +4153,6 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin-bottom: 10px
 }
 
-.apps_i_desktop {
-    max-width: 160px;
-    overflow: hidden;
-    text-overflow: ellipsis
-}
-
 .apps_i_desktop:after {
     content: '';
     display: inline-block;

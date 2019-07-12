@@ -287,7 +287,7 @@ Ads.initFixed = function(elemWrap, customPositionTop) {
     elemWrap.setAttribute('fixed_inited', 1);
 
     if (!inited) {
-        var scrolledNode = window.scrollBodyNode || window;
+        var scrolledNode = window;
         addEvent(scrolledNode, 'scroll', onScroll);
         addEvent(window, 'resize', onResize);
         cur.destroy.push(function() {
@@ -1461,7 +1461,7 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePi
 
     params.onSelect(values[0][1]);
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     params.left = -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft;
     params.top = -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop;
 
@@ -2210,7 +2210,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         return true;
     }
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     var options = {
         afterInit: afterInit,
         onBeforeShow: onBeforeShow,
@@ -2333,7 +2333,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         var langs = parseJSON(additionalParams.langs) || {};
         var parentEl = geByClass1('ads_info_schedule', ret.obj.container);
         var outputEl = geByClass1('ads_info_schedule_input', ret.obj.container);
-        AdsEditComponents.renderSchedule(parentEl, outputEl, defaultValue, lastValue, {
+        AdsComponents.renderSchedule(parentEl, outputEl, defaultValue, lastValue, {
             wide: true,
             langs: langs
         });
@@ -2412,7 +2412,7 @@ Ads.createInlineDropdownMenu = function(menuElem, boxElem, progressElem, unionId
         saveValue(newValue);
     }
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     var options = {
         left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
         top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
@@ -2585,7 +2585,7 @@ Ads.MultiDropdownMenu = function(items, options) {
         selectedItems[curItems[i].i] = false;
     }
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     dropdownMenu = new DropdownMenu(curItems, extend({
         left: -getXY(scrollBodyNode)[0] + scrollBodyNode.scrollLeft,
         top: -getXY(scrollBodyNode)[1] + scrollBodyNode.scrollTop
@@ -3211,7 +3211,7 @@ Ads.statusDropdown = function(container, options) {
         deltaLeft += 1;
     }
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     var dd = new DropdownMenu(items, {
         title: imgSpanHTML + options.status.title,
         target: container,
@@ -4912,7 +4912,7 @@ Ads.createDropdown = function(element, namespace, name, values, options) {
         onSelect: null
     }, options);
 
-    var scrollBodyNode = window.scrollBodyNode || window.bodyNode;
+    var scrollBodyNode = window.bodyNode;
     var params = {
         target: element,
         value: options.selected_value,
