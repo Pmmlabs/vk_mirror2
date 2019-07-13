@@ -534,7 +534,7 @@ var stVersions = {
     'cmodules/web/stories_archive.js': 1,
     'stories_archive.css': 1505472900,
     'article.css': 41823260922,
-    'article_editor.css': 37802703208,
+    'article_editor.css': 34920817869,
     'cmodules/web/article.js': 4,
     'cmodules/web/article_layer.js': 4,
     'cmodules/web/article_editor_layer.js': 2,
@@ -602,13 +602,13 @@ var stVersions = {
     'cmodules/web/money_transfer.js': 2,
     'cmodules/web/activation.js': 1,
     'lang': 6984,
-    'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.902f57a2ed68ee112d2a.js': '8aa23fdfdbc4ea8b83a5',
+    'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js': 'a2a94059be659f4b46f0',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.5a3b0dadf48e2def5f63.js': '7d2e90fddda2bde07b41',
     'cmodules/bundles/3800193aff17ccadf62e6fe82e12f767.6b6322993460a6234157.js': 'aff22d654624a2fadad8',
     'cmodules/bundles/3afd4585c9a78e506295bef372f87d20.28124457df620cce9e88.js': '9834a39e96d3aa86bb2e',
     'cmodules/bundles/63cc894c1323b715b7b33772086e4b56.45589ad0c8f38e765937.js': '7bcd52818e1f2e7de5f2',
     'cmodules/bundles/6d669e070da493537223b2032427707c.52f85c28bf5518b0c8e8.js': '38cbbc48f08dc5e14e7a',
-    'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.848469798b815e2f0c59.js': '1dc227f8603e6b9dce95',
+    'cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js': 'cf5e9209accd7c5429ef',
     'cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.7fdda2f7a5bd8b59bf31.js': '73310fa239f9b004aab4',
     'cmodules/bundles/8f9b95e37f18d0c7165292d5115bec0e.3505ebaed1c706c2fe56.js': '9a62379e660e58931dc4',
     'cmodules/bundles/9dcc910c7bd981dd874f2679072d1d61.b11ec454c6c8d3c8281a.js': '21df267a4f469433e7f4',
@@ -633,7 +633,7 @@ var stVersions = {
     'cmodules/web/apps_achievements.039ab00197cd1e2172e7.js': '616efd80c7bbfdf8ceb58f28b96bb5ca',
     'cmodules/web/apps_connect.5236e3bfcdadf6a6944e.js': '8028e047e619a1a586681d8fa7f6c700',
     'cmodules/web/apps_edit.15c2a6ad3c36fd9f4f8f.js': '21c9e02031c7faa27a7da903797f8b8c',
-    'cmodules/web/article.5fd616727d56dc4831d9.js': 'f4fcc38d4af27347127d7eb063785322',
+    'cmodules/web/article.4e2bd26b8c660c9e38b3.js': 'fc3179a3e536f132800c30fb860533fd',
     'cmodules/web/article_editor_layer.f07e8c9bb5cc8f1236c7.js': '6ab3db1ac409f79d9a5052e0793ba52f',
     'cmodules/web/article_layer.6d36b32caad91978d719.js': '5c0bedeaa597269f61953f9bd9dcb7f7',
     'cmodules/web/article_view.c1430a55d8673202991e.js': '599e13739312c1ec0a2ea54000aeb25a',
@@ -798,7 +798,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 361;
+var _rnd = 9678;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.3bf53815b3b3168a1d9d.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.202923bcbea3c59f5772.js"],
@@ -813,10 +813,10 @@ var stDeps = {
     "/js/cmodules/web/apps_achievements.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/apps_achievements.039ab00197cd1e2172e7.js"],
     "/js/cmodules/web/apps_connect.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.45589ad0c8f38e765937.js", "cmodules/web/apps_connect.5236e3bfcdadf6a6944e.js"],
     "/js/cmodules/web/apps_edit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/apps_edit.15c2a6ad3c36fd9f4f8f.js"],
-    "/js/cmodules/web/article.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.848469798b815e2f0c59.js", "cmodules/web/article.5fd616727d56dc4831d9.js"],
-    "/js/cmodules/web/article_editor_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.848469798b815e2f0c59.js", "cmodules/web/article_editor_layer.f07e8c9bb5cc8f1236c7.js"],
-    "/js/cmodules/web/article_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.902f57a2ed68ee112d2a.js", "cmodules/web/article_layer.6d36b32caad91978d719.js"],
-    "/js/cmodules/web/article_view.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.902f57a2ed68ee112d2a.js", "cmodules/web/article_view.c1430a55d8673202991e.js"],
+    "/js/cmodules/web/article.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js", "cmodules/web/article.4e2bd26b8c660c9e38b3.js"],
+    "/js/cmodules/web/article_editor_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js", "cmodules/web/article_editor_layer.f07e8c9bb5cc8f1236c7.js"],
+    "/js/cmodules/web/article_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js", "cmodules/web/article_layer.6d36b32caad91978d719.js"],
+    "/js/cmodules/web/article_view.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js", "cmodules/web/article_view.c1430a55d8673202991e.js"],
     "/js/cmodules/web/audio.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/audio.3b5f0e422b7e2a26d40d.js"],
     "/js/cmodules/web/audio_upload.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/audio_upload.d96d654587081f850317.js"],
     "/js/cmodules/web/audioplayer.js": ["cmodules/bundles/audioplayer.5a7c83534d953439398d.js", "cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/audioplayer.eae3fcdcd2d132420df1.js"],

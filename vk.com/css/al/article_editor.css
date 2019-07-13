@@ -1814,9 +1814,9 @@
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_name_wrap .article_ed_layer__publish_settings_name_error {
     display: none;
     color: #828282;
-    position: absolute;
-    top: -23px;
-    right: 0
+    margin-top: 6px;
+    text-align: right;
+    margin-bottom: -10px
 }
 
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_ofm,
