@@ -2029,7 +2029,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_wide #payments_box_error[style*=block]+#payments_getvotes_cont .payments_getvotes_msg {
-    margin-top: 30px!important
+    margin-top: 20px!important
 }
 
 .payments_box_in_money #payments_box_left_col .payments_box_menu {

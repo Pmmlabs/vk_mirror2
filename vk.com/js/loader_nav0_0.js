@@ -375,7 +375,7 @@ var stVersions = {
     'verify.css': 18352608790,
     'away.css': 22848696715,
     'stats.css': 24663286054,
-    'payments.css': 37652665564,
+    'payments.css': 38538781422,
     'payments.js': 2054048695,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -798,7 +798,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3932;
+var _rnd = 6200;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.3bf53815b3b3168a1d9d.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.202923bcbea3c59f5772.js"],
