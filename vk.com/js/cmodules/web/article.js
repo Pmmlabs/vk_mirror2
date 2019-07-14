@@ -1459,7 +1459,7 @@
                     if (JSON.stringify(e) == JSON.stringify(this._undoCurrentState)) return;
                     this._undos.push({
                         ps: this._undoCurrentState,
-                        cursor: this._undoCurrentStateCursor
+                        cursor: this._lastCursor
                     }), this._undos.length > me && this._undos.shift()
                 }
                 this._undoCurrentState = e, this._undoCurrentStateCursor = this._getCursor(), this._redos = [], this._options.onUndoRedo && this._options.onUndoRedo()
@@ -1471,7 +1471,7 @@
                         cursor: this._undoCurrentStateCursor
                     });
                     var e = this._undos.pop();
-                    this._ps = P(e.ps), this._undoCurrentState = y(this._ps), this._undoCurrentStateCursor = e.cursor, this._redraw(!0), e.cursor && this._restoreCursor(e.cursor), this._updateTextPlaceholders(), 0 == this._undos.length && (this._undoable = !1)
+                    this._ps = P(e.ps), this._undoCurrentState = y(this._ps, !0), this._undoCurrentStateCursor = e.cursor, this._redraw(!0), e.cursor && this._restoreCursor(e.cursor), this._updateTextPlaceholders(), 0 == this._undos.length && (this._undoable = !1)
                 }
                 this._options.onUndoRedo && this._options.onUndoRedo()
             }
@@ -1482,7 +1482,7 @@
                         cursor: this._undoCurrentStateCursor
                     });
                     var e = this._redos.pop();
-                    this._ps = P(e.ps), this._undoCurrentState = y(this._ps), this._undoCurrentStateCursor = e.cursor, this._redraw(!0), e.cursor && this._restoreCursor(e.cursor), this._updateTextPlaceholders(), this._options.onUndoRedo && this._options.onUndoRedo()
+                    this._ps = P(e.ps), this._undoCurrentState = y(this._ps, !0), this._undoCurrentStateCursor = e.cursor, this._redraw(!0), e.cursor && this._restoreCursor(e.cursor), this._updateTextPlaceholders(), this._options.onUndoRedo && this._options.onUndoRedo()
                 }
             }
             canUndo() {
@@ -2420,7 +2420,7 @@
             _saveLastCursor() {
                 var e = this._getCursor(),
                     t = "article_cursor_" + this.getArticleOwnerId() + "_" + (this.getArticleId() || 0);
-                e && !e.isEmpty() ? ls.set(t, JSON.stringify(e)) : ls.remove(t)
+                e && !e.isEmpty() ? ls.set(t, JSON.stringify(e)) : ls.remove(t), this._lastCursor = e
             }
             _restoreLastCursor() {
                 var e = ls.get("article_cursor_" + this.getArticleOwnerId() + "_" + (this.getArticleId() || 0));

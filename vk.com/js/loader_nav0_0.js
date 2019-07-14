@@ -601,7 +601,7 @@ var stVersions = {
     'cmodules/web/lazyload.js': 2,
     'cmodules/web/money_transfer.js': 2,
     'cmodules/web/activation.js': 1,
-    'lang': 6984,
+    'lang': 6986,
     'cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js': 'a2a94059be659f4b46f0',
     'cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.5a3b0dadf48e2def5f63.js': '7d2e90fddda2bde07b41',
     'cmodules/bundles/3800193aff17ccadf62e6fe82e12f767.6b6322993460a6234157.js': 'aff22d654624a2fadad8',
@@ -633,7 +633,7 @@ var stVersions = {
     'cmodules/web/apps_achievements.039ab00197cd1e2172e7.js': '616efd80c7bbfdf8ceb58f28b96bb5ca',
     'cmodules/web/apps_connect.5236e3bfcdadf6a6944e.js': '8028e047e619a1a586681d8fa7f6c700',
     'cmodules/web/apps_edit.15c2a6ad3c36fd9f4f8f.js': '21c9e02031c7faa27a7da903797f8b8c',
-    'cmodules/web/article.4e2bd26b8c660c9e38b3.js': 'fc3179a3e536f132800c30fb860533fd',
+    'cmodules/web/article.02060a48587f96107090.js': 'df656f533a41aa332c7a6fcbcada4d23',
     'cmodules/web/article_editor_layer.f07e8c9bb5cc8f1236c7.js': '6ab3db1ac409f79d9a5052e0793ba52f',
     'cmodules/web/article_layer.6d36b32caad91978d719.js': '5c0bedeaa597269f61953f9bd9dcb7f7',
     'cmodules/web/article_view.c1430a55d8673202991e.js': '599e13739312c1ec0a2ea54000aeb25a',
@@ -798,7 +798,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 9678;
+var _rnd = 3932;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.3bf53815b3b3168a1d9d.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.202923bcbea3c59f5772.js"],
@@ -813,7 +813,7 @@ var stDeps = {
     "/js/cmodules/web/apps_achievements.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/apps_achievements.039ab00197cd1e2172e7.js"],
     "/js/cmodules/web/apps_connect.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/63cc894c1323b715b7b33772086e4b56.45589ad0c8f38e765937.js", "cmodules/web/apps_connect.5236e3bfcdadf6a6944e.js"],
     "/js/cmodules/web/apps_edit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/apps_edit.15c2a6ad3c36fd9f4f8f.js"],
-    "/js/cmodules/web/article.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js", "cmodules/web/article.4e2bd26b8c660c9e38b3.js"],
+    "/js/cmodules/web/article.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js", "cmodules/web/article.02060a48587f96107090.js"],
     "/js/cmodules/web/article_editor_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/6deb4edfcbfb465064078145a4a266bf.76204eba6be0db766f10.js", "cmodules/web/article_editor_layer.f07e8c9bb5cc8f1236c7.js"],
     "/js/cmodules/web/article_layer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js", "cmodules/web/article_layer.6d36b32caad91978d719.js"],
     "/js/cmodules/web/article_view.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/3113b7f72dc7a6cb1bd72a96856988db.d3e635c246ff70e8b148.js", "cmodules/web/article_view.c1430a55d8673202991e.js"],

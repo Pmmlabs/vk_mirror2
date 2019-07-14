@@ -273,7 +273,7 @@ window.lang = extend(window.lang || {}, {
     "global_not_activated_title": "�������� ������ ��������",
     "global_notifications_settings": "���������",
     "global_notifitications": "���������� ������",
-    "global_notify_error_occured": "��������� ������ ��� ��������",
+    "global_notify_error_occured": "������ ��������",
     "global_notify_refresh": "��������",
     "global_notify_show_all": "���������� ���",
     "global_num_date_year_time": ["", "{num_day}.{month}.{short_year} {num_hour}:{minute}", "��������, {num_hour}:{minute}", "�������, {num_hour}:{minute}", "������, {num_hour}:{minute}"],
