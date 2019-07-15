@@ -657,7 +657,7 @@ var stVersions = {
     'cmodules/web/group_online_im.e435dbee6898d3db99eb.js': '7ed5657d549de1b2759c',
     'cmodules/web/group_online_info.c82676c8966f0fd17937.js': '0f36dd52e94069979cba5dc86beee533',
     'cmodules/web/group_orders.38f3b74b70d0f3845567.js': '14fa0eb1a3c00204fe2aa47880f541e4',
-    'cmodules/web/groups.c1e7cfba59293fc71553.js': '55df16d2681dcbfa668a82a58e32fccb',
+    'cmodules/web/groups.35524613f648112ce142.js': '0f0cdd26754480758b606cd5ee0d2651',
     'cmodules/web/groups_admins.ffb3a8f73e5f3a903fb7.js': '8a79aea076fbf0f216553585ce42b0b1',
     'cmodules/web/groups_create.2e773c3da7ec4ab21293.js': 'ad9ec300ba0d9b4aa78d1e703ff90433',
     'cmodules/web/groups_edit.5b33fadaabb81bc1de77.js': '286ddefc263a98c004f123df2d30b5f6',
@@ -798,7 +798,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 5410;
+var _rnd = 6029;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.3bf53815b3b3168a1d9d.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.202923bcbea3c59f5772.js"],
@@ -837,7 +837,7 @@ var stDeps = {
     "/js/cmodules/web/group_online_im.js": ["cmodules/web/group_online_im.e435dbee6898d3db99eb.js"],
     "/js/cmodules/web/group_online_info.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/group_online_info.c82676c8966f0fd17937.js"],
     "/js/cmodules/web/group_orders.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/ac99d2ffeaccefc84858f73dcbf7df37.7e406d3ab12595934212.js", "cmodules/web/group_orders.38f3b74b70d0f3845567.js"],
-    "/js/cmodules/web/groups.js": ["cmodules/bundles/audioplayer.5a7c83534d953439398d.js", "cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/groups.c1e7cfba59293fc71553.js"],
+    "/js/cmodules/web/groups.js": ["cmodules/bundles/audioplayer.5a7c83534d953439398d.js", "cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/groups.35524613f648112ce142.js"],
     "/js/cmodules/web/groups_admins.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/e239f4f3bb195925b3389c6e53d22608.4b35d0a43f88d42260c4.js", "cmodules/web/groups_admins.ffb3a8f73e5f3a903fb7.js"],
     "/js/cmodules/web/groups_create.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/groups_create.2e773c3da7ec4ab21293.js"],
     "/js/cmodules/web/groups_edit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/e99d9ec427a95a8c4756f1f34e6c7fd7.2e34d91c4ddbe8a21da8.js", "cmodules/web/groups_edit.5b33fadaabb81bc1de77.js"],
