@@ -2488,7 +2488,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_logo_spasibo {
-    background: url(/images/ps/spasibo.png?1) right 0 no-repeat;
+    background: url(/images/ps/spasibo.png?2) right 0 no-repeat;
     width: 150px;
     height: 38px;
     margin: -21px 0 0
@@ -2498,7 +2498,7 @@ h2.payments_getvotes_title {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_logo_spasibo {
-        background-image: url(/images/ps/spasibo_2x.png?1);
+        background-image: url(/images/ps/spasibo_2x.png?2);
         background-size: 90px 40px
     }
 }

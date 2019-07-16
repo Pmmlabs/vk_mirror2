@@ -36526,6 +36526,8 @@ body.apps_settingsPageBody .basis__content {
 .audioPlaylists,
 .audioPlaylistsPage,
 .audioSearch__header,
+.Blocked__body .login_blocked_reason_text,
+.Blocked__comment,
 .Blocked__header,
 .Bookmarks ._si_container>.OwnerRow,
 .BookmarksItem.BookmarksItem_compact,
@@ -36715,6 +36717,8 @@ body.apps_settingsPageBody .basis__content {
     .audioPlaylists,
     .audioPlaylistsPage,
     .audioSearch__header,
+    .Blocked__body .login_blocked_reason_text,
+    .Blocked__comment,
     .Blocked__header,
     .Bookmarks ._si_container>.OwnerRow,
     .BookmarksItem.BookmarksItem_compact,
@@ -36903,6 +36907,8 @@ body.apps_settingsPageBody .basis__content {
     .audioPlaylists,
     .audioPlaylistsPage,
     .audioSearch__header,
+    .Blocked__body .login_blocked_reason_text,
+    .Blocked__comment,
     .Blocked__header,
     .Bookmarks ._si_container>.OwnerRow,
     .BookmarksItem.BookmarksItem_compact,
@@ -56470,8 +56476,15 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     }
 }
 
+.vk__page_blockedAttaches .basis__content {
+    overflow: hidden;
+    background: #fff
+}
+
 .Blocked {
-    padding: 0 0 6px
+    padding: 0 0 6px;
+    margin: 0;
+    pointer-events: none
 }
 
 .Blocked__header {
@@ -56507,8 +56520,42 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     line-height: 20px
 }
 
+.wall_item .Blocked__label {
+    margin-left: -12px;
+    margin-right: -12px
+}
+
+@media (max-width: 319px) {
+    .wall_item .Blocked__label {
+        margin: 0 -8px
+    }
+}
+
+@media (min-width: 400px) {
+    .wall_item .Blocked__label {
+        margin: 0 -16px
+    }
+}
+
 .Blocked__body {
-    pointer-events: none
+    pointer-events: none;
+    overflow: hidden
+}
+
+.Blocked__body .login_blocked_reason_text {
+    padding: 12px 0 6px
+}
+
+.Blocked__comment img {
+    max-width: auto;
+    height: auto
+}
+
+.Blocked .Blocked__body .Blocked__video .medias_thumb {
+    width: auto;
+    height: auto;
+    max-width: none;
+    margin: 0 0 6px
 }
 
 

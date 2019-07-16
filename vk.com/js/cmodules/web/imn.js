@@ -14145,7 +14145,7 @@
                     this.mounted && this.state.opened && !this.el.contains(e.target) && this.setState({
                         opened: !1
                     })
-                }), this.props.searchable && (this.props.appearance = "secondary"), this.state = {
+                }), this.state = {
                     filteredOptions: e.options,
                     allOptions: e.options,
                     selected: void 0 !== e.value ? this.getOptionByValue(e.options, e.value) : {
@@ -14234,16 +14234,17 @@
                 var {
                     className: e,
                     appearance: t,
-                    style: n
-                } = this.props, r = Object(i.a)("Select", `Select--${t}`, e, {
+                    style: n,
+                    searchable: r
+                } = this.props, s = r ? "secondary" : t, o = Object(i.a)("Select", `Select--${s}`, e, {
                     "Select--opened": this.state.opened,
                     "Select--disabled": this.props.disabled,
                     "Select--empty": !this.state.selected.value
-                }), s = "string" == typeof this.state.selected ? this.state.selected : this.state.selected.label, o = this.buildControl(s);
+                }), c = "string" == typeof this.state.selected ? this.state.selected : this.state.selected.label, l = this.buildControl(c);
                 return a.createElement("div", {
-                    className: r,
+                    className: o,
                     style: n
-                }, o, this.state.opened && a.createElement("div", {
+                }, l, this.state.opened && a.createElement("div", {
                     className: "Select__menu"
                 }, this.buildMenu()))
             }

@@ -341,10 +341,6 @@
     background: #ebf1f8
 }
 
-.UnblockForm__content__inputs .input.phone_number_input .prefix_input_wrap.finished .prefix_input_prefix {
-    padding-top: 5.5px
-}
-
 .UnblockForm__content__inputs .input.phone_number_input .prefix_input_wrap .prefix_input {
     font-size: 13px
 }
