@@ -222,7 +222,7 @@ var stVersions = {
     'cmodules/web/video_youtube.js': 18,
     'video_youtube.css': 18462992804,
     'videoplayer.js': 6,
-    'videoplayer.css': 52859568426,
+    'videoplayer.css': 51041370042,
     'cmodules/web/video_ext.js': 1,
     'cmodules/web/translation.js': 32,
     'translation.css': 18724359508,
@@ -355,7 +355,7 @@ var stVersions = {
     'tags_dd.css': 20740464674,
     'helpdesk.css': 35812468174,
     'cmodules/web/support.js': 4,
-    'tickets.css': 31966062385,
+    'tickets.css': 32363285627,
     'faq.css': 26734025067,
     'agents.css': 20540733205,
     'achievements.css': 21657699071,
@@ -684,7 +684,7 @@ var stVersions = {
     'cmodules/web/music_2018.3a98db51d48fc2490a61.js': '09260a133ce57487bb254375b89cab16',
     'cmodules/web/notifier.2b09be239a4887ca989b.js': '503f6fbf6e7eb2bf73cf5197da187af7',
     'cmodules/web/old_places_admin.29db224239d6c98f3bcb.js': 'a646b70fe401bbb7e239',
-    'cmodules/web/page.b7d1bc6111f10311aadd.js': 'eb02c55d403fa9df6425b7f52bd3f13b',
+    'cmodules/web/page.0e0ae82ae4a8431bc50e.js': '6c63d760a99438e5b3e2be1e4c6f0372',
     'cmodules/web/page_layout.18deb3ce1c65269d6749.js': 'c8e6085b49498a32d155',
     'cmodules/web/payments.bf08fdaf3ddd0754436f.js': '452ffed544d7103affbbf641541ea62f',
     'cmodules/web/payments_promo.dbb12242db918612bf9c.js': '02130c35728acb6285bdde7a07ffec13',
@@ -730,7 +730,7 @@ var stVersions = {
     'cmodules/web/video_upload.afac388f618d9c1db20c.js': 'ac08826f5f3c2d51f5a4bcd914a11d48',
     'cmodules/web/video_youtube.3b9780898422c2e9208a.js': 'cb88e5c13d2bc2c05b9778c67d65892c',
     'cmodules/web/videocat.af2b851027fe9454fe2a.js': 'e64d41f64c955042de25',
-    'cmodules/web/videoplayer.a99c46e1334d42f24064.js': '6bc9562795ed34e24d50658a07cd4e9a',
+    'cmodules/web/videoplayer.5528d80dfd5294e55acc.js': 'e0debf412fad6da1c4e6e3641ba94b46',
     'cmodules/web/videoview.254dec7fc74f0ea46936.js': '5d3ffd971a7e48367a580f557fd3def0',
     'cmodules/web/vkme-desktop.cfc2b6925ba36790bd4b.js': 'a4434232e00187525637',
     'cmodules/web/voice_message_player.67ed9559489d2b4f3f0b.js': '88043e1e999f9ba417a9deb7d8c13fc6',
@@ -798,7 +798,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 6029;
+var _rnd = 8172;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.3bf53815b3b3168a1d9d.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.202923bcbea3c59f5772.js"],
@@ -864,7 +864,7 @@ var stDeps = {
     "/js/cmodules/web/music_2018.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/music_2018.3a98db51d48fc2490a61.js"],
     "/js/cmodules/web/notifier.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/37d6fe1fee6fb6accf5867cbca2cda9c.5a3b0dadf48e2def5f63.js", "cmodules/web/notifier.2b09be239a4887ca989b.js"],
     "/js/cmodules/web/old_places_admin.js": ["cmodules/web/old_places_admin.29db224239d6c98f3bcb.js"],
-    "/js/cmodules/web/page.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/page.b7d1bc6111f10311aadd.js"],
+    "/js/cmodules/web/page.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/page.0e0ae82ae4a8431bc50e.js"],
     "/js/cmodules/web/page_layout.js": ["cmodules/web/page_layout.18deb3ce1c65269d6749.js"],
     "/js/cmodules/web/payments.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/bundles/8f6f2f07c9fc54a64a3f3f0251b8dd00.7fdda2f7a5bd8b59bf31.js", "cmodules/web/payments.bf08fdaf3ddd0754436f.js"],
     "/js/cmodules/web/payments_promo.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/payments_promo.dbb12242db918612bf9c.js"],
@@ -910,7 +910,7 @@ var stDeps = {
     "/js/cmodules/web/video_upload.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/video_upload.afac388f618d9c1db20c.js"],
     "/js/cmodules/web/video_youtube.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/video_youtube.3b9780898422c2e9208a.js"],
     "/js/cmodules/web/videocat.js": ["cmodules/web/videocat.af2b851027fe9454fe2a.js"],
-    "/js/cmodules/web/videoplayer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/videoplayer.a99c46e1334d42f24064.js"],
+    "/js/cmodules/web/videoplayer.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/videoplayer.5528d80dfd5294e55acc.js"],
     "/js/cmodules/web/videoview.js": ["cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/videoview.254dec7fc74f0ea46936.js"],
     "/js/cmodules/web/vkme-desktop.js": ["cmodules/web/vkme-desktop.cfc2b6925ba36790bd4b.js"],
     "/js/cmodules/web/voice_message_player.js": ["cmodules/bundles/audioplayer.5a7c83534d953439398d.js", "cmodules/bundles/common.f80183fc8bc7d1837902.js", "cmodules/web/voice_message_player.67ed9559489d2b4f3f0b.js"],

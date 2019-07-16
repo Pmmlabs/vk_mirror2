@@ -1967,6 +1967,11 @@ a.tickets_question_row_tt {
     display: block
 }
 
+a.tickets_question_row_tt.deleted .tickets_question_title_tt {
+    color: #656565;
+    text-decoration: line-through
+}
+
 a.tickets_question_row_tt:hover {
     background: #f5f7fa;
     text-decoration: none

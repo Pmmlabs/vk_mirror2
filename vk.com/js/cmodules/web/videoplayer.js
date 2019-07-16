@@ -5047,7 +5047,7 @@
             }
             static preload(e) {
                 var t = `${e.oid}_${e.vid}`;
-                if (e.hls_raw && !di[t]) {
+                if (e.hls_raw && !di[t] && (!e.live || e.live === ne)) {
                     for (var i, s = [], a = {}, r = /#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)/g; i = r.exec(e.hls_raw);) {
                         var [, l, n] = i;
                         if ((l = m(l)).RESOLUTION) {

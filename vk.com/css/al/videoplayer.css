@@ -81,10 +81,9 @@
     font-weight: 600;
     line-height: 16px;
     opacity: 0.8;
-    padding: 6px 24px 6px 13px;
+    padding: 5px 24px 6px 9px;
     position: absolute;
     right: 16px;
-    text-transform: uppercase;
     -o-transition: margin-bottom 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition: margin-bottom 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     z-index: 2
