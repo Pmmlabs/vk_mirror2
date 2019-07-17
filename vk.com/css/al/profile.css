@@ -803,31 +803,10 @@ div.profile_online {
     width: 255px
 }
 
-.profile_defave_blocked {
+.profile_defave_blocked,
+.profile_suggest_fr {
     padding-top: 10px;
     text-align: center
-}
-
-.profile_address_done {
-    text-align: center;
-    font-size: 12px
-}
-
-.profile_address_done_header {
-    font-size: 20px
-}
-
-.profile_address_done_desc {
-    margin-top: 1.4em
-}
-
-.profile_address_done_link {
-    font-size: 20px
-}
-
-.profile_suggest_fr {
-    text-align: center;
-    padding-top: 10px
 }
 
 .profile_suggest_fr img {

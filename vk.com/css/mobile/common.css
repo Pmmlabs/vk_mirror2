@@ -34632,24 +34632,21 @@ body.apps_settingsPageBody .basis__content {
     transition: none
 }
 
-.n .vk_hide_header .basis__header {
-    -webkit-transform: translate(0);
-    -moz-transform: translate(0);
-    -ms-transform: translate(0);
-    -o-transform: translate(0);
-    transform: translate(0)
+.n.vk_hide_header .basis__header {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform
 }
 
-.n .vk_hide_header .basis__header_hidden {
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    -o-transform: translateY(-100%);
-    transform: translateY(-100%)
+.n.vk_hide_header .basis__header_hidden {
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0)
 }
 
 @media (min-width: 620px) {
-    .n .vk_hide_header .basis__header_hidden {
+    .n.vk_hide_header .basis__header_hidden {
         -webkit-transform: none;
         -moz-transform: none;
         -ms-transform: none;
