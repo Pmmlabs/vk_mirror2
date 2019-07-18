@@ -953,6 +953,11 @@ Ads.createStaticDateRange = function(elem, containerID) {
         months.push(getLang('month' + i + '_of'));
     }
 
+    var Months = [];
+    for (var i = 0; i < 13; i++) {
+        Months.push(getLang('Month' + i));
+    }
+
     function toOldForm(range) {
         var startDate = range.startDate;
         var endDate = range.endDate;
@@ -969,13 +974,19 @@ Ads.createStaticDateRange = function(elem, containerID) {
         }
     };
 
-    function getStrRange(range) {
+    function getStrRange(range, mode) {
+        var isMonthMode = mode === 'm';
         var startDate = range.startDate;
         var endDate = range.endDate;
-        var startYears = langDate(startDate, ["", "{day} {month} {year}"], 0, months, false);
-        var endYears = langDate(endDate, ["", "{day} {month} {year}"], 0, months, false);
-        var start = langDate(startDate, ["", "{day} {month}"], 0, months, false);
-        var end = langDate(endDate, ["", "{day} {month}"], 0, months, false);
+        var maskWithYear = isMonthMode ? '{month} {year}' : '{day} {month} {year}';
+        var mask = isMonthMode ? '{month}' : '{day} {month}';
+
+        var monthsList = isMonthMode ? Months : months;
+
+        var startYears = langDate(startDate, ["", maskWithYear], 0, monthsList, false);
+        var endYears = langDate(endDate, ["", maskWithYear], 0, monthsList, false);
+        var start = langDate(startDate, ["", mask], 0, monthsList, false);
+        var end = langDate(endDate, ["", mask], 0, monthsList, false);
         if (startDate.getFullYear() !== endDate.getFullYear()) {
             return startYears === endYears ? startYears : (startYears + ' � ' + endYears);
         }
@@ -985,12 +996,16 @@ Ads.createStaticDateRange = function(elem, containerID) {
         return start === end ? start : (start + ' � ' + end);
     }
 
+    function getCalendarMode() {
+        return (cur.exportUi && cur.exportUi.mode) || 'd';
+    }
+
     var dateRange = {
         startDate: new Date(new Date().getFullYear(), new Date().getMonth()),
         endDate: new Date(),
     };
     toOldForm(dateRange);
-    elem.innerHTML = getStrRange(dateRange);
+    elem.innerHTML = getStrRange(dateRange, getCalendarMode());
 
     //Container
     var container = document.createElement('div');
@@ -1011,7 +1026,7 @@ Ads.createStaticDateRange = function(elem, containerID) {
             endDate: endDate
         };
         toOldForm(range);
-        elem.innerHTML = getStrRange(range);
+        elem.innerHTML = getStrRange(range, getCalendarMode());
         AdsComponents.unmountDatePicker(container);
     }
 
@@ -1037,7 +1052,8 @@ Ads.createStaticDateRange = function(elem, containerID) {
                 ranges: {
                     range1: dateRange
                 },
-                minDate: new Date(2005, 0)
+                minDate: new Date(2005, 0),
+                mode: cur.exportUi && cur.exportUi.mode,
             }, unmountCallback);
         } else {
             unmountCallback();
@@ -1048,6 +1064,11 @@ Ads.createStaticDateRange = function(elem, containerID) {
     }
 
     elem.addEventListener('click', render);
+
+    cur.exportUi = cur.exportUi || {};
+    cur.exportUi.onGroupingTimeChanged = function(mode) {
+        elem.innerHTML = getStrRange(dateRange, getCalendarMode());
+    }
 }
 
 Ads.openInnerTable = function(id, bindingId) {
@@ -1363,15 +1384,17 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params, isNewDatePi
                     cur.exportUi.mode = modes[i];
                     cur.exportUi['start_time'].setMode(modes[i]);
                     cur.exportUi['stop_time'].setMode(modes[i]);
-                    if (geByClass('ads_export_date_range').length) {
-                        if (i) {
-                            geByClass('ads_export_date_row').forEach(show);
-                            geByClass('ads_export_date_range').forEach(hide);
+                    var button = geByClass('ads_stat_date_range')[0];
+                    if (button) {
+                        // ���� ������� "�� ��� �����" �� ��������� ������ �������� ����������
+                        if (i === 2) {
+                            button.setAttribute('disabled', true);
                         } else {
-                            geByClass('ads_export_date_row').forEach(hide);
-                            geByClass('ads_export_date_range').forEach(show);
+                            button.removeAttribute('disabled');
                         }
                     }
+                    // ���������� ���������, ��� ��������� ����� �����������
+                    cur.exportUi && cur.exportUi.onGroupingTimeChanged && cur.exportUi.onGroupingTimeChanged(i);
                 } else
                     //
                     // client_choose

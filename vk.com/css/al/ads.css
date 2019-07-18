@@ -345,10 +345,35 @@
     background: #000
 }
 
+.ModeChanger.DatePicker {
+    border: none
+}
+
+.ModeChanger__opener:after {
+    content: ' ';
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpolyline%20stroke%3D%22%2392A0B1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.3%22%20points%3D%22.8%202.7%204%205.3%207.2%202.7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle
+}
+
 .DatePicker__panel {
     position: relative;
     border-bottom: 1px solid #ebecef;
-    padding: 12px
+    padding: 12px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.DatePicker__panel-range {
+    font-size: 13px;
+    line-height: 27px
 }
 
 .Panel__arrow--minus,
@@ -372,6 +397,110 @@
 .Panel__arrow--plus {
     right: 0px;
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.DatePicker__footer {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 58px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top: 1px solid #ebecef;
+    padding: 0 20px 0 10px
+}
+
+.MonthCell {
+    text-align: center;
+    padding: 7px 10px;
+    font-size: 13px;
+    cursor: pointer
+}
+
+.MonthCell:hover {
+    background-color: #e3ebf3
+}
+
+.MonthCell--selected {
+    background-color: #f0f2f5
+}
+
+.MonthCell--disabled {
+    color: #939393;
+    cursor: auto
+}
+
+.MonthCell--disabled:hover {
+    background-color: #fff
+}
+
+.MonthCell--current {
+    color: #3b70ac
+}
+
+.MonthCell--active {
+    color: #fff
+}
+
+.MonthCell--active,
+.MonthCell--active:hover {
+    background-color: #5181b8
+}
+
+.MonthGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr
+}
+
+.MonthYear {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    justify-items: center;
+    padding: 0px 16px
+}
+
+.MonthYear__label {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #222;
+    line-height: 32px
+}
+
+.MonthYear__button {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 10px;
+    width: 32px;
+    height: 32px
+}
+
+.MonthYear__button--disabled {
+    opacity: 0.3;
+    cursor: default
+}
+
+.MonthYear__button--prev {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.MonthYear__button--next {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.MonthRange {
+    width: 100%
 }
 
 .Button {
@@ -594,33 +723,20 @@
     width: 52px
 }
 
-.DatePicker__footer {
-    bottom: 0;
-    box-sizing: border-box;
-    height: 58px;
-    width: 100%;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    -ms-flex-align: center;
-    align-items: center;
-    border-top: 1px solid #ebecef;
-    padding: 0 20px 0 10px
-}
-
-.DatePicker__footer,
 .DatePicker {
     position: absolute;
     display: -ms-flexbox;
-    display: flex
-}
-
-.DatePicker {
+    display: flex;
     padding-bottom: 57px;
     border-radius: 4px;
     border: 1px solid #ebecef;
     background: #fff;
     z-index: 100;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .08)
+}
+
+.DatePicker__MonthRangeContainer {
+    width: 350px
 }
 
 .rdrMonths {
