@@ -5267,6 +5267,7 @@
                         var r = wr(e),
                             i = {
                                 act: "a_save_doc",
+                                blockPersonal: 1,
                                 from: "choose",
                                 mail_add: 1
                             };
