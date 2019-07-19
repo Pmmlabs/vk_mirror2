@@ -3190,3 +3190,123 @@ body.body_helpdesk_small_sb .left_menu_nav {
 .helpdesk_send_pass_answer_checkbox {
     margin-top: 15px
 }
+
+.helpdesk_stat_question_source .helpdesk_stat_content .tickets_all_search_bar {
+    padding: 15px 15px 7px;
+    background: #fff
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .subheader {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .ui_table .pages {
+    display: none
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .ui_search {
+    border-radius: 4px
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .controls_list {
+    padding: 0 15px 15px;
+    margin-top: -5px
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .select_group {
+    display: inline-block;
+    margin-left: 7px;
+    margin-top: 10px
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .select_group:first-child {
+    margin-left: 0
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .select_group .subheader {
+    top: 0;
+    margin-bottom: 7px
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .inline_form_group {
+    display: inline-block;
+    margin-top: 10px;
+    float: right
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .inline_form_group .datepicker_container {
+    display: inline-block
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .inline_form_group .subheader {
+    position: relative;
+    top: 0;
+    margin: 0 7px 7px 0;
+    text-align: left;
+    color: #656565
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .range_datepicker .datepicker_container,
+.helpdesk_stat_question_source .helpdesk_stat_content .range_datepicker .form_control,
+.helpdesk_stat_question_source .helpdesk_stat_content .range_datepicker .datepicker_container:last-child {
+    margin-left: 0
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .range_datepicker_dash {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #93a3bc;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .helpdesk_point_stat_content {
+    padding: 0 15px 15px
+}
+
+.helpdesk_content_table .ui_table {
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.helpdesk_content_table .ui_table th.ui_table_cell {
+    background: #f8f8f9;
+    color: #626d7a;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.helpdesk_content_table .ui_table tr.ui_table_row.even {
+    background: #000;
+    background: transparent
+}
+
+.helpdesk_content_table .ui_table tr.ui_table_row:hover {
+    background: #f8f9fa
+}
+
+.helpdesk_content_table .ui_table tr.ui_table_row {
+    border-bottom: 1px solid #e7e8ec
+}
+
+.helpdesk_content_table .ui_table td.ui_table_cell,
+.helpdesk_content_table .ui_table th.ui_table_cell {
+    height: 40px
+}
+
+.helpdesk_content_table .ui_table .ui_table_cell {
+    position: relative;
+    cursor: pointer;
+    padding: 0 4px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: table-cell;
+    vertical-align: middle
+}

@@ -5867,7 +5867,8 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .post_top_info_wall_mention,
 .post_top_info_wall_podcast,
 .post_top_info_wall_poll_vote,
-.post_top_info_wall_reply {
+.post_top_info_wall_reply,
+.post_top_info_wall_vkgo {
     padding: 13px 15px 14px;
     box-shadow: 0 0 0 1px #e3e4e8, 0 1px 0 0 #e7e8ec
 }
@@ -5878,11 +5879,13 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 .post_top_info_wall_mention:empty,
 .post_top_info_wall_podcast:empty,
 .post_top_info_wall_poll_vote:empty,
-.post_top_info_wall_reply:empty {
+.post_top_info_wall_reply:empty,
+.post_top_info_wall_vkgo:empty {
     display: none
 }
 
-.post_top_info_wall_podcast {
+.post_top_info_wall_podcast,
+.post_top_info_wall_vkgo {
     line-height: 16px;
     color: #656565
 }

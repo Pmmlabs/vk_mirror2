@@ -46583,10 +46583,6 @@ body.apps_settingsPageBody .basis__content {
     border-top: 7px solid #fff
 }
 
-.StoriesTooltip:hover {
-    opacity: .9
-}
-
 .Stories__tooltip-link {
     display: block;
     padding: 8px 16px;
@@ -48179,6 +48175,69 @@ body.apps_settingsPageBody .basis__content {
     top: 100%;
     border-top-color: #fff;
     right: 20px
+}
+
+.StoryRestriction {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 63px;
+    padding: 0 16px;
+    z-index: 101
+}
+
+.StoryRestriction,
+.StoryRestriction__inner {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.StoryRestriction__inner {
+    min-height: 56px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 15px;
+    line-height: 19px;
+    padding: 13px 12px;
+    background: hsla(0, 0%, 8%, .72);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    white-space: normal;
+    pointer-events: all
+}
+
+.StoryRestriction__title {
+    color: #f5f5f5;
+    padding-right: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.StoryRestriction__link {
+    font-size: 14px;
+    letter-spacing: -0.15px;
+    font-weight: 500;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    color: #71aaeb
 }
 
 .svgIcon-stories {
@@ -56532,6 +56591,11 @@ html.vk_appAuth_yes .vk__page_mail._ios {
     .wall_item .Blocked__label {
         margin: 0 -16px
     }
+}
+
+.Blocked_type_comment .Blocked__label,
+.Blocked_type_message .Blocked__label {
+    margin: 0
 }
 
 .Blocked__body {

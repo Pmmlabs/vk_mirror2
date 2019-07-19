@@ -69,7 +69,7 @@
     o.push = t, o = o.slice();
     for (var l = 0; l < o.length; l++) t(o[l]);
     var d = c;
-    i.push([98, "bundles/common", "bundles/vendors", "bundles/a837b601cfd50039d6683cfbb02e2880"]), n()
+    i.push([98, "bundles/common", "bundles/vendors", "bundles/04fdc03cd0a78cd167b0e43d2956f5b2"]), n()
 }({
     "+/AQ": function(e, t, n) {
         "use strict";
@@ -10464,55 +10464,55 @@
         }), n.d(t, "eb", function() {
             return Ln
         }), n.d(t, "ec", function() {
-            return Bn
+            return Dn
         }), n.d(t, "Kb", function() {
-            return Nn
-        }), n.d(t, "Kc", function() {
             return qn
-        }), n.d(t, "ac", function() {
+        }), n.d(t, "Kc", function() {
             return Hn
-        }), n.d(t, "uc", function() {
+        }), n.d(t, "ac", function() {
             return An
-        }), n.d(t, "pc", function() {
+        }), n.d(t, "uc", function() {
             return Fn
-        }), n.d(t, "Z", function() {
+        }), n.d(t, "pc", function() {
             return Rn
-        }), n.d(t, "A", function() {
+        }), n.d(t, "Z", function() {
             return $n
-        }), n.d(t, "wc", function() {
+        }), n.d(t, "A", function() {
             return Un
-        }), n.d(t, "xc", function() {
+        }), n.d(t, "wc", function() {
             return zn
-        }), n.d(t, "Gb", function() {
+        }), n.d(t, "xc", function() {
             return Kn
-        }), n.d(t, "Q", function() {
+        }), n.d(t, "Gb", function() {
             return Wn
-        }), n.d(t, "Mb", function() {
+        }), n.d(t, "Q", function() {
             return Vn
-        }), n.d(t, "Nb", function() {
+        }), n.d(t, "Mb", function() {
             return Gn
-        }), n.d(t, "Ec", function() {
+        }), n.d(t, "Nb", function() {
             return Xn
-        }), n.d(t, "ub", function() {
+        }), n.d(t, "Ec", function() {
             return Qn
-        }), n.d(t, "sc", function() {
+        }), n.d(t, "ub", function() {
             return Yn
-        }), n.d(t, "Cc", function() {
+        }), n.d(t, "sc", function() {
             return Jn
-        }), n.d(t, "B", function() {
+        }), n.d(t, "Cc", function() {
             return Zn
-        }), n.d(t, "U", function() {
+        }), n.d(t, "B", function() {
             return ea
-        }), n.d(t, "O", function() {
+        }), n.d(t, "U", function() {
             return ta
-        }), n.d(t, "N", function() {
+        }), n.d(t, "O", function() {
             return na
-        }), n.d(t, "Y", function() {
+        }), n.d(t, "N", function() {
             return aa
-        }), n.d(t, "E", function() {
+        }), n.d(t, "Y", function() {
             return ra
-        }), n.d(t, "Mc", function() {
+        }), n.d(t, "E", function() {
             return ia
+        }), n.d(t, "Mc", function() {
+            return sa
         }), n.d(t, "ab", function() {
             return s.u
         }), n.d(t, "jb", function() {
@@ -11621,7 +11621,7 @@
 
         function Cn(e, t, n, a) {
             var r;
-            $n(xe("al_im.php", {
+            Un(xe("al_im.php", {
                 act: "a_important",
                 offset: "0"
             }, {
@@ -11729,16 +11729,26 @@
             })
         }
 
-        function Bn(e, t, n, a, r) {
-            return n = n.replace(/\<br\s*\/?\>(\n)?/gi, " ").replace(/[\n\r]/gi, " "), n = Object(c.f)(n, (e, t, n, a, r) => r), a && (n = Be.emojiToHTML(n, !0)), t && "..." !== t.trim() && !Object(l.b)(e) && (n = _e("im_topic", {
-                topic: t,
-                cls: "im-topic_dialog"
-            }) + n), !n && r.length > 0 && (n = _e("im_dialog_media", {
-                name: Dn(r[0], r)
-            })), n
+        function Bn(e) {
+            return e.length > 1 ? function(e) {
+                return [].concat(e).sort((e, t) => "mail" !== e.type ? "mail" === t.type ? -1 : 1 : 0)
+            }(e) : e
         }
 
-        function Dn(e, t) {
+        function Dn(e, t, n, a, r) {
+            if (n = n.replace(/\<br\s*\/?\>(\n)?/gi, " ").replace(/[\n\r]/gi, " "), n = Object(c.f)(n, (e, t, n, a, r) => r), a && (n = Be.emojiToHTML(n, !0)), t && "..." !== t.trim() && !Object(l.b)(e) && (n = _e("im_topic", {
+                    topic: t,
+                    cls: "im-topic_dialog"
+                }) + n), !n && r.length > 0) {
+                var i = Bn(r);
+                n = _e("im_dialog_media", {
+                    name: Nn(i[0], i)
+                })
+            }
+            return n
+        }
+
+        function Nn(e, t) {
             var n = {
                 photo: be("mail_added_photos", "raw"),
                 video: be("mail_added_videos", "raw"),
@@ -11746,7 +11756,6 @@
             };
             switch (e.type) {
                 case "mail":
-                case "respond":
                     var a = e.object ? e.object.fwd_count : e.id.split(";").length;
                     return ye(a, be("mail_fwd_msgs", "raw"), !0);
                 case "photo":
@@ -11805,15 +11814,15 @@
             return ""
         }
 
-        function Nn(e) {
+        function qn(e) {
             le(e, "im-send-btn_loading")
         }
 
-        function qn(e) {
+        function Hn(e) {
             de(e, "im-send-btn_loading")
         }
 
-        function Hn(e) {
+        function An(e) {
             var t = e.get(),
                 n = Object(s.q)(e);
             if (!n || !Object(_.a)(e, Object(s.p)(e))) return "";
@@ -11841,9 +11850,14 @@
                 }
                 return n
             }(e, n);
-            return r || (r = !(r = n.text) && n.attaches.length ? _e("im_pinned_message_media", {
-                text: Dn(n.attaches[0], n.attaches)
-            }) : yt(e, r, n && n.kludges || {}) || ""), r = r.replace(/<br\s?\/?>/gi, " "), _e("im_pinned_message", {
+            if (!r)
+                if (!(r = n.text) && n.attaches.length) {
+                    var i = Bn(n.attaches);
+                    r = _e("im_pinned_message_media", {
+                        text: Nn(i[0], i)
+                    })
+                } else r = yt(e, r, n && n.kludges || {}) || "";
+            return r = r.replace(/<br\s?\/?>/gi, " "), _e("im_pinned_message", {
                 date: Oe(n.date, t.timeshift),
                 content: r,
                 link: a.link,
@@ -11851,7 +11865,7 @@
             })
         }
 
-        function An(e, t, n) {
+        function Fn(e, t, n) {
             var a = n.getAttribute("data-info");
             a && Te(n, {
                 text: a,
@@ -11863,7 +11877,7 @@
             })
         }
 
-        function Fn(e, t, n) {
+        function Rn(e, t, n) {
             var a = +n.getAttribute("data-time");
             a && Te(n, {
                 text: be("mail_message_edited") + " " + Oe(a, e.get().timeshift),
@@ -11874,20 +11888,20 @@
             })
         }
 
-        function Rn() {
+        function $n() {
             var e = getSize(oe(U))[1];
             return e || (e = Re), e
         }
 
-        function $n(e, t) {
+        function Un(e, t) {
             e.bodyNode.addEventListener("mouseover", e => {
-                me(e.target, "_im_edit_time") ? Fn(t, 0, e.target) : me(e.target, "_im_page_info") && An(0, 0, e.target)
+                me(e.target, "_im_edit_time") ? Rn(t, 0, e.target) : me(e.target, "_im_page_info") && Fn(0, 0, e.target)
             })
         }
 
-        function Un(e, t, n, a, r) {
+        function zn(e, t, n, a, r) {
             var i, s = e.get();
-            $n(xe("al_im.php", {
+            Un(xe("al_im.php", {
                 act: "a_get_pinned_message_box",
                 chat: n,
                 gid: e.get().gid,
@@ -11908,9 +11922,9 @@
             }, r), e)
         }
 
-        function zn(e, t, n) {
+        function Kn(e, t, n) {
             var a = e.get();
-            $n(xe("al_im.php", {
+            Un(xe("al_im.php", {
                 act: "a_get_replied_message_box",
                 chat: a.peer,
                 msgid: t,
@@ -11928,25 +11942,25 @@
             }, n), e)
         }
 
-        function Kn(e, t) {
+        function Wn(e, t) {
             return !(!Object(l.b)(e.peerId) || !e.memberIds) && e.memberIds.indexOf(t) >= 0
         }
 
-        function Wn(e) {
+        function Vn(e) {
             return !Object(l.b)(e.peerId) || e.data.kicked ? 0 : e.membersCount
         }
 
-        function Vn(e, t) {
+        function Gn(e, t) {
             var n = Object(h.c)(e, t.peerId),
                 a = Object(s.u)(e, t.peerId) || {};
             return n && (t.photo = t.photo || n.photo, t.name = t.name || n.name, t.href = t.link || n.link, t.sex = t.sex || n.sex), t.last_touched = a.last_touched || 0, t.verified = !!t.verified, t.lastmsg = t.lastmsg || t.lastmsg_meta && t.lastmsg_meta[0] || !1, t.folders = t.folders || null, t.unread = t.unread || 0, t.last_seen = t.last_seen || [0, 0, 0], t.online = t.last_seen && t.last_seen[0] || 0, t.out_up_to = null != t.out_up_to ? t.out_up_to : t.in_up_to || 0, Object(l.b)(t.peerId) && (t.memberIds = t.memberIds || a.memberIds || null), t
         }
 
-        function Gn(e, t) {
-            for (var n in t) t.hasOwnProperty(n) && Vn(e, t[n])
+        function Xn(e, t) {
+            for (var n in t) t.hasOwnProperty(n) && Gn(e, t[n])
         }
 
-        function Xn(e, t) {
+        function Qn(e, t) {
             var n = [],
                 a = t.find(e => "mail" === e[0]),
                 r = a ? a[1].split(";") : [];
@@ -11968,11 +11982,11 @@
             return n
         }
 
-        function Qn(e) {
+        function Yn(e) {
             return e.length > He
         }
 
-        function Yn(e, t, n) {
+        function Jn(e, t, n) {
             var a = !1;
             Ee("al_im.php", {
                 act: "a_chat_preview",
@@ -11994,11 +12008,11 @@
             }, {})
         }
 
-        function Jn() {
+        function Zn() {
             Ie(be("global_error"), be("mail_message_wait_until_uploaded"))
         }
 
-        function Zn(e, t) {
+        function ea(e, t) {
             var n = Object(s.u)(e, t.peerId) || {},
                 a = e.get(),
                 r = Object(l.b)(t.peerId) && Object(v.n)(n, a.id),
@@ -12014,11 +12028,11 @@
             return !0
         }
 
-        function ea(e, t) {
+        function ta(e, t) {
             return t.map(t => Object(h.c)(e, t))
         }
 
-        function ta(e, t) {
+        function na(e, t) {
             if ("number" != typeof e || 0 === e) return "";
             var n, a = e,
                 r = [];
@@ -12039,7 +12053,7 @@
             return be("global_and").replace(/{before}/gi, i).replace(/{after}/gi, s)
         }
 
-        function na(e, t, n, r) {
+        function aa(e, t, n, r) {
             r && !Xe(e, n, r) && (Object(s.n)(e, n, r) ? (e.setState({
                 msgid: r
             }), Object(i.b)({
@@ -12047,7 +12061,7 @@
             }), t()) : e.get().longpoll.push([Object(a.gb)(n, r)]))
         }
 
-        function aa(e) {
+        function ra(e) {
             var t = oe("im-mess_is_editing");
             if (!t) return null;
             var n = e.get().tabs[e.get().peer],
@@ -12055,14 +12069,14 @@
             return a && a.peerId == e.get().peer ? a : null
         }
 
-        function ra(e, t) {
+        function ia(e, t) {
             if (Object(s.A)(e)) {
                 var n = document.getElementById("ui_rmenu_mr");
                 n && (Object(s.d)(e) ? n.classList.remove("unshown") : n.classList.add("unshown"))
             } else t(e)
         }
 
-        function ia(e) {
+        function sa(e) {
             var t = Object(g.q)(e),
                 n = Number(t.dialog_tab_cts[r.k]),
                 a = n > 0 ? n : "",

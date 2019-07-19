@@ -2673,6 +2673,48 @@ textarea.EditableLabel__textarea {
     pointer-events: all
 }
 
+.StoryRestriction {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 68px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    z-index: 101
+}
+
+.StoryRestriction__inner {
+    width: 100%;
+    min-height: 56px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 16px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 8px;
+    white-space: normal;
+    pointer-events: all;
+    box-sizing: border-box
+}
+
+.StoryRestriction__title {
+    padding-right: 10px;
+    box-sizing: border-box
+}
+
+.StoryRestriction__link {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #b1dafd
+}
+
 #stories_css {
     display: none
 }
@@ -5396,14 +5438,15 @@ textarea.EditableLabel__textarea {
 }
 
 .stories_play_button {
-    z-index: 1;
+    z-index: 8;
     opacity: 1;
     pointer-events: none;
     display: none
 }
 
 .stories_item.autoplay_failed.active .stories_play_button {
-    display: block
+    display: block;
+    pointer-events: auto
 }
 
 .stories_hide_reply_wrap {
@@ -6135,10 +6178,6 @@ textarea.EditableLabel__textarea {
     border-top: 7px solid #fff
 }
 
-.StoriesTooltip:hover {
-    opacity: .9
-}
-
 .StoriesTooltip .StoriesTooltip__link {
     display: block;
     padding: 8px 16px;
@@ -6167,6 +6206,47 @@ textarea.EditableLabel__textarea {
 .StoriesTooltip .StoriesTooltip__link:hover:after {
     -o-transform: translateX(1px);
     transform: translateX(1px)
+}
+
+.StoriesTooltip--b {
+    transform: translate3d(-50%, 0%, 0);
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .16), 0 -8px 12px 0 rgba(0, 0, 0, .1), 0 0 4px 0 rgba(0, 0, 0, .12);
+    margin-top: 10px
+}
+
+.StoriesTooltip--b:after,
+.StoriesTooltip--b:before {
+    top: auto;
+    bottom: 100%;
+    border-top: none
+}
+
+.StoriesTooltip--b:before {
+    border-bottom: 7px solid #c5d0db
+}
+
+.StoriesTooltip--b:after {
+    border-bottom: 7px solid #fff
+}
+
+.StoriesTooltipActions {
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    text-align: left;
+    box-sizing: border-box
+}
+
+.StoriesTooltipActions__item {
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.14px;
+    padding: 6px 12px 8px;
+    font-weight: 400
+}
+
+.StoriesTooltipActions__item:hover {
+    background-color: #f2f4f7
 }
 
 .stories_feedback_questions {
