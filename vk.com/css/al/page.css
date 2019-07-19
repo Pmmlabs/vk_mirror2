@@ -3162,7 +3162,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .poster-uploader__title {
     margin: 20px 0 18px;
-    font-family: TT Commons, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, TT Commons, sans-serif;
     font-size: 28px
 }
 
@@ -3556,7 +3556,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
     top: 50%;
     width: 100%;
     padding: 0 32px;
-    font-family: TT Commons, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, TT Commons, sans-serif;
     font-weight: 600;
     text-align: center;
     -o-transform: translateY(-50%);
@@ -3700,7 +3700,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .poster .poster__input-msg,
 .poster__placeholder {
-    font-family: TT Commons, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, TT Commons, sans-serif;
     font-weight: 600;
     text-align: center;
     word-wrap: break-word;
@@ -4783,7 +4783,7 @@ body.mac .wall_module .reply_box_inner_wrap.fixed {
 
 .podcast_episode_layer__actions .button_action_light {
     margin-right: 15px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .podcast_episode_layer__actions .button_action_light:last-child {
@@ -6707,7 +6707,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 #wpe_text.zoom_text font,
 div.submit_post_field[contenteditable=true] font,
 div.submit_post_field font {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important;
     color: #000
 }
 
@@ -8364,7 +8364,7 @@ a.page_media_link_desc {
 }
 
 .wall_module .mention_rich_ta p {
-    font-family: tahoma, verdana, arial, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, tahoma, verdana, arial, sans-serif;
     font-size: 11px;
     padding: 0;
     margin: 0;

@@ -38,7 +38,7 @@
     -o-transition: opacity .2s ease, visibility .2s ease;
     transition: opacity .2s ease, visibility .2s ease;
     z-index: 1001;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 }
 
 .UnblockTooltip__in {
@@ -946,7 +946,7 @@
 }
 
 input.login_big_text {
-    font-family: tahoma, verdana, arial, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, tahoma, verdana, arial, sans-serif;
     background: #fff;
     border: 1px solid #c0cad5;
     font-size: 1.09em!important;
@@ -1042,7 +1042,7 @@ input.login_big_text {
 }
 
 #blocked_country_wrap .selector_container td.selector input {
-    font-family: tahoma, verdana, arial, sans-serif;
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, tahoma, verdana, arial, sans-serif;
     font-size: 1.09em!important
 }
 

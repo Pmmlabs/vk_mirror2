@@ -1884,7 +1884,7 @@ input.dev_input_simular {
 
 #dev_result {
     word-break: break-all;
-    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace
 }
 
 .dev_req_run_btn {
@@ -2733,7 +2733,7 @@ body.dev a.dev_search_match_row {
     margin: 15px 0 0 15px;
     background: #5e82a8;
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
+    font-family: Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 #dev_upload_iframe_wrap {

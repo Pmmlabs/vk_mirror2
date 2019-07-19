@@ -96,10 +96,15 @@ AdsEdit.init = function() {
         tagsElem.value = AdsEdit.unescapeValueInit(tagsElem.innerHTML);
     }
 
-    // TODO enable on realese new prediction widget
-    // AdsComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_wrap'), {}, {});
-
-    Ads.initFixed('ads_edit_audience_wrap', 59);
+    Ads.initFixed('ads_edit_audience_wrap', {
+        customPositionTop: 59,
+        setElemWrapSize: false,
+        denyZeroSizeInit: false,
+    });
+    // ���� ����� �� ���������� �������� ������, �� ������� �� �������
+    if (!cur.editor.isUpdatingData()) {
+        cur.editor.getUpdatedData();
+    }
 }
 
 AdsEdit.destroy = function() {
@@ -2126,6 +2131,8 @@ AdsEditor.prototype.getUpdatedData = function(force, delayed) {
     var ajaxParams = {};
     ajaxParams = extend({}, ajaxParams, lastData);
 
+    this.viewEditor.beforeGetTargetParams();
+
     ajax.post('/adsedit?act=get_target_params', ajaxParams, {
         onDone: onDone.bind(this),
         onFail: onFail.bind(this)
@@ -3797,8 +3804,11 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
 
             var recommendedShortElem = ge('ads_edit_recommended_cost_text');
             var recommendedLongElem = ge('ads_param_cost_per_click_recommended');
-            recommendedShortElem.innerHTML = this.params[paramName][costPerClickRecommendedShort];
-            recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong];
+            recommendedShortElem && (recommendedShortElem.innerHTML = this.params[paramName][costPerClickRecommendedShort]);
+            recommendedLongElem && (recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong]);
+
+            // ������� ������ � ������� ������������ ������
+            this.showPredictionWidget();
             break;
         case '_platform':
             this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
@@ -5188,8 +5198,10 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
 
     if (isObject(result) && 'audience_count_text' in result) {
         var targetElem = ge('ads_edit_audience_text');
-        targetElem.innerHTML = result.audience_count_text;
+        targetElem && (targetElem.innerHTML = result.audience_count_text);
+    }
 
+    if (isObject(result) && 'audience_count' in result) {
         this.triggerAudienceNotify(data, result);
     }
 
@@ -5389,6 +5401,12 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
 
     if (this.completeLinkPending) {
         this.completeLink();
+    }
+
+    if (isObject(result) && 'recommended_price' in result) {
+        this.setPredictionWidgetApiResponse(result);
+        // ������� ������ � ������� ������������ ������
+        this.showPredictionWidget();
     }
 
     return setResult;
@@ -6121,11 +6139,11 @@ AdsViewEditor.prototype.completeLink = function() {
     ajaxParams.format_type = this.params.format_type.value;
     ajax.post('/adsedit?act=collect_click_stat', ajaxParams);
 
-    Ads.initFixed('ads_edit_audience_wrap', 59);
-
     addClass('ads_edit_error_link_msg', 'unshown');
 
     AdsEdit.scrollToEditing();
+    // ���, ����� ����������� ������ ��������� ��������� �� Ads.initFixed
+    window.dispatchEvent(new Event('resize'));
 }
 
 AdsViewEditor.prototype.editLink = function() {
@@ -6641,6 +6659,92 @@ AdsViewEditor.prototype.getLinkButtonText = function(linkButton) {
     }
     return '';
 }
+AdsViewEditor.prototype.setPredictionWidgetApiResponse = function(apiResponse) {
+    this.lastAudienceCountApiResponse = apiResponse;
+};
+
+AdsViewEditor.prototype.showPredictionWidget = function() {
+    var costPerClick = parseFloat(this.params['cost_per_click'].value);
+    // TODO �������� ����, ��� ���������� ������
+    var widgetData = this.getPredictionWidgetDataForRender(costPerClick);
+    if (widgetData) {
+        var isLoading = this.editor.updateDataCounter > 0;
+        AdsComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_count_container'), widgetData, isLoading);
+    }
+};
+
+AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick) {
+    var apiResponse = this.lastAudienceCountApiResponse;
+    if (!apiResponse) {
+        return false;
+    }
+
+    var prices = apiResponse.recommended_price || [];
+    var audienceCount = apiResponse.audience_count;
+    var minPriceItem = null;
+    var maxPriceItem = prices[prices.length - 1];
+    for (var i = 0; i < prices.length; i++) {
+        prices[i].price = parseFloat(prices[i].price);
+    }
+    for (i = 1; i < prices.length; i++) {
+        if ((costPerClick >= prices[i - 1].price) && (costPerClick < prices[i].price)) {
+            // ���� ��������� �� ���� �������� � �������� ���� �������� ��������
+            minPriceItem = prices[i - 1];
+            maxPriceItem = prices[i];
+            break;
+        }
+    }
+
+    if (!minPriceItem) {
+        minPriceItem = prices[0];
+    }
+    if (!maxPriceItem) {
+        maxPriceItem = prices[prices.length - 1];
+    }
+
+    var ret = {
+        targetValue: apiResponse.audience_count,
+        items: [],
+    };
+
+    var getApproximatedValue = function(minItem, maxItem, audienceCount) {
+        // ����������� ��� �������� ������������
+        var k = (costPerClick - minItem.price) / (maxItem.price - minItem.price);
+        return function(min, max, type) {
+            if (type === 'reach') {
+                // ���� �����, �� ������������ ���������� ��������� ������� ���������
+                return Math.min(audienceCount, Math.max(0, min + (max - min) * k));
+            }
+            return Math.max(0, min + (max - min) * k);
+        }
+    }(minPriceItem, maxPriceItem, audienceCount);
+
+    for (i = 0; i < minPriceItem.items.length; i++) {
+        var minValues = minPriceItem.items[i].values;
+        var maxValues = maxPriceItem.items[i].values;
+        var type = minPriceItem.items[i].type;
+        ret.items.push({
+            type: type,
+            values: {
+                day: {
+                    min: getApproximatedValue(minValues.day.min, maxValues.day.min, type),
+                    max: getApproximatedValue(minValues.day.max, maxValues.day.max, type),
+                },
+                week: {
+                    min: getApproximatedValue(minValues.week.min, maxValues.week.min, type),
+                    max: getApproximatedValue(minValues.week.max, maxValues.week.max, type),
+                }
+            }
+        });
+    }
+    return ret;
+};
+
+// ���������� ����� �������� get_target_params
+AdsViewEditor.prototype.beforeGetTargetParams = function() {
+    this.showPredictionWidget();
+};
+
 
 //
 // AdsTargetingEditor

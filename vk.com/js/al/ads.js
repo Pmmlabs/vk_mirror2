@@ -256,15 +256,23 @@ Ads.processNotices = function() {
     }
 }
 
-Ads.initFixed = function(elemWrap, customPositionTop) {
+Ads.initFixed = function(elemWrap, options) {
     elemWrap = ge(elemWrap);
     if (!elemWrap) return;
     var elemFixed = elemWrap.firstChild;
     if (!elemFixed) return;
 
+    options = extend({
+        customPositionTop: 66,
+        setElemWrapSize: true,
+        denyZeroSizeInit: true
+    }, options);
+
+    console.log(options);
+
     var initElemWrapXY = getXY(elemWrap);
     var inited = elemWrap.getAttribute('fixed_inited');
-    var positionTop = customPositionTop || 66;
+    var positionTop = options.customPositionTop;
 
     if (inited) {
         setStyle(elemWrap, {
@@ -278,11 +286,18 @@ Ads.initFixed = function(elemWrap, customPositionTop) {
         });
     }
     var elemWrapSize = getSize(elemWrap);
-    if (!elemWrapSize[0] || !elemWrapSize[1]) return;
-    setStyle(elemWrap, {
-        width: elemWrapSize[0] + 'px',
-        height: elemWrapSize[1] + 'px'
-    });
+    if (options.denyZeroSizeInit) {
+        if (!elemWrapSize[0] || !elemWrapSize[1]) {
+            return;
+        }
+    }
+
+    if (options.setElemWrapSize) {
+        setStyle(elemWrap, {
+            width: elemWrapSize[0] + 'px',
+            height: elemWrapSize[1] + 'px'
+        });
+    }
 
     elemWrap.setAttribute('fixed_inited', 1);
 
