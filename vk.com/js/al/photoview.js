@@ -3991,7 +3991,9 @@ var Photoview = {
                         if ( of ) of (t);
                         delete(cur.pvAlbumData[albumRaw]);
                         cur.pvAlbumData[albumRaw];
-                        layers.fullhide(true);
+                        if (layers.fullhide) {
+                            layers.fullhide(true);
+                        }
                         return true;
                     }
                 }));
@@ -4037,7 +4039,9 @@ var Photoview = {
                         if ( of ) of (t);
                         delete(cur.pvPhotoTagData[ownerId]);
                         cur.pvPhotoTagData[ownerId];
-                        layers.fullhide(true);
+                        if (layers.fullhide) {
+                            layers.fullhide(true);
+                        }
                         return true;
                     }
                 }));

@@ -55,6 +55,12 @@ body {
     background: #ebedf0
 }
 
+body.fixed {
+    position: fixed;
+    left: 0;
+    right: 0
+}
+
 .button::-moz-focus-inner,
 .small_button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -2920,6 +2926,12 @@ input.wide_button {
     text-decoration: none
 }
 
+.ii_go {
+    position: absolute;
+    right: 4px;
+    top: 16px
+}
+
 .ii_bold,
 .ii_owner {
     font-weight: 700
@@ -3631,6 +3643,20 @@ input.wide_button {
 .pic_desc,
 .pic_desc_a {
     color: #777
+}
+
+.pic_right {
+    position: absolute;
+    top: 0;
+    right: 0px
+}
+
+.pic_right:focus {
+    outline: none
+}
+
+.pic_right:active {
+    opacity: 0.75
 }
 
 .pic_author_header_wrap {

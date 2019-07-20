@@ -717,8 +717,14 @@
     font-weight: 700
 }
 
-.attention {
+.attention,
+.abuse_counter_attention {
     font-weight: 700
+}
+
+.abuse_counter_danger {
+    font-weight: 700;
+    color: #ca1f1f
 }
 
 .abuse_likes_tooltip .abuse_tt_header {
