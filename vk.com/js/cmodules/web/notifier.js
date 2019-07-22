@@ -262,11 +262,11 @@
                         left: i,
                         right: "auto"
                     })) : i = intval(getStyle(a.wrap, "left")), u = t, f = i, cur._fcdrag = 1;
-                    var m = function(e) {
+                    var v = function(e) {
                         return u = Math.max(0, Math.min(h, t + e.pageY - n)), h - u < 10 ? u = h : u < 10 && (u = 0), a.wrap.style.top = u + "px", f = Math.max(0, Math.min(_, i + e.pageX - c)), _ - f < 10 ? f = _ : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
                     };
-                    return addEvent(document, "mousemove", m), addEvent(document, "mouseup", function e(t) {
-                        cur._fcdrag = 0, removeEvent(document, "mousemove", m), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
+                    return addEvent(document, "mousemove", v), addEvent(document, "mouseup", function e(t) {
+                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
                         }), addClass(a.wrap, "fc_tobottom")), (a.toRight = f >= _ - 5) && setStyle(a.wrap, {
@@ -302,16 +302,16 @@
                         left: i,
                         right: "auto"
                     })) : i = intval(getStyle(a.wrap, "left")), a.options.onResizeStart && a.options.onResizeStart(f, h);
-                    var m = f + r[0] - t - c,
-                        v = h + r[1] - i - l,
+                    var v = f + r[0] - t - c,
+                        m = h + r[1] - i - l,
                         g = function(e) {
-                            return d = Math.max(a.options.minH, Math.min(m, f + e.pageY - s)), m - d < 10 && (d = m), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(v, h + e.pageX - n)), v - u < 10 && (u = v), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
+                            return d = Math.max(a.options.minH, Math.min(v, f + e.pageY - s)), v - d < 10 && (d = v), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(m, h + e.pageX - n)), m - u < 10 && (u = m), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
                         };
                     return addEvent(document, "mousemove", g), addEvent(document, "mouseup", function e(t) {
-                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == m) && (setStyle(a.wrap, {
+                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == v) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
-                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == v) && setStyle(a.wrap, {
+                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == m) && setStyle(a.wrap, {
                             left: "auto",
                             right: 0,
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
@@ -411,9 +411,9 @@
             h = i("XzvV"),
             _ = i("MhhX"),
             p = i("P13b"),
-            m = i("vT4u");
+            v = i("vT4u");
 
-        function v() {
+        function m() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
@@ -595,18 +595,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (v()) break;
+                        if (m()) break;
                         var i, a = t.id,
                             o = curFastChat.tabs[a],
                             r = !1;
@@ -637,18 +637,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (v()) break;
+                        if (m()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (v()) break;
+                        if (m()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -704,7 +704,7 @@
             loadMembers(e) {
                 if (0 === Object.keys(e).length) return Promise.resolve();
                 var t = Object.keys(e).map(t => `${t}:${e[t].join(",")}`).join(";");
-                return Object(u.b)(m.e, {
+                return Object(u.b)(v.e, {
                     act: "a_load_member",
                     need: t
                 }).then(([t]) => {
@@ -1500,7 +1500,7 @@
                 }))
             },
             gotPeers: function(e) {
-                v() || each(curFastChat.needPeers, function(t) {
+                m() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1565,9 +1565,9 @@
                 }))
             },
             waitTyping(e) {
-                return Object(f.c)(m.b + 2).then(() => {
+                return Object(f.c)(v.b + 2).then(() => {
                     var t = this.getTab(e.peerId);
-                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * m.b && delete t.typing)
+                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * v.b && delete t.typing)
                 })
             },
             updateTypings() {
@@ -1896,15 +1896,15 @@
                         u[0] + u[2] > d && (curFastChat.clistBox.visible || !f) && l.push([u[1], u[1] + u[3]]), each(curFastChat.tabs, function(t) {
                             (u = this.box && this.box.pos) && t != e && u[0] + u[2] > d && l.push([u[1], u[1] + u[3]])
                         });
-                        var _, p, m, v = lastWindowWidth - 262 - sbWidth(),
+                        var _, p, v, m = lastWindowWidth - 262 - sbWidth(),
                             g = !1,
                             b = !1,
-                            C = 0 > v ? 1 : -1;
-                        for (_ = v; C * _ < 0 * C; _ += 135 * C) {
-                            for (p = 0, m = 0; m < l.length; m++) _ > l[m][0] - 260 && _ < l[m][1] && p++, _ > l[m][0] - 10 && _ < l[m][0] + 10 && (p += 1.1);
+                            C = 0 > m ? 1 : -1;
+                        for (_ = m; C * _ < 0 * C; _ += 135 * C) {
+                            for (p = 0, v = 0; v < l.length; v++) _ > l[v][0] - 260 && _ < l[v][1] && p++, _ > l[v][0] - 10 && _ < l[v][0] + 10 && (p += 1.1);
                             (!1 === g || p < b) && (g = _, b = p)
                         }
-                        f && b && (g = v), extend(c, {
+                        f && b && (g = m), extend(c, {
                             startBottom: 0,
                             startLeft: g
                         })
@@ -2739,9 +2739,9 @@
         }), i.d(t, "c", function() {
             return p
         }), i.d(t, "d", function() {
-            return m
-        }), i.d(t, "b", function() {
             return v
+        }), i.d(t, "b", function() {
+            return m
         });
         i("Btvt");
         var a = i("iN1s"),
@@ -2812,14 +2812,14 @@
         function p() {
             d() && (Object(r.b)("orange", "init longpoll connection on load"), _(), window.curNotifier.idle_manager.on("unidle", () => {
                 c.abortWaiting()
-            }), m())
+            }), v())
         }
 
-        function m() {
-            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(s.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(s.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(m, 500))
+        function v() {
+            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(s.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(s.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
         }
 
-        function v(e) {
+        function m(e) {
             u() && !f() && d() && (Object(r.b)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
         }
 
@@ -2936,7 +2936,7 @@
             })
         }
 
-        function m(e, t) {
+        function v(e, t) {
             var i = !!e.stopped,
                 a = {
                     id: e.id,
@@ -3017,8 +3017,8 @@
                             })
                         }(e.updates))
                     },
-                    onData: v(t.onData),
-                    onRequestError: v(t.onRequestError),
+                    onData: m(t.onData),
+                    onRequestError: m(t.onRequestError),
                     onHistoryLost: g(t.onHistoryLost),
                     onKeyExpired: g(t.onKeyExpired),
                     onLpBroken: g(t.onHistoryLost)
@@ -3049,7 +3049,7 @@
             return _(a), f
         }
 
-        function v(e) {
+        function m(e) {
             return e || (() => {})
         }
 
@@ -3060,7 +3060,7 @@
             C = i("vT4u");
 
         function w(e, t) {
-            return m(e, {
+            return v(e, {
                 onEvents: t,
                 onData: F,
                 onRequestError: k,
@@ -3987,140 +3987,113 @@
             pushEvents: function(e, t) {
                 var i = 0;
                 each(e, function(e, a) {
-                    i |= Notifier.pushEvent(a, t)
+                    i |= Notifier.pushEvent(JSON.parse(a), t)
                 }), i && !ls.get("sound_notify_off") && curNotifier.is_server && (2 & i ? curNotifier.sound_im.play() : curNotifier.sound.play())
             },
-            pushEvent: function pushEvent(msg, cnt) {
-                if ("nop" != msg) {
-                    var ev;
-                    "string" == typeof msg && (msg = JSON.parse(msg)), ev = msg.version ? msg : {
-                        version: msg[0],
-                        type: msg[1],
-                        title: msg[2],
-                        author_photo: psr(msg[3] || ""),
-                        author_link: msg[4] || "",
-                        text: psr(msg[5]),
-                        add_photo: psr(msg[6] || ""),
-                        link: msg[7],
-                        onclick: msg[8],
-                        add: msg[9],
-                        id: msg[10],
-                        author_id: msg[11],
-                        top_count: msg[12],
-                        _eval: msg[13],
-                        icon_type: msg[14]
-                    }, Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
-                        default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
-                        default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
-                        unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
-                        unfreeze_am: ev.timeout ? 4.4 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE_AFTER_UNFREEZE
-                    });
-                    var push = cnt ? 0 : 1,
-                        push_prioritized = !1;
-                    if (ev.version !== curNotifier.version && -1 !== ev.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
-                    if ("update_cnt" === ev.type) return handlePageCount(ev.author_photo, ev.author_link, ev.text, ev.add_photo), 0;
-                    if (ev._eval) {
-                        var evalExpr = `(${ev._eval})`;
-                        try {
-                            ev.custom = eval(evalExpr)
-                        } catch (e) {
-                            Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalExpr)
-                        }
-                    }
-                    if (!curNotifier.done_events[ev.id]) {
-                        switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 != ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
-                            case "video_process_ready":
-                                if (ev.add.video_raw && window.Video && Video.isVideoPlayerOpen(ev.add.video_raw)) return;
-                                if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) return;
-                                break;
-                            case "mail":
-                                handlePageCount("msg", ev.add);
-                                break;
-                            case "friend_request":
-                                ev.add.fr_count ? handlePageCount("fr", ev.add.fr_count) : handlePageCount("fr", ev.add);
-                                break;
-                            case "friend_request_counter":
-                                handlePageCount("fr", ev.add.fr_count), push = 0;
-                                break;
-                            case "ach_achieved":
-                                ev.add.cnt && handlePageCount("ach", ev.add.cnt);
-                                break;
-                            case "ach_achieved_upd":
-                                handlePageCount("ach", ev.add), push = 0;
-                                break;
-                            case "bt_upd":
-                                if (ev.add.cnt) {
-                                    handlePageCount("bt", ev.add.cnt);
-                                    var bt = ge("bt_tab_updates");
-                                    bt && val(geByClass1("ui_tab_count", bt), ev.add.cnt > 0 ? ev.add.cnt : "")
-                                }
-                                break;
-                            case "bt_upd_upd":
-                                handlePageCount("bt", ev.add, ev.custom[0], ev.custom[1]), push = 0;
+            pushEvent: function pushEvent(ev, cnt) {
+                Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
+                    default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
+                    default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
+                    unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
+                    unfreeze_am: ev.timeout ? 4.4 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE_AFTER_UNFREEZE
+                });
+                var push = cnt ? 0 : 1,
+                    push_prioritized = !1;
+                if (ev.version !== curNotifier.version && -1 !== ev.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
+                if ("update_cnt" === ev.type) return ev.add && ev.add.section && handlePageCount(ev.add.section_id, ev.add.count, ev.add.section_link, ev.add.section_add), 0;
+                if (!curNotifier.done_events[ev.id]) {
+                    switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 != ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
+                        case "video_process_ready":
+                            if (ev.add.video_raw && window.Video && Video.isVideoPlayerOpen(ev.add.video_raw)) return;
+                            if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) return;
+                            break;
+                        case "mail":
+                            ev.add && null !== ev.add.count && void 0 !== ev.add.count && handlePageCount("msg", ev.add.count);
+                            break;
+                        case "friend_request":
+                            ev.add.fr_count ? handlePageCount("fr", ev.add.fr_count) : handlePageCount("fr", ev.add);
+                            break;
+                        case "friend_request_counter":
+                            handlePageCount("fr", ev.add.fr_count), push = 0;
+                            break;
+                        case "ach_achieved":
+                            ev.add.cnt && handlePageCount("ach", ev.add.cnt);
+                            break;
+                        case "ach_achieved_upd":
+                            handlePageCount("ach", ev.add), push = 0;
+                            break;
+                        case "bt_upd":
+                            if (ev.add.cnt) {
+                                handlePageCount("bt", ev.add.cnt);
                                 var bt = ge("bt_tab_updates");
-                                bt && val(geByClass1("ui_tab_count", bt), ev.add > 0 ? ev.add : "");
-                                break;
-                            case "push_settings":
-                                push = 0;
-                                var muted = JSON.parse(ev.add);
-                                curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(e) {
-                                    return e !== muted.peer_id
-                                }), 0 !== muted.disabled_until && curNotifier.mutedPeers.push(muted.peer_id);
-                                break;
-                            case "mail_cnt":
-                                handlePageCount("msg", ev.add), push = 0;
-                                break;
-                            case "clear_notify":
-                                TopNotifier && TopNotifier.invalidate(), Notifier.hideAllEvents(), push = 0;
-                                break;
-                            case "support_reply":
-                                handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0);
-                                break;
-                            case "support_cnt":
-                                handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0), push = 0;
-                                break;
-                            case "balance_changed":
-                                parseInt(ev.add.balance) ? updateMoney(parseInt(ev.add.balance)) : parseInt(ev.add) && updateMoney(parseInt(ev.add)), ev.custom && "app" == ev.custom[0] && cur.app && cur.app.params.api_id == ev.custom[1] && cur.app.balanceUpdated(ev.custom[2]);
-                                break;
-                            case "gift_sent":
-                                re("left_block10_0");
-                                var left_block = ev.add;
-                                if (left_block) {
-                                    var leftBlocksElem = ge("left_blocks"),
-                                        left_unpaid_gifts = se(left_block);
-                                    leftBlocksElem && (leftBlocksElem.firstChild ? leftBlocksElem.insertBefore(left_unpaid_gifts, leftBlocksElem.firstChild) : leftBlocksElem.appendChild(left_unpaid_gifts))
+                                bt && val(geByClass1("ui_tab_count", bt), ev.add.cnt > 0 ? ev.add.cnt : "")
+                            }
+                            break;
+                        case "bt_upd_upd":
+                            ev.add && ev.add.section && handlePageCount("bt", ev.add.count, ev.add.section, ev.add.prefix), push = 0;
+                            var bt = ge("bt_tab_updates");
+                            bt && val(geByClass1("ui_tab_count", bt), ev.add > 0 ? ev.add : "");
+                            break;
+                        case "push_settings":
+                            push = 0;
+                            var muted = JSON.parse(ev.add);
+                            curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(e) {
+                                return e !== muted.peer_id
+                            }), 0 !== muted.disabled_until && curNotifier.mutedPeers.push(muted.peer_id);
+                            break;
+                        case "mail_cnt":
+                            handlePageCount("msg", ev.add), push = 0;
+                            break;
+                        case "clear_notify":
+                            TopNotifier && TopNotifier.invalidate(), Notifier.hideAllEvents(), push = 0;
+                            break;
+                        case "support_reply":
+                            handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0);
+                            break;
+                        case "support_cnt":
+                            handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0), push = 0;
+                            break;
+                        case "balance_changed":
+                            parseInt(ev.add.balance) ? updateMoney(parseInt(ev.add.balance)) : parseInt(ev.add) && updateMoney(parseInt(ev.add));
+                            break;
+                        case "gift_sent":
+                            re("left_block10_0");
+                            var left_block = ev.add;
+                            if (left_block) {
+                                var leftBlocksElem = ge("left_blocks"),
+                                    left_unpaid_gifts = se(left_block);
+                                leftBlocksElem && (leftBlocksElem.firstChild ? leftBlocksElem.insertBefore(left_unpaid_gifts, leftBlocksElem.firstChild) : leftBlocksElem.appendChild(left_unpaid_gifts))
+                            }
+                            break;
+                        case "notify_tt":
+                        case "login_attempt":
+                            if (ev.add.text && ev.add.key) {
+                                var evalText = `(${ev.add})`;
+                                try {
+                                    ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
+                                } catch (e) {
+                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalText)
                                 }
-                                break;
-                            case "notify_tt":
-                            case "login_attempt":
-                                if (ev.add.text && ev.add.key) {
-                                    var evalText = `(${ev.add})`;
-                                    try {
-                                        ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
-                                    } catch (e) {
-                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalText)
-                                    }
-                                    push = 0
-                                }
-                                break;
-                            case "reload_stickers":
-                                window.Emoji && window.Emoji.stickers && (Emoji.stickers = !1), push = 0;
-                                break;
-                            case "reload_stickers_keywords":
-                                window.stickersKeywordsData = null, ls.remove("stickers_keywords"), window.Emoji && Emoji.updateTabs(), push = 0;
-                                break;
-                            case "any_counter":
-                                handlePageCount(ev.add.section_id, ev.add.count, ev.add.link, ev.add.add), push = 0;
-                                break;
-                            case "done_box":
-                                push = 0, push_prioritized = !0
-                        }
-                        if ("mail" === ev.type && (push = this.sendMailNotification(ev)), ev.add && ev.add.tooltip_text) {
-                            var html = '<div class="notify_tt_wrap">' + (ev.author_photo ? `<img class="notify_tt_img" src="${ev.author_photo}" />` : '<div class="notify_tt_thumb"></div>') + '<h4 class="notify_tt_text">' + ev.add.tooltip_text + "</h4></div>";
-                            TopNotifier.showTooltip(html, 0), push = 0
-                        }
-                        return 1 & push && (curNotifier.q_events.push(ev), curNotifier.q_events.length > 30 && curNotifier.q_events.splice(0, curNotifier.q_events.length - 30), this.checkEvents()), push_prioritized && (curNotifier.q_prior_events.push(ev), curNotifier.q_prior_events.length > 5 && curNotifier.q_prior_events.splice(0, curNotifier.q_prior_events.length - 5), this.checkEvents()), push
+                                push = 0
+                            }
+                            break;
+                        case "reload_stickers":
+                            window.Emoji && window.Emoji.stickers && (Emoji.stickers = !1), push = 0;
+                            break;
+                        case "reload_stickers_keywords":
+                            window.stickersKeywordsData = null, ls.remove("stickers_keywords"), window.Emoji && Emoji.updateTabs(), push = 0;
+                            break;
+                        case "any_counter":
+                            handlePageCount(ev.add.section_id, ev.add.count, ev.add.link, ev.add.add), push = 0;
+                            break;
+                        case "done_box":
+                            push = 0, push_prioritized = !0
                     }
+                    if ("mail" === ev.type && (push = this.sendMailNotification(ev)), ev.add && ev.add.tooltip_text) {
+                        var html = '<div class="notify_tt_wrap">' + (ev.author_photo ? `<img class="notify_tt_img" src="${ev.author_photo}" />` : '<div class="notify_tt_thumb"></div>') + '<h4 class="notify_tt_text">' + ev.add.tooltip_text + "</h4></div>";
+                        TopNotifier.showTooltip(html, 0), push = 0
+                    }
+                    return 1 & push && (curNotifier.q_events.push(ev), curNotifier.q_events.length > 30 && curNotifier.q_events.splice(0, curNotifier.q_events.length - 30), this.checkEvents()), push_prioritized && (curNotifier.q_prior_events.push(ev), curNotifier.q_prior_events.length > 5 && curNotifier.q_prior_events.splice(0, curNotifier.q_prior_events.length - 5), this.checkEvents()), push
                 }
             },
             isActive: function() {
@@ -4178,7 +4151,7 @@
                 curNotifier.is_server ? (e.onclick = "IMBRIDGE.activateTab(" + e.author_id + ");", this.sendImProxy(e)) : curNotifier.is_server || this.lcSend("message_from_im", e)
             },
             sendMailNotification: function(e) {
-                if (e.custom.is_call) return 0;
+                if (e.add.is_call) return 0;
                 if ("im" == cur.module ? e.onclick = "IMBRIDGE.activateTab('" + e.author_id + "');" : e.onclick = "FastChat.selectPeer('" + e.author_id + "');", this.isActive() && Notifier.canNotifyUi()) this.playSound(e), this.shouldDisturb(e) && cur.peer != e.author_id && this.showEventUi(e);
                 else {
                     if (this.isActive() && this.shouldDisturb(e)) return this.sendSimpleNotification(e);
@@ -4191,7 +4164,7 @@
                 (!curNotifier.q_events.length || curNotifier.q_shown.length >= (curNotifier.idle_manager.is_idle ? curNotifier.q_idle_max : curNotifier.q_max)) && !curNotifier.q_prior_events.length || !curNotifier.idle_manager.is_idle && curNotifier.frozen || (cur.noDisturbMode || (e = curNotifier.q_prior_events.length ? curNotifier.q_prior_events.shift() : curNotifier.q_events.shift()) && this.showEvent(e))
             },
             showEvent: function showEvent(ev, force) {
-                ev.custom && ev.custom.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.custom.id), "mail" !== ev.type && Math.random() < .1 && statlogsValueEvent("feed_top_notify_popup", 1, "show", ev.type), curNotifier.q_shown.push(ev);
+                ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.add.id), "mail" !== ev.type && Math.random() < .1 && statlogsValueEvent("feed_top_notify_popup", 1, "show", ev.type), curNotifier.q_shown.push(ev);
                 var thumbEl = showEventThumb(ev),
                     addPhoto = showEventAddPhoto(ev);
                 ev.baloonWrapEl = ce("div", {
@@ -4264,7 +4237,7 @@
             showEventUi: function showEventUi(ev) {
                 if (!this.canNotifyUi()) return !1;
                 var title, text;
-                if (ev.custom && ev.custom.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.custom.id), "mail" === ev.type) {
+                if (ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.add.id), "mail" === ev.type) {
                     var div = ce("div");
                     div.innerHTML = ev.text, title = div.firstChild.textContent.trim(), text = stripHTML(replaceEntities(ev.text.replace(/<br\/?>/g, "\n")).replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, "$1").replace(/<img.*?alt="(.*?)".*?>/gi, "$1")).replace(/&laquo;|&raquo;/gi, '"').trim()
                 } else title = ev.title, text = ev.text;
