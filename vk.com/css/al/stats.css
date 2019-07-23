@@ -21,6 +21,752 @@
     padding: 0
 }
 
+.StaticRanges {
+    min-width: 185px;
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid #ebecef
+}
+
+.StaticRanges__item {
+    list-style: none;
+    cursor: pointer;
+    padding: 0
+}
+
+.StaticRanges__item:first-of-type {
+    margin-top: 5px
+}
+
+.StaticRanges__radio {
+    display: none
+}
+
+.StaticRanges__label {
+    display: -ms-flexbox;
+    display: flex;
+    height: 15px;
+    font-size: 12.5px;
+    color: #2a5885;
+    position: relative;
+    padding: 7px 20px 7px 27px;
+    cursor: inherit
+}
+
+.StaticRanges__radio:checked+.StaticRanges__label {
+    background: #f0f2f5;
+    font-weight: 500
+}
+
+.StaticRanges__radio:checked+.StaticRanges__label:before {
+    display: block;
+    content: ' ';
+    height: 15px;
+    width: 11px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2011%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2053%20(72520)%20-%20https%3A%2F%2Fsketchapp.com%20--%3E%0A%20%20%20%20%3Ctitle%3Eadded%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cg%20id%3D%22added%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-2%22%20opacity%3D%220.5%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2211%22%20height%3D%2211%22%20rx%3D%220.89%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-4%22%20stroke%3D%22%232A5885%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20points%3D%222.29166667%205.95833333%204.125%207.79166667%208.70833333%203.20833333%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    position: absolute;
+    left: 12px;
+    top: 6px
+}
+
+.StaticRanges__label:hover {
+    background-color: #f0f2f5
+}
+
+.Inputs {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.Inputs__input {
+    width: 100px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #d3d9de;
+    border-radius: 2px;
+    font-size: 13px;
+    box-sizing: border-box
+}
+
+.Inputs__input--focused,
+.Inputs__input:focus {
+    border: 1px solid #5181b8;
+    box-shadow: 0 0 0 1px #5181b8;
+    outline: none
+}
+
+.Inputs__label {
+    color: #656565;
+    margin-right: 10px;
+    font-size: 12.5px
+}
+
+.Inputs__delimiter {
+    display: inline-block;
+    width: 7px;
+    height: 1px;
+    background: #000
+}
+
+.ModeChanger.DatePicker {
+    border: none
+}
+
+.ModeChanger__opener:after {
+    content: ' ';
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpolyline%20stroke%3D%22%2392A0B1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.3%22%20points%3D%22.8%202.7%204%205.3%207.2%202.7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.DatePicker__panel {
+    position: relative;
+    border-bottom: 1px solid #ebecef;
+    padding: 12px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.DatePicker__panel-range {
+    font-size: 13px;
+    line-height: 27px
+}
+
+.Panel__arrow--minus,
+.Panel__arrow--plus {
+    position: absolute;
+    bottom: -43px;
+    padding: 20px 19px;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 10px
+}
+
+.Panel__arrow--minus {
+    left: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.Panel__arrow--plus {
+    right: 0px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.DatePicker__footer {
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 58px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top: 1px solid #ebecef;
+    padding: 0 20px 0 10px
+}
+
+.MonthCell {
+    text-align: center;
+    padding: 7px 10px;
+    font-size: 13px;
+    cursor: pointer
+}
+
+.MonthCell:hover {
+    background-color: #e3ebf3
+}
+
+.MonthCell--selected {
+    background-color: #f0f2f5
+}
+
+.MonthCell--disabled {
+    color: #939393;
+    cursor: auto
+}
+
+.MonthCell--disabled:hover {
+    background-color: #fff
+}
+
+.MonthCell--current {
+    color: #3b70ac
+}
+
+.MonthCell--active {
+    color: #fff
+}
+
+.MonthCell--active,
+.MonthCell--active:hover {
+    background-color: #5181b8
+}
+
+.MonthGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr
+}
+
+.MonthYear {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    justify-items: center;
+    padding: 0px 16px
+}
+
+.MonthYear__label {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #222;
+    line-height: 32px
+}
+
+.MonthYear__button {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 10px;
+    width: 32px;
+    height: 32px
+}
+
+.MonthYear__button--disabled {
+    opacity: 0.3;
+    cursor: default
+}
+
+.MonthYear__button--prev {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate(180)translate(-6%2C-10)%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.MonthYear__button--next {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%206%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M1%201L5%205L1%209%22%20%20stroke%3D%22%23656565%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E')
+}
+
+.MonthRange {
+    width: 100%
+}
+
+.Button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 12.5px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    line-height: 15px;
+    outline: none;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 0;
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: top;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative
+}
+
+.Button+.Button {
+    margin: 0 0 0 10px
+}
+
+.Button--primary {
+    background: #5181b8;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--primary:not(.Button--disabled):focus,
+.Button--primary:not(.Button--disabled):hover {
+    background: #5b88bd
+}
+
+.Button--primary:not(.Button--disabled):active {
+    background-color: #4872a3
+}
+
+.Button--secondary {
+    background: #e5ebf1;
+    color: #55677d;
+    border-radius: 4px
+}
+
+.Button--secondary:not(.Button--disabled):focus,
+.Button--secondary:not(.Button--disabled):hover {
+    background: #dfe6ed
+}
+
+.Button--secondary:not(.Button--disabled):active {
+    background-color: #dae2ea
+}
+
+.Button--negative {
+    background: #e64646;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--negative:not(.Button--disabled):focus,
+.Button--negative:not(.Button--disabled):hover {
+    background: #eb5050
+}
+
+.Button--negative:not(.Button--disabled):active {
+    background-color: #db3b3b
+}
+
+.Button--positive {
+    background: #4bb34b;
+    color: #fff;
+    border-radius: 4px
+}
+
+.Button--positive:not(.Button--disabled):focus,
+.Button--positive:not(.Button--disabled):hover {
+    background: #51b851
+}
+
+.Button--positive:not(.Button--disabled):active {
+    background-color: #43a843
+}
+
+.Button--tertiary {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 4px;
+    color: #55677d;
+    background: transparent
+}
+
+.Button--tertiary:not(.Button--disabled):focus,
+.Button--tertiary:not(.Button--disabled):hover {
+    background: #e5ebf1
+}
+
+.Button--tertiary:not(.Button--disabled):active {
+    background-color: #dae2ea
+}
+
+.Button--link {
+    display: inline-block;
+    color: #2a5885
+}
+
+.Button--link:not(.Button--disabled):focus,
+.Button--link:not(.Button--disabled):hover {
+    text-decoration: underline
+}
+
+.Button--size-s:not(.Button--link) {
+    padding: 5px 16px 6px
+}
+
+.Button--size-s:not(.Button--disabled):not(.Button--link):active {
+    padding: 6px 16px 5px
+}
+
+.Button--size-m:not(.Button--link) {
+    padding: 7px 16px 8px
+}
+
+.Button--size-m:not(.Button--disabled):not(.Button--link):active {
+    padding: 8px 16px 7px
+}
+
+.Button--size-l:not(.Button--link) {
+    padding: 12px 25px 13px
+}
+
+.Button--size-l:not(.Button--disabled):not(.Button--link):active {
+    padding: 13px 25px 12px
+}
+
+.Button--mobile,
+.Button--wide {
+    display: block;
+    width: 100%
+}
+
+.Button--mobile {
+    padding: 14px 0 15px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 15px;
+    box-shadow: 0 1px 0 #e3e4e8, 0 -1px 0 #e3e4e8
+}
+
+.Button--mobile:hover {
+    background: #fafbfc
+}
+
+.Button--mobile:not(.Button--disabled):active {
+    padding: 15px 0 14px
+}
+
+.Button--wide+.Button--wide {
+    margin: 10px 0 0
+}
+
+.Button--disabled {
+    opacity: .5;
+    cursor: default
+}
+
+.Button--overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.Button--keyboard-button {
+    border-radius: 6px
+}
+
+.Button--keyboard-button:before {
+    display: inline-block;
+    position: relative;
+    margin: 0 4px 0 -7px;
+    vertical-align: -7px;
+    width: 24px;
+    height: 24px
+}
+
+.Button--keyboard-button:not(.Button--text) {
+    font-size: 13px;
+    font-weight: 500;
+    color: #3670b3
+}
+
+.Button--keyboard-button.Button--vkpay {
+    color: #fff
+}
+
+.Button--location:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23528bcc%22%20d%3D%22M6%2C10q0%2C3.27%2C5%2C9.14h0a1.29%2C1.29%2C0%2C0%2C0%2C1.82.14l.14-.14q5-5.88%2C5-9.14a5.78%2C5.78%2C0%2C0%2C0-6-6A5.78%2C5.78%2C0%2C0%2C0%2C6%2C10Zm4%2C0a2%2C2%2C0%2C1%2C1%2C2%2C2A2%2C2%2C0%2C0%2C1%2C10%2C10Z%22%2F%3E%3C%2Fsvg%3E');
+    content: ''
+}
+
+.Button--open_app:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23528bcc%22%20d%3D%22M14.5%2C19h3A1.5%2C1.5%2C0%2C0%2C0%2C19%2C17.5v-3A1.5%2C1.5%2C0%2C0%2C0%2C17.5%2C13h-3A1.5%2C1.5%2C0%2C0%2C0%2C13%2C14.5v3A1.5%2C1.5%2C0%2C0%2C0%2C14.5%2C19ZM11%2C17.5v-3A1.5%2C1.5%2C0%2C0%2C0%2C9.5%2C13h-3A1.5%2C1.5%2C0%2C0%2C0%2C5%2C14.5v3A1.5%2C1.5%2C0%2C0%2C0%2C6.5%2C19h3A1.5%2C1.5%2C0%2C0%2C0%2C11%2C17.5ZM6.5%2C11h3A1.5%2C1.5%2C0%2C0%2C0%2C11%2C9.5v-3A1.5%2C1.5%2C0%2C0%2C0%2C9.5%2C5h-3A1.5%2C1.5%2C0%2C0%2C0%2C5%2C6.5v3A1.5%2C1.5%2C0%2C0%2C0%2C6.5%2C11Zm6.32-1.94%2C2.12%2C2.12a1.49%2C1.49%2C0%2C0%2C0%2C2.12%2C0l2.12-2.12a1.49%2C1.49%2C0%2C0%2C0%2C0-2.12L17.06%2C4.82a1.49%2C1.49%2C0%2C0%2C0-2.12%2C0L12.82%2C6.94A1.49%2C1.49%2C0%2C0%2C0%2C12.82%2C9.06Z%22%2F%3E%3C%2Fsvg%3E');
+    content: ''
+}
+
+.Button--vkpay:after {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2052%2024%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M28.0263591%207.94C28.5175203%207.94%2028.9858297%208.04049933%2029.4313015%208.24150101%2029.8767732%208.44250268%2030.2679829%208.72390081%2030.6049423%209.08570383%2030.9419017%209.44750684%2031.210323%209.87534685%2031.4102142%2010.3692367%2031.6101053%2010.8631265%2031.7100494%2011.4029515%2031.7100494%2011.9887278%2031.7100494%2012.5745041%2031.6101053%2013.1143291%2031.4102142%2013.6082189%2031.210323%2014.1021088%2030.9419017%2014.5299488%2030.6049423%2014.8917518%2030.2679829%2015.2535548%2029.8767732%2015.5349529%2029.4313015%2015.7359546%2028.9858297%2015.9369563%2028.5175203%2016.0374556%2028.0263591%2016.0374556%2027.6951109%2016.0374556%2027.4067008%2015.9972559%2027.1611203%2015.9168552%2026.9155397%2015.8364545%2026.7013738%2015.7503123%2026.5186161%2015.6584258%2026.3130138%2015.5435677%2026.1302589%2015.4114828%2025.970346%2015.2621673L25.970346%2018.7078931%2024%2018.7078931%2024%208.02614314%2025.4563427%208.02614314%2025.7990115%208.80143145C25.9703468%208.64063011%2026.170235%208.49705963%2026.398682%208.37071572%2026.592862%208.26734343%2026.8270168%208.16971551%2027.1011532%208.07782903%2027.3752897%207.98594255%2027.6836886%207.94%2028.0263591%207.94zM25.7990115%2011.9887278C25.7990115%2012.643419%2025.9874775%2013.1660155%2026.3644152%2013.556533%2026.7413528%2013.9470506%2027.2096622%2014.1423064%2027.7693575%2014.1423064%2028.3290528%2014.1423064%2028.7973622%2013.9470506%2029.1742998%2013.556533%2029.5512375%2013.1660155%2029.7397035%2012.643419%2029.7397035%2011.9887278%2029.7397035%2011.3340366%2029.5512375%2010.8114401%2029.1742998%2010.4209226%2028.7973622%2010.030405%2028.3290528%209.83514919%2027.7693575%209.83514919%2027.2096622%209.83514919%2026.7413528%2010.030405%2026.3644152%2010.4209226%2025.9874775%2010.8114401%2025.7990115%2011.3340366%2025.7990115%2011.9887278zM36.339374%207.94C36.7848457%207.94%2037.1960442%208.01752806%2037.5729819%208.17258649%2037.9499195%208.32764493%2038.2754517%208.54300064%2038.5495881%208.81866008%2038.8237246%209.09431952%2039.0378905%209.4216602%2039.1920923%209.80069193%2039.346294%2010.1797237%2039.4233937%2010.5932066%2039.4233937%2011.0411532L39.4233937%2015.9513125%2037.9670511%2015.9513125%2037.6243822%2015.1760242C37.4416246%2015.3368255%2037.2417364%2015.480396%2037.0247117%2015.6067399%2036.8305317%2015.721598%2036.596377%2015.8220973%2036.3222405%2015.9082409%2036.0481041%2015.9943845%2035.7397052%2016.0374556%2035.3970346%2016.0374556%2034.5403582%2016.0374556%2033.8835827%2015.8278427%2033.4266886%2015.4086107%2032.9697945%2014.9893786%2032.7413509%2014.452425%2032.7413509%2013.7977338%2032.7413509%2013.4072163%2032.8184506%2013.0482901%2032.9726524%2012.7209445%2033.1268541%2012.3935989%2033.3867088%2012.1122008%2033.7522241%2011.8767417%2034.1177393%2011.6412826%2034.6003265%2011.4575124%2035.2%2011.3254256%2035.7996735%2011.1933388%2036.5506819%2011.1272964%2037.4530478%2011.1272964%2037.4530478%2010.6908356%2037.3359704%2010.3520093%2037.1018122%2010.1108072%2036.867654%209.86960524%2036.5563995%209.74900604%2036.1680395%209.74900604%2035.9053254%209.74900604%2035.6968706%209.79494859%2035.5426689%209.88683507%2035.3884671%209.97872155%2035.2656787%2010.0763495%2035.1742998%2010.1797218%2035.0714987%2010.3060657%2035.0029656%2010.4496361%2034.9686985%2010.6104375L32.9983526%2010.6104375C33.044042%2010.2428916%2033.1496971%209.89832243%2033.3153213%209.57671975%2033.4809454%209.25511707%2033.7065334%208.97371894%2033.9920923%208.73251693%2034.2776511%208.49131492%2034.617461%208.29893049%2035.0115321%208.15535786%2035.4056033%208.01178524%2035.8482128%207.94%2036.339374%207.94zM35.7397035%2014.486879C36.2537093%2014.486879%2036.6677634%2014.3346943%2036.9818781%2014.0303203%2037.2959928%2013.7259464%2037.4530478%2013.3325633%2037.4530478%2012.8501593L37.4530478%2012.5055867C36.8705078%2012.5055867%2036.4021984%2012.5314294%2036.0481054%2012.5831155%2035.6940125%2012.6348016%2035.4170246%2012.7094583%2035.2171334%2012.8070877%2035.0172423%2012.9047171%2034.8830316%2013.0224449%2034.8144975%2013.1602746%2034.7459634%2013.2981043%2034.7116969%2013.4531604%2034.7116969%2013.6254476%2034.7116969%2013.8436779%2034.8087854%2014.0418052%2035.0029654%2014.2198353%2035.1971454%2014.3978653%2035.4427223%2014.486879%2035.7397035%2014.486879zM40.1186161%208.02614314L42.1746293%208.02614314%2044.1449753%2013.1947318%2045.9439868%208.02614314%2048%208.02614314C47.4403047%209.47335521%2046.9320177%2010.7827179%2046.4751236%2011.9542705%2046.2809436%2012.4596462%2046.089622%2012.9535286%2045.9011532%2013.4359326%2045.7126844%2013.9183367%2045.5442072%2014.3576623%2045.3957166%2014.7539228%2045.2472261%2015.1501832%2045.1215821%2015.4803953%2045.0187809%2015.7445689%2044.9159797%2016.0087425%2044.8531577%2016.1637987%2044.830313%2016.2097419%2044.636133%2016.6806601%2044.4448115%2017.079786%2044.2563427%2017.4071316%2044.0678739%2017.7344772%2043.8651301%2018.0015183%2043.6481054%2018.2082629%2043.4310807%2018.4150074%2043.196926%2018.5643207%2042.9456343%2018.6562072%2042.6943425%2018.7480937%2042.408788%2018.7940362%2042.0889621%2018.7940362%2041.9975833%2018.7940362%2041.9090614%2018.7911648%2041.8233937%2018.7854219%2041.7377261%2018.779679%2041.6663375%2018.7710648%2041.6092257%2018.759579%2041.5292692%2018.7480932%2041.4607361%2018.7308647%2041.4036244%2018.7078931L41.4036244%2017.0711733C41.8376738%2017.0711733%2042.1717726%2016.9735454%2042.4059308%2016.7782867%2042.640089%2016.5830279%2042.8199884%2016.3360867%2042.9456343%2016.0374556L43.1169687%2015.6067399%2040.1186161%208.02614314zM9.54666667%204C14.0266667%204%209.97333333%204%2014.4533333%204%2018.9333333%204%2020%205.06666667%2020%209.54666667%2020%2014.0266667%2020%209.97333333%2020%2014.4533333%2020%2018.9333333%2018.9333333%2020%2014.4533333%2020%209.97333333%2020%2014.0266667%2020%209.54666667%2020%205.06666667%2020%204%2018.9333333%204%2014.4533333%204%209.97333333%204%2012.0483607%204%209.54666667%204%205.06666667%205.06666667%204%209.54666667%204zM17.1861661%209.42885176C17.2602965%209.18164766%2017.1861661%209%2016.8333537%209L15.666687%209C15.3700421%209%2015.2332845%209.15691696%2015.159113%209.32994954%2015.159113%209.32994954%2014.5658232%2010.7760781%2013.7253498%2011.7154331%2013.4534356%2011.9873473%2013.3298232%2012.0738636%2013.1815008%2012.0738636%2013.1073498%2012.0738636%2013%2011.9873473%2013%2011.7401638L13%209.42885176C13%209.13220684%2012.9139117%209%2012.666687%209L10.8333537%209C10.6479763%209%2010.5364889%209.13767969%2010.5364889%209.26816395%2010.5364889%209.5493779%2010.956705%209.61422912%2011.0000203%2010.4052822L11.0000203%2012.123325C11.0000203%2012.5%2010.9319949%2012.5682924%2010.7836724%2012.5682924%2010.3881665%2012.5682924%209.42609705%2011.1157034%208.85550102%209.45356188%208.74367794%209.13049914%208.63152112%209%208.33335368%209L7.16668701%209C6.83335368%209%206.76668294%209.15691696%206.76668294%209.32994954%206.76668294%209.63895981%207.16220951%2011.1716047%208.60831749%2013.1986372%209.57238263%2014.582939%2010.9306871%2015.3333333%2012.166687%2015.3333333%2012.9082787%2015.3333333%2013.0000203%2015.1666667%2013.0000203%2014.8795839L13.0000203%2013.8333333C13.0000203%2013.5%2013.0702744%2013.4334759%2013.3051131%2013.4334759%2013.4781457%2013.4334759%2013.7747906%2013.5199922%2014.4669621%2014.187433%2015.2579947%2014.9784655%2015.3884069%2015.3333333%2015.8333537%2015.3333333L17.0000203%2015.3333333C17.3333537%2015.3333333%2017.5000203%2015.1666667%2017.4038729%2014.8377593%2017.2986588%2014.5099509%2016.9209835%2014.0343445%2016.4198437%2013.4705514%2016.1479089%2013.1491963%2015.7400375%2012.8031312%2015.6164252%2012.6300574%2015.4433926%2012.4076046%2015.4928334%2012.3087024%2015.6164252%2012.1109597%2015.6164252%2012.1109597%2017.0378436%2010.1086373%2017.1861661%209.42885176z%22%2F%3E%3C%2Fsvg%3E');
+    content: '';
+    display: inline-block;
+    position: relative;
+    margin: 0 -7px 0 2px;
+    vertical-align: -8px;
+    height: 24px;
+    width: 52px
+}
+
+.DatePicker {
+    position: absolute;
+    display: -ms-flexbox;
+    display: flex;
+    padding-bottom: 57px;
+    border-radius: 4px;
+    border: 1px solid #ebecef;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .08)
+}
+
+.DatePicker__MonthRangeContainer {
+    width: 350px
+}
+
+.rdrMonths {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 14px 12px 12px
+}
+
+.rdrMonthsVertical {
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.rdrMonthsHorizontal {
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.rdrMonth {
+    width: 224px
+}
+
+.rdrMonth:first-of-type {
+    margin-right: 20px
+}
+
+.rdrWeekDays {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 4px;
+    font-size: 10px
+}
+
+.rdrWeekDay {
+    -ms-flex-preferred-size: calc(14.28571429%);
+    flex-basis: calc(14.28571429%);
+    box-sizing: inherit;
+    text-align: center;
+    color: #b2b2b2
+}
+
+.rdrDays {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-size: 12px
+}
+
+.rdrDays,
+.rdrDay {
+    -o-transition: color;
+    transition: color;
+    color: #000
+}
+
+.rdrDay {
+    background: #fff;
+    box-sizing: inherit;
+    width: calc(14.28571429%);
+    height: calc(14.28571429%);
+    position: relative;
+    font: inherit;
+    cursor: pointer
+}
+
+.rdrDayNumber span {
+    color: #1d2429;
+    font-weight: 400
+}
+
+.rdrDayNumber {
+    display: block;
+    position: relative
+}
+
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview,
+.rdrEndEdge,
+.rdrInRange,
+.rdrSelected,
+.rdrStartEdge {
+    pointer-events: none
+}
+
+.rdrDateRangePickerWrapper {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.rdrStaticRanges {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.rdrCalendarWrapper {
+    color: #000;
+    font-size: 12px
+}
+
+.rdrDay {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    padding: 0;
+    height: 32px;
+    text-align: center
+}
+
+.rdrDay:focus {
+    outline: 0
+}
+
+.rdrDayNumber {
+    outline: 0;
+    font-weight: 300;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.rdrDayToday .rdrDayNumber span {
+    font-weight: 500;
+    color: #3b70ac
+}
+
+.rdrEndEdge,
+.rdrInRange,
+.rdrSelected,
+.rdrStartEdge,
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview {
+    background-color: #ebecef;
+    display: block;
+    height: 32px;
+    width: 32px
+}
+
+.rdrDayEndPreview,
+.rdrDayInPreview,
+.rdrDayStartPreview {
+    position: absolute;
+    top: 0
+}
+
+.rdrDayEndPreview,
+.rdrDayStartPreview,
+.rdrDay:hover .rdrInRange {
+    background-color: #d6e0ea
+}
+
+.rdrDay:hover {
+    background-color: #e3ebf3
+}
+
+.rdrSelected {
+    border-radius: 1.042em
+}
+
+.rdrEndEdge,
+.rdrStartEdge {
+    background-color: #5181b8
+}
+
+.rdrDayHovered {
+    background-color: red
+}
+
+.rdrDay:hover .rdrEndEdge,
+.rdrDay:hover .rdrStartEdge {
+    background-color: #5181b8
+}
+
+.rdrEndEdge~.rdrDayNumber span,
+.rdrStartEdge~.rdrDayNumber span {
+    color: #fff
+}
+
+.rdrEndEdge+.rdrDayEndPreview,
+.rdrEndEdge+.rdrDayInPreview,
+.rdrEndEdge+.rdrDayStartPreview,
+.rdrStartEdge+.rdrDayEndPreview,
+.rdrStartEdge+.rdrDayInPreview,
+.rdrStartEdge+.rdrDayStartPreview,
+.rdrStartEdge.rdrEndEdge+.rdrDayEndPreview,
+.rdrStartEdge.rdrEndEdge+.rdrDayStartPreview {
+    display: none
+}
+
+.rdrDefinedRangesWrapper {
+    font-size: 12px;
+    width: 226px;
+    border-right: solid 1px #eff2f7;
+    background: #fff
+}
+
+.rdrInputRanges {
+    display: none
+}
+
+.rdrStaticRange {
+    border: 0;
+    cursor: pointer;
+    display: block;
+    outline: 0;
+    border-bottom: 1px solid #eff2f7;
+    padding: 0;
+    background: #fff
+}
+
+.rdrStaticRangeLabel {
+    display: block;
+    outline: 0;
+    line-height: 18px;
+    padding: 10px 20px;
+    text-align: left
+}
+
+.rdrDayPassive {
+    visibility: hidden
+}
+
+.rdrMonthName {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 12px
+}
+
+.rdrDayDisabled span {
+    color: #b2b2b2
+}
+
+.groups_edit_datepicker .rdrMonth:first-of-type {
+    margin-right: 0
+}
+
+.groups_edit_datepicker .DatePicker__panel {
+    padding: 0;
+    border-bottom: 0
+}
+
+.groups_edit_datepicker .DatePicker__panel .Inputs {
+    display: none
+}
+
 .ui_tabs.stats_subtabs.stats_subtabs_browse {
     padding-left: 25px;
     margin-left: 0;
@@ -33,10 +779,18 @@
     border-bottom: 1px solid #e7e8ec
 }
 
+.stats_browse_filter #stat_browse_filter_date {
+    text-decoration: none
+}
+
 .stats_browse_filter .ms_item_more_label {
     padding-right: 13px;
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%2392A0B1%22%2F%3E%3C%2Fsvg%3E') no-repeat;
     background-position: right 7px
+}
+
+.stat_cont_browse_filter_tlt .eltt_arrow {
+    display: none
 }
 
 #stat_cont_browse_filter_tlt_content {
@@ -50,6 +804,10 @@
     padding: 8px 12px 9px
 }
 
+#stat_cont_browse_filter_tlt_content .stat_cont_browse_filter_item:hover {
+    background-color: #f0f2f5
+}
+
 #stat_cont_browse_filter_tlt_content .stat_cont_browse_filter_item.checkbox.on:before {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%235181B8%22%20d%3D%22M10%2016c-.3%200-.5-.1-.7-.3l-3.5-3.5c-.4-.4-.4-1%200-1.4s1-.4%201.4%200l2.8%202.8%206.3-6.3c.4-.4%201-.4%201.4%200s.4%201%200%201.4l-7%207c-.2.2-.4.3-.7.3z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat
 }
@@ -57,15 +815,15 @@
 #stat_cont_browse_filter_tlt_content .stat_cont_browse_filter_item.checkbox:before {
     float: right;
     background-image: none;
-    padding-top: 5px;
-    padding-right: 8px;
+    padding-top: 4px;
     margin-right: 0px
 }
 
 #stats_cont .stats_time_info {
     font-size: 12.5px;
     border-top: 0px;
-    padding: 0
+    padding: 1px 0 0;
+    line-height: 1.44
 }
 
 #stats_cont.stats_cont_browse {
@@ -79,7 +837,7 @@
 }
 
 #stats_cont.stats_cont_browse .stats_cont_browse_sub {
-    padding-bottom: 26px
+    padding-bottom: 29px
 }
 
 #stats_cont.stats_cont_browse .stats_cont_browse_sub .stats_cont_browse_sub_title {
@@ -90,7 +848,7 @@
 }
 
 .stats_cont_browse_tile {
-    color: #000;
+    color: #222;
     overflow: hidden;
     position: relative;
     margin-right: 15px;
@@ -108,7 +866,8 @@
 }
 
 .stats_cont_browse_tile:hover {
-    text-decoration: none
+    text-decoration: none;
+    top: -2px
 }
 
 .stats_cont_browse_tile.disabled .close_icon {
@@ -130,7 +889,8 @@
 
 .stats_cont_browse_tile.disabled .stats_cont_browse_tile_caption {
     text-align: center;
-    padding: 37px 4px 0px
+    padding: 41px 0px 0px;
+    margin-bottom: 10px
 }
 
 .stats_cont_browse_tile.disabled .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_title {
@@ -168,17 +928,21 @@
     font-weight: 500
 }
 
+.stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .period,
 .stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .stats_cont_browse_tile_caption_values_percent {
     font-size: 14px;
     line-height: 16px;
     font-weight: 500;
-    margin-left: 5px
+    margin-left: 5px;
+    color: #939393
 }
 
+.stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .period.down,
 .stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .stats_cont_browse_tile_caption_values_percent.down {
     color: #e64646
 }
 
+.stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .period.down:before,
 .stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .stats_cont_browse_tile_caption_values_percent.down:before {
     content: ' ';
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M6.995%209.574L4.711%207.289a1.005%201.005%200%200%200-1.422%201.422l4%204a1.005%201.005%200%200%200%201.422%200l4-4a1.005%201.005%200%200%200-1.422-1.422L9.005%209.574V3a1.005%201.005%200%201%200-2.01%200v6.574z%22%20fill%3D%22%23E64646%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;
@@ -189,10 +953,12 @@
     margin-right: 2px
 }
 
+.stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .period.up,
 .stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .stats_cont_browse_tile_caption_values_percent.up {
     color: #4bb34b
 }
 
+.stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .period.up:before,
 .stats_cont_browse_tile .stats_cont_browse_tile_caption .stats_cont_browse_tile_caption_values .stats_cont_browse_tile_caption_values_percent.up:before {
     content: ' ';
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cpath%20d%3D%22M6.995%205.426L4.711%207.711a1.005%201.005%200%200%201-1.422-1.422l4-4a1.005%201.005%200%200%201%201.422%200l4%204a1.005%201.005%200%201%201-1.422%201.422L9.005%205.426V12a1.005%201.005%200%201%201-2.01%200V5.426z%22%20fill%3D%22%234BB34B%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') 50% no-repeat;

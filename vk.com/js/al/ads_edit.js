@@ -105,6 +105,14 @@ AdsEdit.init = function() {
     if (!cur.editor.isUpdatingData()) {
         cur.editor.getUpdatedData();
     }
+
+    // ��� ���������� ���������� ���� ����������� ����� �������� ���. ������
+    var weeklyScheduleTargetEl = ge(cur.viewEditor.options.targetIdPrefix + 'weekly_schedule');
+    if (weeklyScheduleTargetEl) {
+        weeklyScheduleTargetEl.oninput = function() {
+            cur.editor.getUpdatedData();
+        }
+    }
 }
 
 AdsEdit.destroy = function() {
@@ -4927,6 +4935,10 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 break;
             case 'campaign_name':
                 this.params.campaign_name.value_normal = this.params.campaign_name.value;
+                break;
+
+            case 'views_limit_exact':
+                isUpdateNeeded = true;
                 break;
         }
 
