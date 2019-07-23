@@ -370,13 +370,13 @@
             },
             initMainSlider: (e, a) => {
                 cur.mainSlider = new class extends o {
-                    constructor(...e) {
-                        super(...e), this.coversWrap = geByClass1("landing_main_slider_covers_wrap")
+                    constructor() {
+                        super(...arguments), this.coversWrap = geByClass1("landing_main_slider_covers_wrap")
                     }
-                    _onChangeSlide(...e) {
-                        super._onChangeSlide(...e), removeClass(geByClass1("selected", this.coversWrap), "selected");
-                        var a = this._getPosition() % this.slides.length;
-                        addClass("landing_ads_cover_" + a, "selected")
+                    _onChangeSlide() {
+                        super._onChangeSlide(...arguments), removeClass(geByClass1("selected", this.coversWrap), "selected");
+                        var e = this._getPosition() % this.slides.length;
+                        addClass("landing_ads_cover_" + e, "selected")
                     }
                     _makeButtons(e) {
                         for (var a = "", n = 0; n < e.length; n++) {
@@ -439,9 +439,13 @@
                 var e = geByClass1("landing_ads_company_page_posts");
                 cur.scrollingWrap = e, cur.scrollingContainer = geByClass1("landing_ads_company_page_post_container", e), cur.scrollingContainerHeight = getSize(cur.scrollingContainer)[1], cur.scrollingLastTop = 0, addEvent(window, "scroll", this._onCompanyPageOnScroll)
             },
-            _makeDynamicField(e, a, n = null, t = null) {
-                function i(i = !1) {
-                    var r = s.cloneNode(!0),
+            _makeDynamicField(e, a) {
+                var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+                    t = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : null;
+
+                function i() {
+                    var i = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                        r = s.cloneNode(!0),
                         o = domQuery(e + " > *").length + 1;
                     domQuery1(e).appendChild(r), n && n(o, r, i), t && o >= t && domQuery1(a).classList.add("hidden")
                 }

@@ -77,13 +77,16 @@
     "qf0/": function(t, e, r) {
         "use strict";
         r.r(e);
-        r("pIFo"), r("tUrg"), r("rGqo"), r("Btvt");
+        r("pIFo"), r("rE2o"), r("ioFf"), r("tUrg"), r("rGqo"), r("Btvt");
         var s = r("zxIV");
         window.PrettyCardGallery = class {
             constructor(t, e, r) {
                 if (!t.prettyCardsInitialized) {
                     if (t.prettyCardsInitialized = !0, t.removeAttribute("onmouseenter"), this.VIEWPORT_CARDS = 2, this.CARD_WIDTH = 200, this.CARDS_MARGIN = 12, this.CONTENT_PADDING = 13, this.POST_PADDING = 20, this.POST_PADDING_TOP = 15, this.TRANSFORM_ANIMATION_DURATION = 300, this.TRANSFORM_ANIMATION_DURATION_LONG = 600, this.TRANSFORM_ANIMATION_DELAY = 100, this.el = t, this.scrollerLeft = Object(s.H)("pretty-cards__scroller_position_left", t), this.scrollerRight = Object(s.H)("pretty-cards__scroller_position_right", t), this.scrollerProtector = Object(s.H)("pretty-cards__scroller_type_protector", t), this.wrapper = Object(s.H)("pretty-cards__wrapper", t), this.wrapperOuter = Object(s.H)("pretty-cards__wrapper-outer", t), this.scrollPosition = 0, this.cardsElements = geByClass("pretty-card", t), this.buttonEditorDropdown = Object(s.H)("pretty-card__button-dropdown", t), this.container = Object(s.H)("pretty-cards__container", t), this.newCardsId = -1, this.lastChosenUrl = "", this.options = extend({}, e || {}), this.options.editing && this.addPlaceholder(), r)
-                        for (var i of Object.keys(r)) this.addCard(r[i]), r[i].link && (this.lastChosenUrl = r[i].link);
+                        for (var i = 0, o = Object.keys(r); i < o.length; i++) {
+                            var a = o[i];
+                            this.addCard(r[a]), r[a].link && (this.lastChosenUrl = r[a].link)
+                        }
                     this.initEvents(), this.scroll(0, !1), this.options.editing && this.updateSendDataHash()
                 }
             }
@@ -325,14 +328,31 @@
                     this.wrapperTransitions(!0, t), setStyle(t, {
                         transform: "translateX(" + (r - e) * (this.CARD_WIDTH + this.CARDS_MARGIN) + "px)"
                     }), Object(s.hb)(t, "pretty-card_dragging_yes"), setTimeout(() => {
-                        for (var i of (Object(s.hb)(t, "pretty-card_ontop_yes"), this.cardsElements)) this.wrapperTransitions(!1, i), Object(s.hb)(i, "pretty-card_dragging_right"), Object(s.hb)(i, "pretty-card_dragging_left"), setStyle(i, {
-                            transform: ""
-                        });
+                        Object(s.hb)(t, "pretty-card_ontop_yes");
+                        var i = !0,
+                            o = !1,
+                            a = void 0;
+                        try {
+                            for (var n, d = this.cardsElements[Symbol.iterator](); !(i = (n = d.next()).done); i = !0) {
+                                var l = n.value;
+                                this.wrapperTransitions(!1, l), Object(s.hb)(l, "pretty-card_dragging_right"), Object(s.hb)(l, "pretty-card_dragging_left"), setStyle(l, {
+                                    transform: ""
+                                })
+                            }
+                        } catch (t) {
+                            o = !0, a = t
+                        } finally {
+                            try {
+                                i || null == d.return || d.return()
+                            } finally {
+                                if (o) throw a
+                            }
+                        }
                         if (e < r) {
-                            for (var o = e + 1; o <= r; ++o) this.wrapper.insertBefore(this.cardsElements[o], this.cardsElements[e]);
+                            for (var h = e + 1; h <= r; ++h) this.wrapper.insertBefore(this.cardsElements[h], this.cardsElements[e]);
                             this.cardsElements.splice(r + 1, 0, t), this.cardsElements.splice(e, 1)
                         } else if (e > r) {
-                            for (var a = e - 1; a >= r; --a) this.wrapper.insertBefore(this.cardsElements[a], domNS(this.cardsElements[e]));
+                            for (var c = e - 1; c >= r; --c) this.wrapper.insertBefore(this.cardsElements[c], domNS(this.cardsElements[e]));
                             this.cardsElements.splice(e, 1), this.cardsElements.splice(r, 0, t)
                         }
                         this.scroll(0, !1)
@@ -402,78 +422,105 @@
                 return this.draggingCard && this.cardsElements.indexOf(this.draggingCard), this.cardsPos = n, !1
             }
             updateCardsIds(t) {
-                for (var e of this.cardsElements) e.prettyCardId in t && (e.prettyCardId = t[e.prettyCardId])
+                var e = !0,
+                    r = !1,
+                    s = void 0;
+                try {
+                    for (var i, o = this.cardsElements[Symbol.iterator](); !(e = (i = o.next()).done); e = !0) {
+                        var a = i.value;
+                        a.prettyCardId in t && (a.prettyCardId = t[a.prettyCardId])
+                    }
+                } catch (t) {
+                    r = !0, s = t
+                } finally {
+                    try {
+                        e || null == o.return || o.return()
+                    } finally {
+                        if (r) throw s
+                    }
+                }
             }
             needSendData() {
-                var {
-                    prettyCardsData: t
-                } = this.getSendData();
+                var t = this.getSendData().prettyCardsData;
                 return MD5(t) !== this.sendDataHash
             }
             updateSendDataHash() {
-                var {
-                    prettyCardsData: t
-                } = this.getSendData();
+                var t = this.getSendData().prettyCardsData;
                 this.sendDataHash = MD5(t)
             }
             saveCards(t, e) {
-                var {
-                    attachVal: r,
-                    prettyCardsData: i
-                } = this.getSendData(), o = (r, i, o) => {
-                    if ("ok" === r) this.updateCardsIds(i), this.updateSendDataHash(), t && t();
-                    else if (e) {
-                        if (e(i), o) {
-                            var a = this.cardsElements.find(t => t.prettyCardId == o);
-                            if (a) {
-                                var n = this.cardsElements.indexOf(a) - this.scrollPosition,
-                                    d = !1;
-                                n > this.VIEWPORT_CARDS - 1 ? (this.scroll(n - (this.VIEWPORT_CARDS - 1)), d = !0) : n < 0 && (this.scroll(n), d = !0);
-                                setTimeout(() => {
-                                    Object(s.a)(a, "pretty-card_error_yes"), setTimeout(s.hb.pbind(a, "pretty-card_error_yes"), 1e3)
-                                }, d ? this.TRANSFORM_ANIMATION_DURATION + 300 : 300)
+                var r = this.getSendData(),
+                    i = r.attachVal,
+                    o = r.prettyCardsData,
+                    a = (r, i, o) => {
+                        if ("ok" === r) this.updateCardsIds(i), this.updateSendDataHash(), t && t();
+                        else if (e) {
+                            if (e(i), o) {
+                                var a = this.cardsElements.find(t => t.prettyCardId == o);
+                                if (a) {
+                                    var n = this.cardsElements.indexOf(a) - this.scrollPosition,
+                                        d = !1;
+                                    n > this.VIEWPORT_CARDS - 1 ? (this.scroll(n - (this.VIEWPORT_CARDS - 1)), d = !0) : n < 0 && (this.scroll(n), d = !0);
+                                    setTimeout(() => {
+                                        Object(s.a)(a, "pretty-card_error_yes"), setTimeout(s.hb.pbind(a, "pretty-card_error_yes"), 1e3)
+                                    }, d ? this.TRANSFORM_ANIMATION_DURATION + 300 : 300)
+                                }
                             }
+                            return !0
                         }
-                        return !0
-                    }
-                };
+                    };
                 ajax.post("al_wall.php", {
                     act: "a_pretty_cards_save",
-                    pretty_cards_data: i,
-                    attach: r,
+                    pretty_cards_data: o,
+                    attach: i,
                     owner_id: this.options.owner_id,
                     hash: this.options.save_hash
                 }, {
-                    onDone: o,
-                    onFail: o.bind(this, "error")
+                    onDone: a,
+                    onFail: a.bind(this, "error")
                 })
             }
             getSendData() {
                 var t = [],
-                    e = [];
-                for (var r of this.cardsElements)
-                    if (r !== this.placeholderElement) {
-                        var i = Object(s.H)("pretty-card__price_actual", r),
-                            o = val(i),
-                            a = void 0;
-                        hasClass(domPN(i), "pretty-card__price-wrapper_hidden_yes") ? a = this.options.price_unshown : "" === (a = o.replace(/\D+/g, "")) && o && (a = "0");
-                        var n = Object(s.H)("pretty-card__price_old", r),
-                            d = val(n),
-                            l = void 0;
-                        hasClass(domPN(n), "pretty-card__price-wrapper_hidden_yes") ? l = this.options.price_unshown : "" === (l = d.replace(/\D+/g, "")) && d && (l = "0");
-                        var h = Object(s.H)("pretty-card__button", r),
-                            c = r.prettyCardId,
-                            p = {
-                                id: c,
-                                title: val(Object(s.H)("pretty-card__title", r)),
-                                price: a,
-                                price_old: l,
-                                button: h.prettyCardButtonKey ? h.prettyCardButtonKey : "",
-                                link: r.prettyCardLink,
-                                photo: r.prettyCardPhoto
-                            };
-                        e.push(c), t.push(p)
+                    e = [],
+                    r = !0,
+                    i = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = this.cardsElements[Symbol.iterator](); !(r = (a = n.next()).done); r = !0) {
+                        var d = a.value;
+                        if (d !== this.placeholderElement) {
+                            var l = Object(s.H)("pretty-card__price_actual", d),
+                                h = val(l),
+                                c = void 0;
+                            hasClass(domPN(l), "pretty-card__price-wrapper_hidden_yes") ? c = this.options.price_unshown : "" === (c = h.replace(/\D+/g, "")) && h && (c = "0");
+                            var p = Object(s.H)("pretty-card__price_old", d),
+                                _ = val(p),
+                                g = void 0;
+                            hasClass(domPN(p), "pretty-card__price-wrapper_hidden_yes") ? g = this.options.price_unshown : "" === (g = _.replace(/\D+/g, "")) && _ && (g = "0");
+                            var u = Object(s.H)("pretty-card__button", d),
+                                b = d.prettyCardId,
+                                y = {
+                                    id: b,
+                                    title: val(Object(s.H)("pretty-card__title", d)),
+                                    price: c,
+                                    price_old: g,
+                                    button: u.prettyCardButtonKey ? u.prettyCardButtonKey : "",
+                                    link: d.prettyCardLink,
+                                    photo: d.prettyCardPhoto
+                                };
+                            e.push(b), t.push(y)
+                        }
                     }
+                } catch (t) {
+                    i = !0, o = t
+                } finally {
+                    try {
+                        r || null == n.return || n.return()
+                    } finally {
+                        if (i) throw o
+                    }
+                }
                 return {
                     prettyCardsData: JSON.stringify(t),
                     attachVal: e.join(",")

@@ -77,7 +77,7 @@
     "3KRu": function(t, e, i) {
         "use strict";
         i.r(e);
-        i("KKXr"), i("Btvt"), i("pIFo");
+        i("KKXr"), i("VRzm"), i("Btvt"), i("pIFo");
         var s = i("1V+M"),
             a = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
         class o {
@@ -446,9 +446,8 @@
             d = !1,
             _ = '<div class="audio-msg-player audio-msg-track"><button class="audio-msg-track--btn"></button><div class="audio-msg-track--duration"></div><div class="audio-msg-track--wave-wrapper"><div class="audio-msg-track--slider"></div></div></div>';
         class c {
-            constructor({
-                onListened: t
-            } = {}) {
+            constructor() {
+                var t = (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}).onListened;
                 this._reattach = !1, this._audioEl = null, this._playing = !1, this._timer = null, this._duration = 0, this._detaching = !1;
                 var e = {
                     onEnd: () => {
@@ -516,7 +515,8 @@
                 }
                 return !0
             }
-            detach(t = !1) {
+            detach() {
+                var t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 if (this._audioEl && this._el && !this._detaching) {
                     if (t && this.isAttached()) return;
                     this._detaching = !0, this.stop(), this._destroyInterface(), removeClass(this._audioEl, "audio-msg-track_player-attached"), this._audioEl._listened = !1, this._audioEl = null
@@ -710,7 +710,8 @@
             }
         }
 
-        function o(t, e, i = "peak") {
+        function o(t, e) {
+            var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
             return new a({
                 srcSampleRate: t.length,
                 dstSampleRate: e,

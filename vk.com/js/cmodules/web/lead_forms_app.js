@@ -1,18 +1,18 @@
 ﻿! function(e) {
-    function a(a) {
-        for (var t, n, i = a[0], l = a[1], _ = a[2], p = 0, m = []; p < i.length; p++) n = i[p], o[n] && m.push(o[n][0]), o[n] = 0;
+    function r(r) {
+        for (var t, n, i = r[0], l = r[1], _ = r[2], p = 0, u = []; p < i.length; p++) n = i[p], o[n] && u.push(o[n][0]), o[n] = 0;
         for (t in l) Object.prototype.hasOwnProperty.call(l, t) && (e[t] = l[t]);
-        for (d && d(a); m.length;) m.shift()();
-        return s.push.apply(s, _ || []), r()
+        for (d && d(r); u.length;) u.shift()();
+        return s.push.apply(s, _ || []), a()
     }
 
-    function r() {
-        for (var e, a = 0; a < s.length; a++) {
-            for (var r = s[a], t = !0, i = 1; i < r.length; i++) {
-                var l = r[i];
+    function a() {
+        for (var e, r = 0; r < s.length; r++) {
+            for (var a = s[r], t = !0, i = 1; i < a.length; i++) {
+                var l = a[i];
                 0 !== o[l] && (t = !1)
             }
-            t && (s.splice(a--, 1), e = n(n.s = r[0]))
+            t && (s.splice(r--, 1), e = n(n.s = a[0]))
         }
         return e
     }
@@ -22,19 +22,19 @@
         },
         s = [];
 
-    function n(a) {
-        if (t[a]) return t[a].exports;
-        var r = t[a] = {
-            i: a,
+    function n(r) {
+        if (t[r]) return t[r].exports;
+        var a = t[r] = {
+            i: r,
             l: !1,
             exports: {}
         };
-        return e[a].call(r.exports, r, r.exports, n), r.l = !0, r.exports
+        return e[r].call(a.exports, a, a.exports, n), a.l = !0, a.exports
     }
-    n.m = e, n.c = t, n.d = function(e, a, r) {
-        n.o(e, a) || Object.defineProperty(e, a, {
+    n.m = e, n.c = t, n.d = function(e, r, a) {
+        n.o(e, r) || Object.defineProperty(e, r, {
             enumerable: !0,
-            get: r
+            get: a
         })
     }, n.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
@@ -42,57 +42,83 @@
         }), Object.defineProperty(e, "__esModule", {
             value: !0
         })
-    }, n.t = function(e, a) {
-        if (1 & a && (e = n(e)), 8 & a) return e;
-        if (4 & a && "object" == typeof e && e && e.__esModule) return e;
-        var r = Object.create(null);
-        if (n.r(r), Object.defineProperty(r, "default", {
+    }, n.t = function(e, r) {
+        if (1 & r && (e = n(e)), 8 & r) return e;
+        if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+        var a = Object.create(null);
+        if (n.r(a), Object.defineProperty(a, "default", {
                 enumerable: !0,
                 value: e
-            }), 2 & a && "string" != typeof e)
-            for (var t in e) n.d(r, t, function(a) {
-                return e[a]
+            }), 2 & r && "string" != typeof e)
+            for (var t in e) n.d(a, t, function(r) {
+                return e[r]
             }.bind(null, t));
-        return r
+        return a
     }, n.n = function(e) {
-        var a = e && e.__esModule ? function() {
+        var r = e && e.__esModule ? function() {
             return e.default
         } : function() {
             return e
         };
-        return n.d(a, "a", a), a
-    }, n.o = function(e, a) {
-        return Object.prototype.hasOwnProperty.call(e, a)
+        return n.d(r, "a", r), r
+    }, n.o = function(e, r) {
+        return Object.prototype.hasOwnProperty.call(e, r)
     }, n.p = "";
     var i = window.webpackJsonp = window.webpackJsonp || [],
         l = i.push.bind(i);
-    i.push = a, i = i.slice();
-    for (var _ = 0; _ < i.length; _++) a(i[_]);
+    i.push = r, i = i.slice();
+    for (var _ = 0; _ < i.length; _++) r(i[_]);
     var d = l;
-    s.push([107, "bundles/common"]), r()
+    s.push([107, "bundles/common"]), a()
 }({
-    "0cYn": function(e, a, r) {
+    "0cYn": function(e, r, a) {
         "use strict";
-        r.r(a);
-        r("KKXr"), r("rGqo"), r("Btvt"), r("SRfc"), r("tUrg"), r("pIFo");
-        var t = r("N1NS"),
-            o = 200,
-            s = 60,
-            n = 15;
+        a.r(r);
+        a("rE2o"), a("ioFf"), a("KKXr"), a("rGqo"), a("Btvt"), a("SRfc"), a("tUrg"), a("pIFo");
+        var t = a("N1NS");
+        a("hhXQ");
 
-        function i(e) {
+        function o(e, r) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, r) {
+                var a = [],
+                    t = !0,
+                    o = !1,
+                    s = void 0;
+                try {
+                    for (var n, i = e[Symbol.iterator](); !(t = (n = i.next()).done) && (a.push(n.value), !r || a.length !== r); t = !0);
+                } catch (e) {
+                    o = !0, s = e
+                } finally {
+                    try {
+                        t || null == i.return || i.return()
+                    } finally {
+                        if (o) throw s
+                    }
+                }
+                return a
+            }(e, r) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var s = 200,
+            n = 60,
+            i = 15;
+
+        function l(e) {
             return getLang("communityApps_lead_forms_custom_question_label").replace("%s", e)
         }
 
-        function l(e, a, r, t, o) {
-            return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", a).replace("{placeholder}", r).replace("{value}", t).replace(/\{max\_length\}/g, o)
+        function _(e, r, a, t, o) {
+            return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", r).replace("{placeholder}", a).replace("{value}", t).replace(/\{max\_length\}/g, o)
         }
 
-        function _(e, a, r) {
+        function d(e, r, a) {
             return {
                 setText(e) {},
                 onTypeChanged(e, t) {
-                    var o = geByClass1("_lead_forms_app_custom_question_row_extra", r.questionEl);
+                    var o = geByClass1("_lead_forms_app_custom_question_row_extra", a.questionEl);
                     if (removeEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click"), val(o, ""), !inArray(e, ["input", "textarea"])) {
                         var s = 2,
                             n = [],
@@ -101,47 +127,47 @@
                         for (var l = 0; l < s; l++) {
                             var _ = t.options ? n[l] : "",
                                 d = i ? i[l] : l;
-                            a().addInput(_, d)
+                            r().addInput(_, d)
                         }
                     }
                     addEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click", e => {
-                        cancelEvent(e), a().addInput()
+                        cancelEvent(e), r().addInput()
                     }), LeadFormsApp.step2Changed()
                 },
                 addInput(e, t) {
-                    var o = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl),
-                        i = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o.children.length + 1),
-                        _ = o.appendChild(se(l(vkNow(), "", i, e || "", s))),
-                        d = geByClass1("lead_forms_app_labeled_row_cont", _),
+                    var o = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", a.questionEl),
+                        s = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", o.children.length + 1),
+                        l = o.appendChild(se(_(vkNow(), "", s, e || "", n))),
+                        d = geByClass1("lead_forms_app_labeled_row_cont", l),
                         p = domClosest("lead_forms_app_labeled_row", d);
                     if (!hasClass(p, "lead_forms_app_labeled_row_disabled")) {
-                        var m = ce("div", {
+                        var u = ce("div", {
                             className: "lead_forms_app_custom_question_row_remove"
                         });
-                        d.appendChild(m), addEvent(m, "click", () => {
-                            a().removeInput(d)
+                        d.appendChild(u), addEvent(u, "click", () => {
+                            r().removeInput(d)
                         })
                     }
                     void 0 === t && (t = +new Date);
-                    var u = geByClass1("lead_forms_app_generator_input", _);
-                    data(u, "lead-forms-key", t);
-                    var c = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", r.questionEl), ".lead_forms_app_labeled_row");
-                    o.children.length >= n ? hide(c) : show(c), LeadFormsApp.step2Changed()
+                    var m = geByClass1("lead_forms_app_generator_input", l);
+                    data(m, "lead-forms-key", t);
+                    var c = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", a.questionEl), ".lead_forms_app_labeled_row");
+                    o.children.length >= i ? hide(c) : show(c), LeadFormsApp.step2Changed()
                 },
                 removeInput(e) {
                     re(domClosest("lead_forms_app_labeled_row", e));
-                    for (var a = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), t = 0; t < a.length; t++) attr(a[t], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", t + 1))
+                    for (var r = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", a.questionEl)), t = 0; t < r.length; t++) attr(r[t], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", t + 1))
                 },
                 getData() {
                     var e = {
-                        label: trim(val("lead_forms_generator_input_" + r.ident)),
-                        type: r.answerTypeDD.val(),
+                        label: trim(val("lead_forms_generator_input_" + a.ident)),
+                        type: a.answerTypeDD.val(),
                         options: {}
                     };
-                    data(r.questionEl, "lead-forms-key") && (e.key = data(r.questionEl, "lead-forms-key"));
-                    var a = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl);
-                    if (a)
-                        for (var t = geByClass("lead_forms_app_generator_input", a), o = 0; o < t.length; o++) {
+                    data(a.questionEl, "lead-forms-key") && (e.key = data(a.questionEl, "lead-forms-key"));
+                    var r = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", a.questionEl);
+                    if (r)
+                        for (var t = geByClass("lead_forms_app_generator_input", r), o = 0; o < t.length; o++) {
                             if (trim(val(t[o]))) {
                                 var s = data(t[o], "lead-forms-key");
                                 e.options[s] = trim(val(t[o]))
@@ -149,9 +175,9 @@
                         }
                     return e
                 },
-                getNum: () => r.questionNum,
+                getNum: () => a.questionNum,
                 setNum(e) {
-                    r.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", r.questionEl), i(e))
+                    a.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", a.questionEl), l(e))
                 },
                 unmount() {
                     Object(t.c)(e)
@@ -159,69 +185,73 @@
             }
         }
 
-        function d(e, a, r) {
-            a = a || {};
-            var [s, n] = function(e, a, r) {
-                var t = vkNow(),
-                    s = l(t, i(e), "", a.label ? a.label : "", o),
-                    n = cur.leadFormsTpls.dropDown.replace("{input_id}", t).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
-                    _ = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", s).replace("{answer_type}", n)),
-                    d = geByClass1("lead_forms_app_labeled_row_cont", _),
-                    p = domClosest("lead_forms_app_labeled_row", d);
-                if (!hasClass(p, "lead_forms_app_labeled_row_disabled")) {
-                    var m = ce("div", {
-                        className: "lead_forms_app_custom_question_row_remove"
-                    });
-                    d.appendChild(m), addEvent(m, "click", () => {
-                        re(domClosest("lead_forms_app_custom_question_row", d)), r()
-                    })
-                }
-                return ge("lead_forms_app_custom_questions").appendChild(_), ge("lead_forms_generator_input_" + t).focus(), a.key && window.data(_, "lead-forms-key", a.key), [_, t]
-            }(e, a, () => {
-                r.onRemove(p().getNum())
-            }), d = {
-                questionNum: e,
-                ident: n,
-                questionEl: s,
-                callbacks: r
-            }, {
-                callMutations: p,
-                bindMutations: m
-            } = Object(t.b)(_), u = ge("lead_forms_generator_dd_" + n), c = hasClass(u, "lead_forms_generator_dd_disabled");
-            return d.answerTypeDD = new Dropdown(u, cur.leadFormsData.customQuestionAnswerTypes, {
+        function p(e, r, a) {
+            var n = o(function(e, r, a) {
+                    var t = vkNow(),
+                        o = _(t, l(e), "", r.label ? r.label : "", s),
+                        n = cur.leadFormsTpls.dropDown.replace("{input_id}", t).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
+                        i = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", o).replace("{answer_type}", n)),
+                        d = geByClass1("lead_forms_app_labeled_row_cont", i),
+                        p = domClosest("lead_forms_app_labeled_row", d);
+                    if (!hasClass(p, "lead_forms_app_labeled_row_disabled")) {
+                        var u = ce("div", {
+                            className: "lead_forms_app_custom_question_row_remove"
+                        });
+                        d.appendChild(u), addEvent(u, "click", () => {
+                            re(domClosest("lead_forms_app_custom_question_row", d)), a()
+                        })
+                    }
+                    return ge("lead_forms_app_custom_questions").appendChild(i), ge("lead_forms_generator_input_" + t).focus(), r.key && window.data(i, "lead-forms-key", r.key), [i, t]
+                }(e, r = r || {}, () => {
+                    a.onRemove(c().getNum())
+                }), 2),
+                i = n[0],
+                p = n[1],
+                u = {
+                    questionNum: e,
+                    ident: p,
+                    questionEl: i,
+                    callbacks: a
+                },
+                m = Object(t.b)(d),
+                c = m.callMutations,
+                f = m.bindMutations,
+                g = ge("lead_forms_generator_dd_" + p),
+                h = hasClass(g, "lead_forms_generator_dd_disabled");
+            return u.answerTypeDD = new Dropdown(g, cur.leadFormsData.customQuestionAnswerTypes, {
                 width: 300,
                 big: 1,
                 onChange: e => {
-                    p().onTypeChanged(e, {})
+                    c().onTypeChanged(e, {})
                 },
-                selectedItem: a.type ? a.type : void 0
-            }), c && d.answerTypeDD.disable(!0), a.type && setTimeout(() => {
-                p().onTypeChanged(a.type, a)
-            }), m(Object(t.a)({
-                handlers: (e, a) => {}
-            }), p, d)
+                selectedItem: r.type ? r.type : void 0
+            }), h && u.answerTypeDD.disable(!0), r.type && setTimeout(() => {
+                c().onTypeChanged(r.type, r)
+            }), f(Object(t.a)({
+                handlers: (e, r) => {}
+            }), c, u)
         }
-        var p = 5;
+        var u = 5;
 
-        function m(e, a, r, o) {
+        function m(e, r, a, o) {
             return {
                 addCustomQuestion(e) {
-                    r.length < p && (r.push(d(r.length + 1, e, {
+                    a.length < u && (a.push(p(a.length + 1, e, {
                         onRemove: e => {
-                            r.splice(e - 1, 1);
-                            for (var t = 0; t < r.length; t++) r[t].setNum(t + 1);
-                            a().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
+                            a.splice(e - 1, 1);
+                            for (var t = 0; t < a.length; t++) a[t].setNum(t + 1);
+                            r().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
                         }
-                    })), a().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
+                    })), r().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
                 },
                 updateCustomQuestionsButton() {
-                    var e = r.length,
-                        a = ge("lead_forms_app_add_question_button"),
-                        t = geByTag1("span", a);
-                    toggle(a, e < p), e > 0 ? val(t, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", p - e) + ")") : val(t, "")
+                    var e = a.length,
+                        r = ge("lead_forms_app_add_question_button"),
+                        t = geByTag1("span", r);
+                    toggle(r, e < u), e > 0 ? val(t, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", u - e) + ")") : val(t, "")
                 },
                 getCustomQuestionsData() {
-                    for (var e = [], a = 0; a < r.length; a++) e.push(r[a].getData());
+                    for (var e = [], r = 0; r < a.length; r++) e.push(a[r].getData());
                     return e
                 },
                 getAdmins: () => o.adminsDD.val(),
@@ -229,20 +259,45 @@
                 getEmails: () => o.adminsEmailsDD.selectedItems().map(e => e[1]).join(","),
                 getEmailsElem: () => o.adminsEmailsDD.container,
                 renderConfData() {
-                    for (var e = cur.leadFormConf.step2.custom_questions, r = 0; r < e.length; r++) a().addCustomQuestion(e[r])
+                    for (var e = cur.leadFormConf.step2.custom_questions, a = 0; a < e.length; a++) r().addCustomQuestion(e[a])
                 },
                 unmount() {
                     Object(t.c)(e)
                 }
             }
         }
+
+        function c(e, r) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, r) {
+                var a = [],
+                    t = !0,
+                    o = !1,
+                    s = void 0;
+                try {
+                    for (var n, i = e[Symbol.iterator](); !(t = (n = i.next()).done) && (a.push(n.value), !r || a.length !== r); t = !0);
+                } catch (e) {
+                    o = !0, s = e
+                } finally {
+                    try {
+                        t || null == i.return || i.return()
+                    } finally {
+                        if (o) throw s
+                    }
+                }
+                return a
+            }(e, r) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
         window.LeadFormsApp = {
-            showGeneratorBox(e, a, r) {
-                a = a ? 1 : 0, r = r || !1, !cur.leadFormGroupId && r && (cur.leadFormGroupId = r), showBox("lead_forms_app.php", {
+            showGeneratorBox(e, r, a) {
+                r = r ? 1 : 0, a = a || !1, !cur.leadFormGroupId && a && (cur.leadFormGroupId = a), showBox("lead_forms_app.php", {
                     act: "generate_form_box",
                     group_id: cur.leadFormGroupId,
                     form_id: e,
-                    is_ads: a
+                    is_ads: r
                 }, {
                     onDone: () => {
                         cur.initialFormConf = LeadFormsApp.getDomData(), cur.leadFormName = trim(val("lead_form_header_name")), this.checkSectionFill()
@@ -261,31 +316,30 @@
                     hideButtons: !0,
                     width: 1e3
                 }), cur.leadFormsData = e, cur.leadFormsTpls = e.tpl;
-                var a = ge("lead_forms_app_generator_sections");
+                var r = ge("lead_forms_app_generator_sections");
                 cur.leadFromGenerator = function(e) {
-                    var a = {},
-                        r = cur.leadFormConf,
-                        {
-                            callMutations: o,
-                            bindMutations: s
-                        } = Object(t.b)(m),
-                        n = ge("lead_forms_generator_dd_settings_admins"),
-                        i = !1;
-                    hasClass(n, "lead_forms_generator_dd_disabled") && (i = !0);
-                    var l = {
+                    var r = {},
+                        a = cur.leadFormConf,
+                        o = Object(t.b)(m),
+                        s = o.callMutations,
+                        n = o.bindMutations,
+                        i = ge("lead_forms_generator_dd_settings_admins"),
+                        l = !1;
+                    hasClass(i, "lead_forms_generator_dd_disabled") && (l = !0);
+                    var _ = {
                         width: 300,
                         big: 1,
-                        selectedItem: r.step5 ? r.step5.admins : void 0,
+                        selectedItem: a.step5 ? a.step5.admins : void 0,
                         multiselect: !0,
                         autocomplete: !0,
                         placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
                         onChange: LeadFormsApp.checkboxNotificationsChanged
                     };
-                    a.adminsDD = new Dropdown(n, cur.leadFormsAdmins, l), i && a.adminsDD.disable(!0);
-                    var _ = ge("lead_forms_generator_dd_settings_admins_emails"),
-                        d = !1;
-                    hasClass(_, "lead_forms_generator_dd_disabled") && (d = !0);
-                    var p = {
+                    r.adminsDD = new Dropdown(i, cur.leadFormsAdmins, _), l && r.adminsDD.disable(!0);
+                    var d = ge("lead_forms_generator_dd_settings_admins_emails"),
+                        p = !1;
+                    hasClass(d, "lead_forms_generator_dd_disabled") && (p = !0);
+                    var u = {
                         width: 300,
                         big: 1,
                         dropdown: !1,
@@ -297,64 +351,64 @@
                         onChange: LeadFormsApp.checkboxNotificationsChanged,
                         customSearch: LeadFormsApp.checkboxNotificationsChanged
                     };
-                    return a.adminsEmailsDD = new Selector(_, [], p), d && a.adminsEmailsDD.disable(!0), a.scroll = new uiScroll(e), s(Object(t.a)({
-                        handlers: (e, a) => {}
-                    }), o, [], a)
-                }(a), cur.leadFromGenerator.renderConfData(), this.initUpload(e.upload_info), cur.leadFormsStep = cur.leadFormConf.step1.on ? 1 : 2, this.updatePreview(), this.updateHiddenInputs()
+                    return r.adminsEmailsDD = new Selector(d, [], u), p && r.adminsEmailsDD.disable(!0), r.scroll = new uiScroll(e), n(Object(t.a)({
+                        handlers: (e, r) => {}
+                    }), s, [], r)
+                }(r), cur.leadFromGenerator.renderConfData(), this.initUpload(e.upload_info), cur.leadFormsStep = cur.leadFormConf.step1.on ? 1 : 2, this.updatePreview(), this.updateHiddenInputs()
             },
             checkSectionErrors(e) {
-                var a = ge("lead_forms_step_section_" + e);
-                geByClass1("input_error", a) || geByClass1("button_error", a) || removeClass(a, "section_error")
+                var r = ge("lead_forms_step_section_" + e);
+                geByClass1("input_error", r) || geByClass1("button_error", r) || removeClass(r, "section_error")
             },
             sectionHeaderClick(e) {
-                var a = e.parentNode,
-                    r = geByClass1("lead_forms_app_section_content", a);
-                slideToggle(r, 200), toggleClass(a, "expanded")
+                var r = e.parentNode,
+                    a = geByClass1("lead_forms_app_section_content", r);
+                slideToggle(a, 200), toggleClass(r, "expanded")
             },
             inputOnKeyUp(e) {
-                var a = e.id.replace("lead_forms_generator_input_", ""),
-                    r = parseInt(attr(e, "maxlength"));
-                if (cur.leadFormsStep = parseInt(attr(domCA(e, ".lead_forms_app_generator_section"), "data-step")), removeClass(e, "input_error"), this.checkSectionErrors(cur.leadFormsStep), 5 !== cur.leadFormsStep && (this.updatePreview(), this.updateNavigation(this.convertFromStepsToScreens(cur.leadFormsStep))), !isNaN(r)) {
-                    var t = Math.max(0, r - val(e).length);
-                    val("lead_forms_generator_input_limit_info_" + a, t)
+                var r = e.id.replace("lead_forms_generator_input_", ""),
+                    a = parseInt(attr(e, "maxlength"));
+                if (cur.leadFormsStep = parseInt(attr(domCA(e, ".lead_forms_app_generator_section"), "data-step")), removeClass(e, "input_error"), this.checkSectionErrors(cur.leadFormsStep), 5 !== cur.leadFormsStep && (this.updatePreview(), this.updateNavigation(this.convertFromStepsToScreens(cur.leadFormsStep))), !isNaN(a)) {
+                    var t = Math.max(0, a - val(e).length);
+                    val("lead_forms_generator_input_limit_info_" + r, t)
                 }
             },
             initUpload(e) {
-                var a = ge("lead_form_upload_wrap");
-                hasClass(a, "lead_form_upload_wrap_disabled") && (e.upload_options.buttonClass += " flat_btn_lock button_disabled"), UploadPhotoTransform.init(a, e.upload_url, e.upload_vars, e.upload_options, {
+                var r = ge("lead_form_upload_wrap");
+                hasClass(r, "lead_form_upload_wrap_disabled") && (e.upload_options.buttonClass += " flat_btn_lock button_disabled"), UploadPhotoTransform.init(r, e.upload_url, e.upload_vars, e.upload_options, {
                     onUploadStart: () => {
-                        removeClass(geByClass1("upload_btn", "lead_form_upload_wrap"), "button_error"), this.checkSectionErrors(1), lockButton(geByClass1("flat_button", a))
+                        removeClass(geByClass1("upload_btn", "lead_form_upload_wrap"), "button_error"), this.checkSectionErrors(1), lockButton(geByClass1("flat_button", r))
                     },
-                    onUploadComplete: (e, r) => {
-                        var t = parseJSON(r) || {
+                    onUploadComplete: (e, a) => {
+                        var t = parseJSON(a) || {
                             error: "ERR_CLIENT_BAD_RESPONSE: bad request response"
                         };
-                        if (t.error || t.error_code || !t.photo) return showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_upload_error")), void unlockButton(geByClass1("flat_button", a));
+                        if (t.error || t.error_code || !t.photo) return showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_upload_error")), void unlockButton(geByClass1("flat_button", r));
                         var o = ge("lead_form_upload_wrap");
                         attr(o, "data-media", t.photo), this.step1Changed()
                     },
                     onUploadError: () => {
-                        unlockButton(geByClass1("flat_button", a)), showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_upload_error"))
+                        unlockButton(geByClass1("flat_button", r)), showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_upload_error"))
                     }
                 })
             },
             getDomData() {
-                for (var e = ge("lead_form_upload_wrap"), a = {
+                for (var e = ge("lead_form_upload_wrap"), r = {
                         title: trim(val("lead_forms_generator_input_title")),
                         cover: attr(e, "data-media"),
                         description: trim(val("lead_forms_generator_input_description")),
                         button: val("lead_forms_generator_input_button"),
                         on: hasClass(geByClass1("_lead_forms_welcome_screen_toggler"), "on")
-                    }, r = {
+                    }, a = {
                         questions: [],
                         custom_questions: cur.leadFromGenerator.getCustomQuestionsData()
                     }, t = geByClass("lead_forms_app_questions_checkboxes"), o = 0; o < t.length; o++) {
                     var s = t[o];
-                    hasClass(s, "on") && r.questions.push(attr(s, "data-name"))
+                    hasClass(s, "on") && a.questions.push(attr(s, "data-name"))
                 }
                 return {
-                    step1: a,
-                    step2: r,
+                    step1: r,
+                    step2: a,
                     step3: {
                         link: trim(val("lead_forms_generator_input_policy_url"))
                     },
@@ -373,25 +427,25 @@
                 }
             },
             showStepSuccess(e) {
-                var a = ge("lead_forms_step_section_" + e);
-                removeClass(a, "section_error"), addClass(a, "section_success")
+                var r = ge("lead_forms_step_section_" + e);
+                removeClass(r, "section_error"), addClass(r, "section_success")
             },
             showStepError(e) {
-                var a = ge("lead_forms_step_section_" + e);
-                removeClass(a, "section_success"), addClass(a, "section_error")
+                var r = ge("lead_forms_step_section_" + e);
+                removeClass(r, "section_success"), addClass(r, "section_error")
             },
-            checkStepErrors(e, a) {
-                switch (a) {
+            checkStepErrors(e, r) {
+                switch (r) {
                     case 1:
                         return !!e.title;
                     case 2:
-                        var r = !0;
+                        var a = !0;
                         for (var t in e.custom_questions)
                             if (e.custom_questions.label) {
-                                r = !1;
+                                a = !1;
                                 break
                             }
-                        return !(!e.questions.length && r);
+                        return !(!e.questions.length && a);
                     case 3:
                         return !!e.link;
                     case 4:
@@ -402,37 +456,33 @@
                         return !0
                 }
             },
-            chooseStepStatus(e, a) {
-                e ? this.showStepSuccess(a) : this.showStepError(a)
+            chooseStepStatus(e, r) {
+                e ? this.showStepSuccess(r) : this.showStepError(r)
             },
             checkSectionFill() {
                 if (!cur.leadFormId) return !1;
                 var e = this.getDomData(),
-                    {
-                        step1: a,
-                        step2: r,
-                        step3: t,
-                        step4: o,
-                        step5: s
-                    } = e,
-                    n = this.checkStepErrors(a, 1),
-                    i = this.checkStepErrors(r, 2),
+                    r = e.step1,
+                    a = e.step2,
+                    t = e.step3,
+                    o = e.step4,
+                    s = e.step5,
+                    n = this.checkStepErrors(r, 1),
+                    i = this.checkStepErrors(a, 2),
                     l = this.checkStepErrors(t, 3),
                     _ = this.checkStepErrors(o, 4),
                     d = this.checkStepErrors(s, 5);
                 (!_ || (o.description || o.link) && _) && this.chooseStepStatus(_, 4), (!_ || _ && (s.pixel || s.no_repeat || s.notification || s.im_notify || s.admins || s.emails)) && this.chooseStepStatus(d, 5), this.chooseStepStatus(n, 1), this.chooseStepStatus(i, 2), this.chooseStepStatus(l, 3)
             },
-            saveForm(e, a) {
+            saveForm(e, r) {
                 if (isButtonLocked(e)) return !1;
-                a = a ? 1 : 0;
-                var r = this.getDomData(),
-                    {
-                        step1: t,
-                        step2: o,
-                        step3: s,
-                        step4: n,
-                        step5: i
-                    } = r,
+                r = r ? 1 : 0;
+                var a = this.getDomData(),
+                    t = a.step1,
+                    o = a.step2,
+                    s = a.step3,
+                    n = a.step4,
+                    i = a.step5,
                     l = !1;
                 this.checkStepErrors(t, 1) ? this.showStepSuccess(1) : (l = !0, this.showStepError(1), t.title || addClass("lead_forms_generator_input_title", "input_error")), this.checkStepErrors(o, 2) ? (this.showStepSuccess(2), hide(geByClass1("lead_form_app_questions_error"))) : (l = !0, this.showStepError(2), show(geByClass1("lead_form_app_questions_error"))), this.checkStepErrors(s, 3) ? this.showStepSuccess(3) : (l = !0, this.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error")), this.checkStepErrors(n, 4) ? this.showStepSuccess(4) : this.showStepError(4), this.checkStepErrors(i, 5) ? this.showStepSuccess(5) : (l = !0, this.showStepError(5)), !i.notification || i.admins || i.emails || (addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), addClass(cur.leadFromGenerator.getEmailsElem(), "input_error")), i.im_notify && !i.admins && addClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), i.pixel && !i.pixel.match(/^VK\-RTRG\-([a-zA-Z0-9\-]+)$/) && (addClass("lead_forms_generator_input_pixel", "input_error"), showFastBox(getLang("global_error"), getLang("communityApps_lead_forms_pixel_error")));
                 var _ = ge("lead_form_header_error_required"),
@@ -442,15 +492,15 @@
                     act: "save_form",
                     name: val("lead_form_header_name"),
                     group_id: cur.leadFormGroupId,
-                    data: JSON.stringify(r),
+                    data: JSON.stringify(a),
                     hash: cur.leadFormsAppSaveHash,
                     form_id: cur.leadFormId,
-                    is_ads: a
+                    is_ads: r
                 }, {
                     onDone(e) {
                         if (curBox().hide(!0), !e.forms_html) return !1;
-                        var a = ge("lead_form_apps_forms_table");
-                        a && (a.innerHTML = e.forms_html)
+                        var r = ge("lead_form_apps_forms_table");
+                        r && (r.innerHTML = e.forms_html)
                     },
                     onFail: e => ("save_error" === e ? show(d) : show(_), "bad_policy_link" === e ? (this.showStepError(3), addClass("lead_forms_generator_input_policy_url", "input_error"), !0) : "bad_site_link" === e ? (this.showStepError(4), addClass("lead_forms_generator_input_confirm_url", "input_error"), !0) : void 0),
                     showProgress: lockButton.pbind(e),
@@ -458,19 +508,19 @@
                 })
             },
             blockNavigation() {
-                each(geByClass("lead_forms_generator_navigator_link"), function(e, a) {
-                    addClass(a, "lead_forms_generator_navigator_link_disabled")
+                each(geByClass("lead_forms_generator_navigator_link"), function(e, r) {
+                    addClass(r, "lead_forms_generator_navigator_link_disabled")
                 })
             },
             enableNavigation() {
-                each(geByClass("lead_forms_generator_navigator_link"), function(e, a) {
-                    removeClass(a, "lead_forms_generator_navigator_link_disabled")
+                each(geByClass("lead_forms_generator_navigator_link"), function(e, r) {
+                    removeClass(r, "lead_forms_generator_navigator_link_disabled")
                 });
                 var e = ge("lead_forms_generator_navigator_link_prev");
                 parseInt(e.getAttribute("data-screen"), 10) || addClass(e, "lead_forms_generator_navigator_link_disabled");
-                var a = ge("lead_forms_generator_navigator_link_next"),
-                    r = parseInt(a.getAttribute("data-screen"), 10);
-                (!r || r > 2) && addClass(a, "lead_forms_generator_navigator_link_disabled")
+                var r = ge("lead_forms_generator_navigator_link_next"),
+                    a = parseInt(r.getAttribute("data-screen"), 10);
+                (!a || a > 2) && addClass(r, "lead_forms_generator_navigator_link_disabled")
             },
             updateNavigation(e) {
                 e = parseInt(e, 10), ge("lead_forms_generator_navigator_link_prev").setAttribute("data-screen", e - 1), ge("lead_forms_generator_navigator_link_next").setAttribute("data-screen", e + 1), ge("lead_forms_generator_navigator_step").innerHTML = e, ge("lead_forms_generator_navigator_title").innerHTML = 1 === e ? getLang("communityApps_lead_navigator_title_questions") : getLang("communityApps_lead_navigator_title_success")
@@ -478,11 +528,11 @@
             switchScreen(e) {
                 if (!e) return !1;
                 if (hasClass(e, "lead_forms_generator_navigator_link_disabled")) return !1;
-                var a = e.getAttribute("data-screen");
-                if (!a) return !1;
-                this.blockNavigation(), this.updateNavigation(a);
-                var r = this.convertFromScreensToSteps(a);
-                cur.leadFormsStep = r, this.updatePreview()
+                var r = e.getAttribute("data-screen");
+                if (!r) return !1;
+                this.blockNavigation(), this.updateNavigation(r);
+                var a = this.convertFromScreensToSteps(r);
+                cur.leadFormsStep = a, this.updatePreview()
             },
             convertFromScreensToSteps: e => 1 === (e = parseInt(e, 10)) ? 2 : 4,
             convertFromStepsToScreens: e => (e = parseInt(e, 10)) < 4 ? 1 : 2,
@@ -504,8 +554,8 @@
                                     },
                                     src: vk.loginscheme + "://" + vk.host + "/lead_forms_app.php?act=view_form&group_id=" + cur.leadFormGroupId + "&step=" + cur.leadFormsStep + "&preview=" + cur.leadFormsPreviewId
                                 }),
-                                a = ge("lead_forms_preview_wrap");
-                            val(a, ""), ge(a).appendChild(e), this.enableNavigation()
+                                r = ge("lead_forms_preview_wrap");
+                            val(r, ""), ge(r).appendChild(e), this.enableNavigation()
                         }
                     })
                 }, 400)
@@ -524,20 +574,20 @@
                 this.initSensitiveInputs()
             },
             initSensitiveInputs() {
-                for (var e = geByClass("lead_form_view_sensitive_input_wrapper"), a = function(a) {
-                        for (var r = e[a], t = domQuery1('.lead_form_view_sensitive_input[data-id="read"]', r), o = domQuery1('.lead_form_view_sensitive_input[data-id="edit"]', r), s = domQuery(".lead_form_view_sensitive_input_action", r), n = 0; n < s.length; n++) {
+                for (var e = geByClass("lead_form_view_sensitive_input_wrapper"), r = function(r) {
+                        for (var a = e[r], t = domQuery1('.lead_form_view_sensitive_input[data-id="read"]', a), o = domQuery1('.lead_form_view_sensitive_input[data-id="edit"]', a), s = domQuery(".lead_form_view_sensitive_input_action", a), n = 0; n < s.length; n++) {
                             var i = domData(s[n], "action");
                             if ("edit" === i) addEvent(s[n], "click", function(e) {
-                                domData(r, "state", "edit"), addClass(t, "hidden"), removeClass(o, "hidden")
+                                domData(a, "state", "edit"), addClass(t, "hidden"), removeClass(o, "hidden")
                             });
                             else {
                                 if ("cancel" !== i) throw new Error("Unknown action " + i);
                                 addEvent(s[n], "click", function(e) {
-                                    domData(r, "state", "read"), addClass(o, "hidden"), removeClass(t, "hidden"), val(geByTag1("input", o), "")
+                                    domData(a, "state", "read"), addClass(o, "hidden"), removeClass(t, "hidden"), val(geByTag1("input", o), "")
                                 })
                             }
                         }
-                    }, r = 0; r < e.length; r++) a(r)
+                    }, a = 0; a < e.length; a++) r(a)
             },
             step1Changed() {
                 cur.leadFormsStep = 1, this.updatePreview(), this.updateNavigation(1)
@@ -546,95 +596,96 @@
                 cur.leadFormsStep = 2, this.updatePreview(), this.updateNavigation(1)
             },
             switchStep(e) {
-                var a = ge("lead_forms_view_wrap");
-                removeClass(geByClass1("lead_forms_step_active", a), "lead_forms_step_active"), removeClass(geByClass1("lead_forms_step_active", a), "lead_forms_step_active"), addClass("step" + e, "lead_forms_step_active"), addClass("step" + e + "_buttons", "lead_forms_step_active");
-                var r = langStr(cur.lang.communityApps_lead_forms_step_info, "step", e, "total_steps", cur.leadFormSteps);
-                val("lead_forms_step_info", r)
+                var r = ge("lead_forms_view_wrap");
+                removeClass(geByClass1("lead_forms_step_active", r), "lead_forms_step_active"), removeClass(geByClass1("lead_forms_step_active", r), "lead_forms_step_active"), addClass("step" + e, "lead_forms_step_active"), addClass("step" + e + "_buttons", "lead_forms_step_active");
+                var a = langStr(cur.lang.communityApps_lead_forms_step_info, "step", e, "total_steps", cur.leadFormSteps);
+                val("lead_forms_step_info", a)
             },
-            sendForm(e, a, r = !1) {
-                a = a || !1;
+            sendForm(e, r) {
+                var a = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
+                r = r || !1;
                 for (var t = cur.leadFormConfig, o = [], s = !1, n = 0; n < t.step2.questions.length; n++) {
                     var i = t.step2.questions[n],
                         l = "lead_forms_view_input_" + i,
                         _ = "lead_form_view_sensitive_input_wrapper_" + i,
                         d = trim(val(l)),
                         p = "edit",
-                        m = ge(_);
-                    m && (p = domData(m, "state")), d || "edit" !== p ? ("email" !== i || "edit" !== p || this.validateEmail(d)) && ("phone_number" !== i || "edit" !== p || this.validatePhone(d)) && ("birthday" !== i || this.validateBirthday(d)) ? o.push({
+                        u = ge(_);
+                    u && (p = domData(u, "state")), d || "edit" !== p ? ("email" !== i || "edit" !== p || this.validateEmail(d)) && ("phone_number" !== i || "edit" !== p || this.validatePhone(d)) && ("birthday" !== i || this.validateBirthday(d)) ? o.push({
                         question: i,
                         value: d
                     }) : (notaBene(l, !1, s), s = !0) : (notaBene(l, !1, s), s = !0)
                 }
-                for (var u = 0; u < t.step2.custom_questions.length; u++) {
-                    var c = t.step2.custom_questions[u],
+                for (var m = 0; m < t.step2.custom_questions.length; m++) {
+                    var c = t.step2.custom_questions[m],
                         f = void 0,
                         g = void 0,
-                        h = geByClass1("_custom_question_" + u),
+                        h = geByClass1("_custom_question_" + m),
                         v = void 0;
                     switch (c.type) {
                         case "input":
                         case "textarea":
-                            g = ge("lead_forms_view_input_custom_question_" + u), f = trim(val(g));
+                            g = ge("lead_forms_view_input_custom_question_" + m), f = trim(val(g));
                             break;
                         case "radio":
-                            f = {}, 0 !== (v = window.radioBtns["custom_question_" + u].val) && (f[v] = replaceEntities(c.options[v]));
+                            f = {}, 0 !== (v = window.radioBtns["custom_question_" + m].val) && (f[v] = replaceEntities(c.options[v]));
                             break;
                         case "checkbox":
                             f = {};
-                            for (var C = geByClass("checkbox", h), w = 0; w < C.length; w++)
-                                if (hasClass(C[w], "on")) {
-                                    var y = attr(C[w], "data-key");
-                                    y in c.options && (f[y] = replaceEntities(c.options[y]))
+                            for (var y = geByClass("checkbox", h), w = 0; w < y.length; w++)
+                                if (hasClass(y[w], "on")) {
+                                    var C = attr(y[w], "data-key");
+                                    C in c.options && (f[C] = replaceEntities(c.options[C]))
                                 }
                             break;
                         case "select":
-                            f = {}, (v = ge("lead_forms_custom_question_select_" + u).value) in c.options && (f[v] = replaceEntities(c.options[v]))
+                            f = {}, (v = ge("lead_forms_custom_question_select_" + m).value) in c.options && (f[v] = replaceEntities(c.options[v]))
                     }
                     "" !== f && Object.keys(f).length ? o.push({
-                        question: "custom_" + u,
+                        question: "custom_" + m,
                         value: f
                     }) : (inArray(c.type, ["input", "textarea"]) ? (notaBene(g, !1, s), s || LeadFormsApp.scrollToEl(g)) : LeadFormsApp.titleError(geByClass1("lead_form_view_labeled_row_label", h), s), s = !0)
                 }
                 var b = geByClass1("lead_form_view_policy");
-                if (!hasClass(b, "on") && !r) return LeadFormsApp.titleError(b, s);
+                if (!hasClass(b, "on") && !a) return LeadFormsApp.titleError(b, s);
 
                 function k(e) {
-                    for (var a = 0, r = 0; r < e.length; r++) {
-                        var t = parseInt(e.substr(r, 1));
-                        r % 2 == 0 && (t *= 2) > 9 && (t = 1 + t % 10), a += t
+                    for (var r = 0, a = 0; a < e.length; a++) {
+                        var t = parseInt(e.substr(a, 1));
+                        a % 2 == 0 && (t *= 2) > 9 && (t = 1 + t % 10), r += t
                     }
-                    return a % 10 == 0
+                    return r % 10 == 0
                 }
-                var S = !1;
-                for (var F of o) {
-                    if (F.question === "custom_" + t.step2.validate_passport && !F.value.match(/^\d{10}$/)) {
+                for (var S = !1, F = 0, E = o; F < E.length; F++) {
+                    var B = E[F];
+                    if (B.question === "custom_" + t.step2.validate_passport && !B.value.match(/^\d{10}$/)) {
                         s = !0;
-                        var E = ge("lead_forms_view_input_custom_question_" + t.step2.validate_passport);
-                        notaBene(E), LeadFormsApp.scrollToEl(E);
+                        var A = ge("lead_forms_view_input_custom_question_" + t.step2.validate_passport);
+                        notaBene(A), LeadFormsApp.scrollToEl(A);
                         break
                     }
-                    if (F.question === "custom_" + t.step2.validate_passport_issue_date && !this.validateBirthday(F.value)) {
+                    if (B.question === "custom_" + t.step2.validate_passport_issue_date && !this.validateBirthday(B.value)) {
                         s = !0;
-                        var B = ge("lead_forms_view_input_custom_question_" + t.step2.validate_passport_issue_date);
-                        notaBene(B), LeadFormsApp.scrollToEl(B);
+                        var x = ge("lead_forms_view_input_custom_question_" + t.step2.validate_passport_issue_date);
+                        notaBene(x), LeadFormsApp.scrollToEl(x);
                         break
                     }
-                    if (F.question === "custom_" + t.step2.validate_card) {
-                        var A = ge("lead_forms_view_input_custom_question_" + t.step2.validate_card);
-                        if (!F.value.match(/^\d{16,18}$/)) {
-                            s = !0, notaBene(A), LeadFormsApp.scrollToEl(A);
+                    if (B.question === "custom_" + t.step2.validate_card) {
+                        var q = ge("lead_forms_view_input_custom_question_" + t.step2.validate_card);
+                        if (!B.value.match(/^\d{16,18}$/)) {
+                            s = !0, notaBene(q), LeadFormsApp.scrollToEl(q);
                             break
                         }
-                        if (!k(F.value)) {
-                            s = !0, notaBene(A), LeadFormsApp.scrollToEl(A);
+                        if (!k(B.value)) {
+                            s = !0, notaBene(q), LeadFormsApp.scrollToEl(q);
                             break
                         }
-                        S = F.value
+                        S = B.value
                     }
                 }
 
-                function x() {
-                    if (a) return function() {
+                function D() {
+                    if (r) return function() {
                         var e = ge("lead_forms_view_form_preview_error");
                         show(e), setTimeout(() => {
                             hide(e)
@@ -661,93 +712,93 @@
                     skr_destinationCardNumber: S,
                     skr_responseFormat: "json"
                 }, e => {
-                    var a = JSON.parse(e);
-                    if (a && "success" === a.storeCard.reason && a.storeCard.skr_destinationCardSynonim) {
-                        for (var r = 0; r < o.length; ++r) o[r].question === "custom_" + t.step2.validate_card && (o[r].value = a.storeCard.skr_destinationCardSynonim);
-                        x()
+                    var r = JSON.parse(e);
+                    if (r && "success" === r.storeCard.reason && r.storeCard.skr_destinationCardSynonim) {
+                        for (var a = 0; a < o.length; ++a) o[a].question === "custom_" + t.step2.validate_card && (o[a].value = r.storeCard.skr_destinationCardSynonim);
+                        D()
                     } else {
                         debugLog("Error storing card", e);
                         var s = ge("lead_forms_view_input_custom_question_" + t.step2.validate_card);
                         notaBene(s), LeadFormsApp.scrollToEl(s)
                     }
-                }, void 0, !1, void 0, void 0, !0) : x())
+                }, void 0, !1, void 0, void 0, !0) : D())
             },
-            titleError(e, a) {
+            titleError(e, r) {
                 addClass(e, "mark_as_error"), setTimeout(() => {
                     removeClass(e, "mark_as_error")
-                }, 800), a || LeadFormsApp.scrollToEl(e)
+                }, 800), r || LeadFormsApp.scrollToEl(e)
             },
             scrollToEl(e) {
-                var a = geByClass1("lead_forms_view_cont_wrap"),
-                    r = a.scrollTop,
+                var r = geByClass1("lead_forms_view_cont_wrap"),
+                    a = r.scrollTop,
                     t = getXY(e)[1] - (window.innerHeight - 180);
-                a.scrollTop = r + t
+                r.scrollTop = a + t
             },
             formNameDown(e) {
                 if (hasClass(e, "lead_form_header_name_disabled")) return !1;
                 if (!geByTag1("input", e)) {
-                    var a = clean(val(e));
-                    addClass(e, "lead_form_header_name_edited"), val(e, `<input type="text" value="${a}" id="lead_form_name" class="lead_form_name_input" onblur="LeadFormsApp.fromNameBlur(this, event)" onkeypress="if (event.keyCode == KEY.ENTER) this.blur()" />`), setTimeout(() => {
+                    var r = clean(val(e));
+                    addClass(e, "lead_form_header_name_edited"), val(e, `<input type="text" value="${r}" id="lead_form_name" class="lead_form_name_input" onblur="LeadFormsApp.fromNameBlur(this, event)" onkeypress="if (event.keyCode == KEY.ENTER) this.blur()" />`), setTimeout(() => {
                         var e = geByTag1("input", "lead_form_header_name");
                         document.activeElement !== e && (e.focus(), e.selectionStart = String(val(e)).length)
                     })
                 }
             },
-            fromNameBlur(e, a) {
-                cancelEvent(a);
-                var r = clean(val(e)),
+            fromNameBlur(e, r) {
+                cancelEvent(r);
+                var a = clean(val(e)),
                     t = ge("lead_form_header_name");
-                removeClass(t, "lead_form_header_name_edited"), val(t, trim(r) || cur.leadFormDefName)
+                removeClass(t, "lead_form_header_name_edited"), val(t, trim(a) || cur.leadFormDefName)
             },
-            setFormStatus(e, a, r) {
+            setFormStatus(e, r, a) {
                 var t = 1;
                 hasClass(e, "lead_forms_app_form_active") && (t = 0), toggleClass(e, "lead_forms_app_form_active"), val(e, t ? cur.lang.communityApps_lead_form_status_on : cur.lang.communityApps_lead_form_status_off), ajax.post("/lead_forms_app.php", {
                     act: "set_form_status",
                     status: t,
                     group_id: cur.leadFormGroupId,
-                    form_id: a,
-                    hash: r
+                    form_id: r,
+                    hash: a
                 }, {
                     showProgress: lockLink.pbind(e),
                     hideProgress: unlockLink.pbind(e)
                 })
             },
-            deleteForm(e, a, r) {
+            deleteForm(e, r, a) {
                 if (linkLocked(e)) return !1;
                 addClass(domCA(e, ".ui_table_row"), "lead_forms_app_form_deleted");
-                var t = ge("lead_form_actions" + a);
+                var t = ge("lead_form_actions" + r);
                 addClass(t, "lead_forms_app_no_display");
-                var o = ge("lead_form_restore" + a);
-                removeClass(o, "lead_forms_app_no_display"), this.deleteFormSend(r, a)
+                var o = ge("lead_form_restore" + r);
+                removeClass(o, "lead_forms_app_no_display"), this.deleteFormSend(a, r)
             },
-            restoreForm(e, a, r) {
-                removeClass(domCA(e, ".ui_table_row"), "lead_forms_app_form_deleted"), removeClass("lead_form_actions" + a, "lead_forms_app_no_display"), addClass("lead_form_restore" + a, "lead_forms_app_no_display"), this.deleteFormSend(r, a, !0)
+            restoreForm(e, r, a) {
+                removeClass(domCA(e, ".ui_table_row"), "lead_forms_app_form_deleted"), removeClass("lead_form_actions" + r, "lead_forms_app_no_display"), addClass("lead_form_restore" + r, "lead_forms_app_no_display"), this.deleteFormSend(a, r, !0)
             },
-            deleteFormSend(e, a, r) {
+            deleteFormSend(e, r, a) {
                 ajax.post("/lead_forms_app.php", {
                     act: "form_delete",
                     hash: e,
-                    form_id: a,
+                    form_id: r,
                     group_id: cur.leadFormGroupId,
-                    restore: r ? 1 : 0
+                    restore: a ? 1 : 0
                 })
             },
-            copyForm(e, a, r, t, o) {
+            copyForm(e, r, a, t, o) {
                 if (cancelEvent(o), linkLocked(e)) return !1;
-                this.copyFormSend(r, a, t, e)
+                this.copyFormSend(a, r, t, e)
             },
-            copyFormSend(e, a, r, t) {
-                r = r ? 1 : 0, ajax.post("/lead_forms_app.php", {
+            copyFormSend(e, r, a, t) {
+                a = a ? 1 : 0, ajax.post("/lead_forms_app.php", {
                     act: "form_copy",
                     hash: e,
-                    form_id: a,
+                    form_id: r,
                     group_id: cur.leadFormGroupId,
-                    is_ads: r
+                    is_ads: a
                 }, {
                     onDone(e) {
                         if (!e.ok || !e.forms_html) return !1;
-                        var a = ge("lead_form_apps_forms_table");
-                        a && (a.innerHTML = e.forms_html)
+                        var r = ge("lead_form_apps_forms_table");
+                        r && (r.innerHTML = e.forms_html)
                     },
                     showProgress: () => {
                         lockLink(t), addClass(ge("lead_form_apps_forms_table"), "lead_form_apps_forms_table_loading")
@@ -759,24 +810,27 @@
             },
             validateEmail: e => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e),
             validatePhone(e) {
-                var a = String(e).replace(/[^0-9]/g, "").length;
-                return a >= 10 && a <= 12
+                var r = String(e).replace(/[^0-9]/g, "").length;
+                return r >= 10 && r <= 12
             },
             validateBirthday(e) {
-                var a = String(e).match(/^\d{1,2}([./-])\d{1,2}\1\d{4}$/);
-                if (!a) return !1;
-                var [r, t, o] = a[0].split(a[1]);
-                return !((r = parseInt(trim(r))) > 31 || r < 1) && (!((t = parseInt(trim(t))) > 12 || t < 1) && (o = parseInt(trim(o))) > 1927)
+                var r = String(e).match(/^\d{1,2}([./-])\d{1,2}\1\d{4}$/);
+                if (!r) return !1;
+                var a = c(r[0].split(r[1]), 3),
+                    t = a[0],
+                    o = a[1],
+                    s = a[2];
+                return !((t = parseInt(trim(t))) > 31 || t < 1) && (!((o = parseInt(trim(o))) > 12 || o < 1) && (s = parseInt(trim(s))) > 1927)
             },
-            policyCheckBoxClick(e, a) {
-                e && "A" === e.target.tagName || checkbox(a)
+            policyCheckBoxClick(e, r) {
+                e && "A" === e.target.tagName || checkbox(r)
             },
             checkboxNotificationsChanged() {
                 removeClass("lead_forms_step_section_5", "section_error"), removeClass(cur.leadFromGenerator.getAdminsElem(), "input_error"), removeClass(cur.leadFromGenerator.getEmailsElem(), "input_error")
             },
-            copyLink(e, a) {
-                cancelEvent(a);
-                var r = bodyNode.appendChild(ce("input", {
+            copyLink(e, r) {
+                cancelEvent(r);
+                var a = bodyNode.appendChild(ce("input", {
                     value: e
                 }, {
                     position: "fixed",
@@ -784,27 +838,27 @@
                     left: 0,
                     opacity: 0
                 }));
-                r.select(), document.execCommand("copy"), re(r), showDoneBox(getLang("communityApps_lead_forms_link_copied"))
+                a.select(), document.execCommand("copy"), re(a), showDoneBox(getLang("communityApps_lead_forms_link_copied"))
             },
-            toggleNotifyCheckbox(e, a) {
+            toggleNotifyCheckbox(e, r) {
                 if (!e) return !1;
-                "true" === e.getAttribute("aria-checked") ? this.toggleInput(a, !0) : this.toggleInput(a, !1)
+                "true" === e.getAttribute("aria-checked") ? this.toggleInput(r, !0) : this.toggleInput(r, !1)
             },
             updateHiddenInputs() {
                 var e = hasClass(geByClass1("_lead_forms_checkbox_settings_im_notify"), "on"),
-                    a = hasClass(geByClass1("_lead_forms_checkbox_settings_notifications"), "on");
-                e && this.toggleInput("lead_forms_app_labeled_row_im", !0), a && this.toggleInput("lead_forms_app_labeled_row_email", !0)
+                    r = hasClass(geByClass1("_lead_forms_checkbox_settings_notifications"), "on");
+                e && this.toggleInput("lead_forms_app_labeled_row_im", !0), r && this.toggleInput("lead_forms_app_labeled_row_email", !0)
             },
-            toggleInput(e, a) {
-                a ? removeClass(geByClass1(e), "lead_forms_app_labeled_row_hidden") : addClass(geByClass1(e), "lead_forms_app_labeled_row_hidden")
+            toggleInput(e, r) {
+                r ? removeClass(geByClass1(e), "lead_forms_app_labeled_row_hidden") : addClass(geByClass1(e), "lead_forms_app_labeled_row_hidden")
             },
-            createAd(e, a, r, t, o) {
+            createAd(e, r, a, t, o) {
                 if (cancelEvent(e), !t) return !1;
                 ajax.post("/lead_forms_app.php", {
                     act: "set_form_status",
                     status: 1,
-                    group_id: a,
-                    form_id: r,
+                    group_id: r,
+                    form_id: a,
                     hash: o
                 }, {
                     onDone: e => {
@@ -834,80 +888,116 @@
             stManager.done("lead_forms_app.js")
         } catch (e) {}
     },
-    107: function(e, a, r) {
-        e.exports = r("0cYn")
+    107: function(e, r, a) {
+        e.exports = a("0cYn")
     },
-    N1NS: function(e, a, r) {
+    N1NS: function(e, r, a) {
         "use strict";
-        r("rGqo"), r("Btvt"), r("KKXr");
-        var t = new window.Map;
+        a("rE2o"), a("ioFf"), a("rGqo"), a("Btvt"), a("KKXr");
 
-        function o(e) {
-            var a = t.get(e.currentTarget);
-            if (a) {
-                var r = a[e.type];
-                if (r)
-                    for (var o, s = 0; s < r.length; s++) {
-                        var [n, i] = r[s], l = void 0;
-                        if (hasClass(e.target, n) ? l = i(e, e.target) : (o = gpeByClass(n, e.target, e.currentTarget)) && (l = i(e, o)), !1 === l) break
+        function t(e, r) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, r) {
+                var a = [],
+                    t = !0,
+                    o = !1,
+                    s = void 0;
+                try {
+                    for (var n, i = e[Symbol.iterator](); !(t = (n = i.next()).done) && (a.push(n.value), !r || a.length !== r); t = !0);
+                } catch (e) {
+                    o = !0, s = e
+                } finally {
+                    try {
+                        t || null == i.return || i.return()
+                    } finally {
+                        if (o) throw s
+                    }
+                }
+                return a
+            }(e, r) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var o = new window.Map;
+
+        function s(e) {
+            var r = o.get(e.currentTarget);
+            if (r) {
+                var a = r[e.type];
+                if (a)
+                    for (var s, n = 0; n < a.length; n++) {
+                        var i = t(a[n], 2),
+                            l = i[0],
+                            _ = i[1],
+                            d = void 0;
+                        if (hasClass(e.target, l) ? d = _(e, e.target) : (s = gpeByClass(l, e.target, e.currentTarget)) && (d = _(e, s)), !1 === d) break
                     }
             }
         }
-        r.d(a, "b", function() {
-            return i
-        }), r.d(a, "a", function() {
+        a.d(r, "b", function() {
             return _
-        }), r.d(a, "c", function() {
-            return d
+        }), a.d(r, "a", function() {
+            return p
+        }), a.d(r, "c", function() {
+            return u
         });
-        var {
-            addEvent: s,
-            removeEvent: n
-        } = window;
+        var n = window,
+            i = n.addEvent,
+            l = n.removeEvent;
 
-        function i(e) {
+        function _(e) {
             return {
                 callMutations() {
                     if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
                     return e
                 },
-                bindMutations(...a) {
+                bindMutations() {
                     if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e(...a)
+                    return e = e(...arguments)
                 }
             }
         }
 
-        function l(e, a, r, s, n) {
-            ! function(e, a, r, s) {
-                var n = t.get(e);
-                n || (t.set(e, {}), n = t.get(e));
-                for (var i = a.split(" "), l = 0; l < i.length; l++) {
+        function d(e, r, a, t, n) {
+            ! function(e, r, a, t) {
+                var n = o.get(e);
+                n || (o.set(e, {}), n = o.get(e));
+                for (var i = r.split(" "), l = 0; l < i.length; l++) {
                     var _ = i[l];
-                    n[_] || (n[_] = [], addEvent(e, _, o)), n[_].push([r, s])
+                    n[_] || (n[_] = [], addEvent(e, _, s)), n[_].push([a, t])
                 }
-            }(a, r, s, n), e._registeredHandlers.push(["delegate", a, r, s, n])
+            }(r, a, t, n), e._registeredHandlers.push(["delegate", r, a, t, n])
         }
 
-        function _(e) {
-            var a = {
+        function p(e) {
+            var r = {
                 _registeredHandlers: []
             };
-            return e.handlers(function(e, a, r, t) {
-                s(a, r, t), e._registeredHandlers.push(["bind", a, r, t])
-            }.bind(null, a), l.bind(null, a)), a
+            return e.handlers(function(e, r, a, t) {
+                i(r, a, t), e._registeredHandlers.push(["bind", r, a, t])
+            }.bind(null, r), d.bind(null, r)), r
         }
 
-        function d(e) {
+        function u(e) {
             e._registeredHandlers.forEach(e => {
-                var a = e.slice(1);
-                "delegate" === e[0] ? function(e, a, r, s) {
-                    var n = t.get(e);
-                    n && (a.split(" ").forEach(a => {
-                        n[a] && (n[a] = n[a].filter(e => e[0] !== r || e[1] !== s), 0 === n[a].length && removeEvent(e, a, o))
-                    }), 0 === Object.keys(n).map(e => n[e].length).reduce((e, a) => e + a) && t.delete(e))
-                }(...a) : n(...a)
+                var r = e.slice(1);
+                "delegate" === e[0] ? function(e, r, a, t) {
+                    var n = o.get(e);
+                    n && (r.split(" ").forEach(r => {
+                        n[r] && (n[r] = n[r].filter(e => e[0] !== a || e[1] !== t), 0 === n[r].length && removeEvent(e, r, s))
+                    }), 0 === Object.keys(n).map(e => n[e].length).reduce((e, r) => e + r) && o.delete(e))
+                }(...r) : l(...r)
             }), e._registeredHandlers = []
         }
+    },
+    hhXQ: function(e, r, a) {
+        var t = a("XKFU"),
+            o = a("UExd")(!1);
+        t(t.S, "Object", {
+            values: function(e) {
+                return o(e)
+            }
+        })
     }
 });

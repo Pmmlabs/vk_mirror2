@@ -216,11 +216,10 @@
                         if (cur.mbForceAttach)
                             if ("market_item" == cur.mbForceAttach[0]) r.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), r.removeAllAttaches(), r.addAttach("market", cur.mbForceAttach[1]);
                             else if ("market_order" == cur.mbForceAttach[0]) {
-                            var {
-                                user_id: o,
-                                order_id: n
-                            } = cur.mbForceAttach[1];
-                            r.setText(unclean(getLang("mail_order_tmpl")).replace(/<br>/g, "\n").replace("{id}", `${o}-${n}`).replace("{href}", `${window.location.host}/orders${o}_${n}`)), r.removeAllAttaches()
+                            var o = cur.mbForceAttach[1],
+                                n = o.user_id,
+                                c = o.order_id;
+                            r.setText(unclean(getLang("mail_order_tmpl")).replace(/<br>/g, "\n").replace("{id}", `${n}-${c}`).replace("{href}", `${window.location.host}/orders${n}_${c}`)), r.removeAllAttaches()
                         }
                         a.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(r.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(r.dData.txt))), r.prepareObjects().then(() => {
                             if (cur.mbField && a.getPeer() == t)

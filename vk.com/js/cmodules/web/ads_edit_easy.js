@@ -1,8 +1,8 @@
 ﻿! function(e) {
     function t(t) {
-        for (var i, o, r = t[0], d = t[1], l = t[2], m = 0, c = []; m < r.length; m++) o = r[m], n[o] && c.push(n[o][0]), n[o] = 0;
+        for (var i, o, r = t[0], d = t[1], l = t[2], c = 0, m = []; c < r.length; c++) o = r[c], n[o] && m.push(n[o][0]), n[o] = 0;
         for (i in d) Object.prototype.hasOwnProperty.call(d, i) && (e[i] = d[i]);
-        for (h && h(t); c.length;) c.shift()();
+        for (h && h(t); m.length;) m.shift()();
         return a.push.apply(a, l || []), s()
     }
 
@@ -74,12 +74,46 @@
     58: function(e, t, s) {
         e.exports = s("x625")
     },
+    hhXQ: function(e, t, s) {
+        var i = s("XKFU"),
+            n = s("UExd")(!1);
+        i(i.S, "Object", {
+            values: function(e) {
+                return n(e)
+            }
+        })
+    },
     x625: function(e, t, s) {
         "use strict";
         s.r(t);
-        s("SRfc"), s("a1Th"), s("0mN4"), s("rGqo"), s("Btvt"), s("pIFo"), s("KKXr");
+        s("rE2o"), s("ioFf"), s("SRfc"), s("hhXQ"), s("a1Th"), s("0mN4"), s("rGqo"), s("Btvt"), s("pIFo"), s("KKXr");
         var i = s("aong"),
             n = s("XzvV");
+
+        function a(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    n = !1,
+                    a = void 0;
+                try {
+                    for (var o, r = e[Symbol.iterator](); !(i = (o = r.next()).done) && (s.push(o.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    n = !0, a = e
+                } finally {
+                    try {
+                        i || null == r.return || r.return()
+                    } finally {
+                        if (n) throw a
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
         window.AdsEditEasyPromote = class e {
             classname(e) {
                 return "ads_edit_easy_promote_box__" + e
@@ -266,8 +300,10 @@
             }
             onCriteriaPresetChanged(e) {
                 if ("" !== e) {
-                    var [t, s] = this.getCriteriaPreset(e);
-                    this.updateAudienceActions(), t && (s && this.setCriteriaData(s), this.setTargetingParams(t), this.lastCriteriaPresetID = e)
+                    var t = a(this.getCriteriaPreset(e), 2),
+                        s = t[0],
+                        i = t[1];
+                    this.updateAudienceActions(), s && (i && this.setCriteriaData(i), this.setTargetingParams(s), this.lastCriteriaPresetID = e)
                 } else this.audienceDropdown.selectItem(this.lastCriteriaPresetID || 0)
             }
             onCreateAdFailed(e) {
@@ -289,22 +325,24 @@
                 var t = e.target;
                 if (!hasClass(t, this.classname("audience-menu-item"))) return !1;
                 var s = this.audienceDropdown.val(),
-                    [i, n] = s.split("_");
-                n = intval(n);
-                var a = t.getAttribute("data-action");
+                    i = a(s.split("_"), 2),
+                    n = i[0],
+                    o = i[1];
+                o = intval(o);
+                var r = t.getAttribute("data-action");
                 if (hasClass(t, "ui_actions_menu_item_disabled")) return !1;
-                switch (a) {
+                switch (r) {
                     case "save-to-current":
                         if (0 == s) return !1;
-                        if (n <= 0) return !1;
-                        this.editCriteriaPreset(i, n, "", 0);
+                        if (o <= 0) return !1;
+                        this.editCriteriaPreset(n, o, "", 0);
                         break;
                     case "save-to-new":
                         this.isEditingAudienceName = !0, hide(this.audienceDropdown.container), show(this.audienceNameInput), show(this.editAudienceNameLinksWrapperElement), this.editingAudience || hide(this.editAudienceLinkWrapperElement), hide(this.audienceMenuDotsElement), val(this.audienceNameInput, ""), elfocus(this.audienceNameInput);
                         break;
                     case "delete-current":
-                        if (n <= 0) return !1;
-                        this.editCriteriaPreset(i, n, "", 1)
+                        if (o <= 0) return !1;
+                        this.editCriteriaPreset(n, o, "", 1)
                 }
                 return !1
             }
@@ -480,7 +518,7 @@
             getUpdateTargetParams(e) {
                 e = e || {};
                 var t = "",
-                    [s] = this.getCriteriaPreset(this.audienceDropdown.val());
+                    s = a(this.getCriteriaPreset(this.audienceDropdown.val()), 1)[0];
                 this.geoEditor.inited ? t = this.geoEditor.savePointsToString() : s && (t = s.geo_near);
                 var i = {
                     geo_type: Radiobutton.val("ads_targeting_criterion_geo_type"),
@@ -620,10 +658,10 @@
                 })
             }
             waitForPaymentResult(e) {
-                var {
-                    paymentPopup: t,
-                    ajaxParams: s
-                } = e, i = !1, n = !1;
+                var t = e.paymentPopup,
+                    s = e.ajaxParams,
+                    i = !1,
+                    n = !1;
                 t && t.closed && (i = !0, e.paymentPopupClosedTime || (e.paymentPopupClosedTime = +new Date), n = +new Date - e.paymentPopupClosedTime > 1e4);
                 if (!i || n || e.paymentWaiting || (this.onPaymentWaiting(), e.paymentWaiting = !0), cur.isPaymentComplete) return this.onPaymentCheckDone(!0, e, cur.paymentCompleteParams), void delete cur.isPaymentComplete;
                 if (cur.isPaymentCanceled || n) return this.onPaymentCheckDone(!1, e, void 0, void 0, getLang("ads_edit_easy_promote_payment_cancelled")), void delete cur.isPaymentCanceled;
@@ -946,11 +984,10 @@
                 })
             }
             updateMoreSettingsScreen(e) {
-                var {
-                    categoryRequired: t,
-                    officeRequired: s
-                } = this.moreSettingsRequiredComponents(e);
-                toggle(this.moreSettingsCategoryIdRowElement, t), toggle(this.moreSettingsOfficeSwitcherRowElement, s), this.moreSettingsSubtitleElement.innerHTML = "", this.moreSettingsOfficeLabelElement.innerHTML = "", this.moreSettingsCategoryLabelElement.innerHTML = "", t && s ? (this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_more_settings_subtitle"), this.moreSettingsOfficeLabelElement.innerHTML = getLang("ads_edit_easy_promote_choose_office_short"), this.moreSettingsCategoryLabelElement.innerHTML = getLang("ads_edit_easy_promote_choose_category_short")) : t ? this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_choose_category") : s && (this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_choose_office"))
+                var t = this.moreSettingsRequiredComponents(e),
+                    s = t.categoryRequired,
+                    i = t.officeRequired;
+                toggle(this.moreSettingsCategoryIdRowElement, s), toggle(this.moreSettingsOfficeSwitcherRowElement, i), this.moreSettingsSubtitleElement.innerHTML = "", this.moreSettingsOfficeLabelElement.innerHTML = "", this.moreSettingsCategoryLabelElement.innerHTML = "", s && i ? (this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_more_settings_subtitle"), this.moreSettingsOfficeLabelElement.innerHTML = getLang("ads_edit_easy_promote_choose_office_short"), this.moreSettingsCategoryLabelElement.innerHTML = getLang("ads_edit_easy_promote_choose_category_short")) : s ? this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_choose_category") : i && (this.moreSettingsSubtitleElement.innerHTML = getLang("ads_edit_easy_promote_choose_office"))
             }
             moreSettingsRequiredComponents(e) {
                 var t = this.getUpdateTargetParams();
@@ -960,11 +997,9 @@
                 }
             }
             moreSettingsRequired(e) {
-                var {
-                    categoryRequired: t,
-                    officeRequired: s
-                } = this.moreSettingsRequiredComponents(e);
-                return s || t
+                var t = this.moreSettingsRequiredComponents(e),
+                    s = t.categoryRequired;
+                return t.officeRequired || s
             }
             editAudience() {
                 return addClass(this.imageElement, this.classname("image_animated")), setTimeout(addClass.pbind(this.imageElement, this.classname("image_hidden")), 700), setTimeout(addClass.pbind(this.settingsScreenElement, this.classname("screen_settings-tall")), 700), hide(this.editAudienceLinkWrapperElement), show(this.audienceSettingsElement), show(this.budgetTitleRowElement), this.updateSettingsScreenFixedRow(), this.geoEditor.inited || 1 != Radiobutton.val("ads_targeting_criterion_geo_type") || this.geoEditorInitBound(), this.editingAudience = !0, !1
@@ -973,17 +1008,19 @@
                 var t = val(this.audienceNameInput).trim();
                 if (e && !t) return notaBene(this.audienceNameInput), elfocus(this.audienceNameInput), !1;
                 if (hide(this.audienceNameInput), show(this.audienceDropdown.container), show(this.audienceMenuDotsElement), hide(this.editAudienceNameLinksWrapperElement), this.editingAudience || show(this.editAudienceLinkWrapperElement), e) {
-                    var s = this.audienceDropdown.val(),
-                        [i, n] = s.split("_");
+                    var s = a(this.audienceDropdown.val().split("_"), 2),
+                        i = s[0];
+                    s[1];
                     this.editCriteriaPreset(i, 0, t, 0)
                 }
                 return this.isEditingAudienceName = !1, !1
             }
             isSuggestedCriteria(e) {
                 if (!this.options.suggested_criteria) return !1;
-                for (var t of ["sex", "age_from", "age_to", "cities", "country", "interest_categories", "geo_near", "groups"]) {
-                    var s = this.options.suggested_criteria[t];
-                    if (s || (s = !1), s != e[t]) return !1
+                for (var t = 0, s = ["sex", "age_from", "age_to", "cities", "country", "interest_categories", "geo_near", "groups"]; t < s.length; t++) {
+                    var i = s[t],
+                        n = this.options.suggested_criteria[i];
+                    if (n || (n = !1), n != e[i]) return !1
                 }
                 return !0
             }

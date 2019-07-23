@@ -400,7 +400,7 @@
                 e._close(), isFunction(e.options.onClose) && e.options.onClose(t)
             }
         }), window.RBox = r;
-        i("zNZe"), i("tUrg"), i("Vd3H"), i("SRfc"), i("Oyvg"), i("KKXr"), i("pIFo"), i("rGqo"), i("OEbY");
+        i("zNZe"), i("rE2o"), i("ioFf"), i("tUrg"), i("Vd3H"), i("SRfc"), i("Oyvg"), i("KKXr"), i("pIFo"), i("91GP"), i("rGqo"), i("OEbY"), i("VRzm");
         var s = i("uytb"),
             n = i("rjmT"),
             c = i("p3re"),
@@ -413,11 +413,37 @@
             p = i("P13b"),
             v = i("vT4u");
 
-        function m() {
+        function m(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var i = [],
+                    a = !0,
+                    o = !1,
+                    r = void 0;
+                try {
+                    for (var s, n = e[Symbol.iterator](); !(a = (s = n.next()).done) && (i.push(s.value), !t || i.length !== t); a = !0);
+                } catch (e) {
+                    o = !0, r = e
+                } finally {
+                    try {
+                        a || null == n.return || n.return()
+                    } finally {
+                        if (o) throw r
+                    }
+                }
+                return i
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+
+        function g() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
             init: function(e) {
+                var t = this;
                 0 !== vk.id && (extend(curFastChat, {
                     tabs: {},
                     needPeers: {},
@@ -432,40 +458,40 @@
                     posSeq: 0,
                     error_timeout: 1,
                     lpInstance: Notifier.getLpInstance()
-                }), delete curFastChat.standby, delete curFastChat.standbyTO, curFastChat.lpInstance.onData((...e) => {
-                    var t = this.getResourcesThatShouldBeLoaded(e);
-                    (t.shouldLoad ? this.loadResources(t) : Promise.resolve()).then(() => {
-                        e.forEach(e => {
+                }), delete curFastChat.standby, delete curFastChat.standbyTO, curFastChat.lpInstance.onData(function() {
+                    for (var e = arguments.length, i = new Array(e), a = 0; a < e; a++) i[a] = arguments[a];
+                    var o = t.getResourcesThatShouldBeLoaded(i);
+                    (o.shouldLoad ? t.loadResources(o) : Promise.resolve()).then(() => {
+                        i.forEach(e => {
                             switch (e.type) {
                                 case l.ab:
-                                    var t = this.getTab(e.peerId);
-                                    this.setTyping(e), t && (this.updateTypings(), this.waitTyping(e).then(this.updateTypings)), this.blinkTyping(e.peerId);
+                                    var i = t.getTab(e.peerId);
+                                    t.setTyping(e), i && (t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.blinkTyping(e.peerId);
                                     break;
                                 case l.a:
-                                    var i = this.getTab(e.peerId);
-                                    this.setTyping(e), i && (this.addMessage(this.prepareMessageData(e)), this.scroll(e.peerId), this.blinkTab(e.peerId), this.updateTypings(), this.waitTyping(e).then(this.updateTypings)), this.updateTabUnreadCounter(i, e);
+                                    var a = t.getTab(e.peerId);
+                                    t.setTyping(e), a && (t.addMessage(t.prepareMessageData(e)), t.scroll(e.peerId), t.blinkTab(e.peerId), t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.updateTabUnreadCounter(a, e);
                                     break;
                                 case l.g:
                                 case l.R:
-                                    var {
-                                        peerId: a,
-                                        messageId: o
-                                    } = e, r = this.getTab(a);
-                                    r && r.msgs[o] && (delete curFastChat.gotMedia[o], this.editMessage(this.prepareMessageData(e)));
+                                    var o = e.peerId,
+                                        r = e.messageId,
+                                        s = t.getTab(o);
+                                    s && s.msgs[r] && (delete curFastChat.gotMedia[r], t.editMessage(t.prepareMessageData(e)));
                                     break;
                                 case l.Q:
                                 case l.Y:
                                 case l.U:
-                                    e.flags & l.j && this.deleteMessage(this.prepareMessageData(e));
+                                    e.flags & l.j && t.deleteMessage(t.prepareMessageData(e));
                                     break;
                                 case l.J:
                                 case l.K:
-                                    this.markMessagesAsRead(e);
+                                    t.markMessagesAsRead(e);
                                     break;
                                 case l.d:
                                 case l.e:
-                                    var s = this.getTab(e.peerId);
-                                    this.handleEventChatUpdated(s, e);
+                                    var n = t.getTab(e.peerId);
+                                    t.handleEventChatUpdated(n, e);
                                     break;
                                 case l.cb:
                                 case l.bb:
@@ -595,18 +621,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (m()) break;
+                        if (g()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (m()) break;
+                        if (g()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (m()) break;
+                        if (g()) break;
                         var i, a = t.id,
                             o = curFastChat.tabs[a],
                             r = !1;
@@ -637,18 +663,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (m()) break;
+                        if (g()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (m()) break;
+                        if (g()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (m()) break;
+                        if (g()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -695,11 +721,10 @@
                     needMembers: t
                 }
             },
-            loadResources({
-                needMembers: e
-            }) {
-                var t = curFastChat.lpInstance;
-                return t.pause(), this.loadMembers(e).then(() => t.resume())
+            loadResources(e) {
+                var t = e.needMembers,
+                    i = curFastChat.lpInstance;
+                return i.pause(), this.loadMembers(t).then(() => i.resume())
             },
             loadMembers(e) {
                 if (0 === Object.keys(e).length) return Promise.resolve();
@@ -707,12 +732,13 @@
                 return Object(u.b)(v.e, {
                     act: "a_load_member",
                     need: t
-                }).then(([t]) => {
-                    Object.keys(e).forEach(i => {
-                        var a = this.getTab(i);
-                        a && a.data && a.data.members && (a.data.members = e[i].reduce((e, i) => {
-                            var a = t.find(e => e.id === i);
-                            return e[i] = Object.assign({
+                }).then(t => {
+                    var i = m(t, 1)[0];
+                    Object.keys(e).forEach(t => {
+                        var a = this.getTab(t);
+                        a && a.data && a.data.members && (a.data.members = e[t].reduce((e, t) => {
+                            var a = i.find(e => e.id === t);
+                            return e[t] = Object.assign({
                                 name_inv_case: a.inv_name,
                                 name_kick_case: a.kick_name
                             }, a), e
@@ -742,15 +768,14 @@
             },
             updateChatInfo(e, t) {
                 var i = this.getTab(e),
-                    {
-                        photo: a,
-                        grid: o,
-                        name: r
-                    } = t[e],
-                    s = document.querySelector(`#chat_tab_icon_${e} .chat_tab_img`),
-                    n = document.createElement(a ? "img" : "div"),
-                    c = i && i.unread ? " (" + i.unread + ")" : "";
-                i && i.title && (i.name = r, i.title.innerHTML = r + c), n.classList.add("chat_tab_img"), o ? n.innerHTML = `<div class="chat_tab_grid">${o}</div>` : a && (n.id = `im_dialog_ph${e-2e9}`, n.src = a), s && s.parentNode.replaceChild(n, s)
+                    a = t[e],
+                    o = a.photo,
+                    r = a.grid,
+                    s = a.name,
+                    n = document.querySelector(`#chat_tab_icon_${e} .chat_tab_img`),
+                    c = document.createElement(o ? "img" : "div"),
+                    l = i && i.unread ? " (" + i.unread + ")" : "";
+                i && i.title && (i.name = s, i.title.innerHTML = s + l), c.classList.add("chat_tab_img"), r ? c.innerHTML = `<div class="chat_tab_grid">${r}</div>` : o && (c.id = `im_dialog_ph${e-2e9}`, c.src = o), n && n.parentNode.replaceChild(c, n)
             },
             blinkEl: function(e, t, i) {
                 if (t > 10) return i(), !1;
@@ -1493,14 +1518,16 @@
                 var e = [],
                     t = {};
                 Object.keys(curFastChat.needPeers || {}).forEach(i => {
-                    var [a, , o] = curFastChat.needPeers[i];
-                    e.push(i, a), o && clearTimeout(o), t[i] = a
+                    var a = m(curFastChat.needPeers[i], 3),
+                        o = a[0],
+                        r = a[2];
+                    e.push(i, o), r && clearTimeout(r), t[i] = o
                 }), e.length && (FastChat.lcSend("fetchingPeers", t), FastChat.loadPeers(e.join(","), function(e) {
                     FastChat.gotPeers(e), FastChat.lcSend("gotPeers", e)
                 }))
             },
             gotPeers: function(e) {
-                m() || each(curFastChat.needPeers, function(t) {
+                g() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1588,22 +1615,23 @@
                 t ? setStyle(a, "opacity", 1) : fadeTo(a, 200, 1)
             },
             formatTyping(e) {
-                var {
-                    peerId: t,
-                    userIds: i
-                } = e, a = this.getTab(t), o = i[0], r = Object(p.ib)(t) ? a.data.members[o] : a, s = e => e.fname || e.name || "";
+                var t = e.peerId,
+                    i = e.userIds,
+                    a = this.getTab(t),
+                    o = i[0],
+                    r = Object(p.ib)(t) ? a.data.members[o] : a,
+                    s = e => e.fname || e.name || "";
                 if (1 === i.length || !Object(p.ib)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", s(r));
                 var n = i[i.length - 1],
                     c = Object(p.ib)(t) ? a.data.members[n] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", s(r)).replace("{last_user}", s(c))
             },
             markMessagesAsRead(e) {
-                var {
-                    type: t,
-                    peerId: i,
-                    upToId: a,
-                    unread: o
-                } = e, r = this.getTab(i);
+                var t = e.type,
+                    i = e.peerId,
+                    a = e.upToId,
+                    o = e.unread,
+                    r = this.getTab(i);
                 r && (t === l.J && (r.inUpTo = a), t === l.K && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === l.K)), this.updateTabUnreadCounterElement(r || {
                     unread: 0
                 }, i)
@@ -1909,13 +1937,13 @@
                             startLeft: g
                         })
                     }
-                    var w, N = !0;
+                    var w, y = !0;
                     for (w in i || {})
                         if ("nofocus" != w) {
-                            N = !1;
+                            y = !1;
                             break
                         }
-                    N && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.a({
+                    y && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.a({
                         id: "tab" + e,
                         element: s.box.content,
                         onUnIdleCb: function() {
@@ -2162,51 +2190,54 @@
                 return t.getFullYear() != i.getFullYear() && (o += "." + (t.getFullYear() + "").substr(2)), o
             },
             prepareMessageData(e) {
-                var {
-                    peerId: t,
-                    flags: i,
-                    messageId: a,
-                    text: o,
-                    date: r
-                } = e, s = Object(_.b)(e), [n, c] = this.getMessageMedia(e), l = "", d = e.randomId;
-                return Object(_.l)(e) && (l = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (d = Number(a.slice(3))), Object.assign({
+                var t = e.peerId,
+                    i = e.flags,
+                    a = e.messageId,
+                    o = e.text,
+                    r = e.date,
+                    s = Object(_.b)(e),
+                    n = m(this.getMessageMedia(e), 2),
+                    c = n[0],
+                    l = n[1],
+                    d = "",
+                    u = e.randomId;
+                return Object(_.l)(e) && (d = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (u = Number(a.slice(3))), Object.assign({
                     id: a,
                     peer: t,
                     from_id: s,
-                    text: Object(_.l)(e) ? l : this.getMessageText(o, t) + n,
+                    text: Object(_.l)(e) ? d : this.getMessageText(o, t) + c,
                     out: Object(_.k)(e),
                     unread: Boolean(1 & i),
                     date: r,
                     date_str: FastChat.mkdate(r),
-                    randomId: d,
+                    randomId: u,
                     isServiceMessage: Object(_.l)(e)
-                }, this.getMessageAuthor(e), c)
+                }, this.getMessageAuthor(e), l)
             },
             getMessageAuthor(e) {
                 var t = e.peerId,
                     i = Object(_.b)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
-                var {
-                    name: o,
-                    link: r,
-                    photo: s,
-                    fname: n,
-                    first_name: c
-                } = Object(_.k)(e) ? curFastChat.me : Object(p.ib)(t) ? a.data.members[i] : a;
+                var o = Object(_.k)(e) ? curFastChat.me : Object(p.ib)(t) ? a.data.members[i] : a,
+                    r = o.name,
+                    s = o.link,
+                    n = o.photo,
+                    c = o.fname,
+                    l = o.first_name;
                 return {
-                    fname: Object(p.ib)(t) ? n || c : "",
-                    name: o,
-                    link: r,
-                    photo: s,
+                    fname: Object(p.ib)(t) ? c || l : "",
+                    name: r,
+                    link: s,
+                    photo: n,
                     from_id: i
                 }
             },
             getMessageMedia(e) {
-                var {
-                    peerId: t,
-                    messageId: i
-                } = e, a = "", o = {};
+                var t = e.peerId,
+                    i = e.messageId,
+                    a = "",
+                    o = {};
                 return !Object(_.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(e => {
                     switch (e.type) {
                         case "sticker":
@@ -2249,11 +2280,14 @@
                 }))
             }),
             renderServiceMessage(e) {
-                var {
-                    kludges: t,
-                    peerId: i,
-                    userId: a
-                } = e, o = t.source_act, r = Number(t.source_mid), s = this.getMember(i, a), n = "", c = a === r;
+                var t = e.kludges,
+                    i = e.peerId,
+                    a = e.userId,
+                    o = t.source_act,
+                    r = Number(t.source_mid),
+                    s = this.getMember(i, a),
+                    n = "",
+                    c = a === r;
                 switch (o) {
                     case p.j:
                         n = "mail_im_chat_created";
@@ -2539,33 +2573,62 @@
     },
     EUzL: function(e, t, i) {
         "use strict";
+        i.d(t, "a", function() {
+            return o
+        });
+        i("rE2o"), i("ioFf"), i("rGqo");
 
-        function a(e, t, i) {
-            var a = 0,
-                o = e,
-                r = [],
-                s = !1;
+        function a(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var i = [],
+                    a = !0,
+                    o = !1,
+                    r = void 0;
+                try {
+                    for (var s, n = e[Symbol.iterator](); !(a = (s = n.next()).done) && (i.push(s.value), !t || i.length !== t); a = !0);
+                } catch (e) {
+                    o = !0, r = e
+                } finally {
+                    try {
+                        a || null == n.return || n.return()
+                    } finally {
+                        if (o) throw r
+                    }
+                }
+                return i
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
 
-            function n() {
-                !r.length || a > 0 || s || (t(r), r = [])
+        function o(e, t, i) {
+            var o = 0,
+                r = e,
+                s = [],
+                n = !1;
+
+            function c() {
+                !s.length || o > 0 || n || (t(s), s = [])
             }
             return {
                 pause() {
-                    a++
+                    o++
                 },
                 resume() {
-                    a > 0 && (a--, n())
+                    o > 0 && (o--, c())
                 },
-                onLp(e, t, a) {
-                    s || (o >= e ? (o = t, r.push(...a), n()) : i && (s = !0, i(o).then(([e, t, i]) => {
-                        o = t, s = !1, r.push(...i), n()
+                onLp(e, t, o) {
+                    n || (r >= e ? (r = t, s.push(...o), c()) : i && (n = !0, i(r).then(e => {
+                        var t = a(e, 3),
+                            i = (t[0], t[1]),
+                            o = t[2];
+                        r = i, n = !1, s.push(...o), c()
                     })))
                 }
             }
         }
-        i.d(t, "a", function() {
-            return a
-        })
     },
     "P+eJ": function(e, t, i) {
         "use strict";
@@ -2576,12 +2639,10 @@
         });
         var a = i("ERyv");
 
-        function o(e, t, ...i) {
+        function o(e, t) {
             if (window.vk.lpConfig.debug) {
-                var a = `background: ${e}; color: white`,
-                    o = new Date,
-                    r = e => e < 10 ? "0" + e : e;
-                console.log(`%c ${o.getHours()}:${r(o.getMinutes())}:${r(o.getSeconds())}:${o.getMilliseconds()} ${t} `, a, ...i)
+                for (var i = `background: ${e}; color: white`, a = new Date, o = e => e < 10 ? "0" + e : e, r = arguments.length, s = new Array(r > 2 ? r - 2 : 0), n = 2; n < r; n++) s[n - 2] = arguments[n];
+                console.log(`%c ${a.getHours()}:${o(a.getMinutes())}:${o(a.getSeconds())}:${a.getMilliseconds()} ${t} `, i, ...s)
             }
         }
 
@@ -2715,15 +2776,11 @@
                 "visible" === l() ? this.cbActiveB() : this.cbInactiveB()
             },
             _isTopLevel() {
-                var {
-                    focusElement: e
-                } = this.opts;
+                var e = this.opts.focusElement;
                 return e === window || e === document
             },
             _isFocused() {
-                var {
-                    focusElement: e
-                } = this.opts;
+                var e = this.opts.focusElement;
                 if (this._isTopLevel()) {
                     var t = l();
                     return "string" == typeof t && "visible" === t
@@ -2743,14 +2800,12 @@
         }), i.d(t, "b", function() {
             return m
         });
-        i("Btvt");
+        i("VRzm"), i("Btvt");
         var a = i("iN1s"),
             o = i("EUzL"),
             r = i("P+eJ"),
             s = i("ERyv"),
-            {
-                vk: n
-            } = window,
+            n = window.vk,
             c = window.lpConnect,
             l = window.lpInstance;
 
@@ -2839,6 +2894,7 @@
         i.d(t, "a", function() {
             return o
         });
+        i("tuSo");
         var a = 2147483647;
 
         function o() {
@@ -2853,60 +2909,97 @@
     },
     iN1s: function(e, t, i) {
         "use strict";
-        i("rGqo"), i("Btvt");
+        i("rGqo"), i("Btvt"), i("rE2o"), i("ioFf"), i("VRzm");
         var a = i("DM26"),
             o = i("BxOC"),
-            r = i("f01n"),
-            s = 202,
-            n = 7,
-            c = 4,
-            l = -3,
-            d = -4,
-            u = -5;
+            r = i("f01n");
 
-        function f(e, t) {
+        function s(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var i = [],
+                    a = !0,
+                    o = !1,
+                    r = void 0;
+                try {
+                    for (var s, n = e[Symbol.iterator](); !(a = (s = n.next()).done) && (i.push(s.value), !t || i.length !== t); a = !0);
+                } catch (e) {
+                    o = !0, r = e
+                } finally {
+                    try {
+                        a || null == n.return || n.return()
+                    } finally {
+                        if (o) throw r
+                    }
+                }
+                return i
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var n = 202,
+            c = 7,
+            l = 4,
+            d = -3,
+            u = -4,
+            f = -5;
+
+        function h(e, t) {
             e.waitAbortFns.push(t)
         }
 
-        function h(e) {
+        function _(e) {
             if (e.isStoppedFn()) return Promise.resolve({
                 ts: 0,
                 updates: []
             });
-            var {
-                request: t,
-                cancel: i
-            } = Object(o.a)(e.url, {
-                act: "a_check",
-                key: e.key,
-                version: e.version,
-                ts: e.ts,
-                wait: 25,
-                mode: e.mode
-            });
-            return e.stopFn = i, t.then(([t, i]) => (e.onData(e, i), e.waitTimeout = 2, JSON.parse(t))).catch(([t, i]) => {
-                throw e.onData(e, i), ""
+            var t = Object(o.a)(e.url, {
+                    act: "a_check",
+                    key: e.key,
+                    version: e.version,
+                    ts: e.ts,
+                    wait: 25,
+                    mode: e.mode
+                }),
+                i = t.request,
+                r = t.cancel;
+            return e.stopFn = r, i.then(t => {
+                var i = s(t, 2),
+                    a = i[0],
+                    o = i[1];
+                return e.onData(e, o), e.waitTimeout = 2, JSON.parse(a)
+            }).catch(t => {
+                var i = s(t, 2),
+                    a = (i[0], i[1]);
+                throw e.onData(e, a), ""
             }).then(t => (function(e, t) {
-                var {
-                    abort: i,
-                    pause: o
-                } = t.failed ? Object(a.a)(c, null) : {};
+                var i = t.failed ? Object(a.a)(l, null) : {},
+                    o = i.abort,
+                    r = i.pause;
                 switch (t.failed) {
                     case 1:
-                        return f(e, i), e.onHistoryLost(e, t).then(() => e.onResult({
+                        return h(e, o), e.onHistoryLost(e, t).then(() => e.onResult({
                             ts: t.ts,
                             updates: [
                                 [-1]
                             ]
-                        })).then(o).then(() => h(e));
+                        })).then(r).then(() => _(e));
                     case 2:
-                        return f(e, i), e.onKeyExpired(e, t).then(([t, i, a, o]) => e.onResult({
-                            ts: +o,
-                            updates: [
-                                [-2, t, `${i}/${a}`],
-                                [-1]
-                            ]
-                        })).then(o).then(() => h(e));
+                        return h(e, o), e.onKeyExpired(e, t).then(t => {
+                            var i = s(t, 4),
+                                a = i[0],
+                                o = i[1],
+                                r = i[2],
+                                n = i[3];
+                            return e.onResult({
+                                ts: +n,
+                                updates: [
+                                    [-2, a, `${o}/${r}`],
+                                    [-1]
+                                ]
+                            })
+                        }).then(r).then(() => _(e));
                     case 3:
                         return e.onLpBroken(e, t);
                     default:
@@ -2915,20 +3008,19 @@
             })(e, t))
         }
 
-        function _(e) {
-            e.isStoppedFn() || h(e).then(e.onResult).then(() => e.isReconnecting && p(e, u)).catch(t => (function(e, t) {
+        function p(e) {
+            e.isStoppedFn() || _(e).then(e.onResult).then(() => e.isReconnecting && v(e, f)).catch(t => (function(e, t) {
                 if (e.isStoppedFn()) return;
-                e.onRequestError(t), e.waitTimeout = Math.min(60, 2 * e.waitTimeout), p(e, l);
-                var {
-                    abort: i,
-                    pause: o
-                } = Object(a.a)(e.waitTimeout, null);
-                return f(e, i), o().then(() => p(e, d))
-            })(e, t)).then(() => _(e))
+                e.onRequestError(t), e.waitTimeout = Math.min(60, 2 * e.waitTimeout), v(e, d);
+                var i = Object(a.a)(e.waitTimeout, null),
+                    o = i.abort,
+                    r = i.pause;
+                return h(e, o), r().then(() => v(e, u))
+            })(e, t)).then(() => p(e))
         }
 
-        function p(e, t) {
-            e.isReconnecting = t === d, e.onResult({
+        function v(e, t) {
+            e.isReconnecting = t === u, e.onResult({
                 ts: e.ts,
                 updates: [
                     [t, e.waitTimeout]
@@ -2936,7 +3028,7 @@
             })
         }
 
-        function v(e, t) {
+        function m(e, t) {
             var i = !!e.stopped,
                 a = {
                     id: e.id,
@@ -2944,13 +3036,13 @@
                     ts: e.ts,
                     url: e.url,
                     lpstat: e.lpstat || 0,
-                    version: e.version || n,
-                    mode: s,
+                    version: e.version || c,
+                    mode: n,
                     waitTimeout: 2,
                     waitAbortFns: [],
                     isStoppedFn: () => i,
                     onResult: e => {
-                        e.ts && c(a.ts, e.ts, function(e) {
+                        e.ts && s(a.ts, e.ts, function(e) {
                             return e.map(e => {
                                 switch (e[0]) {
                                     case 0:
@@ -3005,11 +3097,11 @@
                                         return r.Ib();
                                     case -2:
                                         return r.zb(e);
-                                    case l:
-                                        return r.Pb(e);
                                     case d:
-                                        return r.xb();
+                                        return r.Pb(e);
                                     case u:
+                                        return r.xb();
+                                    case f:
                                         return r.wb();
                                     default:
                                         return r.ob(e)
@@ -3017,91 +3109,91 @@
                             })
                         }(e.updates))
                     },
-                    onData: m(t.onData),
-                    onRequestError: m(t.onRequestError),
-                    onHistoryLost: g(t.onHistoryLost),
-                    onKeyExpired: g(t.onKeyExpired),
-                    onLpBroken: g(t.onHistoryLost)
+                    onData: g(t.onData),
+                    onRequestError: g(t.onRequestError),
+                    onHistoryLost: b(t.onHistoryLost),
+                    onKeyExpired: b(t.onKeyExpired),
+                    onLpBroken: b(t.onHistoryLost)
                 },
-                {
-                    onEvents: o
-                } = t;
+                o = t.onEvents;
 
-            function c(e, t, i) {
+            function s(e, t, i) {
                 a.ts = t;
                 for (var s = 0; s < i.length; ++s) i[s].type === r.O && (a.key = i[s].key, a.url = i[s].url);
                 o(e, t, i)
             }
-            var f = {
+            var l = {
                 options: a,
                 isStopped: () => i,
                 stopConnection() {
                     i = !0, a.stopFn && a.stopFn(), a.stopFn = void 0, this.abortWaiting()
                 },
                 reinitConnection() {
-                    this.stopConnection(), p(a, d), i = !1, _(a)
+                    this.stopConnection(), v(a, u), i = !1, p(a)
                 },
                 abortWaiting() {
                     a.waitAbortFns.forEach(e => e()), a.waitAbortFns = [], a.waitTimeout = 2
                 },
-                onLp: c
+                onLp: s
             };
-            return _(a), f
-        }
-
-        function m(e) {
-            return e || (() => {})
+            return p(a), l
         }
 
         function g(e) {
-            return e ? (...t) => Promise.resolve(e(...t)) : () => Promise.reject()
+            return e || (() => {})
         }
-        var b = i("P+eJ"),
-            C = i("vT4u");
 
-        function w(e, t) {
-            return v(e, {
+        function b(e) {
+            return e ? function() {
+                return Promise.resolve(e(...arguments))
+            } : () => Promise.reject()
+        }
+        var C = i("P+eJ"),
+            w = i("vT4u");
+
+        function y(e, t) {
+            return m(e, {
                 onEvents: t,
-                onData: F,
-                onRequestError: k,
-                onHistoryLost: x,
-                onKeyExpired: E,
-                onLpBroken: S
+                onData: k,
+                onRequestError: x,
+                onHistoryLost: E,
+                onKeyExpired: S,
+                onLpBroken: B
             })
         }
         i.d(t, "a", function() {
-            return w
+            return y
         });
         var N = 3e4,
-            y = {},
-            T = Date.now();
+            T = {},
+            F = Date.now();
 
-        function F(e, t) {
+        function k(e, t) {
             if (t && t.status && e.lpstat) {
                 var i = t.status;
-                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), y[i] = i in y ? y[i] + 1 : 1, Date.now() - T >= N && (Object.keys(y).forEach(e => {
-                    statlogsValueEvent("fc_longpoll", y[e], e, t.getResponseHeader("x-frontend"))
-                }), y = {}, T = Date.now())
+                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), T[i] = i in T ? T[i] + 1 : 1, Date.now() - F >= N && (Object.keys(T).forEach(e => {
+                    statlogsValueEvent("fc_longpoll", T[e], e, t.getResponseHeader("x-frontend"))
+                }), T = {}, F = Date.now())
             }
         }
 
-        function k(e) {
-            Object(b.b)("red", "LP error", e.message || "no message (probably browser reset)")
+        function x(e) {
+            Object(C.b)("red", "LP error", e.message || "no message (probably browser reset)")
         }
 
-        function x(e, t) {
-            Object(b.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
+        function E(e, t) {
+            Object(C.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
         }
 
-        function E(e) {
-            return Object(b.b)("red", "LP failed: key is incorrect; refresh key"), Object(o.b)(C.e, {
+        function S(e) {
+            return Object(C.b)("red", "LP failed: key is incorrect; refresh key"), Object(o.b)(w.e, {
                 act: "a_get_key",
                 uid: e.id,
                 gid: e.id < 0 ? -e.id : 0
             })
         }
 
-        function S() {
+        function B() {
             throw window.nav.reload({
                 force: !0
             }), new Error("ts is very wrong")
@@ -3418,7 +3510,8 @@
                     gn_readGids: cur.groupNotify_readGids
                 }))
             },
-            refresh: function(e = null) {
+            refresh: function() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
                 null !== e && cancelEvent(e), TopNotifier.invalidate(), TopNotifierCur.wrapper && !TopNotifierCur.loading && (TopNotifierCur.loading = !0, re(geByClass1("_notify_header")), re(geByClass1("_top_notify_header")), TopNotifierCur.from = 0, ajax.post("/al_feed.php", TopNotifierCur._qParams, {
                     cache: 1,
                     onDone: TopNotifier.onLoad,
@@ -3713,7 +3806,9 @@
                     }
                 }), !1
             },
-            changeSource: function(e, t = null, i = null) {
+            changeSource: function(e) {
+                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null,
+                    i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null;
                 null !== i && cancelEvent(i), e !== TopNotifierCur._qParams.list ? (re(geByClass1("notify_sources")), t && val(geByClass1("ui_rmenu_count", t), ""), geByClass1("top_notify_show_all") && attr(geByClass1("top_notify_show_all"), "href", "/feed?section=notifications" + (e ? "&list=" + e : "")), TopNotifierCur._qParams.list = e, TopNotifier.refresh()) : hide(geByClass1("notify_sources"))
             },
             changeSourceFullCallback: function() {
@@ -3776,6 +3871,13 @@
                 }, e), !1
             }
         }
+    },
+    tuSo: function(e, t, i) {
+        i("7DDg")("Int32", 4, function(e) {
+            return function(t, i, a) {
+                return e(this, t, i, a)
+            }
+        })
     },
     zNZe: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
@@ -3987,113 +4089,120 @@
             pushEvents: function(e, t) {
                 var i = 0;
                 each(e, function(e, a) {
-                    i |= Notifier.pushEvent(JSON.parse(a), t)
+                    i |= Notifier.pushEvent(a, t)
                 }), i && !ls.get("sound_notify_off") && curNotifier.is_server && (2 & i ? curNotifier.sound_im.play() : curNotifier.sound.play())
             },
             pushEvent: function pushEvent(ev, cnt) {
-                Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
-                    default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
-                    default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
-                    unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
-                    unfreeze_am: ev.timeout ? 4.4 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE_AFTER_UNFREEZE
-                });
-                var push = cnt ? 0 : 1,
-                    push_prioritized = !1;
-                if (ev.version !== curNotifier.version && -1 !== ev.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
-                if ("update_cnt" === ev.type) return ev.add && ev.add.section && handlePageCount(ev.add.section_id, ev.add.count, ev.add.section_link, ev.add.section_add), 0;
-                if (!curNotifier.done_events[ev.id]) {
-                    switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 != ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
-                        case "video_process_ready":
-                            if (ev.add.video_raw && window.Video && Video.isVideoPlayerOpen(ev.add.video_raw)) return;
-                            if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) return;
-                            break;
-                        case "mail":
-                            ev.add && null !== ev.add.count && void 0 !== ev.add.count && handlePageCount("msg", ev.add.count);
-                            break;
-                        case "friend_request":
-                            ev.add.fr_count ? handlePageCount("fr", ev.add.fr_count) : handlePageCount("fr", ev.add);
-                            break;
-                        case "friend_request_counter":
-                            handlePageCount("fr", ev.add.fr_count), push = 0;
-                            break;
-                        case "ach_achieved":
-                            ev.add.cnt && handlePageCount("ach", ev.add.cnt);
-                            break;
-                        case "ach_achieved_upd":
-                            handlePageCount("ach", ev.add), push = 0;
-                            break;
-                        case "bt_upd":
-                            if (ev.add.cnt) {
-                                handlePageCount("bt", ev.add.cnt);
-                                var bt = ge("bt_tab_updates");
-                                bt && val(geByClass1("ui_tab_count", bt), ev.add.cnt > 0 ? ev.add.cnt : "")
-                            }
-                            break;
-                        case "bt_upd_upd":
-                            ev.add && ev.add.section && handlePageCount("bt", ev.add.count, ev.add.section, ev.add.prefix), push = 0;
-                            var bt = ge("bt_tab_updates");
-                            bt && val(geByClass1("ui_tab_count", bt), ev.add > 0 ? ev.add : "");
-                            break;
-                        case "push_settings":
-                            push = 0;
-                            var muted = JSON.parse(ev.add);
-                            curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(e) {
-                                return e !== muted.peer_id
-                            }), 0 !== muted.disabled_until && curNotifier.mutedPeers.push(muted.peer_id);
-                            break;
-                        case "mail_cnt":
-                            handlePageCount("msg", ev.add), push = 0;
-                            break;
-                        case "clear_notify":
-                            TopNotifier && TopNotifier.invalidate(), Notifier.hideAllEvents(), push = 0;
-                            break;
-                        case "support_reply":
-                            handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0);
-                            break;
-                        case "support_cnt":
-                            handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0), push = 0;
-                            break;
-                        case "balance_changed":
-                            parseInt(ev.add.balance) ? updateMoney(parseInt(ev.add.balance)) : parseInt(ev.add) && updateMoney(parseInt(ev.add));
-                            break;
-                        case "gift_sent":
-                            re("left_block10_0");
-                            var left_block = ev.add;
-                            if (left_block) {
-                                var leftBlocksElem = ge("left_blocks"),
-                                    left_unpaid_gifts = se(left_block);
-                                leftBlocksElem && (leftBlocksElem.firstChild ? leftBlocksElem.insertBefore(left_unpaid_gifts, leftBlocksElem.firstChild) : leftBlocksElem.appendChild(left_unpaid_gifts))
-                            }
-                            break;
-                        case "notify_tt":
-                        case "login_attempt":
-                            if (ev.add.text && ev.add.key) {
-                                var evalText = `(${ev.add})`;
-                                try {
-                                    ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
-                                } catch (e) {
-                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalText)
+                if ("nop" !== ev) {
+                    if ("string" == typeof ev) try {
+                        ev = JSON.parse(ev)
+                    } catch (e) {
+                        return void Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, ev)
+                    }
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
+                        default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
+                        default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
+                        unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
+                        unfreeze_am: ev.timeout ? 4.4 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE_AFTER_UNFREEZE
+                    });
+                    var push = cnt ? 0 : 1,
+                        push_prioritized = !1;
+                    if (ev.version !== curNotifier.version && -1 !== ev.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
+                    if ("update_cnt" === ev.type) return ev.add && ev.add.section && handlePageCount(ev.add.section_id, ev.add.count, ev.add.section_link, ev.add.section_add), 0;
+                    if (!curNotifier.done_events[ev.id]) {
+                        switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 != ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
+                            case "video_process_ready":
+                                if (ev.add.video_raw && window.Video && Video.isVideoPlayerOpen(ev.add.video_raw)) return;
+                                if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) return;
+                                break;
+                            case "mail":
+                                ev.add && null !== ev.add.count && void 0 !== ev.add.count && handlePageCount("msg", ev.add.count);
+                                break;
+                            case "friend_request":
+                                ev.add.fr_count ? handlePageCount("fr", ev.add.fr_count) : handlePageCount("fr", ev.add);
+                                break;
+                            case "friend_request_counter":
+                                handlePageCount("fr", ev.add.fr_count), push = 0;
+                                break;
+                            case "ach_achieved":
+                                ev.add.cnt && handlePageCount("ach", ev.add.cnt);
+                                break;
+                            case "ach_achieved_upd":
+                                handlePageCount("ach", ev.add), push = 0;
+                                break;
+                            case "bt_upd":
+                                if (ev.add.cnt) {
+                                    handlePageCount("bt", ev.add.cnt);
+                                    var bt = ge("bt_tab_updates");
+                                    bt && val(geByClass1("ui_tab_count", bt), ev.add.cnt > 0 ? ev.add.cnt : "")
                                 }
-                                push = 0
-                            }
-                            break;
-                        case "reload_stickers":
-                            window.Emoji && window.Emoji.stickers && (Emoji.stickers = !1), push = 0;
-                            break;
-                        case "reload_stickers_keywords":
-                            window.stickersKeywordsData = null, ls.remove("stickers_keywords"), window.Emoji && Emoji.updateTabs(), push = 0;
-                            break;
-                        case "any_counter":
-                            handlePageCount(ev.add.section_id, ev.add.count, ev.add.link, ev.add.add), push = 0;
-                            break;
-                        case "done_box":
-                            push = 0, push_prioritized = !0
+                                break;
+                            case "bt_upd_upd":
+                                ev.add && ev.add.section && handlePageCount("bt", ev.add.count, ev.add.section, ev.add.prefix), push = 0;
+                                var bt = ge("bt_tab_updates");
+                                bt && val(geByClass1("ui_tab_count", bt), ev.add > 0 ? ev.add : "");
+                                break;
+                            case "push_settings":
+                                push = 0;
+                                var muted = JSON.parse(ev.add);
+                                curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(e) {
+                                    return e !== muted.peer_id
+                                }), 0 !== muted.disabled_until && curNotifier.mutedPeers.push(muted.peer_id);
+                                break;
+                            case "mail_cnt":
+                                handlePageCount("msg", ev.add), push = 0;
+                                break;
+                            case "clear_notify":
+                                TopNotifier && TopNotifier.invalidate(), Notifier.hideAllEvents(), push = 0;
+                                break;
+                            case "support_reply":
+                                handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0);
+                                break;
+                            case "support_cnt":
+                                handlePageCount("spr", ev.add, "support", ev.author_id ? "act=show&id=" + ev.author_id : "act=show"), toggle("l_spr", ev.add > 0), push = 0;
+                                break;
+                            case "balance_changed":
+                                parseInt(ev.add.balance) ? updateMoney(parseInt(ev.add.balance)) : parseInt(ev.add) && updateMoney(parseInt(ev.add));
+                                break;
+                            case "gift_sent":
+                                re("left_block10_0");
+                                var left_block = ev.add;
+                                if (left_block) {
+                                    var leftBlocksElem = ge("left_blocks"),
+                                        left_unpaid_gifts = se(left_block);
+                                    leftBlocksElem && (leftBlocksElem.firstChild ? leftBlocksElem.insertBefore(left_unpaid_gifts, leftBlocksElem.firstChild) : leftBlocksElem.appendChild(left_unpaid_gifts))
+                                }
+                                break;
+                            case "notify_tt":
+                            case "login_attempt":
+                                if (ev.add.text && ev.add.key) {
+                                    var evalText = `(${ev.add})`;
+                                    try {
+                                        ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
+                                    } catch (e) {
+                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalText)
+                                    }
+                                    push = 0
+                                }
+                                break;
+                            case "reload_stickers":
+                                window.Emoji && window.Emoji.stickers && (Emoji.stickers = !1), push = 0;
+                                break;
+                            case "reload_stickers_keywords":
+                                window.stickersKeywordsData = null, ls.remove("stickers_keywords"), window.Emoji && Emoji.updateTabs(), push = 0;
+                                break;
+                            case "any_counter":
+                                handlePageCount(ev.add.section_id, ev.add.count, ev.add.link, ev.add.add), push = 0;
+                                break;
+                            case "done_box":
+                                push = 0, push_prioritized = !0
+                        }
+                        if ("mail" === ev.type && (push = this.sendMailNotification(ev)), ev.add && ev.add.tooltip_text) {
+                            var html = '<div class="notify_tt_wrap">' + (ev.author_photo ? `<img class="notify_tt_img" src="${ev.author_photo}" />` : '<div class="notify_tt_thumb"></div>') + '<h4 class="notify_tt_text">' + ev.add.tooltip_text + "</h4></div>";
+                            TopNotifier.showTooltip(html, 0), push = 0
+                        }
+                        return 1 & push && (curNotifier.q_events.push(ev), curNotifier.q_events.length > 30 && curNotifier.q_events.splice(0, curNotifier.q_events.length - 30), this.checkEvents()), push_prioritized && (curNotifier.q_prior_events.push(ev), curNotifier.q_prior_events.length > 5 && curNotifier.q_prior_events.splice(0, curNotifier.q_prior_events.length - 5), this.checkEvents()), push
                     }
-                    if ("mail" === ev.type && (push = this.sendMailNotification(ev)), ev.add && ev.add.tooltip_text) {
-                        var html = '<div class="notify_tt_wrap">' + (ev.author_photo ? `<img class="notify_tt_img" src="${ev.author_photo}" />` : '<div class="notify_tt_thumb"></div>') + '<h4 class="notify_tt_text">' + ev.add.tooltip_text + "</h4></div>";
-                        TopNotifier.showTooltip(html, 0), push = 0
-                    }
-                    return 1 & push && (curNotifier.q_events.push(ev), curNotifier.q_events.length > 30 && curNotifier.q_events.splice(0, curNotifier.q_events.length - 30), this.checkEvents()), push_prioritized && (curNotifier.q_prior_events.push(ev), curNotifier.q_prior_events.length > 5 && curNotifier.q_prior_events.splice(0, curNotifier.q_prior_events.length - 5), this.checkEvents()), push
                 }
             },
             isActive: function() {

@@ -1,8 +1,8 @@
 ﻿! function(e) {
     function t(t) {
-        for (var i, a, n = t[0], l = t[1], d = t[2], c = 0, _ = []; c < n.length; c++) a = n[c], r[a] && _.push(r[a][0]), r[a] = 0;
+        for (var i, a, n = t[0], l = t[1], d = t[2], c = 0, u = []; c < n.length; c++) a = n[c], r[a] && u.push(r[a][0]), r[a] = 0;
         for (i in l) Object.prototype.hasOwnProperty.call(l, i) && (e[i] = l[i]);
-        for (h && h(t); _.length;) _.shift()();
+        for (h && h(t); u.length;) u.shift()();
         return o.push.apply(o, d || []), s()
     }
 
@@ -213,9 +213,9 @@
     "0Rlc": function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
-            return a
+            return n
         });
-        s("rGqo"), s("Btvt");
+        s("91GP"), s("ioFf"), s("rGqo"), s("Btvt");
         var i = s("q1tI"),
             r = (s("17x9"), s("pemR"));
 
@@ -228,40 +228,48 @@
                 return e
             }).apply(this, arguments)
         }
-        class a extends i.Component {
-            constructor(...e) {
-                super(...e), this.onChange = (e => {
+
+        function a(e, t) {
+            if (null == e) return {};
+            var s, i, r = function(e, t) {
+                if (null == e) return {};
+                var s, i, r = {},
+                    o = Object.keys(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                return r
+            }(e, t);
+            if (Object.getOwnPropertySymbols) {
+                var o = Object.getOwnPropertySymbols(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || Object.prototype.propertyIsEnumerable.call(e, s) && (r[s] = e[s])
+            }
+            return r
+        }
+        class n extends i.Component {
+            constructor() {
+                super(...arguments), this.onChange = (e => {
                     this.props.onChange && this.props.onChange(this.props.name, e.target.checked)
                 })
             }
             render() {
                 var e = this.props,
-                    {
-                        children: t,
-                        checked: s,
-                        disabled: a,
-                        name: n,
-                        id: l
-                    } = e,
-                    d = function(e, t) {
-                        if (null == e) return {};
-                        var s, i, r = {},
-                            o = Object.keys(e);
-                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
-                        return r
-                    }(e, ["children", "checked", "disabled", "name", "id"]),
-                    h = Object(r.a)("CheckBox", {
-                        "CheckBox--disabled": a
+                    t = e.children,
+                    s = e.checked,
+                    n = e.disabled,
+                    l = e.name,
+                    d = e.id,
+                    h = a(e, ["children", "checked", "disabled", "name", "id"]),
+                    c = Object(r.a)("CheckBox", {
+                        "CheckBox--disabled": n
                     });
                 return i.createElement("label", {
-                    className: h
-                }, i.createElement("input", o({}, d, {
+                    className: c
+                }, i.createElement("input", o({}, h, {
                     className: "CheckBox__input",
-                    id: l,
+                    id: d,
                     type: "checkbox",
                     checked: s,
-                    name: n,
-                    disabled: a,
+                    name: l,
+                    disabled: n,
                     onChange: this.onChange
                 })), i.createElement("span", {
                     className: "CheckBox__indicator",
@@ -272,6 +280,7 @@
     },
     "0toi": function(e, t, s) {
         "use strict";
+        s("91GP");
         var i = s("q1tI"),
             r = (s("17x9"), s("r7nW")),
             o = s("6aSF"),
@@ -286,22 +295,21 @@
                 return e
             }).apply(this, arguments)
         }
-        var l = ({
-            title: e,
-            onClose: t,
-            appearance: s
-        }) => {
-            var r = Object(a.a)("Modal__header", `Modal__header--${s}`);
+        var l = e => {
+            var t = e.title,
+                s = e.onClose,
+                r = e.appearance,
+                o = Object(a.a)("Modal__header", `Modal__header--${r}`);
             return i.createElement("div", {
-                className: r
+                className: o
             }, i.createElement("div", {
                 className: "Modal__headerInner"
             }, i.createElement("h1", {
                 className: "Modal__headerTitle"
-            }, e), i.createElement("button", {
+            }, t), i.createElement("button", {
                 className: "Modal__headerCross",
                 type: "button",
-                onClick: t
+                onClick: s
             }, "Закрыть")))
         };
         l.defaultProps = {
@@ -314,16 +322,15 @@
             children: null
         };
         var h = e => {
-            var {
-                className: t,
-                appearance: s,
-                title: o,
-                actionButtons: l,
-                onClose: d,
-                children: c
-            } = e, _ = Object(a.a)("Modal", `Modal--${s}`, t);
+            var t = e.className,
+                s = e.appearance,
+                o = e.title,
+                l = e.actionButtons,
+                d = e.onClose,
+                c = e.children,
+                u = Object(a.a)("Modal", `Modal--${s}`, t);
             return i.createElement(r.a, n({}, e, {
-                className: _
+                className: u
             }), i.createElement(h.Header, {
                 title: o,
                 onClose: d,
@@ -332,13 +339,14 @@
                 actionButtons: l
             }))
         };
-        h.Header = l, h.Body = d, h.Footer = (({
-            actionButtons: e
-        }) => i.createElement("div", {
-            className: "Modal__footer"
-        }, i.createElement("div", {
-            className: "Modal__footerInner"
-        }, e))), h.defaultProps = n({}, r.a.defaultProps, {
+        h.Header = l, h.Body = d, h.Footer = (e => {
+            var t = e.actionButtons;
+            return i.createElement("div", {
+                className: "Modal__footer"
+            }, i.createElement("div", {
+                className: "Modal__footerInner"
+            }, t))
+        }), h.defaultProps = n({}, r.a.defaultProps, {
             appearance: "white"
         }), t.a = h
     },
@@ -395,9 +403,9 @@
     "6aSF": function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
-            return n
+            return l
         });
-        s("rGqo"), s("Btvt");
+        s("91GP"), s("ioFf"), s("rGqo"), s("Btvt");
         var i = s("q1tI"),
             r = (s("17x9"), s("+/AQ")),
             o = s("pemR");
@@ -411,24 +419,39 @@
                 return e
             }).apply(this, arguments)
         }
-        class n extends i.Component {
-            constructor(...e) {
-                super(...e), this.getWrapperRef = (e => {
+
+        function n(e, t) {
+            if (null == e) return {};
+            var s, i, r = function(e, t) {
+                if (null == e) return {};
+                var s, i, r = {},
+                    o = Object.keys(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                return r
+            }(e, t);
+            if (Object.getOwnPropertySymbols) {
+                var o = Object.getOwnPropertySymbols(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || Object.prototype.propertyIsEnumerable.call(e, s) && (r[s] = e[s])
+            }
+            return r
+        }
+        class l extends i.Component {
+            constructor() {
+                super(...arguments), this.getWrapperRef = (e => {
                     this.wrapper = e
                 })
             }
             componentDidMount() {
-                var {
-                    isNative: e,
-                    isShadows: t,
-                    neverHide: s,
-                    onScroll: i
-                } = this.props;
+                var e = this.props,
+                    t = e.isNative,
+                    s = e.isShadows,
+                    i = e.neverHide,
+                    o = e.onScroll;
                 this.scroller || (this.scroller = Object(r.a)(this.wrapper, {
-                    shadows: t,
-                    nativeScroll: e,
-                    hidden: !s,
-                    onScroll: i
+                    shadows: s,
+                    nativeScroll: t,
+                    hidden: !i,
+                    onScroll: o
                 }))
             }
             componentDidUpdate() {
@@ -439,24 +462,17 @@
             }
             render() {
                 var e = this.props,
-                    {
-                        children: t,
-                        className: s = ""
-                    } = e,
-                    r = function(e, t) {
-                        if (null == e) return {};
-                        var s, i, r = {},
-                            o = Object.keys(e);
-                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
-                        return r
-                    }(e, ["children", "isNative", "isShadows", "neverHide", "className"]);
-                return i.createElement("div", a({}, r, {
-                    className: Object(o.a)("Scroll", s),
+                    t = e.children,
+                    s = (e.isNative, e.isShadows, e.neverHide, e.className),
+                    r = void 0 === s ? "" : s,
+                    l = n(e, ["children", "isNative", "isShadows", "neverHide", "className"]);
+                return i.createElement("div", a({}, l, {
+                    className: Object(o.a)("Scroll", r),
                     ref: this.getWrapperRef
                 }), t)
             }
         }
-        n.defaultProps = {
+        l.defaultProps = {
             isNative: !1,
             isShadows: !1,
             neverHide: !1,
@@ -466,9 +482,9 @@
     "6raB": function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
-            return l
+            return d
         });
-        s("rGqo"), s("Btvt");
+        s("91GP"), s("ioFf"), s("rGqo"), s("Btvt");
         var i = s("q1tI"),
             r = (s("17x9"), s("pemR")),
             o = s("KFTi"),
@@ -483,38 +499,46 @@
                 return e
             }).apply(this, arguments)
         }
-        class l extends i.Component {
+
+        function l(e, t) {
+            if (null == e) return {};
+            var s, i, r = function(e, t) {
+                if (null == e) return {};
+                var s, i, r = {},
+                    o = Object.keys(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                return r
+            }(e, t);
+            if (Object.getOwnPropertySymbols) {
+                var o = Object.getOwnPropertySymbols(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || Object.prototype.propertyIsEnumerable.call(e, s) && (r[s] = e[s])
+            }
+            return r
+        }
+        class d extends i.Component {
             constructor(e) {
                 super(e), this.needRecalcSize = !1, this.state = {}
             }
             render() {
                 var e = this.props,
-                    {
-                        className: t,
-                        loading: s,
-                        children: l
-                    } = e,
-                    d = function(e, t) {
-                        if (null == e) return {};
-                        var s, i, r = {},
-                            o = Object.keys(e);
-                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
-                        return r
-                    }(e, ["className", "loading", "children"]),
-                    h = Object(r.a)("ButtonWithProgress", {
+                    t = e.className,
+                    s = e.loading,
+                    d = e.children,
+                    h = l(e, ["className", "loading", "children"]),
+                    c = Object(r.a)("ButtonWithProgress", {
                         "ButtonWithProgress--loading": s
                     }, t);
-                return i.createElement(a.a, n({}, d, {
-                    className: h
+                return i.createElement(a.a, n({}, h, {
+                    className: c
                 }), i.createElement("span", {
                     className: "ButtonWithProgress__content"
-                }, l), s && i.createElement(o.a, {
+                }, d), s && i.createElement(o.a, {
                     inverted: "primary" === e.appearance,
                     className: "ButtonWithProgress__progress"
                 }))
             }
         }
-        l.defaultProps = {
+        d.defaultProps = {
             appearance: "primary",
             size: "m",
             wide: !1,
@@ -526,7 +550,7 @@
         s.d(t, "a", function() {
             return h
         });
-        s("rGqo"), s("Btvt");
+        s("91GP"), s("rGqo"), s("Btvt");
         var i = s("q1tI"),
             r = s("i8i4"),
             o = (s("17x9"), s("pemR")),
@@ -538,37 +562,37 @@
             constructor(e) {
                 super(e), this.onClick = (() => {
                     if (!this.state.dropdown || this.state.dropdown.removed) {
-                        var {
-                            text: e,
-                            position: t,
-                            align: s,
-                            marginTop: i,
-                            marginLeft: r
-                        } = this.props, o = Object(a.a)(this.el);
+                        var e = this.props,
+                            t = e.text,
+                            s = e.position,
+                            i = e.align,
+                            r = e.marginTop,
+                            o = e.marginLeft,
+                            n = Object(a.a)(this.el);
                         this.update({
-                            text: e,
-                            position: t,
-                            align: s,
-                            rect: o,
-                            marginTop: i,
-                            marginLeft: r
+                            text: t,
+                            position: s,
+                            align: i,
+                            rect: n,
+                            marginTop: r,
+                            marginLeft: o
                         })
                     } else this.update()
                 }), this.onMouseEnter = (e => {
                     this.callerHovered = !0, this.timeouts.appear = setTimeout(() => {
                         if (this.el && this.callerHovered) {
-                            var {
-                                position: e,
-                                align: t,
-                                marginTop: s,
-                                marginLeft: i
-                            } = this.props, r = Object(a.a)(this.el);
+                            var e = this.props,
+                                t = e.position,
+                                s = e.align,
+                                i = e.marginTop,
+                                r = e.marginLeft,
+                                o = Object(a.a)(this.el);
                             this.update({
-                                position: e,
-                                align: t,
-                                rect: r,
-                                marginTop: s,
-                                marginLeft: i
+                                position: t,
+                                align: s,
+                                rect: o,
+                                marginTop: i,
+                                marginLeft: r
                             })
                         }
                     }, n)
@@ -586,20 +610,20 @@
                     !this.state.dropdown || this.state.dropdown.removed || this.el.contains(e.target) || this.update()
                 }), this.onResize = (e => {
                     if (this.state.dropdown && !this.state.dropdown.removed) {
-                        var {
-                            text: t,
-                            position: s,
-                            align: i,
-                            marginTop: r,
-                            marginLeft: o
-                        } = this.props, n = Object(a.a)(this.el);
+                        var t = this.props,
+                            s = t.text,
+                            i = t.position,
+                            r = t.align,
+                            o = t.marginTop,
+                            n = t.marginLeft,
+                            l = Object(a.a)(this.el);
                         this.update({
-                            text: t,
-                            position: s,
-                            align: i,
-                            rect: n,
-                            marginTop: r,
-                            marginLeft: o
+                            text: s,
+                            position: i,
+                            align: r,
+                            rect: l,
+                            marginTop: o,
+                            marginLeft: n
                         })
                     }
                 }), this.onTransitionEnd = (e => {
@@ -624,13 +648,13 @@
                         removed: !0
                     })
                 });
-                var {
-                    position: t,
-                    align: s,
-                    rect: i,
-                    marginTop: r,
-                    marginLeft: o
-                } = e, a = i.left, n = i.top;
+                var t = e.position,
+                    s = e.align,
+                    i = e.rect,
+                    r = e.marginTop,
+                    o = e.marginLeft,
+                    a = i.left,
+                    n = i.top;
                 switch (t) {
                     case "t":
                         a += .5 * i.width;
@@ -655,21 +679,21 @@
             }
             renderDropdown() {
                 if (!this.state.dropdown) return null;
-                var {
-                    x: e,
-                    y: t,
-                    position: s,
-                    align: r,
-                    removed: a
-                } = this.state.dropdown, n = Object(o.a)("Dropdown", `Dropdown--${s}`, {
-                    "Dropdown--removed": !!a,
-                    [`Dropdown--align-${r}`]: "t" === s || "b" === s
-                }, this.props.className);
+                var e = this.state.dropdown,
+                    t = e.x,
+                    s = e.y,
+                    r = e.position,
+                    a = e.align,
+                    n = e.removed,
+                    l = Object(o.a)("Dropdown", `Dropdown--${r}`, {
+                        "Dropdown--removed": !!n,
+                        [`Dropdown--align-${a}`]: "t" === r || "b" === r
+                    }, this.props.className);
                 return i.createElement("div", {
-                    className: n,
+                    className: l,
                     style: {
-                        top: t,
-                        left: e
+                        top: s,
+                        left: t
                     },
                     onTransitionEnd: e => this.onTransitionEnd(e),
                     onMouseEnter: this.onDropdownMouseEnter,
@@ -701,7 +725,7 @@
     EJ7F: function(e, t, s) {
         "use strict";
         s.r(t);
-        s("pIFo"), s("Oyvg"), s("OG14"), s("rGqo"), s("Btvt"), s("KKXr"), s("SRfc");
+        s("rE2o"), s("ioFf"), s("pIFo"), s("Oyvg"), s("OG14"), s("rGqo"), s("Btvt"), s("KKXr"), s("SRfc"), s("91GP"), s("VRzm");
         var i = s("q1tI"),
             r = s("i8i4"),
             o = s("E2g8"),
@@ -712,7 +736,7 @@
             h = !1,
             c = !1;
 
-        function _(e, t, s) {
+        function u(e, t, s) {
             var i = l[e];
             if (i)
                 for (var r = 0; r < i.length; r++) {
@@ -721,26 +745,26 @@
                 }
         }
 
-        function p(e, t) {
+        function _(e, t) {
             h.postMessage({
                 cmd: "load",
                 url: e
             })
         }
 
-        function u(e) {
+        function p(e) {
             return h || ((h = new Worker("/js/cmodules/web/stories_loader_worker.js")).onmessage = (e => {
                 var t = e.data;
                 switch (t.type) {
                     case "loaded":
-                        n[t.url] = t.data, _(t.url, !0, t.data);
+                        n[t.url] = t.data, u(t.url, !0, t.data);
                         break;
                     case "error":
-                        _(t.url, !1);
+                        u(t.url, !1);
                         break;
                     case "inited":
                         c = !0;
-                        for (var s = 0; s < d.length; s++) p(d[s])
+                        for (var s = 0; s < d.length; s++) _(d[s])
                 }
             })), new a((t, s) => {
                 if (e || t(""), n[e]) return t(n[e]);
@@ -755,7 +779,7 @@
                                 resolve: t,
                                 reject: s
                             }), !i) return;
-                        c ? p(e) : d.push(e);
+                        c ? _(e) : d.push(e);
                         break;
                     default:
                         vk.dev && console.error("wrong media url")
@@ -822,39 +846,66 @@
                 }
             }), e.join(" ")
         }
-        var w = [];
 
         function f(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var w = [];
+
+        function S(e, t) {
+            var s = arguments;
             cur.storyLayer && cur.storyLayer.pauseLayer(), ge("stories_layers_background") || (bodyNode.appendChild(ce("div", {
                 id: "stories_layers_background",
                 className: "stories_layers_background"
-            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = k, addEvent(window, "visibilitychange", T.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", T.resize), addEvent(document, "keydown", T.keydown), addEvent(document, "keyup", T.keyup)), cur.storyLayer = e, e.animateStory("expand", t.fromEl), w.push(e), e.length > 1 && addClass(e.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + w.length, ([t] = []) => {
-                var s = arguments[0] && arguments[0].isCloseBtnClick;
-                t ? e._sendNavigationStatEvents("close_auto_by_time") : e._sendNavigationStatEvents("close_tap"), w.length > 1 && !s ? e.back(!0) : (e.hideAllLayers = s, e.hide(!1, !0))
+            })), layerQueue.hide(), layerQueue.push(), layers.fullhide = E, addEvent(window, "visibilitychange", j.visibilitychange, void 0, void 0, !0), addEvent(window, "resize", j.resize), addEvent(document, "keydown", j.keydown), addEvent(document, "keyup", j.keyup)), cur.storyLayer = e, e.animateStory("expand", t.fromEl), w.push(e), e.length > 1 && addClass(e.layerEl, "no_fill_bg"), addClass(bodyNode, "stories_layer_shown"), cancelStackPush("stories_layer_close" + w.length, function() {
+                var t = f(arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], 1)[0],
+                    i = s[0] && s[0].isCloseBtnClick;
+                t ? e._sendNavigationStatEvents("close_auto_by_time") : e._sendNavigationStatEvents("close_tap"), w.length > 1 && !i ? e.back(!0) : (e.hideAllLayers = i, e.hide(!1, !0))
             })
         }
 
-        function S() {
+        function k() {
             w.length > 1 ? w[w.length - 2].setLayerVisibility(!0) : setStyle("stories_layers_background", "opacity", 0)
         }
 
-        function k(e, t = !1) {
-            for (var s = 0; s < w.length; s++) w[s].hide(!0);
-            if (layers.fullhide = !1, removeClass(bodyNode, "stories_layer_shown"), re("stories_layers_background"), removeEvent(window, "visibilitychange", T.visibilitychange), removeEvent(window, "resize", T.resize), removeEvent(document, "keydown", T.keydown), removeEvent(document, "keyup", T.keyup), t) {
+        function E(e) {
+            for (var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], s = 0; s < w.length; s++) w[s].hide(!0);
+            if (layers.fullhide = !1, removeClass(bodyNode, "stories_layer_shown"), re("stories_layers_background"), removeEvent(window, "visibilitychange", j.visibilitychange), removeEvent(window, "resize", j.resize), removeEvent(document, "keydown", j.keydown), removeEvent(document, "keyup", j.keyup), t) {
                 var i = nav.objLoc;
                 delete i.w, nav.setLoc(i)
             }
             cur.needUpdateFeedStories && Stories.updateFeedStories(), w = []
         }
 
-        function E() {
+        function O() {
             return w[w.length - 2]
         }
 
-        function O(e) {
+        function T(e) {
             for (var t = 0; t < w.length; t++) w[t].onReplyDeleted(e)
         }
-        var T = {
+        var j = {
                 visibilitychange: e => {
                     cur.storyLayer && cur.storyLayer.onVisibilityChange(e)
                 },
@@ -868,133 +919,148 @@
                     cur.storyLayer && cur.storyLayer.onKeyUp(e)
                 }
             },
-            j = (s("tUrg"), s("17x9"), s("T/g7"));
+            C = (s("tUrg"), s("17x9"), s("T/g7"));
 
-        function C({
-            story: e
-        }) {
-            var {
-                hide_settings: t
-            } = e.getCurStoryData(), {
-                uiActionsMenu: s
-            } = window;
-            if (t) return null;
-            var r, o, a = function(e) {
+        function L(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+
+        function x(e) {
+            var t = e.story,
+                s = t.getCurStoryData().hide_settings,
+                r = window.uiActionsMenu;
+            if (s) return null;
+            var o, a, n = function(e) {
                 var t = [],
-                    {
-                        raw_id: s,
-                        can_hide_reply: i,
-                        report_hash: r,
-                        can_remove: o,
-                        can_share: a,
-                        narrative: n,
-                        is_ads: l
-                    } = e.getCurStoryData(),
-                    {
-                        can_blacklist: d
-                    } = e.data,
-                    [h] = s.split("_").map(e => intval(e)),
-                    c = n && !n.is_cover;
-                !d || c || l || t.push({
-                    label: Object(j.b)("stories_add_blacklist_button"),
+                    s = e.getCurStoryData(),
+                    i = s.raw_id,
+                    r = s.can_hide_reply,
+                    o = s.report_hash,
+                    a = s.can_remove,
+                    n = s.can_share,
+                    l = s.narrative,
+                    d = s.is_ads,
+                    h = e.data.can_blacklist,
+                    c = L(i.split("_").map(e => intval(e)), 1)[0],
+                    u = l && !l.is_cover;
+                !h || u || d || t.push({
+                    label: Object(C.b)("stories_add_blacklist_button"),
                     onClick: () => e._addToBlacklist()
                 });
-                i && t.push({
-                    label: Object(j.b)("stories_hide_reply_button"),
+                r && t.push({
+                    label: Object(C.b)("stories_hide_reply_button"),
                     onClick: () => e._hideReply()
                 });
-                n && t.push({
-                    label: n.is_bookmarked ? Object(j.b)("stories_narrative_remove_bookmark_button") : Object(j.b)("stories_narrative_add_bookmark_button"),
+                l && t.push({
+                    label: l.is_bookmarked ? Object(C.b)("stories_narrative_remove_bookmark_button") : Object(C.b)("stories_narrative_add_bookmark_button"),
                     onClick: () => e._sendNarrativeBookmarkButtonDidPress()
                 });
-                a && t.push({
-                    label: Object(j.b)("stories_share"),
+                n && t.push({
+                    label: Object(C.b)("stories_share"),
                     onClick: () => e.shareBox()
                 });
-                n && n.can_edit && t.push({
-                    label: Object(j.b)("stories_narrative_edit_button"),
+                l && l.can_edit && t.push({
+                    label: Object(C.b)("stories_narrative_edit_button"),
                     onClick: () => e._sendNarrativeEditButtonDidPress()
                 });
-                o && e.getOwnerId() < 0 && t.push({
-                    label: n ? Object(j.b)("global_narrative_delete") : Object(j.b)("global_delete"),
-                    onClick: () => n ? e.removeNarrativeBox() : e.removeStoryBox()
+                a && e.getOwnerId() < 0 && t.push({
+                    label: l ? Object(C.b)("global_narrative_delete") : Object(C.b)("global_delete"),
+                    onClick: () => l ? e.removeNarrativeBox() : e.removeStoryBox()
                 });
-                r && t.push({
-                    label: Object(j.b)("stories_report"),
+                o && t.push({
+                    label: Object(C.b)("stories_report"),
                     onClick: () => e.report()
                 });
-                h === vk.id || c || t.push({
-                    label: Object(j.b)("stories_settings"),
+                c === vk.id || u || t.push({
+                    label: Object(C.b)("stories_settings"),
                     onClick: () => window.Stories.showBlackList()
                 });
                 return t
-            }(e);
-            if (0 === a.length) return null;
+            }(t);
+            if (0 === n.length) return null;
             return i.createElement("div", {
                 className: "stories_button more ui_actions_menu_wrap _ui_menu_wrap ui_actions_menu_top stories_actions",
-                onMouseEnter: t => {
-                    clearTimeout(r), e.pauseStory(), s.show(o, t)
+                onMouseEnter: e => {
+                    clearTimeout(o), t.pauseStory(), r.show(a, e)
                 },
                 onMouseLeave: () => {
-                    s.hide(o), clearTimeout(r), r = setTimeout(() => e.autoResumeStory(), 300)
+                    r.hide(a), clearTimeout(o), o = setTimeout(() => t.autoResumeStory(), 300)
                 },
                 ref: e => {
-                    o = e
+                    a = e
                 }
             }, i.createElement("div", {
                 className: "ui_actions_menu _ui_menu"
-            }, a.map(({
-                label: e,
-                className: t,
-                onClick: s
-            }) => i.createElement("div", {
-                key: e,
-                className: "ui_actions_menu_item",
-                onClick: s
-            }, e))))
+            }, n.map(e => {
+                var t = e.label,
+                    s = (e.className, e.onClick);
+                return i.createElement("div", {
+                    key: t,
+                    className: "ui_actions_menu_item",
+                    onClick: s
+                }, t)
+            })))
         }
 
-        function L({
-            story: e
-        }) {
-            var t = e.getReplies(),
-                s = e.getViews() || "",
-                {
-                    can_manage: r,
-                    narrative: o,
-                    isNewQuestions: a
-                } = e.getCurStoryData(),
-                n = t.count || "",
-                l = o && !o.is_cover,
-                d = !(!r || !s),
-                h = e.isActiveLive();
-            if (l || h || !s && !n) return null;
-            var c = "stories_button views _views_button" + (a ? " stories_button_new_questions" : "");
+        function B(e) {
+            var t = e.story,
+                s = t.getReplies(),
+                r = t.getViews() || "",
+                o = t.getCurStoryData(),
+                a = o.can_manage,
+                n = o.narrative,
+                l = o.isNewQuestions,
+                d = s.count || "",
+                h = n && !n.is_cover,
+                c = !(!a || !r),
+                u = t.isActiveLive();
+            if (h || u || !r && !d) return null;
+            var _ = "stories_button views _views_button" + (l ? " stories_button_new_questions" : "");
             return i.createElement("div", {
-                className: c,
-                onClick: t => {
-                    e._hideTooltip(), e.showFeedbackTooltip(), t.stopPropagation()
+                className: _,
+                onClick: e => {
+                    t._hideTooltip(), t.showFeedbackTooltip(), e.stopPropagation()
                 }
-            }, d && i.createElement("div", {
+            }, c && i.createElement("div", {
                 className: "stories_button_views"
-            }, s), n && i.createElement("div", {
+            }, r), d && i.createElement("div", {
                 className: "stories_button_replies",
                 dangerouslySetInnerHTML: {
-                    __html: langNumeric(n, "%s", !0)
+                    __html: langNumeric(d, "%s", !0)
                 }
             }))
         }
-        var {
-            getLang: x,
-            showTooltip: B,
-            trim: N,
-            addEvent: P,
-            removeEvent: R,
-            cancelEvent: M,
-            isObject: D,
-            showNarrative: I
-        } = window;
-        class F extends i.Component {
+        var N = window,
+            P = N.getLang,
+            R = N.showTooltip,
+            M = N.trim,
+            I = N.addEvent,
+            F = N.removeEvent,
+            D = N.cancelEvent,
+            A = N.isObject,
+            H = N.showNarrative;
+        class W extends i.Component {
             constructor(e) {
                 super(e), this.emojiId = !1, this.state = {
                     story: e.story,
@@ -1023,17 +1089,15 @@
                 }, i.createElement("div", {
                     className: "stories_story_bottom_controls",
                     ref: "controls"
-                }, i.createElement(L, {
+                }, i.createElement(B, {
                     story: e
-                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(C, {
+                }), this._renderMessageForm(), this._renderLink(), this._renderMask(), this._renderShare(), this._renderRemove(), i.createElement(x, {
                     story: e
                 })))
             }
             _renderLink() {
-                var {
-                    link: e
-                } = this.props.story.getCurStoryData();
-                if (!D(e)) return "";
+                var e = this.props.story.getCurStoryData().link;
+                if (!A(e)) return "";
                 var t = "stories_link";
                 return e.object_type && (t += ` story_link_object_${e.object_type}`), this.state.linkObjectAudioPlaying && (t += " story_link_object_audio_playing"), i.createElement("div", {
                     className: "stories_link_wrap"
@@ -1054,62 +1118,50 @@
                 })))
             }
             _renderMask() {
-                var {
-                    mask_id: e
-                } = this.props.story.getCurStoryData();
-                return e ? i.createElement("div", {
+                return this.props.story.getCurStoryData().mask_id ? i.createElement("div", {
                     className: "stories_button mask _mask_button",
-                    onMouseOver: e => B(e.target, {
+                    onMouseOver: e => R(e.target, {
                         black: 1,
                         center: 1,
                         shift: [1, 13, 0],
-                        text: x("stories_mask_tooltip")
+                        text: P("stories_mask_tooltip")
                     }),
                     onClick: this._maskButtonDidPress.bind(this)
                 }) : ""
             }
             _renderShare() {
-                var {
-                    can_share: e
-                } = this.props.story.getCurStoryData();
-                return !0 !== e ? "" : i.createElement("div", {
+                return !0 !== this.props.story.getCurStoryData().can_share ? "" : i.createElement("div", {
                     className: "stories_button share _share_button",
-                    onMouseOver: e => B(e.target, {
+                    onMouseOver: e => R(e.target, {
                         black: 1,
                         center: 1,
                         shift: [1, 13, 0],
-                        text: x("stories_share")
+                        text: P("stories_share")
                     }),
                     onClick: this._shareButtonDidPress.bind(this)
                 })
             }
             _renderRemove() {
-                var e = this.props.story,
-                    {
-                        can_remove: t
-                    } = e.getCurStoryData();
-                return !t || e.getOwnerId() < 0 ? "" : i.createElement("div", {
+                var e = this.props.story;
+                return !e.getCurStoryData().can_remove || e.getOwnerId() < 0 ? "" : i.createElement("div", {
                     className: "stories_button remove _remove_button",
-                    onMouseOver: e => B(e.target, {
+                    onMouseOver: e => R(e.target, {
                         black: 1,
                         center: 1,
                         shift: [1, 13, 0],
-                        text: x("global_delete")
+                        text: P("global_delete")
                     }),
                     onClick: this._removeButtonDidPress.bind(this)
                 })
             }
             _canMessage() {
-                var {
-                    link: e,
-                    can_comment: t
-                } = this.props.story.getCurStoryData();
-                return !(D(e) || !t || this.props.story.isLiveEnded())
+                var e = this.props.story.getCurStoryData(),
+                    t = e.link,
+                    s = e.can_comment;
+                return !(A(t) || !s || this.props.story.isLiveEnded())
             }
             _renderMessageForm() {
-                var {
-                    story: e
-                } = this.props;
+                var e = this.props.story;
                 if (this._canMessage()) return i.createElement("div", {
                     ref: "sendForm",
                     className: "stories_send_form _emoji_field_wrap emoji_rpointer"
@@ -1119,7 +1171,7 @@
                     contentEditable: !0,
                     ref: "messageInput",
                     className: "stories_send_form_text",
-                    placeholder: x("stories_answer_placeholder"),
+                    placeholder: P("stories_answer_placeholder"),
                     onFocus: this._sendFormDidFocus.bind(this),
                     onBlur: this._sendFormDidBlur.bind(this),
                     onKeyUp: () => e._onSendFormKeyUp()
@@ -1136,7 +1188,7 @@
                         Emoji.clearSizeCached(this.refs.smileButton), Emoji.show(this.refs.smileButton, e.nativeEvent)
                     },
                     onMouseLeave: e => Emoji.hide(this.refs.smileButton, e.nativeEvent),
-                    onMouseDown: e => M(e.nativeEvent)
+                    onMouseDown: e => D(e.nativeEvent)
                 }), i.createElement("div", {
                     className: g("stories_send_form_button send", {
                         active: this.state.sendFormHasText
@@ -1159,26 +1211,23 @@
                     controlsCont: this.refs.sendForm,
                     onKeyAction: () => this._emojiDidKeyAction(),
                     onEmojiAdded: () => this._emojiDidKeyAction()
-                }), P(this.refs.smileButton, "click", M), placeholderInit(this.refs.messageInput, {
+                }), I(this.refs.smileButton, "click", D), placeholderInit(this.refs.messageInput, {
                     editable: !0
-                })) : this.emojiId && !this.refs.messageInput && (R(this.refs.smileButton, "click", M), Emoji.destroy(this.emojiId), delete this.emojiId)
+                })) : this.emojiId && !this.refs.messageInput && (F(this.refs.smileButton, "click", D), Emoji.destroy(this.emojiId), delete this.emojiId)
             }
             _leftSideIsEmpty() {
                 var e = this.props.story,
-                    {
-                        can_manage: t,
-                        link: s,
-                        can_comment: i,
-                        narrative: r
-                    } = this.props.story.getCurStoryData(),
-                    o = e.getReplies(),
-                    a = e.getViews();
-                return !(a && 0 !== parseInt(a) && !r) && (!o.count || !t) && !D(s) && !i || e.isLiveEnded()
+                    t = this.props.story.getCurStoryData(),
+                    s = t.can_manage,
+                    i = t.link,
+                    r = t.can_comment,
+                    o = t.narrative,
+                    a = e.getReplies(),
+                    n = e.getViews();
+                return !(n && 0 !== parseInt(n) && !o) && (!a.count || !s) && !A(i) && !r || e.isLiveEnded()
             }
             _sendFormDidFocus() {
-                var {
-                    story: e
-                } = this.props;
+                var e = this.props.story;
                 this.setState({
                     sendFormFocused: !0
                 }), e._onSendFormFocus(), e.layer._sendNavigationStatEvents("comment_tap")
@@ -1189,7 +1238,7 @@
                 }), this._emojiDidKeyAction()
             }
             _emojiDidKeyAction() {
-                var e = N(Emoji.editableVal(this.refs.messageInput));
+                var e = M(Emoji.editableVal(this.refs.messageInput));
                 this.setState({
                     sendFormHasText: e.length > 0
                 }), this.refs.messageInput.check()
@@ -1214,7 +1263,7 @@
                     if (r) {
                         e.preventDefault();
                         var o = r[1];
-                        o && (this.props.story.pauseStory(), I(o, {
+                        o && (this.props.story.pauseStory(), H(o, {
                             fromEl: this.props.story.wrapEl,
                             isOpenNarrativeFromFeed: !0,
                             source: "narrative_story"
@@ -1232,51 +1281,51 @@
                 this.props.story._onAnswerSend(void 0, () => this._emojiDidKeyAction())
             }
         }
-        var H = s("0toi"),
-            A = s("Hx9h"),
-            W = s("6raB"),
-            q = s("As6E"),
-            $ = s("pemR"),
-            U = s("nAFc"),
-            K = s("t7n3");
-        class Q extends i.Component {
+        var q = s("0toi"),
+            $ = s("Hx9h"),
+            U = s("6raB"),
+            K = s("As6E"),
+            Q = s("pemR"),
+            V = s("nAFc"),
+            z = s("t7n3");
+        class G extends i.Component {
             constructor(e) {
                 super(e), this.componentDidUpdate = (() => {
                     this.replyTextarea.current && this.replyTextarea.current.focus()
                 }), this.render = (() => {
-                    var {
-                        isOpenReplyModal: e,
-                        isOpenReportModal: t,
-                        reportReason: s,
-                        replyText: r
-                    } = this.state, {
-                        question: o,
-                        storyUrl: a
-                    } = this.props, {
-                        author: n,
-                        canAnswer: l,
-                        text: d
-                    } = o, h = Object(U.a)(d), c = Object($.a)("StoryQuestion__title", {
-                        "StoryQuestion__title--small": h.length > 50,
-                        "StoryQuestion__title--free": !l
-                    });
+                    var e = this.state,
+                        t = e.isOpenReplyModal,
+                        s = e.isOpenReportModal,
+                        r = e.reportReason,
+                        o = e.replyText,
+                        a = this.props,
+                        n = a.question,
+                        l = a.storyUrl,
+                        d = n.author,
+                        h = n.canAnswer,
+                        c = n.text,
+                        u = Object(V.a)(c),
+                        _ = Object(Q.a)("StoryQuestion__title", {
+                            "StoryQuestion__title--small": u.length > 50,
+                            "StoryQuestion__title--free": !h
+                        });
                     return i.createElement("div", {
                         className: "StoryQuestion"
                     }, i.createElement("div", {
                         className: "StoryQuestion__content"
                     }, this.renderAuthor(), i.createElement("span", {
-                        className: c,
-                        title: h
-                    }, h)), i.createElement("div", {
+                        className: _,
+                        title: u
+                    }, u)), i.createElement("div", {
                         className: "StoryQuestion__controls"
-                    }, l && i.createElement(A.a, {
+                    }, h && i.createElement($.a, {
                         className: "StoryQuestion__reply",
                         appearance: "primary",
                         size: "s",
                         wide: !0,
                         onClick: this.openReplyModal.bind(this)
-                    }, Object(j.b)("stories_question_reply"))), e && i.createElement(H.a, {
-                        title: Object(j.b)("stories_question_reply_box_title").replace("{name}", Object(U.a)(n.nameDat)),
+                    }, Object(C.b)("stories_question_reply"))), t && i.createElement(q.a, {
+                        title: Object(C.b)("stories_question_reply_box_title").replace("{name}", Object(V.a)(d.nameDat)),
                         actionButtons: this.getReplyModalActions(),
                         className: "StoryQuestion__replyModal",
                         onClose: this.closeReplyModal.bind(this),
@@ -1286,15 +1335,15 @@
                     }, i.createElement("textarea", {
                         ref: this.replyTextarea,
                         className: "StoryQuestion__textarea",
-                        placeholder: Object(j.b)("stories_question_reply_placeholder"),
+                        placeholder: Object(C.b)("stories_question_reply_placeholder"),
                         onChange: this.handleChange.bind(this),
                         onKeyDown: this.handleKeyDown.bind(this),
-                        value: r
+                        value: o
                     }), i.createElement("img", {
-                        srcSet: a,
+                        srcSet: l,
                         className: "StoryQuestion__image"
-                    }))), t && i.createElement(H.a, {
-                        title: Object(j.b)("stories_question_author_ban"),
+                    }))), s && i.createElement(q.a, {
+                        title: Object(C.b)("stories_question_author_ban"),
                         actionButtons: this.getReportModalActions(),
                         className: "StoryQuestion__reportModal StoryQuestionReportForm",
                         onClose: this.closeReportModal.bind(this),
@@ -1303,11 +1352,11 @@
                         className: "StoryQuestionReportForm__content"
                     }, i.createElement("h4", {
                         className: "StoryQuestionReportForm__title"
-                    }, Object(j.b)("stories_question_report_reason")), i.createElement("div", {
+                    }, Object(C.b)("stories_question_report_reason")), i.createElement("div", {
                         className: "StoryQuestionReportForm__items",
                         role: "radiogroup"
                     }, this.reportReasons.map(e => i.createElement("div", {
-                        className: "radiobtn" + (s === e[0] ? " on" : ""),
+                        className: "radiobtn" + (r === e[0] ? " on" : ""),
                         onClick: () => this.setState({
                             reportReason: e[0]
                         }),
@@ -1315,24 +1364,24 @@
                         "aria-checked": "false",
                         tabIndex: "0",
                         key: e
-                    }, Object(j.b)(e[1])))))))
+                    }, Object(C.b)(e[1])))))))
                 }), this.renderAuthor = (() => {
-                    var {
-                        id: e,
-                        isAnonymous: t,
-                        author: s
-                    } = this.props.question, r = Object(U.a)(s.name);
+                    var e = this.props.question,
+                        t = e.id,
+                        s = e.isAnonymous,
+                        r = e.author,
+                        o = Object(V.a)(r.name);
                     return i.createElement("div", {
                         className: "StoryQuestion__header"
-                    }, t && i.createElement("span", {
+                    }, s && i.createElement("span", {
                         className: "StoryQuestion__author"
-                    }, r), !t && i.createElement("a", {
-                        href: s.link,
+                    }, o), !s && i.createElement("a", {
+                        href: r.link,
                         className: "StoryQuestion__author",
                         onClick: () => cur.storyLayer._sendNavigationStatEvents("question_go_to_author", !0, {
-                            questionId: e
+                            questionId: t
                         })
-                    }, r), i.createElement(q.a, {
+                    }, o), i.createElement(K.a, {
                         position: "b",
                         align: "right",
                         trigger: "hover",
@@ -1361,69 +1410,63 @@
                         replyText: ""
                     })
                 }), this.getReplyModalActions = (() => {
-                    var {
-                        isReplyButtonLoading: e,
-                        replyText: t
-                    } = this.state;
-                    return [i.createElement(A.a, {
+                    var e = this.state,
+                        t = e.isReplyButtonLoading,
+                        s = e.replyText;
+                    return [i.createElement($.a, {
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReplyModal
-                    }, Object(j.b)("global_cancel")), i.createElement(W.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(U.a, {
                         key: "replySend",
-                        loading: e,
-                        disabled: !Object(K.H)(t),
+                        loading: t,
+                        disabled: !Object(z.H)(s),
                         onClick: this.sendReply.bind(this)
-                    }, Object(j.b)("stories_question_reply_send"))]
+                    }, Object(C.b)("stories_question_reply_send"))]
                 }), this.getReportModalActions = (() => {
-                    var {
-                        isReportButtonLoading: e
-                    } = this.state;
-                    return [i.createElement(A.a, {
+                    var e = this.state.isReportButtonLoading;
+                    return [i.createElement($.a, {
                         key: "closeReplyModal",
                         appearance: "tertiary",
                         onClick: this.closeReportModal.bind(this)
-                    }, Object(j.b)("global_cancel")), i.createElement(W.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(U.a, {
                         key: "reportSend",
                         loading: e,
                         onClick: this.sendReport.bind(this)
-                    }, Object(j.b)("stories_question_report_send"))]
+                    }, Object(C.b)("stories_question_report_send"))]
                 }), this.handleChange = (e => {
                     this.setState({
                         replyText: e.target.value
                     })
                 }), this.handleKeyDown = (e => {
-                    var {
-                        replyText: t
-                    } = this.state;
-                    Object(K.H)(t) && "keydown" === e.type && (e.ctrlKey || e.metaKey) && e.keyCode == KEY.RETURN && this.sendReply()
+                    var t = this.state.replyText;
+                    Object(z.H)(t) && "keydown" === e.type && (e.ctrlKey || e.metaKey) && e.keyCode == KEY.RETURN && this.sendReply()
                 }), this.sendReply = (() => {
-                    var {
-                        replyText: e
-                    } = this.state, {
-                        question: t,
-                        showMessage: s
-                    } = this.props, {
-                        text: i,
-                        id: r,
-                        ownerId: o,
-                        storyOwnerId: a,
-                        storyId: n,
-                        sendHash: l
-                    } = t, d = `${e}\n\n🗣 ${Object(K.I)(i)}`, h = `story:${a}_${n}`;
+                    var e = this.state.replyText,
+                        t = this.props,
+                        s = t.question,
+                        i = t.showMessage,
+                        r = s.text,
+                        o = s.id,
+                        a = s.ownerId,
+                        n = s.storyOwnerId,
+                        l = s.storyId,
+                        d = s.sendHash,
+                        h = `${e}\n\n🗣 ${Object(z.I)(r)}`,
+                        c = `story:${n}_${l}`;
                     ajax.post("al_im.php", {
                         act: "a_send",
-                        msg: d,
-                        hash: l,
-                        media: h,
-                        to: o
+                        msg: h,
+                        hash: d,
+                        media: c,
+                        to: a
                     }, {
                         onDone: () => {
-                            this.closeReplyModal(), this.resetReplyText(), s(Object(j.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
-                                questionId: r
+                            this.closeReplyModal(), this.resetReplyText(), i(Object(C.b)("stories_answer_sent")), cur.storyLayer._sendNavigationStatEvents("question_send_message", !0, {
+                                questionId: o
                             })
                         },
-                        onFail: e => (this.closeReplyModal(), this.resetReplyText(), s(e), !0),
+                        onFail: e => (this.closeReplyModal(), this.resetReplyText(), i(e), !0),
                         showProgress: () => this.setState({
                             isReplyButtonLoading: !0
                         }),
@@ -1432,49 +1475,44 @@
                         })
                     })
                 }), this.getActions = (() => {
-                    var {
-                        question: e
-                    } = this.props, {
-                        isAuthorBan: t
-                    } = this.state, s = [{
-                        text: Object(j.b)("stories_question_delete"),
-                        onClick: () => this.props.removeQuestion(e)
-                    }];
+                    var e = this.props.question,
+                        t = this.state.isAuthorBan,
+                        s = [{
+                            text: Object(C.b)("stories_question_delete"),
+                            onClick: () => this.props.removeQuestion(e)
+                        }];
                     return e.canBlocked && (t ? s.push({
-                        text: Object(j.b)("stories_question_author_unban"),
+                        text: Object(C.b)("stories_question_author_unban"),
                         onClick: this.unbanAuthor.bind(this)
                     }) : s.push({
-                        text: Object(j.b)("stories_question_author_ban"),
+                        text: Object(C.b)("stories_question_author_ban"),
                         onClick: this.openReportModal.bind(this)
                     })), s
                 }), this.sendReport = (() => {
-                    var {
-                        reportReason: e
-                    } = this.state, {
-                        question: t,
-                        showMessage: s
-                    } = this.props, {
-                        storyOwnerId: i,
-                        storyId: r,
-                        id: o,
-                        banHash: a,
-                        isAnonymous: n
-                    } = t;
+                    var e = this.state.reportReason,
+                        t = this.props,
+                        s = t.question,
+                        i = t.showMessage,
+                        r = s.storyOwnerId,
+                        o = s.storyId,
+                        a = s.id,
+                        n = s.banHash,
+                        l = s.isAnonymous;
                     ajax.post("al_stories.php", {
                         act: "ban_author_question",
-                        story_owner_id: i,
-                        story_id: r,
-                        question_id: o,
+                        story_owner_id: r,
+                        story_id: o,
+                        question_id: a,
                         reason: e,
-                        ban_hash: a
+                        ban_hash: n
                     }, {
                         onDone: () => {
                             this.closeReportModal(), this.setState({
                                 isAuthorBan: !0
-                            }), s(Object(j.b)("stories_question_author_blocked"));
+                            }), i(Object(C.b)("stories_question_author_blocked"));
                             var e = "question_ban_author";
-                            n && (e = "question_ban_anonymous_author"), cur.storyLayer._sendNavigationStatEvents(e, !0, {
-                                questionId: o
+                            l && (e = "question_ban_anonymous_author"), cur.storyLayer._sendNavigationStatEvents(e, !0, {
+                                questionId: a
                             })
                         },
                         showProgress: () => this.setState({
@@ -1485,26 +1523,24 @@
                         })
                     })
                 }), this.unbanAuthor = (() => {
-                    var {
-                        question: e,
-                        showMessage: t
-                    } = this.props, {
-                        storyOwnerId: s,
-                        storyId: i,
-                        id: r,
-                        banHash: o
-                    } = e;
+                    var e = this.props,
+                        t = e.question,
+                        s = e.showMessage,
+                        i = t.storyOwnerId,
+                        r = t.storyId,
+                        o = t.id,
+                        a = t.banHash;
                     ajax.post("al_stories.php", {
                         act: "unban_author_question",
-                        story_owner_id: s,
-                        story_id: i,
-                        question_id: r,
-                        ban_hash: o
+                        story_owner_id: i,
+                        story_id: r,
+                        question_id: o,
+                        ban_hash: a
                     }, {
                         onDone: () => {
                             this.setState({
                                 isAuthorBan: !1
-                            }), t(Object(j.b)("stories_question_author_unblocked"))
+                            }), s(Object(C.b)("stories_question_author_unblocked"))
                         }
                     })
                 }), this.reportReasons = [
@@ -1523,34 +1559,52 @@
                 }
             }
         }
-        var V = s("zxIV");
-        class z extends i.Component {
+        var Y = s("zxIV");
+
+        function X(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        class J extends i.Component {
             constructor(e) {
                 super(e), this.componentDidMount = (() => {
-                    var {
-                        current: e
-                    } = this.scrollElement;
-                    e.addEventListener(browserFeatures.wheelEvent, this.questionsMouseWheel)
+                    this.scrollElement.current.addEventListener(browserFeatures.wheelEvent, this.questionsMouseWheel)
                 }), this.componentWillUnmount = (() => {
-                    var {
-                        current: e
-                    } = this.positionElement;
-                    e.removeEventListener(browserFeatures.wheelEvent, this.questionsMouseWheel)
+                    this.positionElement.current.removeEventListener(browserFeatures.wheelEvent, this.questionsMouseWheel)
                 }), this.render = (() => {
-                    var {
-                        questions: e,
-                        scrollBlockPosition: t
-                    } = this.state;
+                    var e = this.state,
+                        t = e.questions,
+                        s = e.scrollBlockPosition;
                     return i.createElement("div", {
                         className: "stories_feedback_questions_wrap",
                         ref: this.scrollElement
                     }, i.createElement("div", {
                         className: "stories_feedback_questions_items",
                         style: {
-                            transform: `translateX(-${t}px)`
+                            transform: `translateX(-${s}px)`
                         },
                         ref: this.positionElement
-                    }, e.map((e, t) => i.createElement(Q, {
+                    }, t.map((e, t) => i.createElement(G, {
                         question: e,
                         storyUrl: this.props.storyUrl,
                         showMessage: this.props.showMessage,
@@ -1560,21 +1614,18 @@
                 }), this.questionsMouseWheel = (e => {
                     e.preventDefault(), this.state.questions.length <= 1 || this.setPosition(Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX)
                 }), this.setPosition = (e => {
-                    var {
-                        current: t
-                    } = this.positionElement, {
-                        scrollBlockPosition: s
-                    } = this.state, [i] = Object(V.N)(t), r = Math.max(0, Math.min(s + e, t.scrollWidth - i));
+                    var t = this.positionElement.current,
+                        s = this.state.scrollBlockPosition,
+                        i = X(Object(Y.N)(t), 1)[0],
+                        r = Math.max(0, Math.min(s + e, t.scrollWidth - i));
                     this.setState({
                         scrollBlockPosition: r
                     })
                 }), this.removeQuestion = (e => {
-                    var {
-                        storyOwnerId: t,
-                        storyId: s,
-                        id: i,
-                        removeHash: r
-                    } = e;
+                    var t = e.storyOwnerId,
+                        s = e.storyId,
+                        i = e.id,
+                        r = e.removeHash;
                     ajax.post("al_stories.php", {
                         act: "remove_question",
                         story_owner_id: t,
@@ -1596,51 +1647,71 @@
                 }, this.scrollElement = i.createRef(), this.positionElement = i.createRef()
             }
         }
-        var G = "stories_manage",
-            Y = 200,
-            X = {
+        var Z = "stories_manage",
+            ee = 200,
+            te = {
                 hashtag: 1,
                 mention: 2,
                 question: 3,
                 place: 4,
                 music: 5
             },
-            J = {
+            ie = {
                 NONE: 0,
                 SUBSCRIPTION: 3,
                 OUTSIDE_HOSTING_COUNTRY: 6,
                 SUBSCRIPTION_SUSPEND: 8
             },
-            Z = s("/PiP"),
-            ee = s("pp2G"),
-            te = s("rEJs");
-        class ie extends i.Component {
+            oe = s("/PiP"),
+            ae = s("pp2G"),
+            ne = s("rEJs");
+
+        function le(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        class de extends i.Component {
             constructor(e) {
                 super(e), this.componentDidMount = (() => {
-                    this.playlist.on(this, te.a.ADDED, () => {
-                        this.props.showMessage(Object(j.b)("stories_audio_added")), this.props.playStory()
-                    }), this.playlist.on(this, te.a.REMOVED, () => {
-                        this.props.showMessage(Object(j.b)("stories_audio_deleted")), this.props.playStory()
+                    this.playlist.on(this, ne.a.ADDED, () => {
+                        this.props.showMessage(Object(C.b)("stories_audio_added")), this.props.playStory()
+                    }), this.playlist.on(this, ne.a.REMOVED, () => {
+                        this.props.showMessage(Object(C.b)("stories_audio_deleted")), this.props.playStory()
                     })
                 }), this.componentWillUnmount = (() => {
                     this.playlist.off(this)
                 }), this.render = (() => {
-                    var {
-                        audioRestriction: e
-                    } = this.props.sticker;
+                    var e = this.props.sticker.audioRestriction;
                     return i.createElement(i.Fragment, null, i.createElement("div", {
                         className: "StorySticker",
                         style: this.getStickerStyle(),
                         onClick: this.handleClick
                     }), e && !this.isRestrictionSub && this.renderRestriction())
                 }), this.renderRestriction = (() => {
-                    var {
-                        story: e,
-                        sticker: t
-                    } = this.props, {
-                        audioRestriction: s
-                    } = t;
-                    return e.video && (e.video.muted = !0), i.createElement("div", {
+                    var e = this.props,
+                        t = e.story,
+                        s = e.sticker.audioRestriction;
+                    return t.video && (t.video.muted = !0), i.createElement("div", {
                         className: "StoryRestriction"
                     }, i.createElement("div", {
                         className: "StoryRestriction__inner"
@@ -1651,99 +1722,93 @@
                         href: s.buttonUrl
                     }, s.buttonText)))
                 }), this.getStickerStyle = (() => {
-                    var {
-                        sticker: e,
-                        originalWidth: t,
-                        originalHeight: s,
-                        widthViewBox: i,
-                        heightViewBox: r
-                    } = this.props, {
-                        top: o,
-                        left: a,
-                        width: n,
-                        height: l,
-                        rotate: d
-                    } = e, h = i, c = r;
-                    return r / i > 1.77 ? h = t * r / s : c = s * i / t, {
-                        top: o * c - (c - r) / 2,
-                        left: a * h - (h - i) / 2,
-                        width: n * h,
-                        height: l * c,
-                        transform: `rotate(${d}deg)`
+                    var e = this.props,
+                        t = e.sticker,
+                        s = e.originalWidth,
+                        i = e.originalHeight,
+                        r = e.widthViewBox,
+                        o = e.heightViewBox,
+                        a = t.top,
+                        n = t.left,
+                        l = t.width,
+                        d = t.height,
+                        h = t.rotate,
+                        c = r,
+                        u = o;
+                    return o / r > 1.77 ? c = s * o / i : u = i * r / s, {
+                        top: a * u - (u - o) / 2,
+                        left: n * c - (c - r) / 2,
+                        width: l * c,
+                        height: d * u,
+                        transform: `rotate(${h}deg)`
                     }
                 }), this.handleClick = (e => {
-                    var {
-                        type: t
-                    } = this.props.sticker;
-                    switch (t) {
-                        case X.hashtag:
+                    switch (this.props.sticker.type) {
+                        case te.hashtag:
                             this.handleClickHashtag(e);
                             break;
-                        case X.mention:
+                        case te.mention:
                             this.handleClickMention(e);
                             break;
-                        case X.question:
+                        case te.question:
                             this.handleClickQuestion();
                             break;
-                        case X.place:
+                        case te.place:
                             this.handleClickPlace(e);
                             break;
-                        case X.music:
+                        case te.music:
                             this.handleClickMusic(e)
                     }
                 }), this.handleClickHashtag = (e => {
-                    var {
-                        hashtag: t
-                    } = this.props.sticker, s = t.replace("#", "%23"), r = Object(j.b)("stories_show_hashtag_link"), o = i.createElement("a", {
-                        href: `/feed?q=${s}&section=search`,
-                        target: "_blank",
-                        className: "StoriesTooltip__link"
-                    }, r);
-                    this.props.toggleTooltip(e, o)
+                    var t = this.props.sticker.hashtag.replace("#", "%23"),
+                        s = Object(C.b)("stories_show_hashtag_link"),
+                        r = i.createElement("a", {
+                            href: `/feed?q=${t}&section=search`,
+                            target: "_blank",
+                            className: "StoriesTooltip__link"
+                        }, s);
+                    this.props.toggleTooltip(e, r)
                 }), this.handleClickMention = (e => {
-                    var {
-                        mention: t
-                    } = this.props.sticker, [s] = t.slice(1, -1).split("|"), r = s.startsWith("id") ? Object(j.b)("stories_go_to_profile") : Object(j.b)("stories_go_to_group"), o = i.createElement("a", {
-                        href: `/${s}`,
-                        target: "_blank",
-                        className: "StoriesTooltip__link"
-                    }, r);
-                    this.props.toggleTooltip(e, o)
+                    var t = le(this.props.sticker.mention.slice(1, -1).split("|"), 1)[0],
+                        s = t.startsWith("id") ? Object(C.b)("stories_go_to_profile") : Object(C.b)("stories_go_to_group"),
+                        r = i.createElement("a", {
+                            href: `/${t}`,
+                            target: "_blank",
+                            className: "StoriesTooltip__link"
+                        }, s);
+                    this.props.toggleTooltip(e, r)
                 }), this.handleClickQuestion = (() => {
                     this.props.showQuestionModal()
                 }), this.handleClickPlace = (e => {
-                    var {
-                        sticker: t,
-                        list: s
-                    } = this.props, {
-                        placeId: r
-                    } = t, o = Object(j.b)("stories_go_to_place");
-                    if (layerQueue.count() || s.includes("archive")) {
-                        var a = "/feed?section=search&w=place" + r,
-                            n = i.createElement("a", {
-                                href: `${a}`,
+                    var t = this.props,
+                        s = t.sticker,
+                        r = t.list,
+                        o = s.placeId,
+                        a = Object(C.b)("stories_go_to_place");
+                    if (layerQueue.count() || r.includes("archive")) {
+                        var n = "/feed?section=search&w=place" + o,
+                            l = i.createElement("a", {
+                                href: `${n}`,
                                 target: "_blank",
                                 className: "StoriesTooltip__link"
-                            }, o);
-                        this.props.toggleTooltip(e, n)
+                            }, a);
+                        this.props.toggleTooltip(e, l)
                     } else {
-                        var l = i.createElement("div", {
+                        var d = i.createElement("div", {
                             className: "StoriesTooltip__link",
                             onClick: () => {
-                                layerQueue.count() ? layerQueue.pop() : layerQueue.push(), Object(Z.C)({
-                                    w: "place" + r
+                                layerQueue.count() ? layerQueue.pop() : layerQueue.push(), Object(oe.C)({
+                                    w: "place" + o
                                 })
                             }
-                        }, o);
-                        this.props.toggleTooltip(e, l)
+                        }, a);
+                        this.props.toggleTooltip(e, d)
                     }
                 }), this.handleClickMusic = (e => {
-                    var {
-                        audioId: t,
-                        audioData: s,
-                        audioRestriction: r
-                    } = this.props.sticker;
-                    if (r) this.isRestrictionSub && ee.a.showAudioRestriction(JSON.parse(s), {
+                    var t = this.props.sticker,
+                        s = t.audioId,
+                        r = t.audioData;
+                    if (t.audioRestriction) this.isRestrictionSub && ae.a.showAudioRestriction(JSON.parse(r), {
                         onShow: () => {
                             this.props.pauseStory()
                         },
@@ -1752,116 +1817,139 @@
                         }
                     });
                     else {
-                        var o = "added" === (ee.a.getAddRestoreInfo()[t] || {}).state ? "stories_audio_delete" : "stories_audio_add",
+                        var o = "added" === (ae.a.getAddRestoreInfo()[s] || {}).state ? "stories_audio_delete" : "stories_audio_add",
                             a = i.createElement("ul", {
                                 className: "StoriesTooltipActions _audio_row",
-                                "data-audio": s
+                                "data-audio": r
                             }, i.createElement("li", {
                                 className: "StoriesTooltipActions__item",
                                 onClick: this.addAudio
-                            }, Object(j.b)(o)), i.createElement("li", {
+                            }, Object(C.b)(o)), i.createElement("li", {
                                 className: "StoriesTooltipActions__item",
                                 onClick: this.setNext
-                            }, Object(j.b)("stories_audio_next_audio")));
+                            }, Object(C.b)("stories_audio_next_audio")));
                         this.props.toggleTooltip(e, a, "b")
                     }
                 }), this.addAudio = (e => {
-                    ee.a.addAudio(e.target), this.props.hideTooltip()
+                    ae.a.addAudio(e.target), this.props.hideTooltip()
                 }), this.setNext = (e => {
                     var t = JSON.parse(this.props.sticker.audioData || "{}"),
-                        s = ee.a.asObject(t);
+                        s = ae.a.asObject(t);
                     this.playlist.setNext(e.target.parentNode, s, t), this.playlist.pause(), this.props.hideTooltip(), this.props.playStory()
                 });
-                var {
-                    audioRestriction: t = {}
-                } = this.props.sticker, {
-                    code: s = J.NONE
-                } = t;
-                this.playlist = Object(Z.k)(), this.isRestrictionSub = inArray(s, [J.SUBSCRIPTION, J.OUTSIDE_HOSTING_COUNTRY, J.SUBSCRIPTION_SUSPEND])
+                var t = this.props.sticker.audioRestriction,
+                    s = (void 0 === t ? {} : t).code,
+                    r = void 0 === s ? ie.NONE : s;
+                this.playlist = Object(oe.k)(), this.isRestrictionSub = inArray(r, [ie.SUBSCRIPTION, ie.OUTSIDE_HOSTING_COUNTRY, ie.SUBSCRIPTION_SUSPEND])
             }
         }
-        class oe extends i.Component {
+        class he extends i.Component {
             constructor(e) {
                 super(e), this.render = (() => {
-                    var {
-                        clientX: e = 0,
-                        clientY: t = 0,
-                        layerEl: s,
-                        position: o
-                    } = this.props, a = Object($.a)("StoriesTooltip", `StoriesTooltip--${o}`);
+                    var e = this.props,
+                        t = e.clientX,
+                        s = void 0 === t ? 0 : t,
+                        o = e.clientY,
+                        a = void 0 === o ? 0 : o,
+                        n = e.layerEl,
+                        l = e.position,
+                        d = Object(Q.a)("StoriesTooltip", `StoriesTooltip--${l}`);
                     return i.createElement(i.Fragment, null, r.createPortal(i.createElement("div", {
-                        className: a,
+                        className: d,
                         style: {
-                            top: t,
-                            left: e
+                            top: a,
+                            left: s
                         }
-                    }, this.props.children), s))
+                    }, this.props.children), n))
                 })
             }
         }
-        oe.defaultProps = {
+        he.defaultProps = {
             position: "t"
         };
-        var ae = s("0Rlc"),
-            ne = s("XpgC");
-        class le extends i.Component {
+        var ue = s("0Rlc"),
+            _e = s("XpgC");
+
+        function pe(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        class ve extends i.Component {
             constructor(e) {
-                super(e), this.componentDidMount = (() => {
+                var t;
+                super(e), t = this, this.componentDidMount = (() => {
                     window.addEventListener("resize", this.handleResize)
                 }), this.componentWillUnmount = (() => {
                     window.removeEventListener("resize", this.handleResize)
                 }), this.componentDidUpdate = (() => {
                     this.askTextarea.current && this.askTextarea.current.focus()
                 }), this.render = (() => {
-                    var {
-                        story: e,
-                        storyData: t,
-                        author: s,
-                        layerEl: r,
-                        showMessage: o,
-                        playStory: a,
-                        pauseStory: n,
-                        list: l
-                    } = this.props, {
-                        clickable_stickers: d
-                    } = t, {
-                        stickers: h,
-                        original_width: c,
-                        original_height: _
-                    } = d, {
-                        widthViewBox: p,
-                        heightViewBox: u,
-                        showTooltip: v,
-                        position: m,
-                        tooltipContent: y,
-                        showQuestionModal: b,
-                        clientX: g,
-                        clientY: w
-                    } = this.state;
+                    var e = this.props,
+                        t = e.story,
+                        s = e.storyData,
+                        r = e.author,
+                        o = e.layerEl,
+                        a = e.showMessage,
+                        n = e.playStory,
+                        l = e.pauseStory,
+                        d = e.list,
+                        h = s.clickable_stickers,
+                        c = h.stickers,
+                        u = h.original_width,
+                        _ = h.original_height,
+                        p = this.state,
+                        v = p.widthViewBox,
+                        m = p.heightViewBox,
+                        y = p.showTooltip,
+                        b = p.position,
+                        g = p.tooltipContent,
+                        f = p.showQuestionModal,
+                        w = p.clientX,
+                        S = p.clientY;
                     return i.createElement("div", {
                         className: "StoryStickers"
-                    }, h.map((t, s) => i.createElement(ie, {
-                        story: e,
-                        sticker: t,
-                        originalWidth: c,
+                    }, c.map((e, s) => i.createElement(de, {
+                        story: t,
+                        sticker: e,
+                        originalWidth: u,
                         originalHeight: _,
-                        widthViewBox: p,
-                        heightViewBox: u,
+                        widthViewBox: v,
+                        heightViewBox: m,
                         toggleTooltip: this.toggleTooltip,
                         hideTooltip: this.hideTooltip,
                         showQuestionModal: this.showQuestionModal,
-                        showMessage: o,
-                        playStory: a,
-                        pauseStory: n,
-                        list: l,
+                        showMessage: a,
+                        playStory: n,
+                        pauseStory: l,
+                        list: d,
                         key: s
-                    })), v && i.createElement(oe, {
-                        clientX: g,
-                        clientY: w,
-                        layerEl: r,
-                        position: m
-                    }, y), b && i.createElement(H.a, {
-                        title: Object(j.b)("stories_question_ask_box_title").replace("{name}", Object(U.a)(s.name_get)),
+                    })), y && i.createElement(he, {
+                        clientX: w,
+                        clientY: S,
+                        layerEl: o,
+                        position: b
+                    }, g), f && i.createElement(q.a, {
+                        title: Object(C.b)("stories_question_ask_box_title").replace("{name}", Object(V.a)(r.name_get)),
                         actionButtons: this.getQuestionModalActions(),
                         className: "StoryQuestionAskForm",
                         onClose: this.closeQuestionModal,
@@ -1872,57 +1960,53 @@
                         ref: this.askTextarea,
                         className: "StoryQuestionAskForm__textarea",
                         maxLength: "80",
-                        placeholder: Object(j.b)("stories_question_ask_placeholder"),
+                        placeholder: Object(C.b)("stories_question_ask_placeholder"),
                         onChange: this.handleChange,
                         onKeyDown: this.handleKeyDown
                     }))))
                 }), this.handleResize = (() => {
-                    var [e, t] = Object(V.N)(this.props.el);
+                    var e = pe(Object(Y.N)(this.props.el), 2),
+                        t = e[0],
+                        s = e[1];
                     this.setState({
-                        widthViewBox: e,
-                        heightViewBox: t,
+                        widthViewBox: t,
+                        heightViewBox: s,
                         showTooltip: !1
                     })
-                }), this.toggleTooltip = ((e, t, s = "t") => {
+                }), this.toggleTooltip = function(e, s) {
+                    var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "t";
                     e.preventDefault(), e.stopPropagation();
-                    var {
-                        clientX: i,
-                        clientY: r
-                    } = e, {
-                        pauseStory: o,
-                        playStory: a,
-                        hideFeedbackTooltip: n,
-                        sendNavigationStatEvents: l
-                    } = this.props;
-                    n(), this.setState({
-                        showTooltip: !this.state.showTooltip,
-                        tooltipContent: t,
-                        clientX: i,
-                        clientY: r,
-                        position: s
+                    var r = e.clientX,
+                        o = e.clientY,
+                        a = t.props,
+                        n = a.pauseStory,
+                        l = a.playStory,
+                        d = a.hideFeedbackTooltip,
+                        h = a.sendNavigationStatEvents;
+                    d(), t.setState({
+                        showTooltip: !t.state.showTooltip,
+                        tooltipContent: s,
+                        clientX: r,
+                        clientY: o,
+                        position: i
                     }), setTimeout(() => {
-                        this.state.showTooltip ? (l("click_on_clickable_sticker"), o()) : a()
+                        t.state.showTooltip ? (h("click_on_clickable_sticker"), n()) : l()
                     }, 0)
-                }), this.hideTooltip = (() => {
+                }, this.hideTooltip = (() => {
                     this.setState({
                         showTooltip: !1
                     })
                 }), this.isShownTooltip = (() => this.state.showTooltip || this.state.showQuestionModal), this.showQuestionModal = (() => {
-                    var {
-                        storyData: e,
-                        showMessage: t,
-                        pauseStory: s
-                    } = this.props, {
-                        can_ask: i
-                    } = e;
-                    if (!i) return t(Object(j.b)("stories_question_forbidden"));
+                    var e = this.props,
+                        t = e.storyData,
+                        s = e.showMessage,
+                        i = e.pauseStory;
+                    if (!t.can_ask) return s(Object(C.b)("stories_question_forbidden"));
                     this.setState({
                         showQuestionModal: !0
-                    }), this.hideTooltip(), s()
+                    }), this.hideTooltip(), i()
                 }), this.closeQuestionModal = (() => {
-                    var {
-                        playStory: e
-                    } = this.props;
+                    var e = this.props.playStory;
                     this.setState({
                         showQuestionModal: !1
                     }), e()
@@ -1935,37 +2019,31 @@
                         isAnonymous: !this.state.isAnonymous
                     })
                 }), this.handleKeyDown = (e => {
-                    var {
-                        questionText: t
-                    } = this.state;
-                    Object(K.H)(t) && "keydown" === e.type && (e.ctrlKey || e.metaKey) && e.keyCode == KEY.RETURN && this.sendQuestion()
+                    var t = this.state.questionText;
+                    Object(z.H)(t) && "keydown" === e.type && (e.ctrlKey || e.metaKey) && e.keyCode == KEY.RETURN && this.sendQuestion()
                 }), this.resetAskText = (() => {
                     this.setState({
                         questionText: ""
                     })
                 }), this.getQuestionModalActions = (() => {
-                    var e, {
-                            storyData: t,
-                            author: s
-                        } = this.props,
-                        {
-                            can_ask_anonymous: r
-                        } = t,
-                        {
-                            isQuestionButtonLoading: o,
-                            questionText: a,
-                            isAnonymous: n
-                        } = this.state;
-                    return e = r ? clean(Object(j.b)("stories_question_anonymous_info").replace("{name}", Object(U.a)(s.firstName))) : Object(j.b)("stories_question_cannot_anonymous"), i.createElement("div", {
+                    var e, t = this.props,
+                        s = t.storyData,
+                        r = t.author,
+                        o = s.can_ask_anonymous,
+                        a = this.state,
+                        n = a.isQuestionButtonLoading,
+                        l = a.questionText,
+                        d = a.isAnonymous;
+                    return e = o ? clean(Object(C.b)("stories_question_anonymous_info").replace("{name}", Object(V.a)(r.firstName))) : Object(C.b)("stories_question_cannot_anonymous"), i.createElement("div", {
                         className: "StoryQuestionAskForm__footer"
                     }, i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
-                    }, i.createElement(ae.a, {
+                    }, i.createElement(ue.a, {
                         key: "c",
-                        checked: n,
+                        checked: d,
                         onChange: this.handleCheckBox,
-                        disabled: !r
-                    }, Object(j.b)("stories_question_anonymous_checkbox")), i.createElement(ne.a, {
+                        disabled: !o
+                    }, Object(C.b)("stories_question_anonymous_checkbox")), i.createElement(_e.a, {
                         text: e,
                         position: "b",
                         align: "left",
@@ -1975,43 +2053,44 @@
                         className: "StoryQuestionAskForm__info"
                     }))), i.createElement("div", {
                         className: "StoryQuestionAskForm__cell"
-                    }, i.createElement(A.a, {
+                    }, i.createElement($.a, {
                         key: "b",
                         appearance: "tertiary",
                         onClick: this.closeQuestionModal
-                    }, Object(j.b)("global_cancel")), i.createElement(W.a, {
+                    }, Object(C.b)("global_cancel")), i.createElement(U.a, {
                         key: "s",
-                        loading: o,
-                        disabled: !Object(K.H)(a),
+                        loading: n,
+                        disabled: !Object(z.H)(l),
                         onClick: this.sendQuestion
-                    }, Object(j.b)("stories_question_reply_send"))))
+                    }, Object(C.b)("stories_question_reply_send"))))
                 }), this.sendQuestion = (() => {
-                    var {
-                        questionText: e,
-                        isAnonymous: t
-                    } = this.state, {
-                        showMessage: s,
-                        storyData: i,
-                        author: r,
-                        sendNavigationStatEvents: o
-                    } = this.props, {
-                        raw_id: a,
-                        askQuestionHash: n,
-                        accessKey: l
-                    } = i, [d, h] = a.split("_");
+                    var e = this.state,
+                        t = e.questionText,
+                        s = e.isAnonymous,
+                        i = this.props,
+                        r = i.showMessage,
+                        o = i.storyData,
+                        a = i.author,
+                        n = i.sendNavigationStatEvents,
+                        l = o.raw_id,
+                        d = o.askQuestionHash,
+                        h = o.accessKey,
+                        c = pe(l.split("_"), 2),
+                        u = c[0],
+                        _ = c[1];
                     ajax.post("al_stories.php", {
                         act: "ask_question",
-                        story_owner_id: d,
-                        story_id: h,
-                        question_text: e,
-                        is_anonymous: +t,
-                        hash: n,
-                        access_key: l
+                        story_owner_id: u,
+                        story_id: _,
+                        question_text: t,
+                        is_anonymous: +s,
+                        hash: d,
+                        access_key: h
                     }, {
                         onDone: () => {
-                            this.closeQuestionModal(), this.resetAskText(), s(Object(j.b)("stories_question_sent").replace("{name}", r.first_name_ins)), o(t ? "question_reply_anonymous" : "question_reply")
+                            this.closeQuestionModal(), this.resetAskText(), r(Object(C.b)("stories_question_sent").replace("{name}", a.first_name_ins)), n(s ? "question_reply_anonymous" : "question_reply")
                         },
-                        onFail: e => (this.closeQuestionModal(), this.resetAskText(), s(e), !0),
+                        onFail: e => (this.closeQuestionModal(), this.resetAskText(), r(e), !0),
                         showProgress: () => this.setState({
                             isQuestionButtonLoading: !0
                         }),
@@ -2020,10 +2099,12 @@
                         })
                     })
                 });
-                var [t, s] = Object(V.N)(this.props.el);
+                var s = pe(Object(Y.N)(this.props.el), 2),
+                    r = s[0],
+                    o = s[1];
                 this.askTextarea = i.createRef(), this.state = {
-                    widthViewBox: t,
-                    heightViewBox: s,
+                    widthViewBox: r,
+                    heightViewBox: o,
                     clientX: 0,
                     clientY: 0,
                     showTooltip: !1,
@@ -2036,16 +2117,14 @@
                 }
             }
         }
-        class de {
+        class me {
             constructor(e, t) {
                 this.data = e, this.opts = t, this.paused = !0, this.loaded = !1, this.elems = {}, this.startTs = 0;
-                var {
-                    is_expired: s,
-                    is_deleted: i,
-                    can_view_deleted: r,
-                    is_private: o,
-                    narrative: a
-                } = e;
+                var s = e.is_expired,
+                    i = e.is_deleted,
+                    r = e.can_view_deleted,
+                    o = e.is_private,
+                    a = e.narrative;
                 r || (s ? this._error("expired") : i ? a ? this._error("deleted-narrative") : this._error("deleted") : o && (a ? this._error("private-narrative") : this._error("private")), (s || i || o) && (this.failed = !0))
             }
             render() {
@@ -2054,11 +2133,11 @@
                 }, 1e3), this.opts.onLoadingStart())
             }
             renderNarrativeCover() {
-                var {
-                    narrative: e,
-                    photo_url: t
-                } = this.data, s = e && e.views ? winToUtf(` · ${e.views}`) : "";
-                return this.NarrativeCover = se(`\n      <div class="stories_narrative_cover">\n        <div class="stories_narrative_cover_photo" id="stories_narrative_cover_photo" style="background-image: url(${data})"></div>\n        <div class="stories_narrative_cover__info">\n          <span class="stories_narrative_cover__label">${getLang("global_type_narrative")}</span>\n          <span class="stories_narrative_cover__views">${s}</span>\n        </div>\n        <div class="stories_narrative_cover__title">${e.title}</div>\n        <div class="stories_narrative_cover__author">${e.owner_name}</div>\n      </div>\n    `), u(t).then(e => {
+                var e = this.data,
+                    t = e.narrative,
+                    s = e.photo_url,
+                    i = t && t.views ? winToUtf(` · ${t.views}`) : "";
+                return this.NarrativeCover = se(`\n      <div class="stories_narrative_cover">\n        <div class="stories_narrative_cover_photo" id="stories_narrative_cover_photo" style="background-image: url(${data})"></div>\n        <div class="stories_narrative_cover__info">\n          <span class="stories_narrative_cover__label">${getLang("global_type_narrative")}</span>\n          <span class="stories_narrative_cover__views">${i}</span>\n        </div>\n        <div class="stories_narrative_cover__title">${t.title}</div>\n        <div class="stories_narrative_cover__author">${t.owner_name}</div>\n      </div>\n    `), p(s).then(e => {
                     var t = geByClass1("stories_narrative_cover_photo");
                     t && setStyle(t, "backgroundImage", "url(" + e + ")")
                 }), this.NarrativeCover
@@ -2097,9 +2176,7 @@
                     var t = ce("span", {
                             className: "narrative-preview",
                             onclick: t => {
-                                var {
-                                    target: i
-                                } = t;
+                                var i = t.target;
                                 Stories.show(`${cur.storyLayer.getBlockKey(e)}/${s}`, {
                                     fromEl: i,
                                     narrativeId: e.narrative.id,
@@ -2155,7 +2232,9 @@
             pause() {
                 this.paused = !0, this.opts.onPause()
             }
-            setCurrentTime(e = 0) {}
+            setCurrentTime() {
+                arguments.length > 0 && void 0 !== arguments[0] && arguments[0]
+            }
             destroy() {
                 removeEvent(this.elems.recBlock), clearTimeout(this.longLoadingTimer)
             }
@@ -2213,8 +2292,8 @@
                 return this.failed
             }
         }
-        var he = 5e3;
-        class _e extends de {
+        var ye = 5e3;
+        class be extends me {
             constructor(e, t, s) {
                 super(e, t, s), this.wrapEl = s, this.videoRaw = `${this.data.video.owner_id}_${this.data.video.video_id}`
             }
@@ -2292,7 +2371,7 @@
                     t.lineWidth = 6, t.lineCap = "round", t.strokeStyle = "#fff";
                     var s = Date.now(),
                         i = () => {
-                            var e = (Date.now() - s) / he;
+                            var e = (Date.now() - s) / ye;
                             e < 1 ? (t.clearRect(0, 0, 100, 100), t.beginPath(), t.arc(50, 50, 47, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * e), t.stroke(), this._nextTO = setTimeout(i, 16)) : cur.storyLayer.nextStory()
                         };
                     show(e), this.timerInProgress = !0, i()
@@ -2302,15 +2381,13 @@
                 window.CanvasRenderingContext2D && (clearTimeout(this._nextTO), this.timerInProgress = !1, hide(domByClass(this.el, "_timer_canvas")))
             }
         }
-        class pe extends de {
+        class fe extends me {
             constructor(e, t) {
                 super(e, t), this.isFirstChunkLoaded = !1
             }
             render() {
                 if (super.render(), this.video) return this.video;
-                var {
-                    video_url: e
-                } = this.data;
+                var e = this.data.video_url;
                 return this.video = ce("video", {
                     className: "stories_video",
                     autoplay: !1,
@@ -2344,7 +2421,8 @@
             pause() {
                 super.pause(), this.video && this.video.pause()
             }
-            setCurrentTime(e = 0) {
+            setCurrentTime() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.loaded && (this.video.currentTime = e)
             }
             getCurrentTime() {
@@ -2362,21 +2440,20 @@
                 this.video.volume = y()
             }
         }
-        var ue = 5e3;
-        class ve extends de {
+        var we = 5e3;
+        class Se extends me {
             constructor(e, t) {
                 super(e, t), this.pauseTime = 0
             }
             render() {
                 if (super.render(), this.photo) return this.photo;
-                var {
-                    photo_url: e,
-                    narrative: t
-                } = this.data;
+                var e = this.data,
+                    t = e.photo_url,
+                    s = e.narrative;
                 return this.photo = ce("div", {
                     className: "stories_photo"
-                }), this._isFailed() ? this.photo : (u(e).then(e => {
-                    this.photo && (t && t.is_cover ? addClass(this.photo, "stories_narrative_cover_blur") : setStyle(this.photo, "backgroundImage", "url(" + e + ")"), this._onCanPlay())
+                }), this._isFailed() ? this.photo : (p(t).then(e => {
+                    this.photo && (s && s.is_cover ? addClass(this.photo, "stories_narrative_cover_blur") : setStyle(this.photo, "backgroundImage", "url(" + e + ")"), this._onCanPlay())
                 }).catch(() => {
                     this._loadingError()
                 }), this.photo)
@@ -2393,14 +2470,15 @@
             pause() {
                 this.isPaused() || (super.pause(), this.pauseTime = this.getCurrentTime())
             }
-            setCurrentTime(e = 0) {
+            setCurrentTime() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
                 this.startTs = Date.now() + e, this.isPaused() && (this.pauseTime = e)
             }
             getCurrentTime() {
                 return Date.now() - this.startTs || 0
             }
             getDuration() {
-                return ue
+                return we
             }
             _onCanPlay() {
                 super._onCanPlay(), cur.storyLayer._sendNavigationStatEvents("view_story", !0, {
@@ -2408,32 +2486,57 @@
                 }), setStyle(this.photo, "opacity", 1)
             }
         }
-        var me = s("v+DW"),
-            ye = s("Egk5"),
-            be = s("4+be"),
-            we = s("EasH"),
-            fe = s("kcIO");
-        class Se {
+        var ke = s("v+DW"),
+            Ee = s("Egk5"),
+            Oe = s("4+be"),
+            Te = s("EasH"),
+            je = s("kcIO");
+
+        function Ce(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        class Le {
             constructor(e, t) {
                 this.data = e, this.opts = t, this.id = t.id, this.isActive = !1, this.story = !1, this.pressedStory = null, this.index = 0, this.preloadedStories = {}, this.layer = t.layer, this.longTapTimer
             }
             destroy() {
-                this._destroyStory(), Object(ye.h)(Object(V.H)("stories_item_cont", this.contWrap)), Object(ye.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), Object(ye.h)(this.shareButton), delete this.shareButton, Object(ye.h)(this.followBtn), delete this.followBtn, Object(ye.h)(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
-                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(ye.h)(e[t]);
-                Object(ye.h)(this.viewsButton), Object(ye.h)(Object(V.H)("stories_feedback_close", this.wrapEl)), Object(ye.h)(Object(V.H)("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
+                this._destroyStory(), Object(Ee.h)(Object(Y.H)("stories_item_cont", this.contWrap)), Object(Ee.h)(Object(Y.H)("stories_reply_to", this.replyToWrap)), Object(Ee.h)(this.shareButton), delete this.shareButton, Object(Ee.h)(this.followBtn), delete this.followBtn, Object(Ee.h)(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
+                for (var e = Object(Y.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(Ee.h)(e[t]);
+                Object(Ee.h)(this.viewsButton), Object(Ee.h)(Object(Y.H)("stories_feedback_close", this.wrapEl)), Object(Ee.h)(Object(Y.H)("stories_link", this.wrapEl)), delete this.contWrap, delete this.backButton, delete this.replyToWrap, delete this.descEl, delete this.replyToWrap, delete this.timeLineEl, delete this.authorButtons, delete this.inlineLoader, this.wrapEl && this.wrapEl.parentNode && this.wrapEl.parentNode.removeChild(this.wrapEl), delete this.wrapEl;
                 for (var s = !1, i = 0; i < this.data.items.length; i++)
                     if (this.data.items[i].unread) {
                         s = !0;
                         break
                     }
-                var r = E();
+                var r = O();
                 if (!s && r && r.activeStory) {
-                    var o = Object(V.B)("#feed_story_" + this.layer.getBlockKey(this.data), r.activeStory.wrapEl)[0];
-                    Object(V.hb)(o, "story_feed_new_item"), Object(V.hb)(o, "story_feed_new_item_promo")
+                    var o = Object(Y.B)("#feed_story_" + this.layer.getBlockKey(this.data), r.activeStory.wrapEl)[0];
+                    Object(Y.hb)(o, "story_feed_new_item"), Object(Y.hb)(o, "story_feed_new_item_promo")
                 }
             }
             _destroyTimeLine() {
-                for (var e = Object(V.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(ye.h)(e[t])
+                for (var e = Object(Y.G)("stories_time_line", this.timeLineEl), t = 0; t < e.length; t++) Object(Ee.h)(e[t])
             }
             getOwnerId() {
                 return this.data.author.id
@@ -2473,7 +2576,7 @@
                 var e = ce("div", {
                     className: "stories_item_cont"
                 });
-                return Object(ye.b)(e, "mousedown", this._onMouseDownHandle.bind(this)), Object(ye.b)(e, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(e), e.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
+                return Object(Ee.b)(e, "mousedown", this._onMouseDownHandle.bind(this)), Object(Ee.b)(e, "mouseup", this._onMouseUpHandle.bind(this)), this.contWrap.appendChild(e), e.appendChild(this._renderAuthor()), this.contWrap.appendChild(ce("div", {
                     className: "stories_bottom_wrap"
                 })), this.contWrap.appendChild(this._renderPreview()), this.indexToUnread(), cur.noStoriesBack || (this.backButton = ce("div", {
                     className: "stories_item_back"
@@ -2487,11 +2590,11 @@
                     onclick: () => {
                         this.story.play()
                     }
-                })), this.isActiveLive() ? Object(V.a)(this.wrapEl, "live") : this._initTimeLine(), Object(V.wb)(this.wrapEl, "multi_stories", this.data.items.length > 1), this.wrapEl
+                })), this.isActiveLive() ? Object(Y.a)(this.wrapEl, "live") : this._initTimeLine(), Object(Y.wb)(this.wrapEl, "multi_stories", this.data.items.length > 1), this.wrapEl
             }
             updateBottom(e) {
-                var t = Object(V.H)("stories_bottom_wrap", this.wrapEl);
-                !this.isActive || e || this.story.isNarrativeMetaStory ? (r.unmountComponentAtNode(t), val(t, "")) : r.render(i.createElement(F, {
+                var t = Object(Y.H)("stories_bottom_wrap", this.wrapEl);
+                !this.isActive || e || this.story.isNarrativeMetaStory ? (r.unmountComponentAtNode(t), val(t, "")) : r.render(i.createElement(W, {
                     story: this
                 }), t)
             }
@@ -2499,20 +2602,20 @@
                 return this.data.moder_remove_hash && !this.data.items[0].is_deleted
             }
             _initTimeLine() {
-                this.timeLineEl && (this._destroyTimeLine(), re(this.timeLineEl)), Object(V.H)("stories_item_cont", this.contWrap).appendChild(this._renderTimeLine())
+                this.timeLineEl && (this._destroyTimeLine(), re(this.timeLineEl)), Object(Y.H)("stories_item_cont", this.contWrap).appendChild(this._renderTimeLine())
             }
             _isActionsShown() {
                 var e = domClosest("_ui_menu_wrap", this.wrapEl);
                 return hasClass(e, "shown")
             }
             _renderPreview() {
-                return Object(V.mb)('<div class="stories_preview"></div>')
+                return Object(Y.mb)('<div class="stories_preview"></div>')
             }
             _renderMessage(e) {
-                return Object(V.mb)(`<div class="stories_message">\n  <div class="stories_message_text">${e}</div>\n</div>`)
+                return Object(Y.mb)(`<div class="stories_message">\n  <div class="stories_message_text">${e}</div>\n</div>`)
             }
             _showMessage(e) {
-                re(Object(V.H)("stories_message", this.contWrap));
+                re(Object(Y.H)("stories_message", this.contWrap));
                 var t = this._renderMessage(e);
                 return this.contWrap.appendChild(t), clearTimeout(this.showMessageTimer), new Promise(e => {
                     this.showMessageTimer = setTimeout(() => {
@@ -2521,38 +2624,34 @@
                 })
             }
             _setPreview(e, t) {
-                var {
-                    index: s
-                } = this, {
-                    preview_url: i
-                } = this.data.items[s], r = i;
-                r !== this.curPreviewUrl && r && (t = t || (() => {}), e = e || Object(V.H)("stories_preview", this.contWrap), u(r).then(i => {
-                    s === this.index && r !== this.curPreviewUrl && (this.curPreviewUrl = r, Object(V.rb)(e, "backgroundImage", "url(" + i + ")")), Object(V.rb)(e, "opacity", 1), setTimeout(t, 0)
+                var s = this.index,
+                    i = this.data.items[s].preview_url;
+                i !== this.curPreviewUrl && i && (t = t || (() => {}), e = e || Object(Y.H)("stories_preview", this.contWrap), p(i).then(r => {
+                    s === this.index && i !== this.curPreviewUrl && (this.curPreviewUrl = i, Object(Y.rb)(e, "backgroundImage", "url(" + r + ")")), Object(Y.rb)(e, "opacity", 1), setTimeout(t, 0)
                 }))
             }
             getPreview() {
                 return this.data.items[this.index].preview_url
             }
             _renderAuthor() {
-                var e, {
-                        photo: t,
-                        href: s,
-                        name: i,
-                        verify: r
-                    } = this.data.author,
-                    o = this.data && this.data.items[0] && this.data.items[0].narrative,
-                    a = "_self";
-                (this.layer.list.includes("place") && (a = "_blank"), this.data.is_narrative && o && !o.is_cover) ? e = `\n      <div>\n          <div class="stories_narrative_title">${o.title}</div>\n          <span class="stories_narrative_author"><a href="${s}" target="${a}" class="stories_narrative_author_link">${i}</a> · ${Object(be.d)("global_type_narrative")}</span>\n      </div>`: e = `\n      <div class="stories_author_cont">\n        ${`<a href="${s}" class="stories_author_photo_wrap"><img src="${t}" class="stories_author_photo" /></a>`}\n        <a href="${s}" target="${a}" class="stories_author_name"><span>${i}</span></a>\n        ${r||""}\n        <div class="stories_desc"></div>\n      </div>`;
-                var n = Object(V.mb)(`\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">${e}</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    `);
-                return Object(ye.b)(n, "click", e => {
-                    Object(V.o)("a", e.target) && this.layer._sendNavigationStatEvents("go_to_author")
-                }), !0 === this.data.hide_owner && val(Object(V.H)("stories_author_cont", n), ""), Object(V.wb)(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.descEl = Object(V.H)("stories_desc", n), this.authorButtons = Object(V.H)("stories_author_buttons", n), n
+                var e, t = this.data.author,
+                    s = t.photo,
+                    i = t.href,
+                    r = t.name,
+                    o = t.verify,
+                    a = this.data && this.data.items[0] && this.data.items[0].narrative,
+                    n = "_self";
+                (this.layer.list.includes("place") && (n = "_blank"), this.data.is_narrative && a && !a.is_cover) ? e = `\n      <div>\n          <div class="stories_narrative_title">${a.title}</div>\n          <span class="stories_narrative_author"><a href="${i}" target="${n}" class="stories_narrative_author_link">${r}</a> · ${Object(Oe.d)("global_type_narrative")}</span>\n      </div>`: e = `\n      <div class="stories_author_cont">\n        ${`<a href="${i}" class="stories_author_photo_wrap"><img src="${s}" class="stories_author_photo" /></a>`}\n        <a href="${i}" target="${n}" class="stories_author_name"><span>${r}</span></a>\n        ${o||""}\n        <div class="stories_desc"></div>\n      </div>`;
+                var l = Object(Y.mb)(`\n      <div class="stories_author">\n        <div class="stories_author_cont_wrap">\n          <div class="stories_author_inner">${e}</div>\n          <div class="stories_author_buttons"></div>\n         </div>\n      </div>\n    `);
+                return Object(Ee.b)(l, "click", e => {
+                    Object(Y.o)("a", e.target) && this.layer._sendNavigationStatEvents("go_to_author")
+                }), !0 === this.data.hide_owner && val(Object(Y.H)("stories_author_cont", l), ""), Object(Y.wb)(this.wrapEl, "hide_owner", !0 === this.data.hide_owner), this.descEl = Object(Y.H)("stories_desc", l), this.authorButtons = Object(Y.H)("stories_author_buttons", l), l
             }
             _renderFollowButton() {
                 return this.followBtn = ce("div", {
                     className: "stories_author_button stories_follow"
-                }), Object(ye.b)(this.followBtn, "click", this._onFollowBtnClick.bind(this)), Object(ye.b)(this.followBtn, "mouseover", () => {
-                    var e = hasClass(this.followBtn, "followed") ? Object(be.d)("stories_unfollow") : Object(be.d)("stories_follow");
+                }), Object(Ee.b)(this.followBtn, "click", this._onFollowBtnClick.bind(this)), Object(Ee.b)(this.followBtn, "mouseover", () => {
+                    var e = hasClass(this.followBtn, "followed") ? Object(Oe.d)("stories_unfollow") : Object(Oe.d)("stories_follow");
                     showTooltip(this.followBtn, {
                         black: 1,
                         center: 1,
@@ -2569,7 +2668,7 @@
                     var s = ce("div", {
                         className: "stories_time_line_item"
                     });
-                    Object(ye.b)(s, "click", () => {
+                    Object(Ee.b)(s, "click", () => {
                         this.layer._sendNavigationStatEvents("go_to_story_click"), this.changeStory(t)
                     });
                     var i = ce("div", {
@@ -2587,19 +2686,17 @@
                 return !this.story || this.story.isLoaded()
             }
             _onMouseDownHandle(e) {
-                this.pressedStory = e.target, this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), Y)))
+                this.pressedStory = e.target, this.isActive && (this.isLocked() || !hasClass(e.target, "stories_item_cont") && !hasClass(e.target, "stories_item_back") || this.downTs || (this.downTs = vkNow(), this.longTapTimer = setTimeout(this._longTapHandle.bind(this), ee)))
             }
             _onMouseUpHandle(e) {
                 clearTimeout(this.longTapTimer);
-                var {
-                    downTs: t
-                } = this;
+                var t = this.downTs;
                 if (delete this.downTs, e.target === this.pressedStory) {
                     this.pressedStory = null;
-                    var s = !(vkNow() - t < Y && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
+                    var s = !(vkNow() - t < ee && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
                     if (this.isActive && hasClass(e.target, "stories_item_back") && !s && !this.isTooltipOpened()) return this.prevStory();
                     if (hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back"))
-                        if (this._feedbackTTShown && this.hideFeedbackTooltip(), Object(V.hb)(this.wrapEl, "paused"), this.isTooltipOpened()) this._hideTooltip();
+                        if (this._feedbackTTShown && this.hideFeedbackTooltip(), Object(Y.hb)(this.wrapEl, "paused"), this.isTooltipOpened()) this._hideTooltip();
                         else {
                             if (!this.isActive) {
                                 this.id >= this.layer.activeStory.id && this.layer._markStoryAsSkipped();
@@ -2611,19 +2708,22 @@
                 }
             }
             _longTapHandle() {
-                this.story && this.story.pause(), Object(V.a)(this.wrapEl, "paused"), this.isTooltipOpened() || this.layer._sendNavigationStatEvents("pause_long_tap")
+                this.story && this.story.pause(), Object(Y.a)(this.wrapEl, "paused"), this.isTooltipOpened() || this.layer._sendNavigationStatEvents("pause_long_tap")
             }
             isLocked() {
-                return !!(this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(fe.b)() && "stories" !== Object(fe.b)().wkRaw)
+                return !!(this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(je.b)() && "stories" !== Object(je.b)().wkRaw)
             }
-            autoResumeStory(e = !1) {
+            autoResumeStory() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 this.audioPlaying || this.story && this.story.isNarrativeMetaStory || this.isTooltipOpened() || this.playStory(!1, e)
             }
-            playStory(e = !1, t) {
-                this.isLocked() || (Object(V.hb)(this.wrapEl, "paused"), hide(boxLayerBG), hide(boxLayerWrap), this.story && !e || this._initStory(), this.story.play(), t && this.layer._sendNavigationStatEvents("resume_release"), delete this.downTs)
+            playStory() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                    t = arguments.length > 1 ? arguments[1] : void 0;
+                this.isLocked() || (Object(Y.hb)(this.wrapEl, "paused"), hide(boxLayerBG), hide(boxLayerWrap), this.story && !e || this._initStory(), this.story.play(), t && this.layer._sendNavigationStatEvents("resume_release"), delete this.downTs)
             }
             pauseStory(e) {
-                this.story && (this.isPaused() || (e && Object(V.a)(this.wrapEl, "paused"), this.story.pause()))
+                this.story && (this.isPaused() || (e && Object(Y.a)(this.wrapEl, "paused"), this.story.pause()))
             }
             changeStory(e) {
                 if (this.index !== e && !this.formLocked) {
@@ -2636,7 +2736,7 @@
                 return this.wrapEl
             }
             stop() {
-                this._destroyFeedBackTT(), this.isActive = !1, this._destroyStory(), this._stopLoader(), val(Object(V.H)("stories_send_form_text", this.wrapEl), ""), this._unlockSendForm(), Object(V.hb)(this.wrapEl, "autoplay_failed")
+                this._destroyFeedBackTT(), this.isActive = !1, this._destroyStory(), this._stopLoader(), val(Object(Y.H)("stories_send_form_text", this.wrapEl), ""), this._unlockSendForm(), Object(Y.hb)(this.wrapEl, "autoplay_failed")
             }
             getCurStoryData() {
                 var e = this.data.items[this.index];
@@ -2650,9 +2750,7 @@
             }
             _initStory() {
                 var e = this.getCurStoryData(),
-                    {
-                        type: t
-                    } = e;
+                    t = e.type;
                 this.story && this._destroyStory();
                 var s = {
                     onLoadingStart: this._onLoadingStart.bind(this),
@@ -2663,14 +2761,14 @@
                     onLongLoading: this._showLoader.bind(this),
                     onAutoPlayFail: this._onAutoPlayFail.bind(this)
                 };
-                if ("live" === t) this.story = new _e(e, s, this.wrapEl);
+                if ("live" === t) this.story = new be(e, s, this.wrapEl);
                 else {
-                    "video" === t ? (this.story = new pe(e, s), Object(V.a)(this.wrapEl, "video")) : (this.story = new ve(e, s), this.opts.onVideoEnd(), Object(V.hb)(this.wrapEl, "video"));
+                    "video" === t ? (this.story = new fe(e, s), Object(Y.a)(this.wrapEl, "video")) : (this.story = new Se(e, s), this.opts.onVideoEnd(), Object(Y.hb)(this.wrapEl, "video"));
                     var o = this.story.getDate();
-                    e.isPromo ? o = e.promoCaption : e.isAds && (o = Object(be.d)("stories_is_ad")), val(this.descEl, o), this.fillTimeLine()
+                    e.isPromo ? o = e.promoCaption : e.isAds && (o = Object(Oe.d)("stories_is_ad")), val(this.descEl, o), this.fillTimeLine()
                 }
                 "live" !== t && "video" !== t || y() > 0 && this.opts.onVideoPlay();
-                this.opts.onStartStory(), Object(V.wb)(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && (this.stickerLayers = r.render(i.createElement(le, {
+                this.opts.onStartStory(), Object(Y.wb)(this.wrapEl, "stories_can_comment", !0 === e.can_comment), e.reply_to && this.replyToWrap.appendChild(this._renderReplyTo()), !this.data.author.can_follow || this.data.is_promo || this.isActiveLive() || this.authorButtons.appendChild(this._renderFollowButton()), this.story.isNarrativeMetaStory = e.isNarrativeMetaStory, this._destroyFeedBackTT(), this.story.isNarrativeMetaStory || (this.updateBottom(), this.contWrap.appendChild(this.story.render())), e.clickable_stickers && (this.stickerLayers = r.render(i.createElement(ve, {
                     story: this.story,
                     storyData: e,
                     author: this.data.author,
@@ -2682,14 +2780,14 @@
                     list: this.layer.list,
                     layerEl: this.layer.layerEl,
                     el: this.contWrap
-                }), this.contStickers)), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), Object(ye.b)(Object(V.H)("stories_narrative_cover", this.contWrap), "click", e => {
+                }), this.contStickers)), this.story.data && this.story.data.narrative && this.story.data.narrative.is_cover && (this.contWrap.appendChild(this.story.renderNarrativeCover()), Object(Ee.b)(Object(Y.H)("stories_narrative_cover", this.contWrap), "click", e => {
                     this._showTooltip(e, this._createNarrativeTooltipLink())
-                })), this.story.isNarrativeMetaStory && !this.story.failed && (re(Object(V.H)("stories_photo", this.contWrap)), re(Object(V.H)("stories_video", this.contWrap)), Object(V.a)(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
+                })), this.story.isNarrativeMetaStory && !this.story.failed && (re(Object(Y.H)("stories_photo", this.contWrap)), re(Object(Y.H)("stories_video", this.contWrap)), Object(Y.a)(this.contWrap, "stories_item_cont_wrap_meta_story"), this.contWrap.appendChild(this.story.renderNarrativeMetaStory()), this.story._onCanPlay())
             }
             _createNarrativeTooltipLink() {
                 return ce("div", {
                     className: "StoriesTooltip__link",
-                    innerHTML: Object(be.d)("stories_narrative_show"),
+                    innerHTML: Object(Oe.d)("stories_narrative_show"),
                     onclick: () => {
                         this._hideTooltip(!0), showNarrative(`${this.story.data.narrative.owner_id}_${this.story.data.narrative.id}`, {
                             isOpenNarrativeFromFeed: !0,
@@ -2710,13 +2808,13 @@
                         top: 0,
                         left: 0
                     }), this.tooltip.appendChild(t), this.layer.layerEl.appendChild(this.tooltip);
-                    var {
-                        clientX: s = 0,
-                        clientY: i = 0
-                    } = e;
-                    Object(V.rb)(this.tooltip, {
-                        top: i,
-                        left: s
+                    var s = e.clientX,
+                        i = void 0 === s ? 0 : s,
+                        r = e.clientY,
+                        o = void 0 === r ? 0 : r;
+                    Object(Y.rb)(this.tooltip, {
+                        top: o,
+                        left: i
                     }), this.pauseStory()
                 }
             }
@@ -2729,10 +2827,10 @@
             getViews() {
                 return this.story.getViews()
             }
-            indexToUnread(e = !1) {
-                var {
-                    items: t
-                } = this.data, s = 0;
+            indexToUnread() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+                    t = this.data.items,
+                    s = 0;
                 for (var i in t)
                     if (t[i].unread && !this.layer._hasContext("all")) {
                         s = intval(i);
@@ -2742,9 +2840,8 @@
                 this.index = s, this._setPreview()
             }
             indexToStoryById(e) {
-                var {
-                    items: t
-                } = this.data, s = -1;
+                var t = this.data.items,
+                    s = -1;
                 for (var i in t)
                     if (t[i].raw_id === e) {
                         s = intval(i);
@@ -2753,37 +2850,33 @@
                 this.layer._hasContext("all") && (s = 0), s > -1 ? (this.index = s, this._setPreview()) : this.indexToUnread()
             }
             fillTimeLine() {
-                var {
-                    timeLineEl: e
-                } = this;
+                var e = this.timeLineEl;
                 if (e)
                     for (var t = 0; t < e.children.length; t++) {
-                        var s = Object(V.H)("stories_time_line_item_cont_active", e.children[t]);
+                        var s = Object(Y.H)("stories_time_line_item_cont_active", e.children[t]);
                         t === this.index && (this.currentTimeLineEl = s);
                         var i = t < this.index ? 100 : 0;
-                        Object(V.rb)(s, "transform", "translateX(" + i + "%)")
+                        Object(Y.rb)(s, "transform", "translateX(" + i + "%)")
                     }
             }
             _destroyStory() {
                 if (this.story) {
-                    this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), Object(V.hb)(this.contWrap, "stories_item_cont_wrap_meta_story"), re(Object(V.H)("narrative-meta-story", this.contWrap)), Object(V.hb)(this.contWrap, "stories_narrative_cover_blur"), re(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(ye.h)(Object(V.H)("stories_narrative_cover", this.contWrap)), Object(ye.h)(window, "resize", this._onResizeHandle);
+                    this.updateBottom(!0), window.tooltips && tooltips.hideAll(), this._hideTooltip(), this._resetErrors(), this._destroyFeedBackTT(), this.story.pause(), Object(Y.hb)(this.contWrap, "stories_item_cont_wrap_meta_story"), re(Object(Y.H)("narrative-meta-story", this.contWrap)), Object(Y.hb)(this.contWrap, "stories_narrative_cover_blur"), re(Object(Y.H)("stories_narrative_cover", this.contWrap)), Object(Ee.h)(Object(Y.H)("stories_narrative_cover", this.contWrap)), Object(Ee.h)(window, "resize", this._onResizeHandle);
                     var e = this.getCurStoryData();
                     e && e.clickable_stickers && (r.unmountComponentAtNode(this.contStickers), delete this.stickerLayers), cancelAnimationFrame(this.timeLineAnim);
                     try {
                         this.contWrap.removeChild(this.story.getContainer()), this.story.destroy()
                     } catch (e) {}
-                    this._replyHideEnd(), Object(ye.h)(this.followBtn), val(this.authorButtons, ""), Object(ye.h)(this.answersEl), Object(ye.h)(Object(V.H)("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
+                    this._replyHideEnd(), Object(Ee.h)(this.followBtn), val(this.authorButtons, ""), Object(Ee.h)(this.answersEl), Object(Ee.h)(Object(Y.H)("stories_reply_to", this.replyToWrap)), val(this.replyToWrap, ""), this.hideInlineLoader(), delete this.story
                 }
             }
             _timeLineUpdate() {
-                var {
-                    story: e
-                } = this;
+                var e = this.story;
                 if (e && !e.isPaused() && !this.isActiveLive()) {
                     var t = e.getCurrentTime(),
                         s = e.getDuration(),
                         i = Math.max(0, Math.min(100, t / s * 100));
-                    Object(V.rb)(this.currentTimeLineEl, "transform", "translateX(" + i + "%) translateZ(0)"), i < 100 ? this.timeLineAnim = requestAnimationFrame(this._timeLineUpdate.bind(this)) : this._onPlayEnd(!0)
+                    Object(Y.rb)(this.currentTimeLineEl, "transform", "translateX(" + i + "%) translateZ(0)"), i < 100 ? this.timeLineAnim = requestAnimationFrame(this._timeLineUpdate.bind(this)) : this._onPlayEnd(!0)
                 }
             }
             _onLoadingStart() {
@@ -2793,19 +2886,19 @@
                 this._loadingStartTime && (this.loadingTime = Date.now() - this._loadingStartTime, this.layer._sendViewerStartTime(this.getRawId(), this.loadingTime), this._loadingStartTime = 0)
             }
             _onPlay() {
-                this._resetErrors(), this._stopLoader(), this._timeLineUpdate(), this.preloadNextStory(), this.opts.onPlayStory(), Object(V.hb)(this.wrapEl, "animate_story"), Object(V.hb)(this.wrapEl, "autoplay_failed"), this.data.items[this.getIndex()].unread = !1, this._updateFeedStoryPreview()
+                this._resetErrors(), this._stopLoader(), this._timeLineUpdate(), this.preloadNextStory(), this.opts.onPlayStory(), Object(Y.hb)(this.wrapEl, "animate_story"), Object(Y.hb)(this.wrapEl, "autoplay_failed"), this.data.items[this.getIndex()].unread = !1, this._updateFeedStoryPreview()
             }
             _onPause() {
                 cancelAnimationFrame(this.timeLineAnim)
             }
-            _onPlayEnd(e = !1) {
+            _onPlayEnd() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 this.nextStory(e)
             }
-            nextStory(e = !1) {
+            nextStory() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 if (!this.isLocked()) {
-                    var {
-                        items: t
-                    } = this.data;
+                    var t = this.data.items;
                     e || this.layer._sendNavigationStatEvents("go_to_next_story_tap");
                     var s = this.index + 1;
                     s < t.length ? (e && this.layer._sendNavigationStatEvents("go_to_next_story_auto_by_time"), this.changeStory(s)) : (this.opts.onStoriesEnd(e), this._destroyStory())
@@ -2826,11 +2919,11 @@
             }
             removeStoryBox() {
                 this.pauseStory(), showFastBox({
-                    title: Object(be.d)("global_warning"),
+                    title: Object(Oe.d)("global_warning"),
                     onHide: () => {
                         this.playStory()
                     }
-                }, Object(be.d)("stories_remove_warning"), Object(be.d)("stories_remove_confirm"), this.removeStory.bind(this), Object(be.d)("global_cancel"))
+                }, Object(Oe.d)("stories_remove_warning"), Object(Oe.d)("stories_remove_confirm"), this.removeStory.bind(this), Object(Oe.d)("global_cancel"))
             }
             removeStory(e) {
                 this.pauseStory();
@@ -2843,27 +2936,24 @@
                     moder_remove_hash: this.data.moder_remove_hash
                 }, {
                     onDone: e => {
-                        window.cur.module === G && window.GeStories.storyDidRemove(s, e), Object(fe.b)().hide(), this._popStoryAndClearList(t)
+                        window.cur.module === Z && window.GeStories.storyDidRemove(s, e), Object(je.b)().hide(), this._popStoryAndClearList(t)
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
             removeNarrativeBox() {
                 this.pauseStory(), showFastBox({
-                    title: Object(be.d)("global_warning"),
+                    title: Object(Oe.d)("global_warning"),
                     onHide: () => {
                         this.playStory()
                     }
-                }, Object(be.d)("stories_narrative_remove_warning"), Object(be.d)("stories_remove_confirm"), this.removeNarrative.bind(this), Object(be.d)("global_cancel"))
+                }, Object(Oe.d)("stories_narrative_remove_warning"), Object(Oe.d)("stories_remove_confirm"), this.removeNarrative.bind(this), Object(Oe.d)("global_cancel"))
             }
             removeNarrative(e) {
                 this.pauseStory();
-                var {
-                    narrative: t
-                } = this.getCurStoryData(), {
-                    raw_id: s
-                } = t;
+                var t = this.getCurStoryData().narrative,
+                    s = t.raw_id;
                 ajax.post("al_stories.php", {
                     act: "remove_narrative",
                     narrative_raw: s,
@@ -2871,10 +2961,10 @@
                     moder_remove_hash: this.data.moder_remove_hash
                 }, {
                     onDone: () => {
-                        Object(fe.b)().hide(), this._popCoverAndCleanNarrativeList(t)
+                        Object(je.b)().hide(), this._popCoverAndCleanNarrativeList(t)
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
             _popCoverAndCleanNarrativeList(e) {
@@ -2886,9 +2976,7 @@
                 }
             }
             _sendNarrativeBookmarkButtonDidPress() {
-                var {
-                    narrative: e
-                } = this.getCurStoryData();
+                var e = this.getCurStoryData().narrative;
                 this.updateBottom = this.updateBottom.bind(this), ajax.post("al_bookmarks.php", {
                     act: "bookmark",
                     owner_id: e.owner_id,
@@ -2899,22 +2987,21 @@
                     ref: cur.module
                 }, {
                     onDone: t => {
-                        showDoneBox(t || Object(be.d)("stories_narrative_bookmark_deleted"), {
+                        showDoneBox(t || Object(Oe.d)("stories_narrative_bookmark_deleted"), {
                             className: "stories_done_msg"
                         }), e.is_bookmarked = !e.is_bookmarked, this.updateBottom()
                     }
                 })
             }
             _sendNarrativeEditButtonDidPress() {
-                var {
-                    narrative: e
-                } = this.getCurStoryData();
+                var e = this.getCurStoryData().narrative;
                 window.open(`https://${location.hostname}${this.data.author.href}?act=narrative_edit&nid=${e.id}`)
             }
             _popStoryAndClearList(e) {
-                this._removeStoryFromMemoryByIndex(e), 0 === this.data.items.length && O(this.getOwnerId())
+                this._removeStoryFromMemoryByIndex(e), 0 === this.data.items.length && T(this.getOwnerId())
             }
-            _removeStoryFromMemoryByIndex(e, t = !1) {
+            _removeStoryFromMemoryByIndex(e) {
+                var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
                 this.data.items.splice(e, 1), this.opts.removeList();
                 var s = this.data.items.length;
                 s ? (this._initTimeLine(), s > e ? this.isActive && this.playStory(!0) : this.isActive && this.nextStory()) : this._remove(t)
@@ -2923,10 +3010,8 @@
                 this.opts.onStoryRemoved(e, t)
             }
             shareBox() {
-                var e, {
-                    narrative: t
-                } = this.getCurStoryData();
-                e = t ? `narrative${t.raw_id}` : `story${this.story.getId()}`, this.pauseStory(), Object(we.b)("like.php", {
+                var e, t = this.getCurStoryData().narrative;
+                e = t ? `narrative${t.raw_id}` : `story${this.story.getId()}`, this.pauseStory(), Object(Te.b)("like.php", {
                     act: "publish_box",
                     object: e,
                     from: "wkview"
@@ -2946,9 +3031,7 @@
                 if (!s || !this.story) return cancelEvent(e);
                 if (this.isActiveLive()) this.story.sendMessage(s, t);
                 else {
-                    var i, {
-                        narrative: r
-                    } = this.story.data;
+                    var i, r = this.story.data.narrative;
                     i = r ? `narrative:${r.raw_id}` : `story:${this.story.getId()}`, ajax.post("al_im.php", {
                         act: "a_send",
                         msg: s,
@@ -2961,18 +3044,18 @@
                             this._onAnswerSended(t)
                         },
                         showProgress: () => {
-                            val(this.sendFormButton, this._getLoaderHtml()), Object(V.a)(this.sendFormButton, "sending")
+                            val(this.sendFormButton, this._getLoaderHtml()), Object(Y.a)(this.sendFormButton, "sending")
                         },
                         hideProgress: () => {
-                            val(this.sendFormButton, ""), Object(V.hb)(this.sendFormButton, "sending")
+                            val(this.sendFormButton, ""), Object(Y.hb)(this.sendFormButton, "sending")
                         }
                     })
                 }
             }
             _onAnswerSended(e) {
-                this.isActiveLive() || (this.layer._sendNavigationStatEvents("comment_send"), this._showMessage(Object(be.d)("stories_answer_sent")).then(() => {
+                this.isActiveLive() || (this.layer._sendNavigationStatEvents("comment_send"), this._showMessage(Object(Oe.d)("stories_answer_sent")).then(() => {
                     this._unlockSendForm(), this.playStory()
-                })), val(Object(V.H)("stories_send_form_text", this.wrapEl), ""), this._blurSendForm(), this.updateFeedbackTTPos(), this.pauseStory(), e && e()
+                })), val(Object(Y.H)("stories_send_form_text", this.wrapEl), ""), this._blurSendForm(), this.updateFeedbackTTPos(), this.pauseStory(), e && e()
             }
             _onSendFormFocus() {
                 this.pauseStory(), this.formLocked = !0, cancelStackPush("stories_form_focus", () => {
@@ -2980,11 +3063,11 @@
                 })
             }
             _blurSendForm() {
-                var e = Object(V.H)("stories_send_form_text", this.wrapEl);
+                var e = Object(Y.H)("stories_send_form_text", this.wrapEl);
                 e && e.blur()
             }
             _getSendText() {
-                var e = Emoji.editableVal(Object(V.H)("stories_send_form_text", this.wrapEl));
+                var e = Emoji.editableVal(Object(Y.H)("stories_send_form_text", this.wrapEl));
                 return trim(e)
             }
             _onSendFormBlur() {
@@ -2997,10 +3080,10 @@
                 this.formLocked && (this.formLocked = !1)
             }
             _resetFendForm() {
-                this._unlockSendForm(), this.playStory(), val(Object(V.H)("stories_send_form_text", this.wrapEl), "")
+                this._unlockSendForm(), this.playStory(), val(Object(Y.H)("stories_send_form_text", this.wrapEl), "")
             }
             _emojiOnKeyAction() {
-                this._getSendText() ? Object(V.a)(this.sendFormButton, "active") : Object(V.hb)(this.sendFormButton, "active")
+                this._getSendText() ? Object(Y.a)(this.sendFormButton, "active") : Object(Y.hb)(this.sendFormButton, "active")
             }
             _getLoaderHtml() {
                 return '<svg class="stories_view_loader_circular" viewBox="25 25 50 50">\n      <circle class="stories_view_loader_circular_path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>\n    </svg>'
@@ -3011,17 +3094,17 @@
                     if (t) {
                         this.preloadedStories[e] = !0;
                         var s = t[t.type + "_url"];
-                        s && ("video" === t.type ? m(s) : u(s))
+                        s && ("video" === t.type ? m(s) : p(s))
                     }
                 }
             }
             _addToBlacklist() {
                 cur.storyLayer && cur.storyLayer.pauseStory(), showFastBox({
-                    title: Object(be.d)("stories_add_blacklist_title"),
+                    title: Object(Oe.d)("stories_add_blacklist_title"),
                     onHide: function() {
                         cur.storyLayer && cur.storyLayer.playStory()
                     }
-                }, this.getOwnerId() < 0 ? Object(be.d)("stories_add_blacklist_message_group") : Object(be.d)("stories_add_blacklist_message"), Object(be.d)("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), Object(be.d)("global_cancel"))
+                }, this.getOwnerId() < 0 ? Object(Oe.d)("stories_add_blacklist_message_group") : Object(Oe.d)("stories_add_blacklist_message"), Object(Oe.d)("stories_add_blacklist_button"), this._doAddToBlacklist.bind(this), Object(Oe.d)("global_cancel"))
             }
             _doAddToBlacklist(e) {
                 ajax.post("al_stories.php", {
@@ -3031,45 +3114,45 @@
                     source_story: this.getRawId()
                 }, {
                     onDone: () => {
-                        this.data.can_blacklist = !1, this.layer._sendNavigationStatEvents("hide_from_stories"), Object(fe.b)().hide(), this.opts.removeList(), this._remove()
+                        this.data.can_blacklist = !1, this.layer._sendNavigationStatEvents("hide_from_stories"), Object(je.b)().hide(), this.opts.removeList(), this._remove()
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
             _resetErrors() {
-                var e = Object(V.H)("stories_error_wrap", this.contWrap);
-                e && (Object(ye.h)(Object(V.H)("stories_error_button", e)), re(e)), Object(V.hb)(this.wrapEl, "failed"), Object(V.hb)(this.wrapEl, "fatal_error")
+                var e = Object(Y.H)("stories_error_wrap", this.contWrap);
+                e && (Object(Ee.h)(Object(Y.H)("stories_error_button", e)), re(e)), Object(Y.hb)(this.wrapEl, "failed"), Object(Y.hb)(this.wrapEl, "fatal_error")
             }
             _showError(e) {
                 if (this.contWrap) {
                     var t, s, i = e;
                     switch (e) {
                         case "load":
-                            t = Object(be.d)("stories_error_cant_load"), s = ce("div", {
+                            t = Object(Oe.d)("stories_error_cant_load"), s = ce("div", {
                                 className: "stories_error_button",
-                                innerHTML: Object(be.d)("stories_try_again")
-                            }), Object(ye.b)(s, "click", () => {
+                                innerHTML: Object(Oe.d)("stories_try_again")
+                            }), Object(Ee.b)(s, "click", () => {
                                 this._destroyStory(), this.playStory()
                             });
                             break;
                         case "expired":
-                            t = Object(be.d)("stories_error_expired");
+                            t = Object(Oe.d)("stories_error_expired");
                             break;
                         case "deleted":
-                            t = Object(be.d)("stories_error_deleted");
+                            t = Object(Oe.d)("stories_error_deleted");
                             break;
                         case "private":
-                            t = Object(be.d)("stories_error_private");
+                            t = Object(Oe.d)("stories_error_private");
                             break;
                         case "deleted-narrative":
-                            t = Object(be.d)("stories_error_deleted_narrative");
+                            t = Object(Oe.d)("stories_error_deleted_narrative");
                             break;
                         case "private-narrative":
-                            t = Object(be.d)("stories_error_private_narrative");
+                            t = Object(Oe.d)("stories_error_private_narrative");
                             break;
                         default:
-                            t = Object(be.d)("global_unknown_error")
+                            t = Object(Oe.d)("global_unknown_error")
                     }
                     this._resetErrors(), this._stopLoader();
                     var r = ce("div", {
@@ -3086,12 +3169,12 @@
                     })), a.appendChild(ce("div", {
                         className: "stories_error_caption",
                         innerHTML: t
-                    })), s && a.appendChild(s), r.appendChild(o), this.contWrap.appendChild(r), Object(V.a)(this.wrapEl, "failed"), inArray(e, ["expired", "deleted", "private", "deleted-narrative", "private-narrative"]) && Object(V.a)(this.wrapEl, "fatal_error")
+                    })), s && a.appendChild(s), r.appendChild(o), this.contWrap.appendChild(r), Object(Y.a)(this.wrapEl, "failed"), inArray(e, ["expired", "deleted", "private", "deleted-narrative", "private-narrative"]) && Object(Y.a)(this.wrapEl, "fatal_error")
                 }
             }
             _stopLoader() {
                 setTimeout(() => {
-                    re(Object(V.H)("stories_loader", this.contWrap))
+                    re(Object(Y.H)("stories_loader", this.contWrap))
                 }, 0)
             }
             _showLoader() {
@@ -3113,7 +3196,7 @@
                     from: "stories"
                 }, {
                     onDone: () => {
-                        this.data.author.can_follow && this._sendStatEvent("follow"), this.data.author.can_follow = !this.data.author.can_follow, Object(V.wb)(this.followBtn, "followed", !this.data.author.can_follow), this._showMessage(Object(be.d)(this.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(() => this.playStory()), window.tooltips && tooltips.destroy(this.followBtn), triggerEvent(this.followBtn, "mouseover")
+                        this.data.author.can_follow && this._sendStatEvent("follow"), this.data.author.can_follow = !this.data.author.can_follow, Object(Y.wb)(this.followBtn, "followed", !this.data.author.can_follow), this._showMessage(Object(Oe.d)(this.data.author.can_follow ? "stories_unfollowed" : "stories_followed")).then(() => this.playStory()), window.tooltips && tooltips.destroy(this.followBtn), triggerEvent(this.followBtn, "mouseover")
                     },
                     showProgress: () => this.showInlineLoader(),
                     hideProgress: () => {
@@ -3122,37 +3205,41 @@
                 }))
             }
             _getDimensions() {
-                var [e, t] = getSize(this.wrapEl), [s, i] = getXY(this.wrapEl);
+                var e = Ce(getSize(this.wrapEl), 2),
+                    t = e[0],
+                    s = e[1],
+                    i = Ce(getXY(this.wrapEl), 2),
+                    r = i[0];
                 return {
-                    width: e,
-                    height: t,
-                    top: i - scrollGetY(),
-                    left: s - scrollGetX()
+                    width: t,
+                    height: s,
+                    top: i[1] - scrollGetY(),
+                    left: r - scrollGetX()
                 }
             }
             markAsActive() {
-                this.isActive = !0, Object(V.a)(this.wrapEl, "animate_story")
+                this.isActive = !0, Object(Y.a)(this.wrapEl, "animate_story")
             }
             _renderReplyTo() {
-                var {
-                    list: e,
-                    photo_url: t,
-                    name: s,
-                    can_view_deleted: i,
-                    is_deleted: r,
-                    is_private: o,
-                    raw_id: a
-                } = this.getCurStoryData().reply_to, n = Object(V.mb)(`<div class="stories_reply_to" style="background-image: url(${t})">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">${s}</div>\n  </div>\n</div>`);
-                if (Object(ye.b)(n, "click", () => {
+                var e = this.getCurStoryData().reply_to,
+                    t = e.list,
+                    s = e.photo_url,
+                    i = e.name,
+                    r = e.can_view_deleted,
+                    o = e.is_deleted,
+                    a = e.is_private,
+                    n = e.raw_id,
+                    l = Object(Y.mb)(`<div class="stories_reply_to" style="background-image: url(${s})">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">${i}</div>\n  </div>\n</div>`);
+                if (Object(Ee.b)(l, "click", () => {
                         this.layer._sendNavigationStatEvents("open_parent_story");
-                        var t = E();
-                        w.length > 1 && t.getStoryRaw() === a ? cancelStackPop() : showStory(e, {
-                            fromEl: n,
+                        var e = O();
+                        w.length > 1 && e.getStoryRaw() === n ? cancelStackPop() : showStory(t, {
+                            fromEl: l,
                             source: "reply_story"
                         })
-                    }), i) return n;
-                var l = !1;
-                return r ? (Object(V.a)(n, "deleted"), l = Object(be.d)("stories_deleted_story")) : o && (Object(V.a)(n, "private"), l = Object(be.d)("stories_private_story")), l && (val(Object(V.H)("stories_reply_to_error_msg", n), l), re(Object(V.H)("stories_reply_to_owner_name_wrap", n))), n
+                    }), r) return l;
+                var d = !1;
+                return o ? (Object(Y.a)(l, "deleted"), d = Object(Oe.d)("stories_deleted_story")) : a && (Object(Y.a)(l, "private"), d = Object(Oe.d)("stories_private_story")), d && (val(Object(Y.H)("stories_reply_to_error_msg", l), d), re(Object(Y.H)("stories_reply_to_owner_name_wrap", l))), l
             }
             sendMask() {
                 if (!this._maskSending) {
@@ -3170,7 +3257,7 @@
                                 onHide: () => {
                                     this.playStory()
                                 }
-                            }, s, i) : this._showMessage(Object(be.d)("stories_mask_sent")).then(() => this.playStory())
+                            }, s, i) : this._showMessage(Object(Oe.d)("stories_mask_sent")).then(() => this.playStory())
                         },
                         showProgress: () => this.showInlineLoader(),
                         hideProgress: () => {
@@ -3180,7 +3267,7 @@
                 }
             }
             _getFeedbackTTElem() {
-                return Object(V.H)("stories_answers_tt_arrow", this.wrapEl) || Object(V.H)("_views_button", this.wrapEl)
+                return Object(Y.H)("stories_answers_tt_arrow", this.wrapEl) || Object(Y.H)("_views_button", this.wrapEl)
             }
             _destroyFeedBackTT() {
                 var e = this._getFeedbackTTElem();
@@ -3195,12 +3282,13 @@
             updateFeedbackTTArrow() {
                 var e = this._getFeedbackTTElem();
                 if (hasClass(e, "stories_answers_tt_arrow")) {
-                    var t = Object(V.H)("stories_feedback_tt_arrow", this.wrapEl),
+                    var t = Object(Y.H)("stories_feedback_tt_arrow", this.wrapEl),
                         s = e.offsetLeft + getSize(e)[0] / 2 - getSize(t)[0] / 2 - 1;
-                    Object(V.rb)(t, "left", `${s}px`)
+                    Object(Y.rb)(t, "left", `${s}px`)
                 }
             }
-            showFeedbackTooltip(e = !1) {
+            showFeedbackTooltip() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 this._hideTooltip();
                 var t = this._getFeedbackTTElem();
                 if (t)
@@ -3223,12 +3311,12 @@
                             slide: 15,
                             zIndex: 100,
                             shift: [s, 19, 0],
-                            appendEl: Object(V.H)("stories_bottom_wrap", this.wrapEl),
+                            appendEl: Object(Y.H)("stories_bottom_wrap", this.wrapEl),
                             onHide: () => {
                                 this._feedbackTTShown = !1
                             },
                             onShowStart: () => {
-                                this.isActive && (this._feedbackTTShown = !0, this._feedbackTTLoaded ? this._feedbackRequestEnd && (this.feedbackScroll.update(), this._feedbackTooltipInitHeaders(), tooltips.rePositionTT(t.tt), this._onFeedbackScroll(), setTimeout(() => tooltips.rePositionTT(t.tt), 200)) : (Object(V.H)("stories_feedback_tt", this.wrapEl).appendChild(Object(V.mb)('<div class="stories_feedback_tt_arrow"></div>')), this._feedbackTTLoaded = !0, this._feedbackRequestEnd = !1, this._feedbackTooltipHeadersInited = !1, Object(ye.b)(Object(V.H)("stories_feedback_close", this.wrapEl), "click", () => this.hideFeedbackTooltip()), setTimeout(() => {
+                                this.isActive && (this._feedbackTTShown = !0, this._feedbackTTLoaded ? this._feedbackRequestEnd && (this.feedbackScroll.update(), this._feedbackTooltipInitHeaders(), tooltips.rePositionTT(t.tt), this._onFeedbackScroll(), setTimeout(() => tooltips.rePositionTT(t.tt), 200)) : (Object(Y.H)("stories_feedback_tt", this.wrapEl).appendChild(Object(Y.mb)('<div class="stories_feedback_tt_arrow"></div>')), this._feedbackTTLoaded = !0, this._feedbackRequestEnd = !1, this._feedbackTooltipHeadersInited = !1, Object(Ee.b)(Object(Y.H)("stories_feedback_close", this.wrapEl), "click", () => this.hideFeedbackTooltip()), setTimeout(() => {
                                     ajax.post("al_stories.php", {
                                         act: "feedback",
                                         story_raw: this.getRawId()
@@ -3236,14 +3324,14 @@
                                         onDone: (e, s, i, r, o, a) => {
                                             if (this.isActive) {
                                                 this.story.setViews(r), this.story.setReplies(o), this._feedbackRequestEnd = !0;
-                                                var n = Object(V.H)("stories_feedback_content", this.wrapEl);
-                                                val(n, e), this.updateQuestions(a, this._showMessage.bind(this), this.getCurStoryData().small_preview), this.feedbackScroll = new uiScroll(Object(V.H)("stories_feedback_content", this.wrapEl), {
+                                                var n = Object(Y.H)("stories_feedback_content", this.wrapEl);
+                                                val(n, e), this.updateQuestions(a, this._showMessage.bind(this), this.getCurStoryData().small_preview), this.feedbackScroll = new uiScroll(Object(Y.H)("stories_feedback_content", this.wrapEl), {
                                                     theme: "default emoji no_transition",
                                                     onmore: () => this._onMoreFeedBack(),
                                                     onscroll: () => this._onFeedbackScroll()
-                                                }), this.feedbackScroll.scrollTop(0), Object(V.a)(this.feedbackScroll.container, "ui_scroll_shadow_bottom_visible"), Object(V.H)("ui_scroll_overflow", this.feedbackScroll.container).appendChild(ce("div", {
+                                                }), this.feedbackScroll.scrollTop(0), Object(Y.a)(this.feedbackScroll.container, "ui_scroll_shadow_bottom_visible"), Object(Y.H)("ui_scroll_overflow", this.feedbackScroll.container).appendChild(ce("div", {
                                                     className: "ui_scroll_shadow_bottom"
-                                                })), this.feedbackNextFrom = s, t.tt.shown && this._feedbackTooltipInitHeaders(), this.updateBottom(), this.updateFeedbackTTPos(), cur = Object(K.i)(cur, i), this.updateFeedbackTTArrow()
+                                                })), this.feedbackNextFrom = s, t.tt.shown && this._feedbackTooltipInitHeaders(), this.updateBottom(), this.updateFeedbackTTPos(), cur = Object(z.i)(cur, i), this.updateFeedbackTTArrow()
                                             }
                                         }
                                     })
@@ -3253,8 +3341,8 @@
                     }
             }
             updateQuestions(e, t, s) {
-                var o = Object(V.F)("stories_feedback_questions");
-                Object(V.hb)(Object(V.H)("_views_button", this.wrapEl), "stories_button_new_questions"), o && (r.render(i.createElement(z, {
+                var o = Object(Y.F)("stories_feedback_questions");
+                Object(Y.hb)(Object(Y.H)("_views_button", this.wrapEl), "stories_button_new_questions"), o && (r.render(i.createElement(J, {
                     showMessage: t,
                     storyUrl: s,
                     questions: e,
@@ -3265,8 +3353,8 @@
                 }))
             }
             destroyFeedbackQuestions() {
-                var e = Object(V.F)("stories_feedback_questions");
-                r.unmountComponentAtNode(e), re(e), re(Object(V.F)("stories_feedback_title_questions")), this.feedbackTooltipReInitHeaders(), this.feedbackScroll.scrollTop(0), tooltips.rePositionTT(this._getFeedbackTTElem().tt)
+                var e = Object(Y.F)("stories_feedback_questions");
+                r.unmountComponentAtNode(e), re(e), re(Object(Y.F)("stories_feedback_title_questions")), this.feedbackTooltipReInitHeaders(), this.feedbackScroll.scrollTop(0), tooltips.rePositionTT(this._getFeedbackTTElem().tt)
             }
             updateFeedbackTTPos() {
                 var e = this._getFeedbackTTElem();
@@ -3275,9 +3363,9 @@
             _feedbackTooltipInitHeaders() {
                 if (!this._feedbackTooltipHeadersInited) {
                     this._feedbackTooltipHeadersInited = !0;
-                    var e = Object(V.H)("stories_feedback_content", this.wrapEl),
-                        t = Object(V.H)("stories_feedback_headers", this.wrapEl),
-                        s = Object(V.G)("stories_feedback_title", e);
+                    var e = Object(Y.H)("stories_feedback_content", this.wrapEl),
+                        t = Object(Y.H)("stories_feedback_headers", this.wrapEl),
+                        s = Object(Y.G)("stories_feedback_title", e);
                     show(s[0]), this.feedbackHeaders = [];
                     for (var i = s.length + 1, r = 0; r < s.length; r++) {
                         var o = s[r],
@@ -3294,25 +3382,26 @@
                             el: a
                         })
                     }
-                    Object(V.rb)(e, "margin-top", s[0].offsetHeight), hide(s[0])
+                    Object(Y.rb)(e, "margin-top", s[0].offsetHeight), hide(s[0])
                 }
             }
             feedbackTooltipReInitHeaders() {
-                this._feedbackTooltipHeadersInited && (this._feedbackTooltipHeadersInited = !1, this.feedbackHeaders = [], val(Object(V.H)("stories_feedback_headers", this.wrapEl), ""), this._feedbackTooltipInitHeaders())
+                this._feedbackTooltipHeadersInited && (this._feedbackTooltipHeadersInited = !1, this.feedbackHeaders = [], val(Object(Y.H)("stories_feedback_headers", this.wrapEl), ""), this._feedbackTooltipInitHeaders())
             }
             _onFeedbackScroll() {
                 if (this._feedbackTooltipHeadersInited)
                     for (var e = this.feedbackScroll.data.scrollTop, t = !1, s = 0, i = this.feedbackHeaders.length - 1; i >= 0; i--) {
-                        var {
-                            top: r,
-                            height: o,
-                            el: a
-                        } = this.feedbackHeaders[i], n = r, l = e;
-                        t && (l -= s - (n += o));
-                        var d = l >= r - o;
-                        a.classList.toggle("active", !t && d && l > 0), d && (t = !0), s = r;
-                        var h = -Math.min(l, n);
-                        a.style.transform = `translateY(${h}px)`
+                        var r = this.feedbackHeaders[i],
+                            o = r.top,
+                            a = r.height,
+                            n = r.el,
+                            l = o,
+                            d = e;
+                        t && (d -= s - (l += a));
+                        var h = d >= o - a;
+                        n.classList.toggle("active", !t && h && d > 0), h && (t = !0), s = o;
+                        var c = -Math.min(d, l);
+                        n.style.transform = `translateY(${c}px)`
                     }
             }
             _onMoreFeedBack() {
@@ -3323,7 +3412,7 @@
                 }, {
                     onDone: (e, t) => {
                         this.feedbackNextFrom = t, t && (this.feedbackLoadingMore = !1);
-                        for (var s, i = Object(V.H)("stories_feedback_views", this.wrapEl), r = ce("div", {
+                        for (var s, i = Object(Y.H)("stories_feedback_views", this.wrapEl), r = ce("div", {
                                 innerHTML: e
                             }); s = r.firstChild;) i.appendChild(s)
                     }
@@ -3339,28 +3428,28 @@
                 this.story && this.story.volumeUpdate && this.story.volumeUpdate()
             }
             _onAutoPlayFail() {
-                Object(V.a)(this.wrapEl, "autoplay_failed")
+                Object(Y.a)(this.wrapEl, "autoplay_failed")
             }
             _hideReply() {
                 showFastBox({
-                    title: Object(be.d)("global_warning"),
+                    title: Object(Oe.d)("global_warning"),
                     onHide: () => {
                         this.autoResumeStory()
                     }
-                }, Object(be.d)("stories_hide_reply_warning"), Object(be.d)("global_continue"), this._doHideReply.bind(this), Object(be.d)("global_cancel"))
+                }, Object(Oe.d)("stories_hide_reply_warning"), Object(Oe.d)("global_continue"), this._doHideReply.bind(this), Object(Oe.d)("global_cancel"))
             }
             _doHideReply() {
-                this.pauseStory(), Object(V.a)(this.wrapEl, "hiding_reply"), Object(fe.b)().hide();
+                this.pauseStory(), Object(Y.a)(this.wrapEl, "hiding_reply"), Object(je.b)().hide();
                 var e = this.getIndex(),
                     t = this.data.author.gender,
-                    s = Object(V.mb)(`<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">${getProgressHtml()}</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">${Object(be.d)("stories_reply_hidden")}</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">${Object(be.d)("stories_hide_reply_continue")}</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">${langSex(t,window.lang.stories_hide_all_replies)}</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">${Object(be.d)("stories_reply_add_to_blacklist")}</div>\n  </div>\n</div>`);
-                Object(ye.b)(Object(V.H)("_stories_reply_restore", s), "click", this._restoreReply.bind(this)), Object(ye.b)(Object(V.H)("_stories_reply_continue", s), "click", () => this._replyHideEnd(e)), Object(ye.b)(Object(V.H)("_stories_hide_replies", s), "click", this._hideAllReplies.bind(this)), Object(ye.b)(Object(V.H)("_stories_reply_ban", s), "click", this._ban.bind(this)), this.contWrap.appendChild(s), ajax.post("al_stories.php", {
+                    s = Object(Y.mb)(`<div class="stories_hide_reply_wrap loading">\n  <div class="stories_inline_loader">${getProgressHtml()}</div>\n  <div class="stories_hide_reply_cont">\n    <div class="stories_hide_reply_icon"></div>\n    <div class="stories_hide_reply_info">${Object(Oe.d)("stories_reply_hidden")}</div>\n    <div class="stories_hide_reply_continue_button _stories_reply_continue">${Object(Oe.d)("stories_hide_reply_continue")}</div>\n  </div>\n  <div class="stories_hide_reply_other_actions">\n    <div class="stories_hide_reply_other_action _stories_hide_replies">${langSex(t,window.lang.stories_hide_all_replies)}</div>\n    <div></div>\n    <div class="stories_hide_reply_other_action _stories_reply_ban">${Object(Oe.d)("stories_reply_add_to_blacklist")}</div>\n  </div>\n</div>`);
+                Object(Ee.b)(Object(Y.H)("_stories_reply_restore", s), "click", this._restoreReply.bind(this)), Object(Ee.b)(Object(Y.H)("_stories_reply_continue", s), "click", () => this._replyHideEnd(e)), Object(Ee.b)(Object(Y.H)("_stories_hide_replies", s), "click", this._hideAllReplies.bind(this)), Object(Ee.b)(Object(Y.H)("_stories_reply_ban", s), "click", this._ban.bind(this)), this.contWrap.appendChild(s), ajax.post("al_stories.php", {
                     act: "hide_reply",
                     raw_id: this.getRawId(),
                     hash: this.data.reply_hide_hash
                 }, {
                     onDone: () => {
-                        this.opts.removeList(), cur.needUpdateFeedStories = !0, Object(V.hb)(s, "loading")
+                        this.opts.removeList(), cur.needUpdateFeedStories = !0, Object(Y.hb)(s, "loading")
                     },
                     onFail: () => {
                         this._resetReplyHide(), this.playStory()
@@ -3369,7 +3458,7 @@
             }
             _restoreReply(e) {
                 cancelEvent(e);
-                var t = Object(V.H)("stories_hide_reply_wrap", this.contWrap);
+                var t = Object(Y.H)("stories_hide_reply_wrap", this.contWrap);
                 ajax.post("al_stories.php", {
                     act: "restore_reply",
                     raw_id: this.getRawId(),
@@ -3378,18 +3467,18 @@
                     onDone: () => {
                         this._resetReplyHide(), this.playStory()
                     },
-                    showProgress: () => Object(V.a)(t, "loading"),
-                    hideProgress: () => Object(V.hb)(t, "loading")
+                    showProgress: () => Object(Y.a)(t, "loading"),
+                    hideProgress: () => Object(Y.hb)(t, "loading")
                 })
             }
             _resetReplyHide() {
-                re(Object(V.H)("stories_hide_reply_wrap", this.contWrap)), Object(V.hb)(this.wrapEl, "hiding_reply")
+                re(Object(Y.H)("stories_hide_reply_wrap", this.contWrap)), Object(Y.hb)(this.wrapEl, "hiding_reply")
             }
             _hideAllReplies() {
                 var e = this.data.author.first_name_gen;
                 showFastBox({
-                    title: Object(be.d)("global_warning")
-                }, Object(be.d)("stories_delete_all_replies_confirm").replace("{name}", e), Object(be.d)("global_continue"), this._doHideAllReplies.bind(this), Object(be.d)("global_cancel"))
+                    title: Object(Oe.d)("global_warning")
+                }, Object(Oe.d)("stories_delete_all_replies_confirm").replace("{name}", e), Object(Oe.d)("global_continue"), this._doHideAllReplies.bind(this), Object(Oe.d)("global_cancel"))
             }
             _doHideAllReplies(e) {
                 ajax.post("al_stories.php", {
@@ -3398,19 +3487,19 @@
                     hash: this.data.reply_hide_hash
                 }, {
                     onDone: () => {
-                        Object(fe.b)().hide(), this.opts.removeList(), this.data.items = [];
-                        var e = Object(V.H)("_stories_hide_replies", this.contWrap);
-                        val(e, Object(be.d)("stories_all_replies_hidden")), Object(V.a)(e, "disabled")
+                        Object(je.b)().hide(), this.opts.removeList(), this.data.items = [];
+                        var e = Object(Y.H)("_stories_hide_replies", this.contWrap);
+                        val(e, Object(Oe.d)("stories_all_replies_hidden")), Object(Y.a)(e, "disabled")
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
             _ban() {
                 var e = this.data.author.first_name_gen;
                 showFastBox({
-                    title: Object(be.d)("global_warning")
-                }, Object(be.d)("stories_ban_confirm").replace("{name}", e), Object(be.d)("global_continue"), this._doBan.bind(this), Object(be.d)("global_cancel"))
+                    title: Object(Oe.d)("global_warning")
+                }, Object(Oe.d)("stories_ban_confirm").replace("{name}", e), Object(Oe.d)("global_continue"), this._doBan.bind(this), Object(Oe.d)("global_cancel"))
             }
             _doBan(e) {
                 ajax.post("al_stories.php", {
@@ -3419,47 +3508,46 @@
                     hash: this.data.stories_ban_hash
                 }, {
                     onDone: () => {
-                        Object(fe.b)().hide(), this.opts.removeList(), this.data.items = [];
-                        var e = Object(V.H)("_stories_reply_ban", this.contWrap);
-                        val(e, Object(be.d)("stories_banned")), Object(V.a)(e, "disabled")
+                        Object(je.b)().hide(), this.opts.removeList(), this.data.items = [];
+                        var e = Object(Y.H)("_stories_reply_ban", this.contWrap);
+                        val(e, Object(Oe.d)("stories_banned")), Object(Y.a)(e, "disabled")
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
-            _replyHideEnd(e) {
-                Object(V.H)("stories_hide_reply_wrap", this.contWrap) && (this.data.items.length <= 1 && O(this.getOwnerId()), this._resetReplyHide(), this._removeStoryFromMemoryByIndex(e || this.getIndex(), !isNumeric(e)))
+            _replyHideEnd() {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0;
+                Object(Y.H)("stories_hide_reply_wrap", this.contWrap) && (this.data.items.length <= 1 && T(this.getOwnerId()), this._resetReplyHide(), this._removeStoryFromMemoryByIndex(e || this.getIndex(), !isNumeric(e)))
             }
             _feedbackRemoveReplyFromDom(e) {
-                var t = Object(V.H)("stories_feedback_content", this.wrapEl);
+                var t = Object(Y.H)("stories_feedback_content", this.wrapEl);
                 if (t) {
                     var s = t.querySelector(`#feed_story_${e}`);
-                    s && Object(V.a)(s, "removed")
+                    s && Object(Y.a)(s, "removed")
                 }
             }
             onReplyDeleted(e) {
                 this._feedbackRemoveReplyFromDom(e)
             }
             _updateFeedStoryPreview() {
-                var e = Object(V.F)("feed_story_" + this.layer.getBlockKey(this.data));
+                var e = Object(Y.F)("feed_story_" + this.layer.getBlockKey(this.data));
                 if (e && !hasClass(e, "stories_feed_reply_item")) {
                     var t = this.indexToUnread(!0),
                         s = this.data.items[t];
-                    s && s.small_preview && Object(V.rb)(e, "background-image", `url(${s.small_preview})`)
+                    s && s.small_preview && Object(Y.rb)(e, "background-image", `url(${s.small_preview})`)
                 }
             }
             _sendStatEvent(e) {
                 var t = this.getCurStoryData();
-                ajax.post("al_stories.php", Object(K.i)({
+                ajax.post("al_stories.php", Object(z.i)({
                     act: "stat",
                     source_story: this.getRawId()
                 }, t.stats[e]))
             }
             _sendStatStickerEvent(e, t) {
-                var {
-                    clickable_stickers: s
-                } = this.getCurStoryData();
-                ajax.post("al_stories.php", Object(K.i)({
+                var s = this.getCurStoryData().clickable_stickers;
+                ajax.post("al_stories.php", Object(z.i)({
                     act: "stickers_stat",
                     story_raw_id: this.getRawId(),
                     action: e,
@@ -3470,12 +3558,12 @@
                 var e = this.getCurStoryData(),
                     t = "story";
                 this.isActiveLive() ? t = "live" : e.narrative && (t = "narrative");
-                var s = Object(we.b)("al_stories.php", {
+                var s = Object(Te.b)("al_stories.php", {
                     act: "report_box",
                     type: t
                 }, {
                     onDone: () => {
-                        var e = Object(V.G)("radiobtn", "stories_report");
+                        var e = Object(Y.G)("radiobtn", "stories_report");
                         radioBtns.stories_report = {
                             val: 0,
                             els: e
@@ -3487,29 +3575,28 @@
                         }
                     }
                 });
-                s.removeButtons(), s.addButton(Object(be.d)("box_send"), this._sendReportButtonDidPress.bind(this)), s.addButton(Object(be.d)("global_cancel"), !1, "no")
+                s.removeButtons(), s.addButton(Object(Oe.d)("box_send"), this._sendReportButtonDidPress.bind(this)), s.addButton(Object(Oe.d)("global_cancel"), !1, "no")
             }
             _sendReportButtonDidPress(e) {
                 var t, s, i = this.index,
-                    {
-                        narrative: r,
-                        report_hash: o
-                    } = this.getCurStoryData(),
-                    a = !!r;
-                a ? (t = r.raw_id, s = r.report_hash) : (t = this.getRawId(), s = o), ajax.post("al_stories.php", {
+                    r = this.getCurStoryData(),
+                    o = r.narrative,
+                    a = r.report_hash,
+                    n = !!o;
+                n ? (t = o.raw_id, s = o.report_hash) : (t = this.getRawId(), s = a), ajax.post("al_stories.php", {
                     act: "report",
-                    type: a ? "narrative" : "story",
+                    type: n ? "narrative" : "story",
                     item_raw: t,
                     reason: radioBtns.stories_report.val,
                     hash: s
                 }, {
                     onDone: () => {
-                        Object(fe.b)().hide(), this.layer._sendNavigationStatEvents("claim"), a ? this._popCoverAndCleanNarrativeList(r) : this._popStoryAndClearList(i), showDoneBox(Object(be.d)("stories_report_sent"), {
+                        Object(je.b)().hide(), this.layer._sendNavigationStatEvents("claim"), n ? this._popCoverAndCleanNarrativeList(o) : this._popStoryAndClearList(i), showDoneBox(Object(Oe.d)("stories_report_sent"), {
                             className: "stories_done_msg"
                         })
                     },
-                    showProgress: me.o.pbind(e),
-                    hideProgress: me.w.pbind(e)
+                    showProgress: ke.o.pbind(e),
+                    hideProgress: ke.w.pbind(e)
                 })
             }
             onLiveEnded(e) {
@@ -3519,27 +3606,98 @@
                 val(this.descEl, e)
             }
         }
-        var ke = .563,
-            Ee = 1.78,
-            Oe = 540,
-            Te = 320,
-            je = "user_personal_card",
-            Ce = "group_personal_card",
-            Le = s("Tn+0");
-        var xe = [];
-        var Be = [];
-        var Ne = () => Be.length || xe.length;
-        var Pe = o.Promise,
-            Re = {
-                show(e, t = {}) {
+        var xe = .563,
+            Be = 1.78,
+            Ne = 540,
+            Pe = 320,
+            Re = "user_personal_card",
+            Me = "group_personal_card",
+            Ie = s("Tn+0");
+
+        function Fe(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var De = [];
+        var Ae = [];
+        var He = () => Ae.length || De.length;
+
+        function We(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+
+        function qe(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var $e = o.Promise,
+            Ue = {
+                show(e) {
+                    var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
                     if (e.match(/story/) && (e = this._parseList(e)), cur.storyLayer && cur.storyLayer.list === e.split("/")[1]) return !1;
-                    this.getList(e).then(({
-                        blockKey: e,
-                        list: s,
-                        items: i,
-                        extra: r
-                    }) => {
-                        f(new class {
+                    this.getList(e).then(e => {
+                        S(new class {
                             constructor(e, t, s, i, r) {
                                 this.queue = [], this.storiesToRead = [], this.storiesSkip = [];
                                 try {
@@ -3548,8 +3706,14 @@
                                 this.initDOM(), this.show(), this._init(e, t, s, i), addClass(this.layerEl, "shown"), this._source = r.source, this._initViewerSource(), this._sendOpeningEvents(), r.isOpenNarrativeFromFeed && (this.isOpenNarrativeFromFeed = r.isOpenNarrativeFromFeed)
                             }
                             _init(e, t, s, i) {
-                                var [r, o = ""] = e.split("&"), [a, n] = r.split("_");
-                                this.storyRaw = r, this.storyOwner = a, this.storyId = n, this.blockKey = `${a}${o}`, this.list = t, this.storiesList = s, this.extra = this.parseExtra(i), this.initStories()
+                                var r = We(e.split("&"), 2),
+                                    o = r[0],
+                                    a = r[1],
+                                    n = void 0 === a ? "" : a,
+                                    l = We(o.split("_"), 2),
+                                    d = l[0],
+                                    h = l[1];
+                                this.storyRaw = o, this.storyOwner = d, this.storyId = h, this.blockKey = `${d}${n}`, this.list = t, this.storiesList = s, this.extra = this.parseExtra(i), this.initStories()
                             }
                             initStories() {
                                 return new Promise(e => {
@@ -3581,9 +3745,7 @@
                                         r.length && (this.storiesList = r, this.storiesBlocks = this.storiesList.map(e => this.getBlockKey(e)))
                                     }
                                     this.renderedStories = {};
-                                    var {
-                                        activeStory: l
-                                    } = this._renderStories();
+                                    var l = this._renderStories().activeStory;
                                     this.scrollToStory(l, !0), 1 === this.storiesList.length && addClass(this.stories, "one_story"), this._startFirstStory(l, this.extra.story_id), addClass(this.stories, "inited"), e()
                                 })
                             }
@@ -3606,7 +3768,7 @@
                                         if (!this.renderedStories[i]) {
                                             var r = this.storiesBlocks.indexOf(i),
                                                 a = e.author.id,
-                                                n = new Se(e, {
+                                                n = new Le(e, {
                                                     id: t,
                                                     layer: this,
                                                     onSelect: this._onSelectStory.bind(this),
@@ -3649,14 +3811,13 @@
                                     if (e && this._sendNavigationStatEvents(e, !1), "narrative_fave" === this._source) {
                                         var t = this.activeStory.getCurStoryData();
                                         if (t && t.narrative) {
-                                            var {
-                                                owner_id: s,
-                                                id: i
-                                            } = t.narrative;
+                                            var s = t.narrative,
+                                                i = s.owner_id,
+                                                r = s.id;
                                             statlogsValueEvent("bookmarks_product_analytics", {
                                                 item_type: "narrative",
-                                                item_owner_id: s,
-                                                item_id: i,
+                                                item_owner_id: i,
+                                                item_id: r,
                                                 time: window.getServerTime()
                                             })
                                         }
@@ -3697,21 +3858,22 @@
                                 onBodyResize()
                             }
                             hide(e) {
-                                addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && S(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close", !1), !0 !== e && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(e), removeClass(this.layerEl, "shown"), this.activeStory && (this.activeStory.pauseStory(), this.activeStory._hideTooltip(), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close", !1))
+                                addClass(this.layerEl, "stories_layer_hiding"), !this.hideAllLayers && k(), this._source && this._source.indexOf("narrative") > -1 && this._sendNavigationStatEvents("narrative_close", !1), !0 !== e && this.activeStory ? this.animateStory("minimize").then(this.doHide.bind(this)) : this.doHide(e), removeClass(this.layerEl, "shown"), this.activeStory && (this.activeStory.pauseStory(), this.activeStory._hideTooltip(), this.activeStory.isActiveLive() && this._sendNavigationStatEvents("live_player_close", !1))
                             }
                             doHide(e) {
-                                if (this._readStories(), this.destroy(), !e && (w.pop(), cur.storyLayer = w[w.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (k(0, !0), layerQueue.pop())), window.wkcur && window.wkcur.shown && WkView.restoreLayer({}), "group_stories" === this.list && Stories.groupStoriesBlockUpdate(), this.list.startsWith("archive") && !1 !== this.hideAllLayers && !e) {
+                                if (this._readStories(), this.destroy(), !e && (w.pop(), cur.storyLayer = w[w.length - 1], cur.storyLayer ? cur.storyLayer.resumeLayer() : (E(!1, !0), layerQueue.pop())), window.wkcur && window.wkcur.shown && WkView.restoreLayer({}), "group_stories" === this.list && Stories.groupStoriesBlockUpdate(), this.list.startsWith("archive") && !1 !== this.hideAllLayers && !e) {
                                     if (!_message_boxes[cur.storiesArchiveBoxGUID]) return;
                                     _message_boxes[cur.storiesArchiveBoxGUID].forceHide = !1, _message_boxes[cur.storiesArchiveBoxGUID]._show(!0, !1, !0), window.updateStoriesArchiveBoxPosition && window.updateStoriesArchiveBoxPosition()
                                 }
                             }
-                            back(e = !1) {
+                            back() {
+                                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                                 this.hideAllLayers = !1;
                                 var t = cancelStack[cancelStack.length - 1];
                                 t && "stories_form_focus" === t.name && cancelStackPop(), this.hide(!1, e)
                             }
                             _getScreenStoriesCount() {
-                                return 2 * Math.floor(window.innerWidth / (window.innerHeight * ke)) + 1
+                                return 2 * Math.floor(window.innerWidth / (window.innerHeight * xe)) + 1
                             }
                             _getCurStoryPos(e) {
                                 return (e || this.storiesBlocks).indexOf(this.blockKey)
@@ -3733,16 +3895,12 @@
                                 })
                             }
                             _startActiveStory() {
-                                var {
-                                    activeStory: e
-                                } = this;
+                                var e = this.activeStory;
                                 e.markAsActive(), e.playStory(!0)
                             }
                             _onStartStory() {
-                                var {
-                                    activeStory: e,
-                                    list: t
-                                } = this;
+                                var e = this.activeStory,
+                                    t = this.list;
                                 if (e) {
                                     var s = nav.objLoc;
                                     s.w = "story" + e.getRawId(), t.match(/^-?(\d+)_(\d+)$/) || (s.w += "/" + t), t.match(/^narrative-?\d+_\d+/) && (s.w = `narrative${this.activeStory.getCurStoryData().narrative.raw_id}`), nav.setLoc(nav.toStr(s))
@@ -3827,15 +3985,14 @@
                                 "visible" === document.visibilityState ? cur.storyLayer && cur.storyLayer.playStory() : cur.storyLayer && cur.storyLayer.pauseStory()
                             }
                             onResize() {
-                                var {
-                                    activeStory: e
-                                } = cur.storyLayer;
+                                var e = cur.storyLayer.activeStory;
                                 e && cur.storyLayer.scrollToStory(e, !0)
                             }
                             pauseStory(e) {
                                 this.activeStory && this.activeStory.pauseStory(e)
                             }
-                            playStory(e = !1) {
+                            playStory() {
+                                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                                 this.activeStory && this.activeStory.autoResumeStory(e)
                             }
                             _onLayerClick(e) {
@@ -3860,14 +4017,14 @@
                                             case KEY.SPACE:
                                                 cancelEvent(e);
                                                 var t = cur.storyLayer.activeStory;
-                                                cur.storiesKeyDownLong = setTimeout(t._longTapHandle.bind(t), Y)
+                                                cur.storiesKeyDownLong = setTimeout(t._longTapHandle.bind(t), ee)
                                         }
                                         cur.storiesKeyDownTs = vkNow()
                                     }
                                 }
                             }
                             onKeyUp(e) {
-                                cur.storiesKeyDown = !1, clearTimeout(cur.storiesKeyDownLong), cur.storyLayer && cur.storyLayer.inited && cur.storyLayer._checkKeyEvents(e) && e.keyCode === KEY.SPACE && (cancelEvent(e), vkNow() - cur.storiesKeyDownTs > Y ? cur.storyLayer.playStory(!0) : cur.storyLayer.nextStory())
+                                cur.storiesKeyDown = !1, clearTimeout(cur.storiesKeyDownLong), cur.storyLayer && cur.storyLayer.inited && cur.storyLayer._checkKeyEvents(e) && e.keyCode === KEY.SPACE && (cancelEvent(e), vkNow() - cur.storiesKeyDownTs > ee ? cur.storyLayer.playStory(!0) : cur.storyLayer.nextStory())
                             }
                             nextStory() {
                                 this.activeStory && this.activeStory.nextStory()
@@ -3879,7 +4036,7 @@
                                 this.activeStory && this.activeStory.changeStory(e)
                             }
                             _readStories() {
-                                if (this.storiesToRead.length && Ne()) {
+                                if (this.storiesToRead.length && He()) {
                                     var e = this._getSource(),
                                         t = this.storiesToRead.join(","),
                                         s = this.storiesSkip.join(",");
@@ -3889,32 +4046,18 @@
                                         source: e,
                                         stories_skip: s,
                                         navigation_stats: function() {
-                                            var e = xe.map(({
-                                                ownerId: e,
-                                                storyId: t,
-                                                source: s,
-                                                action: i
-                                            }) => [e, t, s, i].join(",")).join(";");
-                                            return xe = [], e
+                                            var e = De.map(e => [e.ownerId, e.storyId, e.source, e.action].join(",")).join(";");
+                                            return De = [], e
                                         }(),
                                         loading_stats: function() {
-                                            var e = Be.map(({
-                                                ownerId: e,
-                                                storyId: t,
-                                                source: s,
-                                                time: i
-                                            }) => [e, t, s, i].join(",")).join(";");
-                                            return Be = [], e
+                                            var e = Ae.map(e => [e.ownerId, e.storyId, e.source, e.time].join(",")).join(";");
+                                            return Ae = [], e
                                         }(),
                                         connection_type: function() {
-                                            var {
-                                                connection: e
-                                            } = navigator;
+                                            var e = navigator.connection;
                                             if (!e) return "";
-                                            var {
-                                                effectiveType: t,
-                                                downlink: s
-                                            } = e;
+                                            var t = e.effectiveType,
+                                                s = e.downlink;
                                             switch (t) {
                                                 case "slow-2g":
                                                     return "GPRS";
@@ -3933,42 +4076,45 @@
                             }
                             _getSource() {
                                 var e = "list";
-                                return this._source ? this._source : (-1 !== [je, Ce, G, Le.b].indexOf(cur.module) && (e = cur.module), e)
+                                return this._source ? this._source : (-1 !== [Re, Me, Z, Ie.b].indexOf(cur.module) && (e = cur.module), e)
                             }
-                            _sendNavigationStatEvents(e, t = !0, s = {}) {
-                                var i = this.activeStory,
+                            _sendNavigationStatEvents(e) {
+                                var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1],
+                                    s = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                                    i = this.activeStory,
                                     r = this.getStoryRaw() || i.getCurStoryData().raw_id,
                                     o = this._getSource();
                                 t && this._sendProductAnalyticEvents(e, s), this._updateLastStoryOpenAction(e),
-                                    function({
-                                        storyRawId: e,
-                                        source: t,
-                                        action: s
-                                    }) {
-                                        var [i, r] = e.split("_");
-                                        "reply" === t && (t = "replies_list");
-                                        var o = {
-                                            ownerId: i,
-                                            storyId: r,
-                                            source: t,
-                                            action: s
+                                    function(e) {
+                                        var t = e.storyRawId,
+                                            s = e.source,
+                                            i = e.action,
+                                            r = Fe(t.split("_"), 2),
+                                            o = r[0],
+                                            a = r[1];
+                                        "reply" === s && (s = "replies_list");
+                                        var n = {
+                                            ownerId: o,
+                                            storyId: a,
+                                            source: s,
+                                            action: i
                                         };
-                                        xe.push(o)
+                                        De.push(n)
                                     }({
                                         storyRawId: r,
                                         source: o,
                                         action: e
                                     })
                             }
-                            _sendProductAnalyticEvents(e, t = {}) {
-                                var s = this.activeStory,
-                                    i = this.getStoryRaw() || s.getCurStoryData().raw_id,
-                                    [r, o] = i.split("_"),
+                            _sendProductAnalyticEvents(e) {
+                                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+                                    s = this.activeStory,
+                                    i = We((this.getStoryRaw() || s.getCurStoryData().raw_id).split("_"), 2),
+                                    r = i[0],
+                                    o = i[1],
                                     a = s.getIndex(),
                                     n = s.getItemsLength() - a,
-                                    {
-                                        story: l
-                                    } = s,
+                                    l = s.story,
                                     d = this._getSource();
                                 if (e && s && l && r && o) {
                                     var h = {
@@ -4017,18 +4163,18 @@
                                 }
                             }
                             _sendViewerStartTime(e, t) {
-                                ! function({
-                                    storyRawId: e,
-                                    source: t,
-                                    time: s
-                                }) {
-                                    var [i, r] = e.split("_"), o = {
-                                        ownerId: i,
-                                        storyId: r,
-                                        source: t,
-                                        time: s
-                                    };
-                                    Be.push(o)
+                                ! function(e) {
+                                    var t = e.storyRawId,
+                                        s = e.source,
+                                        i = e.time,
+                                        r = Fe(t.split("_"), 2),
+                                        o = {
+                                            ownerId: r[0],
+                                            storyId: r[1],
+                                            source: s,
+                                            time: i
+                                        };
+                                    Ae.push(o)
                                 }({
                                     storyRawId: e,
                                     source: this.viewerSource,
@@ -4054,8 +4200,10 @@
                                     s = String(e).split(";");
                                 for (var i in s)
                                     if (s.hasOwnProperty(i)) {
-                                        var [r, o] = s[i].split(":");
-                                        r && o && (t[r] = o)
+                                        var r = We(s[i].split(":"), 2),
+                                            o = r[0],
+                                            a = r[1];
+                                        o && a && (t[o] = a)
                                     }
                                 return t
                             }
@@ -4083,15 +4231,23 @@
                                             function() {
                                                 for (var e = w.length - 2; e >= 0; e--) w[e].doHide(!0);
                                                 w.splice(0, w.length - 1)
-                                            }(), S()
+                                            }(), k()
                                     }
                                     removeClass(i, "stories_feed_item_ava_animate");
-                                    var [o, a] = getXY(i), n = getSize(i), l = window.innerHeight, d = Math.min(Oe, Math.max(Te, l * ke)), h = d * Ee, c = Math.max(0, (l - h) / 2), _ = Math.max(0, (window.innerWidth - d) / 2);
-                                    o = _ - o + d / 2 - n[0] / 2 + scrollGetX(), a = c - a + h / 2 - n[1] / 2 + scrollGetY(), o = -o, a = -a;
+                                    var o = We(getXY(i), 2),
+                                        a = o[0],
+                                        n = o[1],
+                                        l = getSize(i),
+                                        d = window.innerHeight,
+                                        h = Math.min(Ne, Math.max(Pe, d * xe)),
+                                        c = h * Be,
+                                        u = Math.max(0, (d - c) / 2),
+                                        _ = Math.max(0, (window.innerWidth - h) / 2);
+                                    a = _ - a + h / 2 - l[0] / 2 + scrollGetX(), n = u - n + c / 2 - l[1] / 2 + scrollGetY(), a = -a, n = -n;
                                     var p = {};
-                                    "expand" === e && (p.transform = `translate(${o}px, ${a}px) scale(0)`, this.animateFromEl = t), setStyle(this.activeStory.wrapEl, p), "minimize" === e && setStyle(i, "transform", "scale(0)"), this.animationTimer = setTimeout(() => {
+                                    "expand" === e && (p.transform = `translate(${a}px, ${n}px) scale(0)`, this.animateFromEl = t), setStyle(this.activeStory.wrapEl, p), "minimize" === e && setStyle(i, "transform", "scale(0)"), this.animationTimer = setTimeout(() => {
                                         addClass(this.stories, "animated"), addClass(i, "stories_feed_item_ava_animate"), this.animationTimer = setTimeout(() => {
-                                            "expand" === e ? (setStyle("stories_layers_background", "opacity", 1), setStyle(this.activeStory.wrapEl, "transform", "translate(0, 0) scale(1)")) : (setStyle(this.activeStory.wrapEl, "transform", `translate(${o}px, ${a}px) scale(0.01)`), setStyle(i, "transform", "scale(1)")), this.animationTimer = setTimeout(() => {
+                                            "expand" === e ? (setStyle("stories_layers_background", "opacity", 1), setStyle(this.activeStory.wrapEl, "transform", "translate(0, 0) scale(1)")) : (setStyle(this.activeStory.wrapEl, "transform", `translate(${a}px, ${n}px) scale(0.01)`), setStyle(i, "transform", "scale(1)")), this.animationTimer = setTimeout(() => {
                                                 s(), "expand" === e ? (setStyle(this.activeStory.wrapEl, "transform", ""), removeClass(this.layerEl, "animation"), removeClass(this.stories, "animated"), this.playStory(), w.length > 1 && (w[w.length - 2].setLayerVisibility(!1), w[w.length - 1].showBackButton())) : (removeClass(i, "stories_feed_item_ava_animate"), setStyle(i, "transform", ""))
                                             }, 330)
                                         }, 30)
@@ -4116,8 +4272,8 @@
                                 addClass(this.volumeControlContainer, "changing");
                                 var t = geByClass1("stories_volume_control_slide", this.volumeControl),
                                     s = geByClass1("stories_volume_control_slide_indicator", t),
-                                    [i] = getXY(t),
-                                    [r] = getSize(t),
+                                    i = We(getXY(t), 1)[0],
+                                    r = We(getSize(t), 1)[0],
                                     o = e => {
                                         var t = Math.max(0, Math.min(e.pageX - i, r)) / r * 100;
                                         setStyle(s, "width", t + "%"), b(t / 100), this.activeStory.volumeUpdate()
@@ -4148,11 +4304,11 @@
                             _hasContext(e) {
                                 return !(!this.extra || !this.extra.context || this.extra.context !== e)
                             }
-                        }(e, s, i, r, t), t);
-                        var o = Object(fe.b)();
-                        o && (t.fromEl = null, "stories" === o.wkRaw ? (o._hide(!1, !0, !0), o.forceHide = !0, cur.storiesArchiveBoxGUID = o.guid) : o.hide())
+                        }(e.blockKey, e.list, e.items, e.extra, t), t);
+                        var s = Object(je.b)();
+                        s && (t.fromEl = null, "stories" === s.wkRaw ? (s._hide(!1, !0, !0), s.forceHide = !0, cur.storiesArchiveBoxGUID = s.guid) : s.hide())
                     }).catch(e => {
-                        vk.dev && debugLog(e), showFastBox(Object(be.d)("global_error"), Object(be.d)("global_unknown_error"))
+                        vk.dev && debugLog(e), showFastBox(Object(Oe.d)("global_error"), Object(Oe.d)("global_unknown_error"))
                     })
                 },
                 _getUnreadStory(e, t) {
@@ -4169,22 +4325,27 @@
                         }
                     return s
                 },
-                getList: e => new Pe((t, s) => {
-                    var [i, r, o] = e.split("/"), a = {
-                        blockKey: i,
-                        list: r,
-                        extra: o
-                    }, n = Re._getList(r);
-                    isArray(n) ? (a.items = n, t(a)) : ajax.post("al_stories.php", {
+                getList: e => new $e((t, s) => {
+                    var i = qe(e.split("/"), 3),
+                        r = i[0],
+                        o = i[1],
+                        a = i[2],
+                        n = {
+                            blockKey: r,
+                            list: o,
+                            extra: a
+                        },
+                        l = Ue._getList(o);
+                    isArray(l) ? (n.items = l, t(n)) : ajax.post("al_stories.php", {
                         act: "get_list",
-                        list: r,
-                        story_raw: i,
-                        extra: o,
-                        from_manage: window.cur.module === G ? 1 : 0
+                        list: o,
+                        story_raw: r,
+                        extra: a,
+                        from_manage: window.cur.module === Z ? 1 : 0
                     }, {
                         loader: !0,
                         onDone(e) {
-                            cur["stories_list_" + r] = e.list, a.items = e.list, e.recommendations && (cur["stories_list_" + r + "_recommendations"] = e.recommendations), t(a)
+                            cur["stories_list_" + o] = e.list, n.items = e.list, e.recommendations && (cur["stories_list_" + o + "_recommendations"] = e.recommendations), t(n)
                         },
                         onFail: () => (s(), !0)
                     })
@@ -4197,38 +4358,42 @@
                     delete cur["stories_list_" + e]
                 },
                 _parseList(e) {
-                    var t = (e = decodeURIComponent(e)).match(/^story(-?\d+)_(\d+)(\/([a-z0-9\_\-]+))?(\/([a-z0-9\_\:\;\-]+))?$/i),
-                        [, s, i, , r, , o] = t,
+                    var t = qe((e = decodeURIComponent(e)).match(/^story(-?\d+)_(\d+)(\/([a-z0-9\_\-]+))?(\/([a-z0-9\_\:\;\-]+))?$/i), 7),
+                        s = t[1],
+                        i = t[2],
+                        r = t[4],
+                        o = t[6],
                         a = s + "_" + i;
                     return e.match(/from_feed\=1/) ? r = "feed" : e.match(/profile\=1/) ? r = "profile" : r || (r = a), a + "/" + r + "/" + o
                 },
-                initFeed(e = "stories_feed_items_container") {
-                    e = Object(V.F)(e);
-                    var t = Object(V.H)("stories_feed_items", e),
+                initFeed() {
+                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "stories_feed_items_container";
+                    e = Object(Y.F)(e);
+                    var t = Object(Y.H)("stories_feed_items", e),
                         s = attr(t, "id");
 
                     function i() {
-                        addEvent(e, browserFeatures.wheelEvent, Re.feedMouseWheel)
+                        addEvent(e, browserFeatures.wheelEvent, Ue.feedMouseWheel)
                     }
 
                     function r() {
-                        removeEvent(e, browserFeatures.wheelEvent, Re.feedMouseWheel)
+                        removeEvent(e, browserFeatures.wheelEvent, Ue.feedMouseWheel)
                     }
-                    Re.updateFeedArrows(s), addEvent(e, "mouseenter", i), addEvent(e, "mouseleave", r), cur.destroy.push(function() {
-                        removeEvent(e, browserFeatures.wheelEvent, Re.feedMouseWheel), removeEvent(e, "mouseenter", i), removeEvent(e, "mouseleave", r)
+                    Ue.updateFeedArrows(s), addEvent(e, "mouseenter", i), addEvent(e, "mouseleave", r), cur.destroy.push(function() {
+                        removeEvent(e, browserFeatures.wheelEvent, Ue.feedMouseWheel), removeEvent(e, "mouseenter", i), removeEvent(e, "mouseleave", r)
                     })
                 },
                 feedNext(e) {
-                    var t = Object(V.F)("stories_feed_wrap");
+                    var t = Object(Y.F)("stories_feed_wrap");
                     return e && (t = domClosest("stories_feed_wrap", e.target)), this.feedPaging("next", null, t)
                 },
                 feedPrev(e) {
-                    var t = Object(V.F)("stories_feed_wrap");
+                    var t = Object(Y.F)("stories_feed_wrap");
                     return e && (t = domClosest("stories_feed_wrap", e.target)), this.feedPaging("prev", null, t)
                 },
                 feedPaging(e, t, s) {
-                    s || (s = Object(V.F)("stories_feed_wrap"));
-                    var i = Object(V.H)("stories_feed_items", s),
+                    s || (s = Object(Y.F)("stories_feed_wrap"));
+                    var i = Object(Y.H)("stories_feed_items", s),
                         r = attr(i, "id"),
                         o = r + "_position",
                         a = cur[o] || 0,
@@ -4238,10 +4403,10 @@
                         var l = n - 100;
                         "next" === e ? a += l : a -= l
                     }
-                    cur[o] = Math.max(0, Math.min(a, i.scrollWidth - n)), t ? Object(V.hb)(i, "animated") : Object(V.a)(i, "animated"), setStyle(i, "transform", "translateX(-" + cur[o] + "px)"), Re.updateFeedArrows(r)
+                    cur[o] = Math.max(0, Math.min(a, i.scrollWidth - n)), t ? Object(Y.hb)(i, "animated") : Object(Y.a)(i, "animated"), setStyle(i, "transform", "translateX(-" + cur[o] + "px)"), Ue.updateFeedArrows(r)
                 },
                 feedScrollToOwner(e) {
-                    var t = Object(V.F)("feed_story_" + e);
+                    var t = Object(Y.F)("feed_story_" + e);
                     if (t) {
                         var s = domClosest("stories_feed_items", t),
                             i = s.offsetWidth,
@@ -4249,28 +4414,26 @@
                             o = t.offsetWidth,
                             a = t.offsetLeft,
                             n = domClosest("stories_feed_wrap", s);
-                        cur[r] = a - i + i / 2 + o / 2, Re.feedPaging(0, !0, n)
+                        cur[r] = a - i + i / 2 + o / 2, Ue.feedPaging(0, !0, n)
                     }
                 },
-                updateFeedStories(e, t, s = "stories_feed_items") {
-                    var i = Object(V.F)(s),
+                updateFeedStories(e, t) {
+                    var s = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "stories_feed_items",
+                        i = Object(Y.F)(s),
                         r = domClosest("stories_feed_wrap", i);
                     if (e = e || "news", i)
                         if (inArray(e, ["news", "search"])) {
                             var o = (e, i) => {
                                 t && t.cb && t.cb(), this._setList("feed", i);
-                                var o = Object(V.F)(s);
-                                o && (e ? (setStyle(o, "transform", "translateX(0px)"), Object(V.zb)(o, e), o.children.length < 6 ? Object(V.a)(r, "stories_feed_not_nav_buttons") : Object(V.hb)(r, "stories_feed_not_nav_buttons"), cur[s + "_position"] = 0, Re.updateFeedArrows(s), show(r)) : hide(r))
+                                var o = Object(Y.F)(s);
+                                o && (e ? (setStyle(o, "transform", "translateX(0px)"), Object(Y.zb)(o, e), o.children.length < 6 ? Object(Y.a)(r, "stories_feed_not_nav_buttons") : Object(Y.hb)(r, "stories_feed_not_nav_buttons"), cur[s + "_position"] = 0, Ue.updateFeedArrows(s), show(r)) : hide(r))
                             };
                             if (t && t.stories) {
-                                var {
-                                    section: a,
-                                    q: n,
-                                    stories: l
-                                } = t, {
-                                    html: d,
-                                    js: h
-                                } = l;
+                                var a = t.section,
+                                    n = t.q,
+                                    l = t.stories,
+                                    d = l.html,
+                                    h = l.js;
                                 return "search" !== a || n && h.length ? void o(d, h) : void hide(r)
                             }
                             ajax.post("al_stories.php", {
@@ -4285,19 +4448,20 @@
                     if (!hasClass(t, "stories_feed_not_nav_buttons")) {
                         cancelEvent(e);
                         var s = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-                        Re.feedPaging(s, 1, t)
+                        Ue.feedPaging(s, 1, t)
                     }
                 },
-                updateFeedArrows(e = "stories_feed_items") {
-                    var t = Object(V.F)(e),
+                updateFeedArrows() {
+                    var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "stories_feed_items",
+                        t = Object(Y.F)(e),
                         s = e + "_position";
                     if (t) {
                         cur[s] || (cur[s] = 0);
-                        var i = Object(V.H)("stories_feed_wrap").offsetWidth,
+                        var i = Object(Y.H)("stories_feed_wrap").offsetWidth,
                             r = t.scrollWidth - i,
-                            o = Object(V.H)("stories_feed_arrow_left", domPN(t)),
-                            a = Object(V.H)("stories_feed_arrow_right", domPN(t));
-                        0 === cur[s] ? Object(V.a)(o, "disabled") : Object(V.hb)(o, "disabled"), cur[s] === r || r <= 0 ? Object(V.a)(a, "disabled") : Object(V.hb)(a, "disabled")
+                            o = Object(Y.H)("stories_feed_arrow_left", domPN(t)),
+                            a = Object(Y.H)("stories_feed_arrow_right", domPN(t));
+                        0 === cur[s] ? Object(Y.a)(o, "disabled") : Object(Y.hb)(o, "disabled"), cur[s] === r || r <= 0 ? Object(Y.a)(a, "disabled") : Object(Y.hb)(a, "disabled")
                     }
                 },
                 showBlackList() {
@@ -4317,7 +4481,7 @@
                 blackListItemClick(e, t) {
                     cancelEvent(t);
                     var s = intval(attr(e, "data-id"));
-                    cur.storiesBlackListShown[s] ? (delete cur.storiesBlackListShown[s], Object(V.hb)(e, "olist_item_wrap_on")) : (cur.storiesBlackListShown[s] = 1, Object(V.a)(e, "olist_item_wrap_on"))
+                    cur.storiesBlackListShown[s] ? (delete cur.storiesBlackListShown[s], Object(Y.hb)(e, "olist_item_wrap_on")) : (cur.storiesBlackListShown[s] = 1, Object(Y.a)(e, "olist_item_wrap_on"))
                 },
                 saveBlackList(e) {
                     var t = Object.keys(cur.storiesBlackListShown);
@@ -4327,11 +4491,11 @@
                         list: t.join(",")
                     }, {
                         onDone() {
-                            Object(fe.b)().hide(), Re.updateFeedStories()
+                            Object(je.b)().hide(), Ue.updateFeedStories()
                         },
                         showProgress: lockButton.pbind(e),
                         hideProgress: unlockButton.pbind(e)
-                    }) : Object(fe.b)().hide()
+                    }) : Object(je.b)().hide()
                 },
                 blacklistUpdateUsers(e) {
                     var t = e;
@@ -4346,44 +4510,44 @@
                                 d = e ? l.name.replace(o, e => `<em>${e}</em>`) : l.name;
                             a += cur.storiesBlackList.tpl.replace(/\{id\}/g, l.id).replace("{photo}", l.photo).replace("{name}", d).replace("{href}", l.href).replace("{class_name}", cur.storiesBlackListShown[l.id] ? " olist_item_wrap_on" : "")
                         }
-                        a || (a = '<div class="no_rows">' + Object(be.d)("global_search_not_found").replace("{search}", clean(t)) + "</div>"), Object(V.zb)(Object(V.H)("olist", "stories_black_list_result"), a)
+                        a || (a = '<div class="no_rows">' + Object(Oe.d)("global_search_not_found").replace("{search}", clean(t)) + "</div>"), Object(Y.zb)(Object(Y.H)("olist", "stories_black_list_result"), a)
                     }
                 },
                 blackListInit(e) {
-                    cur.storiesBlackListShown = {}, cur.storiesBlackList = e, Object(fe.b)().setOptions({
+                    cur.storiesBlackListShown = {}, cur.storiesBlackList = e, Object(je.b)().setOptions({
                         width: 450,
                         bodyStyle: "padding: 0px",
                         onClean: function() {
                             this.storyLayer && this.storyLayer.playStory(), cur.storiesBlackListScroll && cur.storiesBlackListScroll.destroy()
                         }
                     }).removeButtons(), cur.storiesBlackList.users.length ? (cur.storiesBlacklistLastQ = !1, cur.storiesIndexer = new vkIndexer(cur.storiesBlackList.users, e => e.name, () => {
-                        Re.blacklistUpdateUsers("")
-                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), Object(fe.b)().addButton(Object(be.d)("global_save"), Re.saveBlackList).addButton(Object(be.d)("global_cancel"), void 0, "no")) : Object(fe.b)().addButton(Object(be.d)("global_close"))
+                        Ue.blacklistUpdateUsers("")
+                    }), uiSearch.init("stories_blacklist"), uiSearch.focus("stories_blacklist"), Object(je.b)().addButton(Object(Oe.d)("global_save"), Ue.saveBlackList).addButton(Object(Oe.d)("global_cancel"), void 0, "no")) : Object(je.b)().addButton(Object(Oe.d)("global_close"))
                 },
                 preloadUrl(e) {
-                    u(e)
+                    p(e)
                 },
                 showNextRepliesChunk(e) {
                     var t = gpeByClass("stories_feedback_replies_items", e);
-                    Object(V.hb)(Object(V.H)("stories_replies_chunk_hidden", t), "stories_replies_chunk_hidden");
-                    var s = Object(V.H)("stories_replies_chunk_hidden", t);
-                    s ? Object(V.zb)(e, langNumeric(Object(be.d)("stories_replies_more_button", intval(attr(s, "data-size"))))) : re(e), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
+                    Object(Y.hb)(Object(Y.H)("stories_replies_chunk_hidden", t), "stories_replies_chunk_hidden");
+                    var s = Object(Y.H)("stories_replies_chunk_hidden", t);
+                    s ? Object(Y.zb)(e, langNumeric(Object(Oe.d)("stories_replies_more_button", intval(attr(s, "data-size"))))) : re(e), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.feedbackTooltipReInitHeaders(), cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.updateFeedbackTTPos()
                 },
                 groupStoriesBlockUpdate() {
-                    var e = Re._getList("group_stories"),
+                    var e = Ue._getList("group_stories"),
                         t = e && e[0] && e[0].items;
                     if (t) {
                         for (var s = 0, i = 0; i < t.length; i++) {
                             t[i].unread && s++
                         }
-                        var r = Object(V.H)("stories_groups_block_stories_wrap"),
-                            o = Object(V.H)("stories_groups_block_stories_button", r);
-                        Object(V.wb)(r, "has_unread", s > 0), Object(V.wb)(r, "has_stories", t.length > 0), Object(V.wb)(o, "has_stories", t.length > 0);
-                        var a = Object(K.d)(cur.storiesPreviews),
+                        var r = Object(Y.H)("stories_groups_block_stories_wrap"),
+                            o = Object(Y.H)("stories_groups_block_stories_button", r);
+                        Object(Y.wb)(r, "has_unread", s > 0), Object(Y.wb)(r, "has_stories", t.length > 0), Object(Y.wb)(o, "has_stories", t.length > 0);
+                        var a = Object(z.d)(cur.storiesPreviews),
                             n = a.splice(a.length - s, 3);
                         n.length < 3 && (n = n.concat(a.slice(0, 3 - n.length))), n.reverse();
                         for (var l = "", d = n.length - 1; d >= 0; d--) l += cur.storiesPreviewsRowHtml.replace("{url}", n[d]);
-                        Object(V.zb)(Object(V.H)("stories_groups_block_stories_rows", r), l)
+                        Object(Y.zb)(Object(Y.H)("stories_groups_block_stories_rows", r), l)
                     }
                 },
                 isLiveShown: e => !!(cur.storyLayer && cur.storyLayer.activeStory && cur.storyLayer.activeStory.isActiveLive()) && cur.storyLayer.activeStory.story.videoRaw === e,
@@ -4391,11 +4555,11 @@
                     cur.storyLayer.activeStory.onLiveEnded(e)
                 },
                 updateLiveViewersCount(e) {
-                    var t = e ? Object(be.d)("stories_live_N_watching", e, !0) : "";
+                    var t = e ? Object(Oe.d)("stories_live_N_watching", e, !0) : "";
                     cur.storyLayer.activeStory.updateLiveViewersCount(t)
                 }
             };
-        window.Stories = Re;
+        window.Stories = Ue;
         try {
             stManager.done("stories.js")
         } catch (e) {}
@@ -4403,9 +4567,9 @@
     Hx9h: function(e, t, s) {
         "use strict";
         s.d(t, "a", function() {
-            return a
+            return n
         });
-        s("rGqo"), s("Btvt");
+        s("91GP"), s("ioFf"), s("rGqo"), s("Btvt");
         var i = s("q1tI"),
             r = (s("17x9"), s("pemR"));
 
@@ -4418,34 +4582,42 @@
                 return e
             }).apply(this, arguments)
         }
-        class a extends i.Component {
+
+        function a(e, t) {
+            if (null == e) return {};
+            var s, i, r = function(e, t) {
+                if (null == e) return {};
+                var s, i, r = {},
+                    o = Object.keys(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
+                return r
+            }(e, t);
+            if (Object.getOwnPropertySymbols) {
+                var o = Object.getOwnPropertySymbols(e);
+                for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || Object.prototype.propertyIsEnumerable.call(e, s) && (r[s] = e[s])
+            }
+            return r
+        }
+        class n extends i.Component {
             render() {
                 var e = this.props,
-                    {
-                        className: t,
-                        appearance: s,
-                        wide: a,
-                        overflow: n,
-                        size: l
-                    } = e,
-                    d = function(e, t) {
-                        if (null == e) return {};
-                        var s, i, r = {},
-                            o = Object.keys(e);
-                        for (i = 0; i < o.length; i++) s = o[i], t.indexOf(s) >= 0 || (r[s] = e[s]);
-                        return r
-                    }(e, ["className", "appearance", "wide", "overflow", "size"]),
-                    h = Object(r.a)("Button", ...Array.isArray(s) ? s.map(e => `Button--${e}`) : [`Button--${s}`], `Button--size-${l}`, {
-                        "Button--wide": !!a,
-                        "Button--overflow": !!n,
+                    t = e.className,
+                    s = e.appearance,
+                    n = e.wide,
+                    l = e.overflow,
+                    d = e.size,
+                    h = a(e, ["className", "appearance", "wide", "overflow", "size"]),
+                    c = Object(r.a)("Button", ...Array.isArray(s) ? s.map(e => `Button--${e}`) : [`Button--${s}`], `Button--size-${d}`, {
+                        "Button--wide": !!n,
+                        "Button--overflow": !!l,
                         "Button--disabled": !!e.disabled
                     }, t);
-                return i.createElement("button", o({}, d, {
-                    className: h
+                return i.createElement("button", o({}, h, {
+                    className: c
                 }), e.children)
             }
         }
-        a.defaultProps = {
+        n.defaultProps = {
             appearance: "primary",
             size: "m",
             wide: !1,
@@ -4480,74 +4652,101 @@
     },
     N1NS: function(e, t, s) {
         "use strict";
-        s("rGqo"), s("Btvt"), s("KKXr");
-        var i = new window.Map;
+        s("rE2o"), s("ioFf"), s("rGqo"), s("Btvt"), s("KKXr");
 
-        function r(e) {
-            var t = i.get(e.currentTarget);
+        function i(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var r = new window.Map;
+
+        function o(e) {
+            var t = r.get(e.currentTarget);
             if (t) {
                 var s = t[e.type];
                 if (s)
-                    for (var r, o = 0; o < s.length; o++) {
-                        var [a, n] = s[o], l = void 0;
-                        if (hasClass(e.target, a) ? l = n(e, e.target) : (r = gpeByClass(a, e.target, e.currentTarget)) && (l = n(e, r)), !1 === l) break
+                    for (var o, a = 0; a < s.length; a++) {
+                        var n = i(s[a], 2),
+                            l = n[0],
+                            d = n[1],
+                            h = void 0;
+                        if (hasClass(e.target, l) ? h = d(e, e.target) : (o = gpeByClass(l, e.target, e.currentTarget)) && (h = d(e, o)), !1 === h) break
                     }
             }
         }
         s.d(t, "b", function() {
-            return n
-        }), s.d(t, "a", function() {
             return d
+        }), s.d(t, "a", function() {
+            return c
         }), s.d(t, "c", function() {
-            return h
+            return u
         });
-        var {
-            addEvent: o,
-            removeEvent: a
-        } = window;
+        var a = window,
+            n = a.addEvent,
+            l = a.removeEvent;
 
-        function n(e) {
+        function d(e) {
             return {
                 callMutations() {
                     if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
                     return e
                 },
-                bindMutations(...t) {
+                bindMutations() {
                     if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e(...t)
+                    return e = e(...arguments)
                 }
             }
         }
 
-        function l(e, t, s, o, a) {
-            ! function(e, t, s, o) {
-                var a = i.get(e);
-                a || (i.set(e, {}), a = i.get(e));
+        function h(e, t, s, i, a) {
+            ! function(e, t, s, i) {
+                var a = r.get(e);
+                a || (r.set(e, {}), a = r.get(e));
                 for (var n = t.split(" "), l = 0; l < n.length; l++) {
                     var d = n[l];
-                    a[d] || (a[d] = [], addEvent(e, d, r)), a[d].push([s, o])
+                    a[d] || (a[d] = [], addEvent(e, d, o)), a[d].push([s, i])
                 }
-            }(t, s, o, a), e._registeredHandlers.push(["delegate", t, s, o, a])
+            }(t, s, i, a), e._registeredHandlers.push(["delegate", t, s, i, a])
         }
 
-        function d(e) {
+        function c(e) {
             var t = {
                 _registeredHandlers: []
             };
             return e.handlers(function(e, t, s, i) {
-                o(t, s, i), e._registeredHandlers.push(["bind", t, s, i])
-            }.bind(null, t), l.bind(null, t)), t
+                n(t, s, i), e._registeredHandlers.push(["bind", t, s, i])
+            }.bind(null, t), h.bind(null, t)), t
         }
 
-        function h(e) {
+        function u(e) {
             e._registeredHandlers.forEach(e => {
                 var t = e.slice(1);
-                "delegate" === e[0] ? function(e, t, s, o) {
-                    var a = i.get(e);
+                "delegate" === e[0] ? function(e, t, s, i) {
+                    var a = r.get(e);
                     a && (t.split(" ").forEach(t => {
-                        a[t] && (a[t] = a[t].filter(e => e[0] !== s || e[1] !== o), 0 === a[t].length && removeEvent(e, t, r))
-                    }), 0 === Object.keys(a).map(e => a[e].length).reduce((e, t) => e + t) && i.delete(e))
-                }(...t) : a(...t)
+                        a[t] && (a[t] = a[t].filter(e => e[0] !== s || e[1] !== i), 0 === a[t].length && removeEvent(e, t, o))
+                    }), 0 === Object.keys(a).map(e => a[e].length).reduce((e, t) => e + t) && r.delete(e))
+                }(...t) : l(...t)
             }), e._registeredHandlers = []
         }
     },
@@ -4561,8 +4760,10 @@
             o = window.getLang,
             a = window.langNumeric;
 
-        function n(e, t = !1, s) {
-            var n = "number" == typeof t,
+        function n(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
+                s = arguments.length > 2 ? arguments[2] : void 0,
+                n = "number" == typeof t,
                 l = e + (t || n ? ".raw" : "");
             if (void 0 === r[l]) {
                 var d = t || n ? o(e, "raw") : o(e);
@@ -4611,6 +4812,7 @@
         s.d(t, "a", function() {
             return l
         });
+        s("91GP");
         var i = s("q1tI"),
             r = s("i8i4"),
             o = (s("17x9"), s("pemR")),
@@ -4620,24 +4822,24 @@
             constructor(e) {
                 super(e), this.onMouseEnter = (e => {
                     if (this.el) {
-                        var {
-                            text: t,
-                            position: s,
-                            align: i,
-                            marginTop: r,
-                            marginLeft: o,
-                            maxWidth: n,
-                            appearance: l
-                        } = this.props, d = Object(a.a)(this.el);
+                        var t = this.props,
+                            s = t.text,
+                            i = t.position,
+                            r = t.align,
+                            o = t.marginTop,
+                            n = t.marginLeft,
+                            l = t.maxWidth,
+                            d = t.appearance,
+                            h = Object(a.a)(this.el);
                         this.update({
-                            text: t,
-                            position: s,
-                            align: i,
-                            rect: d,
-                            marginTop: r,
-                            marginLeft: o,
-                            maxWidth: n,
-                            appearance: l
+                            text: s,
+                            position: i,
+                            align: r,
+                            rect: h,
+                            marginTop: o,
+                            marginLeft: n,
+                            maxWidth: l,
+                            appearance: d
                         })
                     }
                 }), this.onMouseLeave = (e => this.update()), this.onTransitionEnd = (e => {
@@ -4646,33 +4848,33 @@
                     })
                 }), this.renderTooltip = (() => {
                     if (!this.state.tooltip) return null;
-                    var {
-                        x: e,
-                        y: t,
-                        position: s,
-                        align: r,
-                        text: a,
-                        removed: n,
-                        maxWidth: l,
-                        appearance: d
-                    } = this.state.tooltip, h = Object(o.a)("Tooltip", `Tooltip--${s}`, `Tooltip--${d}`, {
-                        "Tooltip--removed": !!n,
-                        [`Tooltip--align-${r}`]: "t" === s || "b" === s
-                    });
+                    var e = this.state.tooltip,
+                        t = e.x,
+                        s = e.y,
+                        r = e.position,
+                        a = e.align,
+                        n = e.text,
+                        l = e.removed,
+                        d = e.maxWidth,
+                        h = e.appearance,
+                        c = Object(o.a)("Tooltip", `Tooltip--${r}`, `Tooltip--${h}`, {
+                            "Tooltip--removed": !!l,
+                            [`Tooltip--align-${a}`]: "t" === r || "b" === r
+                        });
                     return i.createElement("div", {
-                        className: h,
+                        className: c,
                         style: {
-                            top: t,
-                            left: e
+                            top: s,
+                            left: t
                         },
                         onTransitionEnd: this.onTransitionEnd
                     }, i.createElement("div", {
                         className: "Tooltip__in",
                         style: {
-                            maxWidth: l
+                            maxWidth: d
                         },
                         dangerouslySetInnerHTML: {
-                            __html: a
+                            __html: n
                         }
                     }))
                 }), this.state = {}
@@ -4689,16 +4891,16 @@
                         removed: !0
                     })
                 });
-                var {
-                    position: t,
-                    align: s,
-                    text: i,
-                    rect: r,
-                    marginTop: o,
-                    marginLeft: a,
-                    maxWidth: n,
-                    appearance: l
-                } = e, d = r.left, h = r.top;
+                var t = e.position,
+                    s = e.align,
+                    i = e.text,
+                    r = e.rect,
+                    o = e.marginTop,
+                    a = e.marginLeft,
+                    n = e.maxWidth,
+                    l = e.appearance,
+                    d = r.left,
+                    h = r.top;
                 switch (t) {
                     case "t":
                         d += .5 * r.width;
@@ -4762,41 +4964,78 @@
     nAFc: function(e, t, s) {
         "use strict";
         s.d(t, "c", function() {
-            return o
-        }), s.d(t, "a", function() {
             return a
-        }), s.d(t, "b", function() {
+        }), s.d(t, "a", function() {
             return n
-        }), s.d(t, "d", function() {
+        }), s.d(t, "b", function() {
             return l
+        }), s.d(t, "d", function() {
+            return d
         });
-        var {
-            Emoji: i
-        } = window, r = (s("Oyvg"), s("pIFo"), [
-            ["&amp;", "&"],
-            ["&lt;", "<"],
-            ["&gt;", ">"],
-            ["&quot;", '"']
-        ]);
+        s("rE2o"), s("ioFf"), s("rGqo"), s("Oyvg"), s("pIFo");
 
-        function o(e) {
-            return r.reduce((e, [t, s]) => e.replace(new RegExp(s, "ig"), t), e)
+        function i(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var s = [],
+                    i = !0,
+                    r = !1,
+                    o = void 0;
+                try {
+                    for (var a, n = e[Symbol.iterator](); !(i = (a = n.next()).done) && (s.push(a.value), !t || s.length !== t); i = !0);
+                } catch (e) {
+                    r = !0, o = e
+                } finally {
+                    try {
+                        i || null == n.return || n.return()
+                    } finally {
+                        if (r) throw o
+                    }
+                }
+                return s
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
         }
+        var r = window.Emoji,
+            o = [
+                ["&amp;", "&"],
+                ["&lt;", "<"],
+                ["&gt;", ">"],
+                ["&quot;", '"']
+            ];
 
         function a(e) {
-            return r.reduce((e, [t, s]) => e.replace(new RegExp(t, "ig"), s), e).replace(/&#(\d+);/g, (e, t) => String.fromCodePoint(t))
+            return o.reduce((e, t) => {
+                var s = i(t, 2),
+                    r = s[0],
+                    o = s[1];
+                return e.replace(new RegExp(o, "ig"), r)
+            }, e)
         }
 
         function n(e) {
-            return o(e).replace(/[\u00A0-\u9999<>\&]/gim, e => `&#${e.charCodeAt(0)};`)
+            return o.reduce((e, t) => {
+                var s = i(t, 2),
+                    r = s[0],
+                    o = s[1];
+                return e.replace(new RegExp(r, "ig"), o)
+            }, e).replace(/&#(\d+);/g, (e, t) => String.fromCodePoint(t))
         }
 
-        function l(e, {
-            lineBreak: t = !1,
-            convertEmoji: s = !0
-        } = {}) {
-            var r = a(e);
-            return r = r.replace(/\n\r/gi, "\n"), "oneline" === t ? r = r.replace(/<br>/gi, " ").replace(/\n/gi, " ") : "html" === t && (r = r.replace(/\n/gi, "<br>")), r = o(r), s && (r = i.emojiToHTML(r, !0)), r
+        function l(e) {
+            return a(e).replace(/[\u00A0-\u9999<>\&]/gim, e => `&#${e.charCodeAt(0)};`)
+        }
+
+        function d(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+                s = t.lineBreak,
+                i = void 0 !== s && s,
+                o = t.convertEmoji,
+                l = void 0 === o || o,
+                d = n(e);
+            return d = d.replace(/\n\r/gi, "\n"), "oneline" === i ? d = d.replace(/<br>/gi, " ").replace(/\n/gi, " ") : "html" === i && (d = d.replace(/\n/gi, "<br>")), d = a(d), l && (d = r.emojiToHTML(d, !0)), d
         }
     },
     pemR: function(e, t, s) {
@@ -4830,8 +5069,8 @@
             r = s("i8i4"),
             o = (s("17x9"), s("pemR"));
         class a extends i.Component {
-            constructor(...e) {
-                super(...e), this.getScrollbarWidth = (() => {
+            constructor() {
+                super(...arguments), this.getScrollbarWidth = (() => {
                     var e = document.createElement("div");
                     e.classList.add("BaseModal__scrollbarMeasure"), document.body.appendChild(e);
                     var t = e.getBoundingClientRect().width - e.clientWidth;
@@ -4844,36 +5083,29 @@
                 }), this.showScrollBar = (() => {
                     document.body.style.paddingRight = this.calculatedPadding, document.body.classList.remove("BaseModal__bodyHiddenOverflow")
                 }), this.onDocumentKeyDown = (e => {
-                    var {
-                        onClose: t
-                    } = this.props;
+                    var t = this.props.onClose;
                     "Escape" === e.key && t()
                 }), this.onBackdropClick = (() => {
-                    var {
-                        onClose: e,
-                        disableBackdropClick: t
-                    } = this.props;
-                    !t && e()
+                    var e = this.props,
+                        t = e.onClose;
+                    !e.disableBackdropClick && t()
                 })
             }
             componentDidMount() {
-                var {
-                    disableEscapeClose: e,
-                    disableBodyScroll: t
-                } = this.props;
-                e || document.body.addEventListener("keydown", this.onDocumentKeyDown), t && this.hideScrollBar()
+                var e = this.props,
+                    t = e.disableEscapeClose,
+                    s = e.disableBodyScroll;
+                t || document.body.addEventListener("keydown", this.onDocumentKeyDown), s && this.hideScrollBar()
             }
             componentWillUnmount() {
-                var {
-                    disableEscapeClose: e,
-                    disableBodyScroll: t
-                } = this.props;
-                e || document.body.removeEventListener("keydown", this.onDocumentKeyDown), t && this.showScrollBar()
+                var e = this.props,
+                    t = e.disableEscapeClose,
+                    s = e.disableBodyScroll;
+                t || document.body.removeEventListener("keydown", this.onDocumentKeyDown), s && this.showScrollBar()
             }
             renderModal() {
-                var {
-                    className: e
-                } = this.props, t = Object(o.a)("BaseModal", e);
+                var e = this.props.className,
+                    t = Object(o.a)("BaseModal", e);
                 return i.createElement("div", {
                     className: t,
                     "aria-modal": "true"

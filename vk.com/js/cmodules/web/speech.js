@@ -78,7 +78,7 @@
         "use strict";
         i.r(e);
         var s = i("E2g8"),
-            r = (i("Btvt"), i("g6Ay"));
+            r = (i("VRzm"), i("Btvt"), i("g6Ay"));
         if ("function" != typeof window.CustomEvent) {
             function a(t, e) {
                 e = e || {
@@ -253,6 +253,7 @@
             visTime: 8,
             color: "#fff"
         };
+        i("NO8f");
         var m = {
             blockWidth: 3,
             spacing: 2,
@@ -445,7 +446,7 @@
         i.d(e, "a", function() {
             return s
         });
-        i("Btvt");
+        i("VRzm"), i("Btvt");
 
         function s() {
             var t = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.MediaDevices && window.MediaDevices.getUserMedia;
@@ -546,7 +547,8 @@
             }
         }
 
-        function a(t, e, i = "peak") {
+        function a(t, e) {
+            var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "peak";
             return new r({
                 srcSampleRate: t.length,
                 dstSampleRate: e,
