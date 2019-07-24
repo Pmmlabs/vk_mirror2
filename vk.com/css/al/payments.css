@@ -3058,9 +3058,14 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_notice {
-    padding: 18px 0 12px;
+    padding: 12px 0 13px;
     color: #7a7e87;
     text-align: center
+}
+
+.payments_money_transfer_notice_top {
+    padding: 0 0 8px;
+    margin-top: -20px
 }
 
 .payments_money_transfer_to {

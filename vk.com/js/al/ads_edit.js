@@ -6675,12 +6675,21 @@ AdsViewEditor.prototype.setPredictionWidgetApiResponse = function(apiResponse) {
     this.lastAudienceCountApiResponse = apiResponse;
 };
 
-AdsViewEditor.prototype.showPredictionWidget = function() {
+/**
+ *
+ * @param {bool} noDataUpdate ����, ����� �� ������������� ��������� �������.
+ */
+AdsViewEditor.prototype.showPredictionWidget = function(noDataUpdate) {
     var costPerClick = parseFloat(this.params['cost_per_click'].value);
-    // TODO �������� ����, ��� ���������� ������
-    var widgetData = this.getPredictionWidgetDataForRender(costPerClick);
+    var widgetData;
+    if (noDataUpdate && this.lastPredictionWidgetData) {
+        widgetData = this.lastPredictionWidgetData;
+    } else {
+        widgetData = this.getPredictionWidgetDataForRender(costPerClick);
+    }
     if (widgetData) {
-        var isLoading = this.editor.updateDataCounter > 0;
+        var isLoading = this.editor.isUpdatingData();
+        this.lastPredictionWidgetData = widgetData;
         AdsComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_count_container'), widgetData, isLoading);
     }
 };
@@ -6692,7 +6701,18 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
     }
 
     var prices = apiResponse.recommended_price || [];
-    var audienceCount = apiResponse.audience_count;
+    var audienceCount = apiResponse.audience_count || 0;
+
+    var ret = {
+        targetValue: audienceCount,
+        items: [],
+    };
+
+    // ���� � ������ ������ ���, �� ����� �������
+    if (!prices.length) {
+        return ret;
+    }
+
     var minPriceItem = null;
     var maxPriceItem = prices[prices.length - 1];
     for (var i = 0; i < prices.length; i++) {
@@ -6714,11 +6734,6 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         maxPriceItem = prices[prices.length - 1];
     }
 
-    var ret = {
-        targetValue: apiResponse.audience_count,
-        items: [],
-    };
-
     var getApproximatedValue = function(minItem, maxItem, audienceCount, costPerClick) {
         // ����������� ��� �������� ������������
         var k = (costPerClick - minItem.price) / (maxItem.price - minItem.price);
@@ -6738,18 +6753,35 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         var minValues = minPriceItem.items[i].values;
         var maxValues = maxPriceItem.items[i].values;
         var type = minPriceItem.items[i].type;
+
+        var values = {
+            day: {
+                min: 0,
+                max: 0
+            },
+            week: {
+                min: 0,
+                max: 0
+            },
+        };
+
+        try {
+            values.day = {
+                min: getApproximatedValue(minValues.day.min, maxValues.day.min, type),
+                max: getApproximatedValue(minValues.day.max, maxValues.day.max, type),
+            }
+        } catch (e) {}
+
+        try {
+            values.week = {
+                min: getApproximatedValue(minValues.week.min, maxValues.week.min, type),
+                max: getApproximatedValue(minValues.week.max, maxValues.week.max, type),
+            }
+        } catch (e) {}
+
         ret.items.push({
             type: type,
-            values: {
-                day: {
-                    min: getApproximatedValue(minValues.day.min, maxValues.day.min, type),
-                    max: getApproximatedValue(minValues.day.max, maxValues.day.max, type),
-                },
-                week: {
-                    min: getApproximatedValue(minValues.week.min, maxValues.week.min, type),
-                    max: getApproximatedValue(minValues.week.max, maxValues.week.max, type),
-                }
-            }
+            values: values
         });
     }
     return ret;
@@ -6757,7 +6789,8 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
 
 // ���������� ����� �������� get_target_params
 AdsViewEditor.prototype.beforeGetTargetParams = function() {
-    this.showPredictionWidget();
+    // ����� �������� �� ��������� ������, � ������ ���������� ������
+    this.showPredictionWidget(true);
 };
 
 

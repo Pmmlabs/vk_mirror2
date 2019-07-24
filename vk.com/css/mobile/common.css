@@ -31558,9 +31558,21 @@ a.feedBlocks__article:hover {
     color: #888
 }
 
+.sendMoneyForm__amountNote_top {
+    margin-top: -15px
+}
+
+.sendMoneyForm__amountNote_top~.sendMoneyForm__amountNote {
+    margin-top: 0
+}
+
 .sendMoneyForm__amountNote_max {
     display: none;
     color: #bf2413
+}
+
+.sendMoneyForm__amountNote_request {
+    display: none
 }
 
 .sendMoneyForm_error_min .sendMoneyForm__amountNote {
@@ -31572,6 +31584,14 @@ a.feedBlocks__article:hover {
 }
 
 .sendMoneyForm_error_max .sendMoneyForm__amountNote_max {
+    display: block
+}
+
+.sendMoneyForm_requestedVisible .sendMoneyForm__amountNote_min {
+    display: none
+}
+
+.sendMoneyForm_requestedVisible .sendMoneyForm__amountNote_request {
     display: block
 }
 
