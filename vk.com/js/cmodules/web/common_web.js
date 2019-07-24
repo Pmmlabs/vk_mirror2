@@ -1453,7 +1453,7 @@
                 var i = Math.round(3600 * (t - 3)),
                     n = Math.abs(o - i);
                 n < c && (c = n, w = i)
-            }), Object(N.d)("timeoffset_new_method", 1, w, r), Qt.dt = w, Object(a.a)("remixdt") !== Qt.dt && Object(a.d)("remixdt", Qt.dt, 365);
+            }), Object(N.d)("timeoffset_new_method", 1, w, r), Object($.a)("timezone_new_method") ? Qt.dt = r : Qt.dt = w, Object(a.a)("remixdt") !== Qt.dt && Object(a.d)("remixdt", Qt.dt, 365);
             var l = Object(s.r)(Object(a.a)("remixrt"));
             window.devicePixelRatio >= 2 && (!p.a.iphone || Object(a.a)("remixme")) ? 1 & l || (Object(a.d)("remixrt", 1 | l, 365), window._retinaInit = function() {
                 C.d.add(["retina.css"]), Object(f.a)(document.body, "is_2x")

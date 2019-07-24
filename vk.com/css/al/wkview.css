@@ -1496,3 +1496,71 @@ span#wk_posts_reach_tooltip_link {
 .closed_comments .reply_link_wrap {
     display: none
 }
+
+.wl_postreach_experts_stat_votes {
+    width: 50%;
+    display: inline-block
+}
+
+.wl_postreach_experts_stat_votes .wl_postreach_experts_stat_vote_item {
+    display: block
+}
+
+.wl_postreach_experts_stat_votes .wl_postreach_experts_stat_expert_vote {
+    width: 11px;
+    height: 11px;
+    margin-left: 3px;
+    display: inline-block
+}
+
+.wl_postreach_experts_stat_votes .wl_postreach_experts_stat_expert_vote.upvote {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2352c15a%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EUntitled-1%3C%2Ftitle%3E%3Cg%20id%3D%22Experts_arrow_upvote%22%20data-name%3D%22Experts%20arrow%20upvote%22%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2219.9%209.9%2010%200%200.1%209.9%202.1%2011.9%208.6%205.4%208.6%2025%2011.4%2025%2011.4%205.4%2017.9%2011.9%2019.9%209.9%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%
+}
+
+.wl_postreach_experts_stat_votes .wl_postreach_experts_stat_expert_vote.downvote {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23c73434%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EUntitled-1%3C%2Ftitle%3E%3Cg%20id%3D%22Experts_arrow_downvote%22%20data-name%3D%22Experts%20arrow%20downvote%22%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2219.9%209.9%2010%200%200.1%209.9%202.1%2011.9%208.6%205.4%208.6%2025%2011.4%2025%2011.4%205.4%2017.9%2011.9%2019.9%209.9%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') no-repeat 50%;
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.wl_postreach_experts_stat_votes .wl_postreach_experts_show_history_votes {
+    margin-top: 5px;
+    display: block
+}
+
+.wl_postreach_experts_stat_topics {
+    display: block
+}
+
+.wl_postreach_experts_stat_counters {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top
+}
+
+.wl_postreach_experts_stat_counters .wl_postreach_experts_stat_counters_item {
+    display: block;
+    margin-bottom: 6px
+}
+
+.wl_postreach_experts_stat_counters .wl_postreach_experts_stat_counters_item .wl_postreach_experts_stat_counters_item_title {
+    display: inline-block;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.wl_postreach_experts_stat_counters .wl_postreach_experts_stat_counters_item span {
+    display: inline-block
+}
+
+.wl_postreach_experts_stat_title {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 6px
+}
+
+.wl_postreach_experts_stat {
+    padding: 10px 10px 12px
+}

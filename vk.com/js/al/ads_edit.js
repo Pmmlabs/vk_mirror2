@@ -3782,9 +3782,9 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
         case 'cost_per_click':
             var labelElem = geByClass1('ads_edit_label_cost_per_click', ge('ads_edit_ad_row_' + paramName));
             if (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK) {
-                labelElem.innerHTML = getLang('ads_edit_ad_cost_per_click_label');
+                labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_click_label'));
             } else {
-                labelElem.innerHTML = getLang('ads_edit_ad_cost_per_views_label');
+                labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_views_label'));
             }
 
             var isAppCampaign = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || (this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app));
@@ -6719,17 +6719,20 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         items: [],
     };
 
-    var getApproximatedValue = function(minItem, maxItem, audienceCount) {
+    var getApproximatedValue = function(minItem, maxItem, audienceCount, costPerClick) {
         // ����������� ��� �������� ������������
         var k = (costPerClick - minItem.price) / (maxItem.price - minItem.price);
         return function(min, max, type) {
             if (type === 'reach') {
+                if (!costPerClick) {
+                    return 0;
+                }
                 // ���� �����, �� ������������ ���������� ��������� ������� ���������
                 return Math.min(audienceCount, Math.max(0, min + (max - min) * k));
             }
             return Math.max(0, min + (max - min) * k);
         }
-    }(minPriceItem, maxPriceItem, audienceCount);
+    }(minPriceItem, maxPriceItem, audienceCount, costPerClick);
 
     for (i = 0; i < minPriceItem.items.length; i++) {
         var minValues = minPriceItem.items[i].values;

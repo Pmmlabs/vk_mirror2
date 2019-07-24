@@ -268,8 +268,6 @@ Ads.initFixed = function(elemWrap, options) {
         denyZeroSizeInit: true
     }, options);
 
-    console.log(options);
-
     var initElemWrapXY = getXY(elemWrap);
     var inited = elemWrap.getAttribute('fixed_inited');
     var positionTop = options.customPositionTop;
