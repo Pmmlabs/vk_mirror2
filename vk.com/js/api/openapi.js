@@ -1233,6 +1233,15 @@ if (!VK.xdConnectionCallbacks) {
                     return;
 
                 }
+
+                if (Object.prototype.toString.call(params.data) === '[object Object]') {
+                    try {
+                        params.data = JSON.stringify(params.data);
+                    } catch (e) {
+                        params.data = '';
+                    }
+                }
+
                 domain = VK._base_domain || 'vk.com';
                 src = VK._protocol + '//' + domain + '/apps?act=open_external_app_openapi&aid=' + VK._apiId;
                 params['aid'] = VK._apiId;

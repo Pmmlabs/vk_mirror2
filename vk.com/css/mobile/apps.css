@@ -2730,14 +2730,19 @@ input.wide_button {
     text-decoration: none
 }
 
-.profile_market_item_img,
-.page_market_item_title {
+.profile_market_item_img {
     width: 100%;
     max-width: 200px
 }
 
 .page_market_item_title {
     margin: 2px 0 3px;
+    width: 100%;
+    max-width: 200px
+}
+
+.page_market_item_title,
+.profile_market_item_price {
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
@@ -2745,7 +2750,7 @@ input.wide_button {
 }
 
 .profile_market_item_price {
-    font-weight: 700;
+    font-weight: 500;
     color: #000
 }
 
@@ -4332,7 +4337,15 @@ input.wide_button {
 
 .mlt_price {
     color: #000;
-    font-weight: 700
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.mlt_price .market-item-old-price-discount {
+    padding: 1px 5px
 }
 
 .medias_map_label {
@@ -9653,18 +9666,36 @@ div.pm_item .pm_counter {
 }
 
 .mki_title {
-    margin: 3px 0
-}
-
-.mki_title,
-.mki_price {
+    margin: 3px 0;
     font-weight: 700;
     text-align: center
 }
 
 .mki_price {
     margin: 10px 0 12px;
-    color: #999
+    color: #000;
+    font-weight: 500;
+    text-align: center
+}
+
+.market-item-old-price {
+    margin-left: 0.45em;
+    color: #ababab;
+    font-weight: 400;
+    position: relative;
+    text-decoration: line-through
+}
+
+.market-item-old-price-discount {
+    padding: 0.2em 0.5em;
+    margin-left: 0.6em;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 400;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #3f8ae0
 }
 
 .mki_description {

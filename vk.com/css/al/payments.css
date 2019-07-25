@@ -2044,7 +2044,8 @@ h2.payments_getvotes_title {
     display: none
 }
 
-.payments_spasibo_accept_rules .payments_remember_wallet {
+.payments_spasibo_accept_rules,
+.payments_remember_wallet {
     margin: 10px 10px 5px 0
 }
 

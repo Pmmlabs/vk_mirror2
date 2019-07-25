@@ -532,7 +532,8 @@
                     groups: this.groupsDropdown.val(),
                     geo_near: t,
                     planner_duration: this.durationDropdown.val(),
-                    planner_daily_budget: this.dailyLimitDropdown.val()
+                    planner_daily_budget: this.dailyLimitDropdown.val(),
+                    source: "easy_promote"
                 };
                 if (1 == i.geo_type ? (i.country = "", i.cities = "") : 0 == i.geo_type && (i.geo_near = "", i.geo_mask = ""), 0 == i.retargeting_groups && (i.retargeting_groups = ""), i.country && e.need_cities_data && (i.need_cities_data = 1), this.options.suggested_criteria || (i.need_suggested_criteria = 1), this.options.category_selected) i.category1_id = this.options.category_selected;
                 else if (this.options.category_suggestions) {

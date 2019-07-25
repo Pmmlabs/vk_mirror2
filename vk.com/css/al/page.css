@@ -13677,6 +13677,7 @@ div.medadd_c_linkprg {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
     display: inline-block;
     vertical-align: top;
     font-size: 12.5px;
@@ -13685,7 +13686,19 @@ div.medadd_c_linkprg {
 }
 
 .microdata_price.microdata_price_old {
-    text-decoration: line-through
+    color: #939393;
+    margin-left: 6px;
+    font-weight: 400
+}
+
+.microdata_price.microdata_price_old:after {
+    content: '';
+    display: block;
+    background-color: #939393;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 50%
 }
 
 .microdata_rate_container {

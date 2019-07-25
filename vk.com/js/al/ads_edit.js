@@ -6742,6 +6742,12 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
                 if (!costPerClick) {
                     return 0;
                 }
+
+                // ���� ��������� ������ ��� ������ ������� (�.� ������ ��� ��������� ����� � ������ api)
+                if (costPerClick >= maxItem.price) {
+                    return max;
+                }
+
                 // ���� �����, �� ������������ ���������� ��������� ������� ���������
                 return Math.min(audienceCount, Math.max(0, min + (max - min) * k));
             }

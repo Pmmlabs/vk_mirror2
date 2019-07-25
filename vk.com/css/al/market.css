@@ -7,6 +7,7 @@
 .market_category_sep,
 .market_edit_actions .fav .icon,
 .market_edit_actions .icon,
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_close,
 .market_ei_photo_add,
 .market_goto_cart_icon,
 .market_item_bigph .market_item_bigph_icon,
@@ -539,7 +540,6 @@
     font-weight: 400;
     font-size: 18px;
     overflow: hidden;
-    line-height: 22px;
     word-wrap: break-word
 }
 
@@ -547,14 +547,18 @@
 .market_item_price {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #000
+    color: #000;
+    line-height: 22px
 }
 
 .market_item_price {
     margin: 0 0 19px;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px
+    font-size: 20px
+}
+
+.market_item_price .market-item-old-price {
+    font-size: 0.9em
 }
 
 .market_item_stats {
@@ -961,6 +965,52 @@
 
 .market_edit_item_box_new>div .subheader:first-child {
     margin-top: 25px
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_show_toggle {
+    display: block
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit,
+.market_edit_item_box_new .market_old_price_block.market_old_price_block_shown .market_old_price_edit_show_toggle {
+    display: none
+}
+
+.market_edit_item_box_new .market_old_price_block.market_old_price_block_shown .market_old_price_edit {
+    display: block
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_show_toggle {
+    margin-top: 10px
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_close {
+    display: block;
+    background: url(/images/cross.png) no-repeat 50%;
+    width: 20px;
+    height: 20px;
+    opacity: 0.75;
+    float: left;
+    margin: 5px 0 0 13px;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .market_edit_item_box_new .market_old_price_block .market_old_price_edit_close {
+        background-image: url(/images/cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_close:hover {
+    opacity: 1
+}
+
+.market_edit_item_box_new .market_old_price_block .market_old_price_edit_close:active {
+    position: relative;
+    top: 1px
 }
 
 .market_edit_item_box_new .market_ei_main_photo_wrap {
@@ -1639,21 +1689,31 @@
 }
 
 .market_row_price {
-    padding-top: 2px
-}
-
-.market_row_price,
-.market_row_new_badge {
+    padding-top: 2px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 12.5px
 }
 
+.market-item-old-price-discount {
+    color: #fff;
+    border-radius: 10px;
+    background-color: #3f8ae0;
+    font-size: 0.6em;
+    padding: 0.15em 0.5em;
+    vertical-align: top;
+    margin-left: 0.6em
+}
+
 .market_row_new_badge {
     position: absolute;
     top: 8px;
     right: -2px;
+    font-size: 12.5px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     background: #6690c7;
     color: #fff;
     padding: 0 5px 1px;
@@ -2270,7 +2330,6 @@
     font-weight: 400;
     font-size: 18px;
     overflow: hidden;
-    line-height: 22px;
     word-wrap: break-word
 }
 
@@ -2278,14 +2337,14 @@
 .market_item_price {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    color: #000
+    color: #000;
+    line-height: 22px
 }
 
 .market_item_price {
     margin: 0 0 19px;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px
+    font-size: 20px
 }
 
 .market_item_stats {

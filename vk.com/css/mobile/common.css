@@ -2745,14 +2745,19 @@ input.wide_button {
     text-decoration: none
 }
 
-.profile_market_item_img,
-.page_market_item_title {
+.profile_market_item_img {
     width: 100%;
     max-width: 200px
 }
 
 .page_market_item_title {
     margin: 2px 0 3px;
+    width: 100%;
+    max-width: 200px
+}
+
+.page_market_item_title,
+.profile_market_item_price {
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
@@ -2760,7 +2765,7 @@ input.wide_button {
 }
 
 .profile_market_item_price {
-    font-weight: 700;
+    font-weight: 500;
     color: #000
 }
 
@@ -4347,7 +4352,15 @@ input.wide_button {
 
 .mlt_price {
     color: #000;
-    font-weight: 700
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.mlt_price .market-item-old-price-discount {
+    padding: 1px 5px
 }
 
 .medias_map_label {
@@ -9668,18 +9681,36 @@ div.pm_item .pm_counter {
 }
 
 .mki_title {
-    margin: 3px 0
-}
-
-.mki_title,
-.mki_price {
+    margin: 3px 0;
     font-weight: 700;
     text-align: center
 }
 
 .mki_price {
     margin: 10px 0 12px;
-    color: #999
+    color: #000;
+    font-weight: 500;
+    text-align: center
+}
+
+.market-item-old-price {
+    margin-left: 0.45em;
+    color: #ababab;
+    font-weight: 400;
+    position: relative;
+    text-decoration: line-through
+}
+
+.market-item-old-price-discount {
+    padding: 0.2em 0.5em;
+    margin-left: 0.6em;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 400;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #3f8ae0
 }
 
 .mki_description {
@@ -39439,10 +39470,8 @@ body.apps_settingsPageBody .basis__content {
 .r .cp_attached_post .mlt_price,
 .r .e .medias_map_second_line,
 .r .e .mlt_link,
-.r .e .mlt_price,
 .r .wall_item .medias_map_second_line,
 .r .wall_item .mlt_link,
-.r .wall_item .mlt_price,
 .ThumbedLink__secondLine {
     font-size: 14px;
     font-weight: 400;
@@ -39547,6 +39576,12 @@ body.apps_settingsPageBody .basis__content {
     margin: 0
 }
 
+.r .e .mlt_price,
+.r .wall_item .mlt_price {
+    color: #000;
+    font-weight: 500
+}
+
 .r .cp_attached_post .mlt_preview_btn .small_button--vk-app:before,
 .r .e .mlt_preview_btn .small_button--vk-app:before,
 .r .wall_item .mlt_preview_btn .small_button--vk-app:before {
@@ -39579,13 +39614,6 @@ body.apps_settingsPageBody .basis__content {
 .r .wall_item .medias_link_thumbed .mlt_cont {
     min-height: 0!important;
     position: relative
-}
-
-.r .cp_attached_post .medias_link_thumbed.medias_link_thumbed_with_button .mlt_header,
-.r .e .medias_link_thumbed.medias_link_thumbed_with_button .mlt_header,
-.r .wall_item .medias_link_thumbed.medias_link_thumbed_with_button .mlt_header {
-    display: table-cell;
-    width: 100%
 }
 
 .r .cp_attached_post .medias_link_thumbed.medias_link_thumbed_with_button .mlt_cont,
@@ -53630,6 +53658,15 @@ a .BookmarkListItem__subtitle:hover {
     }
 }
 
+.mailDialog__title {
+    color: #000;
+    font-size: 17px;
+    font-weight: 500;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 12px
+}
+
 .mailDialog__footer:after {
     content: '';
     display: table;
@@ -54239,6 +54276,36 @@ a .BookmarkListItem__subtitle:hover {
     -ms-flex-negative: 1;
     flex-shrink: 1;
     margin: 0 6px
+}
+
+.MailCaptcha__box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%
+}
+
+.MailCaptcha__input {
+    max-width: 130px;
+    margin-top: 16px
+}
+
+.MailCaptcha__dialog .mailDialog__content {
+    max-width: 260px
 }
 
 .svgIcon-mail-bot_buttons {

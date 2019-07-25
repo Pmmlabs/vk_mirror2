@@ -11687,3 +11687,22 @@ button.ui_load_more_btn {
     user-select: none;
     pointer-events: none
 }
+
+.market-item-old-price {
+    margin-left: 0.45em;
+    color: #939393;
+    font-weight: 400;
+    position: relative;
+    display: inline-block
+}
+
+.market-item-old-price:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #939393
+}
