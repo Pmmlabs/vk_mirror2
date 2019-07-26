@@ -86,7 +86,7 @@
     x625: function(e, t, s) {
         "use strict";
         s.r(t);
-        s("rE2o"), s("ioFf"), s("SRfc"), s("hhXQ"), s("a1Th"), s("0mN4"), s("rGqo"), s("Btvt"), s("pIFo"), s("KKXr");
+        s("rE2o"), s("ioFf"), s("91GP"), s("SRfc"), s("hhXQ"), s("a1Th"), s("0mN4"), s("rGqo"), s("Btvt"), s("pIFo"), s("KKXr");
         var i = s("aong"),
             n = s("XzvV");
 
@@ -637,7 +637,8 @@
                         criteria_preset_id: this.audienceDropdown.val(),
                         planner_reach: this.options.expected_reach.value,
                         total_reach: this.options.expected_reach.limit,
-                        suggested_criteria: this.isSuggestedCriteria(t) ? 1 : 0
+                        suggested_criteria: this.isSuggestedCriteria(t) ? 1 : 0,
+                        suggested_criteria_data: JSON.stringify(this.getFullSuggestedCriteriaAndLimits())
                     });
                 ajax.post("/adsedit?act=save_ad", s, {
                     onDone: this.onCreateAdDone.bind(this, !0),
@@ -1024,6 +1025,24 @@
                     if (n || (n = !1), n != e[i]) return !1
                 }
                 return !0
+            }
+            getFullSuggestedCriteriaAndLimits() {
+                var e = {
+                    daily_limit_selected: this.options.daily_limit_selected,
+                    duration_selected: this.options.duration_selected
+                };
+                return Object.assign({}, {
+                    sex: !1,
+                    age_from: !1,
+                    age_to: !1,
+                    cities: !1,
+                    country: !1,
+                    interest_categories: !1,
+                    geo_near: !1,
+                    groups: !1,
+                    daily_limit_selected: !1,
+                    duration_selected: !1
+                }, this.options.suggested_criteria, e)
             }
         };
         try {

@@ -4531,12 +4531,14 @@ textarea.EditableLabel__textarea {
 }
 
 .stories_reply_to.deleted,
+.stories_reply_to.expired,
 .stories_reply_to.private {
     background-position-y: 72px;
     background-size: auto
 }
 
 .stories_reply_to.deleted .stories_reply_to_owner_name_wrap,
+.stories_reply_to.expired .stories_reply_to_owner_name_wrap,
 .stories_reply_to.private .stories_reply_to_owner_name_wrap {
     background: transparent
 }
@@ -4545,6 +4547,7 @@ textarea.EditableLabel__textarea {
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M9%202a2%202%200%200%201%202-2h2a2%202%200%200%201%202%202h6a1%201%200%200%201%200%202H3a1%201%200%201%201%200-2h6zm6%200zM4%206h16v16a2%202%200%200%201-2%202H6a2%202%200%200%201-2-2V6zm4%203a1%201%200%200%200-1%201v10a1%201%200%200%200%202%200V10a1%201%200%200%200-1-1zm8%200a1%201%200%200%200-1%201v10a1%201%200%200%200%202%200V10a1%201%200%200%200-1-1zm-4%200a1%201%200%200%200-1%201v10a1%201%200%200%200%202%200V10a1%201%200%200%200-1-1z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')!important
 }
 
+.stories_reply_to.expired,
 .stories_reply_to.private {
     background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M6%209V6c.333-4%202.333-6%206-6s5.667%202%206%206v3c2%200%203%201%203%203v9c0%202-1%203-3%203H6c-2%200-3-1-3-3v-9c0-2%201-3%203-3zm2-3v3h8V6c-.333-2.667-1.667-4-4-4S8.333%203.333%208%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')!important
 }

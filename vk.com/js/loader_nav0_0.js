@@ -530,7 +530,7 @@ var stVersions = {
     'cmodules/web/speech_worker_mp3.js': 1,
     'cmodules/web/speech_worker_opus.js': 1,
     'stories.js': 8,
-    'stories.css': 91120900585,
+    'stories.css': 92072144518,
     'cmodules/web/stories_manage.js': 2,
     'stories_manage.css': 88494490576,
     'cmodules/web/stories_archive.js': 1,
@@ -626,7 +626,7 @@ var stVersions = {
     'cmodules/web/add_to_community_app.ace56035bf1339ea7c61.js': 'bc80b0b649074403c6a8b03d3befc58e',
     'cmodules/web/addresses.9574de0acabc8d0d5bef.js': '4d8a277e8434a4eaf9d24f603fcaf4b7',
     'cmodules/web/ads_components.3c528e4ad7fca91560c9.js': '1432c1de3f86e13b6df950bf76bc3d1a',
-    'cmodules/web/ads_edit_easy.ed3a45e1d3f0a94c8ab3.js': 'cd9f576426d6815cba0c1ba924284d04',
+    'cmodules/web/ads_edit_easy.b009e19301a1621241d6.js': '015b2aa420ef6742ab18992d22f0d1de',
     'cmodules/web/ads_office.e3f6fd493c9381472468.js': 'c613427a596c00f62fe3e13946074a29',
     'cmodules/web/app_info.54b1011f3826e0d2ae11.js': 'fa76295f49e74a9c43f9',
     'cmodules/web/app_use_time.221fe4978958b62b209a.js': 'e4f804249d31df90052b72deb6e3cf96',
@@ -712,7 +712,7 @@ var stVersions = {
     'cmodules/web/stats.4eadd4a25075cf9c8933.js': '090421d941317515b63b44621e97fd4b',
     'cmodules/web/stickers.7ec65e2c16bbedf0f0ef.js': '12479cf7e53fe635416b3e2ea5532930',
     'cmodules/web/stickers_office.2be1051f2919dd2d32ad.js': 'cdec5dcd62acd265130d88f0edae0e0b',
-    'cmodules/web/stories.ce461e3ef2e99f733b4c.js': 'b9447086afc61fd540f49f8c604be633',
+    'cmodules/web/stories.1aa7279917951b021667.js': '09872573f9015dd3d982ade2a3842379',
     'cmodules/web/stories_admin.ac8eb5e3343833bdc689.js': '99df7df5fed17f6c668e774097bd940b',
     'cmodules/web/stories_archive.2f880f2b8c1b50d16719.js': '270db9b3b0a8f5e03f22270f9503907e',
     'cmodules/web/stories_loader_worker.349a2fdd4de619d06c20.js': '8d1c841e77d99aa8806e',
@@ -800,14 +800,14 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 3236;
+var _rnd = 5360;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.795b4c61eee0f3f78574.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.26e8f53c2f0a63c852a2.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/add_to_community_app.ace56035bf1339ea7c61.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/addresses.9574de0acabc8d0d5bef.js"],
     "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/7435d66133432ce1b1938e7cf450c5d0.3884dbdf0e19bcfc7ff5.js", "cmodules/web/ads_components.3c528e4ad7fca91560c9.js"],
-    "/js/cmodules/web/ads_edit_easy.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/ads_edit_easy.ed3a45e1d3f0a94c8ab3.js"],
+    "/js/cmodules/web/ads_edit_easy.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/ads_edit_easy.b009e19301a1621241d6.js"],
     "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/7435d66133432ce1b1938e7cf450c5d0.3884dbdf0e19bcfc7ff5.js", "cmodules/web/ads_office.e3f6fd493c9381472468.js"],
     "/js/cmodules/web/app_info.js": ["cmodules/web/app_info.54b1011f3826e0d2ae11.js"],
     "/js/cmodules/web/app_use_time.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/app_use_time.221fe4978958b62b209a.js"],
@@ -893,7 +893,7 @@ var stDeps = {
     "/js/cmodules/web/stats.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/7435d66133432ce1b1938e7cf450c5d0.3884dbdf0e19bcfc7ff5.js", "cmodules/web/stats.4eadd4a25075cf9c8933.js"],
     "/js/cmodules/web/stickers.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/stickers.7ec65e2c16bbedf0f0ef.js"],
     "/js/cmodules/web/stickers_office.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/stickers_office.2be1051f2919dd2d32ad.js"],
-    "/js/cmodules/web/stories.js": ["cmodules/bundles/audioplayer.911770de2adbbec9f750.js", "cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/stories.ce461e3ef2e99f733b4c.js"],
+    "/js/cmodules/web/stories.js": ["cmodules/bundles/audioplayer.911770de2adbbec9f750.js", "cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/stories.1aa7279917951b021667.js"],
     "/js/cmodules/web/stories_admin.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/web/stories_admin.ac8eb5e3343833bdc689.js"],
     "/js/cmodules/web/stories_archive.js": ["cmodules/bundles/common.d005ceb93213f478b012.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/stories_archive.2f880f2b8c1b50d16719.js"],
     "/js/cmodules/web/stories_loader_worker.js": ["cmodules/web/stories_loader_worker.349a2fdd4de619d06c20.js"],

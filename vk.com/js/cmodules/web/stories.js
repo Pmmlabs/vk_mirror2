@@ -3228,18 +3228,19 @@
                     r = e.can_view_deleted,
                     o = e.is_deleted,
                     a = e.is_private,
-                    n = e.raw_id,
-                    l = Object(Y.mb)(`<div class="stories_reply_to" style="background-image: url(${s})">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">${i}</div>\n  </div>\n</div>`);
-                if (Object(Ee.b)(l, "click", () => {
+                    n = e.is_expired,
+                    l = e.raw_id,
+                    d = Object(Y.mb)(`<div class="stories_reply_to" style="background-image: url(${s})">\n  <div class="stories_reply_to_error_msg"></div>\n  <div class="stories_reply_to_owner_name_wrap">\n    <div class="stories_reply_to_owner_name">${i}</div>\n  </div>\n</div>`);
+                if (Object(Ee.b)(d, "click", () => {
                         this.layer._sendNavigationStatEvents("open_parent_story");
                         var e = O();
-                        w.length > 1 && e.getStoryRaw() === n ? cancelStackPop() : showStory(t, {
-                            fromEl: l,
+                        w.length > 1 && e.getStoryRaw() === l ? cancelStackPop() : showStory(t, {
+                            fromEl: d,
                             source: "reply_story"
                         })
-                    }), r) return l;
-                var d = !1;
-                return o ? (Object(Y.a)(l, "deleted"), d = Object(Oe.d)("stories_deleted_story")) : a && (Object(Y.a)(l, "private"), d = Object(Oe.d)("stories_private_story")), d && (val(Object(Y.H)("stories_reply_to_error_msg", l), d), re(Object(Y.H)("stories_reply_to_owner_name_wrap", l))), l
+                    }), r) return d;
+                var h = !1;
+                return o ? (Object(Y.a)(d, "deleted"), h = Object(Oe.d)("stories_deleted_story")) : a ? (Object(Y.a)(d, "private"), h = Object(Oe.d)("stories_private_story")) : n && (Object(Y.a)(d, "expired"), h = Object(Oe.d)("stories_expired_story")), h && (val(Object(Y.H)("stories_reply_to_error_msg", d), h), re(Object(Y.H)("stories_reply_to_owner_name_wrap", d))), d
             }
             sendMask() {
                 if (!this._maskSending) {
