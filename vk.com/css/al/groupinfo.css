@@ -2783,3 +2783,43 @@ table.history tr th {
     transition: opacity 100ms linear;
     color: #777
 }
+
+.post_limits_block .post_limit_row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.post_limits_block .post_limit_row .post_limit_item {
+    -ms-flex: 1 1 0;
+    flex: 1 1 0
+}
+
+.post_limits_block .post_limit_row .post_limit_label {
+    padding-top: 5px;
+    -ms-flex: 1 1 0;
+    flex: 1 1 0
+}
+
+.post_limits_block .post_limit_row .post_limit_data {
+    -ms-flex: 2 2 0;
+    flex: 2 2 0
+}
+
+.post_limits_block .line {
+    background-color: #5b88bd;
+    height: 1px;
+    border: 0;
+    margin: 20px
+}
+
+.post_limits_block .post_limit_column {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 150px
+}

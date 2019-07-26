@@ -12686,43 +12686,57 @@ img[src^="/images/mobile/places/"] {
 }
 
 .svgIcon-common {
-    -webkit-background-size: 48px 48px;
-    -moz-background-size: 48px 48px;
-    background-size: 48px 48px;
-    background-image: url('/images/mobile/icons/sprites/common-2bb8cefb.svg')
+    -webkit-background-size: 76px 52px;
+    -moz-background-size: 76px 52px;
+    background-size: 76px 52px;
+    background-image: url('/images/mobile/icons/sprites/common-b2617aad.svg')
 }
 
 .vk_old.vk_1x .svgIcon-common {
-    background-image: url('/images/mobile/icons/sprites/common-2bb8cefb_1x.png')
+    background-image: url('/images/mobile/icons/sprites/common-b2617aad_1x.png')
 }
 
 .vk_old.vk_2x .svgIcon-common {
-    background-image: url('/images/mobile/icons/sprites/common-2bb8cefb_2x.png')
+    background-image: url('/images/mobile/icons/sprites/common-b2617aad_2x.png')
 }
 
 .svgIcon-common__back_24 {
-    background-position: 0 0;
+    background-position: -28px 0;
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
 }
 
 .svgIcon-common__cancel_24 {
-    background-position: -24px 0;
+    background-position: 0 -28px;
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
 }
 
 .svgIcon-common__cancel_outline_24 {
-    background-position: 0 -24px;
+    background-position: -24px -28px;
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
 }
 
 .svgIcon-common__qr_24 {
-    background-position: -24px -24px;
+    background-position: -52px 0;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
+}
+
+.svgIcon-common__send_28 {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px
+}
+
+.svgIcon-common__send_active_24 {
+    background-position: -52px -24px;
     background-repeat: no-repeat;
     width: 24px;
     height: 24px
@@ -54312,35 +54326,6 @@ a .BookmarkListItem__subtitle:hover {
     font-size: 15px
 }
 
-.svgIcon-mail {
-    -webkit-background-size: 52px 28px;
-    -moz-background-size: 52px 28px;
-    background-size: 52px 28px;
-    background-image: url('/images/mobile/icons/sprites/mail-815534f9.svg')
-}
-
-.vk_old.vk_1x .svgIcon-mail {
-    background-image: url('/images/mobile/icons/sprites/mail-815534f9_1x.png')
-}
-
-.vk_old.vk_2x .svgIcon-mail {
-    background-image: url('/images/mobile/icons/sprites/mail-815534f9_2x.png')
-}
-
-.svgIcon-mail__send_28 {
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    width: 28px;
-    height: 28px
-}
-
-.svgIcon-mail__send_active_24 {
-    background-position: -28px 0;
-    background-repeat: no-repeat;
-    width: 24px;
-    height: 24px
-}
-
 .ShareModal {
     will-change: opacity;
     -webkit-transform: translateZ(0);
@@ -54617,12 +54602,12 @@ a .BookmarkListItem__subtitle:hover {
     background: none!important
 }
 
-.ShareContent {
+.ShareLists {
     display: block!important;
     position: relative
 }
 
-.ShareContent.ShareContent--transition {
+.ShareLists.ShareLists--transition {
     -webkit-transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);
     -moz-transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);
     -o-transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);
