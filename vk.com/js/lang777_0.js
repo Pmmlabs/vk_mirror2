@@ -415,6 +415,7 @@ window.lang = extend(window.lang || {}, {
     "notes_cancel": "������",
     "notes_done": "������",
     "notes_livejournal_delete": "������� ��� ������ �� <b>LiveJournal<\/b>.",
+    "notifications_new_events": ["", "�������� {count} ����� �����������", "�������� {count} ����� �����������", "�������� {count} ����� �����������"],
     "offers_reban": "������� � ������",
     "offers_unban": "������� �� ������",
     "pages_article_anchor_copied": "����������� �����������",
