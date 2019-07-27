@@ -2936,7 +2936,7 @@
                     moder_remove_hash: this.data.moder_remove_hash
                 }, {
                     onDone: e => {
-                        window.cur.module === Z && window.GeStories.storyDidRemove(s, e), Object(je.b)().hide(), this._popStoryAndClearList(t)
+                        this.layer._sendNavigationStatEvents("delete"), window.cur.module === Z && window.GeStories.storyDidRemove(s, e), Object(je.b)().hide(), this._popStoryAndClearList(t)
                     },
                     showProgress: ke.o.pbind(e),
                     hideProgress: ke.w.pbind(e)

@@ -3846,6 +3846,10 @@ a.tickets_question_row_tt_unread {
     opacity: 1
 }
 
+.help_table_question__edit.show {
+    display: inline-block
+}
+
 .help_table_question_sa.help_table_question_visible {
     background: #fff
 }
