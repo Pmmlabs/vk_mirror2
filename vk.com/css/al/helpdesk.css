@@ -3217,7 +3217,7 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_stat_question_source .helpdesk_stat_content .select_group {
     display: inline-block;
-    margin-left: 7px;
+    margin-left: 4px;
     margin-top: 10px
 }
 
@@ -3266,6 +3266,16 @@ body.body_helpdesk_small_sb .left_menu_nav {
 
 .helpdesk_stat_question_source .helpdesk_stat_content .helpdesk_point_stat_content {
     padding: 0 15px 15px
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .helpdesk_point_stat_item_system {
+    font-style: italic
+}
+
+.helpdesk_stat_question_source .helpdesk_stat_content .helpdesk_point_stat_item_note {
+    color: #656565;
+    font-size: 11px;
+    margin-left: 12px
 }
 
 .helpdesk_content_table .ui_table {
