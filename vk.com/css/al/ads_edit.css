@@ -3517,6 +3517,10 @@ textarea.EditableLabel__textarea {
     padding-top: 5px
 }
 
+#ads_edit_audience_wrap {
+    width: 200px
+}
+
 .ads_edit_audience_count_panel {
     padding: 20px;
     background-color: #edf0f2;

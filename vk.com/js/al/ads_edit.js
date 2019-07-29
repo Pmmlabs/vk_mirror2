@@ -6681,15 +6681,24 @@ AdsViewEditor.prototype.setPredictionWidgetApiResponse = function(apiResponse) {
  */
 AdsViewEditor.prototype.showPredictionWidget = function(noDataUpdate) {
     var costPerClick = parseFloat(this.params['cost_per_click'].value);
+    var costType = this.params['cost_type'].value;
     var widgetData;
-    if (noDataUpdate && this.lastPredictionWidgetData) {
-        widgetData = this.lastPredictionWidgetData;
+    /**
+     * ���� ������� ���� noDataUpdate ��� ��������� ����� ���� ������ � ����������, �� �� ����������� ����� ����� ��������,
+     * � ���������� ������. ������ ��������� ������ ��������� ����� debounce � ������� �� ����.
+     */
+    if ((noDataUpdate && this.lastPredictionWidgetData) ||
+        (this.lastPredictionWidgetData && (this.lastPredictionWidgetData.type !== costType))) {
+        widgetData = this.lastPredictionWidgetData.data;
     } else {
         widgetData = this.getPredictionWidgetDataForRender(costPerClick);
     }
     if (widgetData) {
         var isLoading = this.editor.isUpdatingData();
-        this.lastPredictionWidgetData = widgetData;
+        this.lastPredictionWidgetData = {
+            data: widgetData,
+            type: costType,
+        };
         AdsComponents.renderTargetAudiencePredictionWidget(ge('ads_edit_audience_count_container'), widgetData, isLoading);
     }
 };

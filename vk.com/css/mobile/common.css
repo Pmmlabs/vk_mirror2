@@ -16840,6 +16840,565 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     text-align: center
 }
 
+.svgIcon-audio {
+    -webkit-background-size: 56px 28px;
+    -moz-background-size: 56px 28px;
+    background-size: 56px 28px;
+    background-image: url('/images/mobile/icons/sprites/audio-daaf8904.svg')
+}
+
+.vk_old.vk_1x .svgIcon-audio {
+    background-image: url('/images/mobile/icons/sprites/audio-daaf8904_1x.png')
+}
+
+.vk_old.vk_2x .svgIcon-audio {
+    background-image: url('/images/mobile/icons/sprites/audio-daaf8904_2x.png')
+}
+
+.svgIcon-audio__done_outline_blue_28 {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px
+}
+
+.svgIcon-audio__done_outline_white_28 {
+    background-position: -28px 0;
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px
+}
+
+.audioRestrictionSplash.Popup_open {
+    display: block
+}
+
+.audioRestrictionSplash .Popup__wrap {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash .Popup__wrap {
+        position: static
+    }
+}
+
+.audioRestrictionSplash .Popup__content {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    padding: 0;
+    max-width: initial
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash .Popup__content {
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        width: 375px;
+        max-height: 605px;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        padding: 16px
+    }
+}
+
+.audioRestrictionSplash__screens {
+    height: 100%;
+    overflow: hidden
+}
+
+.audioRestrictionSplash__screen {
+    position: relative;
+    vertical-align: top;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+    height: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__screen {
+        padding-right: 1px;
+        padding-left: 1px
+    }
+}
+
+.audioRestrictionSplash__screen:last-child {
+    margin-right: -1px
+}
+
+.audioRestrictionSplash__block {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__block {
+        padding: 0
+    }
+}
+
+.audioRestrictionSplash__header {
+    height: 56px;
+    text-align: left;
+    max-width: initial;
+    padding: 16px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table-row;
+    position: absolute;
+    top: 0;
+    z-index: 3
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__header {
+        padding-top: 0;
+        height: 40px;
+        top: -1px;
+        left: -1px;
+        right: -1px
+    }
+}
+
+.audioRestrictionSplash__header--withText {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .12)
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__header--withText {
+        border-bottom: none
+    }
+}
+
+.audioRestrictionSplash__mainContent {
+    overflow: auto;
+    display: table-row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 32px;
+    padding-top: 56px;
+    z-index: 2
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__mainContent {
+        bottom: 37px
+    }
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__mainContent {
+        padding-top: 40px;
+        padding-bottom: 16px;
+        bottom: 10px
+    }
+}
+
+.audioRestrictionSplash__comparisonBlockWrapper {
+    position: relative
+}
+
+.audioRestrictionSplash__comparisonBlockWrapper:before {
+    content: '';
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 36px;
+    bottom: -2px;
+    width: 20%;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    background-color: #5181b8;
+    z-index: -1
+}
+
+@media (max-width: 319px) {
+    .audioRestrictionSplash__comparisonBlockWrapper:before {
+        width: 22.5%;
+        right: 0
+    }
+}
+
+.audioRestrictionSplash__comparisonBlock {
+    z-index: 1;
+    width: initial;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.audioRestrictionSplash__comparisonRow {
+    height: 48px;
+    text-align: left
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__comparisonRow {
+        height: 56px
+    }
+}
+
+.audioRestrictionSplash__comparisonHeaderRow {
+    height: 38px;
+    padding: 11px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.audioRestrictionSplash__comparisonHeaderName,
+.audioRestrictionSplash__comparisonNameCell {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60%;
+    float: left;
+    height: 100%
+}
+
+@media (max-width: 319px) {
+    .audioRestrictionSplash__comparisonHeaderName,
+    .audioRestrictionSplash__comparisonNameCell {
+        width: 55%
+    }
+}
+
+.audioRestrictionSplash__comparisonHeaderValue,
+.audioRestrictionSplash__comparisonValue {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    float: left
+}
+
+@media (max-width: 319px) {
+    .audioRestrictionSplash__comparisonHeaderValue,
+    .audioRestrictionSplash__comparisonValue {
+        width: 22.5%
+    }
+}
+
+.audioRestrictionSplash__comparisonHeaderValue {
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+    color: #909499;
+    text-transform: uppercase;
+    line-height: 17px;
+    white-space: nowrap
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__comparisonHeaderValue {
+        font-size: 10px
+    }
+}
+
+.audioRestrictionSplash__comparisonHeaderValue--blue {
+    color: #5181b8
+}
+
+.audioRestrictionSplash__comparisonNameCell {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    position: relative
+}
+
+.audioRestrictionSplash__comparisonNameCell--lastRow {
+    border-bottom: none
+}
+
+.audioRestrictionSplash__comparisonName {
+    font-size: 14px;
+    line-height: 1.29;
+    color: #141414;
+    text-align: left;
+    position: absolute;
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 50%
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__comparisonName {
+        font-size: 15px;
+        line-height: 1.33
+    }
+}
+
+.audioRestrictionSplash__comparisonValue {
+    position: relative;
+    height: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .12)
+}
+
+.audioRestrictionSplash__comparisonValue--blueBack {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .12)
+}
+
+.audioRestrictionSplash__comparisonValue--lastRow {
+    border-bottom: none
+}
+
+.audioRestrictionSplash__checkSign {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.audioRestrictionSplash__headerTitle {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 24px
+}
+
+.audioRestrictionSplash__closeIcon {
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12.292%2022.217a.982.982%200%200%200-.012%201.396l.107.107a.974.974%200%200%200%201.396-.012L18%2019.36l4.217%204.35a.982.982%200%200%200%201.396.01l.107-.106a.974.974%200%200%200-.012-1.396L19.36%2018l4.35-4.217a.982.982%200%200%200%20.01-1.396l-.106-.107a.974.974%200%200%200-1.396.012L18%2016.64l-4.217-4.35a.982.982%200%200%200-1.396-.01l-.107.106a.974.974%200%200%200%20.012%201.396L16.64%2018l-4.35%204.217z%22%20fill%3D%22%238391A0%22%20opacity%3D%22.7%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    padding: 16px 14px;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__closeIcon {
+        margin: 0;
+        padding: 0
+    }
+}
+
+.audioRestrictionSplash__stickerBlock {
+    text-align: center
+}
+
+.audioRestrictionSplash__sticker {
+    height: 128px;
+    width: 128px;
+    margin: 0 auto 20px;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    background-image: url('/images/audio/music_nobackground_sticker_small.png')
+}
+
+.vk_2x .audioRestrictionSplash__sticker {
+    background-image: url('/images/audio/music_nobackground_sticker_small_2x.png')
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__sticker {
+        height: 156px;
+        width: 156px;
+        background-image: url('/images/audio/music_nobackground_sticker.png')
+    }
+    .vk_2x .audioRestrictionSplash__sticker {
+        background-image: url('/images/audio/music_nobackground_sticker_2x.png')
+    }
+}
+
+.audioRestrictionSplash__textBlock {
+    margin-bottom: 24px
+}
+
+.audioRestrictionSplash__title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 17px;
+    line-height: 1.29
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__title {
+        line-height: 1.2;
+        font-size: 20px
+    }
+}
+
+.audioRestrictionSplash__desc {
+    font-size: 14px;
+    line-height: 1.29;
+    color: #76787a;
+    margin-bottom: 7px
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash__desc {
+        font-size: 15px;
+        line-height: 1.33
+    }
+}
+
+.audioRestrictionSplash__explain {
+    display: block;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.audioRestrictionSplash__continueButton,
+.audioRestrictionSplash__specialLink {
+    display: block;
+    height: 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 15px;
+    line-height: 22px
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__continueButton,
+    .audioRestrictionSplash__specialLink {
+        margin: 0
+    }
+}
+
+.audioRestrictionSplash__linksBlock {
+    margin-top: 45px
+}
+
+.audioRestrictionSplash__specialLink {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 23px
+}
+
+.audioRestrictionSplash__continueFreeLink {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.29;
+    text-align: center;
+    color: #3f8ae0
+}
+
+.audioRestrictionSplash .peppermint-dots {
+    position: absolute;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 7px;
+    bottom: -1px;
+    text-align: center;
+    left: 0;
+    background: #fff;
+    height: 32px;
+    padding: 12px 0 13px
+}
+
+@media (min-width: 400px) {
+    .audioRestrictionSplash .peppermint-dots {
+        height: 37px;
+        padding: 15px 0
+    }
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash .peppermint-dots {
+        -webkit-border-radius: 0 0 10px 10px;
+        -moz-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px
+    }
+}
+
+.audioRestrictionSplash .peppermint-dots li {
+    padding: 0 4px;
+    opacity: .3;
+    display: inline-block;
+    width: 7px;
+    height: 7px
+}
+
+.audioRestrictionSplash .peppermint-dots li.peppermint-active-dot {
+    opacity: 1
+}
+
+.audioRestrictionSplash .peppermint-dots li span {
+    background-color: #000;
+    width: 7px;
+    height: 7px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block
+}
+
+.audioRestrictionSplash__navigation {
+    background: #fff;
+    padding: 0 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+@media (min-width: 882px) {
+    .audioRestrictionSplash__navigation {
+        padding: 0;
+        bottom: 0;
+        width: 100%
+    }
+}
+
 ._audioHelper__playlistPlaceholder,
 .audioPlaylist__cover,
 .audioPlaylists__itemCover,

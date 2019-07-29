@@ -4528,3 +4528,11 @@ a.tickets_question_row_tt_unread {
 .tickets_actions_add_to_bookmark:active {
     top: 16px
 }
+
+.tutorial_buttons {
+    margin-top: 10px
+}
+
+.tutorial_buttons .flat_button {
+    margin-right: 5px
+}
