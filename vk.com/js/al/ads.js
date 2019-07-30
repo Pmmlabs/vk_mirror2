@@ -674,10 +674,13 @@ Ads.deleteUnion = function(unionType, unionId, hash, lock, unlock, updateStatus,
     }
 }
 
-Ads.openHelpBox = function(type, unionId) {
-    var ajaxParams = {}
+Ads.openHelpBox = function(type, unionId, options) {
+    var ajaxParams = {};
     ajaxParams.type = type;
     ajaxParams.union_id = unionId;
+    if (options && (typeof options.status_type !== 'undefined')) {
+        ajaxParams.status_type = options.status_type;
+    }
 
     var showOptions = {
         params: {}
@@ -5558,6 +5561,92 @@ Ads.showNewFeatureTooltip = function(ttp, el, opts) {
 }
 
 var AdsSupportChat;
+
+Ads.changeStatus = function(event, unionId, hash, value, unionType) {
+    if (!event || !event.target || !unionId || !hash) {
+        return false;
+    }
+
+    unionType = unionType || '';
+
+    var buttonDisabledClass = 'ads_general_info_status_button_disabled';
+    var buttonClass = 'ads_general_info_status_button';
+    var buttons = document.getElementsByClassName(buttonClass);
+
+    var isButtonDisabled = function() {
+        var button = event.target;
+        return button.classList.contains(buttonDisabledClass);
+    };
+
+    var disableChangeStatusButtons = function() {
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.add(buttonDisabledClass);
+        }
+    };
+
+    var enableChangeStatusButtons = function() {
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove(buttonDisabledClass);
+        }
+    };
+
+    var showErrorBox = function(error) {
+        var unknownError = getLang('ads_error_unexpected_error_try_later');
+
+        error = error || unknownError;
+        enableChangeStatusButtons();
+        showFastBox(getLang('ads_error_box_title'), error);
+    };
+
+    var onChangeStatusDone = function(isSuccess, response) {
+        if (!isSuccess || !isObject(response)) {
+            showErrorBox();
+            return false;
+        }
+
+        if (response.error_low_budget_link_wiki) {
+            enableChangeStatusButtons();
+            showFastBox(getLang('ads_cant_start_ad_box_title'), response.error, getLang('ads_budget_box_make_payment'), function() {
+                showWiki({
+                    w: response.error_low_budget_link_wiki
+                });
+            });
+        } else if (response.error) {
+            showErrorBox(response.error);
+        } else if (response.layout) {
+            var statusBlock = document.getElementById('ads_general_info_status_block');
+            statusBlock && (statusBlock.innerHTML = response.layout);
+        } else {
+            window.location.reload();
+        }
+
+        return true;
+    };
+
+    if (isButtonDisabled()) {
+        return false;
+    }
+
+    // delete case
+    if (value === 2) {
+        Ads.openDeleteUnionBox(unionType, unionId, hash);
+        return false;
+    }
+
+    disableChangeStatusButtons();
+
+    var params = {
+        enable: value,
+        hash: hash,
+        union_id: unionId,
+        new_layout: 1
+    };
+
+    ajax.post('/ads?act=a_union_change_status', params, {
+        onDone: onChangeStatusDone.bind(this, true),
+        onFail: onChangeStatusDone.bind(this, false),
+    });
+};
 
 try {
     stManager.done('ads.js');
