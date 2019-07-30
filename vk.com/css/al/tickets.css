@@ -4076,9 +4076,13 @@ a.tickets_question_row_tt_unread {
 }
 
 .tickets_thank_you_form {
-    padding: 10px 5px 10px 80px;
+    padding: 10px 5px 10px 70px;
     background: #fafbfc;
     border-top: 1px solid #e7e8ec
+}
+
+.tickets_thank_you_form.processing .flat_button {
+    pointer-events: none
 }
 
 .tickets_thank_you_form__inner {
@@ -4125,15 +4129,6 @@ a.tickets_question_row_tt_unread {
     margin-right: 8px
 }
 
-.tickets_thank_you_form.processing .flat_button {
-    background-image: url('/images/upload_inv.gif');
-    background-position: 50%;
-    background-repeat: no-repeat;
-    color: transparent;
-    pointer-events: none
-}
-
-.tickets_thank_you_form.processing .secondary,
 .tickets_post_field_disabled #tickets_send {
     display: none
 }

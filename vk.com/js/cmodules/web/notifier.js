@@ -3466,7 +3466,7 @@
                             typeClass: "top_notify_tt",
                             dir: "up",
                             width: 250,
-                            shift: [0, 0],
+                            shift: [1, 0],
                             nohideover: 1,
                             nohide: 1,
                             onShowStart: function(e) {
