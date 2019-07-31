@@ -63,6 +63,7 @@ var ShareBox = {
             sbShareOwn: opts.shOwn,
             sbShParam: opts.shParam,
             shNewUi: opts.shNewUi,
+            shButtonLabelBackup: null,
             sbSend: function() {
                 if (buttonLocked('like_share_send')) return;
                 hide('like_share_error');

@@ -2,9 +2,27 @@
     display: none
 }
 
+.mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading,
+.mi_ajax_mark .mi_ajax_mark_loading {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.h4-text,
 .Button {
     margin: 0;
-    padding: 0;
+    padding: 0
+}
+
+.Button {
     border: 0;
     background: none;
     font-size: 12.5px;
@@ -266,20 +284,60 @@
     display: block
 }
 
-.mi_ajax_mark.mi_ajax_mark_big .mi_ajax_mark_loading,
-.mi_ajax_mark .mi_ajax_mark_loading {
-    -ms-high-contrast-adjust: none
+.PurgatorySection {
+    --text-width: 565px;
+    --button-area-width: 190px
 }
 
-.h4-text {
-    color: #000;
-    border-bottom: none;
-    font-size: 1em;
-    font-weight: 400;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    margin: 0;
-    padding: 0
+.PurgatorySection__text {
+    width: var(--text-width);
+    display: inline-block;
+    vertical-align: middle
+}
+
+.PurgatorySection__title {
+    margin-top: 0
+}
+
+.PurgatorySection__description {
+    white-space: pre-line;
+    color: #656565
+}
+
+.PurgatorySection__action-area {
+    --padding-right: 10px;
+    width: calc(var(--button-area-width) - var(--padding-right));
+    text-align: right;
+    vertical-align: middle;
+    display: inline-block;
+    padding-right: var(--padding-right)
+}
+
+.PurgatorySection__button:not(:last-child) {
+    margin-bottom: 20px
+}
+
+.PurgatorySection__overlay {
+    text-align: center
+}
+
+.PurgatorySection__overlay-text {
+    color: #939393;
+    margin-bottom: 2px
+}
+
+.Purgatory {
+    padding: 0 15px
+}
+
+.Purgatory__section {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px
+}
+
+.Purgatory__section:not(:last-child) {
+    border-bottom: 1px solid #e7e8ec
 }
 
 .box_body .deleted .member_name_wrap {

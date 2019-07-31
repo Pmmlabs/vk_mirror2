@@ -2800,19 +2800,20 @@
                     l = s.searchQuery,
                     d = s.allShowMore,
                     u = s.adminsShowMore,
-                    m = t.get(),
-                    p = m.peer,
-                    g = m.tabs[p],
-                    h = this.getCurrentList(),
-                    _ = this.isAddMemberWidgetShown() ? ["add"].concat(h) : h,
-                    b = "all" === o ? d : u,
-                    f = g.membersLastSeen,
-                    v = {
+                    m = s.admins,
+                    p = t.get(),
+                    g = p.peer,
+                    h = p.tabs[g],
+                    _ = this.getCurrentList(),
+                    b = this.isAddMemberWidgetShown() ? ["add"].concat(_) : _,
+                    f = "all" === o ? d : u,
+                    v = h.membersLastSeen,
+                    y = {
                         "ChatSettingsMembersWidget--search": !!c
                     },
-                    y = g.adminIds.reduce((e, t) => (e[t] = !0, e), {});
+                    j = h.adminIds.reduce((e, t) => (e[t] = !0, e), {});
                 return je.createElement("div", {
-                    className: Object(ke.a)("ChatSettingsMembersWidget", v)
+                    className: Object(ke.a)("ChatSettingsMembersWidget", y)
                 }, je.createElement("header", {
                     className: "ChatSettingsMembersWidget__header"
                 }, je.createElement("input", {
@@ -2833,15 +2834,15 @@
                     key: "all"
                 }, at("mail_settings_everyone") + " ", je.createElement("span", {
                     className: "Tabs__desc"
-                }, Object(a.Q)(g))), g.adminIds.length > 0 && je.createElement("span", {
+                }, Object(a.Q)(h))), m.length > 0 && je.createElement("span", {
                     key: "admins"
                 }, at("mail_settings_admins") + " ", je.createElement("span", {
                     className: "Tabs__desc"
-                }, g.adminIds.length)))), je.createElement("div", {
+                }, m.length)))), je.createElement("div", {
                     className: "ChatSettingsMembersWidget__list"
                 }, je.createElement($e.a, {
                     border: !1
-                }, _.length > 0 && _.map(e => {
+                }, b.length > 0 && b.map(e => {
                     if ("add" === e) return je.createElement(Ue.a, {
                         selectable: !1,
                         border: !1,
@@ -2856,14 +2857,14 @@
                         className: "ChatSettingsMembersWidget__add"
                     }, je.createElement("span", null, at("mail_settings_add_members"))));
                     var s = this.getInviter(e.id),
-                        o = f && f[e.id] ? Object(a.W)(m, e.id, f[e.id], Ze) : "";
+                        o = v && v[e.id] ? Object(a.W)(p, e.id, v[e.id], Ze) : "";
                     return je.createElement(Ue.a, {
                         selectable: !1,
                         border: !1,
                         aside: je.createElement(Ye, {
-                            adminMap: y,
+                            adminMap: j,
                             store: t,
-                            storeData: m,
+                            storeData: p,
                             mid: e.id,
                             onLeave: this.props.onLeave
                         }),
@@ -2879,9 +2880,9 @@
                         }),
                         href: e.link
                     }))
-                }), !_.length && c && l && je.createElement("div", {
+                }), !b.length && c && l && je.createElement("div", {
                     className: "ChatSettingsMembersWidget__empty"
-                }, at("mail_settings_not_found")), !(c && l) && b && je.createElement("div", {
+                }, at("mail_settings_not_found")), !(c && l) && f && je.createElement("div", {
                     className: "ChatSettingsMembersWidget__more",
                     onClick: this.onShowMore
                 }, at("mail_settings_show_all_members")))))

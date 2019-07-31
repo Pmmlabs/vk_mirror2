@@ -9656,30 +9656,6 @@ div.pm_item .pm_counter {
     padding-bottom: 0!important
 }
 
-.mki_body {
-    padding: 7px 0 0;
-    border-bottom: 0!important
-}
-
-.mki_body .button {
-    margin-right: 12px;
-    margin-left: 12px
-}
-
-@media (min-width: 400px) {
-    .mki_body .button {
-        margin-right: 16px;
-        margin-left: 16px
-    }
-}
-
-@media (max-width: 319px) {
-    .mki_body .button {
-        margin-right: 8px;
-        margin-left: 8px
-    }
-}
-
 .mki_title {
     margin: 3px 0;
     font-weight: 700;
@@ -9723,34 +9699,10 @@ div.pm_item .pm_counter {
     padding-top: 0
 }
 
-.mki_body+.mv_actions,
+.mki_contact_btn,
 .photo_view.media_view .mv_actions,
 .video_view.media_view .mv_actions {
-    border-bottom: 0!important
-}
-
-.mki_contact_btn {
     padding-bottom: 6px
-}
-
-.mki_body .wall_item {
-    border-bottom: none
-}
-
-.market_item .wi_head {
-    padding-left: 0
-}
-
-.market_item .wi_buttons .item_like,
-.market_item .wi_buttons .item_share {
-    float: left;
-    margin-left: 0;
-    margin-right: 6px
-}
-
-.market_item .wi_buttons .v_like,
-.market_item .wi_buttons .v_share {
-    font-weight: 400
 }
 
 .mk_summary {
@@ -53454,8 +53406,6 @@ a .BookmarkListItem__subtitle:hover {
 .comment_item .medias_link_thumbed,
 .comment_item .medias_link_thumbed.mlt_no_photo,
 .comment_item .medias_row,
-.comment_item .mki_description,
-.comment_item .mki_description+.wi_like_wrap,
 .comment_item .mv_actions,
 .comment_item .mv_details,
 .comment_item .pi_suggest_actions,
@@ -53482,8 +53432,6 @@ a .BookmarkListItem__subtitle:hover {
 .msg__text .medias_link_thumbed,
 .msg__text .medias_link_thumbed.mlt_no_photo,
 .msg__text .medias_row,
-.msg__text .mki_description,
-.msg__text .mki_description+.wi_like_wrap,
 .msg__text .mv_actions,
 .msg__text .mv_details,
 .msg__text .pi_suggest_actions,
@@ -63673,4 +63621,292 @@ img.wk_photo_right {
     .body_fullscreen .away_bottom {
         padding: 0 40px 30px
     }
+}
+
+.MarketItem .Unfold__popup {
+    max-width: 80vw
+}
+
+.MarketItem__content {
+    margin: 0 12px;
+    position: relative
+}
+
+.MarketItem__stats {
+    font-size: 13px;
+    line-height: 1.23;
+    color: #7f8285
+}
+
+.MarketItem__description {
+    margin: 0 0 5px;
+    font-size: 15px;
+    line-height: 1.33;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.MarketItem__delimiter {
+    margin: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    width: 100%;
+    height: 0
+}
+
+.MarketItem__delimiter--top {
+    margin-bottom: 0
+}
+
+.MarketItem__price,
+.MarketItem__price.CellLeft__description {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #000
+}
+
+.MarketItem__title {
+    font-size: 16px;
+    line-height: 1.25;
+    margin: 14px 0 6px
+}
+
+.MarketItem__content .BookmarksStar {
+    right: 8px;
+    top: 7px
+}
+
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button,
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmark:before,
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmarked:before,
+.MarketItem__content .GlobalSearchHeader .i_search,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmark:before,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmarked:before,
+.MarketItem__content .Icon,
+.MarketItem__content .Icon.Icon_bookmark:before,
+.MarketItem__content .Icon.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"],
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmarked:before,
+.MarketItem__content .OwnerColumn__online,
+.MarketItem__content .OwnerColumn__online.Icon_bookmark:before,
+.MarketItem__content .OwnerColumn__online.Icon_bookmarked:before,
+.MarketItem__content .OwnerRow__online,
+.MarketItem__content .OwnerRow__online.Icon_bookmark:before,
+.MarketItem__content .OwnerRow__online.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_gift.i_icon,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_money.i_icon,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmarked:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmark:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmarked:before {
+    height: 30px;
+    width: 30px
+}
+
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmark:before,
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmarked:before,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmark:before,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmarked:before,
+.MarketItem__content .Icon.Icon_bookmark:before,
+.MarketItem__content .Icon.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmarked:before,
+.MarketItem__content .OwnerColumn__online.Icon_bookmark:before,
+.MarketItem__content .OwnerColumn__online.Icon_bookmarked:before,
+.MarketItem__content .OwnerRow__online.Icon_bookmark:before,
+.MarketItem__content .OwnerRow__online.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmarked:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmark:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmarked:before {
+    -webkit-background-size: 30px auto;
+    -moz-background-size: 30px auto;
+    background-size: 30px auto
+}
+
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmark:before,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmark:before,
+.MarketItem__content .Icon.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmark:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmark:before,
+.MarketItem__content .OwnerColumn__online.Icon_bookmark:before,
+.MarketItem__content .OwnerRow__online.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmark:before,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmark:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmark:before {
+    background-position: 0 -1590px
+}
+
+.MarketItem__content .BookmarksItem .ai_menu_toggle_button.Icon_bookmarked:before,
+.MarketItem__content .GlobalSearchHeader .i_search.Icon_bookmarked:before,
+.MarketItem__content .Icon.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatAdd .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis .lvi.mlvi.Icon_bookmarked:before,
+.MarketItem__content .m .vk__page_chatSettings .basis__content .si_link[href^="/mail?act=kick_user"].Icon_bookmarked:before,
+.MarketItem__content .OwnerColumn__online.Icon_bookmarked:before,
+.MarketItem__content .OwnerRow__online.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_gift.i_icon.Icon_bookmarked:before,
+.MarketItem__content .pm_item .i_money.i_icon.Icon_bookmarked:before,
+.MarketItem__content .vk__page_redesign .basis .ii_btn.Icon_bookmarked:before {
+    background-position: 0 -1620px
+}
+
+.MarketItem__contact {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    display: block
+}
+
+.MarketItem__contactButton {
+    display: block;
+    color: #000;
+    font-size: 15px;
+    text-align: start;
+    line-height: 22px
+}
+
+.MarketItem__authorPhoto {
+    height: 44px;
+    width: 44px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.MarketItem .wi_like_wrap {
+    padding: 16px 0 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, .08)
+}
+
+.MarketItem .wi_like_wrap.is_empty {
+    border-bottom: none;
+    padding: 0
+}
+
+.MarketItem .like_people {
+    margin: 0;
+    height: auto;
+    padding: 0
+}
+
+.MarketItem .wi_buttons.wall_item {
+    margin: 0
+}
+
+.MarketItem .wi_buttons:before {
+    content: none
+}
+
+.MarketItem__photoView {
+    position: relative
+}
+
+.Biatlon {
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.Biatlon__item {
+    display: inline-block;
+    height: 7px;
+    width: 7px;
+    background: #000;
+    margin: 8px;
+    opacity: 0.16;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+}
+
+.Biatlon__item--selected {
+    opacity: 1
+}
+
+.MarketItem__contactButton--blue {
+    font-size: 16px;
+    line-height: 1.29;
+    padding: 10px 0;
+    font-weight: 400;
+    height: auto;
+    width: 100%
+}
+
+.MarketItem__photoView .thumb_item {
+    min-height: 80px
+}
+
+.CellLeft {
+    margin: 16px 0;
+    position: relative
+}
+
+.CellLeft__left {
+    display: inline-block;
+    vertical-align: top;
+    max-width: -webkit-calc(100% - 50px);
+    max-width: -moz-calc(100% - 50px);
+    max-width: calc(100% - 50px)
+}
+
+.CellLeft__head {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+    color: #000;
+    line-height: 22px;
+    margin: 0;
+    padding: 0
+}
+
+.CellLeft__description,
+.CellLeft__description a {
+    font-size: 13px;
+    letter-spacing: -0.14px;
+    color: #7f8285;
+    line-height: 22px;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}
+
+.CallLeft__photo {
+    height: 100%;
+    width: inherit;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute
 }

@@ -9641,30 +9641,6 @@ div.pm_item .pm_counter {
     padding-bottom: 0!important
 }
 
-.mki_body {
-    padding: 7px 0 0;
-    border-bottom: 0!important
-}
-
-.mki_body .button {
-    margin-right: 12px;
-    margin-left: 12px
-}
-
-@media (min-width: 400px) {
-    .mki_body .button {
-        margin-right: 16px;
-        margin-left: 16px
-    }
-}
-
-@media (max-width: 319px) {
-    .mki_body .button {
-        margin-right: 8px;
-        margin-left: 8px
-    }
-}
-
 .mki_title {
     margin: 3px 0;
     font-weight: 700;
@@ -9708,34 +9684,10 @@ div.pm_item .pm_counter {
     padding-top: 0
 }
 
-.mki_body+.mv_actions,
+.mki_contact_btn,
 .photo_view.media_view .mv_actions,
 .video_view.media_view .mv_actions {
-    border-bottom: 0!important
-}
-
-.mki_contact_btn {
     padding-bottom: 6px
-}
-
-.mki_body .wall_item {
-    border-bottom: none
-}
-
-.market_item .wi_head {
-    padding-left: 0
-}
-
-.market_item .wi_buttons .item_like,
-.market_item .wi_buttons .item_share {
-    float: left;
-    margin-left: 0;
-    margin-right: 6px
-}
-
-.market_item .wi_buttons .v_like,
-.market_item .wi_buttons .v_share {
-    font-weight: 400
 }
 
 .mk_summary {

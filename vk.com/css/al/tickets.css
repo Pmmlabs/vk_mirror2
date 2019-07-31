@@ -1943,6 +1943,11 @@ body.dev #tickets_search_reset {
     margin-top: 10px
 }
 
+.tickets_info_row_tt_bordered {
+    border-top: 1px solid #e7e8ec;
+    padding-top: 10px
+}
+
 .tickets_info_title_tt {
     float: left;
     width: 95px;
