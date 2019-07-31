@@ -1674,6 +1674,8 @@ var Settings = {
         cur.module = 'settings';
         if (cur.options.msg) {
             Settings.showMsg(cur.options.msg);
+        } else if (cur.options.err) {
+            Settings.showError(cur.options.err);
         }
         each({
             'settings_status_default': getLang('settings_status_default_about'),

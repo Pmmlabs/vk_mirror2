@@ -669,11 +669,26 @@
     line-height: 18px
 }
 
-.feed_row~.feed_row .feedback_row,
-.feed_row~.feed_row .feedback_sticky_row,
-.feed_row~.feed_row_fb_hidden .feed_row:first-child .feedback_row,
-.feedback_sticky_rows:not(:empty)+.feed_row .feedback_row,
-.feedback_sticky_rows:not(:empty)+.feed_row .feedback_sticky_row {
+.notifications_new_events {
+    padding: 11px 14px 12px;
+    background: #fafbfc;
+    border-top: 1px solid #e7e8ec;
+    color: #2a5885;
+    cursor: pointer
+}
+
+.notifications_new_events:hover {
+    background: #f0f2f5
+}
+
+.notifications_new_events .pr {
+    display: inline-block;
+    float: right;
+    margin-top: 5px
+}
+
+.feedback_row,
+.feedback_sticky_row {
     border-top: 1px solid #e7e8ec;
     margin-top: -1px
 }
@@ -1007,7 +1022,6 @@
 }
 
 .feedback_date {
-    color: #939393;
     padding-right: 20px;
     line-height: 1.417
 }

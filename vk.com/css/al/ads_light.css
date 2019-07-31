@@ -401,28 +401,18 @@
 }
 
 .ads_ads_help {
-    padding: 3px 0 4px;
+    padding: 3px 0 4px
+}
+
+.ads_ads_help,
+.ads_ads_about {
     font-size: 0.91em;
     text-align: center
-}
-
-.ads_ads_all_ads,
-.ads_ads_create_ad {
-    padding: 12px 0 4px;
-    font-size: 11px;
-    text-align: left
-}
-
-.ads_ads_all_ads_link,
-.ads_ads_create_ad_link {
-    color: #939699
 }
 
 .ads_ads_about {
     height: 24px;
     padding-bottom: 1px;
-    font-size: 0.91em;
-    text-align: center;
     display: table;
     width: 100%;
     position: relative;
@@ -1542,24 +1532,6 @@ a.ads_ad_box2:hover {
 .ads_ad_close_complain_link:hover {
     text-decoration: underline;
     cursor: pointer
-}
-
-#ads_ads_all_ads_rows {
-    overflow: hidden
-}
-
-.ads_ads_all_ads_box_row {
-    margin-right: -10px
-}
-
-.ads_ads_all_ads_box_cell {
-    padding: 14px 10px 8px 0;
-    vertical-align: top;
-    overflow: hidden
-}
-
-.ads_ads_all_ads_box_border {
-    position: relative
 }
 
 .ads_ads_news_left {

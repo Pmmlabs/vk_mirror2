@@ -2343,7 +2343,7 @@ var WkView = {
                         url += '#' + url_hash;
                     }
                     var composer = cur.sbField && data(cur.sbField, 'composer');
-                    if (composer) {
+                    if (composer && composer.addMedia) {
                         composer.addMedia.checkURL(url);
                     }
                 }

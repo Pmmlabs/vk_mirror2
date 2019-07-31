@@ -3207,7 +3207,8 @@
             core_js_modules_es6_string_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("tUrg"),
             core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a1Th"),
             core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Btvt"),
-            _lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("98sY");
+            _lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("98sY"),
+            _shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("W9Tc");
         window.TopNotifierCur || (window.TopNotifierCur = {
             link: "top_notify_btn",
             count: "top_notify_count",
@@ -3229,7 +3230,7 @@
                 return !!checkEvent(e) || !!checkKeyboardEvent(e) && TopNotifier.show(e)
             },
             onLoad: function onLoad(rows, js, from, header) {
-                if (TopNotifierCur.loading = !1, !from || TopNotifierCur.from !== from) {
+                if (!from || TopNotifierCur.from !== from) {
                     void 0 !== rows && "undefined" !== rows || ajax.plainpost("/errors.php", {
                         msg: ajax.lastResp || "TopNotifier load undefinded response",
                         module: "top_notify",
@@ -3374,6 +3375,17 @@
                     }
                 })
             },
+            createNewEventsBox: function(e) {
+                if (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)("notify_new_events_box")) {
+                    var t = TopNotifier.getContentNode();
+                    if (t) {
+                        var i = geByClass1("notifications_new_events", t);
+                        e > 0 ? (i || ((i = document.createElement("div")).className = "feed_row _feed_row notifications_new_events", i.onclick = function(e) {
+                            i.onclick = null, showProgress(i), TopNotifier.refresh(e, !1)
+                        }), i.innerHTML = langStr(getLang("notifications_new_events", e), "count", e), t.insertBefore(i, t.children[0])) : i && !TopNotifierCur.loading && re(i)
+                    }
+                }
+            },
             show: function(e) {
                 if (gpeByClass("top_notify_cont", e.target)) return !0;
                 if (!0 !== checkEvent(e) && !vk.isBanned) {
@@ -3511,11 +3523,16 @@
                 }))
             },
             refresh: function() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
-                null !== e && cancelEvent(e), TopNotifier.invalidate(), TopNotifierCur.wrapper && !TopNotifierCur.loading && (TopNotifierCur.loading = !0, re(geByClass1("_notify_header")), re(geByClass1("_top_notify_header")), TopNotifierCur.from = 0, ajax.post("/al_feed.php", TopNotifierCur._qParams, {
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null,
+                    t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
+                null !== e && cancelEvent(e), TopNotifier.invalidate(), TopNotifierCur.wrapper && !TopNotifierCur.loading && (TopNotifierCur.loading = !0, t && (re(geByClass1("_notify_header")), re(geByClass1("_top_notify_header"))), TopNotifierCur.from = 0, ajax.post("/al_feed.php", TopNotifierCur._qParams, {
                     cache: 1,
-                    onDone: TopNotifier.onLoad,
-                    showProgress: TopNotifier.showProgress,
+                    onDone: (e, t, i, a) => {
+                        TopNotifierCur.loading = !1, TopNotifier.onLoad(e, t, i, a)
+                    },
+                    showProgress: () => {
+                        t && TopNotifier.showProgress()
+                    },
                     stat: ["feed.css"],
                     onFail() {
                         TopNotifierCur.loading = !1, hide(geByClass1("top_notify_show_all")), TopNotifier.hideProgress(), val(TopNotifier.getContentNode(), '<div class="top_notify_empty no_rows error_message"><div>' + getLang("global_notify_error_occured") + '</div><button class="flat_button button_small secondary" onclick="TopNotifier.refresh(event);">' + getLang("global_notify_refresh") + "</button></div>")
@@ -3847,8 +3864,8 @@
                     i = 0,
                     a = geByClass1("top_notify_header_label_groups_counter");
                 1 === cur.groupNotify_enabled && TopNotifierCur.notify_sources.forEach(function(a) {
-                    "" !== a.list && a.counter > 0 && (1 === a.unmuted ? (t++, i++) : e++), "" === a.list && (i += a.counter)
-                }), vk.counts.ntf = i, TopNotifier.setCount(i, !0), t > 0 ? (addClass(a, "unmuted"), val(a, t)) : (removeClass(a, "unmuted"), val(a, e > 0 ? e : ""))
+                    "" !== a.list && a.counter > 0 && (1 === a.unmuted ? t++ : e++), "" === a.list && (i = a.counter)
+                }), vk.counts.ntf = i + t, TopNotifier.setCount(i + t, !0), TopNotifier.createNewEventsBox(i), t > 0 ? (addClass(a, "unmuted"), val(a, t)) : (removeClass(a, "unmuted"), val(a, e > 0 ? e : ""))
             },
             refreshTooltip: function() {
                 var e = geByClass1("groups", geByClass1("notify_sources")),
@@ -4110,7 +4127,7 @@
                     if (ev.version !== curNotifier.version && -1 !== ev.version) return debugLog("Notifier old version: " + ev.version + " !== " + curNotifier.version), !1;
                     if ("update_cnt" === ev.type) return ev.add && ev.add.section && handlePageCount(ev.add.section_id, ev.add.count, ev.add.section_link, ev.add.section_add), 0;
                     if (!curNotifier.done_events[ev.id]) {
-                        switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 != ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
+                        switch (curNotifier.done_events[ev.id] = 1, void 0 !== ev.top_count && -1 !== ev.top_count && handlePageCount("ntf", ev.top_count), ev.type) {
                             case "video_process_ready":
                                 if (ev.add.video_raw && window.Video && Video.isVideoPlayerOpen(ev.add.video_raw)) return;
                                 if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) return;
