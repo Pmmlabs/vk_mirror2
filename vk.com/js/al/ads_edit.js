@@ -6747,15 +6747,22 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         // ����������� ��� �������� ������������
         var k = (costPerClick - minItem.price) / (maxItem.price - minItem.price);
         return function(min, max, type) {
-            if (type === 'reach') {
-                if (!costPerClick) {
-                    return 0;
-                }
+            min = parseFloat(min);
+            max = parseFloat(max);
+            if (!costPerClick) {
+                return 0;
+            }
+            // ���� ��������� ������ ��� ������ ������� (�.� ������ ��� ��������� ����� � ������ api)
+            if (costPerClick >= maxItem.price) {
+                return max;
+            }
 
-                // ���� ��������� ������ ��� ������ ������� (�.� ������ ��� ��������� ����� � ������ api)
-                if (costPerClick >= maxItem.price) {
-                    return max;
-                }
+            // ���� ��������� ������ ��� ������ �������
+            if (costPerClick <= minItem.price) {
+                return min;
+            }
+
+            if (type === 'reach') {
 
                 // ���� �����, �� ������������ ���������� ��������� ������� ���������
                 return Math.min(audienceCount, Math.max(0, min + (max - min) * k));
