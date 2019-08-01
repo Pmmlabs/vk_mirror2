@@ -7931,7 +7931,10 @@ img.im_photo_thumb {
 .im-mess {
     padding: 6px 30px 7px 0;
     position: relative;
-    margin: 0 7px;
+    margin: 0 7px
+}
+
+.im-mess:not(._im_mess_callsnippet) {
     cursor: pointer
 }
 
@@ -12830,6 +12833,53 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .wk_history_doc_content #wk_history_wrap #wk_history_rows {
     margin-right: -22px
+}
+
+.im-call-snippet {
+    display: inline-block;
+    position: relative;
+    padding: 9px 0 2px 44px;
+    min-height: 43px;
+    cursor: pointer
+}
+
+.im-call-snippet:hover {
+    text-decoration: none
+}
+
+.im-call-snippet:before {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #528bcc;
+    border-radius: 50%;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20width%3D%2215%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9.26%2010.216c1.128-1.129%202.905-1.233%204.086-.239l.854.719c.974.82%201.073%202.298.22%203.3-.466.539-1.121.877-1.829.944-2.728.367-5.589-.947-8.585-3.944-2.997-2.997-4.312-5.859-3.944-8.586.019-.213.063-.424.132-.627.159-.466.439-.881.812-1.203%201.003-.853%202.48-.755%203.3.22l.718.854c.995%201.18.892%202.957-.237%204.086l-.613.612c-.163.164-.217.407-.137.624.223.609.792%201.37%201.705%202.284.914.914%201.675%201.482%202.283%201.706.217.08.461.026.624-.138z%22%20fill%3D%22%23528bcc%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
+    content: ''
+}
+
+.im-call-snippet_video:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2212%22%20viewBox%3D%220%200%2018%2012%22%20width%3D%2218%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M3.846%200h5.308c1.337%200%201.822.139%202.311.401.489.261.873.645%201.134%201.134.261.489.401.974.401%202.311v4.308c0%201.337-.139%201.822-.401%202.311-.261.489-.645.873-1.134%201.134-.489.261-.974.401-2.311.401h-5.308c-1.337%200-1.822-.139-2.311-.401-.489-.261-.873-.645-1.134-1.134-.261-.489-.401-.974-.401-2.311v-4.308c0-1.337.139-1.822.401-2.311.261-.489.645-.873%201.134-1.134.489-.261.974-.401%202.311-.401zm14.154%203.076v5.88c0%20.46-.373.833-.833.833-.174%200-.343-.054-.484-.155l-1.973-1.407c-.132-.094-.21-.245-.21-.407v-3.64c0-.162.078-.313.21-.407l1.947-1.389c.382-.273.913-.184%201.186.198.103.144.158.317.158.494z%22%20fill%3D%22%23528bcc%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.im-call-snippet--title {
+    margin: 0 0 3px;
+    font: 700 12.5px/15px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: #42648b
+}
+
+.im-call-snippet--desc {
+    font: 12px/14px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: #6f7985
+}
+
+.im-call-snippet--guard {
+    display: inline
+}
+
+.im-call-snippet--canceled {
+    color: #e64646
 }
 
 .im-mask-snippet__container {

@@ -2361,13 +2361,16 @@
                     id: t,
                     from: "fc"
                 }, {
-                    onDone: function(i, a, o) {
+                    onDone: function(i) {
+                        var a = m(i, 4),
+                            o = (a[0], a[1]),
+                            r = (a[2], a[3]);
                         FastChat.lcSend("gotMedia", {
                             msgId: t,
                             peer: e,
-                            text: i[1],
-                            msgOpts: o
-                        }), FastChat.gotMsgMedia(e, t, i[1], o)
+                            text: o,
+                            msgOpts: r
+                        }), FastChat.gotMsgMedia(e, t, o, r)
                     }
                 }))
             },

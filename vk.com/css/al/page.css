@@ -8797,12 +8797,21 @@ a.page_media_link_desc {
 }
 
 .page_media_map {
-    margin: 5px 0;
-    border-radius: 3px;
+    margin: 0;
+    border-radius: 4px;
     display: inline-block
 }
 
-.page_media_map:after {
+.page_media_map_wrap {
+    position: relative
+}
+
+.im_msg_media_geo .page_media_map_wrap {
+    width: 340px;
+    height: 127px
+}
+
+.page_media_map_wrap:after {
     content: "";
     position: absolute;
     top: 0;
