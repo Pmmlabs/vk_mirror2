@@ -69,9 +69,9 @@
     d.push = o, d = d.slice();
     for (var w = 0; w < d.length; w++) o(d[w]);
     var c = s;
-    r.push([81, "bundles/audioplayer", "bundles/common"]), t()
+    r.push([82, "bundles/audioplayer", "bundles/common"]), t()
 }({
-    81: function(e, o, t) {
+    82: function(e, o, t) {
         e.exports = t("g42W")
     },
     g42W: function(e, o, t) {

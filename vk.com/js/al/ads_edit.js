@@ -5415,7 +5415,8 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         this.completeLink();
     }
 
-    if (isObject(result) && 'recommended_price' in result) {
+    // TODO: remove old name "recommended_price" after deploy
+    if (isObject(result) && ('recommended_price' in result || 'predictor_points' in result)) {
         this.setPredictionWidgetApiResponse(result);
         // ������� ������ � ������� ������������ ������
         this.showPredictionWidget();
@@ -6709,7 +6710,8 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         return false;
     }
 
-    var prices = apiResponse.recommended_price || [];
+    // TODO: remove old name "recommended_price" after deploy
+    var prices = apiResponse.recommended_price || apiResponse.predictor_points || [];
     var audienceCount = apiResponse.audience_count || 0;
 
     var ret = {
