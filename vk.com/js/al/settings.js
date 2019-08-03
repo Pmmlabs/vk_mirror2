@@ -962,6 +962,20 @@ var Settings = {
         });
     },
 
+    hintachCheck: function() {
+        clearTimeout(cur.hintachUpdateTO);
+        cur.hintachUpdateTO = setTimeout(Settings.hintachSubmit, 200);
+    },
+    hintachSubmit: function() {
+        ajax.post('/al_settings.php', {
+            act: 'a_change_hintach',
+            hash: cur.options.hintach_hash,
+            hintach: ge('settings_hintach').checked ? 1 : 0
+        }, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind('cposts')
+        });
+    },
+
     drCheck: function() { // disable rights
         clearTimeout(cur.drUpdateTO);
         cur.drUpdateTO = setTimeout(Settings.drSubmit, 200);

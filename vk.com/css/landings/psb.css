@@ -121,7 +121,7 @@ body {
 
 .landing * {
     box-sizing: border-box;
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     vertical-align: top
 }
 
@@ -193,7 +193,7 @@ body {
 }
 
 .landing .landings_psb_retargeting {
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     color: #7c7f82;
     margin: 38px auto 34px;
     width: 980px
@@ -201,7 +201,7 @@ body {
 
 .landing .landings_psb_common_text,
 .landing .landings_psb_bonus {
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     text-align: center;
     color: #1d1d1e
 }
@@ -286,7 +286,7 @@ body {
 
 .landing .landings_psb_text_block .landings_psb_header {
     white-space: nowrap;
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     font-size: 39px;
     font-weight: 300;
     letter-spacing: -0.1px;
@@ -295,7 +295,7 @@ body {
 }
 
 .landing .landings_psb_text_block .landings_psb_text {
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     line-height: 1.45;
     color: #fff;
     font-size: 20px
@@ -338,7 +338,7 @@ body {
 }
 
 .landing .adv_promo_section__desc {
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     line-height: 1.45;
     color: #1d1d1e;
     width: 500px;
@@ -411,7 +411,7 @@ body {
 
 .landing [class*=" adv_promo_icon--"],
 .landing [class^=adv_promo_icon--] {
-    font-family: icons, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai"!important;
+    font-family: icons, Noto Sans Armenian, Noto Sans Bengali, Noto Sans Cherokee, Noto Sans Devanagari, Noto Sans Ethiopic, Noto Sans Georgian, Noto Sans Hebrew, Noto Sans Kannada, Noto Sans Khmer, Noto Sans Lao, Noto Sans Osmanya, Noto Sans Tamil, Noto Sans Telugu, Noto Sans Thai!important;
     font-style: normal;
     font-weight: 400;
     font-variant: normal;
@@ -491,7 +491,7 @@ body {
 }
 
 .landing .landings_psb_coverage .landings_psb_coverage__amount {
-    font-family: inherit, "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai";
+    font-family: inherit;
     font-size: 100px;
     font-weight: 200;
     letter-spacing: -0.3px

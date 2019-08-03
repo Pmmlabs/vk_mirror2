@@ -660,7 +660,8 @@ var photos = {
             album: cur.album,
             hash: cur.albumhash,
             title: ge('album_title').value,
-            desc: ge('album_description').value
+            desc: ge('album_description').value,
+            enable_hintach: isChecked('hintach_enabled_for_album')
         };
         if (!params.title) return notaBene('album_title');
         var album_id = cur.album.replace(vk.id + '_', '');

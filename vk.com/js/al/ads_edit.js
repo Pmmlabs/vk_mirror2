@@ -5238,10 +5238,11 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
             this.params.cost_type.cpm_only = !this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc;
             this.params.cost_type.hidden = this.params.cost_type.cpm_only;
 
-            if (!this.params.cost_type.cpm_only) {
-                this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
-            } else {
+            if (this.params.cost_type.cpm_only) {
                 this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
+            }
+            if (this.params.cost_type.cpc_only) {
+                this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
             }
 
             this.updateUiParam('link_type');

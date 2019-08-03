@@ -17401,6 +17401,56 @@ div.chat_tab_img {
     background-color: #f0f2f5
 }
 
+.Hintaches {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.Hintaches:not(:first-child) {
+    margin-left: 2px
+}
+
+.Hintaches__item {
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative
+}
+
+.Hintaches__item+.Hintaches__item {
+    margin-left: 6px
+}
+
+.Hintaches__item:hover {
+    opacity: 0.8
+}
+
+.Hintaches__item-thumb {
+    border-radius: 2px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.Hintaches__item-preview {
+    border-radius: 2px;
+    display: block
+}
+
+.Hintaches__item-type {
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    font-weight: 500;
+    background: rgba(0, 0, 0, .6);
+    font-size: 12px;
+    border-radius: 2px;
+    top: 2px;
+    right: 2px;
+    padding: 1px 2px
+}
+
 #top_notify_wrap {
     position: relative;
     position: absolute;

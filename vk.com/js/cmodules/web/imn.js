@@ -5936,13 +5936,13 @@
             })
         }
 
-        function Ti(e, t, n, s, o, l, c) {
-            var d, u = debounce(function(e, t, n) {
+        function Ti(e, t, n, s, o, l, c, d) {
+            var u, m = debounce(function(e, t, n) {
                 var r = e.get().peer,
                     i = Emoji.val(n);
                 Object(a.Ab)(r) || Ei(e).dData.txt == i || $i(r, e) || (t.checkMessageURLs(i, !0, si), Ei(e).setText(i))
             }.bind(null, e, n), 500);
-            var m = Emoji.init(geByClass1("_im_text", t), {
+            var p = Emoji.init(geByClass1("_im_text", t), {
                 ttDiff: 93,
                 rPointer: !0,
                 ref: "im",
@@ -5955,24 +5955,27 @@
                     Object(a.Ab)(o) || $i(o, e) || Ei(e).dData.txt == l || !l || function(e) {
                         var t = e.get().peer;
                         Object(a.qb)(e, t) && !Object(i.y)(e) && Date.now() - (Object(i.u)(e, t).lastTyping || 0) > 1e3 * r.b && e.set(r.nc.bind(null, t))
-                    }(e), Vi(e, t, l), u(s);
-                    var m = t.offsetHeight;
-                    if (d && d !== m) {
-                        var p = c().updateScroll();
-                        c().scrollFix(e, e.get().peer, p)
+                    }(e), Vi(e, t, l), m(s);
+                    var c = t.offsetHeight;
+                    if (u && u !== c) {
+                        var p = d().updateScroll();
+                        d().scrollFix(e, e.get().peer, p)
                     }
-                    d = m
+                    u = c
                 },
                 onStickerSend: (e, t, n) => o([
                     ["sticker", e, n]
                 ], {
                     sticker_referrer: t
                 }),
-                uploadActions: l
+                onHintachSend: (e, t) => l([
+                    [e, t]
+                ]),
+                uploadActions: c
             });
-            return Emoji.emojiLoadMore(m), e.setState({
-                emojiOptId: m
-            }), m
+            return Emoji.emojiLoadMore(p), e.setState({
+                emojiOptId: p
+            }), p
         }
 
         function Pi(e) {
@@ -6274,7 +6277,8 @@
                 y = h.setErrored,
                 j = h.complete,
                 O = ji.bind(null, t, c, b, u, e),
-                w = function(e) {
+                w = ji.bind(null, t, c, b, u, e),
+                k = function(e) {
                     var t = Ei(e).getFwdRaw();
                     t && window.showForwardBox({
                         act: "a_show_forward_box",
@@ -6283,7 +6287,7 @@
                     })
                 }.bind(null, t);
             hide(geByClass1("ms_items_more_helper", e));
-            var k = t.get().mediaTypes || [
+            var C = t.get().mediaTypes || [
                 ["photo", getLang("mail_added_photo")],
                 ["video", getLang("profile_wall_video")],
                 ["audio", getLang("profile_wall_audio")],
@@ -6291,8 +6295,8 @@
                 ["map", getLang("profile_wall_map")],
                 ["gift", getLang("profile_wall_gift")]
             ];
-            (t.get().moneyTransferAvail || t.get().moneyRequestAvail) && k.push(["money", getLang("profile_wall_money")]);
-            var C = new MediaSelector(geByClass1(oi, e), bi, k, {
+            (t.get().moneyTransferAvail || t.get().moneyRequestAvail) && C.push(["money", getLang("profile_wall_money")]);
+            var S = new MediaSelector(geByClass1(oi, e), bi, C, {
                     from: "message",
                     maxShown: 0,
                     vectorIcon: !0,
@@ -6310,7 +6314,7 @@
                                     if (e().scrollFix(t, t.get().peer, d), t.get().delayed_message && !Object(r.V)(t.get())) return n([]), !1;
                                     Vi(t, a)
                                 }
-                            }(c, t, S, e, n, a, i, s, C)
+                            }(c, t, E, e, n, a, i, s, S)
                     },
                     onMediaChange: function() {
                         return function(e, t, n, r, a) {
@@ -6318,7 +6322,7 @@
                                 var i = a.getMedias().find(e => "poll" === e[0]);
                                 i && Ei(t).addAttach(i[0], i[1], a.pollData(!0, !0)), Vi(t, r)
                             }
-                        }(0, t, 0, e, C)
+                        }(0, t, 0, e, S)
                     },
                     editable: 1,
                     onChangedSize: function() {
@@ -6341,8 +6345,8 @@
                         from: "from_gim"
                     } : {}
                 }),
-                S = xi.bind(null, t, c, b, e, u, C),
-                E = function(e, t, n) {
+                E = xi.bind(null, t, c, b, e, u, S),
+                I = function(e, t, n) {
                     var r = Emoji.val(geByClass1("_im_text", t));
                     Object(i.y)(e) && "" !== r || Wi(e, t).then(t => {
                         var a = intval(domData(n.target, "tttype"));
@@ -6390,10 +6394,10 @@
                         })
                     })
                 }.bind(null, t, e),
-                I = geByClass1("_im_send", e),
-                x = ji.bind(null, t, c, b, u, e),
-                T = $r(e, t, x, () => {
-                    addClass(I, "im-send-btn_audio"), removeClass(I, "im-send-btn_static")
+                x = geByClass1("_im_send", e),
+                T = ji.bind(null, t, c, b, u, e),
+                P = $r(e, t, T, () => {
+                    addClass(x, "im-send-btn_audio"), removeClass(x, "im-send-btn_static")
                 }, () => {
                     u().restoreKeyboard()
                 });
@@ -6430,22 +6434,22 @@
                             wddOpts: {}
                         })
                     })
-                }(e, t), t.get().textMediaSelector = C, t.set(r.T.bind(null, f, v, y, j));
-            var P = geByClass1("_im_text", e);
+                }(e, t), t.get().textMediaSelector = S, t.set(r.T.bind(null, f, v, y, j));
+            var M = geByClass1("_im_text", e);
             setTimeout(() => {
-                Object(i.p)(t) && u().setDraft(t, Object(i.v)(Object(i.h)(t))), Ti(t, e, C, S, O, p, c)
+                Object(i.p)(t) && u().setDraft(t, Object(i.v)(Object(i.h)(t))), Ti(t, e, S, E, O, w, p, c)
             }, 0);
-            var M = Bi.bind(null, t, e, c),
-                L = function(e, t, n) {
+            var L = Bi.bind(null, t, e, c),
+                B = function(e, t, n) {
                     var a = Object(i.p)(e);
                     e.set(r.f.bind(null, a)).then(() => {
                         Ki(e, a, t), n()
                     }).catch(() => Ci())
-                }.bind(null, t, P, () => {
+                }.bind(null, t, M, () => {
                     var e = c().updateScroll();
                     c().scrollFix(t, Object(i.p)(t), e)
                 }),
-                B = function(e, t, n) {
+                D = function(e, t, n) {
                     var s = Object(i.p)(e);
                     e.set(r.Gb.bind(null, s)).then(() => {
                         var t = e.get().tabbedPeers.filter(e => e.peer !== s);
@@ -6454,27 +6458,27 @@
                         Object(a.kb)(e) && t(e), n(e, s), s === e.get().peer && e.get().longpoll.push([Object(l.Hb)()])
                     }).catch(() => Ci())
                 }.bind(null, t, n, s),
-                D = function(e, t, n, a) {
+                N = function(e, t, n, a) {
                     var i = e.get().peer,
                         s = inArray(i, e.get().mutedPeers);
                     e.set(r.Lc.bind(null, i, !s)).then(n().updateState.bind(null, i)), cancelEvent(a)
                 }.bind(null, t, e, c),
-                N = function(e, t, n, a) {
+                A = function(e, t, n, a) {
                     var i = e.get().peer;
                     e.set(r.Zb.bind(null, i)).then(e => e.set(r.Q.bind(null, i))).then(n().updateChatTopic.bind(null, i)), cancelEvent(a)
                 }.bind(null, t, e, c),
-                A = function(e, t, n) {
+                H = function(e, t, n) {
                     var a = !!intval(domData(n, "val"));
                     a !== cur.ctrl_submit && (cur.ctrl_submit = a, e.set(r.q.bind(null, a)))
                 }.bind(null, t);
-            Ki(t, t.get().peer, P);
-            var H = e.querySelector("._im_keyboard_button"),
-                F = function(e, t, n, r, a) {
+            Ki(t, t.get().peer, M);
+            var F = e.querySelector("._im_keyboard_button"),
+                q = function(e, t, n, r, a) {
                     return (0, Object(o.b)(ra).bindMutations)(Object(o.a)({
                         handlers: (e, t) => {}
                     }), t, r)
                 }(0, t, 0, Ii.bind(null, t, c, b, e, u)),
-                q = function(e, t, n, r) {
+                R = function(e, t, n, r) {
                     var a = (0, Object(o.b)(ya).bindMutations)(Object(o.a)({
                         handlers: (e, t) => {}
                     }), e, t, n, r);
@@ -6489,12 +6493,12 @@
                         showCreatingTemplatePopup: a.showSettingsPopup.bind(a, ha)
                     }));
                     return Oe.render(i, t), a
-                }(t, e.querySelector("._message_templates_container"), e => la(P, e), t => toggleClass(e, "im-chat-input--textarea_show-templates", t)),
-                R = Object(o.a)({
+                }(t, e.querySelector("._message_templates_container"), e => la(M, e), t => toggleClass(e, "im-chat-input--textarea_show-templates", t)),
+                $ = Object(o.a)({
                     handlers: (n, a) => {
-                        n(I, "click", () => {
+                        n(x, "click", () => {
                             Promise.resolve().then(() => Wi(t, e)).then(e => {
-                                if (e || Object(i.y)(t)) S([]);
+                                if (e || Object(i.y)(t)) E([]);
                                 else {
                                     var n = Ei(t);
                                     Oi(n) && function(e) {
@@ -6504,18 +6508,18 @@
                                             var r = n.object;
                                             t && (t.innerHTML = Li(r))
                                         } else t.innerHTML = ""
-                                    }(n), vi(I, {
+                                    }(n), vi(x, {
                                         fasthide: !0
-                                    }), T.start(), setTimeout(() => removeClass(I, "im-send-btn_saudio"), 300)
+                                    }), P.start(), setTimeout(() => removeClass(x, "im-send-btn_saudio"), 300)
                                 }
                             })
-                        }), n(I, "mouseover", E), n(P, "focus", () => {
+                        }), n(x, "mouseover", I), n(M, "focus", () => {
                             t.get().longpoll.push([l.Lb("message")]), cur.focused = t.get().peer
-                        }), n(P, "blur", () => {
+                        }), n(M, "blur", () => {
                             var e = 0 === t.get().peer ? "search" : "default";
                             t.get().longpoll.push([l.Lb(e)]), cur.focused = !1
-                        }), n(H, "click", () => u().toggleKeyboard(void 0)), n(H, "mouseover", () => {
-                            showTooltip(H, {
+                        }), n(F, "click", () => u().toggleKeyboard(void 0)), n(F, "mouseover", () => {
+                            showTooltip(F, {
                                 text() {
                                     var e = Object(i.g)(t);
                                     return !e || e.hide ? getLang("mail_show_keyboard") : getLang("mail_hide_keyboard")
@@ -6523,16 +6527,16 @@
                                 black: !0,
                                 shift: [4, 5]
                             })
-                        }), a(e.parentNode, "click", mi, D), a(e.parentNode, "click", pi, N), a(e.parentNode, "click", ui, M), a(e.parentNode, "click", gi, L), a(e.parentNode, "click", hi, B), a(e, "click", di, M), a(e, "click", "_im_will_fwd", w), a(e, "keydown", "_im_text", e => (function(e, t, n, a) {
+                        }), a(e.parentNode, "click", mi, N), a(e.parentNode, "click", pi, A), a(e.parentNode, "click", ui, L), a(e.parentNode, "click", gi, B), a(e.parentNode, "click", hi, D), a(e, "click", di, L), a(e, "click", "_im_will_fwd", k), a(e, "keydown", "_im_text", e => (function(e, t, n, a) {
                             if (38 === a.which && n().isEmpty(e) && !t().getEditingMessage() && !Emoji.shown && !hasAccessibilityMode() && !Object(r.V)(e.get())) {
                                 var s = Object(Ka.c)(e, Object(i.h)(e));
                                 s && t().startEditing(Object(i.n)(e, e.get().peer, s))
                             }
-                        })(t, c, u, e)), a(bodyNode, "click", _i, A)
+                        })(t, c, u, e)), a(bodyNode, "click", _i, H)
                     }
                 }),
-                $ = m(t, C, P, e, S, c, f, p, R, T, H, F, q);
-            return $.initKeyboard(), $
+                U = m(t, S, M, e, E, c, f, p, $, P, F, q, R);
+            return U.initKeyboard(), U
         }
         var Xi = "im_hist_search",
             Qi = "_im_search_date",
