@@ -749,7 +749,7 @@ var Dev = {
         switch (typeof obj) {
             case 'object':
                 var items = [];
-                if (Object.prototype.toString.call(obj) == '[object Array]') {
+                if (Object.prototype.toString.call(obj) === '[object Array]') {
                     for (var i in obj) {
                         items.push(Dev.wrapObject(obj[i], null, i, obj));
                     }
@@ -787,7 +787,7 @@ var Dev = {
                 var el = '<span class="dev_result_num">' + obj + '</span>',
                     id;
 
-                if (parentContext && objName == 'id') {
+                if (parentContext && objName === 'id') {
                     if (parentContext.first_name) {
                         id = 'id' + obj;
                     } else if (parentContext.screen_name) {
@@ -796,7 +796,7 @@ var Dev = {
                     if (id) {
                         el = '<a target=_blank href="/' + id + '" mention_id="' + id + '" onmouseover="mentionOver(this)">' + el + '</a>';
                     }
-                } else if (objName == 'date' || objName == 'created' || objName == 'updated' || objName == 'edited' || objName == 'timestamp') {
+                } else if (['date', 'created', 'updated', 'edited', 'timestamp', 'time'].indexOf(objName) !== -1) {
                     el = '<span onmouseover="Dev.onMouseOverDate(this)" onmouseout="Dev.onMouseOut()" data-date="' + obj + '">' + el + '</span>';
                 }
 
