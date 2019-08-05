@@ -5416,8 +5416,7 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         this.completeLink();
     }
 
-    // TODO: remove old name "recommended_price" after deploy
-    if (isObject(result) && ('recommended_price' in result || 'predictor_points' in result)) {
+    if (isObject(result) && 'predictor_points' in result) {
         this.setPredictionWidgetApiResponse(result);
         // ������� ������ � ������� ������������ ������
         this.showPredictionWidget();
@@ -6079,7 +6078,10 @@ AdsViewEditor.prototype.completeLink = function() {
                 if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
                     selectedValue = this.params.link_id.value;
                 } else if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
-                    selectedValue = -this.params.link_owner_id.value;
+                    var promotedPostKludgesHave = this.getLinkPromotedPostKludgesHave();
+                    if (promotedPostKludgesHave.link_with_button_join) {
+                        selectedValue = -this.params.link_owner_id.value;
+                    }
                 }
                 this.targetingEditor.setAutoGroupsNotValue(selectedValue);
             }
@@ -6711,8 +6713,7 @@ AdsViewEditor.prototype.getPredictionWidgetDataForRender = function(costPerClick
         return false;
     }
 
-    // TODO: remove old name "recommended_price" after deploy
-    var prices = apiResponse.recommended_price || apiResponse.predictor_points || [];
+    var prices = apiResponse.predictor_points || [];
     var audienceCount = apiResponse.audience_count || 0;
 
     var ret = {
