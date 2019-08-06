@@ -69,9 +69,9 @@
     n.push = t, n = n.slice();
     for (var l = 0; l < n.length; l++) t(n[l]);
     var d = c;
-    r.push([117, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    r.push([118, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
-    117: function(e, t, i) {
+    118: function(e, t, i) {
         e.exports = i("8S/u")
     },
     "8S/u": function(e, t, i) {
@@ -3507,7 +3507,7 @@
                 }
             }),
             invalidate: function() {
-                TopNotifierCur.loaded = !1, ajax.invalidate("/al_feed.php", TopNotifierCur._qParams), TopNotifierCur.ajax && TopNotifierCur.ajax.abort()
+                TopNotifierCur.loaded = !1, TopNotifierCur.from = "", ajax.invalidate("/al_feed.php", TopNotifierCur._qParams), TopNotifierCur.ajax && TopNotifierCur.ajax.abort()
             },
             setCount: function(e, t) {
                 isString(e) && (e = trim(e)), parseInt(e) >= 100 && (e = "+99"), hasClass(TopNotifierCur.link, "has_notify") && e ? animateCount(TopNotifierCur.count, e, {
@@ -3539,7 +3539,8 @@
                     stat: ["feed.css"],
                     onFail() {
                         TopNotifierCur.loading = !1, hide(geByClass1("top_notify_show_all")), TopNotifier.hideProgress(), val(TopNotifier.getContentNode(), '<div class="top_notify_empty no_rows error_message"><div>' + getLang("global_notify_error_occured") + '</div><button class="flat_button button_small secondary" onclick="TopNotifier.refresh(event);">' + getLang("global_notify_refresh") + "</button></div>")
-                    }
+                    },
+                    no_ads_params: !0
                 }))
             },
             unifiedDeleteRow: function(e, t, i, a, o) {
