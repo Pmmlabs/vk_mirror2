@@ -2013,6 +2013,10 @@ input.wide_button {
     background-position: 0 -192px
 }
 
+.mmi_services .i_icon {
+    background-position: 0 -336px
+}
+
 .mmi_recommended {
     display: none
 }

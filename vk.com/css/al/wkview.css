@@ -1528,6 +1528,65 @@ span#wk_posts_reach_tooltip_link {
     display: block
 }
 
+.wl_postreach_experts_stat_growth {
+    width: 100%;
+    display: block
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_title {
+    display: inline-block
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    filter: alpha(opacity=30)
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon:first-child {
+    margin-left: 5px
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon.like_icon {
+    background-image: url('/images/svg_icons/like.svg');
+    top: 4px
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon.share_icon {
+    background-image: url('/images/svg_icons/share.svg');
+    width: 16px;
+    height: 16px;
+    top: 4px
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon.comment_icon {
+    background-image: url('/images/svg_icons/ads_comments.svg');
+    width: 22px;
+    height: 22px;
+    top: 8px;
+    opacity: 1;
+    filter: none
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon.view_icon {
+    background-image: url('/images/svg_icons/view.svg');
+    width: 18px;
+    height: 18px;
+    top: 3px
+}
+
+.wl_postreach_experts_stat_growth .wl_postreach_experts_stat_growth_icon.subscriber_icon {
+    background-image: url('/images/svg_icons/post_author.svg');
+    top: 3px
+}
+
 .wl_postreach_experts_stat_topics {
     display: block
 }

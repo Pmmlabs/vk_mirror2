@@ -1317,6 +1317,29 @@ textarea.EditableLabel__textarea {
     flex: 1 1 auto
 }
 
+.Pagination__link {
+    border: 0 solid #dae1e8;
+    box-sizing: border-box;
+    padding: 3px 5px 7px;
+    color: #939393;
+    font-size: 12.5px
+}
+
+.Pagination__link--selected,
+.Pagination__link:hover {
+    border-width: 0 0 2px
+}
+
+.Pagination__link:hover {
+    text-decoration: none
+}
+
+.Pagination__link--selected {
+    border-color: #6587ac;
+    color: #2b2f33;
+    font-weight: 700
+}
+
 .Stub {
     height: 100%;
     min-height: 60px;
