@@ -17375,7 +17375,7 @@ div.chat_tab_img {
     border-left: 1px solid #e4e6e9;
     border-radius: 0 2px 2px 0;
     cursor: pointer;
-    z-index: 1
+    z-index: 2
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -17401,16 +17401,17 @@ div.chat_tab_img {
     background-color: #f0f2f5
 }
 
-.Hintaches {
+.Hintach {
     display: inline-block;
     vertical-align: middle
 }
 
-.Hintaches:not(:first-child) {
+.Hintach:not(:first-child) {
     margin-left: 2px
 }
 
-.Hintaches__item {
+.Hintach__item {
+    margin: 3px;
     border-radius: 2px;
     cursor: pointer;
     display: inline-block;
@@ -17418,29 +17419,25 @@ div.chat_tab_img {
     position: relative
 }
 
-.Hintaches__item+.Hintaches__item {
-    margin-left: 6px
-}
-
-.Hintaches__item:hover {
+.Hintach__item:hover {
     opacity: 0.8
 }
 
-.Hintaches__item-thumb {
+.Hintach__itemThumb {
     border-radius: 2px;
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
 }
 
-.Hintaches__item-preview {
+.Hintach__itemPreview {
     border-radius: 2px;
     display: block
 }
 
-.Hintaches__item-type {
+.Hintach__itemType {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     color: #fff;
     font-weight: 500;
     background: rgba(0, 0, 0, .6);
