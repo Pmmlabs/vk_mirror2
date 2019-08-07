@@ -472,7 +472,7 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types) {
         if (window.event && (window.event.which == 2 || window.event.button == 1)) {
             return true;
         }
-        Rpc.callMethod('showBox', 'graffiti.php?' + ajx2q({
+        Rpc.callMethod('showBox', 'graffiti.php?' + AjaxConvert.toQueryString({
             act: 'a_draw_box',
             to_id: toId,
             widget: 1,
@@ -488,7 +488,7 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types) {
         if (window.event && (window.event.which == 2 || window.event.button == 1)) {
             return true;
         }
-        Rpc.callMethod('showBox', 'photos.php?' + ajx2q({
+        Rpc.callMethod('showBox', 'photos.php?' + AjaxConvert.toQueryString({
             act: 'a_choose_photo_box',
             to_id: toId,
             scrollbar_width: window.sbWidth(),
@@ -519,7 +519,7 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types) {
         if (window.event && (window.event.which == 2 || window.event.button == 1)) {
             return true;
         }
-        Rpc.callMethod('showBox', 'video.php?' + ajx2q({
+        Rpc.callMethod('showBox', 'video.php?' + AjaxConvert.toQueryString({
             act: 'a_choose_video_box',
             to_id: toId,
             scrollbar_width: window.sbWidth(),
@@ -544,7 +544,7 @@ var MediaPoster = function(postType, target, preview, msgBox, toId, types) {
         if (window.event && (window.event.which == 2 || window.event.button == 1)) {
             return true;
         }
-        Rpc.callMethod('showBox', 'audio.php?' + ajx2q({
+        Rpc.callMethod('showBox', 'audio.php?' + AjaxConvert.toQueryString({
             act: 'a_choose_audio_box',
             to_id: toId,
             scrollbar_width: window.sbWidth(),
@@ -1291,7 +1291,7 @@ function likePost(status_id, hash, prefix, no_send) {
 function showWallPhoto(photo_id, owner_id) {
     var h = 607,
         w = 607;
-    Rpc.callMethod('showBox', 'photos.php?' + ajx2q({
+    Rpc.callMethod('showBox', 'photos.php?' + AjaxConvert.toQueryString({
         act: 'a_show_photo_box',
         photo: photo_id,
         wall_owner: owner_id,
@@ -1307,7 +1307,7 @@ function showWallPhoto(photo_id, owner_id) {
 function showGraffiti(graffiti_id, owner_id) {
     var h = 293,
         w = 586;
-    Rpc.callMethod('showBox', 'graffiti.php?' + ajx2q({
+    Rpc.callMethod('showBox', 'graffiti.php?' + AjaxConvert.toQueryString({
         act: 'a_show_graffiti_box',
         graffiti: graffiti_id,
         wall_owner: owner_id,
@@ -1321,7 +1321,7 @@ function showGraffiti(graffiti_id, owner_id) {
 }
 
 function showVideoBoxCommon(vars, elem, description, to_comments_text, add_text, add_hash, thumb, player_available, allow_html5, player_version) {
-    Rpc.callMethod('showBox', 'video.php?' + ajx2q({
+    Rpc.callMethod('showBox', 'video.php?' + AjaxConvert.toQueryString({
         act: 'a_show_video_box',
         video: vars.oid + '_' + vars.vid,
         wall_owner: vars.oid,
@@ -1337,7 +1337,7 @@ function showVideoBoxCommon(vars, elem, description, to_comments_text, add_text,
 
 
 function showCaptcha(sid, img, onClick, onShow, onHide) {
-    Rpc.callMethod('showBox', 'al_apps.php?' + ajx2q({
+    Rpc.callMethod('showBox', 'al_apps.php?' + AjaxConvert.toQueryString({
         act: 'show_captcha_box',
         sid: sid,
         src: img,

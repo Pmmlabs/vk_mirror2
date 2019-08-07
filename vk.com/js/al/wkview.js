@@ -64,7 +64,7 @@ var WkView = {
             var m = href.match(/^\/(page[^?]*)(\?.*)?$/);
             if (m) {
                 var path = m[1];
-                var query = (m[4]) ? q2ajx(m[4].substr(1)) : {};
+                var query = (m[4]) ? AjaxConvert.fromQueryString(m[4].substr(1)) : {};
             } else {
                 var m = href.match(/https?:\/\/([a-zA-Z0-9\-_\.]+\.)?(vk\.com|vkontakte\.ru)\/([^?]*)(\?.*)?$/i);
                 if (!m || !m[3]) {
@@ -72,7 +72,7 @@ var WkView = {
                 }
 
                 var path = m[3].split('/');
-                var query = (m[4]) ? q2ajx(m[4].substr(1)) : {};
+                var query = (m[4]) ? AjaxConvert.fromQueryString(m[4].substr(1)) : {};
             }
 
             var params = {};

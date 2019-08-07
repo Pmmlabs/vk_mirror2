@@ -303,7 +303,7 @@ function gotSession(session_data) {
 }
 
 function showCaptcha(sid, img, onClick, onShow, onHide) {
-    Rpc.callMethod('showBox', 'al_apps.php?' + ajx2q({
+    Rpc.callMethod('showBox', 'al_apps.php?' + AjaxConvert.toQueryString({
         act: 'show_captcha_box',
         sid: sid,
         src: img,

@@ -12522,26 +12522,29 @@ img[src^="/images/mobile/places/"] {
 }
 
 .BottomMenu__icon,
+.ServicesBar__servicesIcon:before,
 .svgIcon-menu {
     -webkit-background-size: 112px 84px;
     -moz-background-size: 112px 84px;
     background-size: 112px 84px;
-    background-image: url('/images/mobile/icons/sprites/menu-686c2373.svg')
+    background-image: url('/images/mobile/icons/sprites/menu-cd804953.svg')
 }
 
 .vk_old.vk_1x .BottomMenu__icon,
+.vk_old.vk_1x .ServicesBar__servicesIcon:before,
 .vk_old.vk_1x .svgIcon-menu {
-    background-image: url('/images/mobile/icons/sprites/menu-686c2373_1x.png')
+    background-image: url('/images/mobile/icons/sprites/menu-cd804953_1x.png')
 }
 
 .vk_old.vk_2x .BottomMenu__icon,
+.vk_old.vk_2x .ServicesBar__servicesIcon:before,
 .vk_old.vk_2x .svgIcon-menu {
-    background-image: url('/images/mobile/icons/sprites/menu-686c2373_2x.png')
+    background-image: url('/images/mobile/icons/sprites/menu-cd804953_2x.png')
 }
 
 .BottomMenu__icon_menu,
 .svgIcon-menu__menu_28 {
-    background-position: 0 0;
+    background-position: -28px 0;
     background-repeat: no-repeat;
     width: 28px;
     height: 28px
@@ -12549,7 +12552,7 @@ img[src^="/images/mobile/places/"] {
 
 .BottomMenu__icon_menu.BottomMenu__icon_active,
 .svgIcon-menu__menu_active_28 {
-    background-position: -28px 0;
+    background-position: -56px -28px;
     background-repeat: no-repeat;
     width: 28px;
     height: 28px
@@ -12581,7 +12584,7 @@ img[src^="/images/mobile/places/"] {
 
 .BottomMenu__icon_feed.BottomMenu__icon_active,
 .svgIcon-menu__newsfeed_active_28 {
-    background-position: -56px -28px;
+    background-position: 0 0;
     background-repeat: no-repeat;
     width: 28px;
     height: 28px
@@ -12617,6 +12620,14 @@ img[src^="/images/mobile/places/"] {
     background-repeat: no-repeat;
     width: 28px;
     height: 28px
+}
+
+.ServicesBar__servicesIcon:before,
+.svgIcon-menu__services_blue_24 {
+    background-position: -84px -28px;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px
 }
 
 .svgIcon-profile {
@@ -52821,7 +52832,7 @@ a .BookmarkListItem__subtitle:hover {
     content: ' '
 }
 
-._hover .msg:not(.msg_pending):not(.msg_errored):not(.msg_selected):not(.msg_important):hover .msg__check {
+._hover .msg:not(.msg_pending):not(.msg_failed):not(.msg_selected):not(.msg_important):hover .msg__check {
     display: block;
     opacity: 0.3
 }
@@ -52977,17 +52988,21 @@ a .BookmarkListItem__subtitle:hover {
     background: #ecf0f5
 }
 
-.msg_errored {
+.msg_failed {
     background-color: rgba(230, 70, 70, .12)
 }
 
 .msg__restore {
-    font-size: 15px;
+    width: 100%;
     display: none
 }
 
 .msg_removed .msg__restore {
     display: block
+}
+
+.msg__restoreText {
+    line-height: 18px
 }
 
 .msg__restoreText_spam {
@@ -53000,11 +53015,6 @@ a .BookmarkListItem__subtitle:hover {
 
 .msg_spam .msg__restoreText_remove {
     display: none
-}
-
-.msg__restoreLink {
-    cursor: pointer;
-    color: #426997
 }
 
 .msg__edited {
@@ -53340,13 +53350,36 @@ a .BookmarkListItem__subtitle:hover {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
+    height: 22px;
+    overflow: hidden
+}
+
+.msg__bodyPreview,
+.msg__info {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -moz-box-align: center;
     -ms-flex-align: center;
-    align-items: center;
-    height: 22px;
-    overflow: hidden
+    align-items: center
+}
+
+.msg__info {
+    font-size: 15px;
+    background: #f5f7fa;
+    border: solid 1px #c1c9d9;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    width: 100%
+}
+
+.msg__infoLink {
+    cursor: pointer;
+    color: #426997
 }
 
 .msg__text {
@@ -55644,6 +55677,292 @@ a .BookmarkListItem__subtitle:hover {
 
 .MainMenu__splashScreenLink {
     color: #5181b8
+}
+
+.ServicesBar__row * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ServicesBar__row {
+    padding: 0;
+    border: 1px solid transparent
+}
+
+.ServicesBar__wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.ServicesBar__icon {
+    width: 56px;
+    height: 56px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 0 0 1px inset rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 0 0 1px inset rgba(0, 0, 0, .08);
+    box-shadow: 0 0 0 1px inset rgba(0, 0, 0, .08)
+}
+
+.ServicesBar__app {
+    width: 72px;
+    height: 88px;
+    color: #000
+}
+
+.ServicesBar__appName {
+    width: 64px;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 12px;
+    margin: 6px auto 0
+}
+
+.ServicesBar__divider {
+    width: 1px;
+    height: 40px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, .12);
+    margin: 8px 4px
+}
+
+.ServicesBar__featuredApps {
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+    -o-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    -webkit-transition-property: opacity, visibility, -webkit-flex-basis, -webkit-flex-basis;
+    transition-property: opacity, visibility, -webkit-flex-basis, -webkit-flex-basis;
+    -moz-transition-property: flex-basis, opacity, visibility, -moz-flex-basis;
+    -o-transition-property: flex-basis, opacity, visibility;
+    transition-property: flex-basis, opacity, visibility;
+    transition-property: flex-basis, opacity, visibility, -webkit-flex-basis, -webkit-flex-basis, -moz-flex-basis, -ms-flex-preferred-size
+}
+
+.ServicesBar__leftPart,
+.ServicesBar__rightPart {
+    padding: 0 4px 4px
+}
+
+.ServicesBar__featuredApps,
+.ServicesBar__leftPart {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.ServicesBar__featureShowToggler {
+    display: none
+}
+
+.ServicesBar__rightPart {
+    display: block;
+    position: relative;
+    -webkit-transition: -webkit-flex-basis 0.2s ease-out, -webkit-flex-basis 0.2s ease-out;
+    transition: -webkit-flex-basis 0.2s ease-out, -webkit-flex-basis 0.2s ease-out;
+    -moz-transition: flex-basis 0.2s ease-out, -moz-flex-basis 0.2s ease-out;
+    -o-transition: flex-basis 0.2s ease-out;
+    transition: flex-basis 0.2s ease-out;
+    transition: flex-basis 0.2s ease-out, -webkit-flex-basis 0.2s ease-out, -webkit-flex-basis 0.2s ease-out, -moz-flex-basis 0.2s ease-out, -ms-flex-preferred-size 0.2s ease-out
+}
+
+.ServicesBar__featureShowToggler:not(:checked)+.ServicesBar__rightPart {
+    -webkit-box-flex: 0!important;
+    -webkit-flex: 0 0 100vw!important;
+    -moz-box-flex: 0!important;
+    -ms-flex: 0 0 100vw!important;
+    flex: 0 0 100vw!important
+}
+
+.ServicesBar__featureShowToggler:not(:checked)+.ServicesBar__rightPart .ServicesBar__featuredApps,
+.ServicesBar__featureShowToggler:checked+.ServicesBar__rightPart .ServicesBar__featuredAppsButton {
+    opacity: 0;
+    visibility: hidden
+}
+
+.ServicesBar__featuredAppsButton {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: -webkit-calc(100% - 24px);
+    width: -moz-calc(100% - 24px);
+    width: calc(100% - 24px);
+    margin: 0 12px 12px;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
+    padding: 12px;
+    border: solid 1px rgba(0, 0, 0, .12);
+    background-color: #fff;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: start;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+    -webkit-transition-property: opacity, visibility, -webkit-flex-basis, -webkit-flex-basis;
+    transition-property: opacity, visibility, -webkit-flex-basis, -webkit-flex-basis;
+    -moz-transition-property: flex-basis, opacity, visibility, -moz-flex-basis;
+    -o-transition-property: flex-basis, opacity, visibility;
+    transition-property: flex-basis, opacity, visibility;
+    transition-property: flex-basis, opacity, visibility, -webkit-flex-basis, -webkit-flex-basis, -moz-flex-basis, -ms-flex-preferred-size
+}
+
+.ServicesBar__featuredAppsButton,
+.ServicesBar__iconsWrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    align-items: flex-start
+}
+
+.ServicesBar__iconsWrapper {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: start
+}
+
+.ServicesBar__iconsWrapper .ServicesBar__icon {
+    border: 2px solid #fff;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin: -2px
+}
+
+.ServicesBar__iconsWrapper .ServicesBar__icon:not(:first-child) {
+    margin-left: -32px
+}
+
+.ServicesBar__featuredAppsText {
+    padding: 2px 0 0 12px;
+    white-space: initial
+}
+
+.ServicesBar__featuredAppsTextHeader {
+    margin: 0;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.33;
+    color: #2c2d2e
+}
+
+.ServicesBar__featuredAppsTextContent {
+    height: 32px;
+    font-size: 13px;
+    line-height: 1.23;
+    color: #909499;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    overflow: hidden
+}
+
+.ServicesBar__simpleBarWrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    height: 24px;
+    padding: 12px 0
+}
+
+.ServicesBar__servicesIcon {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 24px;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 24px;
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    margin-right: 18px
+}
+
+.ServicesBar__servicesIcon:before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px
+}
+
+.ServicesBar__title {
+    line-height: 24px;
+    font-size: 16px;
+    color: #528bcc
 }
 
 .svgIcon-mail-attachments {

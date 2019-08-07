@@ -198,9 +198,9 @@
         }), i.d(s, "MEDIA_SEEKED", function() {
             return N
         }), i.d(s, "MEDIA_PROVIDER_CHANGE", function() {
-            return H
-        }), i.d(s, "MEDIA_LIVE_WARNING", function() {
             return O
+        }), i.d(s, "MEDIA_LIVE_WARNING", function() {
+            return H
         }), i.d(s, "MEDIA_HLS_LEVEL_LOADED", function() {
             return U
         }), i.d(s, "MEDIA_HLS_FRAG_LOADED", function() {
@@ -281,8 +281,8 @@
             B = "media.error",
             F = "media.seeking",
             N = "media.seeked",
-            H = "media.providerChange",
-            O = "media.liveWarning",
+            O = "media.providerChange",
+            H = "media.liveWarning",
             U = "media.hlsLevelLoaded",
             $ = "media.hlsFragLoaded",
             z = "ui.seekstart",
@@ -841,8 +841,8 @@
             Be = 5e3,
             Fe = 5,
             Ne = 1,
-            He = 2,
-            Oe = 6e3,
+            Oe = 2,
+            He = 6e3,
             Ue = 3e3;
         class $e extends Re {
             constructor(e) {
@@ -896,7 +896,7 @@
             }
             initTracksChangeHandler() {
                 this.hls.on(Hls.Events.FRAG_PARSING_DATA, (e, t) => {
-                    this._fragsTracksFlags[t.frag.sn] || (this._fragsTracksFlags[t.frag.sn] = 0), "video" == t.type && (this._fragsTracksFlags[t.frag.sn] |= Ne), "audio" == t.type && (this._fragsTracksFlags[t.frag.sn] |= He)
+                    this._fragsTracksFlags[t.frag.sn] || (this._fragsTracksFlags[t.frag.sn] = 0), "video" == t.type && (this._fragsTracksFlags[t.frag.sn] |= Ne), "audio" == t.type && (this._fragsTracksFlags[t.frag.sn] |= Oe)
                 }), this.hls.on(Hls.Events.FRAG_CHANGED, (e, t) => {
                     this._fragsTracksFlags[this._curFragSeqNum] && this._fragsTracksFlags[t.frag.sn] && this._fragsTracksFlags[this._curFragSeqNum] != this._fragsTracksFlags[t.frag.sn] && (this.player.debugLog("switching to fragment with different tracks", {
                         force: !0
@@ -941,7 +941,7 @@
                         type: a ? "error" : "warn"
                     }), this._errors.push(`[${this.currentTime}] ${t.details}`), t.details === Hls.ErrorDetails.FRAG_LOAD_ERROR && this.undelayRecoverNetwork(), a) {
                     var r = !1;
-                    this.player.isActiveLive() ? (r = !0, t.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, Oe) : t.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(Oe)) : r = this.recoverMedia(), r || this.onFatalError(t)
+                    this.player.isActiveLive() ? (r = !0, t.type === Hls.ErrorTypes.MEDIA_ERROR ? this.delay(this.recoverMedia, He) : t.type === Hls.ErrorTypes.NETWORK_ERROR && this.delayRecoverNetwork(He)) : r = this.recoverMedia(), r || this.onFatalError(t)
                 }
             }
             onFatalError(e) {
@@ -1416,7 +1416,7 @@
                     this._ui_seeking || this._disabled || this.player.getState() === r.ERROR || this.player.trigger(R)
                 }), this.domListen(e.el, "ended", () => {
                     this.player.trigger(M)
-                }), this.domListen(e.el, "error", this.onError), this.player.trigger(H, {
+                }), this.domListen(e.el, "error", this.onError), this.player.trigger(O, {
                     type: this.providerType()
                 })
             }
@@ -1578,7 +1578,7 @@
                 })
             }
             onLiveWaiting(e, t) {
-                this.player.trigger(O, {
+                this.player.trigger(H, {
                     message: "warning" == t && e
                 }), "fatal" == t && (this.player.trigger(B, {
                     message: e,
@@ -2861,7 +2861,7 @@
         };
         class Tt extends be {
             constructor(e) {
-                super(e), this.el = se(`\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">${this.getLang("cmenu_copy_video_link")}</div>\n  <div class="_item" data-action="copy_timecoded_link">${this.getLang("cmenu_copy_timecode_link")}</div>\n  <div class="_item" data-action="copy_embed_code">${this.getLang("cmenu_copy_embed_code")}</div>\n  <div class="_item" data-action="toggle_pip">${this.getLang("cmenu_enable_pip_mode")}</div>\n  <div class="_item" data-action="toggle_loop">${this.getLang("cmenu_enable_loop")}</div>\n  \x3c!--<div class="_item" data-action="playback_rate">${this.getLang("cmenu_playback_speed")}</div>--\x3e\n  <div class="_item" data-action="rotate_video">${this.getLang("cmenu_rotate")}</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">${this.getLang("cmenu_report_error")}</a>\n  <div class="_item" data-action="copy_debug_data">${this.getLang("cmenu_copy_debug")}</div>\n</div>\n    `), this.domListen(this.player.el, "contextmenu", this.onContextmenu), this.domListen(this.el, "click", this.onMenuClick), this.domListen(document.body, "click", this.onLostFocus), this.domListen(this.player.el, "click", this.onLostFocus), this.domListen(window, "blur", this.onLostFocus), this.playerListen(m, this.updateButtonsVisibility), this.playerListen(T, this.updateButtonsVisibility), this.playerListen(H, this.updateButtonsVisibility)
+                super(e), this.el = se(`\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">${this.getLang("cmenu_copy_video_link")}</div>\n  <div class="_item" data-action="copy_timecoded_link">${this.getLang("cmenu_copy_timecode_link")}</div>\n  <div class="_item" data-action="copy_embed_code">${this.getLang("cmenu_copy_embed_code")}</div>\n  <div class="_item" data-action="toggle_pip">${this.getLang("cmenu_enable_pip_mode")}</div>\n  <div class="_item" data-action="toggle_loop">${this.getLang("cmenu_enable_loop")}</div>\n  \x3c!--<div class="_item" data-action="playback_rate">${this.getLang("cmenu_playback_speed")}</div>--\x3e\n  <div class="_item" data-action="rotate_video">${this.getLang("cmenu_rotate")}</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">${this.getLang("cmenu_report_error")}</a>\n  <div class="_item" data-action="copy_debug_data">${this.getLang("cmenu_copy_debug")}</div>\n</div>\n    `), this.domListen(this.player.el, "contextmenu", this.onContextmenu), this.domListen(this.el, "click", this.onMenuClick), this.domListen(document.body, "click", this.onLostFocus), this.domListen(this.player.el, "click", this.onLostFocus), this.domListen(window, "blur", this.onLostFocus), this.playerListen(m, this.updateButtonsVisibility), this.playerListen(T, this.updateButtonsVisibility), this.playerListen(O, this.updateButtonsVisibility)
             }
             initVideo(e) {
                 this.updateLoopControl(!!e.repeat), this.updateButtonsVisibility()
@@ -3332,7 +3332,7 @@
                 super.destroy(), each(this._currentItems, (e, t) => this.undelay(t.timeout)), this._currentItems = null, this._queuedItems = null, re(this.el)
             }
         }
-        class Ht extends be {
+        class Ot extends be {
             constructor(e) {
                 super(e), this.el = ce("div", {
                     className: "videoplayer_timed_buttons_conatainer"
@@ -3427,11 +3427,11 @@
                 }
             }
         }
-        var Ot = "bottom",
+        var Ht = "bottom",
             Ut = "top";
         class $t extends be {
             constructor(e) {
-                super(e), this.el = se('\n<div class="videoplayer_subtitle_layer">\n    <div class="videoplayer_subtitle_layer__region_top"></div>\n    <div class="videoplayer_subtitle_layer__region_bottom"></div>\n</div>\n    '), this._bottomRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Ot}`), this._topRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Ut}`), this.playerListen(Y, this._showTip), this.playerListen(q, this._updateMargins), this.playerListen(W, this._updateMargins), this.playerListen(F, () => {
+                super(e), this.el = se('\n<div class="videoplayer_subtitle_layer">\n    <div class="videoplayer_subtitle_layer__region_top"></div>\n    <div class="videoplayer_subtitle_layer__region_bottom"></div>\n</div>\n    '), this._bottomRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Ht}`), this._topRegion = domByClass(this.el, `videoplayer_subtitle_layer__region_${Ut}`), this.playerListen(Y, this._showTip), this.playerListen(q, this._updateMargins), this.playerListen(W, this._updateMargins), this.playerListen(F, () => {
                     this.clear()
                 }), this.playerListen(N, () => {
                     this.clear()
@@ -3440,7 +3440,7 @@
                 }), this._updateMargins(), this.resize(...this.player.getSize())
             }
             _addToRegion(e) {
-                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : Ot,
+                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : Ht,
                     i = this._getRegionEl(t);
                 i && i.appendChild(e)
             }
@@ -3450,7 +3450,7 @@
             _getRegionEl(e) {
                 var t = null;
                 switch (e) {
-                    case Ot:
+                    case Ht:
                         t = this._bottomRegion;
                         break;
                     case Ut:
@@ -3479,7 +3479,7 @@
                 toggleClass(this._bottomRegion, "_controls_offset", this.player.isControlsVisible())
             }
             clear() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : Ot,
+                var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : Ht,
                     t = this._getRegionEl(e);
                 t && val(t, "")
             }
@@ -3627,7 +3627,7 @@
                     innerHTML: '<div class="videoplayer_autoplay_timer_equalizer" style="display:none;"><div class="_col"></div><div class="_col"></div><div class="_col"></div></div><span class="videoplayer_autoplay_timer_text"></span>'
                 }), this.autoplayTimerEqualizer = domByClass(this.autoplayTimer, "videoplayer_autoplay_timer_equalizer"), this.autoplayTimerText = domByClass(this.autoplayTimer, "videoplayer_autoplay_timer_text"), this.el.appendChild(this.autoplayTimer), this.autoplayHint = ce("div", {
                     className: "videoplayer_autoplay_hint hidden"
-                }), this.el.appendChild(this.autoplayHint), this.timedButtons = new Ht(e), this.el.appendChild(this.timedButtons.el), this.domListen(e.el, "keydown", this.onKeyDown), this.domListen(e.el, "keyup", this.onKeyUp), this.domListen(e.el, "blur", this.onBlur), this.domListen(e.el, "mousedown", this.onMouseDown), this.domListen(e.el, "click", this.onClick), this.domListen(e.el, "dblclick", this.onDoubleClick), this.domListen(e.el, "mouseenter", this.onMouseEnter), this.domListen(e.el, "mousemove", this.onMouseMove), this.domListen(e.el, "mouseleave", this.onMouseLeave), this.playerListen(d, this.onStateChange), this.playerListen(_, this.onFullscreenChange), this.playerListen(T, this.onLivePhaseChange), this.playerListen(D, this.onMediaPlaying), this.playerListen(A, this.onMediaTimeupdate), this.playerListen(I, this.updateWaiting), this.playerListen(O, this.showLiveWarning), this.playerListen(X, this.updateWaiting), this.playerListen(Z, this.onLinearAdStarted), this.playerListen(ee, this.onLinearAdCompleted), this.playerListen(m, this.onPlayerExpanded), this.playerListen(g, this._onSubtitleCueChange), this.playerListen(v, this._onSubtitlesSwitched), this.playerListen(c, this._showSubtitlesIntro), this._mouseInside = !1, this._lastUserActivity = Date.now(), this._checkUserActivityInterval = setInterval(this.checkUserActivity.bind(this), 100)
+                }), this.el.appendChild(this.autoplayHint), this.timedButtons = new Ot(e), this.el.appendChild(this.timedButtons.el), this.domListen(e.el, "keydown", this.onKeyDown), this.domListen(e.el, "keyup", this.onKeyUp), this.domListen(e.el, "blur", this.onBlur), this.domListen(e.el, "mousedown", this.onMouseDown), this.domListen(e.el, "click", this.onClick), this.domListen(e.el, "dblclick", this.onDoubleClick), this.domListen(e.el, "mouseenter", this.onMouseEnter), this.domListen(e.el, "mousemove", this.onMouseMove), this.domListen(e.el, "mouseleave", this.onMouseLeave), this.playerListen(d, this.onStateChange), this.playerListen(_, this.onFullscreenChange), this.playerListen(T, this.onLivePhaseChange), this.playerListen(D, this.onMediaPlaying), this.playerListen(A, this.onMediaTimeupdate), this.playerListen(I, this.updateWaiting), this.playerListen(H, this.showLiveWarning), this.playerListen(X, this.updateWaiting), this.playerListen(Z, this.onLinearAdStarted), this.playerListen(ee, this.onLinearAdCompleted), this.playerListen(m, this.onPlayerExpanded), this.playerListen(g, this._onSubtitleCueChange), this.playerListen(v, this._onSubtitlesSwitched), this.playerListen(c, this._showSubtitlesIntro), this._mouseInside = !1, this._lastUserActivity = Date.now(), this._checkUserActivityInterval = setInterval(this.checkUserActivity.bind(this), 100)
             }
             initVideo(e) {
                 if (setStyle(this.thumb, {
@@ -4677,8 +4677,9 @@
                 return e.length ? e.end(e.length - 1) - this.player.curTime() : 0
             }
         }
+        var di = i("cGUQ");
 
-        function di(e, t) {
+        function ui(e, t) {
             return function(e) {
                 if (Array.isArray(e)) return e
             }(e) || function(e, t) {
@@ -4703,7 +4704,7 @@
             }()
         }
 
-        function ui(e, t, i, s, a, r, n) {
+        function ci(e, t, i, s, a, r, n) {
             try {
                 var l = e[r](n),
                     o = l.value
@@ -4712,8 +4713,8 @@
             }
             l.done ? t(o) : Promise.resolve(o).then(s, a)
         }
-        var ci = 1;
-        class pi {
+        var pi = 1;
+        class vi {
             constructor(e) {
                 e = clone(e), this.setLangVars(e), this.el = ce("div", {
                     className: "videoplayer"
@@ -4738,7 +4739,7 @@
             }
             get preferredVolume() {
                 var e = Me.getPref("volume");
-                return "number" == typeof e ? Math.min(1, Math.max(0, e)) : ci
+                return "number" == typeof e ? Math.min(1, Math.max(0, e)) : pi
             }
             set preferredVolume(e) {
                 Me.savePref("volume", e)
@@ -4759,11 +4760,11 @@
                             var r = e.apply(t, i);
 
                             function n(e) {
-                                ui(r, s, a, n, l, "next", e)
+                                ci(r, s, a, n, l, "next", e)
                             }
 
                             function l(e) {
-                                ui(r, s, a, n, l, "throw", e)
+                                ci(r, s, a, n, l, "throw", e)
                             }
                             n(void 0)
                         })
@@ -4785,7 +4786,7 @@
                                     t_age: e.vars.a || null,
                                     uid: e.vars.viewer_id || null,
                                     sig: s
-                                }, r = fe("//vk.go.mail.ru/vk/video_recommend?" + ajx2q(a)), t.next = 8, r.promise;
+                                }, r = fe("//vk.go.mail.ru/vk/video_recommend?" + Object(di.toQueryString)(a)), t.next = 8, r.promise;
                             case 8:
                                 n = t.sent, l = n.response, o = JSON.parse(l), e.getVideoId() === i && o && o.results && o.results.length && (e._suggestionsQid = o.qid, h = o.results, d = !(!e.vars.is_inline && !e.vars.is_embed), e.externalCall("fetchSuggestions", h.join(","), d));
                             case 12:
@@ -5077,7 +5078,7 @@
             toggleMute() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !this.isMuted(),
                     t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1],
-                    i = e ? 0 : this._volume || ci;
+                    i = e ? 0 : this._volume || pi;
                 this.media.setVolume(i), this.ads.setVolume(i), this._muted = e, t && (this.preferredVolume = i)
             }
             isMuted() {
@@ -5346,7 +5347,7 @@
                 if (!this.isInited()) return "";
                 var e = [];
                 return e.push(["Video ID", this.getVideoId()]), e.push(["Content host", this.media.getContentHost()]), e.push(["Media provider", this.media.providerType() || "none"]), e.push(["Quality", this.getQuality()]), e.push(["Auto quality", this.isAutoQualityAvailable() ? this.isAutoQualityEnabled() ? "enabled" : "disabled" : null]), e.push(["Position", this.curTime()]), e.push(["Player state", this.getState()]), e.push(["Live Phase", this.getLivePhase()]), e.push(["Player size", this.getSize().join("x")]), e.push(["Module", window.Videoview ? Videoview.getVideoModule() : cur.module]), e.push(["Error code", this.media.getErrorCode()]), e.push(["Errors log", this.media.getErrorsLog()]), this.vars.live ? (e.push(["Live HLS", this.vars.hls]), e.push(["Live RTMP", this.vars.rtmp]), e.push(["Postlive MP4", this.vars.postlive_mp4])) : e.push(["Hls manifest", this.vars.hls]), e.filter(e => {
-                    var t = di(e, 2);
+                    var t = ui(e, 2);
                     t[0];
                     return null != t[1]
                 }).map(e => e.join(": ")).join("\n")
@@ -5358,7 +5359,7 @@
                 return browser.flash >= 24
             }
             getPreloadedQuality() {
-                return vi[this.getVideoId()]
+                return gi[this.getVideoId()]
             }
             setActionButton(e) {
                 this.ui.actionButton.setLink(e)
@@ -5374,13 +5375,13 @@
             }
             static preload(e) {
                 var t = `${e.oid}_${e.vid}`;
-                if (e.hls_raw && !vi[t] && (!e.live || e.live === le)) {
+                if (e.hls_raw && !gi[t] && (!e.live || e.live === le)) {
                     for (var i, s = [], a = {}, r = /#EXT-X-STREAM-INF:([^\n\r]*)[\r\n]+([^\r\n]+)/g; i = r.exec(e.hls_raw);) {
-                        var n = di(i, 3),
+                        var n = ui(i, 3),
                             l = n[1],
                             o = n[2];
                         if ((l = y(l)).RESOLUTION) {
-                            var h = di(l.RESOLUTION.split("x"), 2),
+                            var h = ui(l.RESOLUTION.split("x"), 2),
                                 d = ye(+h[0], +h[1]);
                             s.push(d), a[d] = o
                         }
@@ -5393,7 +5394,7 @@
                             g = a[v];
                         if (g) {
                             var _ = g.replace(/index-(.+).m3u8/, "seg-1-$1.ts");
-                            fe(g), fe(_), vi[t] = v
+                            fe(g), fe(_), gi[t] = v
                         }
                     }
                 }
@@ -5401,7 +5402,7 @@
                 function y(e) {
                     var t = {};
                     return e.split(",").forEach(e => {
-                        var i = di(e.split("="), 2),
+                        var i = ui(e.split("="), 2),
                             s = i[0],
                             a = i[1];
                         t[s] = a
@@ -5420,9 +5421,9 @@
                 }
             }
         }
-        window.WeakSet && (pi._instances = new window.WeakSet);
-        var vi = {};
-        window.VideoPlayer = pi;
+        window.WeakSet && (vi._instances = new window.WeakSet);
+        var gi = {};
+        window.VideoPlayer = vi;
         try {
             stManager.done("videoplayer.js")
         } catch (e) {}

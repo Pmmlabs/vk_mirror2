@@ -3158,8 +3158,8 @@
             return m(e, {
                 onEvents: t,
                 onData: k,
-                onRequestError: x,
-                onHistoryLost: E,
+                onRequestError: E,
+                onHistoryLost: x,
                 onKeyExpired: S,
                 onLpBroken: B
             })
@@ -3180,11 +3180,11 @@
             }
         }
 
-        function x(e) {
+        function E(e) {
             Object(C.b)("red", "LP error", e.message || "no message (probably browser reset)")
         }
 
-        function E(e, t) {
+        function x(e, t) {
             Object(C.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
         }
 
@@ -3384,7 +3384,7 @@
                     if (t) {
                         var i = geByClass1("notifications_new_events", t);
                         e > 0 ? (i || ((i = document.createElement("div")).className = "feed_row _feed_row notifications_new_events", i.onclick = function(e) {
-                            i.onclick = null, showProgress(i), TopNotifier.refresh(e, !1)
+                            i.onclick = null, showProgress(i), TopNotifierCur._qParams.list = "", TopNotifier.refresh(e, !1)
                         }), i.innerHTML = langStr(getLang("notifications_new_events", e), "count", e), t.insertBefore(i, t.children[0])) : i && !TopNotifierCur.loading && re(i)
                     }
                 }
@@ -3911,6 +3911,7 @@
             _lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("98sY"),
             _shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("W9Tc"),
             _shared_lib_idle_manager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("gF8j"),
+            _shared_lib_convert__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("cGUQ"),
             ACTIVE_TAB_SWITCH_SERVER_TIMEOUT = browser.safari ? 3e3 : 1e4,
             LC_SERVER_SWITCH_TO_ACTIVE_FLAG = "lc_server_switch_to_active_flag",
             NOTIFICATION_FADE_TIMEOUT = 7e3,
@@ -4649,7 +4650,7 @@
                                     stack: e.stack,
                                     answer: text + "\n\nbusy:" + busy + "\nserver:" + curNotifier.is_server + "\ninstance:" + curNotifier.instance_id,
                                     url: curNotifier.frame_url,
-                                    query: params && ajx2q(params)
+                                    query: params && Object(_shared_lib_convert__WEBPACK_IMPORTED_MODULE_9__.toQueryString)(params)
                                 }), debugLog(e.message, e.stack, e)), curNotifier.error_timeout = curNotifier.error_timeout || 1, clearTimeout(curNotifier.lp_error_to), curNotifier.lp_error_to = setTimeout(this.lpCheck.bind(this), 1e3 * curNotifier.error_timeout), curNotifier.error_timeout < 64 && (curNotifier.error_timeout *= 2)
                             }
                         }

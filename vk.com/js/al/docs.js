@@ -1017,7 +1017,7 @@ var Docs = {
         try {
             params = eval('(' + res + ')');
         } catch (e) {
-            params = q2ajx(res);
+            params = AjaxConvert.fromQueryString(res);
         }
         if (!params.file) {
             Upload.onUploadError(info, params);

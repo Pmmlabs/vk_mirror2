@@ -8446,3 +8446,11 @@ body.apps_vkpayMobileTransfer .app_container:after {
 .FullscreenVKMiniApp.page_block {
     margin: 0
 }
+
+.FullscreenVKMiniApp .app_container--vk-app {
+    height: 100vh!important
+}
+
+.FullscreenVKMiniApp .app_container--vk-app iframe {
+    height: 100%!important
+}

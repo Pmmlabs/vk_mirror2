@@ -179,7 +179,7 @@ var PhotosAdd = {
         try {
             obj = eval('(' + res + ')');
         } catch (e) {
-            obj = q2ajx(res);
+            obj = AjaxConvert.fromQueryString(res);
         }
         PhotosAdd.fetchGeo(obj);
         setTimeout(ajax.post.pbind('al_photos.php', extend({
@@ -294,7 +294,7 @@ var PhotosAdd = {
         re(er.previousSibling);
     },
     filesDone: function(res) {
-        var obj = q2ajx(res);
+        var obj = AjaxConvert.fromQueryString(res);
         PhotosAdd.fetchGeo(obj);
         setTimeout(ajax.post.pbind('al_photos.php', extend({
             act: 'done_add',
@@ -940,7 +940,7 @@ var PhotosAdd = {
         try {
             obj = eval('(' + res + ')');
         } catch (e) {
-            obj = q2ajx(res);
+            obj = AjaxConvert.fromQueryString(res);
         }
 
         if (!obj.photos) {

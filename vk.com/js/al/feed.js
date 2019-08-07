@@ -2696,7 +2696,7 @@ var Feed = {
                     val('feed_recommends', options.recommends || '');
                     toggle('feed_recommends', !!options.recommends);
 
-                    var str = '/al_feed.php#' + ajx2q({
+                    var str = '/al_feed.php#' + AjaxConvert.toQueryString({
                         act: 'recom'
                     });
                     if (ajaxCache[str]) delete(ajaxCache[str]);

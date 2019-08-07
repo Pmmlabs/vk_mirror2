@@ -1310,7 +1310,7 @@ var photos = {
             act: 'done_add',
             before: before,
             context: 1
-        }, q2ajx(res)), {
+        }, AjaxConvert.fromQueryString(res)), {
             onDone: function(id, html) {
                 if (!id) return photos.fileFail(i, 0);
 
@@ -1417,7 +1417,7 @@ var photos = {
         setTimeout(ajax.post.pbind('al_photos.php', extend({
             act: 'done_add',
             context: 2
-        }, q2ajx(res))), 0);
+        }, AjaxConvert.fromQueryString(res))), 0);
     },
     filesFail: function() {
         for (var i = 0; i < cur.files.length; ++i) {

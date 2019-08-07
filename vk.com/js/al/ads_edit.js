@@ -1017,7 +1017,7 @@ AdsEdit.saveCropPhoto = function(cropBox, formatPhotoSize, uploadUrl, uploadPara
     ajaxParams.crop_width = cropInfo[2];
     ajaxParams.crop_height = cropInfo[3];
 
-    uploadUrl += '?' + ajx2q(ajaxParams);
+    uploadUrl += '?' + AjaxConvert.toQueryString(ajaxParams);
 
     var onComplete = AdsEdit.onSaveCropPhotoComplete.pbind(cropBox, formatPhotoSize);
 
@@ -1187,7 +1187,7 @@ AdsEdit.onUploadVideoComplete = function(uploadVideoBox, uploadVars, uploadOptio
     try {
         resultParsed = parseJSON(result);
     } catch (e) {
-        resultParsed = q2ajx(result);
+        resultParsed = AjaxConvert.fromQueryString(result);
     }
 
     if (!resultParsed || resultParsed.code || resultParsed.error) {

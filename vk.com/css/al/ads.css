@@ -7609,7 +7609,8 @@ td.ads_settings_notifications_label {
     transition: opacity 0.2s ease;
     line-height: 42px;
     height: 42px;
-    float: right
+    float: right;
+    cursor: pointer
 }
 
 .ads_news_notification_inline .ads_news_notification_close.close_round_spinner {
@@ -7690,6 +7691,14 @@ td.ads_settings_notifications_label {
 .ads_news_notification_inline .ads_news_notification_content a {
     text-decoration: none;
     color: inherit
+}
+
+div.ads_news_notification_inline>.ads_news_notification_content:after {
+    display: none
+}
+
+div.ads_news_notification_inline {
+    cursor: default
 }
 
 #ads_supa {

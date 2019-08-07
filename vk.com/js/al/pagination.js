@@ -317,7 +317,7 @@ var Pagination = {
             offset: '',
             part: 1
         }, cur.pgParams || {});
-        var key = (cur.pgUrl.substr(0, 1) == '/' ? '' : '/') + cur.pgUrl + '#' + ajx2q(params);
+        var key = (cur.pgUrl.substr(0, 1) == '/' ? '' : '/') + cur.pgUrl + '#' + AjaxConvert.toQueryString(params);
         var re = new RegExp('^' + escapeRE(key).replace(/([&#]offset=)/, '$1\\d+') + '$', 'i');
         for (var i in ajaxCache) {
             if (re.test(i)) {
@@ -336,12 +336,12 @@ var Pagination = {
             part: 1
         }, cur.pgParams || {});
         var url = (cur.pgUrl.substr(0, 1) == '/' ? '' : '/') + cur.pgUrl;
-        var keyOld = url + '#' + ajx2q(params),
+        var keyOld = url + '#' + AjaxConvert.toQueryString(params),
             a = ajaxCache[keyOld];
         if (a) {
             a[0] += delta;
             a[1] += delta;
-            var keyNew = url + '#' + ajx2q(extend(params, {
+            var keyNew = url + '#' + AjaxConvert.toQueryString(extend(params, {
                 offset: cur.pgOffset + delta
             }));
             ajaxCache[keyNew] = a;
@@ -379,7 +379,7 @@ var Pagination = {
                 offset: cur.pgOffset,
                 part: 1
             }, cur.pgParams || {});
-            var key = (cur.pgUrl.substr(0, 1) == '/' ? '' : '/') + cur.pgUrl + '#' + ajx2q(params);
+            var key = (cur.pgUrl.substr(0, 1) == '/' ? '' : '/') + cur.pgUrl + '#' + AjaxConvert.toQueryString(params);
 
             cur.pgLoading = 1;
             ajax.post(cur.pgUrl, params, {

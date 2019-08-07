@@ -1167,6 +1167,11 @@ function q2ajx(qa) {
     return query;
 }
 
+window.AjaxConvert = { // TODO: use #shared/lib/convert
+    toQueryString: ajx2q,
+    fromQueryString: q2ajx
+};
+
 window.stManager = {
     emitter: new EventEmitter(),
     _waiters: [],

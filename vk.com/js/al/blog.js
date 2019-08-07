@@ -180,7 +180,7 @@ var blog = {
                 try {
                     obj = eval('(' + res + ')');
                 } catch (e) {
-                    obj = q2ajx(res);
+                    obj = AjaxConvert.fromQueryString(res);
                 }
                 cur.uploadedCover = obj;
                 delete cur.startSave;
@@ -794,7 +794,7 @@ var blog = {
                         try {
                             obj = eval('(' + res + ')');
                         } catch (e) {
-                            obj = q2ajx(res);
+                            obj = AjaxConvert.fromQueryString(res);
                         }
                         blog.notificationSavePhoto(obj);
                     };

@@ -28,6 +28,38 @@ if (!window.vk) window.vk = {
     ip_h: ''
 };
 
+// Copy of shared/lib/convert::toQueryString; TODO: remove this
+function toQueryString(ajaxParams, noSort) {
+    const query = [];
+
+    for (const key in ajaxParams) {
+        if (!ajaxParams.hasOwnProperty(key)) {
+            continue;
+        }
+
+        if (ajaxParams[key] == null || isFunction(ajaxParams[key])) {
+            continue;
+        }
+        if (isArray(ajaxParams[key])) {
+            for (let i = 0, c = 0, l = ajaxParams[key].length; i < l; ++i) {
+                if (ajaxParams[key][i] == null || isFunction(ajaxParams[key][i])) {
+                    continue;
+                }
+                query.push(enc(key) + '[' + c + ']=' + enc(ajaxParams[key][i]));
+                ++c;
+            }
+        } else {
+            query.push(enc(key) + '=' + enc(ajaxParams[key]));
+        }
+    }
+
+    if (!noSort) {
+        query.sort();
+    }
+
+    return query.join('&');
+}
+
 function domEL(el, p) {
     p = p ? 'previousSibling' : 'nextSibling';
     while (el && !el.tagName) el = el[p];
@@ -1441,23 +1473,6 @@ function serializeForm(form) {
     return result;
 }
 
-function ajx2q(qa) {
-    var query = [],
-        q, i = 0;
-    for (var key in qa) {
-        if (qa[key] === undefined || qa[key] === null || typeof(qa[key]) == 'function') continue;
-        if (isArray(qa[key])) {
-            for (var i = 0; i < qa[key].length; ++i) {
-                if (qa[key][i] === undefined || qa[key][i] === null || typeof(qa[key][i]) == 'function') continue;
-                query.push(encodeURIComponent(key) + '[]=' + encodeURIComponent(qa[key][i]));
-            }
-        } else {
-            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(qa[key]));
-        }
-    }
-    return query.join('&');
-}
-
 function q2o(q) {
     var t = q;
     if (typeof q == 'string') {
@@ -1535,7 +1550,7 @@ function Ajax(onDone, onFail, eval_res) {
             readystatechange(u, d);
         };
         f = f || false;
-        var q = (typeof(d) != 'string') ? ajx2q(d) : d;
+        var q = (typeof(d) != 'string') ? toQueryString(d) : d;
         u = u + (q ? ('?' + q) : '');
         tram.open('GET', u, !f);
 
@@ -1547,7 +1562,7 @@ function Ajax(onDone, onFail, eval_res) {
             readystatechange(u, d);
         };
         f = f || false;
-        var q = (typeof(d) != 'string') ? ajx2q(d) : d;
+        var q = (typeof(d) != 'string') ? toQueryString(d) : d;
         try {
             tram.open('POST', u, !f);
         } catch (e) {
@@ -1946,7 +1961,7 @@ var ajaxHistory = $ah = new(function() {
     var sortParams = function(params) {
         if (typeof(params) == 'number') return params + '';
         if (typeof(params) != 'string') {
-            params = ajx2q(params);
+            params = toQueryString(params);
         }
         return params.split("&").sort().join("&");
     };

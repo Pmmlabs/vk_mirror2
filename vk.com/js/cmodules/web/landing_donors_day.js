@@ -1,40 +1,40 @@
 ﻿! function(e) {
     function o(o) {
-        for (var r, s, i = o[0], d = o[1], l = o[2], h = 0, g = []; h < i.length; h++) s = i[h], t[s] && g.push(t[s][0]), t[s] = 0;
-        for (r in d) Object.prototype.hasOwnProperty.call(d, r) && (e[r] = d[r]);
-        for (_ && _(o); g.length;) g.shift()();
-        return a.push.apply(a, l || []), n()
+        for (var n, s, i = o[0], d = o[1], l = o[2], g = 0, h = []; g < i.length; g++) s = i[g], t[s] && h.push(t[s][0]), t[s] = 0;
+        for (n in d) Object.prototype.hasOwnProperty.call(d, n) && (e[n] = d[n]);
+        for (_ && _(o); h.length;) h.shift()();
+        return a.push.apply(a, l || []), r()
     }
 
-    function n() {
+    function r() {
         for (var e, o = 0; o < a.length; o++) {
-            for (var n = a[o], r = !0, i = 1; i < n.length; i++) {
-                var d = n[i];
-                0 !== t[d] && (r = !1)
+            for (var r = a[o], n = !0, i = 1; i < r.length; i++) {
+                var d = r[i];
+                0 !== t[d] && (n = !1)
             }
-            r && (a.splice(o--, 1), e = s(s.s = n[0]))
+            n && (a.splice(o--, 1), e = s(s.s = r[0]))
         }
         return e
     }
-    var r = {},
+    var n = {},
         t = {
             "web/landing_donors_day": 0
         },
         a = [];
 
     function s(o) {
-        if (r[o]) return r[o].exports;
-        var n = r[o] = {
+        if (n[o]) return n[o].exports;
+        var r = n[o] = {
             i: o,
             l: !1,
             exports: {}
         };
-        return e[o].call(n.exports, n, n.exports, s), n.l = !0, n.exports
+        return e[o].call(r.exports, r, r.exports, s), r.l = !0, r.exports
     }
-    s.m = e, s.c = r, s.d = function(e, o, n) {
+    s.m = e, s.c = n, s.d = function(e, o, r) {
         s.o(e, o) || Object.defineProperty(e, o, {
             enumerable: !0,
-            get: n
+            get: r
         })
     }, s.r = function(e) {
         "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
@@ -45,15 +45,15 @@
     }, s.t = function(e, o) {
         if (1 & o && (e = s(e)), 8 & o) return e;
         if (4 & o && "object" == typeof e && e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (s.r(n), Object.defineProperty(n, "default", {
+        var r = Object.create(null);
+        if (s.r(r), Object.defineProperty(r, "default", {
                 enumerable: !0,
                 value: e
             }), 2 & o && "string" != typeof e)
-            for (var r in e) s.d(n, r, function(o) {
+            for (var n in e) s.d(r, n, function(o) {
                 return e[o]
-            }.bind(null, r));
-        return n
+            }.bind(null, n));
+        return r
     }, s.n = function(e) {
         var o = e && e.__esModule ? function() {
             return e.default
@@ -69,10 +69,10 @@
     i.push = o, i = i.slice();
     for (var l = 0; l < i.length; l++) o(i[l]);
     var _ = d;
-    a.push([104, "bundles/common"]), n()
+    a.push([104, "bundles/common"]), r()
 }({
-    104: function(e, o, n) {
-        e.exports = n("ERMh")
+    104: function(e, o, r) {
+        e.exports = r("ERMh")
     },
     ERMh: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
@@ -149,37 +149,37 @@
                 }, 1e3)
             },
             renderBloodLine(e, o) {
-                var n = e.svg,
-                    r = parseInt(e.svg.match(/width="(\d+)"/)[1]),
+                var r = e.svg,
+                    n = parseInt(e.svg.match(/width="(\d+)"/)[1]),
                     t = parseInt(e.svg.match(/height="(\d+)"/)[1]),
                     a = {
                         top: e.top,
-                        width: r,
+                        width: n,
                         height: t
                     };
-                if (e.addStyle && (a = extend(a, e.addStyle)), e.hasOwnProperty("right") && (a.right = e.right, e.noOffsetCorrect || (n = n.replace("<svg", '<svg style="right: -2px"'))), e.hasOwnProperty("left") && (a.left = e.left, e.noOffsetCorrect || (n = n.replace("<svg", '<svg style="left: -2px"'))), e.noOffsetCorrect && (n = n.replace("<svg", '<svg style="left: 0"')), o || wkcur.legacyBrowser || (n = n.replace("EE5D4A", "DBE0E8")), o) {
+                if (e.addStyle && (a = extend(a, e.addStyle)), e.hasOwnProperty("right") && (a.right = e.right, e.noOffsetCorrect || (r = r.replace("<svg", '<svg style="right: -2px"'))), e.hasOwnProperty("left") && (a.left = e.left, e.noOffsetCorrect || (r = r.replace("<svg", '<svg style="left: -2px"'))), e.noOffsetCorrect && (r = r.replace("<svg", '<svg style="left: 0"')), o || wkcur.legacyBrowser || (r = r.replace("EE5D4A", "DBE0E8")), o) {
                     var s = this.getAnimationDuration(e.length);
                     e.memAvaCircle && (s *= .8);
                     var i = `<animate\n          attributeType="CSS"\n          attributeName="stroke-dashoffset"\n          dur="${s}ms"\n          from="${e.length}"\n          to="0"\n          fill="freeze"\n        />`;
-                    e.memAvaCircle && (i += `<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="${1.5*s}ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />`), n = (n = (n = n.replace("<path", `<path stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("<circle", `<circle stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("/></svg>", `>${i}</path></svg>`), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(() => {
+                    e.memAvaCircle && (i += `<animateTransform\n            xmlns="http://www.w3.org/2000/svg"\n            attributeName="transform"\n            attributeType="XML"\n            type="rotate"\n            dur="${1.5*s}ms"\n            from="90 77 77"\n            to="-180 77 77"\n            fill="freeze"\n          />`), r = (r = (r = r.replace("<path", `<path stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("<circle", `<circle stroke-dasharray="${e.length} ${e.length}" stroke-dashoffset="${e.length}" id="donors_day_anim_path${wkcur.animLine}"`)).replace("/></svg>", `>${i}</path></svg>`), 3 === wkcur.animLine && (s *= .8), wkcur.timer = setTimeout(() => {
                         this.nextAnimation()
                     }, s)
                 }
                 var d = ce("div", {
                     className: "landing_donors_day_blood_line" + (e.lastLine ? " landing_donors_day_big_button_blood_line" : ""),
-                    innerHTML: n
+                    innerHTML: r
                 }, a);
                 e.lastLine ? geByClass1("landing_donors_day_big_button_wrap").appendChild(d) : ge("landing_donors_day_blood_lines").appendChild(d)
             },
             getAnimationDuration: e => 13 * e,
             startAnimation() {
                 wkcur.animLine = -1, this.animateIcon();
-                for (var e = LandingDonorsDay.BLOOD_LINES, o = 0, n = 0; n < e.length; n++) o += e[n].length;
-                var r = ge("landing_donors_day_blood_packet_dead");
-                setStyle(r, {
+                for (var e = LandingDonorsDay.BLOOD_LINES, o = 0, r = 0; r < e.length; r++) o += e[r].length;
+                var n = ge("landing_donors_day_blood_packet_dead");
+                setStyle(n, {
                     transition: "height " + LandingDonorsDay.getAnimationDuration(o) + "ms linear"
                 }), setTimeout(() => {
-                    setStyle(r, "height", 174 * .6)
+                    setStyle(n, "height", 174 * .6)
                 })
             },
             nextAnimation(e) {
@@ -192,15 +192,15 @@
             },
             animateIcon(e) {
                 var o = "landing_donors_day_member_blood_type_active_wrap",
-                    n = 48,
-                    r = "bottom";
-                2 === wkcur.animLine ? (o = "landing_donors_day_member_ava_blood_line_active_wrap", n = 150, r = "top") : 1 === wkcur.animLine ? o = "landing_donors_day_member_blood_group_active_wrap" : -1 === wkcur.animLine && (o = "landing_donors_day_blood_line_start_active_wrap", n = 12);
+                    r = 48,
+                    n = "bottom";
+                2 === wkcur.animLine ? (o = "landing_donors_day_member_ava_blood_line_active_wrap", r = 150, n = "top") : 1 === wkcur.animLine ? o = "landing_donors_day_member_blood_group_active_wrap" : -1 === wkcur.animLine && (o = "landing_donors_day_blood_line_start_active_wrap", r = 12);
                 var t = geByClass1(o),
-                    a = this.getAnimationDuration(1.5 * n),
+                    a = this.getAnimationDuration(1.5 * r),
                     s = {
-                        transition: r + " " + a + "ms linear"
+                        transition: n + " " + a + "ms linear"
                     };
-                e && delete s.transition, s[r] = -1 === wkcur.animLine ? 0 : "-2px", 2 === wkcur.animLine && (a *= .93), setStyle(t, s), wkcur.timer = setTimeout(() => {
+                e && delete s.transition, s[n] = -1 === wkcur.animLine ? 0 : "-2px", 2 === wkcur.animLine && (a *= .93), setStyle(t, s), wkcur.timer = setTimeout(() => {
                     this.nextAnimation(!0)
                 }, -1 === wkcur.animLine ? 0 : a)
             },
@@ -237,9 +237,9 @@
                         on_ready_to_give: hasClass("donors_day_ready_to_give", "on") ? 1 : 0,
                         api_view: cur.donorsDayApiViewHash
                     };
-                    lockButton(e), LandingDonorsDay.renderSnippet(o.group, o.type, n => {
-                        if (!n) return unlockButton(e), topError(getLang("global_error_occured"), 3);
-                        o.media = n, ajax.post("landings.php", extend(o, n), {
+                    lockButton(e), LandingDonorsDay.renderSnippet(o.group, o.type, r => {
+                        if (!r) return unlockButton(e), topError(getLang("global_error_occured"), 3);
+                        o.media = r, ajax.post("landings.php", extend(o, r), {
                             onDone(e) {
                                 cur.donorsDayIsMob ? location.reload() : (curBox().hide(), window.wkcur && "donors_day" === wkcur.wkRaw && wkcur.shown && WkView.hide(!1, !0), showWiki({
                                     w: "donors_day"
@@ -266,16 +266,16 @@
             showMore(e) {
                 removeClass(geByClass1("donors_day_users_chunk_hidden", e.parentNode), "donors_day_users_chunk_hidden"), geByClass1("donors_day_users_chunk_hidden", e.parentNode) || re(e)
             },
-            renderSnippet(e, o, n) {
-                var r = vkImage();
-                r.onload = (() => {
+            renderSnippet(e, o, r) {
+                var n = vkImage();
+                n.onload = (() => {
                     var t = ce("canvas", {
                         width: 2040,
                         height: 912
                     }, {});
                     ge("donors_day_canvas_helper").appendChild(t);
                     var a = t.getContext("2d");
-                    a.direction = "ltr", a.drawImage(r, 0, 0, 2040, 912), a.textBaseline = "top", a.imageSmoothingEnabled = !0, a.font = "normal 120px Open Sans", a.textAlign = "left", a.fillStyle = "#fff";
+                    a.direction = "ltr", a.drawImage(n, 0, 0, 2040, 912), a.textBaseline = "top", a.imageSmoothingEnabled = !0, a.font = "normal 120px Open Sans", a.textAlign = "left", a.fillStyle = "#fff";
                     var s = unclean(cur.donorsDayUserName);
                     s.length > 27 && (s = cur.donorsDayUserName.substr(0, 27) + "..");
                     var i = a.measureText(s).width;
@@ -285,11 +285,11 @@
                     a.fillText(d, 1020 - l / 2, 492);
                     var _ = 1 == intval(o) ? cur.lang.landings_donors_day_snippet_caption_line2_plus : cur.lang.landings_donors_day_snippet_caption_line2_minus;
                     _ = unclean(_);
-                    var h = a.measureText(_).width;
-                    a.fillText(_, 1020 - h / 2, 600);
-                    var g = t.toDataURL("image/png", .99);
-                    g = g.substr(g.indexOf("base64,", 0) + 7), this.uploadSnippetPhoto(g, n)
-                }), r.src = "/images/landings/donors_day/snippet_bg.png"
+                    var g = a.measureText(_).width;
+                    a.fillText(_, 1020 - g / 2, 600);
+                    var h = t.toDataURL("image/png", .99);
+                    h = h.substr(h.indexOf("base64,", 0) + 7), this.uploadSnippetPhoto(h, r)
+                }), n.src = "/images/landings/donors_day/snippet_bg.png"
             },
             uploadSnippetPhoto(base64, callback) {
                 var XHR = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
@@ -299,7 +299,7 @@
                     try {
                         obj = eval("(" + res + ")")
                     } catch (e) {
-                        obj = q2ajx(res)
+                        obj = AjaxConvert.fromQueryString(res)
                     }
                     callback(obj)
                 });

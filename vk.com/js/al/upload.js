@@ -206,7 +206,7 @@ if (!window.Upload) {
             Upload.fails[iUpload] = Upload.fails[iUpload] ? Upload.fails[iUpload] + 1 : 1;
             if (options.signed) {
                 var parts = Upload.uploadUrls[iUpload].split('?'),
-                    tmp = q2ajx(parts[1]),
+                    tmp = AjaxConvert.fromQueryString(parts[1]),
                     q = extend({
                         act: 'check_result',
                         _resign: tmp._query || parts[1]
@@ -1140,7 +1140,7 @@ if (!window.Upload) {
                     if (!cur.nextQueues) cur.nextQueues = [];
                     cur.nextQueues.push(iUpload);
                 } else {
-                    var params = ajx2q(vars);
+                    var params = AjaxConvert.toQueryString(vars);
                     var uploadUrl = this.uploadUrls[iUpload] ? this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params : '';
                     this.uploadFile(iUpload, filesQueue.pop(), uploadUrl);
                     if (options.multi_progress) cur.multiProgressIndex = iUpload;
@@ -1443,7 +1443,7 @@ if (!window.Upload) {
                 from: options.from,
             }, {
                 onDone: function(videoParams) {
-                    var vars = ajx2q(videoParams.vars);
+                    var vars = AjaxConvert.toQueryString(videoParams.vars);
                     var uploadUrl = videoParams.options.url + (videoParams.options.url.match(/\?/) ? '&' : '?') + vars;
 
                     extend(Upload.options[iUpload], videoParams.options);
@@ -1638,7 +1638,7 @@ if (!window.Upload) {
             try {
                 var vars = Upload.vars[iUpload],
                     options = Upload.options[iUpload],
-                    params = ajx2q(vars),
+                    params = AjaxConvert.toQueryString(vars),
                     queue = options.filesQueue;
                 inQueue = false,
                     info = options.multi_progress ? {
@@ -1730,7 +1730,7 @@ if (!window.Upload) {
                 }
                 if (queue.length > 0) {
                     var vars = Upload.vars[next],
-                        params = ajx2q(vars);
+                        params = AjaxConvert.toQueryString(vars);
                     var url = Upload.uploadUrls[next] + (Upload.uploadUrls[next].match(/\?/) ? '&' : '?') + params;
                     Upload.uploadFile(next, queue.pop(), url);
                     cur.multiProgressIndex = next;

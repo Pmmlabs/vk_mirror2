@@ -1394,7 +1394,7 @@ var Settings = {
         params.phash = cur.options.phash;
         cur.pwchDone = Settings.passwordDone;
         cur.pwchFrame = utilsNode.appendChild(ce('iframe', {
-            src: vk.loginscheme + '://login.vk.com/?' + ajx2q(params)
+            src: vk.loginscheme + '://login.vk.com/?' + AjaxConvert.toQueryString(params)
         }));
     },
 

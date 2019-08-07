@@ -294,7 +294,7 @@ var notes = {
             oid: oid,
             nid: nid
         };
-        var q = url + '#' + ajx2q(params);
+        var q = url + '#' + AjaxConvert.toQueryString(params);
         if (globalAjaxCache[q] !== undefined) return;
         globalAjaxCache[q] = -1;
         ajax.post(url, extend(params, {
@@ -321,7 +321,7 @@ var notes = {
             oid: oid,
             nid: nid
         };
-        var q = url + '#' + ajx2q(params);
+        var q = url + '#' + AjaxConvert.toQueryString(params);
         if (globalAjaxCache[q] === undefined) return;
         delete globalAjaxCache[q];
     },

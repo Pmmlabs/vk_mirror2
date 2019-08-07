@@ -1159,7 +1159,7 @@ var CommunityWidget = {
             try {
                 var params = eval('(' + xhr.responseText + ')');
             } catch (e) {
-                var params = q2ajx(xhr.responseText);
+                var params = AjaxConvert.fromQueryString(xhr.responseText);
             }
 
             CommunityWidget.onUploadDone(file, params);
