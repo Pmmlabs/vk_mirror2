@@ -693,6 +693,7 @@
 
         function onFailed() {
             onComplete();
+            return true;
         }
 
         function onComplete() {

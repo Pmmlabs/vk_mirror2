@@ -28,6 +28,13 @@ if (!window.vk) window.vk = {
     ip_h: ''
 };
 
+const enc = function(str) {
+    try {
+        return encodeURIComponent(str);
+    } catch (e) {
+        return '';
+    }
+};
 // Copy of shared/lib/convert::toQueryString; TODO: remove this
 function toQueryString(ajaxParams, noSort) {
     const query = [];

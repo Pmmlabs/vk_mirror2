@@ -7738,7 +7738,8 @@ td.apps_cat_new_h {
     pointer-events: none;
     opacity: 0;
     -o-transition: opacity .3s;
-    transition: opacity .3s
+    transition: opacity .3s;
+    z-index: 1
 }
 
 .vk_app_modal_outer.show {

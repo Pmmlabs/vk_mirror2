@@ -6966,7 +6966,7 @@
 
         function Rs(e, t) {
             var n = geByClass1("_im_dialog_actions", e);
-            Object(Hs.wb)(n, "im-page--chat-header_top-banner", t)
+            Object(Hs.xb)(n, "im-page--chat-header_top-banner", t)
         }
 
         function $s(e, t) {
@@ -6985,7 +6985,7 @@
                             Object(a.H)(t, i, !0, n)
                         }), o(e, "click", Fs, i => {
                             var o = function(e, t, n, a) {
-                                    var i = Object(Hs.s)(e, "payload");
+                                    var i = Object(Hs.t)(e, "payload");
                                     return !!i && (t.set(r.k.bind(null, t.get().peer, i)), $s(n, a), !0)
                                 }(i.target, t, e, s),
                                 l = !!Object(a.ac)(t);
@@ -8907,10 +8907,10 @@
                 case m.a:
                     Object(a.ob)() || (r.scroll(i, "down"), cancelEvent(n));
                     break;
-                case m.v:
+                case m.w:
                     n.ctrlKey || Object(a.jb)(i) || (r.scroll(i, "up", !0), cancelEvent(n));
                     break;
-                case m.u:
+                case m.v:
                     n.ctrlKey || Object(a.jb)(i) || (r.scroll(i, "down", !0), cancelEvent(n));
                     break;
                 case m.o:
@@ -8919,7 +8919,7 @@
                 case m.d:
                     Object(a.ob)() || (r.scroll(i, "down", !1, !0), cancelEvent(n));
                     break;
-                case m.w:
+                case m.x:
                     r.focustTxt(e)
             }
         }
@@ -8946,17 +8946,17 @@
                                     case m.e:
                                         Object(a.ob)() && !gpeByClass("_im_dialogs_search_input", document.activeElement) || r.selectHoveredDialog(s);
                                         break;
-                                    case m.w:
+                                    case m.x:
                                         i.focusInput(s)
                                 }
                             }(0, t, l, n, i, e);
                         case "create":
                             return function(e, t, n, r, i) {
                                 switch (t) {
-                                    case m.v:
+                                    case m.w:
                                         !n.ctrlKey && Object(a.jb)(i) && (r.scroll("up"), cancelEvent(n));
                                         break;
-                                    case m.u:
+                                    case m.v:
                                         !n.ctrlKey && Object(a.jb)(i) && (r.scroll("down"), cancelEvent(n));
                                         break;
                                     case m.a:
@@ -8968,7 +8968,7 @@
                                     case m.e:
                                         gpeByClass("_im_dialogs_creation_name", document.activeElement) ? r.confirmCreate(i) : gpeByClass("im-create--search", document.activeElement) && r.selectElement(i);
                                         break;
-                                    case m.w:
+                                    case m.x:
                                         r.focusSearch(i)
                                 }
                             }(0, t, l, s, e);
@@ -8979,8 +8979,8 @@
                                     case m.d:
                                         r.isEmpty(a) && jc(e, t, n, r, a);
                                         break;
+                                    case m.w:
                                     case m.v:
-                                    case m.u:
                                         jc(e, t, n, r, a)
                                 }
                             }(o, t, l, r, e);
@@ -9354,7 +9354,7 @@
                     var n = e.get().tabbedPeers[t];
                     n && e.get().longpoll.push([Object(l.gb)(n.peer, !1, !0, !0)])
                 }(t, i - 49), cancelEvent(r);
-                inArray(i, m.A) && e.signal(i, r)
+                inArray(i, m.B) && e.signal(i, r)
             }
         }
 
@@ -9364,7 +9364,7 @@
                     signalTimer: !1
                 }),
                 s = function(e, t, n) {
-                    !n || inArray(Qc(n), m.z) || Object(r.Y)(e.get().peer, e.get()) || Object(a.ob)() || n.ctrlKey || browser.mac && n.metaKey || n.key && 1 !== n.key.length || t.signal("printable", n)
+                    !n || inArray(Qc(n), m.A) || Object(r.Y)(e.get().peer, e.get()) || Object(a.ob)() || n.ctrlKey || browser.mac && n.metaKey || n.key && 1 !== n.key.length || t.signal("printable", n)
                 }.bind(null, e, t),
                 l = Yc.bind(null, t, e, i),
                 c = function(e, t, n) {
@@ -12089,7 +12089,7 @@
         }
 
         function Yt(e) {
-            return e.replace(/&lt;&lt;/g, "&laquo;").replace(/&gt;&gt;/g, "&raquo;").replace(/ \-\-/g, " &mdash;").replace(/\-\- /g, "&mdash; ").replace(a.r, "$1$4")
+            return e.replace(/&lt;&lt;/g, "&laquo;").replace(/&gt;&gt;/g, "&raquo;").replace(/ \-\-/g, " &mdash;").replace(/\-\- /g, "&mdash; ").replace(a.s, "$1$4")
         }
 
         function Jt(e, t) {
@@ -14572,23 +14572,23 @@
     },
     "h++7": function(e, t, n) {
         "use strict";
-        n.d(t, "t", function() {
+        n.d(t, "u", function() {
             return r
         }), n.d(t, "f", function() {
             return a
-        }), n.d(t, "B", function() {
+        }), n.d(t, "C", function() {
             return i
-        }), n.d(t, "q", function() {
-            return s
         }), n.d(t, "r", function() {
+            return s
+        }), n.d(t, "s", function() {
             return o
         }), n.d(t, "b", function() {
             return l
         }), n.d(t, "a", function() {
             return c
-        }), n.d(t, "v", function() {
+        }), n.d(t, "w", function() {
             return d
-        }), n.d(t, "u", function() {
+        }), n.d(t, "v", function() {
             return u
         }), n.d(t, "d", function() {
             return m
@@ -14596,11 +14596,11 @@
             return p
         }), n.d(t, "e", function() {
             return g
-        }), n.d(t, "z", function() {
-            return h
         }), n.d(t, "A", function() {
+            return h
+        }), n.d(t, "B", function() {
             return _
-        }), n.d(t, "w", function() {
+        }), n.d(t, "x", function() {
             return b
         }), n.d(t, "m", function() {
             return f
@@ -14618,16 +14618,18 @@
             return k
         }), n.d(t, "j", function() {
             return C
-        }), n.d(t, "y", function() {
+        }), n.d(t, "z", function() {
             return S
-        }), n.d(t, "p", function() {
+        }), n.d(t, "q", function() {
             return E
         }), n.d(t, "c", function() {
             return I
-        }), n.d(t, "s", function() {
+        }), n.d(t, "t", function() {
             return x
-        }), n.d(t, "x", function() {
+        }), n.d(t, "y", function() {
             return P
+        }), n.d(t, "p", function() {
+            return M
         });
         n("Oyvg");
         var r = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/,
@@ -14663,7 +14665,8 @@
             I = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})))", "ig"),
             x = new RegExp("(https?:\\/\\/)?(((?:[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\—\\-\\_]+\\.){1,5})([A-Za-z\\$а-яА-Я\\-\\d]{2,22})(?:\\:(\\d{2,5}))?)(([\\/?#])(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*[\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј\\—\\-\\_@#%?+\\/\\$.~=;:'ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ　-〿＀-￯*]+|(?:\\(|\\[)[\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј\\d&#%;,]+(?:\\)|\\])){0,200})?", "ig"),
             T = "(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’_\\d]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))",
-            P = `(^|[s.,:'";>)(]?)(${`(#${T}{0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))${T}{0,100})`})(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'"&;?<)(]?)`
+            P = `(^|[s.,:'";>)(]?)(${`(#${T}{0,100}(?:[a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’]|(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?))${T}{0,100})`})(@((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?))?(?=$|[s.,:'"&;?<)(]?)`,
+            M = 10
     },
     hIV1: function(e, t, n) {
         "use strict";
@@ -15502,7 +15505,7 @@
             l = i.statlogsValueEvent;
 
         function c(e, t) {
-            for (var n, r = 0, i = e; null !== (n = a.s.exec(e));) {
+            for (var n, r = 0, i = e; null !== (n = a.t.exec(e));) {
                 var s = (n = m(n))[0].length,
                     o = n.index + s,
                     l = e[n.index - 1],
@@ -15512,7 +15515,7 @@
                 if (!d && !u) {
                     var g = p(n),
                         h = g.domain.toLowerCase();
-                    if (h.length <= a.p && -1 !== a.y.indexOf(h)) {
+                    if (h.length <= a.q && -1 !== a.z.indexOf(h)) {
                         var _ = t(g);
                         i = i.slice(0, n.index + r) + _ + i.slice(o + r), r += _.length - s
                     }
@@ -15528,7 +15531,7 @@
         }
 
         function u(e, t) {
-            return e.replace(a.q, t || function(e, t, n, r, a) {
+            return e.replace(a.r, t || function(e, t, n, r, a) {
                 return `<a href="/${t+n}" class="mem_link" mention="${s(r||"")}" mention_id="${s(t+n)}" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">${a}</a>`
             })
         }
@@ -15551,7 +15554,7 @@
         }
 
         function g(e, t) {
-            return e.replace((r || (r = new RegExp(a.x, "ig")), r), (e, n, r, a, i, s) => (n || "") + t(r + (i || "")))
+            return e.replace((r || (r = new RegExp(a.y, "ig")), r), (e, n, r, a, i, s) => (n || "") + t(r + (i || "")))
         }
 
         function h(e) {
@@ -15567,11 +15570,11 @@
             try {
                 c = decodeURIComponent(c)
             } catch (e) {}
-            if (c.length > 55 && (c = c.substr(0, 53) + ".."), c = s(c).replace(/&amp;/g, "&"), !e && l.match(a.t)) {
+            if (c.length > 55 && (c = c.substr(0, 53) + ".."), c = s(c).replace(/&amp;/g, "&"), !e && l.match(a.u)) {
                 var d, u = r = o(r).replace(a.f, encodeURIComponent),
                     m = r.indexOf("#/"),
                     p = "";
-                return m >= 0 ? u = r.substr(m + 1) : (m = r.indexOf("#!")) >= 0 && (u = "/" + r.substr(m + 2).replace(/^\//, "")), (d = u.match(a.B)) && d[1].length < 32 && (p = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
+                return m >= 0 ? u = r.substr(m + 1) : (m = r.indexOf("#!")) >= 0 && (u = "/" + r.substr(m + 2).replace(/^\//, "")), (d = u.match(a.C)) && d[1].length < 32 && (p = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + function(e) {
                     return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
                 }(n + r + i) + '" target="_blank" rel="noopener"' + p + ">" + c + "</a>"
             }
@@ -17114,7 +17117,7 @@
         }
 
         function B(e) {
-            return "string" == typeof e ? Object(f.mb)(`<div>${e}</div>`) : e
+            return "string" == typeof e ? Object(f.nb)(`<div>${e}</div>`) : e
         }
 
         function D(e) {
@@ -18275,12 +18278,12 @@
                     return function() {
                         n.update_old_title = e;
                         var r = Object.keys(n.cur_unread_cnt).length;
-                        if (0 === r) return Object(f.ob)(e || document.title), setFavIcon("/images/icons/favicons/fav_im" + t + ".ico"), clearInterval(n.update_title_to), void(n.update_title_to = !1);
-                        e ? (Object(f.ob)(e), setFavIcon("/images/icons/favicons/fav_im" + t + ".ico"), e = !1) : (e = document.title, setFavIcon("/images/icons/favicons/fav_im" + (r > 9 ? 10 : r) + t + ".ico"), Object(f.ob)(winToUtf(getLang("mail_im_new_messages", r))))
+                        if (0 === r) return Object(f.pb)(e || document.title), setFavIcon("/images/icons/favicons/fav_im" + t + ".ico"), clearInterval(n.update_title_to), void(n.update_title_to = !1);
+                        e ? (Object(f.pb)(e), setFavIcon("/images/icons/favicons/fav_im" + t + ".ico"), e = !1) : (e = document.title, setFavIcon("/images/icons/favicons/fav_im" + (r > 9 ? 10 : r) + t + ".ico"), Object(f.pb)(winToUtf(getLang("mail_im_new_messages", r))))
                     }
                 }(r, a, n);
                 n.update_title_to = setInterval(i, 1e3), i()
-            } else !t && n.update_old_title && (Object(f.ob)(n.update_old_title), n.cur_unread_cnt = {}, r = !1, n.update_old_title = !1, setFavIcon("/images/icons/favicons/fav_im" + a + ".ico"), clearInterval(n.update_title_to), n.update_title_to = !1);
+            } else !t && n.update_old_title && (Object(f.pb)(n.update_old_title), n.cur_unread_cnt = {}, r = !1, n.update_old_title = !1, setFavIcon("/images/icons/favicons/fav_im" + a + ".ico"), clearInterval(n.update_title_to), n.update_title_to = !1);
             return Promise.resolve(n)
         }
 

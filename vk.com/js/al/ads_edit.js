@@ -2390,7 +2390,9 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         cost_per_click: {
             value: '',
             edited: false,
-            last_value: ''
+            last_value: '',
+            edited_values: {},
+            recommended_price: {}
         },
         platform: {
             value: 0,
@@ -3780,6 +3782,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             }
             break;
         case 'cost_per_click':
+            // TODO �������� ��� ��� ����� ������ ������ ������������ �� ����
             var labelElem = geByClass1('ads_edit_label_cost_per_click', ge('ads_edit_ad_row_' + paramName));
             if (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK) {
                 labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_click_label'));
@@ -3800,11 +3803,15 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var costPerClickRecommendedShort = 'recommended' + suffixesAll + '_short';
             var costPerClickRecommendedLong = 'recommended' + suffixesAll + '_long';
 
+            targetElem = ge(this.options.targetIdPrefix + paramName);
+
             if (!this.params[paramName].edited || costPerClickValue !== this.params[paramName].last_value) {
-                this.params[paramName].last_value = costPerClickValue;
-                this.params[paramName].value = this.params[paramName][costPerClickValue];
-                var targetElem = ge(this.options.targetIdPrefix + paramName);
-                targetElem.value = this.params[paramName].value;
+                if (!this.isNewPredictionWidget) {
+                    // ���� ������ �����������
+                    this.params[paramName].last_value = costPerClickValue;
+                    this.params[paramName].value = this.params[paramName][costPerClickValue];
+                    targetElem.value = this.params[paramName].value;
+                }
             }
 
             var currencyElem = ge(this.options.targetIdPrefix + paramName + '_currency');
@@ -3815,8 +3822,26 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             recommendedShortElem && (recommendedShortElem.innerHTML = this.params[paramName][costPerClickRecommendedShort]);
             recommendedLongElem && (recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong]);
 
-            // ������� ������ � ������� ������������ ������
-            this.showPredictionWidget();
+            // ����� �����������
+            if (this.isNewPredictionWidget) {
+                // ������� ������ � ������� ������������ ������
+                this.showPredictionWidget();
+
+                if (!this.params.ad_id.value) {
+                    // ������ ��� �������� ���������� ����������� ��������������� ����
+                    var editedValue = this.params.cost_per_click['edited_values'][this.params.cost_type.value];
+                    var recommendedPrice = this.params.cost_per_click['recommended_price'][this.params.cost_type.value];
+
+                    if (!editedValue && recommendedPrice) {
+                        // ���� ���� �� �������������� � ���� ��������������� ���� ��� �������� ������� ������
+                        targetElem.value = recommendedPrice;
+                        this.params.cost_per_click.value = recommendedPrice;
+                    } else if (editedValue) {
+                        // ���� ���� ������� ������, �� ���������� ��� ��������
+                        targetElem.value = editedValue;
+                    }
+                }
+            }
             break;
         case '_platform':
             this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
@@ -4882,6 +4907,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                     this.params.cost_per_click[valueName] = Number(values[valueName]).toFixed(2).replace('.00', '');
                 }
 
+                // ��������, ��� ���� ��������������� ��������� ��� ������������ ���� ������
+                this.params.cost_per_click.edited_values[this.params.cost_type.value] = this.params.cost_per_click.value;
                 this.updateUiParam('cost_per_click');
                 break;
             case 'platform':
@@ -5420,6 +5447,12 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         this.setPredictionWidgetApiResponse(result);
         // ������� ������ � ������� ������������ ������
         this.showPredictionWidget();
+    }
+
+    if (isObject(result) && 'recommended_price' in result) {
+        // �������� ��������������� ���� ��� �������� ������� ������
+        this.params.cost_per_click['recommended_price'][this.params.cost_type.value] = result['recommended_price'];
+        this.updateUiParam('cost_per_click');
     }
 
     return setResult;
@@ -6677,6 +6710,7 @@ AdsViewEditor.prototype.getLinkButtonText = function(linkButton) {
 }
 AdsViewEditor.prototype.setPredictionWidgetApiResponse = function(apiResponse) {
     this.lastAudienceCountApiResponse = apiResponse;
+    this.isNewPredictionWidget = true;
 };
 
 /**

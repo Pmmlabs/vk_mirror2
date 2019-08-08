@@ -82,7 +82,7 @@
         window.PrettyCardGallery = class {
             constructor(t, e, r) {
                 if (!t.prettyCardsInitialized) {
-                    if (t.prettyCardsInitialized = !0, t.removeAttribute("onmouseenter"), this.VIEWPORT_CARDS = 2, this.CARD_WIDTH = 200, this.CARDS_MARGIN = 12, this.CONTENT_PADDING = 13, this.POST_PADDING = 20, this.POST_PADDING_TOP = 15, this.TRANSFORM_ANIMATION_DURATION = 300, this.TRANSFORM_ANIMATION_DURATION_LONG = 600, this.TRANSFORM_ANIMATION_DELAY = 100, this.el = t, this.scrollerLeft = Object(s.H)("pretty-cards__scroller_position_left", t), this.scrollerRight = Object(s.H)("pretty-cards__scroller_position_right", t), this.scrollerProtector = Object(s.H)("pretty-cards__scroller_type_protector", t), this.wrapper = Object(s.H)("pretty-cards__wrapper", t), this.wrapperOuter = Object(s.H)("pretty-cards__wrapper-outer", t), this.scrollPosition = 0, this.cardsElements = geByClass("pretty-card", t), this.buttonEditorDropdown = Object(s.H)("pretty-card__button-dropdown", t), this.container = Object(s.H)("pretty-cards__container", t), this.newCardsId = -1, this.lastChosenUrl = "", this.options = extend({}, e || {}), this.options.editing && this.addPlaceholder(), r)
+                    if (t.prettyCardsInitialized = !0, t.removeAttribute("onmouseenter"), this.VIEWPORT_CARDS = 2, this.CARD_WIDTH = 200, this.CARDS_MARGIN = 12, this.CONTENT_PADDING = 13, this.POST_PADDING = 20, this.POST_PADDING_TOP = 15, this.TRANSFORM_ANIMATION_DURATION = 300, this.TRANSFORM_ANIMATION_DURATION_LONG = 600, this.TRANSFORM_ANIMATION_DELAY = 100, this.el = t, this.scrollerLeft = Object(s.I)("pretty-cards__scroller_position_left", t), this.scrollerRight = Object(s.I)("pretty-cards__scroller_position_right", t), this.scrollerProtector = Object(s.I)("pretty-cards__scroller_type_protector", t), this.wrapper = Object(s.I)("pretty-cards__wrapper", t), this.wrapperOuter = Object(s.I)("pretty-cards__wrapper-outer", t), this.scrollPosition = 0, this.cardsElements = geByClass("pretty-card", t), this.buttonEditorDropdown = Object(s.I)("pretty-card__button-dropdown", t), this.container = Object(s.I)("pretty-cards__container", t), this.newCardsId = -1, this.lastChosenUrl = "", this.options = extend({}, e || {}), this.options.editing && this.addPlaceholder(), r)
                         for (var i = 0, o = Object.keys(r); i < o.length; i++) {
                             var a = o[i];
                             this.addCard(r[a]), r[a].link && (this.lastChosenUrl = r[a].link)
@@ -133,7 +133,7 @@
                         }
                         if (o !== this.lastDestinationCardIndex) {
                             var a = this.cardsElements.indexOf(this.draggingCard);
-                            o > this.lastDestinationCardIndex ? o > a ? (this.wrapperTransitions(!0, this.cardsElements[o]), Object(s.a)(this.cardsElements[o], "pretty-card_dragging_left")) : o <= a && Object(s.hb)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_right") : o < this.lastDestinationCardIndex && (o >= a ? Object(s.hb)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_left") : o < a && (this.wrapperTransitions(!0, this.cardsElements[o]), Object(s.a)(this.cardsElements[o], "pretty-card_dragging_right"))), this.lastDestinationCardIndex = o
+                            o > this.lastDestinationCardIndex ? o > a ? (this.wrapperTransitions(!0, this.cardsElements[o]), Object(s.a)(this.cardsElements[o], "pretty-card_dragging_left")) : o <= a && Object(s.ib)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_right") : o < this.lastDestinationCardIndex && (o >= a ? Object(s.ib)(this.cardsElements[this.lastDestinationCardIndex], "pretty-card_dragging_left") : o < a && (this.wrapperTransitions(!0, this.cardsElements[o]), Object(s.a)(this.cardsElements[o], "pretty-card_dragging_right"))), this.lastDestinationCardIndex = o
                         }
                     }
                 }
@@ -146,7 +146,7 @@
             }
             onUrlChosen(t, e, r) {
                 var i = t.btns.ok[0],
-                    o = Object(s.H)("share_url_input", t.bodyNode),
+                    o = Object(s.I)("share_url_input", t.bodyNode),
                     a = val(o);
                 lockButton(i), disable(o, !0), hide("share_url_error"), ajax.post("al_wall.php", {
                     act: "a_pretty_cards_check_url",
@@ -158,14 +158,14 @@
                     },
                     onFail: t => {
                         var e = "";
-                        return t && t !== getLang("global_unknown_error") && (e = t + " "), Object(s.F)("share_url_error").innerHTML = e + getLang("global_share_link_failed"), disable(o, !1), unlockButton(i), show("share_url_error"), elfocus(o), !0
+                        return t && t !== getLang("global_unknown_error") && (e = t + " "), Object(s.G)("share_url_error").innerHTML = e + getLang("global_share_link_failed"), disable(o, !1), unlockButton(i), show("share_url_error"), elfocus(o), !0
                     }
                 })
             }
             chooseUrl(t, e, r) {
                 window.onShareChooseUrlBoxInit = (() => {
                     var e = curBox(),
-                        i = Object(s.H)("share_url_input", e.bodyNode);
+                        i = Object(s.I)("share_url_input", e.bodyNode);
                     addEvent(i, "keydown", s => {
                         if (s.which === KEY.ENTER) return this.onUrlChosen(e, r, t), !1
                     })
@@ -188,31 +188,31 @@
                 }, this.lastChosenUrl, this.options.owner_id)
             }
             wrapperTransitions(t, e, r) {
-                e && (t ? Object(s.a)(e, !0 === r ? "pretty-card_transitions_long" : "pretty-card_transitions_on") : (Object(s.hb)(e, "pretty-card_transitions_long"), Object(s.hb)(e, "pretty-card_transitions_on")))
+                e && (t ? Object(s.a)(e, !0 === r ? "pretty-card_transitions_long" : "pretty-card_transitions_on") : (Object(s.ib)(e, "pretty-card_transitions_long"), Object(s.ib)(e, "pretty-card_transitions_on")))
             }
             addCard(t) {
                 if (this.options.card_template_html && (!(this.cardsElements.length >= intval(this.options.cards_max)) || this.placeholderElement)) {
                     var e = this.cardsElements.length === intval(this.options.cards_max),
                         r = se(this.options.card_template_html);
                     if (t) {
-                        if (t.id && t.owner_id ? r.prettyCardId = t.owner_id + "_" + t.id : r.prettyCardId = this.newCardsId--, t.link && this.setLink(r, t.link, t.link_decoded), t.title && val(Object(s.H)("pretty-card__title", r), t.title), void 0 !== t.price && t.price != this.options.price_unshown) {
-                            var i = Object(s.H)("pretty-card__price_actual", r),
+                        if (t.id && t.owner_id ? r.prettyCardId = t.owner_id + "_" + t.id : r.prettyCardId = this.newCardsId--, t.link && this.setLink(r, t.link, t.link_decoded), t.title && val(Object(s.I)("pretty-card__title", r), t.title), void 0 !== t.price && t.price != this.options.price_unshown) {
+                            var i = Object(s.I)("pretty-card__price_actual", r),
                                 o = domPS(domPN(i));
                             val(i, t.price), this.priceInputChanged(i), this.togglePrice(o, !0)
                         }
                         if (void 0 !== t.price_old && t.price_old != this.options.price_unshown) {
-                            var a = Object(s.H)("pretty-card__price_old", r),
+                            var a = Object(s.I)("pretty-card__price_old", r),
                                 n = domPS(domPN(a));
                             val(a, t.price_old), this.priceInputChanged(a), this.togglePrice(n, !0)
                         }
-                        t.photo_url && this.setPhoto(r, t.photo_url), t.photo && (r.prettyCardPhoto = t.photo), t.allowed_buttons && (r.prettyCardAllowedButtons = t.allowed_buttons, t.button_key ? this.setButton(Object(s.H)("pretty-card__button", r), t.button_key, r.prettyCardAllowedButtons) : t.button_action && this.setButtonRaw(Object(s.H)("pretty-card__button", r), t.button_action, t.button_text))
+                        t.photo_url && this.setPhoto(r, t.photo_url), t.photo && (r.prettyCardPhoto = t.photo), t.allowed_buttons && (r.prettyCardAllowedButtons = t.allowed_buttons, t.button_key ? this.setButton(Object(s.I)("pretty-card__button", r), t.button_key, r.prettyCardAllowedButtons) : t.button_action && this.setButtonRaw(Object(s.I)("pretty-card__button", r), t.button_action, t.button_text))
                     }
-                    this.wrapperTransitions(!1, r), Object(s.a)(r, "pretty-card_removing_yes"), this.cardsElements.splice(this.cardsElements.length - 1, 0, r), this.placeholderElement && (this.wrapperTransitions(!1, this.placeholderElement), this.wrapper.insertBefore(r, this.placeholderElement), Object(s.a)(this.placeholderElement, "pretty-card_adding_yes"), this.placeholderElement.offsetHeight), r.offsetHeight, this.wrapperTransitions(!0, this.placeholderElement), this.wrapperTransitions(!0, r), Object(s.hb)(r, "pretty-card_removing_yes"), this.placeholderElement && Object(s.hb)(this.placeholderElement, "pretty-card_adding_yes"), e ? setTimeout(() => {
+                    this.wrapperTransitions(!1, r), Object(s.a)(r, "pretty-card_removing_yes"), this.cardsElements.splice(this.cardsElements.length - 1, 0, r), this.placeholderElement && (this.wrapperTransitions(!1, this.placeholderElement), this.wrapper.insertBefore(r, this.placeholderElement), Object(s.a)(this.placeholderElement, "pretty-card_adding_yes"), this.placeholderElement.offsetHeight), r.offsetHeight, this.wrapperTransitions(!0, this.placeholderElement), this.wrapperTransitions(!0, r), Object(s.ib)(r, "pretty-card_removing_yes"), this.placeholderElement && Object(s.ib)(this.placeholderElement, "pretty-card_adding_yes"), e ? setTimeout(() => {
                         this.placeholderElement && (re(this.placeholderElement), delete this.placeholderElement), this.cardsElements.splice(this.cardsElements.length - 1, 1), this.scroll(0, !1)
                     }, this.TRANSFORM_ANIMATION_DELAY) : setTimeout(this.scroll.bind(this, 0, !1), this.TRANSFORM_ANIMATION_DELAY), geByClass("pretty-card__price-adder", r).map(t => {
-                        addEvent(t, "click", this.priceAdderClicked.bind(this, t)), addEvent(Object(s.H)("pretty-card__editor-button_type_remove", domNS(t)), "click", this.priceRemoverClicked.bind(this, t))
+                        addEvent(t, "click", this.priceAdderClicked.bind(this, t)), addEvent(Object(s.I)("pretty-card__editor-button_type_remove", domNS(t)), "click", this.priceRemoverClicked.bind(this, t))
                     }), geByClass("pretty-card__price", r).map(t => addEvent(t, "change blur", this.priceInputChanged.bind(this, t))), geByClass("pretty-card__price", r).map(t => addEvent(t, "focus", this.priceInputFocused.bind(this, t)));
-                    var d = Object(s.H)("pretty-card__edit-button_action_remove", r);
+                    var d = Object(s.I)("pretty-card__edit-button_action_remove", r);
                     addEvent(d, "click", () => {
                         window.tooltips && tooltips.destroyAll(this.el), this.placeholderElement || this.addPlaceholder();
                         var t = this.cardsElements.length,
@@ -231,7 +231,7 @@
                             re(r);
                             for (var t = e; t < this.cardsElements.length; ++t) {
                                 var i = this.cardsElements[t];
-                                this.wrapperTransitions(!1, i), Object(s.hb)(i, "pretty-card_adding_yes")
+                                this.wrapperTransitions(!1, i), Object(s.ib)(i, "pretty-card_adding_yes")
                             }
                         }, n)
                     }), addEvent(d, "mouseover", () => {
@@ -241,25 +241,25 @@
                             appendParentCls: "pretty-cards",
                             shift: [7, 10]
                         })
-                    }), addEvent(Object(s.H)("pretty-card__link-editor", r), "click", () => {
+                    }), addEvent(Object(s.I)("pretty-card__link-editor", r), "click", () => {
                         this.chooseUrl((t, e, s) => {
                             r.prettyCardAllowedButtons = e, this.setLink(r, t, s)
                         }, r.prettyCardLink, this.options.owner_id)
                     });
-                    var l = Object(s.H)("pretty-card__button", r);
-                    addEvent(l, "click", this.buttonEditorClicked.bind(this, l, r)), addEvent(l, "mouseover", Page.actionsDropdownUnhide), addEvent(l, "mouseout", Page.actionsDropdownHide.bind(this, this.buttonEditorDropdown)), addEvent(Object(s.H)("pretty-card__button-remove", l), "click", this.buttonRemoveClicked.bind(this, l)), this.initPhotoUploader(r), addEvent(r, "mousedown", this.onCardMouseDown.bind(this, r)), addEvent(geByTag1("body"), "mouseup", this.onCardMouseUp.bind(this, r))
+                    var l = Object(s.I)("pretty-card__button", r);
+                    addEvent(l, "click", this.buttonEditorClicked.bind(this, l, r)), addEvent(l, "mouseover", Page.actionsDropdownUnhide), addEvent(l, "mouseout", Page.actionsDropdownHide.bind(this, this.buttonEditorDropdown)), addEvent(Object(s.I)("pretty-card__button-remove", l), "click", this.buttonRemoveClicked.bind(this, l)), this.initPhotoUploader(r), addEvent(r, "mousedown", this.onCardMouseDown.bind(this, r)), addEvent(geByTag1("body"), "mouseup", this.onCardMouseUp.bind(this, r))
                 }
             }
             setLink(t, e, r) {
-                var i = Object(s.H)("pretty-card__link-editor", t);
+                var i = Object(s.I)("pretty-card__link-editor", t);
                 i.innerHTML = r, t.prettyCardLink = e;
                 var o = "tel:" === e.substr(0, 4);
                 toggleClass(i, "pretty-card__link-editor_phone_yes", o)
             }
             initPhotoUploader(t) {
-                var e = Object(s.H)("pretty-card__upload-photo-button", t),
-                    r = Object(s.H)("pretty-card__edit-button_action_photo", t),
-                    i = Object(s.H)("pretty-card__upload-progress", t),
+                var e = Object(s.I)("pretty-card__upload-photo-button", t),
+                    r = Object(s.I)("pretty-card__edit-button_action_photo", t),
+                    i = Object(s.I)("pretty-card__upload-progress", t),
                     o = extend({}, this.options.upload_options_changed, {
                         clear: !0,
                         onUploadStart: this.onPhotoUploadStart.bind(this, i),
@@ -285,7 +285,7 @@
             onPhotoUploadError(t, e, r) {
                 debugLog("Upload error, msg:", r), r = "При загрузке произошла ошибка, проверьте, что размер изображения не менее 400х400 пикселей и удовлетворяет требованиям.", showFastBox({
                     title: getLang("global_error")
-                }, r), hideProgress(t), Object(s.hb)(t, "pretty-card__upload-progress_shown_yes"), Upload.embed(e)
+                }, r), hideProgress(t), Object(s.ib)(t, "pretty-card__upload-progress_shown_yes"), Upload.embed(e)
             }
             onPhotoUploadComplete(t, e, r, i) {
                 var o;
@@ -294,7 +294,7 @@
                     o = parseJSON(i)
                 } catch (t) {}
                 o && o.photo ? UploadPhotoTransform.getPhotoUrl(o, this.options.stored_photo_size_list, function(r) {
-                    debugLog("Success uploading photo"), this.setPhoto(e, r), e.prettyCardPhoto = o.photo, hideProgress(t), Object(s.hb)(t, "pretty-card__upload-progress_shown_yes")
+                    debugLog("Success uploading photo"), this.setPhoto(e, r), e.prettyCardPhoto = o.photo, hideProgress(t), Object(s.ib)(t, "pretty-card__upload-progress_shown_yes")
                 }.bind(this), function() {
                     debugLog("Error uploading photo"), hideProgress(t), hide(t)
                 }.bind(this)) : Upload.onUploadError(r)
@@ -306,14 +306,14 @@
                 t.renewComplete ? Upload.embed(e) : (t.renewComplete = !0, setTimeout(UploadPhotoTransform.reinit.pbind(e), 1))
             }
             setPhoto(t, e) {
-                var r = Object(s.H)("pretty-card__photo", t),
-                    i = Object(s.H)("pretty-card__photo-fader", t);
+                var r = Object(s.I)("pretty-card__photo", t),
+                    i = Object(s.I)("pretty-card__photo-fader", t);
                 setStyle(i, {
                     backgroundImage: "url(" + e + ")"
-                }), hide(Object(s.H)("pretty-card__upload-photo-button", r)), Object(s.a)(i, "pretty-card__photo-fader_top_yes"), setTimeout(() => {
+                }), hide(Object(s.I)("pretty-card__upload-photo-button", r)), Object(s.a)(i, "pretty-card__photo-fader_top_yes"), setTimeout(() => {
                     setStyle(r, {
                         backgroundImage: "url(" + e + ")"
-                    }), Object(s.hb)(i, "pretty-card__photo-fader_top_yes"), Object(s.hb)(r, "pretty-card__photo_upload_yes")
+                    }), Object(s.ib)(i, "pretty-card__photo-fader_top_yes"), Object(s.ib)(r, "pretty-card__photo_upload_yes")
                 }, 200)
             }
             onCardMouseDown(t, e) {
@@ -327,15 +327,15 @@
                     this.cardsElements[r];
                     this.wrapperTransitions(!0, t), setStyle(t, {
                         transform: "translateX(" + (r - e) * (this.CARD_WIDTH + this.CARDS_MARGIN) + "px)"
-                    }), Object(s.hb)(t, "pretty-card_dragging_yes"), setTimeout(() => {
-                        Object(s.hb)(t, "pretty-card_ontop_yes");
+                    }), Object(s.ib)(t, "pretty-card_dragging_yes"), setTimeout(() => {
+                        Object(s.ib)(t, "pretty-card_ontop_yes");
                         var i = !0,
                             o = !1,
                             a = void 0;
                         try {
                             for (var n, d = this.cardsElements[Symbol.iterator](); !(i = (n = d.next()).done); i = !0) {
                                 var l = n.value;
-                                this.wrapperTransitions(!1, l), Object(s.hb)(l, "pretty-card_dragging_right"), Object(s.hb)(l, "pretty-card_dragging_left"), setStyle(l, {
+                                this.wrapperTransitions(!1, l), Object(s.ib)(l, "pretty-card_dragging_right"), Object(s.ib)(l, "pretty-card_dragging_left"), setStyle(l, {
                                     transform: ""
                                 })
                             }
@@ -372,7 +372,7 @@
                 }), Page.actionsDropdown(this.buttonEditorDropdown)
             }
             setButtonRaw(t, e, r) {
-                Object(s.hb)(t, "button_contour"), Object(s.a)(t, "button_bright_blue"), Object(s.H)("pretty-card__button-editor-label", t).innerHTML = r
+                Object(s.ib)(t, "button_contour"), Object(s.a)(t, "button_bright_blue"), Object(s.I)("pretty-card__button-editor-label", t).innerHTML = r
             }
             setButton(t, e, r) {
                 var s = r[e],
@@ -384,13 +384,13 @@
                 this.setButton(t, e, r), Page.actionsDropdownHide(this.buttonEditorDropdown, 1)
             }
             buttonRemoveClicked(t) {
-                return Object(s.a)(t, "button_contour"), Object(s.hb)(t, "button_bright_blue"), Object(s.H)("pretty-card__button-editor-label", t).innerHTML = getLang("global_wall_pretty_cards_add_button"), Page.actionsDropdownHide(this.buttonEditorDropdown, 1), t.prettyCardButtonKey = "", !1
+                return Object(s.a)(t, "button_contour"), Object(s.ib)(t, "button_bright_blue"), Object(s.I)("pretty-card__button-editor-label", t).innerHTML = getLang("global_wall_pretty_cards_add_button"), Page.actionsDropdownHide(this.buttonEditorDropdown, 1), t.prettyCardButtonKey = "", !1
             }
             togglePrice(t, e) {
                 toggleClass(t, "pretty-card__price_hidden_yes", !!e), toggleClass(domNS(t), "pretty-card__price-wrapper_hidden_yes", !e)
             }
             priceAdderClicked(t) {
-                this.togglePrice(t, !0), elfocus(Object(s.H)("pretty-card__editor", domNS(t)))
+                this.togglePrice(t, !0), elfocus(Object(s.I)("pretty-card__editor", domNS(t)))
             }
             priceRemoverClicked(t) {
                 this.togglePrice(t, !1)
@@ -405,7 +405,7 @@
                     var r, i = intval(e.replace(/\D+/g, ""));
                     i = Math.min(i, intval(this.options.price_max)), r = 0 === (i = Math.max(i, intval(this.options.price_min))) ? getLang("wall_pretty_cards_price_free_val") : stripHTML(langNumeric(i, getLang("global_money_amount_rub_short", "raw"), !0)), val(t, r)
                 } else {
-                    var o = Object(s.H)("pretty-card__price-adder", gpeByClass("pretty-card__price-container", t));
+                    var o = Object(s.I)("pretty-card__price-adder", gpeByClass("pretty-card__price-container", t));
                     this.togglePrice(o, !1)
                 }
             }
@@ -417,8 +417,8 @@
                     a = this.scrollPosition,
                     n = this.scrollPosition * (this.CARD_WIDTH + this.CARDS_MARGIN);
                 !o && i > this.VIEWPORT_CARDS ? n -= 2 * r : a && (n -= r), this.translateX = n, e && (Object(s.a)(this.wrapper, "pretty-cards__wrapper_transition_long"), setTimeout(() => {
-                    Object(s.hb)(this.wrapper, "pretty-cards__wrapper_transition_long")
-                }, this.TRANSFORM_ANIMATION_DURATION_LONG)), Object(s.hb)(this.wrapper, "pretty-cards__wrapper_transition_off"), setStyle(this.wrapper, "transform", "translateX(" + -n + "px)"), toggleClass(this.scrollerRight, "pretty-cards__scroller_hidden_right", !o), toggleClass(this.scrollerLeft, "pretty-cards__scroller_hidden_left", !a), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_left", t < 0), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_right", t >= 0), show(this.scrollerProtector);
+                    Object(s.ib)(this.wrapper, "pretty-cards__wrapper_transition_long")
+                }, this.TRANSFORM_ANIMATION_DURATION_LONG)), Object(s.ib)(this.wrapper, "pretty-cards__wrapper_transition_off"), setStyle(this.wrapper, "transform", "translateX(" + -n + "px)"), toggleClass(this.scrollerRight, "pretty-cards__scroller_hidden_right", !o), toggleClass(this.scrollerLeft, "pretty-cards__scroller_hidden_left", !a), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_left", t < 0), toggleClass(this.scrollerProtector, "pretty-cards__scroller_position_right", t >= 0), show(this.scrollerProtector);
                 return this.draggingCard && this.cardsElements.indexOf(this.draggingCard), this.cardsPos = n, !1
             }
             updateCardsIds(t) {
@@ -462,7 +462,7 @@
                                         d = !1;
                                     n > this.VIEWPORT_CARDS - 1 ? (this.scroll(n - (this.VIEWPORT_CARDS - 1)), d = !0) : n < 0 && (this.scroll(n), d = !0);
                                     setTimeout(() => {
-                                        Object(s.a)(a, "pretty-card_error_yes"), setTimeout(s.hb.pbind(a, "pretty-card_error_yes"), 1e3)
+                                        Object(s.a)(a, "pretty-card_error_yes"), setTimeout(s.ib.pbind(a, "pretty-card_error_yes"), 1e3)
                                     }, d ? this.TRANSFORM_ANIMATION_DURATION + 300 : 300)
                                 }
                             }
@@ -490,19 +490,19 @@
                     for (var a, n = this.cardsElements[Symbol.iterator](); !(r = (a = n.next()).done); r = !0) {
                         var d = a.value;
                         if (d !== this.placeholderElement) {
-                            var l = Object(s.H)("pretty-card__price_actual", d),
+                            var l = Object(s.I)("pretty-card__price_actual", d),
                                 h = val(l),
                                 c = void 0;
                             hasClass(domPN(l), "pretty-card__price-wrapper_hidden_yes") ? c = this.options.price_unshown : "" === (c = h.replace(/\D+/g, "")) && h && (c = "0");
-                            var p = Object(s.H)("pretty-card__price_old", d),
+                            var p = Object(s.I)("pretty-card__price_old", d),
                                 _ = val(p),
                                 g = void 0;
                             hasClass(domPN(p), "pretty-card__price-wrapper_hidden_yes") ? g = this.options.price_unshown : "" === (g = _.replace(/\D+/g, "")) && _ && (g = "0");
-                            var u = Object(s.H)("pretty-card__button", d),
+                            var u = Object(s.I)("pretty-card__button", d),
                                 b = d.prettyCardId,
                                 y = {
                                     id: b,
-                                    title: val(Object(s.H)("pretty-card__title", d)),
+                                    title: val(Object(s.I)("pretty-card__title", d)),
                                     price: c,
                                     price_old: g,
                                     button: u.prettyCardButtonKey ? u.prettyCardButtonKey : "",

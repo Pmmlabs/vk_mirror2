@@ -171,6 +171,24 @@
     margin-top: 15px
 }
 
+.statlogs_date_wrap {
+    display: -ms-flexbox;
+    display: flex;
+    width: 200px
+}
+
+.statlogs_date_wrap .datepicker_container {
+    -ms-flex: 0 1 100px;
+    flex: 0 1 100px
+}
+
+.statlogs_date_wrap .flat_button {
+    -ms-flex: 1;
+    flex: 1;
+    margin-top: 0!important;
+    margin-left: 8px
+}
+
 .statlogs_edit_label {
     width: 150px;
     text-align: left;

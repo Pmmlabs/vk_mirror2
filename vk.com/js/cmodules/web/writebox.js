@@ -1,9 +1,9 @@
 ﻿! function(e) {
     function t(t) {
-        for (var o, n, c = t[0], m = t[1], u = t[2], l = 0, b = []; l < c.length; l++) n = c[l], i[n] && b.push(i[n][0]), i[n] = 0;
+        for (var o, n, c = t[0], m = t[1], d = t[2], l = 0, b = []; l < c.length; l++) n = c[l], i[n] && b.push(i[n][0]), i[n] = 0;
         for (o in m) Object.prototype.hasOwnProperty.call(m, o) && (e[o] = m[o]);
-        for (d && d(t); b.length;) b.shift()();
-        return a.push.apply(a, u || []), r()
+        for (u && u(t); b.length;) b.shift()();
+        return a.push.apply(a, d || []), r()
     }
 
     function r() {
@@ -67,11 +67,11 @@
     var c = window.webpackJsonp = window.webpackJsonp || [],
         m = c.push.bind(c);
     c.push = t, c = c.slice();
-    for (var u = 0; u < c.length; u++) t(c[u]);
-    var d = m;
-    a.push([175, "bundles/common", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
+    for (var d = 0; d < c.length; d++) t(c[d]);
+    var u = m;
+    a.push([176, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
 }({
-    175: function(e, t, r) {
+    176: function(e, t, r) {
         e.exports = r("rUY3")
     },
     rUY3: function(e, t, r) {
@@ -112,9 +112,9 @@
                             mbBannedHim: t.bannedhim,
                             ldb: Object(o.c)(vk.id)
                         }), t.emojiRcnt && !cur.mbRcntEmoji) {
-                        for (var n = [], c = t.emojiRcnt, m = 0, u = c.length; m < u; ++m) {
-                            var d = c[m];
-                            d && n.push('<a id="mbe_rc_em_' + d + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + d + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(d, !1, !0) + "</a>")
+                        for (var n = [], c = t.emojiRcnt, m = 0, d = c.length; m < d; ++m) {
+                            var u = c[m];
+                            u && n.push('<a id="mbe_rc_em_' + u + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + u + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(u, !1, !0) + "</a>")
                         }
                         cur.mbRcntEmoji = n.join("")
                     }
@@ -244,9 +244,9 @@
                         if (o && (r.message = o), cur.mbMedia.chosenMedias) {
                             for (var i = cur.mbMedia.getMedias(), a = [], n = 0, c = i.length; n < c; ++n) {
                                 var m = i[n],
-                                    u = [];
-                                for (var d in m) "object" != typeof m[d] && u.push(m[d]);
-                                a.push(u.join(","))
+                                    d = [];
+                                for (var u in m) "object" != typeof m[u] && d.push(m[u]);
+                                a.push(d.join(","))
                             }
                             r.media = a.join("*")
                         }
