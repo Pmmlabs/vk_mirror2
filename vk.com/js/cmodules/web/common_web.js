@@ -143,7 +143,9 @@
             2 === Object(_web_lib_utils_common__WEBPACK_IMPORTED_MODULE_3__.r)(t[1]) ? e._captcha = Object(_web_lib_message_box__WEBPACK_IMPORTED_MODULE_4__.e)(t[0], t[2], e._captcha, {
                 onSubmit: function(t) {
                     var i = _extends({}, o, {
-                        recaptcha: t
+                        recaptcha: t,
+                        captcha_sid: null,
+                        captcha_key: null
                     });
                     e.resend(i, resetOptionsCache(e))
                 },
