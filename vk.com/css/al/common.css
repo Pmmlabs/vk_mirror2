@@ -2026,7 +2026,8 @@ body.mac #page_header_cont {
     left: 21px;
     background-color: #ff734c;
     text-align: center;
-    position: absolute
+    position: absolute;
+    z-index: 1
 }
 
 #top_notify_btn.has_notify .top_notify_count {
