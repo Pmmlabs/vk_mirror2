@@ -6741,9 +6741,8 @@ div.pm_item .pm_counter {
     font-size: 13px;
     line-height: 16px;
     text-transform: lowercase;
-    padding: 0;
-    margin: 0 0 -3px;
-    height: 19px
+    padding: 0 0 3px;
+    margin: 0 0 -3px
 }
 
 .pp_last_activity .lvi {

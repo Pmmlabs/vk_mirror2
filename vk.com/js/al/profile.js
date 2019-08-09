@@ -880,12 +880,9 @@ var Profile = {
                     var online = geByClass1('_profile_online');
                     if (evType == 'online') {
                         evData = intval(evData);
-                        setStyle('profile_mobile_online', {
-                            display: (evData && evData != 1) ? 'inline' : 'none'
-                        });
-                        addClass(online, 'is_online');
+                        online.innerHTML = '<div class="profile_online_lv">' + getLang('global_online') + '</div>';
                     } else if (evType == 'offline') {
-                        removeClass(online, 'is_online');
+                        online.innerHTML = '';
                     }
                 }
             }

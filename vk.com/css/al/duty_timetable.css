@@ -245,6 +245,10 @@ tr:hover .dtt_month_u_template_edit {
     width: 23px
 }
 
+.cell_inactive .dtt_month_d_c:hover {
+    cursor: default
+}
+
 .dtt_month_r_l {
     border-bottom: 1px solid #d3d9de
 }

@@ -2553,12 +2553,6 @@ textarea.EditableLabel__textarea {
     color: #000
 }
 
-.StoryQuestion__title--small {
-    font-size: 12.5px;
-    line-height: 15px;
-    -webkit-line-clamp: 4
-}
-
 .StoryQuestion__title--free {
     height: auto;
     -webkit-line-clamp: 5
@@ -2580,16 +2574,11 @@ textarea.EditableLabel__textarea {
 }
 
 .StoryQuestion__reply {
-    background-color: #6690c7;
     border-radius: 7px
 }
 
 .StoryQuestion__replyModal .BaseModal__content {
     width: 360px
-}
-
-.StoryQuestion__reportModal .BaseModal__content {
-    width: 450px
 }
 
 .StoryQuestion__textarea {
@@ -2614,14 +2603,18 @@ textarea.EditableLabel__textarea {
     flex-shrink: 0
 }
 
-.StoryQuestionReportForm .radiobtn {
-    line-height: 16px;
-    margin-top: 10px
+.StoryQuestionReportForm .BaseModal__content {
+    width: 450px
 }
 
 .StoryQuestionReportForm__content {
     padding: 20px 0;
     line-height: 19px
+}
+
+.StoryQuestionReportForm__content .Radio {
+    line-height: 16px;
+    margin-top: 10px
 }
 
 .StoryQuestionReportForm__title {
@@ -6277,6 +6270,10 @@ textarea.EditableLabel__textarea {
 .stories_feedback_questions {
     position: relative;
     white-space: nowrap
+}
+
+.stories_feedback_questions_wrap {
+    overflow: hidden
 }
 
 .stories_feedback_questions_items {

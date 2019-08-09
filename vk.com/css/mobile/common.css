@@ -6756,9 +6756,8 @@ div.pm_item .pm_counter {
     font-size: 13px;
     line-height: 16px;
     text-transform: lowercase;
-    padding: 0;
-    margin: 0 0 -3px;
-    height: 19px
+    padding: 0 0 3px;
+    margin: 0 0 -3px
 }
 
 .pp_last_activity .lvi {
@@ -49894,6 +49893,11 @@ body.apps_settingsPageBody .basis__content {
     font-weight: 500;
     letter-spacing: -0.2px;
     color: #45678f
+}
+
+.Question__actions_published {
+    background: #f2f3f5;
+    color: #909499
 }
 
 .Question__popup .Popup__wrap {

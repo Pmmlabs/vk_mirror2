@@ -680,18 +680,6 @@ div.profile_online {
     text-align: center
 }
 
-.profile_online_lv {
-    display: none
-}
-
-.is_online .profile_online_lv {
-    display: block
-}
-
-.is_online .profile_time_lv {
-    display: none
-}
-
 #profile_class {
     position: relative
 }

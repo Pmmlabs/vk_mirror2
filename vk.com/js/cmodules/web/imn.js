@@ -12292,7 +12292,7 @@
 
         function On(e, t, n, r) {
             if (n[0]) return ye("mail_header_online_status") + (Be[n[0]] ? wn(t, !1, !1, !0) : "");
-            if (!n[1]) return "";
+            if (!n[1] || Date.now() - 1e3 * n[1] > 7776e6) return "";
             var a = ke(n[1], e.timeshift),
                 i = je(Object(_.c)(e, t).sex, ye("mail_last_activity_tip", "raw")).replace("{user}", "").replace("{time}", a);
             return n[2] && (i += wn(t, !1, !1, r)), i
