@@ -795,38 +795,6 @@ var ProfileEditor = {
         cur.relGuid++;
     },
 
-    switchUnits: function() {
-        var curMeasure = cur.options.measure = cur.options.measure == 1 ? 2 : 1,
-            curW = cur.uiWeight.val(),
-            curH = cur.uiHeight.val(),
-            newWeightData = cur.options.weights[curMeasure],
-            newHeightData = cur.options.heights[curMeasure],
-            newW = curW,
-            newH = curH;
-
-        if (newH >= 140 && newH <= 220) each(newHeightData, function() {
-            if (this[0] >= 140 && this[0] <= 220 && this[0] >= curH) {
-                newH = this[0];
-                return false;
-            }
-        });
-        cur.uiHeight.setData(newHeightData);
-        cur.uiHeight.val(newH);
-
-        if (newW >= 40 && newW <= 140) each(newWeightData, function() {
-            if (this[0] >= 40 && this[0] <= 140 && this[0] >= curW) {
-                newW = this[0];
-                return false;
-            }
-        });
-        cur.uiWeight.setData(newWeightData);
-        cur.uiWeight.val(newW);
-        ge('pedit_units_toggler').innerHTML = curMeasure == 1 ? getLang('profileEdit_switch_to_meters') : getLang('profileEdit_switch_to_inches');
-        ge('pedit_height_title').innerHTML = curMeasure == 1 ? getLang('profileEdit_height_in') : getLang('profileEdit_height_cm');
-        ge('pedit_weight_title').innerHTML = curMeasure == 1 ? getLang('profileEdit_weight_lbs') : getLang('profileEdit_weight_kg');
-    },
-
-
     removeRelation: function(type, id) {
         var wrap = ge('pedit_wrap_' + type + id);
         if (!wrap) return;

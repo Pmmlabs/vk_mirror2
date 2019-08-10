@@ -7542,7 +7542,7 @@
                     }
                 },
                 setMessageErrored(e, n, r, i) {
-                    r && m().showError(r), Object(a.mc)(e, n, t)
+                    r && "string" == typeof r && m().showError(r), Object(a.mc)(e, n, t)
                 },
                 markMessagesAsRead(e, n) {
                     e.get().peer === n.peerId && Object(a.Lb)(e.get(), n.peerId, t)

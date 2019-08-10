@@ -61,6 +61,16 @@ body.fixed {
     right: 0
 }
 
+@media (min-width: 882px) {
+    html {
+        overflow-x: auto;
+        overflow-y: scroll
+    }
+    body {
+        overflow: visible
+    }
+}
+
 .button::-moz-focus-inner,
 .small_button::-moz-focus-inner,
 input::-moz-focus-inner {
