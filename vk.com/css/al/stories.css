@@ -941,7 +941,7 @@ textarea.EditableLabel__textarea {
     right: 0;
     border-width: 2px;
     border-style: solid;
-    border-color: inherit;
+    border-color: var(--avatar-online-pane, inherit);
     height: 6px;
     width: 6px;
     border-radius: 50%;
@@ -954,7 +954,7 @@ textarea.EditableLabel__textarea {
     width: 6px;
     border-radius: 3px;
     background-size: cover;
-    background-color: #fff;
+    background-color: var(--avatar-online-pane, #fff);
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%207%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%238AC176%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-203.000000%2C%20-422.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M203%2C423.506439%20C203%2C422.674456%20203.671189%2C422%20204.501676%2C422%20L208.498324%2C422%20C209.327677%2C422%20210%2C422.671541%20210%2C423.506439%20L210%2C431.493561%20C210%2C432.325544%20209.328811%2C433%20208.498324%2C433%20L204.501676%2C433%20C203.672323%2C433%20203%2C432.328459%20203%2C431.493561%20L203%2C423.506439%20Z%20M204%2C424%20L209%2C424%20L209%2C430%20L204%2C430%20L204%2C424%20Z%22%20id%3D%22mobile_m%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
@@ -2479,6 +2479,52 @@ textarea.EditableLabel__textarea {
 .Radio__input:disabled+.Radio__control,
 .Radio__input:disabled~.Radio__text {
     opacity: .45
+}
+
+.TextTruncate {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.VerifiedMarker {
+    width: 16px;
+    height: 16px;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%3E%0A%20%20%3Cpath%20fill%3D%22%2374A2D6%22%20d%3D%22M5.823%2014.822l-1.28.206a.824.824%200%200%201-.9-.52l-.463-1.212a.824.824%200%200%200-.476-.476l-1.212-.462a.824.824%200%200%201-.52-.9l.206-1.281a.824.824%200%200%200-.175-.65L.185%208.52a.824.824%200%200%201%200-1.04l.818-1.006a.824.824%200%200%200%20.175-.65L.972%204.542a.824.824%200%200%201%20.52-.9l1.212-.463a.824.824%200%200%200%20.476-.476l.462-1.212a.824.824%200%200%201%20.9-.52l1.281.206a.824.824%200%200%200%20.65-.175L7.48.185a.824.824%200%200%201%201.04%200l1.006.818a.824.824%200%200%200%20.65.175l1.281-.206a.824.824%200%200%201%20.9.52l.463%201.212c.084.22.257.392.476.476l1.212.462c.365.14.582.515.52.9l-.206%201.281a.824.824%200%200%200%20.175.65l.818%201.007a.824.824%200%200%201%200%201.04l-.818%201.006a.824.824%200%200%200-.175.65l.206%201.281a.824.824%200%200%201-.52.9l-1.212.463a.824.824%200%200%200-.476.476l-.462%201.212a.824.824%200%200%201-.9.52l-1.281-.206a.824.824%200%200%200-.65.175l-1.007.818a.824.824%200%200%201-1.04%200l-1.006-.818a.824.824%200%200%200-.65-.175z%22%2F%3E%0A%20%20%3Cpath%20stroke%3D%22%23FFF%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4.755%208.252L7%2010.5l4.495-4.495%22%2F%3E%0A%3C%2Fsvg%3E') 50% / contain no-repeat
+}
+
+.OwnerName {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.OwnerName__verified {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-left: 1ch
+}
+
+.Counter {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 18px;
+    border-radius: 18px;
+    padding: 0 6px;
+    background-color: #5181b8;
+    font: 500 11px/12px -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #fff
+}
+
+.Counter--muted {
+    background-color: #b2b7c2
 }
 
 .StoryQuestion {

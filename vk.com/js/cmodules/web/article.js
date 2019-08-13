@@ -363,7 +363,7 @@
                         article: 1
                     }, {
                         cache: 1,
-                        stat: ["photos.js", "photos.css", "upload.js"]
+                        stat: [jsc("web/photos.js"), "photos.css", "upload.js"]
                     });
                     cur.chooseMedia = this.onPhotoAdd.bind(this), cur.showMediaProgress = (() => {
                         show(this._els.loading), t.getEditor().setMediaUploadMode(!0)
@@ -588,7 +588,7 @@
                 return !(!e && !e.size) && e.size[0] >= 720
             }
         }
-        class C extends l {
+        class j extends l {
             constructor(e, t) {
                 super(e, t, !0)
             }
@@ -609,7 +609,7 @@
             onViewport(e) {}
             onRender() {}
         }
-        class j extends l {
+        class C extends l {
             constructor(e, t) {
                 super(e, t, !0)
             }
@@ -1208,8 +1208,8 @@
             fe = G.clean,
             me = G.domReplaceEl,
             ye = G.isObject,
-            Ce = G.ge,
-            je = G.domChildIndex,
+            je = G.ge,
+            Ce = G.domChildIndex,
             Ee = G.domNS,
             Oe = (G.lineHtml, {
                 KeyA: 65,
@@ -1263,7 +1263,7 @@
             constructor(e, t, i) {
                 var a = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
                 this._id = Se(), V.lang = V.lang || {}, pe(V.lang, a.lang), this._options = a, this._els = {
-                        editor: Ce(e),
+                        editor: je(e),
                         canvas: de('<div class="article_editor_canvas article_edit article" contenteditable="true"></div>')
                     }, this._els.editor.appendChild(this._els.canvas), this._els.editor.appendChild(this._photoUploadEl = de('<div class="article_photo_upload"></div>')), J(this._els.editor, "article_editor"), this._dirty = [], this._undos = [], this._redos = [], this._objects = {}, this._floatedObjects = [],
                     function(e) {
@@ -1459,7 +1459,7 @@
                 else if (i = t.match(/^https?:\/\/(?:www.)?facebook\.com\/(\w.+)\/posts\/(\d+)\/?$/)) a = p.c.ObjectFacebook, s = `${i[1]};${i[2]}`;
                 else if (i = t.match(/^(?:https?:\/\/)?(?:[a-z0-9\_\.-]*\.)?(?:www.)?vk\.com\/(?:[a-z0-9\_\.-?]*w=)?wall(-?\d+)_(\d+)/)) a = p.c.ObjectVK, s = `${i[1]};${i[2]}`;
                 else if (i = t.match(/^https?:\/\/(?:www.)?t\.me\/(\w.+)\/(\d+)/)) {
-                    if (Ce(`telegram-post-${i[1]}-${i[2]}`)) return !1;
+                    if (je(`telegram-post-${i[1]}-${i[2]}`)) return !1;
                     a = p.c.ObjectTelegram, s = `${i[1]};${i[2]}`
                 }
                 if (!a || !s) return !1;
@@ -2504,7 +2504,7 @@
                         article: 1
                     }, {
                         cache: 1,
-                        stat: ["photos.js", "photos.css", "upload.js"],
+                        stat: [jsc("web/photos.js"), "photos.css", "upload.js"],
                         dark: 1
                     });
                 V.onMediaUploadStarted = (() => {
@@ -2892,8 +2892,8 @@
                             }
                             if ((t == Oe.Delete || t == Oe.Backspace) && this._resizeTooltip && this._resizeTooltip.isShown() && this._resizeTooltip.hide(), t == Oe.Tab && g && 0 == b) return Object(r.o)(this._getParagraphElByIndex(1)), cancelEvent(e);
                             if (s && t == Oe.KeyA && Object(r.D)(m) && m._object.isCaptionFocused()) {
-                                var C = m._object.getCaptionEl();
-                                return Object(r.S)(C), cancelEvent(e)
+                                var j = m._object.getCaptionEl();
+                                return Object(r.S)(j), cancelEvent(e)
                             }
                             if (s) switch (t) {
                                 case Oe.KeyB:
@@ -2907,11 +2907,11 @@
                                 case Oe.KeyY:
                                     return this.redo(), cancelEvent(e)
                             }
-                            var j = t == Oe.KeyC && e.altKey,
+                            var C = t == Oe.KeyC && e.altKey,
                                 E = m ? m.type : p.c.Text,
                                 O = Object(R.V)("pre", u.startContainer),
                                 P = !!(O || Object(R.V)("pre", u.endContainer) || u.startContainer.nodeType == Node.ELEMENT_NODE && "PRE" == u.startContainer.tagName);
-                            if (j) {
+                            if (C) {
                                 if (E === p.c.Header1) return cancelEvent(e);
                                 if (g) return this._toggleCodeBlocks(), cancelEvent(e);
                                 if (!P && inArray(E, [p.c.Text, p.c.NumericList, p.c.BulletList])) {
@@ -2999,7 +2999,7 @@
                                     var ce = K(getCaretCharacterOffsetWithin(oe), 2)[1],
                                         _e = te("li", u.startContainer),
                                         pe = 0;
-                                    _e && (pe = je(_e));
+                                    _e && (pe = Ce(_e));
                                     var ue = !1;
                                     if (Y(ne.lines, (e, t) => {
                                             var i = t.brs,
@@ -3081,10 +3081,10 @@
                             t = new y(i, this, e);
                             break;
                         case p.c.ObjectVideo:
-                            t = new C(i, this);
+                            t = new j(i, this);
                             break;
                         case p.c.ObjectGIF:
-                            t = new j(i, this);
+                            t = new C(i, this);
                             break;
                         case p.c.ObjectAudio:
                             t = new P(i, this);
