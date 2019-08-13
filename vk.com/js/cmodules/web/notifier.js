@@ -1054,7 +1054,8 @@
                     }, {
                         onDone: function(e) {
                             FastChat.clistGotOnlines(e), FastChat.lcSend("clistOnlines", e)
-                        }
+                        },
+                        onFail: () => !0
                     })
                 }
             },
@@ -2631,6 +2632,106 @@
                     })))
                 }
             }
+        }
+    },
+    N1NS: function(e, t, i) {
+        "use strict";
+        i("rE2o"), i("ioFf"), i("rGqo"), i("Btvt"), i("KKXr");
+
+        function a(e, t) {
+            return function(e) {
+                if (Array.isArray(e)) return e
+            }(e) || function(e, t) {
+                var i = [],
+                    a = !0,
+                    o = !1,
+                    r = void 0;
+                try {
+                    for (var s, n = e[Symbol.iterator](); !(a = (s = n.next()).done) && (i.push(s.value), !t || i.length !== t); a = !0);
+                } catch (e) {
+                    o = !0, r = e
+                } finally {
+                    try {
+                        a || null == n.return || n.return()
+                    } finally {
+                        if (o) throw r
+                    }
+                }
+                return i
+            }(e, t) || function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }()
+        }
+        var o = new window.Map;
+
+        function r(e) {
+            var t = o.get(e.currentTarget);
+            if (t) {
+                var i = t[e.type];
+                if (i)
+                    for (var r, s = 0; s < i.length; s++) {
+                        var n = a(i[s], 2),
+                            c = n[0],
+                            l = n[1],
+                            d = void 0;
+                        if (hasClass(e.target, c) ? d = l(e, e.target) : (r = gpeByClass(c, e.target, e.currentTarget)) && (d = l(e, r)), !1 === d) break
+                    }
+            }
+        }
+        i.d(t, "b", function() {
+            return l
+        }), i.d(t, "a", function() {
+            return u
+        }), i.d(t, "c", function() {
+            return f
+        });
+        var s = window,
+            n = s.addEvent,
+            c = s.removeEvent;
+
+        function l(e) {
+            return {
+                callMutations() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e(...arguments)
+                }
+            }
+        }
+
+        function d(e, t, i, a, s) {
+            ! function(e, t, i, a) {
+                var s = o.get(e);
+                s || (o.set(e, {}), s = o.get(e));
+                for (var n = t.split(" "), c = 0; c < n.length; c++) {
+                    var l = n[c];
+                    s[l] || (s[l] = [], addEvent(e, l, r)), s[l].push([i, a])
+                }
+            }(t, i, a, s), e._registeredHandlers.push(["delegate", t, i, a, s])
+        }
+
+        function u(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(function(e, t, i, a) {
+                n(t, i, a), e._registeredHandlers.push(["bind", t, i, a])
+            }.bind(null, t), d.bind(null, t)), t
+        }
+
+        function f(e) {
+            e._registeredHandlers.forEach(e => {
+                var t = e.slice(1);
+                "delegate" === e[0] ? function(e, t, i, a) {
+                    var s = o.get(e);
+                    s && (t.split(" ").forEach(t => {
+                        s[t] && (s[t] = s[t].filter(e => e[0] !== i || e[1] !== a), 0 === s[t].length && removeEvent(e, t, r))
+                    }), 0 === Object.keys(s).map(e => s[e].length).reduce((e, t) => e + t) && o.delete(e))
+                }(...t) : c(...t)
+            }), e._registeredHandlers = []
         }
     },
     "P+eJ": function(e, t, i) {

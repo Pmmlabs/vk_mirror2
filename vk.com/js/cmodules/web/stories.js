@@ -110,6 +110,9 @@
             getContainer() {
                 return this.el
             }
+            getScroller() {
+                return null
+            }
             scrollBottom(e) {
                 if (void 0 === e) return this.contHeight() - this.scrollTop() - this.getScrollHeight();
                 var t = this.contHeight() - e - this.getScrollHeight();
@@ -159,6 +162,9 @@
             getContainer() {
                 return this.scroll.content
             }
+            getScroller() {
+                return this.scroll.scroller
+            }
             contHeight() {
                 return this.scroll.data.scrollHeight
             }
@@ -188,6 +194,9 @@
             update() {}
             getContainer() {
                 return this.el
+            }
+            getScroller() {
+                return null
             }
             scrollTop(e) {
                 return 0

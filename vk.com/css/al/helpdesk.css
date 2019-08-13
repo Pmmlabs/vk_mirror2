@@ -11,6 +11,7 @@
 .helpdesk_m_table_status.status_opened,
 .helpdesk_marked_user_row_processing .helpdesk_marked_user_row_marks,
 .helpdesk_mobile_ticket,
+.helpdesk_pass_with_hidden_comments_toggle:after,
 .helpdesk_settings_button,
 .helpdesk_user_data_settings_button,
 .helpdesk_user_marks.helpdesk_user_marks_processing {
@@ -3323,4 +3324,39 @@ body.body_helpdesk_small_sb .left_menu_nav {
     white-space: nowrap;
     display: table-cell;
     vertical-align: middle
+}
+
+.helpdesk_pass_with_hidden_comments {
+    margin-bottom: -20px
+}
+
+.helpdesk_pass_with_hidden_comments_author {
+    font-weight: 600
+}
+
+.helpdesk_pass_with_hidden_comments_comment {
+    margin-top: 5px;
+    color: #000
+}
+
+.helpdesk_pass_with_hidden_comments_comment .tickets_reply_actions {
+    margin-top: 5px
+}
+
+.helpdesk_pass_with_hidden_comments_toggle:after {
+    content: '';
+    display: inline-block;
+    margin: 0 0 1px 5px;
+    width: 9px;
+    height: 5px;
+    background: url(/images/icons/multidd.png?2) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .helpdesk_pass_with_hidden_comments_toggle:after {
+        background-image: url(/images/icons/multidd_2x.png?2);
+        background-size: 10px 53px
+    }
 }
