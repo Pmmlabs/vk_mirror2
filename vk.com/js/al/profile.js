@@ -887,19 +887,6 @@ var Profile = {
                 }
             }
 
-            if (browser.msie && intval(browser.version) < 11) {
-                re(geByClass1('profile_1april_button_wrap', 'narrow_column'));
-                return;
-            }
-            if (browser.opera && intval(browser.version) < 13) {
-                re(geByClass1('profile_1april_button_wrap', 'narrow_column'));
-            }
-            if (opts.stickers_1april && opts.stickers_1april.length) {
-                Profile.render1AprilStickers(opts.stickers_1april);
-            } else {
-                addClass(geByClass1('page_avatar_wrap'), 'no_stickers_1april');
-            }
-
             var friendsBlock = ge('profile_friends_recomm');
 
             if (friendsBlock) {
@@ -1010,51 +997,6 @@ var Profile = {
             });
             cancelEvent(event);
             return false;
-        },
-        render1AprilStickers: function(stickers) {
-            var cont = geByClass1('page_avatar_wrap', 'profile');
-            addClass(cont, 'stickers_added_1april');
-
-            var stickersEls = geByClass('profile_1april_sticker', cont);
-            for (var i = 0; i < stickersEls.length; i++) {
-                re(stickersEls[i]);
-            }
-
-            for (var i = 0; i < stickers.length; i++) {
-                var sticker = stickers[i];
-                var el = ce('div', {
-                    className: 'profile_1april_sticker',
-                });
-                cont.appendChild(el);
-
-                setStyle(el, {
-                    top: sticker.top,
-                    left: sticker.left,
-                    width: sticker.size ? sticker.size : sticker.width,
-                    height: sticker.size ? sticker.size : sticker.height,
-                    transform: 'rotate(' + (sticker.rotate) + 'deg)',
-                    backgroundImage: Stickers.getStickerUrl(sticker.stickerId, 512),
-                })
-            }
-        },
-        show1AprilEditor: function(hash, photo_raw, btn) {
-            cur.shownAs1AprilEditor = true;
-            cur.saveHash1AprilEditor = hash;
-            delete cur.pvData;
-
-            return showPhoto(photo_raw, '', {
-                additional: {
-                    open_pe: 1,
-                    stickers_1april: 1
-                },
-                progress: 1,
-                showProgress: function() {
-                    lockButton(btn)
-                },
-                hideProgress: function() {
-                    unlockButton(btn)
-                }
-            });
         },
         initShowAsDropDown: function(friendsList, selected, langUnknownUserAs) {
             var pageBodyNode = ge('page_body');
