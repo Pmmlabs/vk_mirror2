@@ -933,6 +933,12 @@ a.ads_ad_box2:hover {
     display: block
 }
 
+.ads_ad_text_box.adaptive_ad .ads_ad_explain--bounded {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 15px
+}
+
 .ads_ad_snippet {
     position: relative;
     margin: 15px 0 0;
@@ -1938,4 +1944,16 @@ a.ads_ad_box2:hover {
     letter-spacing: -0.1px;
     padding-top: 1px;
     line-height: 15px
+}
+
+.ads_ad_explain_title {
+    white-space: nowrap
+}
+
+.ads_ad_explain_domain {
+    display: block;
+    margin-left: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }

@@ -382,7 +382,7 @@ var stVersions = {
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.css': 3256039661,
-    'aes_light.css': 34817932605,
+    'aes_light.css': 34863484068,
     'aes_light.js': 3654711870,
     'ads.css': 141809594508,
     'ads_office.css': 79784185135,
@@ -550,7 +550,7 @@ var stVersions = {
     'sf.css': 26300909505,
     'cmodules/web/shortener.js': 3,
     'cmodules/web/pretty_cards.js': 3,
-    'pretty_cards.css': 28021535760,
+    'pretty_cards.css': 27863103630,
     'cmodules/web/landing_ads_case.js': 1,
     'cmodules/web/trending_results.js': 1,
     'cmodules/web/page_layout.js': 1,
@@ -632,7 +632,7 @@ var stVersions = {
     'cmodules/web/activation.bad5d6246e1344a5e7e6.js': '103e9d54ffe4bc465ad18cf6e06b4ed9',
     'cmodules/web/add_to_community_app.ef81f9b84f18caa16416.js': '9d152fbd65b26a8f5df503fe29f5a3a2',
     'cmodules/web/addresses.47ef7a73f54dae54835a.js': '2947731e242fdaead7bb2d5a3fec12ff',
-    'cmodules/web/ads_components.e256c5260eff804c3024.js': '6080f6e812e1a961f3569aa9a68bcca1',
+    'cmodules/web/ads_components.ee664dc3cde886c724e4.js': 'd6fea8a10c5037dc33e7ea7f717cd8c7',
     'cmodules/web/ads_edit_easy.bd8f5c7cba3b9c077bbb.js': 'e6cc56568677f0120294b5792fd5824a',
     'cmodules/web/ads_office.50c8f29b3a8d3f58f45c.js': 'b4a824cf35f796cbf7e21026b2f1bed8',
     'cmodules/web/app_info.00428fe4b583bd895841.js': 'd161fa02eb2a0ef163ef',
@@ -816,13 +816,13 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 2839;
+var _rnd = 7324;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.bccd2a8888f045aab1b5.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.bad5d6246e1344a5e7e6.js"],
     "/js/cmodules/web/add_to_community_app.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/web/add_to_community_app.ef81f9b84f18caa16416.js"],
     "/js/cmodules/web/addresses.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/web/addresses.47ef7a73f54dae54835a.js"],
-    "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/22f098cc99710e29ad4c5cba1a1ee7f4.3985f2aeb2b3ac654b0e.js", "cmodules/web/ads_components.e256c5260eff804c3024.js"],
+    "/js/cmodules/web/ads_components.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/bundles/22f098cc99710e29ad4c5cba1a1ee7f4.3985f2aeb2b3ac654b0e.js", "cmodules/web/ads_components.ee664dc3cde886c724e4.js"],
     "/js/cmodules/web/ads_edit_easy.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/web/ads_edit_easy.bd8f5c7cba3b9c077bbb.js"],
     "/js/cmodules/web/ads_office.js": ["cmodules/bundles/common.6ca908ab5bb31cdc8160.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/ads_office.50c8f29b3a8d3f58f45c.js"],
     "/js/cmodules/web/app_info.js": ["cmodules/web/app_info.00428fe4b583bd895841.js"],
