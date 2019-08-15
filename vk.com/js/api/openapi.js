@@ -2413,6 +2413,29 @@ if (!VK.Widgets) {
         });
     };
 
+    VK.Widgets.Podcast = function(id, episode, hash, options) {
+        var params = {
+            episode: episode,
+            hash: hash,
+        };
+
+        options = options || {};
+
+        return VK.Widgets._constructor('widget_podcast.php', id, options, params, {
+            showBox: function(url) {
+                var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+                    proxy: function() {
+                        rpc.callMethod.apply(rpc, arguments);
+                    }
+                });
+                box.show();
+            },
+        }, {
+            minWidth: 300,
+            startHeight: 150,
+        });
+    };
+
     VK.Widgets.CommunityMessages = (function(CommunityMessages) {
         if (CommunityMessages) return CommunityMessages;
 
