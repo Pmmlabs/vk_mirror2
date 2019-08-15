@@ -1938,13 +1938,13 @@
                             startLeft: g
                         })
                     }
-                    var w, y = !0;
+                    var w, N = !0;
                     for (w in i || {})
                         if ("nofocus" != w) {
-                            y = !1;
+                            N = !1;
                             break
                         }
-                    y && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.a({
+                    N && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.a({
                         id: "tab" + e,
                         element: s.box.content,
                         onUnIdleCb: function() {
@@ -3155,7 +3155,7 @@
         var C = i("P+eJ"),
             w = i("vT4u");
 
-        function y(e, t) {
+        function N(e, t) {
             return m(e, {
                 onEvents: t,
                 onData: k,
@@ -3166,16 +3166,16 @@
             })
         }
         i.d(t, "a", function() {
-            return y
+            return N
         });
-        var N = 3e4,
+        var y = 3e4,
             T = {},
             F = Date.now();
 
         function k(e, t) {
             if (t && t.status && e.lpstat) {
                 var i = t.status;
-                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), T[i] = i in T ? T[i] + 1 : 1, Date.now() - F >= N && (Object.keys(T).forEach(e => {
+                t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), T[i] = i in T ? T[i] + 1 : 1, Date.now() - F >= y && (Object.keys(T).forEach(e => {
                     statlogsValueEvent("fc_longpoll", T[e], e, t.getResponseHeader("x-frontend"))
                 }), T = {}, F = Date.now())
             }
@@ -3273,54 +3273,40 @@
                     o = i && i.offsetHeight;
                 if (a ? (TopNotifierCur.header = se(e), t = ce("div", {
                         className: "top_notify_header_label"
-                    }), TopNotifierCur.header.appendChild(t)) : t = geByClass1("top_notify_header_label", TopNotifierCur.header), 1 === cur.groupNotify_enabled) {
-                    if (a) {
-                        val(t, "");
-                        var r = "";
-                        TopNotifierCur.notify_sources.forEach(function(e) {
-                            "" !== e.list && e.list === TopNotifierCur._qParams.list && (r = e.name)
-                        }), "" === r && (r = getLang("global_notifications_user"));
-                        var s, n = ce("div", {
-                                className: "top_notify_header_sup_label"
-                            }),
-                            c = ce("span", {
-                                className: "top_notify_header_label_user",
-                                innerHTML: r
-                            }),
-                            l = ce("span", {
-                                className: "top_notify_header_label_groups"
-                            }),
-                            d = ce("a", {
-                                onmouseover: function(e) {
-                                    TopNotifier.getSourcesTip(this, e)
-                                },
-                                className: "top_notify_header_label_groups_link",
-                                innerHTML: getLang("global_notifications_groups")
-                            });
-                        if (l.appendChild(d), s = ce("span", {
-                                className: "top_notify_header_label_groups_counter",
-                                innerHTML: ""
-                            }), n.appendChild(c), cur.user_has_admined_groups > 0 && (n.appendChild(l), n.appendChild(s)), t.appendChild(n), o) {
-                            var u = ce("div", {
-                                className: "top_notify_header_sub_label",
-                                innerHTML: getLang("global_viewed_notifications")
-                            });
-                            t.appendChild(u)
-                        }
+                    }), TopNotifierCur.header.appendChild(t)) : t = geByClass1("top_notify_header_label", TopNotifierCur.header), a) {
+                    val(t, "");
+                    var r = "";
+                    TopNotifierCur.notify_sources.forEach(function(e) {
+                        "" !== e.list && e.list === TopNotifierCur._qParams.list && (r = e.name)
+                    }), "" === r && (r = getLang("global_notifications_user"));
+                    var s, n = ce("div", {
+                            className: "top_notify_header_sup_label"
+                        }),
+                        c = ce("span", {
+                            className: "top_notify_header_label_user",
+                            innerHTML: r
+                        }),
+                        l = ce("span", {
+                            className: "top_notify_header_label_groups"
+                        }),
+                        d = ce("a", {
+                            onmouseover: function(e) {
+                                TopNotifier.getSourcesTip(this, e)
+                            },
+                            className: "top_notify_header_label_groups_link",
+                            innerHTML: getLang("global_notifications_groups")
+                        });
+                    if (l.appendChild(d), s = ce("span", {
+                            className: "top_notify_header_label_groups_counter",
+                            innerHTML: ""
+                        }), n.appendChild(c), cur.user_has_admined_groups > 0 && (n.appendChild(l), n.appendChild(s)), t.appendChild(n), o) {
+                        var u = ce("div", {
+                            className: "top_notify_header_sub_label",
+                            innerHTML: getLang("global_viewed_notifications")
+                        });
+                        t.appendChild(u)
                     }
-                } else if (o) {
-                    if (a || !geByClass1("top_notify_header_sup_label", t)) {
-                        var f = ce("div", {
-                                className: "top_notify_header_sup_label",
-                                innerHTML: getLang("global_unread_notifications")
-                            }),
-                            h = ce("div", {
-                                className: "top_notify_header_sub_label",
-                                innerHTML: getLang("global_viewed_notifications")
-                            });
-                        val(t, ""), t.appendChild(f), t.appendChild(h)
-                    }
-                } else(a || geByClass1("top_notify_header_sup_label", t)) && val(t, getLang("global_notifitications"));
+                }
                 a && TopNotifierCur.wrapper.insertBefore(TopNotifierCur.header, TopNotifierCur.wrapper.firstChild), TopNotifierCur.header_unread = geByClass1("_notify_header"), TopNotifierCur.header_unread && (o ? (TopNotifierCur.header_unread_hidden && slideDown(TopNotifierCur.header_unread, 100), TopNotifierCur.header_unread_hidden = !1, TopNotifierCur.header_unread_handler || (TopNotifierCur.header_unread_height = TopNotifierCur.header_unread.offsetHeight, TopNotifierCur.header_unread_handler = function(e) {
                     if (TopNotifierCur.header_unread) {
                         var t = TopNotifierCur.header_unread.offsetTop + TopNotifierCur.header_unread_height < e.data.scrollTop;
@@ -3369,7 +3355,7 @@
                     }
                 }))
             },
-            updateTimes: function(e) {
+            updateTime: function(e) {
                 each(geByClass("rel_date_needs_update", e, "span"), function(e, t) {
                     if (t) {
                         var i = intval(t.getAttribute("time")),
@@ -3396,8 +3382,8 @@
                     if (TopNotifier.shown()) return gpeByClass("top_notify_wrap", e.target, ge("top_nav")) || TopNotifier.hide(), cancelEvent(e);
                     var t = ge(TopNotifierCur.link),
                         i = ge("top_notify_cont");
-                    TopNotifier.updateTimes(i), TopNotifierCur.timeUpdateInt = setInterval(function() {
-                        TopNotifier.updateTimes(i)
+                    TopNotifier.updateTime(i), TopNotifierCur.timeUpdateInt = setInterval(function() {
+                        TopNotifier.updateTime(i)
                     }, 1e4), cur.introNotifyTooltipHide && (cur.introNotifyTooltipHide(), delete cur.introNotifyTooltipHide), t.tt && t.tt.hide && t.tt.hide(), i || (TopNotifierCur.wrapper = ce("div", {
                         innerHTML: '<div id="top_notify_cont" class="top_notify_cont wall_module" ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications' + (TopNotifierCur._qParams.list ? "&list=" + TopNotifierCur._qParams.list : "") + '" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang("global_notify_show_all") + "</a>",
                         id: "top_notify_wrap",
@@ -3416,7 +3402,7 @@
                 }
             },
             hide: function() {
-                TopNotifier.shown() && (TopNotifierCur.viewedNotifications = [], removeClass(TopNotifierCur.link, "active"), clearInterval(TopNotifierCur.timeUpdateInt), cancelStackFilter("top_notifier", !0), 1 === cur.groupNotify_enabled && "" !== TopNotifierCur._qParams.list && (TopNotifierCur._qParams.list = "", TopNotifier.invalidate()))
+                TopNotifier.shown() && (TopNotifierCur.viewedNotifications = [], removeClass(TopNotifierCur.link, "active"), clearInterval(TopNotifierCur.timeUpdateInt), cancelStackFilter("top_notifier", !0), "" !== TopNotifierCur._qParams.list && (TopNotifierCur._qParams.list = "", TopNotifier.invalidate()))
             },
             shown: function() {
                 return hasClass(TopNotifierCur.link, "active")
@@ -3516,15 +3502,18 @@
                 }) : val(TopNotifierCur.count, e), toggleClass(TopNotifierCur.link, "has_notify", !!e), t || TopNotifier.invalidate()
             },
             cleanCount: function() {
-                cur.topNotifyHash && (1 === cur.groupNotify_enabled && TopNotifierCur.notify_sources.forEach(function(e, t) {
-                    var i = parseInt(e.list.replace("group-", ""));
-                    e.list !== TopNotifierCur._qParams.list && -1 === cur.groupNotify_readGids.indexOf(i) || (TopNotifierCur.notify_sources[t].counter = 0)
-                }), ajax.post("/al_feed.php", {
-                    act: "a_clean_notify",
-                    hash: cur.topNotifyHash,
-                    list: TopNotifierCur._qParams.list,
-                    gn_readGids: cur.groupNotify_readGids
-                }))
+                if (cur.topNotifyHash) {
+                    var e = cur.groupNotify_readGids || [];
+                    cur.groupNotify_readGids = [], TopNotifierCur.notify_sources.forEach(function(t, i) {
+                        var a = parseInt(t.list.replace("group-", ""));
+                        t.list !== TopNotifierCur._qParams.list && -1 === e.indexOf(a) || (TopNotifierCur.notify_sources[i].counter = 0)
+                    }), ajax.post("/al_feed.php", {
+                        act: "a_clean_notify",
+                        hash: cur.topNotifyHash,
+                        list: TopNotifierCur._qParams.list,
+                        gn_readGids: e
+                    })
+                }
             },
             refresh: function() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null,
@@ -3834,13 +3823,11 @@
                 null !== i && cancelEvent(i), e !== TopNotifierCur._qParams.list ? (re(geByClass1("notify_sources")), t && val(geByClass1("ui_rmenu_count", t), ""), geByClass1("top_notify_show_all") && attr(geByClass1("top_notify_show_all"), "href", "/feed?section=notifications" + (e ? "&list=" + e : "")), TopNotifierCur._qParams.list = e, TopNotifier.refresh()) : hide(geByClass1("notify_sources"))
             },
             changeSourceFullCallback: function() {
-                if (1 === cur.groupNotify_enabled) {
-                    TopNotifier.refreshCounters(), TopNotifierCur.notify_sources.forEach(function(e) {
-                        e.list && val(geByClass1("ui_rmenu_count", geByClass1("feed_section_" + e.list)), e.counter > 0 ? e.counter : "")
-                    });
-                    var e = geByTag1("a", geByClass1("header_side_link", geByClass1("feed_notifications")));
-                    "" === TopNotifierCur.settings_url ? hide(e) : (show(e), attr(e, "href", TopNotifierCur.settings_url)), TopNotifierCur.source_name || (TopNotifierCur.source_name = getLang("news_title_notifications")), val(geByClass1("page_block_header_inner", geByClass1("feed_notifications")), TopNotifierCur.source_name)
-                }
+                TopNotifier.refreshCounters(), TopNotifierCur.notify_sources.forEach(function(e) {
+                    e.list && val(geByClass1("ui_rmenu_count", geByClass1("feed_section_" + e.list)), e.counter > 0 ? e.counter : "")
+                });
+                var e = geByTag1("a", geByClass1("header_side_link", geByClass1("feed_notifications")));
+                "" === TopNotifierCur.settings_url ? hide(e) : (show(e), attr(e, "href", TopNotifierCur.settings_url)), TopNotifierCur.source_name || (TopNotifierCur.source_name = getLang("news_title_notifications")), val(geByClass1("page_block_header_inner", geByClass1("feed_notifications")), TopNotifierCur.source_name)
             },
             hideBanner: function(e, t, i) {
                 ajax.post("al_feed.php", {
@@ -3868,7 +3855,7 @@
                     t = 0,
                     i = 0,
                     a = geByClass1("top_notify_header_label_groups_counter");
-                1 === cur.groupNotify_enabled && TopNotifierCur.notify_sources.forEach(function(a) {
+                TopNotifierCur.notify_sources.forEach(function(a) {
                     "" !== a.list && a.counter > 0 && (1 === a.unmuted ? t++ : e++), "" === a.list && (i = a.counter)
                 }), vk.counts.ntf = i + t, TopNotifier.setCount(i + t, !0), TopNotifier.createNewEventsBox(i), t > 0 ? (addClass(a, "unmuted"), val(a, t)) : (removeClass(a, "unmuted"), val(a, e > 0 ? e : ""))
             },

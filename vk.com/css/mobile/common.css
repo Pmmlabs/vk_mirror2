@@ -24088,12 +24088,18 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
 }
 
 .article blockquote,
-.article cite {
+.article cite,
+.article h1,
+.article h2,
+.article h3 {
     clear: both
 }
 
 .article blockquote>p,
-.article cite>p {
+.article cite>p,
+.article h1>p,
+.article h2>p,
+.article h3>p {
     margin: 0
 }
 
@@ -24435,6 +24441,15 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     width: 100%
 }
 
+.article>figure[data-mode="3"] .article_ed__img_inner,
+.article>figure[data-mode="3"] .article_ed__img_inner,
+.article>figure[data-mode="3"] .article_ed__img_inner .article_ed__img,
+.article>figure[data-mode="3"] .article_ed__img_inner .article_ed__img_content {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
 .article>figure[data-mode="1"] .article_ed__extra_controls,
 .article>figure[data-mode="1"] .article_ed__video_play_note,
 .article>figure[data-mode="3"] .article_ed__extra_controls,
@@ -24699,6 +24714,12 @@ to(#fff))) or (background: -webkit-linear-gradient(transparent,
     -moz-border-radius: 2px;
     border-radius: 2px;
     width: 100%
+}
+
+.article_view>figure[data-type="101"][data-mode="3"] img {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
 }
 
 .article_view>figure[data-type="101"] .article_object_photo__image_blur {
