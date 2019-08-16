@@ -37,7 +37,7 @@ if (!window.Upload) {
                 if (options.customShowProgress) {
                     options.customShowProgress();
                 } else {
-                    if (this.obj[iUpload].tagName == 'INPUT' && !this.checkFileApi()) {
+                    if (this.obj[iUpload].tagName === 'INPUT' && !this.checkFileApi()) {
                         this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
                     } else if (!options.flash_lite) {
                         this.obj[iUpload].innerHTML = '<div class="upload_check loading">' + getProgressHtml('', 'pr_medium upload_pr') + '</div>';
@@ -706,7 +706,7 @@ if (!window.Upload) {
             if (extra_info !== undefined && iUpload === info) {
                 info = extra_info;
             }
-            if (Upload.types[iUpload] == 'fileApi') {
+            if (Upload.types[iUpload] === 'fileApi') {
                 var cfile = geByClass1('file', Upload.obj[iUpload], 'input');
                 if (cfile) {
                     cfile.value = '';
@@ -719,7 +719,10 @@ if (!window.Upload) {
                     type: options.type,
                     total_size: options.filesTotalSize
                 };
-                this.sendUploadStat(iUpload, stat);
+
+                if (options.type !== 'subtitles') {
+                    this.sendUploadStat(iUpload, stat);
+                }
             }
 
             if (options.onUploadCompleteAll) {
@@ -730,7 +733,7 @@ if (!window.Upload) {
         onUploadError: function(info, result) {
             var iUpload = info.ind !== undefined ? info.ind : info;
             var options = Upload.options[iUpload];
-            if (Upload.types[iUpload] == 'form') {
+            if (Upload.types[iUpload] === 'form') {
                 var file = geByClass1('file', Upload.obj[iUpload]);
                 file.disabled = false;
             }
@@ -886,6 +889,11 @@ if (!window.Upload) {
 
             if (options.photoBox && !force) {
                 return Upload.onPhotoAdd(iUpload, files);
+            }
+
+            if (options.withoutAutoUpload && !force) {
+                options.onFilesSelected && options.onFilesSelected(iUpload, files);
+                return;
             }
 
             if (options.beforeUpload) options.beforeUpload(iUpload);
@@ -1908,10 +1916,7 @@ if (!window.Upload) {
 
             ajax.post('upload_fails.php', query);
         },
-
-        _eof: 1
     };
-
 }
 
 function Fletcher32() {

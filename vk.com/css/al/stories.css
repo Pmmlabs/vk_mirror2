@@ -5,6 +5,11 @@
     -ms-high-contrast-adjust: none
 }
 
+.ReactionsPanel__item {
+    -o-transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease
+}
+
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -2776,6 +2781,61 @@ textarea.EditableLabel__textarea {
     color: #b1dafd
 }
 
+.ReactionsPanel {
+    position: absolute;
+    width: 100%;
+    --reaction-item-margin: 10px
+}
+
+.ReactionsPanel__title {
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 600
+}
+
+.ReactionsPanel__items {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 17px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 396px
+}
+
+.ReactionsPanel__item {
+    position: relative;
+    max-height: 112px;
+    max-width: 112px;
+    -ms-flex-preferred-size: calc(33.33% - 2 * var(--reaction-item-margin));
+    flex-basis: calc(33.33% - 2 * var(--reaction-item-margin));
+    margin: var(--reaction-item-margin)
+}
+
+.ReactionsPanel__itemImage {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover
+}
+
+.ReactionsPanel__item:hover {
+    opacity: .72
+}
+
+.ReactionsPanel__itemImage:after {
+    content: '';
+    display: block;
+    padding-bottom: 100%
+}
+
+.ReactionsPanel__items:first-child {
+    margin-left: 0
+}
+
 #stories_css {
     display: none
 }
@@ -3708,7 +3768,6 @@ textarea.EditableLabel__textarea {
 }
 
 .stories_send_form {
-    overflow: hidden;
     opacity: 0;
     pointer-events: none;
     -ms-flex: 1;
@@ -5778,6 +5837,28 @@ textarea.EditableLabel__textarea {
     text-decoration: underline
 }
 
+.stories_bottom_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 8;
+    pointer-events: none;
+    -o-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease
+}
+
+.stories_story_reactions {
+    bottom: 95.5%;
+    pointer-events: auto
+}
+
+.stories_bottom_overlay_available {
+    pointer-events: auto;
+    background-color: rgba(0, 0, 0, .5)
+}
+
 .stories_bottom_wrap {
     border-radius: 8px;
     display: none;
@@ -5829,7 +5910,8 @@ textarea.EditableLabel__textarea {
     justify-content: flex-end;
     width: 100%;
     position: relative;
-    pointer-events: auto
+    pointer-events: auto;
+    white-space: normal
 }
 
 .stories_story_bottom_controls .emoji_tt_wrap {

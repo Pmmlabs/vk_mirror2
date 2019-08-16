@@ -2836,29 +2836,7 @@
                 toggle(this.el, t && s)
             }
         }
-        var Ct = {
-            get supported() {
-                return !!document.queryCommandSupported && document.queryCommandSupported("copy")
-            },
-            copy(e) {
-                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : window.utilsNode,
-                    i = !1,
-                    s = ce("textarea", {
-                        value: e
-                    }, {
-                        position: "absolute",
-                        top: -9999,
-                        zIndex: 2
-                    });
-                t.appendChild(s), browser.msie ? s.setSelectionRange(0, e.length) : s.select();
-                try {
-                    i = document.execCommand("copy")
-                } catch (e) {
-                    i = !1
-                }
-                return re(s), i
-            }
-        };
+        var Ct = i("hogn");
         class Tt extends be {
             constructor(e) {
                 super(e), this.el = se(`\n<div class="videoplayer_context_menu hidden">\n  <div class="_item" data-action="copy_link">${this.getLang("cmenu_copy_video_link")}</div>\n  <div class="_item" data-action="copy_timecoded_link">${this.getLang("cmenu_copy_timecode_link")}</div>\n  <div class="_item" data-action="copy_embed_code">${this.getLang("cmenu_copy_embed_code")}</div>\n  <div class="_item" data-action="toggle_pip">${this.getLang("cmenu_enable_pip_mode")}</div>\n  <div class="_item" data-action="toggle_loop">${this.getLang("cmenu_enable_loop")}</div>\n  \x3c!--<div class="_item" data-action="playback_rate">${this.getLang("cmenu_playback_speed")}</div>--\x3e\n  <div class="_item" data-action="rotate_video">${this.getLang("cmenu_rotate")}</div>\n  <a class="_item" href="/support?act=new&from=v" target="_blank">${this.getLang("cmenu_report_error")}</a>\n  <div class="_item" data-action="copy_debug_data">${this.getLang("cmenu_copy_debug")}</div>\n</div>\n    `), this.domListen(this.player.el, "contextmenu", this.onContextmenu), this.domListen(this.el, "click", this.onMenuClick), this.domListen(document.body, "click", this.onLostFocus), this.domListen(this.player.el, "click", this.onLostFocus), this.domListen(window, "blur", this.onLostFocus), this.playerListen(m, this.updateButtonsVisibility), this.playerListen(T, this.updateButtonsVisibility), this.playerListen(O, this.updateButtonsVisibility)
@@ -2904,7 +2882,7 @@
                 }
             }
             copyToClipboard(e) {
-                Ct.copy(e, this.player.el)
+                Ct.a.copy(e, this.player.el)
             }
             onContextmenu(e) {
                 var t = 5,
@@ -3445,7 +3423,9 @@
                 i && i.appendChild(e)
             }
             _buildCueEl(e) {
-                return se(`\n      <div>\n        <span class="videoplayer_subtitle_layer__cue">${e.text}</span>\n      </div>\n    `)
+                var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
+                    i = se('<div><span class="videoplayer_subtitle_layer__cue"></span></div>');
+                return t ? val(domFC(i), e.text) : domFC(i).textContent = e.text, i
             }
             _getRegionEl(e) {
                 var t = null;
@@ -3460,17 +3440,13 @@
             }
             _showTip(e) {
                 if (e) {
-                    var t = clean(e.name).replace(/&amp;/g, "&");
-                    if (e.lang) {
-                        var i = this.getVar("subtitles_langs")[e.lang].name;
-                        i !== e.name && (t = `${i} (${t})`)
-                    }
-                    var s = this.getLang("subtitles_enabled_tip");
-                    s = (s = s.replace("{current}", t)).replace("{icon}", '<span class="videoplayer_subtitle_layer__tip_icon"></span>');
-                    var a = this._buildCueEl({
-                        text: s
-                    });
-                    this.clear(Ut), this._addToRegion(a, Ut), setTimeout(() => {
+                    var t = this.getVar("subtitles_langs"),
+                        i = this.getLang("subtitles_enabled_tip");
+                    i = (i = i.replace("{current}", t[e.lang].name)).replace("{icon}", '<span class="videoplayer_subtitle_layer__tip_icon"></span>');
+                    var s = this._buildCueEl({
+                        text: i
+                    }, !0);
+                    this.clear(Ut), this._addToRegion(s, Ut), setTimeout(() => {
                         this.clear(Ut)
                     }, 2e3)
                 }
@@ -5427,6 +5403,32 @@
         try {
             stManager.done("videoplayer.js")
         } catch (e) {}
+    },
+    hogn: function(e, t, i) {
+        "use strict";
+        t.a = {
+            get supported() {
+                return !!document.queryCommandSupported && document.queryCommandSupported("copy")
+            },
+            copy(e) {
+                var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : window.utilsNode,
+                    i = !1,
+                    s = ce("textarea", {
+                        value: e
+                    }, {
+                        position: "absolute",
+                        top: -9999,
+                        zIndex: 2
+                    });
+                t.appendChild(s), browser.msie ? s.setSelectionRange(0, e.length) : s.select();
+                try {
+                    i = document.execCommand("copy")
+                } catch (e) {
+                    i = !1
+                }
+                return re(s), i
+            }
+        }
     },
     ls82: function(e, t, i) {
         (function(t) {

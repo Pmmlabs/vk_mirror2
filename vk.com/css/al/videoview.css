@@ -1408,10 +1408,6 @@ textarea.dark.mv_live_gift_popup_comment_input {
     display: none
 }
 
-.video_edit_properties_wrap {
-    margin-top: 15px
-}
-
 #mv_desc_text {
     width: 100%;
     height: 70px;
@@ -2728,7 +2724,8 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_live_preparation_notify_checkbox:before {
     position: absolute;
-    margin-left: -22px
+    margin-left: -22px;
+    margin-top: 2px
 }
 
 .mv_live_preparation_notify_checkbox .mv_live_preparation_notify_checkbox_hint {

@@ -69,7 +69,7 @@
     n.push = t, n = n.slice();
     for (var l = 0; l < n.length; l++) t(n[l]);
     var d = c;
-    r.push([119, "bundles/common", "bundles/62cd2d13cb8ff40d482130982a5033c8", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    r.push([119, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
     119: function(e, t, i) {
         e.exports = i("8S/u")
@@ -3208,9 +3208,9 @@
         var core_js_modules_es6_regexp_match__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("SRfc"),
             core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("pIFo"),
             core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("KKXr"),
-            core_js_modules_es6_string_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("tUrg"),
-            core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a1Th"),
-            core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Btvt"),
+            core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("a1Th"),
+            core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Btvt"),
+            core_js_modules_es6_string_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("tUrg"),
             _lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("98sY"),
             _shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("W9Tc");
         window.TopNotifierCur || (window.TopNotifierCur = {
@@ -3235,14 +3235,8 @@
             },
             onLoad: function onLoad(rows, js, from, header) {
                 if (!from || TopNotifierCur.from !== from) {
-                    void 0 !== rows && "undefined" !== rows || ajax.plainpost("/errors.php", {
-                        msg: ajax.lastResp || "TopNotifier load undefinded response",
-                        module: "top_notify",
-                        id: vk.id,
-                        host: locHost,
-                        lang: vk.lang,
-                        loc: (window.nav || {}).strLoc,
-                        realloc: location.toString()
+                    void 0 !== rows && "undefined" !== rows || Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)("TopNotifier load undefinded response", {
+                        environment: "top_notify"
                     });
                     var evalExpr = `(function(){${js};})()`;
                     try {

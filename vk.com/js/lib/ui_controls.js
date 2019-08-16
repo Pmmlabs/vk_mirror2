@@ -1511,9 +1511,6 @@ createChildClass('Selector', UiControl, {
             this._showSelectList(text, (this.options.defaultItems.length || this.options.zeroDefault) ? this.options.defaultItems : this.dataItems);
         }
         if (reversed) {
-            if (!this._selectedItems.length) {
-                //        this.resultList.scrollTop = getSize(this.resultList.firstChild)[1] - getSize(this.resultList)[1] + 10;
-            }
             setStyle(this.resultList, {
                 bottom: getSize(this.container)[1] - 1
             });
@@ -2293,7 +2290,6 @@ createChildClass('Select', UiControl, {
         this.hide();
     },
     updateContainer: function() {
-        var reversed = this.container && hasClass(this.container, 'reverse');
         if (this.maxHeight < this.list.offsetHeight) {
             this.container.style.height = this.maxHeight + 'px';
             addClass(this.container, this.CSS.SCROLLABLE);

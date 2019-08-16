@@ -5,6 +5,8 @@
 #gtop_mastercard_ads_promo .gtop_image,
 #gtop_money_transfer .gtop_image,
 #gtop_timepad .gtop_image,
+#gtop_vk_pay_has_shop_promo .gtop_image,
+#gtop_vk_pay_no_shop_promo .gtop_image,
 #ui_admin_tips_load_more:after,
 .app_widget_list_info.address:before,
 .app_widget_list_info.time:before,
@@ -5458,6 +5460,29 @@ a.artist_page_button .artist_page_button_icon {
 (min-resolution: 192dpi) {
     #gtop_mastercard_ads_promo .gtop_image {
         background-image: url(/images/groups/mastercard_ads_promo_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+#gtop_vk_pay_has_shop_promo.gtop_complex_message,
+#gtop_vk_pay_no_shop_promo.gtop_complex_message {
+    min-height: 100px
+}
+
+#gtop_vk_pay_has_shop_promo .gtop_image,
+#gtop_vk_pay_no_shop_promo .gtop_image {
+    background: url(/images/groups/market_app_notice.png) no-repeat 0 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_vk_pay_has_shop_promo .gtop_image,
+    #gtop_vk_pay_no_shop_promo .gtop_image {
+        background-image: url(/images/groups/market_app_notice_2x.png);
         background-size: 100px 100px
     }
 }
