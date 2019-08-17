@@ -643,13 +643,14 @@
                         case "select":
                             f = {}, (w = ge("lead_forms_custom_question_select_" + m).value) in c.options && (f[w] = replaceEntities(c.options[w]))
                     }
-                    "" !== f && Object.keys(f).length ? o.push({
+                    var k = "input" === c.type || "textarea" === c.type;
+                    k && "" === f ? (Object(g.q)(h, !1, s), s || this.scrollToEl(h), s = !0) : k || Object.keys(f).length ? o.push({
                         question: "custom_" + m,
                         value: f
-                    }) : (inArray(c.type, ["input", "textarea"]) ? (Object(g.q)(h, !1, s), s || this.scrollToEl(h)) : this.titleError(geByClass1("lead_form_view_labeled_row_label", v), s), s = !0)
+                    }) : (this.titleError(geByClass1("lead_form_view_labeled_row_label", v), s), s = !0)
                 }
-                var k = geByClass1("lead_form_view_policy");
-                if (!hasClass(k, "on") && !a) return this.titleError(k, s);
+                var S = geByClass1("lead_form_view_policy");
+                if (!hasClass(S, "on") && !a) return this.titleError(S, s);
                 if (!s) {
                     (() => {
                         if (r) return function() {
