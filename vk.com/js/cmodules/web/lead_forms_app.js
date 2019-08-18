@@ -627,7 +627,7 @@
                     switch (c.type) {
                         case "input":
                         case "textarea":
-                            h = ge("lead_forms_view_input_custom_question_" + m), f = trim(val(h));
+                            h = ge("lead_forms_view_input_custom_question_" + m), f = trim(val("lead_forms_view_input_custom_question_" + m));
                             break;
                         case "radio":
                             f = {}, 0 !== (w = window.radioBtns["custom_question_" + m].val) && (f[w] = replaceEntities(c.options[w]));

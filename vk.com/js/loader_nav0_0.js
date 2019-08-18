@@ -685,7 +685,7 @@ var stVersions = {
     'cmodules/web/landing_vkmask.680b1c16875baaca6733.js': '76bf80cdf39cbef5ac737581a3d56547',
     'cmodules/web/language.d804e7007afe6bdc4eeb.js': '3837e1fc1cb0826c5c908aa970e37db0',
     'cmodules/web/lazyload.dc22d0a12005de6a8c76.js': 'b61322d27151273bc060131e09c1fb80',
-    'cmodules/web/lead_forms_app.4364117256ec5be71879.js': 'cc16f066e40f75c1d81b469d98ed0792',
+    'cmodules/web/lead_forms_app.a2af4bf6b4c46343d026.js': 'e2b29c6165b689174088ce1aba0913cb',
     'cmodules/web/likes.aeefe6d19a1e8fca36d6.js': '1824b717285ff61891b793b1c56d6e4b',
     'cmodules/web/login.cb472f5930e830813bce.js': '6527c3e6031a0a6ef9afe2976048ebc9',
     'cmodules/web/market.66a911b9b399819e0865.js': '77ae338b5d3688ff422c7535ee221fec',
@@ -817,7 +817,7 @@ var stTypes = {
         'apps_edit.js': 1
     }
 };
-var _rnd = 4085;
+var _rnd = 7800;
 var stDeps = {
     "/js/cmodules/web/GroupsEdit.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/GroupsEdit.bccd2a8888f045aab1b5.js"],
     "/js/cmodules/web/activation.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/activation.879b4aab325103738c67.js"],
@@ -875,7 +875,7 @@ var stDeps = {
     "/js/cmodules/web/landing_vkmask.js": ["cmodules/bundles/e55be946f9d116d8f6655816192d6c73.3ed4a602a699dc13fe02.js", "cmodules/web/landing_vkmask.680b1c16875baaca6733.js"],
     "/js/cmodules/web/language.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/web/language.d804e7007afe6bdc4eeb.js"],
     "/js/cmodules/web/lazyload.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/web/lazyload.dc22d0a12005de6a8c76.js"],
-    "/js/cmodules/web/lead_forms_app.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/8ee9eeac204373e7d7ccc72623374ade.bcc8787fb298076f6d8c.js", "cmodules/web/lead_forms_app.4364117256ec5be71879.js"],
+    "/js/cmodules/web/lead_forms_app.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/8ee9eeac204373e7d7ccc72623374ade.bcc8787fb298076f6d8c.js", "cmodules/web/lead_forms_app.a2af4bf6b4c46343d026.js"],
     "/js/cmodules/web/likes.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/web/likes.aeefe6d19a1e8fca36d6.js"],
     "/js/cmodules/web/login.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/vendors.b6cbb82ad5e3328ef616.js", "cmodules/web/login.cb472f5930e830813bce.js"],
     "/js/cmodules/web/market.js": ["cmodules/bundles/common.0df88842c7b68b7ca117.js", "cmodules/bundles/9dcc910c7bd981dd874f2679072d1d61.a5da57a910773fd3c0d9.js", "cmodules/web/market.66a911b9b399819e0865.js"],
