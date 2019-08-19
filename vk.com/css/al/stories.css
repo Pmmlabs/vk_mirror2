@@ -6409,3 +6409,27 @@ textarea.EditableLabel__textarea {
     padding: 0 16px;
     box-sizing: border-box
 }
+
+.stories_reactions_feature_tt {
+    font-size: 14px;
+    color: #000;
+    line-height: 19px;
+    padding: 8px 38px 8px 12px;
+    max-width: 230px;
+    box-sizing: border-box
+}
+
+.stories_reactions_feature_tt_close {
+    background: no-repeat url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%2398A3B3%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E');
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    cursor: pointer;
+    opacity: 0.8
+}
+
+.stories_reactions_feature_tt_close:hover {
+    opacity: 1
+}
