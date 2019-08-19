@@ -11664,19 +11664,20 @@
         }
 
         function st(e, t) {
-            var n = ["_im_mess"],
+            var n = [],
                 r = Object(o.n)(e.tabs[t.peerId], t),
-                a = Object(o.c)(t) ? ve("im_message_media", {
+                a = Object(o.e)(t),
+                i = Object(o.c)(t) ? ve("im_message_media", {
                     type: "reply",
                     messageId: t.messageId,
                     attaches: nt("reply"),
                     text: ""
                 }) : "";
-            Object(o.k)(t) && r && n.push("im-mess_unread _im_mess_unread"), Object(o.k)(t) && n.push("im-mess_out"), Object(o.p)(t) && n.push("im-mess_was_edited"), Object(f.a)(e, t) && n.push("im-mess_editable"), Object(o.h)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
-            var i = Date.now() - 1e3 * t.date > 1e3;
-            t.local && i && n.push("im-mess_sending"), t.local && n.push(`${w}`), t.local && Object(o.p)(t) && !r && n.push("im-mess_unread im-mess_nobg"), t.failed && n.push(`im-mess_failed ${k}`), Object(o.f)(t) && n.push("im-mess_gift");
-            var d = ot(t),
-                u = function(e, t) {
+            a || n.push("_im_mess"), Object(o.k)(t) && r && !a && n.push("im-mess_unread _im_mess_unread"), Object(o.k)(t) && !a && n.push("im-mess_out"), Object(o.p)(t) && n.push("im-mess_was_edited"), Object(f.a)(e, t) && n.push("im-mess_editable"), Object(o.h)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
+            var d = Date.now() - 1e3 * t.date > 1e3;
+            t.local && d && n.push("im-mess_sending"), t.local && n.push(`${w}`), t.local && Object(o.p)(t) && !r && n.push("im-mess_unread im-mess_nobg"), t.failed && n.push(`im-mess_failed ${k}`), Object(o.f)(t) && n.push("im-mess_gift"), a && n.push("_im_mess_callsnippet");
+            var u = ot(t),
+                m = function(e, t) {
                     var n = "",
                         r = Object(h.r)(e).sourceEnabled && t.kludges && t.kludges.from_widget && t.kludges.ref_source;
                     Object(o.p)(t) && (n += ve("sImLblWasEdited", {
@@ -11693,18 +11694,18 @@
                     }
                     return n
                 }(e, t),
-                m = a + Ot(e, t.text, t.kludges, !1, t.peerId);
-            t.subject && "..." !== t.subject.trim() && !Object(l.c)(t.peerId) && (m = ve("im_topic", {
+                p = i + Ot(e, t.text, t.kludges, !1, t.peerId);
+            t.subject && "..." !== t.subject.trim() && !Object(l.c)(t.peerId) && (p = ve("im_topic", {
                 topic: t.subject
-            }) + m);
-            var p = Object(o.f)(t) ? `<div class="im-mess--gift-lbl">${m}</div>` : "",
-                g = d.length ? ve("im_message_media", {
+            }) + p);
+            var g = Object(o.f)(t) ? `<div class="im-mess--gift-lbl">${p}</div>` : "",
+                b = u.length ? ve("im_message_media", {
                     type: "media",
                     messageId: t.messageId,
-                    attaches: d.join(""),
-                    text: p
+                    attaches: u.join(""),
+                    text: g
                 }) : "";
-            return Object(o.f)(t) || (g = m + g), Object(o.e)(t) && (g += ve("sImCallSnippet", function(e, t, n, r) {
+            return Object(o.f)(t) || (b = p + b), Object(o.e)(t) && (b += ve("sImCallSnippet", function(e, t, n, r) {
                 var a, i = G.id,
                     s = e.attaches[0],
                     o = s.initiatorId,
@@ -11769,7 +11770,7 @@
                 return ve("im_calls_link", {
                     text: a
                 })
-            }(t, !1, !0, e))), g += u, ve("im_msg_row", {
+            }(t, !1, !0, e))), b += m, ve("im_msg_row", {
                 msg_id: t.messageId,
                 from_id: t.peerId,
                 aria_hidden: t.local && !t.failed ? "true" : "false",
@@ -11777,7 +11778,7 @@
                 marker_params: t.failed ? `aria-label="${ye("mail_send_message_error")}" role="link"` : "",
                 unread_params: r ? `aria-label="${ye("mail_unread_message")}"` : "",
                 cls: n.join(" ")
-            }).replace("%text%", () => g)
+            }).replace("%text%", () => b)
         }
 
         function ot(e) {
@@ -18900,7 +18901,7 @@
         function c(e, t) {
             t = Object(r.S)(t);
             var n = vk.id == t.peerId && !Object(o.r)(e).gid;
-            return 333 != t.peerId && (!(!n && !Object(a.k)(t)) && (!Object(a.l)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(a.f)(t) || Object(a.m)(t) || Object(a.d)(t) || Object(a.g)(t) || Object(a.i)(t) || Object(a.o)(t)) && !Object(i.gb)(e, t.peerId, t.messageId)))))
+            return 333 != t.peerId && (!(!n && !Object(a.k)(t)) && (!Object(a.l)(t) && (!(Date.now() / 1e3 - t.date > 86400) && (!(Object(a.f)(t) || Object(a.m)(t) || Object(a.d)(t) || Object(a.g)(t) || Object(a.i)(t) || Object(a.o)(t) || Object(a.e)(t)) && !Object(i.gb)(e, t.peerId, t.messageId)))))
         }
 
         function l(e) {

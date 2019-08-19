@@ -1465,7 +1465,7 @@
                             content: t,
                             align: "left",
                             onHide: this._closeFeatureTooltip.bind(this)
-                        }), cur.reactionFeatureTooltip.show(), cur.reactionFeatureTooltipTimeoutId = null
+                        }), this.props.story.pauseStory(), cur.reactionFeatureTooltip.show(), cur.reactionFeatureTooltipTimeoutId = null
                     }
                 }, 1e3), cur.destroy.push(() => clearTimeout(cur.reactionFeatureTooltipTimeoutId)))
             }
@@ -1474,7 +1474,7 @@
                     act: "hide_feature_tt",
                     hash: cur.stories_reaction_feature_tooltip_hash,
                     type: "stories_reactions"
-                }))
+                }), this.props.story.playStory())
             }
             _checkLoadedStickers() {
                 return !(this._getReactionsStickers().length < R.length)
@@ -2924,7 +2924,7 @@
         }
         class Me {
             constructor(e, t) {
-                this.data = e, this.opts = t, this.id = t.id, this.isActive = !1, this.isSendFormActive = !1, this.isModalShown = !1, this.isMessageSending = !1, this.story = !1, this.pressedStory = null, this.index = 0, this._sendMedia = [], this.preloadedStories = {}, this.layer = t.layer, this.longTapTimer
+                this.data = e, this.opts = t, this.id = t.id, this.isActive = !1, this.isSendFormActive = !1, this.isModalShown = !1, this.story = !1, this.pressedStory = null, this.index = 0, this.preloadedStories = {}, this.layer = t.layer, this.longTapTimer
             }
             destroy() {
                 this._destroyStory(), Object(xe.h)(Object(q.I)("stories_item_cont", this.contWrap)), Object(xe.h)(Object(q.I)("stories_reply_to", this.replyToWrap)), Object(xe.h)(this.shareButton), delete this.shareButton, Object(xe.h)(this.followBtn), delete this.followBtn, Object(xe.h)(this.answersEl), delete this.answersEl, clearTimeout(this.showMessageTimer);
@@ -3120,7 +3120,7 @@
                 this.story && this.story.pause(), Object(q.a)(this.wrapEl, "paused"), this.isTooltipOpened() || this.layer._sendNavigationStatEvents("pause_long_tap")
             }
             isLocked() {
-                return !!(this._getSendText() || !this.isActive || this.isMessageSending || this.isSendFormActive || this.isModalShown || this._feedbackTTShown || document.hidden || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(Ie.b)() && "stories" !== Object(Ie.b)().wkRaw)
+                return !!(this._getSendText() || !this.isActive || this.isSendFormActive || this.isModalShown || this._feedbackTTShown || document.hidden || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") || Object(Ie.b)() && "stories" !== Object(Ie.b)().wkRaw)
             }
             autoResumeStory() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
@@ -3445,7 +3445,7 @@
                     if (this.isActiveLive()) this.story.sendMessage(r, e);
                     else {
                         var o = this.story.data.narrative;
-                        o ? t.push(["narrative", o.raw_id]) : t.push(["story", this.story.getId()]), this.isMessageSending = !0, ajax.post("al_im.php", Object.assign({
+                        o ? t.push(["narrative", o.raw_id]) : t.push(["story", this.story.getId()]), ajax.post("al_im.php", Object.assign({
                             act: "a_send",
                             msg: r,
                             hash: this.data.send_hash,
@@ -3469,7 +3469,7 @@
             _onAnswerSended(e) {
                 var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
                 this.isActiveLive() || (this._showMessage(Object(Ae.d)("stories_answer_sent")).then(() => {
-                    this.isMessageSending = !1, this.playStory()
+                    this.playStory()
                 }), "reaction" === t.messageType ? this.layer._sendNavigationStatEvents("reaction_send", !0, {
                     reaction_name: t.reactionName
                 }) : this.layer._sendNavigationStatEvents("comment_send")), val(Object(q.I)("stories_send_form_text", this.wrapEl), ""), this._blurSendForm(), this.updateFeedbackTTPos(), this.pauseStory(), e && e()

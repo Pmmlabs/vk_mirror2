@@ -8455,3 +8455,7 @@ body.apps_vkpayMobileTransfer .app_container:after {
 .FullscreenVKMiniApp .app_container--vk-app iframe {
     height: 100%!important
 }
+
+.VKMiniAppWithoutBorder.page_block {
+    box-shadow: none
+}

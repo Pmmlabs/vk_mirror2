@@ -1863,6 +1863,16 @@ h2.payments_getvotes_title {
     filter: alpha(opacity=0)
 }
 
+.payments_box_wide .payments_box_menu .payments_getvotes_noevents_row {
+    pointer-events: none
+}
+
+.payments_box_wide .payments_box_menu .payments_getvotes_disabled_row .payments_getvotes_method_img,
+.payments_box_wide .payments_box_menu .payments_getvotes_disabled_row .payments_getvotes_method_title {
+    opacity: 0.4;
+    filter: alpha(opacity=40)
+}
+
 .payments_box_wide .payments_box_menu .payments_progress .pr {
     opacity: 1;
     filter: none

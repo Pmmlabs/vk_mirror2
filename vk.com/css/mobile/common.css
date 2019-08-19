@@ -43226,6 +43226,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_invite_group,
 .Icon_notify_like,
 .Icon_notify_live,
+.Icon_notify_market_orders,
 .Icon_notify_mention,
 .Icon_notify_message,
 .Icon_notify_message_request,
@@ -43263,6 +43264,7 @@ body.apps_settingsPageBody .basis__content {
 .Icon_notify_invite_group:before,
 .Icon_notify_like:before,
 .Icon_notify_live:before,
+.Icon_notify_market_orders:before,
 .Icon_notify_mention:before,
 .Icon_notify_message:before,
 .Icon_notify_message_request:before,
@@ -43301,6 +43303,7 @@ body.apps_settingsPageBody .basis__content {
 .vk_2x .Icon_notify_invite_group:before,
 .vk_2x .Icon_notify_like:before,
 .vk_2x .Icon_notify_live:before,
+.vk_2x .Icon_notify_market_orders:before,
 .vk_2x .Icon_notify_mention:before,
 .vk_2x .Icon_notify_message:before,
 .vk_2x .Icon_notify_message_request:before,
@@ -43451,6 +43454,10 @@ body.apps_settingsPageBody .basis__content {
 
 .Icon_notify_story_question:before {
     background-position: 0 -1260px
+}
+
+.Icon_notify_market_orders:before {
+    background-position: 0 -1288px
 }
 
 .Icon_notify_mini_birthday,

@@ -3223,11 +3223,9 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     }
 }
 
-.mv_chat_reply_emoji_tt_wrap {
-    float: right;
-    position: relative;
-    left: 29px;
-    top: 31.5px
+.mv_chat_reply_emoji_tt_wrap .emoji_tt_wrap {
+    bottom: 39px;
+    right: 39px
 }
 
 .mv_chat_stickers_wrap {
