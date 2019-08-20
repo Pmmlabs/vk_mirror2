@@ -1398,7 +1398,7 @@
                 }))))
             }
             _isReactionAvailable() {
-                return Object($.a)("story_reactions_web") && !this.props.story.isActiveLive()
+                return Object($.b)("story_reactions_web") && !this.props.story.isActiveLive()
             }
             _onChangeReactionsPanelVisibility() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];

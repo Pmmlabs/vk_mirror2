@@ -3360,7 +3360,7 @@
                 })
             },
             createNewEventsBox: function(e) {
-                if (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)("notify_new_events_box")) {
+                if (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)("notify_new_events_box")) {
                     var t = TopNotifier.getContentNode();
                     if (t) {
                         var i = geByClass1("notifications_new_events", t);
@@ -4022,7 +4022,7 @@
             },
             unfreezeEvents: function() {
                 curNotifier.tooltipShown ? curNotifier.unfreezeAfterTooltipHide = !0 : (curNotifier.frozen = !1, each(curNotifier.q_shown, function(e, t) {
-                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && t.timeoutConf ? t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? t.timeoutConf.unfreeze_am : t.timeoutConf.unfreeze) : t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && t.timeoutConf ? t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? t.timeoutConf.unfreeze_am : t.timeoutConf.unfreeze) : t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
                 }))
             },
             getTransportWrap: function() {
@@ -4103,7 +4103,7 @@
                     } catch (e) {
                         return void Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, ev)
                     }
-                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
                         default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
                         default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
                         unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
@@ -4334,7 +4334,7 @@
                     visibility: "visible"
                 }), animate(curNotifier.cont, {
                     bottom: 0
-                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && ev.timeoutConf ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
+                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && ev.timeoutConf ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
             },
             trackEvent: function(e, t) {
                 ajax.post("al_feed.php", extend({
@@ -4373,7 +4373,7 @@
                     event_id: e.id
                 }), !0 !== a && curNotifier.idle_manager.is_idle || curNotifier.q_events.length || curNotifier.q_shown.length || ajax.post("notifier.php", {
                     act: "a_clear_notifier"
-                }), isFunction(e.onHide) && Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.a)(FEATURE_SHOW_DONE_BOX_NEW) && e.onHide()
+                }), isFunction(e.onHide) && Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && e.onHide()
             },
             hideAllEvents: function() {
                 curNotifier.q_events = [], each(clone(curNotifier.q_shown), function() {

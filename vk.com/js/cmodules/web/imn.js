@@ -8729,7 +8729,7 @@
                 t = {
                     sound: ls.get("sound_notify_off") ? getLang("mail_im_sound_off") : getLang("mail_im_sound_on")
                 };
-            return window.pushNotifier && window.pushNotifier.loadEndpoint() || Object(Sc.a)("push_notifier") && ls.get("im_ui_notify_off") ? t.browser = getLang("mail_notification_settings") : t.browser = Hc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off"), getTemplate(e, t)
+            return window.pushNotifier && window.pushNotifier.loadEndpoint() || Object(Sc.b)("push_notifier") && ls.get("im_ui_notify_off") ? t.browser = getLang("mail_notification_settings") : t.browser = Hc() ? getLang("mail_im_notifications_on") : getLang("mail_im_notifications_off"), getTemplate(e, t)
         }
 
         function Hc() {
@@ -8760,7 +8760,7 @@
                         case "browser":
                             Hc() ? (ls.set("im_ui_notify_off", 1), o.outerHTML = Ac(c), Object(fe.a)()) : DesktopNotifications.checkPermission() ? DesktopNotifications.requestPermission(() => {
                                 o.parentNode && (o.outerHTML = Ac(c))
-                            }) : Object(Sc.a)("push_notifier") ? nav.go("/settings?act=notify") : (ls.set("im_ui_notify_off", 0), o.outerHTML = Ac(c), Object(fe.b)())
+                            }) : Object(Sc.b)("push_notifier") ? nav.go("/settings?act=notify") : (ls.set("im_ui_notify_off", 0), o.outerHTML = Ac(c), Object(fe.b)())
                     }
                 }.bind(null, t, n, e),
                 l = function(e, i) {

@@ -4297,7 +4297,8 @@ input.wide_button {
 }
 
 .mlt_header {
-    display: block;
+    display: table-cell;
+    width: 100%;
     padding: 0 0 7px
 }
 

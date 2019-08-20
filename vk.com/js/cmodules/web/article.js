@@ -1406,10 +1406,10 @@
                                         }, t[1] = i.ownerId + "_" + i.id + (i.accessHash ? "_" + i.accessHash : "");
                                         break;
                                     case "podcast":
-                                        Object(W.a)("article_podcasts") && (a = p.c.ObjectPodcast, o = {});
+                                        Object(W.b)("article_podcasts") && (a = p.c.ObjectPodcast, o = {});
                                         break;
                                     case "poll":
-                                        Object(W.a)("article_poll") && (a = p.c.ObjectPoll, o = {
+                                        Object(W.b)("article_poll") && (a = p.c.ObjectPoll, o = {
                                             editable: !1,
                                             snippet: i.snippet
                                         });
@@ -1453,7 +1453,7 @@
             }
             _processMatchingEmbeds(e, t) {
                 var i, a, s;
-                if (!Object(W.a)("article_embeds")) return !1;
+                if (!Object(W.b)("article_embeds")) return !1;
                 if (i = t.match(/^https?:\/\/(?:www.)?twitter\.com\/(?:#!\/)?(?:\w+)\/status(?:es)?\/(\d+)$/)) a = p.c.ObjectTwitter, s = i[1];
                 else if (i = t.match(/^https?:\/\/(?:www.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)(?:\/embed)?(?:\/)?/)) a = p.c.ObjectInstagram, s = i[1];
                 else if (i = t.match(/^https?:\/\/(?:www.)?facebook\.com\/(\w.+)\/posts\/(\d+)\/?$/)) a = p.c.ObjectFacebook, s = `${i[1]};${i[2]}`;
@@ -2607,7 +2607,7 @@
                     if (!this._objectPickerEl) {
                         this._objectPickerEl = de('<div class="article_editor_object_picker"><div class="article_editor_object_picker_icon"></div></div>'), this._els.editor.appendChild(this._objectPickerEl);
                         var e = "";
-                        Object(W.a)("article_poll") && (e = '<button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_poll" onclick="cur.articleEditor.addObjectPoll()"></button>');
+                        Object(W.b)("article_poll") && (e = '<button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_poll" onclick="cur.articleEditor.addObjectPoll()"></button>');
                         var t = de(`<div class="article_editor_object_picker_btns_wrap clear_fix">\n        <button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_photo" onclick="cur.articleEditor.addObjectPhoto()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_video" onclick="cur.articleEditor.addObjectVideo()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_audio" onclick="cur.articleEditor.addObjectAudio()"></button>\n        ${e}\n        <button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_doc" onclick="cur.articleEditor.addObjectDoc()">\n        </button><button class="article_editor_object_picker_btn" id="article_editor_object_picker_btn_sep" onclick="cur.articleEditor.addSeparator()">\n        </button>\n      </div>`);
                         this._objectPickerTooltip = new ElementTooltip(this._objectPickerEl, {
                             content: t,

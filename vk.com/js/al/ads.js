@@ -2190,15 +2190,18 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
             var recommendedCostText = geByClass('ads_inline_recommended_cost_text', this.contentTable)[0];
 
             function onDone(response) {
+                hide(recommendedCostProgress);
+
                 if (response) {
                     if (response.recommended_costs && response.recommended_costs.cost_text) {
                         recommendedCostText.innerHTML = response.recommended_costs.cost_text;
-                        hide(recommendedCostProgress);
                         show(recommendedCostText);
                         if (!this.is_user_action && self.input.value == '0') {
                             self.input.value = response.recommended_costs.cost_value;
                         }
                         self.recommended_cost_loaded = true;
+                    } else {
+                        hide(recommendedCostText);
                     }
                     if (response.min_cost && response.max_cost) {
                         elemParams.minCost = response.min_cost;
@@ -2270,10 +2273,9 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
                 '<td colspan="2">' +
                 '<table class="ads_inline_edit_table" style="width: 100%;">' +
                 '<tr><td><input autocomplete="off" class="inlInput text" type="text" id="ads_inline_edit_cost_per_click"/><label class="inlInput__label" for="ads_inline_edit_cost_per_click"></label></td></tr>' +
-                '<tr><td style="padding-top: 7px; height: 22px;">' +
-                '<img class="inline_recommended_cost_progress" src="/images/upload.gif" />' +
-                '<span class="ads_inline_recommended_cost_text"></span>' +
-                '<div style="width: 275px; height: 1px;"></div>' +
+                '<tr><td style="max-height: 22px; width: 275px;">' +
+                '<img class="inline_recommended_cost_progress" src="/images/upload.gif" style="padding-top: 11px;" />' +
+                '<span class="ads_inline_recommended_cost_text" style="padding-top: 7px;"></span>' +
                 '</td></tr>' +
                 '<tr class="ads_inline_fast_error_row"><td><div class="ads_inline_fast_error"></div></td></tr>' +
                 '</table>' +

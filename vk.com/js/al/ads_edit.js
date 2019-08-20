@@ -30,8 +30,10 @@ AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP = [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.A
 AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP = [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_POST = [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH];
 
-AdsEdit.ADS_AD_COST_TYPE_CLICK = 0;
-AdsEdit.ADS_AD_COST_TYPE_VIEWS = 1;
+AdsEdit.AD_COST_TYPE_UNKNOWN = 0; // AdCost::COST_TYPE_UNKNOWN
+AdsEdit.AD_COST_TYPE_CPM = 1; // AdCost::COST_TYPE_CPM
+AdsEdit.AD_COST_TYPE_CPC = 2; // AdCost::COST_TYPE_CPC
+AdsEdit.AD_COST_TYPE_CPA = 3; // AdCost::COST_TYPE_CPA
 
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN = '';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_SMALL = 's';
@@ -2211,9 +2213,12 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             unreachable: false
         },
         cost_type: {
-            value: AdsEdit.ADS_AD_COST_TYPE_CLICK,
+            value: AdsEdit.AD_COST_TYPE_CPC,
             cpm_only: false,
             cpc_only: false,
+            cpa_only: false,
+            cpa_allow: false,
+            cpa_hidden: true,
             allow_promoted_posts_cpc: true,
             promoted_posts_cpc_default: true
         },
@@ -3004,8 +3009,8 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             Radiobutton.select(this.options.targetIdPrefix + paramName, this.params[paramName].value);
             break;
         case 'cost_type':
-            targetElem = ge(this.options.targetIdPrefix + 'cost_type_clicks');
-            this.params[paramName].ui_clicks = new Radiobutton(targetElem, {
+            targetElem = ge(this.options.targetIdPrefix + 'cost_type_cpc');
+            this.params[paramName].ui_cpc = new Radiobutton(targetElem, {
                 width: this.options.uiWidth,
                 label: getLang('ads_edit_ad_cost_type_per_click'),
                 onSelect: function(value) {
@@ -3013,11 +3018,11 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
                 }.bind(this)
             });
             this.cur.destroy.push(function() {
-                this.params[paramName].ui_clicks.destroy();
+                this.params[paramName].ui_cpc.destroy();
             }.bind(this));
 
-            targetElem = ge(this.options.targetIdPrefix + 'cost_type_views');
-            this.params[paramName].ui_views = new Radiobutton(targetElem, {
+            targetElem = ge(this.options.targetIdPrefix + 'cost_type_cpm');
+            this.params[paramName].ui_cpm = new Radiobutton(targetElem, {
                 width: this.options.uiWidth,
                 label: getLang('ads_edit_ad_cost_type_per_views'),
                 onSelect: function(value) {
@@ -3025,10 +3030,23 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
                 }.bind(this)
             });
             this.cur.destroy.push(function() {
-                this.params[paramName].ui_views.destroy();
+                this.params[paramName].ui_cpm.destroy();
+            }.bind(this));
+
+            targetElem = ge(this.options.targetIdPrefix + 'cost_type_cpa');
+            this.params[paramName].ui_cpa = new Radiobutton(targetElem, {
+                width: this.options.uiWidth,
+                label: getLang('ads_edit_ad_cost_type_per_actions'),
+                onSelect: function(value) {
+                    this.onUiSelect(paramName, value)
+                }.bind(this)
+            });
+            this.cur.destroy.push(function() {
+                this.params[paramName].ui_cpa.destroy();
             }.bind(this));
 
             Radiobutton.select(this.options.targetIdPrefix + paramName, this.params[paramName].value);
+            this.updateUiParamVisibility(paramName);
             break;
         case 'link_type':
             var containerElem = geByClass1('ads_edit_link_type_cards_wrapper');
@@ -3784,10 +3802,26 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
         case 'cost_per_click':
             // TODO �������� ��� ��� ����� ������ ������ ������������ �� ����
             var labelElem = geByClass1('ads_edit_label_cost_per_click', ge('ads_edit_ad_row_' + paramName));
-            if (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK) {
-                labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_click_label'));
-            } else {
-                labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_views_label'));
+            switch (this.params.cost_type.value) {
+                case AdsEdit.AD_COST_TYPE_CPC:
+                    {
+                        labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_click_label'));
+                        break;
+                    }
+
+                case AdsEdit.AD_COST_TYPE_CPA:
+                    {
+                        labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_action_label'));
+                        break;
+                    }
+
+                default:
+                case AdsEdit.AD_COST_TYPE_UNKNOWN:
+                case AdsEdit.AD_COST_TYPE_CPM:
+                    {
+                        labelElem && (labelElem.innerHTML = getLang('ads_edit_ad_cost_per_views_label'));
+                        break;
+                    }
             }
 
             var isAppCampaign = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || (this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app));
@@ -3795,7 +3829,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var isApp = (isAppCampaign && isAppAdminLink && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
 
             var suffixesAll = '';
-            suffixesAll += ((this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK) ? '_click' : '_views');
+            suffixesAll += ((this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPC) ? '_click' : ((this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPM) ? '_views' : ''));
             suffixesAll += ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE) ? '_exclusive' : '');
             suffixesAll += (isApp ? '_app' : '');
 
@@ -3817,8 +3851,13 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var currencyElem = ge(this.options.targetIdPrefix + paramName + '_currency');
             currencyElem.innerHTML = getLang('global_money_amount_rub_text', this.params[paramName].value);
 
+            var recommendedShortElemTitle = ge('ads_edit_recommended_cost_title');
             var recommendedShortElem = ge('ads_edit_recommended_cost_text');
             var recommendedLongElem = ge('ads_param_cost_per_click_recommended');
+
+            toggle(recommendedShortElemTitle, this.params.cost_type.value != AdsEdit.AD_COST_TYPE_CPA);
+            toggle(recommendedShortElem, this.params.cost_type.value != AdsEdit.AD_COST_TYPE_CPA);
+
             recommendedShortElem && (recommendedShortElem.innerHTML = this.params[paramName][costPerClickRecommendedShort]);
             recommendedLongElem && (recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong]);
 
@@ -3843,6 +3882,35 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
                 }
             }
             break;
+        case 'cost_type':
+            // CPA �����, ����� �������� � ����� ���� ���� � ����������� � ���������
+            this.params.cost_type.cpa_hidden = !this.params.cost_type.cpa_allow || this.params.link_type.subvalue !== 'promoted_post_lead_form';
+
+            this.params.cost_type.cpm_only = (
+                inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_STORY]) ||
+                (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (!this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc)) &&
+                this.params.cost_type.cpa_hidden
+            );
+            this.params.cost_type.cpc_only = (
+                inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD]) &&
+                this.params.cost_type.cpa_hidden
+            );
+            this.params.cost_type.cpa_only = (
+                this.params.cost_type.cpa_allow &&
+                false // not used yet
+            );
+            this.params.cost_type.hidden = this.params.cost_type.cpm_only || this.params.cost_type.cpc_only || this.params.cost_type.cpa_only;
+
+            if (this.params.cost_type.cpm_only) {
+                this.setCostType(AdsEdit.AD_COST_TYPE_CPM);
+            }
+            if (this.params.cost_type.cpc_only) {
+                this.setCostType(AdsEdit.AD_COST_TYPE_CPC);
+            }
+            if (this.params.cost_type.cpa_only) {
+                this.setCostType(AdsEdit.AD_COST_TYPE_CPA);
+            }
+            break;
         case '_platform':
             this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
             this.params.platform_no_wall.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || !this.params.platform_no_wall.allow);
@@ -3850,7 +3918,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             break;
         case 'platform':
             var isDisclaimers = (this.params.disclaimer_medical.value || this.params.disclaimer_specialist.value || this.params.disclaimer_supplements.value || this.params.disclaimer_finance.value);
-            this.params[paramName].disabled_web = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_CLICK || isDisclaimers);
+            this.params[paramName].disabled_web = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.AD_COST_TYPE_CPC || isDisclaimers);
             this.params[paramName].disabled = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY || !this.params.platform.allow_stories) && this.params[paramName].disabled_web);
 
             var formatType = this.params.format_type.value;
@@ -4237,6 +4305,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case 'cost_type':
             this.initUiParam(paramName);
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+            toggle(this.params[paramName].ui_cpa.container, !this.params[paramName].cpa_hidden);
             break;
         case 'platform':
             this.initUiParam(paramName);
@@ -4413,23 +4482,6 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
 
         switch (paramName) {
             case 'format_type':
-                var formatPhotoSize = this.getFormatPhotoSize();
-                this.params.cost_type.cpm_only = (
-                    inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_STORY]) ||
-                    (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (!this.params.cost_type.allow_promoted_posts_cpc || !this.params.link_id.promoted_posts_cpc))
-                );
-                this.params.cost_type.cpc_only = (
-                    inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD])
-                );
-                this.params.cost_type.hidden = this.params.cost_type.cpm_only || this.params.cost_type.cpc_only;
-
-                if (this.params.cost_type.cpm_only) {
-                    this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
-                }
-                if (this.params.cost_type.cpc_only) {
-                    this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
-                }
-
                 this.params.title.hidden = (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_STORY]));
                 this.params.title.disabled = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
                 this.params.title.max_length = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD) ? this.params.title.max_length_adaptive_ads : this.params.title.max_length_normal);
@@ -4448,8 +4500,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.stats_url_long.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url_long.allow_promoted_post);
                 this.params.stats_url_long2.hidden = !(!this.params.stats_url_long.hidden && this.params.stats_url_long2.allow_promoted_post);
                 this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.view_retargeting_group_id.value);
-                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
-                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.AD_COST_TYPE_CPM || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPA || this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPC || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
 
                 if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
                     this.setTitle(this.params.title['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
@@ -4500,6 +4552,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParam('description');
                 this.updateUiParam('_description');
                 this.updateUiParam('cost_per_click');
+                this.updateUiParam('cost_type');
                 this.updateUiParam('platform');
                 this.updateUiParam('view_retargeting_group_id');
                 this.updateUiParam('views_limit_flag');
@@ -4557,8 +4610,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 isUpdateNeeded = true;
                 break;
             case 'cost_type':
-                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
-                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.AD_COST_TYPE_CPM || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
+                this.params.views_limit_exact.hidden = (this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPA || this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPC || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_ADAPTIVE_AD && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_STORY);
 
                 this.updateUiParam('cost_per_click');
                 this.updateUiParam('platform');
@@ -4830,7 +4883,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 }
 
                 var suffixesAll = '';
-                suffixesAll += ((this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK) ? '_click' : '_views');
+                suffixesAll += ((this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPC) ? '_click' : ((this.params.cost_type.value == AdsEdit.AD_COST_TYPE_CPM) ? '_views' : ''));
                 suffixesAll += ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE) ? '_exclusive' : '');
                 suffixesAll += (isApp ? '_app' : '');
 
@@ -4841,6 +4894,11 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 var costPerClickValue = 'value' + suffixesAll;
 
                 var suffixes = [{
+                        from: '',
+                        to: '_views',
+                        mult: 1
+                    },
+                    {
                         from: '_views',
                         to: '_click',
                         mult: 1 * multClick
@@ -5266,10 +5324,10 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
             this.params.cost_type.hidden = this.params.cost_type.cpm_only;
 
             if (this.params.cost_type.cpm_only) {
-                this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
+                this.setCostType(AdsEdit.AD_COST_TYPE_CPM);
             }
             if (this.params.cost_type.cpc_only) {
-                this.setCostType(AdsEdit.ADS_AD_COST_TYPE_CLICK);
+                this.setCostType(AdsEdit.AD_COST_TYPE_CPC);
             }
 
             this.updateUiParam('link_type');
@@ -6122,6 +6180,7 @@ AdsViewEditor.prototype.completeLink = function() {
 
         this.updateUiParam('_platform');
         this.updateUiParam('platform');
+        this.updateUiParam('cost_type');
         this.updateUiParam('cost_per_click');
         this.updateUiParamData('platform');
         this.updateUiParamVisibility('format_type');
@@ -6129,6 +6188,7 @@ AdsViewEditor.prototype.completeLink = function() {
         this.updateUiParamVisibility('platform');
         this.updateUiParamVisibility('platform_no_wall');
         this.updateUiParamVisibility('platform_no_ad_network');
+        this.updateUiParamVisibility('cost_type');
 
         this.targetingEditor.updateUiCriterionVisibility('events_retargeting_groups');
         this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
