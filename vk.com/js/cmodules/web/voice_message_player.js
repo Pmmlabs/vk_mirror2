@@ -69,9 +69,9 @@
     n.push = e, n = n.slice();
     for (var h = 0; h < n.length; h++) e(n[h]);
     var u = l;
-    o.push([177, "bundles/audioplayer", "bundles/common"]), i()
+    o.push([178, "bundles/audioplayer", "bundles/common"]), i()
 }({
-    177: function(t, e, i) {
+    178: function(t, e, i) {
         t.exports = i("3KRu")
     },
     "3KRu": function(t, e, i) {
@@ -180,7 +180,7 @@
                 this._prefetchAudioEl.src == t && this._prefetchAudioEl.readyState > o.STATE_HAVE_NOTHING && (this._setAudioNodeUrl(this._currentAudioEl, a), this._currentAudioEl = this._prefetchAudioEl, this._prefetchAudioEl = this._createAudioNode(), this.opts.onCanPlay && this.opts.onCanPlay());
                 var e = this._currentAudioEl;
                 if (e.src) try {
-                    Object(s.a)(e)
+                    Object(s.wrapAudioPlay)(e)
                 } catch (t) {
                     debugLog("Audio: url set failed (html5 impl)")
                 }
@@ -412,10 +412,8 @@
             }
             _unlogf(t) {
                 if (!this.options.log) return t;
-                var e = this.options.logfbase;
-                return function(t, e) {
-                    return Math.log(e) / Math.log(t)
-                }(e, 1 + t * (e - 1))
+                var e, i, s = this.options.logfbase;
+                return e = s, i = 1 + t * (s - 1), Math.log(i) / Math.log(e)
             }
             setValue(t, e, i) {
                 if (!hasClass(this._el, "active") || i) {
@@ -461,11 +459,11 @@
                         this._updateProgress(t)
                     }
                 };
-                h = !1, o.isSupported() ? (o.isSupported('audio/ogg;codecs="opus"') && !o.isSupported('audio/ogg;codecs="codec_check"') && (h = !0), this._impl = new o(e)) : browser.flash && window.renderFlash && (this._impl = new r(e)), this.onPlayPause = (t => (cancelEvent(t), this.toggle())), this.onDurationClick = (t => {
+                h = !1, o.isSupported() ? (o.isSupported('audio/ogg;codecs="opus"') && !o.isSupported('audio/ogg;codecs="codec_check"') && (h = !0), this._impl = new o(e)) : browser.flash && window.renderFlash && (this._impl = new r(e)), this.onPlayPause = t => (cancelEvent(t), this.toggle()), this.onDurationClick = t => {
                     this.durationType = !this.durationType, cancelEvent(t)
-                }), this._onListened = (() => {
+                }, this._onListened = () => {
                     t && t(this._audioEl)
-                }), this._initEvents()
+                }, this._initEvents()
             }
             _updateProgress(t) {
                 this._duration * t >= 1 && this._audioEl && !this._audioEl._listened && (this._audioEl._listened = !0, this._onListened()), this._durationEl && (this.durationType ? this._durationEl.innerHTML = "-" + formatTime(Math.round(this._duration * (1 - t))) : this._durationEl.innerHTML = formatTime(Math.round(this._duration * t))), this._progressSlider && this._progressSlider.setValue(t)
@@ -545,7 +543,7 @@
                 this._timer && (clearInterval(this._timer), this._timer = null)
             }
             _initEvents() {
-                window.ap ? ap.on(this, u.a.PLAY, () => {
+                window.ap ? ap.on(this, u.events.PLAY, () => {
                     delete ap.pausedByMsg, this.pause()
                 }) : window.audio && audio.onPlay(() => {
                     delete audio.pausedByMsg, this.pause()
@@ -566,7 +564,7 @@
                 window.Notifier && (d = !0, Notifier.lcSend("video_start")), window.ap && ap.isPlaying() ? (ap.pause(), ap.pausedByMsg = !0) : window.audio && audio.playing && audio.playing() && (audio.pause(), audio.pausedByMsg = !0)
             }
             static resumeGlobalMedia() {
-                window.Notifier && d && (d = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (Object(s.a)(audio), delete audio.pausedByMsg)
+                window.Notifier && d && (d = !1, Notifier.lcSend("video_hide")), window.ap && ap.pausedByMsg ? (ap.play(), delete ap.pausedByMsg) : window.audio && audio.playing && audio.pausedByMsg && (Object(s.wrapAudioPlay)(audio), delete audio.pausedByMsg)
             }
         }
         var p = i("i/qW"),
@@ -585,7 +583,7 @@
         }
 
         function v(t, e) {
-            e = Math.round(e), t.length != e && (t = Object(p.b)(t, e));
+            e = Math.round(e), t.length != e && (t = Object(p.fastResample)(t, e));
             for (var i = "", s = 0, a = 0; a < t.length; a++) 0 == (s = Math.floor(10 * t[a] * .95)) && (s = .5), i += "M" + (3 * a + 1) + "," + (10 - s) + "v" + 2 * s + "Z";
             return `<svg class="audio-msg-track--wave" width="${3*t.length}px"><path d="${i}"></path></svg>`
         }
@@ -642,9 +640,10 @@
     },
     "i/qW": function(t, e, i) {
         "use strict";
-        i.d(e, "a", function() {
+        i.r(e);
+        i.d(e, "Resampler", function() {
             return a
-        }), i.d(e, "b", function() {
+        }), i.d(e, "fastResample", function() {
             return o
         });
         var s = {

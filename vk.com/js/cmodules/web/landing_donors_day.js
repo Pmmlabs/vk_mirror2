@@ -69,9 +69,9 @@
     i.push = o, i = i.slice();
     for (var l = 0; l < i.length; l++) o(i[l]);
     var _ = d;
-    a.push([105, "bundles/common"]), r()
+    a.push([106, "bundles/common"]), r()
 }({
-    105: function(e, o, r) {
+    106: function(e, o, r) {
         e.exports = r("ERMh")
     },
     ERMh: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
@@ -268,7 +268,7 @@
             },
             renderSnippet(e, o, r) {
                 var n = vkImage();
-                n.onload = (() => {
+                n.onload = () => {
                     var t = ce("canvas", {
                         width: 2040,
                         height: 912
@@ -289,12 +289,12 @@
                     a.fillText(_, 1020 - g / 2, 600);
                     var h = t.toDataURL("image/png", .99);
                     h = h.substr(h.indexOf("base64,", 0) + 7), this.uploadSnippetPhoto(h, r)
-                }), n.src = "/images/landings/donors_day/snippet_bg.png"
+                }, n.src = "/images/landings/donors_day/snippet_bg.png"
             },
             uploadSnippetPhoto(base64, callback) {
                 var XHR = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
                     xhr = new XHR;
-                xhr.open("POST", cur.donorsDayUploadServer, !0), xhr.onload = (() => {
+                xhr.open("POST", cur.donorsDayUploadServer, !0), xhr.onload = () => {
                     var obj, res = xhr.responseText;
                     try {
                         obj = eval("(" + res + ")")
@@ -302,7 +302,7 @@
                         obj = AjaxConvert.fromQueryString(res)
                     }
                     callback(obj)
-                });
+                };
                 var form = new FormData;
                 form.append("Photo_base64", base64), xhr.send(form)
             },

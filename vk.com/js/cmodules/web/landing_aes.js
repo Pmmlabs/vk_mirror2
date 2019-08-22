@@ -69,9 +69,9 @@
     o.push = a, o = o.slice();
     for (var l = 0; l < o.length; l++) a(o[l]);
     var _ = d;
-    s.push([104, "bundles/common"]), n()
+    s.push([105, "bundles/common"]), n()
 }({
-    104: function(e, a, n) {
+    105: function(e, a, n) {
         e.exports = n("3ddT")
     },
     "3ddT": function(e, a, n) {
@@ -223,8 +223,83 @@
                 clearTimeout(this.rotationTimer)
             }
         }
+        class d extends o {
+            constructor() {
+                super(...arguments), this.coversWrap = geByClass1("landing_main_slider_covers_wrap")
+            }
+            _onChangeSlide() {
+                super._onChangeSlide(...arguments), removeClass(geByClass1("selected", this.coversWrap), "selected");
+                var e = this._getPosition() % this.slides.length;
+                addClass("landing_ads_cover_" + e, "selected")
+            }
+            _makeButtons(e) {
+                for (var a = "", n = 0; n < e.length; n++) {
+                    var t = e[n];
+                    a += `<a href="${t.href}" class="landings_main_slider_button ${t.style}" onclick="${t.onClick?t.onClick:""}">${t.text}</a>`
+                }
+                return `<div class="landings_main_slider_buttons">${a}</div>`
+            }
+            _getSlideCont(e, a) {
+                var n = this._makeButtons(a.buttons ? a.buttons : "");
+                return `\n<div class="landings_main_slider_slide_cont_wrap">\n  <div class="landings_main_slider_slide_cont">\n    ${a.href?`<a href="${a.href}" class="landings_main_slider_slide_title">${a.title}</a>`:`<div class="landings_main_slider_slide_title">${a.title}</div>`}\n    <div class="landings_main_slider_slide_caption">${a.caption}</div>\n    ${n}\n  </div>\n</div>\n`
+            }
+            _getAnimationDuration() {
+                return 700
+            }
+        }
         n("tUrg");
-        var d = 400;
+        class l extends r {
+            constructor(e, a) {
+                a.wrapClass = "landing_ads_examples_slider", super(e, a)
+            }
+            _getSlideCont(e, a) {
+                return `\n<a class="landing_ads_examples_row" href="${a.link}">\n  <div class="landing_ads_examples_row_icon ${a.slug}"></div>\n  <div class="landing_ads_examples_row_title">${a.title}</div>\n  <div class="landing_ads_examples_row_subtitle">${a.subtitle?a.subtitle:""}</div>\n  <div class="landing_ads_examples_row_caption">${a.caption}</div>\n</a>`
+            }
+            _initSlider() {
+                super._initSlider();
+                var e = this._getPosition();
+                this._setPosition(e + 1)
+            }
+            _getSlidesLimit() {
+                return 5
+            }
+        }
+        var _ = 400;
+        class c extends r {
+            constructor(e, a) {
+                a.wrapClass = "landing_ads_games_integration_slider", super(e, a)
+            }
+            _getSlideCont(e, a) {
+                var n = ce("div", {
+                    className: "landing_ads_games_integration_slide"
+                }, {
+                    "background-image": `url(${a.src})`
+                });
+                return addEvent(n, "click", () => {
+                    this._changeSlide(e)
+                }), n
+            }
+            _getSlidesLimit() {
+                return 5
+            }
+            _updateSlide(e, a) {
+                var n = {
+                    transform: "translateX(" + 100 * a + "%)",
+                    transition: "transform " + _ + "ms ease-in-out"
+                };
+                "next" == this.lastDirection && -1 == a || "prev" == this.lastDirection && 1 == a ? n.zIndex = 3 : n.zIndex = 0 == a ? 2 : 1, setStyle(e, n);
+                var t = geByClass1("landing_ads_games_integration_slide", e);
+                0 == a ? setStyle(t, {
+                    transform: "scale(1.26)",
+                    "transition-delay": Math.round(_ / 4) + "ms"
+                }) : setStyle(t, {
+                    transform: "scale(1)",
+                    "transition-delay": "0ms"
+                }), 3 == n.zIndex && (clearTimeout(this.resetZIndexTimer), this.resetZIndexTimer = setTimeout(() => {
+                    setStyle(e, "z-index", 1)
+                }, _ / 2))
+            }
+        }
         window.LandingAds = {
             init: (e, a) => {
                 switch (cur.lang = extend(cur.lang || {}, a.langs), window.saveScrollTopOnBack = !0, cur.adsNoOffice = !!a.no_office, LandingAds.initMainSlider(e, a.mainSliderData), e) {
@@ -289,41 +364,7 @@
             },
             initTargeting: e => {},
             initSpecialProjects: e => {
-                cur.gamesIntegrationSlider = new class extends r {
-                    constructor(e, a) {
-                        a.wrapClass = "landing_ads_games_integration_slider", super(e, a)
-                    }
-                    _getSlideCont(e, a) {
-                        var n = ce("div", {
-                            className: "landing_ads_games_integration_slide"
-                        }, {
-                            "background-image": `url(${a.src})`
-                        });
-                        return addEvent(n, "click", () => {
-                            this._changeSlide(e)
-                        }), n
-                    }
-                    _getSlidesLimit() {
-                        return 5
-                    }
-                    _updateSlide(e, a) {
-                        var n = {
-                            transform: "translateX(" + 100 * a + "%)",
-                            transition: "transform " + d + "ms ease-in-out"
-                        };
-                        "next" == this.lastDirection && -1 == a || "prev" == this.lastDirection && 1 == a ? n.zIndex = 3 : n.zIndex = 0 == a ? 2 : 1, setStyle(e, n);
-                        var t = geByClass1("landing_ads_games_integration_slide", e);
-                        0 == a ? setStyle(t, {
-                            transform: "scale(1.26)",
-                            "transition-delay": Math.round(d / 4) + "ms"
-                        }) : setStyle(t, {
-                            transform: "scale(1)",
-                            "transition-delay": "0ms"
-                        }), 3 == n.zIndex && (clearTimeout(this.resetZIndexTimer), this.resetZIndexTimer = setTimeout(() => {
-                            setStyle(e, "z-index", 1)
-                        }, d / 2))
-                    }
-                }("ads_games_integration_slider", {
+                cur.gamesIntegrationSlider = new c("ads_games_integration_slider", {
                     slides: e.gamesIntegrationSlides
                 }), LandingAds.openLive(geByClass1("mv_playlist_item", "landing_ads_lives"), 1), cur.livesScroll = new uiScroll(geByClass1("landing_ads_lives_rows"), {
                     global: !0,
@@ -369,50 +410,12 @@
                 })
             },
             initMainSlider: (e, a) => {
-                cur.mainSlider = new class extends o {
-                    constructor() {
-                        super(...arguments), this.coversWrap = geByClass1("landing_main_slider_covers_wrap")
-                    }
-                    _onChangeSlide() {
-                        super._onChangeSlide(...arguments), removeClass(geByClass1("selected", this.coversWrap), "selected");
-                        var e = this._getPosition() % this.slides.length;
-                        addClass("landing_ads_cover_" + e, "selected")
-                    }
-                    _makeButtons(e) {
-                        for (var a = "", n = 0; n < e.length; n++) {
-                            var t = e[n];
-                            a += `<a href="${t.href}" class="landings_main_slider_button ${t.style}" onclick="${t.onClick?t.onClick:""}">${t.text}</a>`
-                        }
-                        return `<div class="landings_main_slider_buttons">${a}</div>`
-                    }
-                    _getSlideCont(e, a) {
-                        var n = this._makeButtons(a.buttons ? a.buttons : "");
-                        return `\n<div class="landings_main_slider_slide_cont_wrap">\n  <div class="landings_main_slider_slide_cont">\n    ${a.href?`<a href="${a.href}" class="landings_main_slider_slide_title">${a.title}</a>`:`<div class="landings_main_slider_slide_title">${a.title}</div>`}\n    <div class="landings_main_slider_slide_caption">${a.caption}</div>\n    ${n}\n  </div>\n</div>\n`
-                    }
-                    _getAnimationDuration() {
-                        return 700
-                    }
-                }("ads_main_slider", {
+                cur.mainSlider = new d("ads_main_slider", {
                     slides: a
                 }), "intro" !== e && cur.mainSlider.setDisabled(!0)
             },
             initExamplesSlider: e => {
-                cur.examplesSlider = new class extends r {
-                    constructor(e, a) {
-                        a.wrapClass = "landing_ads_examples_slider", super(e, a)
-                    }
-                    _getSlideCont(e, a) {
-                        return `\n<a class="landing_ads_examples_row" href="${a.link}">\n  <div class="landing_ads_examples_row_icon ${a.slug}"></div>\n  <div class="landing_ads_examples_row_title">${a.title}</div>\n  <div class="landing_ads_examples_row_subtitle">${a.subtitle?a.subtitle:""}</div>\n  <div class="landing_ads_examples_row_caption">${a.caption}</div>\n</a>`
-                    }
-                    _initSlider() {
-                        super._initSlider();
-                        var e = this._getPosition();
-                        this._setPosition(e + 1)
-                    }
-                    _getSlidesLimit() {
-                        return 5
-                    }
-                }("ads_examples_slider", {
+                cur.examplesSlider = new l("ads_examples_slider", {
                     slides: e
                 })
             },
@@ -614,10 +617,8 @@
                                             if (l)
                                                 if (_)
                                                     if (c && /^(https?:\/\/)?vk\.com\/[^\/]+$/.test(c)) {
-                                                        if (!g || ! function(e) {
-                                                                return -1 !== e.indexOf("@") && -1 === e.indexOf(" ")
-                                                            }(g)) return notaBene("adv_agency_form_email");
-                                                        var I = {
+                                                        if (!g || (-1 === (I = g).indexOf("@") || -1 !== I.indexOf(" "))) return notaBene("adv_agency_form_email");
+                                                        var I, O = {
                                                                 act: "adv_agency_send_request",
                                                                 country: n,
                                                                 city: t,
@@ -637,8 +638,8 @@
                                                                 clients: JSON.stringify(B),
                                                                 hash: a
                                                             },
-                                                            O = ge("adv_agency_form_sent");
-                                                        hide(O), LandingAds.sendStatEvent("adv_agency_form_send"), lockButton(e), ajax.post("ads.php", I, {
+                                                            $ = ge("adv_agency_form_sent");
+                                                        hide($), LandingAds.sendStatEvent("adv_agency_form_send"), lockButton(e), ajax.post("ads.php", O, {
                                                             onDone: function() {
                                                                 unlockButton(e), val("adv_agency_form_city", ""), val("adv_agency_form_site", ""), val("adv_agency_form_company", ""), val("adv_agency_form_inn", ""), val("adv_agency_form_starting_budget", ""), val("adv_agency_form_monthly_budget", ""), val("adv_agency_form_contact_first_name", domData(ge("adv_agency_form_contact_first_name"), "initial")), val("adv_agency_form_contact_last_name", domData(ge("adv_agency_form_contact_last_name"), "initial")), val("adv_agency_form_email", ""), val("adv_agency_form_vk_profile", domData(ge("adv_agency_form_vk_profile"), "initial")), val("adv_agency_form_message", ""), val("adv_agency_business_direction_other", ""), cur.countryDD.selectItem(0);
                                                                 for (var a = geByClass("on", "adv_agency_products_wrap"), n = 0; n < a.length; n++) removeClass(a[n], "on");
@@ -657,7 +658,7 @@
                                                                             val(u, "")
                                                                         } else _.parentNode.removeChild(_)
                                                                 }
-                                                                removeClass(geByClass1("js-adv-agency-clients-add"), "hidden"), show(O), scrollToY(getXY(O)[1] - 200)
+                                                                removeClass(geByClass1("js-adv-agency-clients-add"), "hidden"), show($), scrollToY(getXY($)[1] - 200)
                                                             },
                                                             onFail: function() {
                                                                 unlockButton(e)
@@ -667,7 +668,7 @@
                                             else notaBene("adv_agency_form_contact_last_name");
                                             else notaBene("adv_agency_form_contact_first_name")
                                         } else
-                                            for (var $ = domQuery("#adv_agency_clients_wrap > div:first-child input"), W = 0; W < $.length; W++) notaBene($[W])
+                                            for (var W = domQuery("#adv_agency_clients_wrap > div:first-child input"), M = 0; M < W.length; M++) notaBene(W[M])
                                 }
                             } else notaBene("adv_agency_form_inn");
                 else notaBene("adv_agency_form_company");

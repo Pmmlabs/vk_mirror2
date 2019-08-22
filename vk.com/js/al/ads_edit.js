@@ -4305,7 +4305,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
         case 'cost_type':
             this.initUiParam(paramName);
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
-            toggle(this.params[paramName].ui_cpa.container, !this.params[paramName].cpa_hidden);
+            this.params[paramName].ui_cpa && toggle(this.params[paramName].ui_cpa.container, !this.params[paramName].cpa_hidden);
             break;
         case 'platform':
             this.initUiParam(paramName);

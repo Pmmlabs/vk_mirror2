@@ -69,9 +69,9 @@
     r.push = t, r = r.slice();
     for (var l = 0; l < r.length; l++) t(r[l]);
     var h = d;
-    a.push([59, "bundles/common"]), s()
+    a.push([60, "bundles/common"]), s()
 }({
-    59: function(e, t, s) {
+    60: function(e, t, s) {
         e.exports = s("x625")
     },
     hhXQ: function(e, t, s) {
@@ -153,11 +153,11 @@
                             }
                         })
                     }
-                    cur.paymentComplete || (cur.paymentComplete = ((e, t) => {
+                    cur.paymentComplete || (cur.paymentComplete = (e, t) => {
                         cur.paymentCompleteParams = t, cur.isPaymentComplete = !0
-                    })), cur.paymentCanceled || (cur.paymentCanceled = (e => {
+                    }), cur.paymentCanceled || (cur.paymentCanceled = e => {
                         e ? cur.isPaymentFailed = !0 : cur.isPaymentCanceled = !0
-                    })), window.aep = this
+                    }), window.aep = this
                 }
             }
             onContinueButtonClicked(e) {
@@ -702,9 +702,9 @@
                             noLocChange: 1,
                             skipBoxesHide: 1,
                             noClickHide: 1
-                        }), cur.promoteBox = this.box, cur.onExternalAppDone = (e => {
+                        }), cur.promoteBox = this.box, cur.onExternalAppDone = e => {
                             e.status || (cur.isPaymentCanceled = !0), cur.promoteBox._show(), cur.promoteBox = null, cur.onExternalAppDone = null, window.WkView && WkView.hide(!1, !0)
-                        }), void this.waitForPaymentResult({
+                        }, void this.waitForPaymentResult({
                             ajaxParams: {
                                 source: "ads",
                                 ads_union_id: this.options.payment_union_id,
@@ -741,7 +741,7 @@
                         });
                     i.appendChild(s), this.boxBodyNode.appendChild(i), this.paymentSystemsFormElement.innerHTML = "", cur.isAdsPayment = !0, cur.paymentAccountId = this.options.payment_union_id;
                     var a = cur.submitPaymentSystemsForm(e, t.request_without_fee ? 0 : t.fee, !0);
-                    Object(n.d)("payments", "", "ads", e, "start"), this.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), this.goToScreen(this.paymentResultScreenElement), this.waitForPaymentResult({
+                    Object(n.statlogsValueEvent)("payments", "", "ads", e, "start"), this.setPaymentResultScreen(getLang("ads_edit_easy_promote_payment_wait"), getLang("ads_edit_easy_promote_payment_wait_description"), "wait"), this.goToScreen(this.paymentResultScreenElement), this.waitForPaymentResult({
                         ajaxParams: {
                             source: "ads",
                             ads_union_id: this.options.payment_union_id,
@@ -772,7 +772,7 @@
             static frameMessage(t) {
                 if (!t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?paymentgate\.ru$/) && !t.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?money\.mail\.ru$/)) return !1;
                 var s = {};
-                t.data && "{" === t.data.substr(0, 1) && "billing" !== (s = Object(i.l)(t.data)).type || ("submit" === t.data || "3dsPage" === s.action ? setTimeout(e.setCardFrameHeight.pbind(600), 200) : "3dsFinish" === s.action ? e.setCardFrameHeight() : "resizeFrame" === s.action && setTimeout(e.setCardFrameHeight.pbind(s.action_params.height), 200))
+                t.data && "{" === t.data.substr(0, 1) && "billing" !== (s = Object(i.parseJSON)(t.data)).type || ("submit" === t.data || "3dsPage" === s.action ? setTimeout(e.setCardFrameHeight.pbind(600), 200) : "3dsFinish" === s.action ? e.setCardFrameHeight() : "resizeFrame" === s.action && setTimeout(e.setCardFrameHeight.pbind(s.action_params.height), 200))
             }
             setPaymentIFrameHtml(e) {
                 var t = ce("iframe", {

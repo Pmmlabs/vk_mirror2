@@ -1,26 +1,26 @@
 ﻿! function(e) {
     function t(t) {
-        for (var o, n, c = t[0], m = t[1], d = t[2], l = 0, b = []; l < c.length; l++) n = c[l], i[n] && b.push(i[n][0]), i[n] = 0;
-        for (o in m) Object.prototype.hasOwnProperty.call(m, o) && (e[o] = m[o]);
-        for (u && u(t); b.length;) b.shift()();
-        return a.push.apply(a, d || []), r()
+        for (var o, n, c = t[0], d = t[1], m = t[2], u = 0, b = []; u < c.length; u++) n = c[u], a[n] && b.push(a[n][0]), a[n] = 0;
+        for (o in d) Object.prototype.hasOwnProperty.call(d, o) && (e[o] = d[o]);
+        for (l && l(t); b.length;) b.shift()();
+        return i.push.apply(i, m || []), r()
     }
 
     function r() {
-        for (var e, t = 0; t < a.length; t++) {
-            for (var r = a[t], o = !0, c = 1; c < r.length; c++) {
-                var m = r[c];
-                0 !== i[m] && (o = !1)
+        for (var e, t = 0; t < i.length; t++) {
+            for (var r = i[t], o = !0, c = 1; c < r.length; c++) {
+                var d = r[c];
+                0 !== a[d] && (o = !1)
             }
-            o && (a.splice(t--, 1), e = n(n.s = r[0]))
+            o && (i.splice(t--, 1), e = n(n.s = r[0]))
         }
         return e
     }
     var o = {},
-        i = {
+        a = {
             "web/writebox": 0
         },
-        a = [];
+        i = [];
 
     function n(t) {
         if (o[t]) return o[t].exports;
@@ -65,13 +65,13 @@
         return Object.prototype.hasOwnProperty.call(e, t)
     }, n.p = "";
     var c = window.webpackJsonp = window.webpackJsonp || [],
-        m = c.push.bind(c);
+        d = c.push.bind(c);
     c.push = t, c = c.slice();
-    for (var d = 0; d < c.length; d++) t(c[d]);
-    var u = m;
-    a.push([183, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
+    for (var m = 0; m < c.length; m++) t(c[m]);
+    var l = d;
+    i.push([184, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), r()
 }({
-    183: function(e, t, r) {
+    184: function(e, t, r) {
         e.exports = r("rUY3")
     },
     rUY3: function(e, t, r) {
@@ -79,8 +79,8 @@
         r.r(t);
         r("pIFo");
         var o = r("uytb"),
-            i = r("rjmT"),
-            a = window.WriteBox = {
+            a = r("rjmT"),
+            i = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {
                         marginRight: e
@@ -90,13 +90,13 @@
                 },
                 show: function(e, t) {
                     var r = t.toData[0],
-                        i = t.toData[7];
+                        a = t.toData[7];
                     if (e.setOptions({
                             hideButtons: !0,
                             width: 502,
                             bodyStyle: "padding: 0px; border: 0px;",
                             title: t.title,
-                            titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + r + '" onclick="return WriteBox.toFull(event, ' + r + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", i)
+                            titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + r + '" onclick="return WriteBox.toFull(event, ' + r + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", a)
                         }), e.removeButtons(), cur.lang = extend(cur.lang || {}, t.lang), extend(cur, {
                             mbTxtInp: {},
                             mbEditable: t.editable,
@@ -110,21 +110,21 @@
                             mbTo: t.toData,
                             mbHash: t.hash,
                             mbBannedHim: t.bannedhim,
-                            ldb: Object(o.c)(vk.id)
+                            ldb: Object(o.mount)(vk.id)
                         }), t.emojiRcnt && !cur.mbRcntEmoji) {
-                        for (var n = [], c = t.emojiRcnt, m = 0, d = c.length; m < d; ++m) {
-                            var u = c[m];
-                            u && n.push('<a id="mbe_rc_em_' + u + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + u + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(u, !1, !0) + "</a>")
+                        for (var n = [], c = t.emojiRcnt, d = 0, m = c.length; d < m; ++d) {
+                            var l = c[d];
+                            l && n.push('<a id="mbe_rc_em_' + l + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + l + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(l, !1, !0) + "</a>")
                         }
                         cur.mbRcntEmoji = n.join("")
                     }
                     cur.nav.push(() => {
                         cur.ldb.unmount()
-                    }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = a.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
+                    }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = i.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
                         ttDiff: 1,
                         controlsCont: ge("mbe_emoji_wrap"),
                         shouldFocus: !0,
-                        onSend: a.send,
+                        onSend: i.send,
                         rPointer: !0,
                         noEnterSend: 1,
                         ref: "writebox",
@@ -132,23 +132,23 @@
                         forceTxt: !t.editable,
                         sharedTT: cur.sharedImWrite,
                         txt: ge("mail_box_editable"),
-                        checkEditable: a.checkEditable,
-                        saveDraft: a.saveDraft,
+                        checkEditable: i.checkEditable,
+                        saveDraft: i.saveDraft,
                         rceCont: ge("mbe_rcemoji_cont"),
                         addMediaBtn: ge("mail_box_add_row"),
                         sendWrap: ge("mail_box_controls"),
                         onKeyAction: function(e) {
                             clearTimeout(cur.saveWriteBoxDraft);
                             var t = "paste" == e.type ? 0 : 300;
-                            cur.saveWriteBoxDraft = setTimeout(a.saveDraft, t)
+                            cur.saveWriteBoxDraft = setTimeout(i.saveDraft, t)
                         },
                         onStickerSend: function(e, t) {
                             var r = trim(Emoji.editableVal(cur.mbField)),
                                 o = cur.mbMedia.getMedias(),
-                                i = cur.toData[0];
+                                a = cur.toData[0];
                             ajax.post("/al_im.php", {
                                 act: "a_send_box",
-                                to_ids: i,
+                                to_ids: a,
                                 chas: cur.mbHash,
                                 msg: "",
                                 ts: cur.ts,
@@ -158,7 +158,7 @@
                                 sticker_referrer: t
                             }, {
                                 onDone: function(e, t) {
-                                    r || o.length ? a.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
+                                    r || o.length ? i.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
                                 },
                                 showProgress: lockButton.pbind("mail_box_send"),
                                 hideProgress: unlockButton.pbind("mail_box_send"),
@@ -169,21 +169,21 @@
                             })
                         },
                         onRecentEmojiUpdate: function() {
-                            a.extractEmoji()
+                            i.extractEmoji()
                         }
                     }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
-                    var l = cur.postTo;
+                    var u = cur.postTo;
                     cur.postTo = !1, e.setOptions({
                         onHide: function() {
-                            removeEvent(document, "keydown", a.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
+                            removeEvent(document, "keydown", i.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
                         },
                         onShow: function() {
-                            addEvent(document, "keydown", a.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
+                            addEvent(document, "keydown", i.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
                         },
                         onClean: function() {
-                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = l, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
+                            clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = u, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
                         }
-                    }), addEvent(document, "keydown", a.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
+                    }), addEvent(document, "keydown", i.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
                         var t = {
                             mail: 1,
                             nocl: 1,
@@ -201,18 +201,18 @@
                                 }
                         }), cur.mbMedia = new MediaSelector("mail_box_add_link", "mail_box_added_row", cur.mbMediaTypes, t), cur.mbMedia.onChange = function() {
                             e.changed = !0, setTimeout(function() {
-                                a.saveDraft()
+                                i.saveDraft()
                             }, 100)
-                        }, ls.checkVersion() && cur.mbTo[0] && a.restoreDraft(cur.mbTo[0])
+                        }, ls.checkVersion() && cur.mbTo[0] && i.restoreDraft(cur.mbTo[0])
                     })
                 },
                 getPeer: function() {
                     return intval(cur.toData[0])
                 },
                 restoreDraft: function(e) {
-                    var t = a.getPeer();
+                    var t = i.getPeer();
                     if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
-                        var r = Object(i.b)(cur.ldb, t);
+                        var r = Object(a.loadDraftForPeer)(cur.ldb, t);
                         if (cur.mbForceAttach)
                             if ("market_item" == cur.mbForceAttach[0]) r.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), r.removeAllAttaches(), r.addAttach("market", cur.mbForceAttach[1]);
                             else if ("market_order" == cur.mbForceAttach[0]) {
@@ -221,16 +221,16 @@
                                 c = o.order_id;
                             r.setText(unclean(getLang("mail_order_tmpl")).replace(/<br>/g, "\n").replace("{id}", `${n}-${c}`).replace("{href}", `${window.location.host}/orders${n}_${c}`)), r.removeAllAttaches()
                         }
-                        a.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(r.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(r.dData.txt))), r.prepareObjects().then(() => {
-                            if (cur.mbField && a.getPeer() == t)
+                        i.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(r.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(r.dData.txt))), r.prepareObjects().then(() => {
+                            if (cur.mbField && i.getPeer() == t)
                                 for (var e = r.dData.attaches, o = 0; o < e.length; o++) cur.mbMedia.chooseMedia(e[o].type, e[o].id, e[o].object || {}, null, !0)
-                        }), a.checkEditable(cur.emojiWId, cur.mbField), a.checkLen(cur.mbField)
+                        }), i.checkEditable(cur.emojiWId, cur.mbField), i.checkLen(cur.mbField)
                     }
                 },
                 saveDraft: function() {
-                    var e = a.getPeer();
+                    var e = i.getPeer();
                     if (e && cur.mbField) {
-                        var t = Object(i.b)(cur.ldb, e);
+                        var t = Object(a.loadDraftForPeer)(cur.ldb, e);
                         t.setText(unclean(trim(Emoji.val(cur.mbField)))), t.removeAllAttaches(), cur.mbMedia.getMedias().forEach(e => t.addAttach(e[0], e[1])), t.destroy()
                     }
                 },
@@ -242,13 +242,13 @@
                             },
                             o = trim(Emoji.editableVal(cur.mbField));
                         if (o && (r.message = o), cur.mbMedia.chosenMedias) {
-                            for (var i = cur.mbMedia.getMedias(), a = [], n = 0, c = i.length; n < c; ++n) {
-                                var m = i[n],
-                                    d = [];
-                                for (var u in m) "object" != typeof m[u] && d.push(m[u]);
-                                a.push(d.join(","))
+                            for (var a = cur.mbMedia.getMedias(), i = [], n = 0, c = a.length; n < c; ++n) {
+                                var d = a[n],
+                                    m = [];
+                                for (var l in d) "object" != typeof d[l] && m.push(d[l]);
+                                i.push(m.join(","))
                             }
-                            r.media = a.join("*")
+                            r.media = i.join("*")
                         }
                         return nav.go(r, null, {
                             noback: !0
@@ -259,7 +259,7 @@
                     if (!buttonLocked("mail_box_send")) {
                         var t = trim(Emoji.editableVal(cur.mbField)),
                             r = cur.mbMedia.getMedias();
-                        cur.mbEditable && a.extractEmoji();
+                        cur.mbEditable && i.extractEmoji();
                         var o = {
                             act: "a_send_box",
                             chas: cur.mbHash,
@@ -271,12 +271,12 @@
                             to_ids: []
                         };
                         cur.mbForceAttach && (o.attach1_type = cur.mbForceAttach[0], o.attach1 = cur.mbForceAttach[1], o.attach1_hash = cur.mbForceAttach[2]);
-                        for (var n, c = 0, m = r.length; c < m; ++c)(n = r[c]) && o.media.push(n[0] + ":" + n[1]);
+                        for (var n, c = 0, d = r.length; c < d; ++c)(n = r[c]) && o.media.push(n[0] + ":" + n[1]);
                         if (o.media = o.media.join(","), !t && !o.media) return cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField);
                         o.to_ids = cur.toData[0], cur.mbBannedHim != o.to_ids || !0 === e ? ajax.post("al_im.php", o, {
                             onDone: function(e, t) {
                                 if (t) {
-                                    var r = Object(i.b)(cur.ldb, t);
+                                    var r = Object(a.loadDraftForPeer)(cur.ldb, t);
                                     r.clear(), r.destroy()
                                 }
                                 curBox().hide(), showDoneBox(e)
@@ -289,7 +289,7 @@
                             mid: cur.mbBannedHim
                         }, {
                             dark: 1
-                        }).onContinue = a.send.pbind(!0)
+                        }).onContinue = i.send.pbind(!0)
                     }
                 },
                 checkLen: function(e) {
@@ -330,8 +330,8 @@
                             r = Emoji.getRecentEmojiSorted().slice(0, 7);
                         for (var o in r)
                             if (r.hasOwnProperty(o)) {
-                                var i = r[o];
-                                t += '<a id="mbe_rc_em_' + i + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + i + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(i, !1, !0) + "</a>"
+                                var a = r[o];
+                                t += '<a id="mbe_rc_em_' + a + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + a + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(a, !1, !0) + "</a>"
                             }
                         val(e, t)
                     }

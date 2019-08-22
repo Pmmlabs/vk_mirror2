@@ -1411,549 +1411,2533 @@ window.stManager = {
     }
 }, __stm = stManager;
 
-window.ajaxCache = {};
-window.globalAjaxCache = {};
-window.ajax = {
-    _init: function() {
-        var r = false;
-        try {
-            if (r = new XMLHttpRequest()) {
-                ajax._req = function() {
-                    return new XMLHttpRequest();
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Ajax layout start
+
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i];
+            for (var key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    target[key] = source[key];
                 }
-                return;
             }
-        } catch (e) {}
-        each(['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP'], function() {
-            try {
-                var t = '' + this;
-                if (r = new ActiveXObject(t)) {
-                    (function(n) {
-                        ajax._req = function() {
-                            return new ActiveXObject(n);
-                        }
-                    })(t);
-                    return false;
-                }
-            } catch (e) {}
-        });
-        if (!ajax._req) {
-            location.replace('/badbrowser.php');
         }
-    },
-    _getreq: function() {
-        if (!ajax._req) ajax._init();
-        return ajax._req();
-    },
-    _frameover: function() {
-        var node = iframeTransport.parentNode;
-        node.innerHTML = '';
-        utilsNode.removeChild(node);
-        iframeTransport = false;
-        ajax.framegot(false);
-        if (cur.onFrameBlocksDone) {
-            cur.onFrameBlocksDone();
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+}
+
+function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        _typeof = function _typeof(obj) {
+            return typeof obj;
+        };
+    } else {
+        _typeof = function _typeof(obj) {
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+    }
+    return _typeof(obj);
+}
+
+/******/
+(function(modules) { // webpackBootstrap
+    /******/ // The module cache
+    /******/
+    var installedModules = {};
+    /******/
+    /******/ // The require function
+    /******/
+    function __webpack_require__(moduleId) {
+        /******/
+        /******/ // Check if module is in cache
+        /******/
+        if (installedModules[moduleId]) {
+            /******/
+            return installedModules[moduleId].exports;
+            /******/
         }
-    },
-    _receive: function(cont, html, js) {
-        cont = cont && ge(cont);
-        if (cont && html) {
-            html = ce('div', {
-                innerHTML: html
+        /******/ // Create a new module (and put it into the cache)
+        /******/
+        var module = installedModules[moduleId] = {
+            /******/
+            i: moduleId,
+            /******/
+            l: false,
+            /******/
+            exports: {}
+            /******/
+        };
+        /******/
+        /******/ // Execute the module function
+        /******/
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        /******/
+        /******/ // Flag the module as loaded
+        /******/
+        module.l = true;
+        /******/
+        /******/ // Return the exports of the module
+        /******/
+        return module.exports;
+        /******/
+    }
+    /******/
+    /******/
+    /******/ // expose the modules object (__webpack_modules__)
+    /******/
+    __webpack_require__.m = modules;
+    /******/
+    /******/ // expose the module cache
+    /******/
+    __webpack_require__.c = installedModules;
+    /******/
+    /******/ // define getter function for harmony exports
+    /******/
+    __webpack_require__.d = function(exports, name, getter) {
+        /******/
+        if (!__webpack_require__.o(exports, name)) {
+            /******/
+            Object.defineProperty(exports, name, {
+                enumerable: true,
+                get: getter
             });
-            while (html.firstChild) {
-                cont.appendChild(html.firstChild);
-            }
+            /******/
         }
-        if (js) {
-            eval('(function(){' + js + ';})()');
+        /******/
+    };
+    /******/
+    /******/ // define __esModule on exports
+    /******/
+    __webpack_require__.r = function(exports) {
+        /******/
+        if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+            /******/
+            Object.defineProperty(exports, Symbol.toStringTag, {
+                value: 'Module'
+            });
+            /******/
         }
-        ajax._framenext();
-    },
-    framedata: false,
-    _framenext: function() {
-        if (!(ajax.framedata || {}).length) return;
-        var d = ajax.framedata.shift();
-        if (d === true) {
-            ajax._framenext();
-        } else if (d === false) {
-            ajax.framedata = false;
-        } else {
-            setTimeout(ajax._receive.pbind(d[0], d[1], d[2]), 0);
-        }
-    },
-    framegot: function(c, h, j) {
-        if (!ajax.framedata) return;
-        ajax.framedata.push((h === undefined && j === undefined) ? c : [c, h, j]);
-        if (ajax.framedata.length === 1) {
-            ajax._framenext();
-        }
-    },
-    framepost: function(url, query, done) {
-        if (window.iframeTransport) {
-            ajax._frameover();
-        }
-        window.iframeTransport = utilsNode.appendChild(ce('div', {
-            innerHTML: '<iframe></iframe>'
-        })).firstChild;
-        ajax.framedata = [true];
-        ajax._framedone = done;
-        iframeTransport.src = url + '?' + ((typeof(query) != 'string') ? ajx2q(query) : query);
-    },
-    plainpost: function(url, query, done, fail) {
-        var r = ajax._getreq();
-        var q = (typeof(query) != 'string') ? ajx2q(query) : query;
-        r.onreadystatechange = function() {
-            if (r.readyState == 4) {
-                if (r.status >= 200 && r.status < 300) {
-                    if (done) done(r.responseText, r);
-                } else if (r.status) {
-                    if (fail) fail(r.responseText, r);
-                }
-            }
-        }
-        try {
-            r.open('POST', url, true);
-        } catch (e) {
-            topMsg('<b>Ajax Error:</b> ' + e.message);
-        }
-        r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        r.send(q);
-        return r;
-    },
-    post: function(url, query, options) {
-        if (url.substr(0, 1) != '/') url = '/' + url;
-        var o = extend({
-                _captcha: false,
-                _box: false
-            }, options || {}),
-            q = extend({
-                al: o.frame ? -1 : 1
-            }, query);
-        if (o.progress) {
-            if (!o.showProgress) {
-                o.showProgress = show.pbind(o.progress);
-            }
-            if (!o.hideProgress) {
-                o.hideProgress = hide.pbind(o.progress);
-            }
-        }
-        return ajax._post(url, q, o);
-    },
-    preload: function(url, query, data) {
-        if (url.substr(0, 1) != '/') url = '/' + url;
-        ajaxCache[url + '#' + ajx2q(query)] = data;
-    },
-    invalidate: function(url, query) {
-        if (url === undefined) {
-            ajaxCache = {}
-        } else {
-            delete ajaxCache[ajax._getCacheKey(url, query)];
-        }
-    },
-    _getCacheKey: function(url, query, o) {
-        var boldq = clone(query);
-        delete boldq.al;
-        delete boldq.al_ad;
-        delete boldq.ads_section;
-        delete boldq.ads_showed;
-        delete boldq.captcha_sid;
-        delete boldq.captcha_key;
-        delete boldq._smt;
-        delete boldq._preload;
-        return url + '#' + ajx2q(boldq, o && o.noSort);
-    },
-    _debugLog: function(text) {
-        window._updateDebug = function() {
-            var dlw = ge('debuglogwrap');
-            if (dlw) {
-                dlw.innerHTML = text;
-                window._updateDebug = false;
-            }
-        }
-    },
-    _parseRes: function(answer) {
-        window._updateDebug = false;
-        for (var i = 0; i < answer.length; ++i) {
-            var ans = answer[i];
-            if (ans.substr(0, 2) == '<!') {
-                var from = ans.indexOf('>');
-                var type = ans.substr(2, from - 2);
-                ans = ans.substr(from + 1);
-                switch (type) {
-                    case 'json':
-                        answer[i] = eval('(' + ans + ')');
-                        break;
-                    case 'int':
-                        answer[i] = intval(ans);
-                        break;
-                    case 'float':
-                        answer[i] = floatval(ans);
-                        break;
-                    case 'bool':
-                        answer[i] = intval(ans) ? true : false;
-                        break;
-                    case 'null':
-                        answer[i] = null;
-                        break;
-                    case 'debug':
-                        ajax._debugLog(ans);
-                        answer.pop(); // <!debug> must be last one
-                        break;
-                }
-            }
-        }
-    },
-    _post: function(url, q, o) {
-        if (!q.captcha_sid && o.showProgress) o.showProgress();
-        var cacheKey = false;
-        extend(q, __adsGetAjaxParams(q, o));
-        if (o.cache) {
-            cacheKey = ajax._getCacheKey(url, q, o);
-        }
-        var hideBoxes = function() {
-            for (var i = 0; i < arguments.length; ++i) {
-                var box = arguments[i];
-                if (box && box.isVisible()) {
-                    box.setOptions({
-                        onHide: false
-                    });
-                    box.hide();
-                }
-            }
-            return false;
-        }
-        var fail = function(text) {
-            if (o.hideProgress) o.hideProgress();
-            if (o._suggest) cleanElems(o._suggest);
-            o._suggest = o._captcha = o._box = hideBoxes(o._box, o._captcha);
-            if (isFunction(o.onFail)) {
-                if (o.onFail(text)) {
-                    return;
-                }
-            }
-            topError(text);
-        }
-        // Process response function
-        var processResponse = function(code, answer) {
+        /******/
+        Object.defineProperty(exports, '__esModule', {
+            value: true
+        });
+        /******/
+    };
+    /******/
+    /******/ // create a fake namespace object
+    /******/ // mode & 1: value is a module id, require it
+    /******/ // mode & 2: merge all properties of value into the ns
+    /******/ // mode & 4: return value when already ns object
+    /******/ // mode & 8|1: behave like require
+    /******/
+    __webpack_require__.t = function(value, mode) {
+        /******/
+        if (mode & 1) value = __webpack_require__(value);
+        /******/
+        if (mode & 8) return value;
+        /******/
+        if ((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+        /******/
+        var ns = Object.create(null);
+        /******/
+        __webpack_require__.r(ns);
+        /******/
+        Object.defineProperty(ns, 'default', {
+            enumerable: true,
+            value: value
+        });
+        /******/
+        if (mode & 2 && typeof value != 'string')
+            for (var key in value) __webpack_require__.d(ns, key, function(key) {
+                return value[key];
+            }.bind(null, key));
+        /******/
+        return ns;
+        /******/
+    };
+    /******/
+    /******/ // getDefaultExport function for compatibility with non-harmony modules
+    /******/
+    __webpack_require__.n = function(module) {
+        /******/
+        var getter = module && module.__esModule ?
+            /******/
+            function getDefault() {
+                return module['default'];
+            } :
+            /******/
+            function getModuleExports() {
+                return module;
+            };
+        /******/
+        __webpack_require__.d(getter, 'a', getter);
+        /******/
+        return getter;
+        /******/
+    };
+    /******/
+    /******/ // Object.prototype.hasOwnProperty.call
+    /******/
+    __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    };
+    /******/
+    /******/ // __webpack_public_path__
+    /******/
+    __webpack_require__.p = "";
+    /******/
+    /******/
+    /******/ // Load entry module and return exports
+    /******/
+    return __webpack_require__(__webpack_require__.s = 0);
+    /******/
+})
+/************************************************************************/
+/******/
+({
 
-            if (o.customProcessResponse) {
-                return o.customProcessResponse(code, answer);
+    /***/
+    "./static/js/mobile/modules/entries/ajax.js":
+        /*!**************************************************!*\
+          !*** ./static/js/mobile/modules/entries/ajax.js ***!
+          \**************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            var _request = __webpack_require__( /*! #web/lib/ajax/request */ "./static/js/modules/web/lib/ajax/request.js");
+
+            window.ajax = _request.ajax;
+            window.ajaxCache = {};
+            window.globalAjaxCache = {};
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/shared/lib/crc32.js":
+        /*!***********************************************!*\
+          !*** ./static/js/modules/shared/lib/crc32.js ***!
+          \***********************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.crc32 = crc32;
+            // Pre-generate crc32 polynomial lookup table
+            // http://wiki.osdev.org/CRC32#Building_the_Lookup_Table
+            var table = new Uint32Array(256);
+
+            for (var i = 256; i--;) {
+                var tmp = i;
+
+                for (var k = 8; k--;) {
+                    tmp = tmp & 1 ? 3988292384 ^ tmp >>> 1 : tmp >>> 1;
+                }
+
+                table[i] = tmp;
+            } // crc32b
+            // Example input        : [97, 98, 99, 100, 101] (Uint8Array)
+            // Example output       : 2240272485 (Uint32)
+
+
+            function crc32(data) {
+                var crc = -1; // Begin with all bits set ( 0xffffffff )
+
+                for (var _i = 0, l = data.length; _i < l; _i++) {
+                    crc = crc >>> 8 ^ table[crc & 255 ^ data[_i]];
+                }
+
+                return (crc ^ -1) >>> 0; // Apply binary NOT
             }
 
-            if (o.cache && !o.forceGlobalCache) {
-                if (!code) {
-                    ajaxCache[cacheKey] = answer;
-                }
-                if (o.cache === 2) {
-                    return;
-                }
-            }
+            /***/
+        }),
 
-            // Parse response
+    /***/
+    "./static/js/modules/web/lib/ajax/cache.js":
+        /*!*************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/cache.js ***!
+          \*************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
 
-            if (o.hideProgress) o.hideProgress();
-            o._box = hideBoxes(o._box);
-            if (o._captcha && code != 2) {
-                if (o._suggest) cleanElems(o._suggest);
-                o._suggest = o._captcha = hideBoxes(o._captcha);
-            }
-            switch (code) {
-                case 1: // email not confirmed
-                    if (ge('confirm_mail')) {
-                        showFastBox({
-                            width: 430,
-                            title: ge('confirm_mail_title').value,
-                            onHide: o.onFail
-                        }, '<div class="confirm_mail">' + ge('confirm_mail').innerHTML + '</div>');
-                    } else {
-                        topMsg('<b>Error!</b> Email is not confirmed!');
-                    }
-                    break;
-                case 2: // captcha
-                    if (intval(answer[1]) === 2) {
-                        var resend = function(response) {
-                            var nq = extend(q, {
-                                recaptcha: response
-                            });
-                            var no = o.cache ? extend(o, {
-                                cache: -1
-                            }) : o;
-                            ajax._post(url, nq, no);
-                        }
-                        o._captcha = showReCaptchaBox(answer[0], answer[2], o._captcha, {
-                            onSubmit: resend,
-                            addText: addText,
-                            onDestroy: function() {
-                                if (o.onFail) o.onFail();
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.AjaxCacheClient = void 0;
+
+            var AjaxCacheClient =
+                /*#__PURE__*/
+                function() {
+                    _createClass(AjaxCacheClient, null, [{
+                        key: "getInstance",
+                        value: function getInstance(url, query) {
+                            var cacheKey = AjaxCacheClient.makeCacheKey(url, query);
+
+                            if (!AjaxCacheClient._instances[cacheKey]) {
+                                AjaxCacheClient._instances[cacheKey] = new AjaxCacheClient(cacheKey);
                             }
+
+                            return AjaxCacheClient._instances[cacheKey];
+                        }
+                    }]);
+
+                    function AjaxCacheClient(cacheKey) {
+                        _classCallCheck(this, AjaxCacheClient);
+
+                        AjaxCacheClient.ensureCachesInitialized();
+                        this._cacheKey = cacheKey;
+                    }
+
+                    _createClass(AjaxCacheClient, [{
+                        key: "getFromCache",
+                        value: function getFromCache(onResponseReady, onGlobalCachedResponseReady, _ref) {
+                            var _ref$cacheLevel = _ref.cacheLevel,
+                                cacheLevel = _ref$cacheLevel === void 0 ? 0 : _ref$cacheLevel,
+                                _ref$forceGlobalCache = _ref.forceGlobalCache,
+                                forceGlobalCache = _ref$forceGlobalCache === void 0 ? false : _ref$forceGlobalCache,
+                                _ref$onAnswerProcesse = _ref.onAnswerProcessed,
+                                onAnswerProcessed = _ref$onAnswerProcesse === void 0 ? function() {} : _ref$onAnswerProcesse;
+
+                            if (cacheLevel > 0 || forceGlobalCache) {
+                                var answer = window.ajaxCache[this._cacheKey];
+
+                                if (answer && answer._loading) {
+                                    answer._callbacks.push(onResponseReady);
+
+                                    return false;
+                                } else {
+                                    if (answer && !forceGlobalCache) {
+                                        onResponseReady(0, answer);
+
+                                        if (cacheLevel === 3) {
+                                            delete window.ajaxCache[this._cacheKey];
+                                        }
+
+                                        return false;
+                                    }
+
+                                    answer = window.globalAjaxCache[this._cacheKey];
+
+                                    if (answer) {
+                                        if (answer === -1 || isFunction(answer)) {
+                                            window.globalAjaxCache[this._cacheKey] = onGlobalCachedResponseReady;
+                                        } else {
+                                            onGlobalCachedResponseReady.apply(window, answer);
+                                        }
+
+                                        if (onAnswerProcessed) {
+                                            onAnswerProcessed();
+                                        }
+
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            window.ajaxCache[this._cacheKey] = {
+                                _loading: 1,
+                                _callbacks: []
+                            };
+                            return true;
+                        }
+                    }, {
+                        key: "processExistingCache",
+                        value: function processExistingCache(code, newAnswer) {
+                            var answer = window.ajaxCache[this._cacheKey];
+
+                            if (answer && answer._loading) {
+                                setTimeout(function() {
+                                    for (var i in answer._callbacks) {
+                                        if (answer._callbacks.hasOwnProperty(i)) {
+                                            answer._callbacks[i](code, newAnswer);
+                                        }
+                                    }
+                                }, 0);
+                                delete window.ajaxCache[this._cacheKey];
+                            }
+                        }
+                    }, {
+                        key: "cacheResponse",
+                        value: function cacheResponse(answer) {
+                            window.ajaxCache[this._cacheKey] = answer;
+                        }
+                    }], [{
+                        key: "ensureCachesInitialized",
+                        value: function ensureCachesInitialized() {
+                            if (!window.ajaxCache) {
+                                window.ajaxCache = {};
+                            }
+
+                            if (!window.globalAjaxCache) {
+                                window.globalAjaxCache = {};
+                            }
+                        }
+                        /**
+                         * Make cache key for ajax cache
+                         *
+                         * @param {string} url
+                         * @param {object} _query
+                         * @return {string}
+                         */
+
+                    }, {
+                        key: "makeCacheKey",
+                        value: function makeCacheKey(url, _query) {
+                            var query = _extends({}, _query);
+
+                            ['al', 'al_ad', 'ads_section', 'ads_showed', 'captcha_sid', 'captcha_key', '_smt', '_preload'].forEach(function(key) {
+                                return delete query[key];
+                            });
+                            return url + '#' + AjaxConvert.toQueryString(query);
+                        }
+                        /**
+                         * Set value to ajax cache
+                         *
+                         * @param {string} url
+                         * @param {object} query
+                         * @param {object} data
+                         */
+
+                    }, {
+                        key: "preload",
+                        value: function preload(url, query, data) {
+                            AjaxCacheClient.ensureCachesInitialized();
+
+                            if (url.substr(0, 1) !== '/') {
+                                url = '/' + url;
+                            }
+
+                            window.ajaxCache[AjaxCacheClient.makeCacheKey(url, query)] = data;
+                        }
+                        /**
+                         * Delete value from ajax cache
+                         *
+                         * @param {string} url
+                         * @param {object} query
+                         */
+
+                    }, {
+                        key: "invalidate",
+                        value: function invalidate(url, query) {
+                            AjaxCacheClient.ensureCachesInitialized();
+
+                            if (url === undefined) {
+                                window.ajaxCache = {};
+                            } else {
+                                delete window.ajaxCache[AjaxCacheClient.make(url, query)];
+                            }
+                        }
+                    }]);
+
+                    return AjaxCacheClient;
+                }();
+
+            exports.AjaxCacheClient = AjaxCacheClient;
+            AjaxCacheClient._instances = {};
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/frame_transport.js":
+        /*!***********************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/frame_transport.js ***!
+          \***********************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.FrameTransport = void 0;
+
+            var _queueStartMarker = {
+                'type': 'start'
+            };
+            var _queueEndMarker = {
+                'type': 'end'
+            };
+
+            var FrameTransport =
+                /*#__PURE__*/
+                function() {
+                    /**
+                     * Init transport
+                     */
+                    function FrameTransport() {
+                        _classCallCheck(this, FrameTransport);
+
+                        this.frameDataQueue = [];
+                        this.frameTimeout = null;
+                        this.frame = null;
+                        this.queueReady = false;
+                        this.fulfilled = false;
+
+                        this._debug = function() {};
+                    }
+                    /**
+                     * @param {function} onEnd  called when all frame blocks are processed and module is finalized.
+                     * @param {function} onModuleEvaluated  called when js code of a certain module finished evaliuating.
+                     * @param {function} debug called on every subsystem call
+                     */
+
+
+                    _createClass(FrameTransport, [{
+                        key: "setHandlers",
+                        value: function setHandlers() {
+                            var onEnd = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function() {};
+                            var onModuleEvaluated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function() {};
+                            var debug = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function() {};
+                            this._onEnd = onEnd;
+                            this._onModuleEvaluated = onModuleEvaluated;
+                            this._debug = debug;
+                        }
+                        /**
+                         * Run request in iframe
+                         *
+                         * @param {string} frameUrl
+                         * @param {function} onReady
+                         * @return {FrameTransport}
+                         */
+
+                    }, {
+                        key: "run",
+                        value: function run(frameUrl, onReady) {
+                            this._debug('Run ', frameUrl, this.frameDataQueue);
+
+                            this.frameUrl = frameUrl;
+                            this.onReady = onReady;
+                            this.fulfilled = false;
+                            this.queueReady = false;
+                            this.frameDataQueue = [_queueStartMarker]; // TODO: really need these markers?
+
+                            clearTimeout(this.frameTimeout);
+                            this.frameTimeout = false;
+
+                            if (this.frame) {
+                                this._cleanup();
+                            }
+
+                            this.frame = ce('div', {
+                                innerHTML: '<iframe></iframe>'
+                            });
+                            utilsNode.appendChild(this.frame);
+                            this.frame.firstChild.src = this.frameUrl; // This runs request
+
+                            return this;
+                        }
+                        /**
+                         * Called when meta came from server: nav version lang id etc...
+                         *
+                         * External functional handler to be used inside frame document.
+                         * Should not be called manually; used in al.lib.php
+                         *
+                         * @param {object} meta
+                         */
+
+                    }, {
+                        key: "useMeta",
+                        value: function useMeta(meta) {
+                            this._debug('Metainfo: ', meta);
+
+                            this.onReady(meta);
+                        }
+                        /**
+                         * Called when ajax block came from server: html js additional static modules etc...
+                         *
+                         * External functional handler to be used inside frame document.
+                         * Should not be called manually; used in al.lib.php
+                         *
+                         * @param {string} container
+                         * @param {string} html
+                         * @param {string} js
+                         */
+
+                    }, {
+                        key: "useAjaxBlock",
+                        value: function useAjaxBlock(container, html, js) {
+                            this._debug('Ajax block: ', container, html, js, this.fulfilled, this.frameDataQueue);
+
+                            if (this.fulfilled) {
+                                // Something came after end of queue?
+                                return;
+                            }
+
+                            this.frameDataQueue.push(FrameTransport._makeQueueBlock(container, html, js));
+
+                            if (this.frameDataQueue.length === 1) {
+                                // TODO: why??
+                                this._nextQueueItem();
+                            }
+                        }
+                        /**
+                         * Called when final js code for current module received from server.
+                         * Should always be called strictly BEFORE any queue handlers
+                         *
+                         * External functional handler to be used inside frame document.
+                         * Should not be called manually; used in al.lib.php
+                         *
+                         * @param {string|undefined} jsData
+                         * @param {object|undefined} params
+                         */
+
+                    }, {
+                        key: "finalize",
+                        value: function finalize(jsData, params) {
+                            this._debug('Finalize: ', jsData);
+
+                            this._cleanup();
+
+                            if (jsData) {
+                                this.frameDataQueue.push(FrameTransport._makeQueueBlock(false, false, jsData, params));
+                            }
+
+                            this.queueReady = true;
+                            this.frameDataQueue.push(_queueEndMarker);
+
+                            if (window.cur.onFrameBlocksDone) {
+                                window.cur.onFrameBlocksDone();
+                            }
+
+                            this._onEnd && this._onEnd(new Date().getTime());
+                        }
+                        /**
+                         * Get next item from queue and plan its handling in next tick
+                         */
+
+                    }, {
+                        key: "_nextQueueItem",
+                        value: function _nextQueueItem() {
+                            var _this = this;
+
+                            if (this.frameTimeout) {
+                                clearTimeout(this.frameTimeout); // probably bad idea to bind to same timer
+                            }
+
+                            if (!this.queueReady) {
+                                this.frameTimeout = setTimeout(function() {
+                                    return _this._nextQueueItem();
+                                }, 100);
+                                return;
+                            }
+
+                            this._debug('Next queue item: ', this.fulfilled, this.frameDataQueue);
+
+                            if (this.fulfilled || this.frameDataQueue.length === 0) {
+                                this.frameTimeout = false;
+                                return;
+                            }
+
+                            var dataItem = this.frameDataQueue.shift();
+
+                            switch (dataItem.type) {
+                                case _queueStartMarker.type:
+                                    // Starting point; proceed to next item.
+                                    this._nextQueueItem();
+
+                                    break;
+
+                                case _queueEndMarker.type:
+                                    this.fulfilled = true;
+                                    break;
+
+                                default:
+                                    this.frameTimeout = setTimeout(function() {
+                                        return _this._onReceived(dataItem);
+                                    }, 0);
+                            }
+                        }
+                        /**
+                         * Queue item handler:
+                         * - Inserts html into container if there is any;
+                         * - Runs js code for module if there is any;
+                         * - Triggers next queue item handler
+                         *
+                         * @param {object} queueItem
+                         */
+
+                    }, {
+                        key: "_onReceived",
+                        value: function _onReceived(queueItem) {
+                            var _this2 = this;
+
+                            var onError = function onError(e, script) {
+                                topError(e, {
+                                    dt: 15,
+                                    type: 8,
+                                    url: _this2.frameUrl,
+                                    js: script,
+                                    answer: JSON.stringify(queueItem)
+                                });
+                                logEvalError(e, script);
+                            };
+
+                            var container = queueItem.container && ge(queueItem.container);
+
+                            if (container && queueItem.html) {
+                                if (!container.firstChild) {
+                                    val(container, queueItem.html);
+                                } else {
+                                    container.appendChild(createFragment(queueItem.html));
+                                }
+                            }
+
+                            if (queueItem.js) {
+                                _runJs(queueItem.js, onError);
+
+                                this._onModuleEvaluated && this._onModuleEvaluated(cur.module);
+                            }
+
+                            if (queueItem.params && 'leftads' in queueItem.params) {
+                                window.__adsSet && __adsSet(queueItem.params.leftads, queueItem.params.ads_section || '', queueItem.params.ads_can_show, queueItem.params.ads_showed);
+                            }
+
+                            this._nextQueueItem();
+                        }
+                        /**
+                         * Clean frame element from utils node
+                         */
+
+                    }, {
+                        key: "_cleanup",
+                        value: function _cleanup() {
+                            this._debug('Cleanup: ', this.frameDataQueue);
+
+                            if (!this.frame) {
+                                return;
+                            }
+
+                            this.frame.innerHTML = '';
+                            utilsNode.removeChild(this.frame);
+                            this.frame = null;
+                        }
+                        /**
+                         * @deprecated
+                         */
+
+                    }, {
+                        key: "abort",
+                        value: function abort() {
+                            clearTimeout(this.frameTimeout);
+                            this.frameTimeout = false;
+
+                            this._cleanup();
+                        }
+                        /**
+                         * Frame transport singleton getter
+                         * @return {FrameTransport}
+                         */
+
+                    }], [{
+                        key: "request",
+
+                        /**
+                         * Frame transport request entry point
+                         *
+                         * @param {string} url
+                         * @param {object} query
+                         * @param {function} onReady
+                         * @param {object} options
+                         * @return {FrameTransport}
+                         */
+                        value: function request(url, query, onReady, options) {
+                            return FrameTransport.frame.run(FrameTransport.makeUrl(url, query, !(options && options.noSort)), onReady);
+                        }
+                    }, {
+                        key: "_makeQueueBlock",
+                        value: function _makeQueueBlock(container, html, js, params) {
+                            return {
+                                'type': 'block',
+                                'container': container,
+                                'html': html,
+                                'js': js,
+                                'params': params
+                            };
+                        }
+                        /**
+                         * Make full url for iframe transport
+                         *
+                         * @param {string} url
+                         * @param {object} query
+                         * @param {boolean} sortQueryParams
+                         * @return {string}
+                         */
+
+                    }, {
+                        key: "makeUrl",
+                        value: function makeUrl(url, query) {
+                            var sortQueryParams = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+                            var params = query;
+
+                            if (typeof query == 'string') {
+                                params = AjaxConvert.fromQueryString(query);
+                            }
+
+                            params = AjaxConvert.toQueryString(_extends({}, params, {
+                                '_rndVer': irand(0, 99999)
+                            }), !sortQueryParams);
+                            return url + '?' + params;
+                        }
+                    }, {
+                        key: "frame",
+                        get: function get() {
+                            if (!FrameTransport.__frame) {
+                                FrameTransport.__frame = new FrameTransport();
+                            }
+
+                            return FrameTransport.__frame;
+                        }
+                    }]);
+
+                    return FrameTransport;
+                }();
+            /**
+             * Evaluate js code for module
+             *
+             * @param {string} js
+             * @param {function} onError
+             */
+
+
+            exports.FrameTransport = FrameTransport;
+
+            function _runJs(js, onError) {
+                var script = '(function(){' + js + ';})()';
+
+                if (__debugMode) {
+                    // eslint-disable-next-line no-eval
+                    eval(script);
+                } else {
+                    try {
+                        // eslint-disable-next-line no-eval
+                        eval(script);
+                    } catch (e) {
+                        onError && onError(e, script);
+                    }
+                }
+            }
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/modal_box.js":
+        /*!*****************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/modal_box.js ***!
+          \*****************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.requestBox = requestBox;
+            exports.activateMobileBox = activateMobileBox;
+            exports.validateMobileBox = validateMobileBox;
+            exports.validatePassBox = validatePassBox;
+
+            function requestBox(box, onDone, onFail) {
+                box.setOptions({
+                    onDestroy: onFail
+                });
+
+                box.onDone = function() {
+                    if (onDone) {
+                        onDone.apply(null, arguments);
+                    }
+                };
+
+                return box;
+            }
+
+            function activateMobileBox(opts) {
+                return requestBox(showBox('activation.php', {
+                    act: 'activate_mobile_box',
+                    hash: opts.hash
+                }), function() {
+                    vk.nophone = 0;
+                    opts.onDone();
+                }, opts.onFail);
+            }
+
+            function validateMobileBox(opts) {
+                return requestBox(showBox('activation.php', {
+                    act: 'validate_box',
+                    captcha: opts.acceptCaptcha ? 1 : '',
+                    skip_push: opts.skip_push ? opts.skip_push : '',
+                    from: opts.from || '',
+                    hash: opts.hash,
+                    ahash: opts.ahash
+                }, {
+                    stat: ['uncommon.css']
+                }), opts.onDone, opts.onFail);
+            }
+
+            function validatePassBox(opts) {
+                return requestBox(showBox('activation.php', {
+                    act: 'pass_validate_box',
+                    hash: opts.hash
+                }, {
+                    stat: ['uncommon.css']
+                }), opts.onDone, opts.onFail);
+            }
+
+            ;
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/proto/adapter.js":
+        /*!*********************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/proto/adapter.js ***!
+          \*********************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.AjaxProtoAdapter = exports.AJAX_PROTO_JSON = exports.AJAX_PROTO_LEGACY = void 0;
+
+            var _legacy = __webpack_require__( /*! ./legacy */ "./static/js/modules/web/lib/ajax/proto/legacy.js");
+
+            var _json = __webpack_require__( /*! ./json */ "./static/js/modules/web/lib/ajax/proto/json.js");
+
+            var AJAX_PROTO_LEGACY = 1;
+            exports.AJAX_PROTO_LEGACY = AJAX_PROTO_LEGACY;
+            var AJAX_PROTO_JSON = 2;
+            exports.AJAX_PROTO_JSON = AJAX_PROTO_JSON;
+
+            var AjaxProtoAdapter =
+                /*#__PURE__*/
+                function() {
+                    function AjaxProtoAdapter(proto) {
+                        _classCallCheck(this, AjaxProtoAdapter);
+
+                        this._switchProto(proto);
+                    }
+
+                    _createClass(AjaxProtoAdapter, [{
+                        key: "parseResponse",
+                        value: function parseResponse(text) {
+                            // Try to detect protocol match and process accordingly
+                            if (this.impl instanceof _legacy.AjaxProtoLegacy && this._isNewProto(text)) {
+                                this._switchProto(AJAX_PROTO_JSON);
+                            }
+
+                            if (this.impl instanceof _json.AjaxProtoJson && this._isOldProto(text)) {
+                                this._switchProto(AJAX_PROTO_LEGACY);
+                            }
+
+                            return this.impl.parseResponse(text);
+                        }
+                    }, {
+                        key: "_isNewProto",
+                        value: function _isNewProto(payload) {
+                            return _typeof(payload) === 'object'
+                                /* for new frame transport */
+                                ||
+                                payload[0] === '{';
+                        }
+                    }, {
+                        key: "_isOldProto",
+                        value: function _isOldProto(payload) {
+                            if (typeof payload === 'string' && payload[0] !== '{' && payload.substr(0, 40).indexOf('<!>') !== -1) {
+                                return true;
+                            }
+
+                            if (payload instanceof Array) {
+                                // Old frame transport detection
+                                return this._isOldProto(payload[0]);
+                            }
+
+                            return false;
+                        } // TODO: remove _reqid after old code is eliminated; only used for legacy proto
+
+                    }, {
+                        key: "parseStaticPayload",
+                        value: function parseStaticPayload(payload, _reqid) {
+                            // No protocol checks here; used after parseResponse.
+                            return this.impl.parseStaticPayload(payload, _reqid);
+                        }
+                    }, {
+                        key: "_switchProto",
+                        value: function _switchProto(newProto) {
+                            switch (newProto) {
+                                case AJAX_PROTO_LEGACY:
+                                    this.impl = new _legacy.AjaxProtoLegacy();
+                                    break;
+
+                                case AJAX_PROTO_JSON:
+                                    this.impl = new _json.AjaxProtoJson();
+                                    break;
+
+                                default:
+                                    topError('Fallback to legacy protocol.', {
+                                        type: 204
+                                    });
+                                    this.impl = new _legacy.AjaxProtoLegacy();
+                            }
+                        }
+                    }]);
+
+                    return AjaxProtoAdapter;
+                }();
+
+            exports.AjaxProtoAdapter = AjaxProtoAdapter;
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/proto/json.js":
+        /*!******************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/proto/json.js ***!
+          \******************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.AjaxProtoJson = void 0;
+
+            var AjaxProtoJson =
+                /*#__PURE__*/
+                function() {
+                    function AjaxProtoJson() {
+                        _classCallCheck(this, AjaxProtoJson);
+                    }
+
+                    _createClass(AjaxProtoJson, [{
+                        key: "parseResponse",
+                        value: function parseResponse(text) {
+                            var response = this.parseStaticPayload(text);
+                            return {
+                                navVersion: intval(response['loaderVersion']),
+                                newStatic: response['static'],
+                                langId: intval(response['langPack']),
+                                langVer: intval(response['langVersion']),
+                                code: intval(response['payload'][0]),
+                                payload: response['payload'][1],
+                                debugLog: response['debugLog']
+                            };
+                        }
+                    }, {
+                        key: "parseStaticPayload",
+                        value: function parseStaticPayload(payload, _reqid) {
+                            var pl = payload;
+
+                            if (payload && typeof payload === 'string') {
+                                pl = JSON.parse(payload);
+                            }
+
+                            if (pl['payload'] && pl['payload'][0] > 0) {
+                                // response code > 0, decode once more because of al.lib.php:reformatArgs
+                                pl['payload'][1] = pl['payload'][1].map(function(item) {
+                                    return typeof item === 'string' ? JSON.parse(item) : item;
+                                });
+                            }
+
+                            return pl;
+                        }
+                    }]);
+
+                    return AjaxProtoJson;
+                }();
+
+            exports.AjaxProtoJson = AjaxProtoJson;
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/proto/legacy.js":
+        /*!********************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/proto/legacy.js ***!
+          \********************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.AjaxProtoLegacy = void 0;
+
+            var AjaxProtoLegacy =
+                /*#__PURE__*/
+                function() {
+                    function AjaxProtoLegacy() {
+                        _classCallCheck(this, AjaxProtoLegacy);
+                    }
+
+                    _createClass(AjaxProtoLegacy, [{
+                        key: "parseResponse",
+                        value: function parseResponse(response) {
+                            var framePayload = [];
+
+                            if (response instanceof Array) {
+                                // Compatibility with old frame transport
+                                framePayload = response[1];
+                                response = response[0];
+                            }
+
+                            var text = response.replace(/^<!--/, '').replace(/-<>-(!?)>/g, '--$1>');
+
+                            if (!trim(text).length) {
+                                data = [8, getLang('global_unknown_error')];
+                                text = stVersions['nav'] + '<!><!>' + vk.lang + '<!>' + stVersions['lang'] + '<!>8<!>' + data[1];
+                            }
+
+                            var answer = text.split('<!>');
+                            var navVersion = intval(answer.shift());
+                            var newStatic = answer.shift();
+                            var langId = intval(answer.shift());
+                            var langVer = intval(answer.shift());
+
+                            if (framePayload) {
+                                answer = answer.concat(framePayload);
+                            }
+
+                            var code = intval(answer.shift()); // TODO check, esp. when coming from frame
+
+                            return {
+                                navVersion: navVersion,
+                                newStatic: newStatic,
+                                langId: langId,
+                                langVer: langVer,
+                                code: code,
+                                payload: answer
+                            };
+                        }
+                    }, {
+                        key: "parseStaticPayload",
+                        value: function parseStaticPayload(payload, _reqid) {
+                            // No protocol checks here; used after parseResponse.
+                            var answer = [].concat(payload);
+
+                            for (var i = answer.length - 1; i >= 0; --i) {
+                                var ans = answer[i];
+
+                                if (ans.substr(0, 2) === '<!') {
+                                    var from = ans.indexOf('>');
+                                    var type = ans.substr(2, from - 2);
+                                    ans = ans.substr(from + 1);
+
+                                    switch (type) {
+                                        case 'json':
+                                            answer[i] = parseJSON(ans);
+                                            break;
+
+                                        case 'int':
+                                            answer[i] = intval(ans);
+                                            break;
+
+                                        case 'float':
+                                            answer[i] = floatval(ans);
+                                            break;
+
+                                        case 'bool':
+                                            answer[i] = !!intval(ans);
+                                            break;
+
+                                        case 'null':
+                                            answer[i] = null;
+                                            break;
+
+                                        case 'pageview_candidate':
+                                            answer.pop(); // <!pageview> must be last one or before <!debug>
+
+                                            break;
+
+                                        case 'debug':
+                                            window.debuglogGot && window.debuglogGot(_reqid, ans);
+                                            answer.pop(); // <!debug> must be last one
+
+                                            break;
+                                    }
+                                }
+                            }
+
+                            return answer;
+                        }
+                    }]);
+
+                    return AjaxProtoLegacy;
+                }();
+
+            exports.AjaxProtoLegacy = AjaxProtoLegacy;
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/request.js":
+        /*!***************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/request.js ***!
+          \***************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.ajax = void 0;
+
+            var _frame_transport = __webpack_require__( /*! ./frame_transport */ "./static/js/modules/web/lib/ajax/frame_transport.js");
+
+            var _cache = __webpack_require__( /*! ./cache */ "./static/js/modules/web/lib/ajax/cache.js");
+
+            var _xhr_transport = __webpack_require__( /*! ./xhr_transport */ "./static/js/modules/web/lib/ajax/xhr_transport.js");
+
+            var _response_handlers = __webpack_require__( /*! ./response_handlers */ "./static/js/modules/web/lib/ajax/response_handlers.js");
+
+            var _adapter = __webpack_require__( /*! ./proto/adapter */ "./static/js/modules/web/lib/ajax/proto/adapter.js");
+
+            var AjaxRequest =
+                /*#__PURE__*/
+                function() {
+                    _createClass(AjaxRequest, null, [{
+                        key: "post",
+
+                        /**
+                         * Primary entry point for all requests
+                         *
+                         * @param {string} url
+                         * @param {object} _query
+                         * @param {object} _options
+                         * @return {FrameTransport|XMLHttpRequest}
+                         */
+                        value: function post(url, _query, _options) {
+                            AjaxRequest._protoAdapter = new _adapter.AjaxProtoAdapter(_adapter.AJAX_PROTO_LEGACY);
+
+                            if (url.substr(0, 1) !== '/' && url.substr(0, 4) !== 'http') {
+                                url = '/' + url;
+                            }
+
+                            var options = _extends({}, _options || {}, {
+                                _captcha: false,
+                                _box: false,
+                                no_ads_params: false
+                            });
+
+                            var query = _extends({}, _query, {
+                                al: options.frame ? -1 : 1
+                            });
+
+                            var now = vkNow();
+                            var timeSpent = vk.spentLastSendTS ? Math.round((now - vk.spentLastSendTS) / 1000) : 0;
+
+                            if (vk.sampleUser >= 0 && window.cur && cur.module && timeSpent >= 1) {
+                                if (window.curNotifier && curNotifier.idle_manager && !curNotifier.idle_manager.is_idle) {
+                                    query._smt = cur.module + ':' + timeSpent;
+                                }
+
+                                vk.spentLastSendTS = now;
+                            } // TODO: this should not be in ajax layer
+
+
+                            if (options.progress) {
+                                if (!options.showProgress) {
+                                    options.showProgress = function() {
+                                        var progressElement = ge(options.progress);
+
+                                        if (hasClass(progressElement, 'pr')) {
+                                            setStyle(progressElement, 'opacity', 1);
+                                        }
+
+                                        show(progressElement);
+                                    };
+                                }
+
+                                if (!options.hideProgress) {
+                                    options.hideProgress = function() {
+                                        var progressElement = ge(options.progress);
+
+                                        if (hasClass(progressElement, 'pr')) {
+                                            setStyle(progressElement, 'opacity', 0);
+                                        }
+
+                                        hide(progressElement);
+                                    };
+                                }
+                            } // TODO: this should not be in ajax layer
+
+
+                            if (options.loader) {
+                                var boxLayerWrapWasVisible = isVisible(window.boxLayerWrap);
+
+                                options.showProgress = function() {
+                                    boxRefreshCoords(window.boxLoader);
+                                    show(window.boxLoader);
+
+                                    if (!boxLayerWrapWasVisible) {
+                                        show(window.boxLayerWrap);
+                                    }
+                                };
+
+                                options.hideProgress = function() {
+                                    hide(window.boxLoader);
+
+                                    if (!boxLayerWrapWasVisible) {
+                                        hide(window.boxLayerWrap);
+                                    }
+                                };
+                            }
+
+                            return new AjaxRequest(url, query, options)._post(); // TODO: return something more relevant...
+                        }
+                        /**
+                         * Request constructor does not run the request automatically.
+                         * In general you should not use constructor in favor of static post() method.
+                         *
+                         * @param {string} url
+                         * @param {object} query
+                         * @param {object} options
+                         */
+
+                    }]);
+
+                    function AjaxRequest(url, query, options) {
+                        _classCallCheck(this, AjaxRequest);
+
+                        this._url = url;
+                        this._options = _extends({}, options); // Should not mutate original options
+
+                        this._query = query;
+                        this._additionalStaticLoader = null; // When loaded module needs to load some specific static files, use this func
+
+                        this._cacheClient = null;
+
+                        if (options.local) {
+                            this.onDone = vkLocal(this.onDone);
+                            this.onFail = vkLocal(this.onFail);
+                            this.processResponse = vkLocal(this.processResponse);
+                        }
+
+                        if (this._options.cache) {
+                            this._cacheClient = _cache.AjaxCacheClient.getInstance(this._url, this._query);
+                        }
+
+                        this.onDone = this.onDone.bind(this);
+                        this.onFail = this.onFail.bind(this);
+                        this.processResponse = this.processResponse.bind(this);
+                    }
+                    /**
+                     * Run the request
+                     *
+                     * @return {FrameTransport|XMLHttpRequest}
+                     */
+
+
+                    _createClass(AjaxRequest, [{
+                        key: "_post",
+                        value: function _post() {
+                            var _this = this;
+
+                            if (!this._query.captcha_sid && this._options.showProgress) {
+                                this._options.showProgress();
+                            }
+
+                            if (window.__adsGetAjaxParams && !this._options.no_ads_params) {
+                                this._query = _extends({}, this._query, window.__adsGetAjaxParams(this._query, this._options));
+                            } // Load additional static files
+
+
+                            if (this._options.stat) {
+                                // TODO: rename this options key, it's confusing
+                                this._additionalStaticLoader = null;
+                                stManager.add(this._options.stat, function() {
+                                    if (_this._additionalStaticLoader) {
+                                        _this._additionalStaticLoader();
+                                    }
+
+                                    _this._options.stat = false;
+                                });
+                            }
+
+                            if (this._cacheClient && !this._cacheClient.getFromCache(this.processResponse, this._options.onDone, {
+                                    cacheLevel: this._options.cache,
+                                    forceGlobalCache: this._options.forceGlobalCache,
+                                    onAnswerProcessed: this._options.hideProgress
+                                })) {
+                                return;
+                            } // Used in response handlers to make another request;
+
+
+                            this._options.resend = function(newQuery, newOptions) {
+                                return new AjaxRequest(_this._url, newQuery, newOptions)._post();
+                            };
+
+                            if (window.debuglogSent) {
+                                this._reqid = window.debuglogSent(this._url + (this._query ? ': ' + AjaxConvert.toQueryString(this._query, this._options.noSort).replace(/&/g, '&amp;') : ''));
+
+                                if (this._options.frame) {
+                                    window._lfrid = this._reqid;
+                                }
+                            } else {
+                                this._reqid = 0;
+                            }
+
+                            var xhrOptions = {};
+
+                            if (this._options.timeout) {
+                                xhrOptions.timeout = this._options.timeout;
+                            }
+
+                            return this._options.frame ? _frame_transport.FrameTransport.request(this._url, this._query, this.onDone, this._options) : (0, _xhr_transport.plainpost)(this._url, this._query, this.onDone, this.onFail, false, xhrOptions, this._options, false, null);
+                        }
+                        /**
+                         * Handle the response according to it's code and request options.
+                         *
+                         * @param {any} code
+                         * @param {any} answer
+                         */
+
+                    }, {
+                        key: "processResponse",
+                        value: function processResponse(code, answer) {
+                            if (this._options.customProcessResponse) {
+                                return this._options.customProcessResponse(code, answer);
+                            }
+
+                            if (this._options.cache && this._cacheClient) {
+                                this._cacheClient.processExistingCache(code, answer);
+                            }
+
+                            if (this._options.stat) {
+                                this._options.stat = false;
+                                this._additionalStaticLoader = this.processResponse.pbind(code, answer);
+                                return;
+                            }
+
+                            if (this._options.cache && !this._options.forceGlobalCache && !code && this._cacheClient) {
+                                this._cacheClient.cacheResponse(answer);
+                            }
+
+                            if (this._options.hideProgress) {
+                                this._options.hideProgress();
+                            }
+
+                            if (code !== 2) {
+                                if (this._options._captcha) {
+                                    if (this._options._suggest) {
+                                        cleanElems(this._options._suggest);
+                                    }
+
+                                    this._options._captcha = hideBoxes(this._options._captcha);
+                                    this._options._suggest = this._options._captcha;
+                                }
+
+                                this._options._box = hideBoxes(this._options._box);
+                            }
+
+                            getHandlerByCode(code)(this._options, answer, this._query, this._url);
+
+                            if (window.LazyLoad) {
+                                window.LazyLoad.scanDelayed();
+                            }
+                        }
+                        /**
+                         * Called when request has failed or any handler threw an exception
+                         *
+                         * @param {any} text
+                         * @param {any} req
+                         */
+
+                    }, {
+                        key: "onFail",
+                        value: function onFail(text, req) {
+                            if (this._options.hideProgress) {
+                                this._options.hideProgress();
+                            }
+
+                            if (this._options._suggest) {
+                                cleanElems(this._options._suggest);
+                            } // TODO: remove this when old code is eliminated
+
+
+                            var status = req instanceof XMLHttpRequest ? req.status : req;
+                            this._options._box = hideBoxes(this._options._captcha, this._options._box);
+                            this._options._captcha = this._options._box;
+                            this._options._suggest = this._options._captcha;
+
+                            if (typeof text === 'string' && text.indexOf('The page is temporarily unavailable') !== -1 && __dev && inArray(vk.id, [100])) {
+                                this._post();
+
+                                return;
+                            }
+
+                            if (!this._options.onFail || this._options.onFail(text) !== true) {
+                                var errorText = JSON.stringify(text).substr(0, 300);
+                                var act = this._query.act;
+                                var query = this._query && AjaxConvert.toQueryString(this._query, this._options.noSort);
+                                var url = this._url;
+                                var breadcrumb = {
+                                    message: 'Uncaught ajax error',
+                                    status: status,
+                                    data: {
+                                        url: url,
+                                        query: query
+                                    }
+                                };
+                                var errorDescription = ["url: ".concat(url), act && "act: ".concat(act), errorText && "text: ".concat(errorText)].filter(function(el) {
+                                    return el;
+                                }).join(', ');
+                                logError(errorDescription, {
+                                    environment: 'uncaughtAjaxRequestError',
+                                    breadcrumb: breadcrumb
+                                });
+
+                                if (__debugMode) {
+                                    console.error('Uncaught Ajax request error:', errorText, breadcrumb);
+                                } else {
+                                    console.log('Uncaught Ajax request error:', errorText, breadcrumb);
+                                }
+                            }
+                        }
+                        /**
+                         * Force page reload from ajax
+                         *
+                         * @param {any} source
+                         */
+
+                    }, {
+                        key: "doReload",
+                        value: function doReload(source) {
+                            nav.reload({
+                                force: true,
+                                from: source,
+                                url: this._url,
+                                query: this._query && AjaxConvert.toQueryString(this._query)
+                            });
+                        }
+                        /**
+                         * Called when request completed successfully
+                         *
+                         * @param {any} text
+                         * @param {XMLHttpRequest} req
+                         */
+
+                    }, {
+                        key: "onDone",
+                        value: function onDone(text, req) {
+                            var _this2 = this;
+
+                            if (this._options.bench) {
+                                tDone = new Date().getTime();
+                            }
+
+                            var status = req instanceof XMLHttpRequest ? req.status : req;
+                            var answer;
+
+                            try {
+                                answer = AjaxRequest._protoAdapter.parseResponse(text);
+                            } catch (e) {
+                                this.onFail(text, status);
+                                return;
+                            }
+
+                            var _answer = answer,
+                                navVersion = _answer.navVersion,
+                                newStatic = _answer.newStatic,
+                                langId = _answer.langId,
+                                langVer = _answer.langVer,
+                                code = _answer.code,
+                                payload = _answer.payload,
+                                debugLog = _answer.debugLog; // Saves response to ajax.lastResp; TODO - remove last usage from top_notifier and remove it.
+
+                            var _payload = clone(payload);
+
+                            each(_payload, function(i, v) {
+                                return _payload[i] = (typeof v === 'string' ? v : JSON.stringify(v)).substr(0, 100);
+                            });
+                            lastResp = JSON.stringify(_payload); // ------
+
+                            if (!navVersion) {
+                                this.onFail("<pre>".concat(text, "</pre>"), {
+                                    status: -1
+                                });
+                                return;
+                            } // First strict check for index.php reloading, in vk.al == 1 mode.
+
+
+                            if (vk.version && vk.version !== navVersion) {
+                                if (navVersion && payload.length > 4) {
+                                    // TODO: suspicious .length check. When there may be more than 4 arguments in wrap*() ?
+                                    this.doReload(2);
+                                } else {
+                                    if (nav.strLoc) {
+                                        location.replace(locBase);
+                                    } else {
+                                        topError('Server error.', {
+                                            type: 100
+                                        });
+                                    }
+                                }
+
+                                return;
+                            }
+
+                            vk.version = false;
+                            var ans;
+
+                            if (this._options.frame) {
+                                ans = payload;
+                            }
+
+                            if (vk.lang !== langId && this._options.canReload) {
+                                // Lang changed
+                                this.doReload(3);
+                                return;
+                            }
+
+                            _updateStaticFiles(navVersion, newStatic, langId, langVer, function() {
+                                if (!_this2._options.frame) {
+                                    try {
+                                        ans = AjaxRequest._protoAdapter.parseStaticPayload(payload, _this2._reqid);
+
+                                        if (debugLog) {
+                                            _debugLog(debugLog, _this2._reqid);
+                                        }
+                                    } catch (e) {
+                                        topError('<b>JSON Error:</b> ' + e.message, {
+                                            type: 5,
+                                            answer: payload,
+                                            url: _this2._url,
+                                            query: _this2._query && AjaxConvert.toQueryString(_this2._query)
+                                        });
+                                    }
+                                }
+
+                                _this2.processResponse(code, ans);
+                            });
+                        }
+                    }]);
+
+                    return AjaxRequest;
+                }();
+
+
+            var tStart;
+            var tDone;
+            var tProcess;
+            var tRender;
+            var tModule;
+            var tOver;
+            var lastResp;
+
+            _frame_transport.FrameTransport.frame.setHandlers(function(endTime) {
+                return tOver = endTime;
+            }, function(mod) {
+                return tModule = mod;
+            }, function() {});
+            /**
+             * Update static files if nav/loader version came from server does not match the current one
+             *
+             * @param {int} navVersion
+             * @param {string} newStatic
+             * @param {int} langId
+             * @param {int} langVer
+             * @param {function} onStaticReady
+             */
+
+
+            function _updateStaticFiles(navVersion, newStatic, langId, langVer, onStaticReady) {
+                if (!window.stVersions) {
+                    onStaticReady();
+                    return;
+                }
+
+                var _waitForNavLoad = function _waitForNavLoad() {
+                    if (navVersion === window.stVersions['nav']) {
+                        return waitResponseStatic(newStatic, langId, langVer, onStaticReady);
+                    }
+
+                    setTimeout(_waitForNavLoad, 100);
+                };
+
+                if (navVersion !== window.stVersions['nav']) {
+                    headNode.appendChild(ce('script', {
+                        type: 'text/javascript',
+                        src: "/js/loader_nav".concat(navVersion, "_").concat(vk.lang, ".js")
+                    }));
+                }
+
+                setTimeout(_waitForNavLoad, 0);
+            }
+            /**
+             * Queue static files in static manager and wait for them to be completely loaded
+             *
+             * @param {string} newStatic
+             * @param {int} _langId
+             * @param {int} langVer
+             * @param {function} onFinish
+             */
+
+
+            function waitResponseStatic(newStatic, _langId, langVer, onFinish) {
+                var st = ['common.css'];
+
+                if (newStatic) {
+                    newStatic = newStatic.split(',');
+
+                    for (var i = 0, l = newStatic.length; i < l; ++i) {
+                        st.push(newStatic[i]);
+                    }
+                }
+
+                if (stVersions['lang'] < langVer) {
+                    stVersions['lang'] = langVer;
+
+                    for (var _i in StaticFiles) {
+                        if (!StaticFiles.hasOwnProperty(_i)) {
+                            continue;
+                        }
+
+                        if (/^lang\d/i.test(_i)) {
+                            st.push(_i);
+                        }
+                    }
+                }
+
+                stManager.add(st, onFinish, true);
+            }
+            /**
+             * Pass message to debug log
+             *
+             * @param {string} text
+             */
+
+
+            function _debugLog(text) {
+                window._updateDebug = function() {
+                    var dlw = ge('debuglogwrap');
+                    if (dlw) {
+                        dlw.innerHTML = text;
+                        window._updateDebug = false;
+                    }
+                }
+            }
+            /**
+             * Hide boxes passed in params
+             * TODO: this should not be in ajax layer
+             *
+             * @param {array} ...boxes
+             * @return {boolean}
+             */
+
+
+            function hideBoxes() {
+                for (var i = 0, l = arguments.length; i < l; ++i) {
+                    var box = arguments[i];
+
+                    if (box && box.isVisible()) {
+                        box.setOptions({
+                            onHide: false,
+                            onDestroy: false
                         });
-                    } else {
-                        var resend = function(sid, key) {
-                            var nq = extend(q, {
+                        box.hide();
+                    }
+                }
+
+                return false;
+            }
+            /**
+             * Select proper handler by code from server.
+             * See also al.lib.php:wrapResult for list of codes
+             *
+             * @param {int} code
+             * @return {any}
+             */
+
+
+            function getHandlerByCode(code) {
+                switch (code) {
+                    case 1:
+                        return _response_handlers.emailNotConfirmed;
+
+                    case 2:
+                        return _response_handlers.showCaptcha;
+
+                    case 3:
+                        return _response_handlers.authFailed;
+
+                    case 4:
+                        return _response_handlers.makeRedirect;
+
+                    case 5:
+                        return _response_handlers.reload;
+
+                    case 6:
+                        return _response_handlers.mobileActivationRequired;
+
+                    case 7:
+                        return _response_handlers.showMessage;
+
+                    case 8:
+                        return _response_handlers.showError;
+
+                    case 9:
+                        return _response_handlers.votesPayment;
+
+                    case 10:
+                        return _response_handlers.zeroZone;
+
+                    case 11: // explicit passthrough
+
+                    case 12:
+                        return (0, _response_handlers.mobileValidationRequired)(code);
+
+                    default:
+                        return (0, _response_handlers.defaultHandler)(code);
+                }
+            }
+            /**
+             * Prepare timings report data
+             *
+             * @return {string}
+             */
+
+
+            function tGetParam() {
+                if (!tStart || !tModule) {
+                    return;
+                }
+
+                var done = tDone - tStart;
+                var process = tProcess - tDone;
+                var render = tRender - tProcess;
+                var over = tOver - tStart;
+                var res = [done, process, render, over, tModule];
+
+                for (var i in res) {
+                    if (!res.hasOwnProperty(i)) {
+                        continue;
+                    }
+
+                    if (res[i] < 0) {
+                        return false;
+                    }
+
+                    if (!res[i] && res[i] !== 0) {
+                        return false;
+                    }
+                }
+
+                tStart = false;
+                return res.join(',');
+            }
+
+            var ajax = {
+                enabled: function() {
+                    try {
+                        var req = new XMLHttpRequest();
+                        return !!req;
+                    } catch (e) {
+                        return false;
+                    }
+                }(),
+
+                get lastResp() {
+                    return lastResp;
+                },
+
+                set tStart(st) {
+                    tStart = st;
+                },
+
+                set tProcess(pr) {
+                    tProcess = pr;
+                },
+
+                /** @deprecated */
+                plainpost: _xhr_transport.plainpost,
+                post: AjaxRequest.post,
+
+                /**
+                 * @deprecated
+                 * @param {string} url
+                 * @param {object} query
+                 * @param {function} onReady
+                 * @param {object} options
+                 * @return {*}
+                 */
+                framepost: _frame_transport.FrameTransport.request,
+
+                /**
+                 * @deprecated
+                 * @return {XMLHttpRequest}
+                 */
+                _getreq: function _getreq() {
+                    return new XMLHttpRequest();
+                },
+                request: _xhr_transport.request,
+
+                /**
+                 * @deprecated
+                 * Use AjaxCacheClient.preload instead
+                 */
+                preload: _cache.AjaxCacheClient.preload,
+
+                /**
+                 * @deprecated
+                 * Use AjaxCacheClient.invalidate instead
+                 */
+                invalidate: _cache.AjaxCacheClient.invalidate,
+                tGetParam: tGetParam,
+                AjaxRequest: AjaxRequest,
+                AjaxCancellationToken: _xhr_transport.AjaxCancellationToken,
+                frame: _frame_transport.FrameTransport.frame,
+
+                /**
+                 * @deprecated
+                 * @return {void}
+                 */
+                _framenext: function _framenext() {
+                    return _frame_transport.FrameTransport.frame._nextQueueItem();
+                },
+
+                /**
+                 * @deprecated
+                 * @param {string} c
+                 * @param {string} h
+                 * @param {string} j
+                 * @return {void}
+                 */
+                framegot: function framegot(c, h, j) {
+                    return _frame_transport.FrameTransport.frame.useAjaxBlock(c, h, j);
+                },
+
+                /**
+                 * @deprecated
+                 * @param {string} j
+                 * @param {object} p
+                 * @return {void}
+                 */
+                _frameover: function _frameover(j, p) {
+                    return _frame_transport.FrameTransport.frame.finalize(j, p);
+                },
+
+                /**
+                 * @deprecated
+                 * @param {string} meta
+                 * @param {any} resp
+                 * @return {any}
+                 */
+                _framedone: function _framedone(meta, resp) {
+                    return _frame_transport.FrameTransport.frame.onReady([meta, resp]);
+                },
+
+                /**
+                 * @deprecated
+                 */
+                _debugLog: _debugLog
+            };
+            exports.ajax = ajax;
+
+            /***/
+        }),
+
+    /***/
+    "./static/js/modules/web/lib/ajax/response_handlers.js":
+        /*!*************************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/response_handlers.js ***!
+          \*************************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.emailNotConfirmed = emailNotConfirmed;
+            exports.showCaptcha = showCaptcha;
+            exports.authFailed = authFailed;
+            exports.makeRedirect = makeRedirect;
+            exports.reload = reload;
+            exports.mobileActivationRequired = mobileActivationRequired;
+            exports.showMessage = showMessage;
+            exports.showError = showError;
+            exports.votesPayment = votesPayment;
+            exports.zeroZone = zeroZone;
+            exports.defaultHandler = exports.mobileValidationRequired = void 0;
+
+            var _modal_box = __webpack_require__( /*! ./modal_box */ "./static/js/modules/web/lib/ajax/modal_box.js");
+
+            function resetOptionsCache(options) {
+                return options.cache ? _extends({}, options, {
+                    cache: -1
+                }) : options;
+            }
+
+            function emailNotConfirmed(options, answer
+                /* , _query, _url*/
+            ) {
+                showFastBox({
+                    width: 520,
+                    title: answer[0],
+                    onDestroy: options.onFail
+                }, answer[1]);
+            }
+
+            function showCaptcha(options, answer, query
+                /* , _url*/
+            ) {
+                if (intval(answer[1]) === 2) {
+                    options._captcha = showReCaptchaBox(answer[0], answer[2], options._captcha, {
+                        onSubmit: function onSubmit(response) {
+                            var newQuery = _extends({}, query, {
+                                recaptcha: response,
+                                captcha_sid: null,
+                                captcha_key: null
+                            });
+
+                            options.resend(newQuery, resetOptionsCache(options));
+                        },
+                        onDestroy: function onDestroy() {
+                            if (options.onFail) {
+                                options.onFail();
+                            }
+                        }
+                    });
+                } else {
+                    options._captcha = showCaptchaBox(answer[0], intval(answer[1]), options._captcha, {
+                        onSubmit: function onSubmit(sid, key) {
+                            var newQuery = _extends({}, query, {
                                 captcha_sid: sid,
                                 captcha_key: key
                             });
-                            var no = o.cache ? extend(o, {
-                                cache: -1
-                            }) : o;
-                            ajax._post(url, nq, no);
-                        }
-                        var addText = '';
-                        if (vk.nophone == 1 && !vk.nomail) {
-                            addText = getLang('global_try_to_activate').replace('{link}', '<a class="phone_validation_link">').replace('{/link}', '</a>');
-                            addText = '<div class="phone_validation_suggest">' + addText + '</div>';
-                        }
-                        o._captcha = showCaptchaBox(answer[0], intval(answer[1]), o._captcha, {
-                            onSubmit: resend,
-                            addText: addText,
-                            onHide: function() {
-                                if (o.onFail) o.onFail();
+
+                            options.resend(newQuery, resetOptionsCache(options));
+                        },
+                        onDestroy: function onDestroy() {
+                            if (options.onFail) {
+                                options.onFail();
                             }
-                        });
-                    }
-                    if (o._captcha && o._captcha.bodyNode && (o._suggest = geByClass1('phone_validation_link', o._captcha.bodyNode))) {
-                        addEvent(o._suggest, 'click', function() {
-                            o._box = activateMobileBox({
-                                onDone: o._captcha.submit
-                            });
-                        });
-                    }
-                    break;
-                case 3: // auth failed
-                    var no = o.cache ? extend(o, {
-                        cache: -1
-                    }) : o;
-                    window.onReLoginDone = ajax._post.pbind(url, q, no);
-                    window.onReLoginFailed = function(toRoot) {
-                        if (toRoot === -1) {
-                            location.href = location.href.replace(/^http:/, 'https:');
-                        } else if (toRoot) {
-                            nav.go('/');
-                        } else {
-                            window.onReLoginDone();
                         }
-                    }
-                    var iframe = ce('iframe', {
-                            src: vk.loginscheme + '://login.vk.com/?role=al_frame&_origin=' + (locProtocol + '//' + locHost) + '&ip_h=' + (answer[0] || vk.ip_h)
-                        }),
-                        t = 0;
-                    utilsNode.appendChild(iframe);
-                    break;
-                case 4: // redirect
-                    if (answer[1]) { // ajax layout redirect
-                        nav.go(answer[0]);
+                    });
+                }
+
+                options._suggest = geByClass1('phone_validation_link', options._captcha.bodyNode);
+
+                if (options._suggest) {
+                    addEvent(options._suggest, 'click', function() {
+                        options._box = (0, _modal_box.validateMobileBox)({
+                            onDone: options._captcha.submit
+                        });
+                    });
+                }
+            }
+
+            var mobileValidationRequired = function mobileValidationRequired(code) {
+                return function(options, answer, query
+                    /* , _url*/
+                ) {
+                    options._box = (0, _modal_box.validateMobileBox)({
+                        acceptCaptcha: code === 11,
+                        onDone: function onDone(sid, key) {
+                            vk.nophone = 0;
+
+                            if (sid) {
+                                options._captcha = curBox();
+                            }
+
+                            var newQuery = sid ? _extends({}, query, {
+                                captcha_sid: sid,
+                                captcha_key: key
+                            }) : query;
+                            options.resend(newQuery, resetOptionsCache(options));
+                        },
+                        onFail: options.onFail,
+                        hash: answer[0],
+                        ahash: answer[1]
+                    });
+                };
+            };
+
+            exports.mobileValidationRequired = mobileValidationRequired;
+
+            function authFailed(options, answer, query
+                /* , _url */
+            ) {
+                window.onReLoginDone = function() {
+                    return options.resend(query, resetOptionsCache(options));
+                };
+
+                window.onReLoginFailed = function(toRoot, toUrl) {
+                    if (toUrl) {
+                        nav.go(toUrl);
+                    } else if (toRoot === -1) {
+                        location.href = location.href.replace(/^http:/, 'https:');
+                    } else if (toRoot) {
+                        nav.go('/');
                     } else {
-                        hab.stop();
-                        location.href = answer[0];
+                        window.onReLoginDone();
                     }
-                    break;
-                case 5: // reload
-                    nav.reload({
-                        force: intval(answer[0])
-                    }); // force reload
-                    break;
-                case 6: // mobile activation needed
-                    var no = o.cache ? extend(o, {
-                        cache: -1
-                    }) : o;
-                    o._box = activateMobileBox({
-                        onDone: ajax._post.pbind(url, q, no),
-                        onFail: o.onFail,
-                        hash: answer[0]
+                };
+
+                window.utilsNode.appendChild(ce('iframe', {
+                    src: window.vk.loginscheme + '://login.vk.com/?' + AjaxConvert.toQueryString({
+                        role: 'al_frame',
+                        _origin: window.locProtocol + '//' + window.locHost,
+                        ip_h: answer[0] || window.vk.ip_h,
+                        to: answer[1] || ''
+                    })
+                }));
+            }
+
+            function makeRedirect(options, answer
+                /* , _query, _url */
+            ) {
+                if (intval(answer[1])) {
+                    // ajax layout redirect
+                    nav.go(answer[0], false, {
+                        nocur: answer[1] === '2',
+                        noback: answer[1] === true,
+                        showProgress: options.showProgress,
+                        hideProgress: options.hideProgress
                     });
-                    break;
-                case 7: // message
-                    if (o.onFail) o.onFail();
-                    topMsg(answer[0], 10);
-                    break;
-                case 8: // error
-                    if (o.onFail) {
-                        if (o.onFail(answer[0])) {
-                            return;
-                        }
+                } else {
+                    hab.stop();
+                    location.href = answer[0];
+                }
+            }
+
+            function reload(options, answer, query, url) {
+                nav.reload({
+                    force: intval(answer[0]),
+                    from: 1,
+                    url: url,
+                    query: query && AjaxConvert.toQueryString(query)
+                }); // force reload
+            }
+
+            function mobileActivationRequired(options, answer, query
+                /* , _url */
+            ) {
+                options._box = (0, _modal_box.activateMobileBox)({
+                    onDone: options.resend(query, resetOptionsCache(options)),
+                    onFail: options.onFail,
+                    hash: answer[0]
+                });
+            }
+
+            function showMessage(options, answer
+                /* , _query, _url */
+            ) {
+                if (options.onFail) {
+                    options.onFail();
+                }
+
+                topMsg(answer[0], 10);
+            }
+
+            function showError(options, answer, query, url) {
+                if (options.onFail) {
+                    if (options.onFail(answer[0])) {
+                        return;
                     }
-                    topError(answer[0], answer[1] ? 0 : 10);
-                    break;
-                case 9: // votes payment
-                    o._box = showFastBox(answer[0], answer[1]);
-                    var no = extend(clone(o), {
-                        showProgress: o._box.showProgress,
-                        hideProgress: o._box.hideProgress
-                    });
-                    if (o.cache) {
-                        no.cache = -1;
+                }
+
+                topError(answer[0] + (answer[2] ? ' #' + answer[2] : ''), {
+                    dt: answer[1] ? 0 : 10,
+                    type: 4,
+                    url: url,
+                    query: query && AjaxConvert.toQueryString(query)
+                });
+            }
+
+            function votesPayment(options, answer, query
+                /* , _url */
+            ) {
+                if (options.fromBox || options.forceDone) {
+                    if (options.onDone) {
+                        // page, box or other
+                        options.onDone.apply(window, answer);
                     }
-                    o._box = requestBox(o._box, function() {
-                        if (isVisible(o._box.progress)) return;
-                        ajax._post(url, extend(q, {
+
+                    if (options.fromBox) {
+                        return;
+                    }
+                }
+
+                options._box = showFastBox({
+                    title: trim(answer[0])
+                }, answer[1]);
+                var newOptions = extend(clone(options), {
+                    showProgress: options._box.showProgress,
+                    hideProgress: options._box.hideProgress
+                });
+
+                if (options.cache) {
+                    newOptions.cache = -1;
+                }
+
+                options._box = (0, _modal_box.requestBox)(options._box, function(params) {
+                    if (isVisible(options._box.progress)) {
+                        return;
+                    }
+
+                    if (!params) {
+                        params = {
                             _votes_ok: 1
-                        }), no);
-                    }, o.onFail);
-                    var f = eval('((function() { return function() { var box = this; ' + (answer[2] || '') + ' ;}; })())');
-                    f.apply(o._box);
-                    break;
-                case 10: //zero zone
-                    o._box = showFastBox({
-                        title: answer[0] || getLang('global_charged_zone_title'),
-                        onHide: o.onFail
-                    }, answer[1], getLang('global_charged_zone_continue'), function() {
-                        var nq = extend(q, {
-                            charged_confirm: answer[3]
-                        });
-                        ajax._post(url, nq, o);
-                    }, getLang('global_cancel'));
-                    break;
-                case 11:
-                case 12:
-                    if (vk.widget) {
-                        window.open(vk.loginscheme + '://vk.com/settings?z=validatebox', 'validatebox');
-                    } else {
-                        onBodyResize(true);
-                        show(boxLayerBG);
-                        show(boxLayerWrap);
-
-                        cur.box = showFastBox({
-                            title: getLang('global_not_activated_title'),
-                            dark: 1,
-                            hideOnBGClick: true,
-                            bodyStyle: "line-height: 160%",
-                            onWidgetHide: function() {
-                                setTimeout(function() {
-                                    hide(boxLayerBG);
-                                    hide(boxLayerWrap);
-                                }, 0)
-                            }
-                        }, getLang('global_mobile_need_validation').replace('{link}', '<br/><a onclick="cur.box.hide();" href="' + vk.loginscheme + '://vk.com/settings?z=validatebox">').replace('{/link}', '</a>'));
-
-                        o.onFail.apply();
+                        };
                     }
-                    break;
-                default:
-                    if (code == -1 || code == -2 || code == -3) {
+
+                    options.resend(extend(query, params), newOptions);
+                }, options.onFail);
+
+                options._box.evalBox(answer[2]);
+            }
+
+            function zeroZone(options, answer, query
+                /* , _url */
+            ) {
+                options._box = showFastBox({
+                    title: answer[0] || getLang('global_charged_zone_title'),
+                    onHide: options.onFail
+                }, answer[1], getLang('global_charged_zone_continue'), function() {
+                    options.resend(_extends({}, query, {
+                        charged_confirm: answer[3]
+                    }), options);
+                }, getLang('global_cancel'));
+            }
+
+            var defaultHandler = function defaultHandler(code) {
+                return function(options, answer
+                    /* , query, _url*/
+                ) {
+                    if (code === -1 || code === -2 || code === -3) {
                         var adsShowed = answer.pop();
                         var adsCanShow = answer.pop();
                         var adsHtml = answer.pop();
                         var adsProps;
-                        if (code == -3) {
+
+                        if (code === -3) {
                             adsProps = answer.pop();
                         }
-                        __adsSet(adsHtml, null, adsCanShow, adsShowed, null, adsProps);
+
+                        window.__adsSet && __adsSet(adsHtml, null, adsCanShow, adsShowed, null, adsProps);
                     }
-                    if (o.onDone) { // page, box or other
-                        o.onDone.apply(window, answer);
+
+                    if (options.onDone) {
+                        // page, box or other
+                        options.onDone.apply(window, answer);
                     }
-                    break;
-            }
-            if (window._updateDebug) _updateDebug();
-        }
-        var done = function(text, data) { // data - for iframe transport post
-            if (!trim(text).length) {
-                data = [8, getLang('global_unknown_error')];
-                text = stVersions['nav'] + '<!><!>' + vk.lang + '<!>' + stVersions['lang'] + '<!>8<!>' + data[1];
-            }
+                };
+            };
 
-            var answer = text.split('<!>');
+            exports.defaultHandler = defaultHandler;
 
-            var navVersion = intval(answer.shift());
-            if (!navVersion) {
-                return fail(text);
-            }
+            /***/
+        }),
 
-            // First strict check for index.php reloading, in vk.al == 1 mode.
-            if (vk.version && vk.version != navVersion) {
-                if (navVersion && answer.length > 4) {
-                    nav.reload({
-                        force: true
-                    });
-                } else {
-                    if (nav.strLoc) {
-                        location.replace(locBase);
-                    } else {
-                        topError('Server error.');
+    /***/
+    "./static/js/modules/web/lib/ajax/xhr_transport.js":
+        /*!*********************************************************!*\
+          !*** ./static/js/modules/web/lib/ajax/xhr_transport.js ***!
+          \*********************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            "use strict";
+
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports.plainpost = plainpost;
+            exports.request = request;
+            exports.AjaxCancellationToken = void 0;
+
+            var _crc = __webpack_require__( /*! #shared/lib/crc32 */ "./static/js/modules/shared/lib/crc32.js");
+
+            /**
+             * Simple cancellation token implementation.
+             * Pass newly created token in request options and use .cancel() when required.
+             */
+            var AjaxCancellationToken =
+                /*#__PURE__*/
+                function() {
+                    function AjaxCancellationToken() {
+                        _classCallCheck(this, AjaxCancellationToken);
                     }
-                }
-                return;
-            }
-            vk.version = false;
 
-            // Common response fields
-            var newStatic = answer.shift();
-            var langId = intval(answer.shift());
-            var langVer = intval(answer.shift());
+                    _createClass(AjaxCancellationToken, [{
+                        key: "_setCancelCb",
+                        value: function _setCancelCb(cb) {
+                            this._cancel = cb;
+                        }
+                    }, {
+                        key: "cancel",
+                        value: function cancel() {
+                            this._cancel && this._cancel();
+                        }
+                    }]);
 
-            if (o.frame) answer = data;
+                    return AjaxCancellationToken;
+                }();
+            /**
+             * Simple XHR request with no bindings and wrappings
+             *
+             * @deprecated Use request() in new code!
+             * @param {string} url
+             * @param {string|object} query
+             * @param {function} onDone
+             * @param {function} onFail
+             * @param {boolean} urlOnly
+             * @param {object} options
+             * @param {object} o
+             * @param {boolean} noExtraHeaders
+             * @param {function} logger
+             * @return {XMLHttpRequest|boolean}
+             */
 
-            var code = intval(answer.shift());
-            if (vk.lang != langId && o.canReload) { // Lang changed
-                nav.reload({
-                    force: true
+
+            exports.AjaxCancellationToken = AjaxCancellationToken;
+
+            function plainpost(url, query, onDone, onFail, urlOnly, options, o) {
+                var noExtraHeaders = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
+                var logger = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : null;
+                var promise = request(url, query, {
+                    xhrOptions: options,
+                    sortQueryStringParams: o && !o.noSort,
+                    // TODO: remove/rename noSort property
+                    noExtraHeaders: noExtraHeaders,
+                    urlOnly: urlOnly,
+                    cancellationToken: o && o.cancellationToken,
+                    logger: logger
                 });
-                return;
-            }
 
-            // Wait for attached static files
-            var waitResponseStatic = function() {
-                //var st = ['lite.css'];
-                var st = [];
-                if (newStatic) {
-                    newStatic = newStatic.split(',');
-                    for (var i = 0; i < newStatic.length; ++i) {
-                        st.push(newStatic[i]);
-                    }
+                var rawXhr = promise._getXhr(); // TODO: remove in future
+
+
+                promise.then(function(args) {
+                    return onDone && onDone(args.data, rawXhr.status);
+                })["catch"](function(args) {
+                    return onFail && onFail(args, rawXhr.status);
+                });
+                return rawXhr;
+            }
+            /**
+             * Promise-based ajax request.
+             * Passes data to fulfill/reject handlers with http code received;
+             * Code can be -1 if any exception occurred. Data will contain exception object in this case.
+             * Request can be cancelled with cancellationToken passed in options:
+             *   let token = new AjaxCancellationToken();
+             *   request(..., { cancellationToken: token });
+             *   // And when we need to abort request:
+             *   token.cancel();
+             * Though cancellation token may be used for many requests, only last request will be aborted.
+             *
+             * @param {string} url
+             * @param {string|object} query
+             * @param {object?} xhrExtraOptions
+             * @param {boolean} urlOnly
+             * @param {boolean} sortQueryStringParams
+             * @param {boolean} noExtraHeaders
+             * @param {AjaxCancellationToken} cancellationToken
+             * @param {function} logger
+             * @return {Promise<{data, code}>}
+             */
+
+
+            function request(url, query, _ref) {
+                var xhrExtraOptions = _ref.xhrOptions,
+                    _ref$urlOnly = _ref.urlOnly,
+                    urlOnly = _ref$urlOnly === void 0 ? false : _ref$urlOnly,
+                    _ref$sortQueryStringP = _ref.sortQueryStringParams,
+                    sortQueryStringParams = _ref$sortQueryStringP === void 0 ? true : _ref$sortQueryStringP,
+                    _ref$noExtraHeaders = _ref.noExtraHeaders,
+                    noExtraHeaders = _ref$noExtraHeaders === void 0 ? false : _ref$noExtraHeaders,
+                    _ref$cancellationToke = _ref.cancellationToken,
+                    cancellationToken = _ref$cancellationToke === void 0 ? null : _ref$cancellationToke,
+                    _ref$logger = _ref.logger,
+                    logger = _ref$logger === void 0 ? null : _ref$logger;
+                var reqId;
+
+                if (logger) {
+                    reqId = (0, _crc.crc32)(url + JSON.stringify(query));
+                    logger("Initialized request #".concat(reqId, " with URL ").concat(url, " and query ").concat(JSON.stringify(query)));
                 }
-                if (stVersions['lang'] < langVer) {
-                    stVersions['lang'] = langVer;
-                    for (var i in StaticFiles) {
-                        if (/^lang\d/i.test(i)) {
-                            st.push(i);
+
+                var request = new XMLHttpRequest();
+
+                if (cancellationToken) {
+                    cancellationToken._setCancelCb(function() {
+                        logger && logger("Aborting request #".concat(reqId));
+                        request.abort();
+                    });
+                }
+
+                var reqPromise = new Promise(function(resolve, reject) {
+                    var preparedQuery = typeof query !== 'string' ? AjaxConvert.toQueryString(query, !sortQueryStringParams) : query;
+
+                    request.onreadystatechange = function() {
+                        if (request.readyState === XMLHttpRequest.DONE) {
+                            logger && logger("Request readyState -> DONE with status ".concat(request.status, " #").concat(reqId));
+
+                            if (request.status >= 200 && request.status < 300) {
+                                try {
+                                    resolve({
+                                        data: request.responseText,
+                                        code: request.status
+                                    });
+                                    logger && logger("Success handler finished for request #".concat(reqId));
+                                } catch (e) {
+                                    logger && logger("Success handler failed for request #".concat(reqId));
+                                    reject({
+                                        data: request.responseText,
+                                        code: -1
+                                    });
+                                    logger && logger("Failure handler finished for request #".concat(reqId, " [1]"));
+                                }
+                            } else {
+                                // e.g sleep
+                                reject({
+                                    data: request.responseText,
+                                    code: request.status
+                                });
+                                logger && logger("Failure handler finished for request #".concat(reqId, " [2]"));
+                            }
+                        }
+                    };
+
+                    try {
+                        logger && logger("Starting request #".concat(reqId));
+                        request.open('POST', url, true);
+                    } catch (e) {
+                        logger && logger("Request #".concat(reqId, " failed"));
+                        reject({
+                            data: e,
+                            code: -1
+                        });
+                        logger && logger("Failure handler finished for request #".concat(reqId, " [3]"));
+                    }
+
+                    if (xhrExtraOptions) {
+                        each(xhrExtraOptions, function(key, value) {
+                            request[key] = value;
+                        });
+                    }
+
+                    if (!urlOnly) {
+                        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                        if (!noExtraHeaders) {
+                            request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                         }
                     }
-                }
 
-                if (!o.frame) {
-                    try {
-                        ajax._parseRes(answer);
-                    } catch (e) {
-                        topError('<b>JSON Error:</b> ' + e.message);
-                    }
-                }
-                stManager.add(st, processResponse.pbind(code, answer));
+                    logger && logger("Sending data for request #".concat(reqId));
+                    request.send(preparedQuery);
+                });
+                /**
+                 * @deprecated to be removed
+                 * Use options.cancellationToken to cancel requests with AjaxCancellationToken
+                 * @return {function}
+                 */
+
+                reqPromise._getXhr = function() {
+                    return request;
+                }; // TODO: remove this in future;
+
+
+                return reqPromise;
             }
 
-            // Static managing function
-            if (navVersion <= stVersions['nav']) {
-                return waitResponseStatic();
-            }
-            headNode.appendChild(ce('script', {
-                type: 'text/javascript',
-                src: '/js/loader_nav' + navVersion + '_' + vk.lang + '.js'
-            }));
-            setTimeout(function() {
-                if (navVersion <= stVersions['nav']) {
-                    return waitResponseStatic();
-                }
-                setTimeout(arguments.callee, 100);
-            }, 0);
-        }
-        if (o.cache > 0 || o.forceGlobalCache) {
-            var answer = ajaxCache[cacheKey];
-            if (answer && !o.forceGlobalCache) {
-                processResponse(0, answer);
-                return;
-            } else if (answer = globalAjaxCache[cacheKey]) {
-                if (answer == -1) {
-                    globalAjaxCache[cacheKey] = o.onDone;
-                } else {
-                    o.onDone.apply(window, answer);
-                }
-                return;
-            }
-        }
-        return o.frame ? ajax.framepost(url, q, done) : ajax.plainpost(url, q, done, fail);
-    }
-}
+            /***/
+        }),
+
+    /***/
+    0:
+        /*!********************************************************!*\
+          !*** multi ./static/js/mobile/modules/entries/ajax.js ***!
+          \********************************************************/
+        /*! no static exports found */
+        /***/
+        (function(module, exports, __webpack_require__) {
+
+            module.exports = __webpack_require__( /*! /var/kphp/oklimenko/data/static/js/mobile/modules/entries/ajax.js */ "./static/js/mobile/modules/entries/ajax.js");
+
+
+            /***/
+        })
+
+    /******/
+});
+
+// Ajax layout end
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Nav */
 

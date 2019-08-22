@@ -69,9 +69,9 @@
     n.push = t, n = n.slice();
     for (var l = 0; l < n.length; l++) t(n[l]);
     var d = c;
-    r.push([119, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
+    r.push([120, "bundles/common", "bundles/35f32b9df5ce6d56a3ceae5968629a18", "bundles/37d6fe1fee6fb6accf5867cbca2cda9c"]), i()
 }({
-    119: function(e, t, i) {
+    120: function(e, t, i) {
         e.exports = i("8S/u")
     },
     "8S/u": function(e, t, i) {
@@ -252,8 +252,8 @@
                         d = a.wrap.offsetWidth,
                         u = 0,
                         f = 0,
-                        h = r[0] - l,
-                        _ = r[1] - d,
+                        _ = r[0] - l,
+                        h = r[1] - d,
                         p = browser.msie ? "selectstart" : "mousedown";
                     a.options.fixed && FastChat.pinTab(a.options.peer || -1, e, !0), s || a.focus(e), a.toBottom ? (a.toBottom = !1, t = r[0] - intval(getStyle(a.wrap, "bottom")) - l, setStyle(a.wrap, {
                         top: t,
@@ -263,13 +263,13 @@
                         right: "auto"
                     })) : i = intval(getStyle(a.wrap, "left")), u = t, f = i, cur._fcdrag = 1;
                     var v = function(e) {
-                        return u = Math.max(0, Math.min(h, t + e.pageY - n)), h - u < 10 ? u = h : u < 10 && (u = 0), a.wrap.style.top = u + "px", f = Math.max(0, Math.min(_, i + e.pageX - c)), _ - f < 10 ? f = _ : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
+                        return u = Math.max(0, Math.min(_, t + e.pageY - n)), _ - u < 10 ? u = _ : u < 10 && (u = 0), a.wrap.style.top = u + "px", f = Math.max(0, Math.min(h, i + e.pageX - c)), h - f < 10 ? f = h : f < 10 && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
                     };
                     return addEvent(document, "mousemove", v), addEvent(document, "mouseup", function e(t) {
-                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= h - 5) && (setStyle(a.wrap, {
+                        cur._fcdrag = 0, removeEvent(document, "mousemove", v), removeEvent(document, "mouseup", e), removeEvent(document, p, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = u >= _ - 5) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
-                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = f >= _ - 5) && setStyle(a.wrap, {
+                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = f >= h - 5) && setStyle(a.wrap, {
                             left: "auto",
                             right: 0,
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
@@ -292,8 +292,8 @@
                         d = 0,
                         u = 0,
                         f = a.resizeableH.clientHeight - intval(getStyle(a.resizeableH, "paddingBottom")) - intval(getStyle(a.resizeableH, "paddingTop")),
-                        h = a.resizeableW.clientWidth - intval(getStyle(a.resizeableW, "paddingRight")) - intval(getStyle(a.resizeableW, "paddingLeft")),
-                        _ = browser.msie ? "selectstart" : "mousedown",
+                        _ = a.resizeableW.clientWidth - intval(getStyle(a.resizeableW, "paddingRight")) - intval(getStyle(a.resizeableW, "paddingLeft")),
+                        h = browser.msie ? "selectstart" : "mousedown",
                         p = !browser.msie && a.options.onResize || !1;
                     a.toBottom ? (a.toBottom = !1, t = r[0] - intval(getStyle(a.wrap, "bottom")) - c, setStyle(a.wrap, {
                         top: t,
@@ -301,22 +301,22 @@
                     }), removeClass(a.wrap, "fc_tobottom")) : t = intval(getStyle(a.wrap, "top")), a.toRight ? (a.toRight = !1, i = r[1] - intval(getStyle(a.wrap, "right")) - l, setStyle(a.wrap, {
                         left: i,
                         right: "auto"
-                    })) : i = intval(getStyle(a.wrap, "left")), a.options.onResizeStart && a.options.onResizeStart(f, h);
+                    })) : i = intval(getStyle(a.wrap, "left")), a.options.onResizeStart && a.options.onResizeStart(f, _);
                     var v = f + r[0] - t - c,
-                        m = h + r[1] - i - l,
-                        g = function(e) {
-                            return d = Math.max(a.options.minH, Math.min(v, f + e.pageY - s)), v - d < 10 && (d = v), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(m, h + e.pageX - n)), m - u < 10 && (u = m), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
+                        g = _ + r[1] - i - l,
+                        m = function(e) {
+                            return d = Math.max(a.options.minH, Math.min(v, f + e.pageY - s)), v - d < 10 && (d = v), a.resizeableH.style.height = d + "px", u = Math.max(a.options.minW, Math.min(g, _ + e.pageX - n)), g - u < 10 && (u = g), a.resizeableW.style.width = u + "px", p && p(d, u), cancelEvent(e)
                         };
-                    return addEvent(document, "mousemove", g), addEvent(document, "mouseup", function e(t) {
-                        removeEvent(document, "mousemove", g), removeEvent(document, "mouseup", e), removeEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == v) && (setStyle(a.wrap, {
+                    return addEvent(document, "mousemove", m), addEvent(document, "mouseup", function e(t) {
+                        removeEvent(document, "mousemove", m), removeEvent(document, "mouseup", e), removeEvent(document, h, cancelEvent), setStyle(bodyNode, "cursor", ""), setStyle(o, "cursor", ""), (a.toBottom = d == v) && (setStyle(a.wrap, {
                             top: "auto",
                             bottom: 0
-                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == m) && setStyle(a.wrap, {
+                        }), addClass(a.wrap, "fc_tobottom")), (a.toRight = u == g) && setStyle(a.wrap, {
                             left: "auto",
                             right: 0,
                             marginRight: lastWndScroll[0] ? sbWidth() : 0
                         }), a._update_pos(), a.options.onResizeEnd && a.options.onResizeEnd(d, u, r[0], r[1], a.toBottom, a.toRight)
-                    }), addEvent(document, _, cancelEvent), setStyle(bodyNode, "cursor", "move"), setStyle(o, "cursor", "move"), !1
+                    }), addEvent(document, h, cancelEvent), setStyle(bodyNode, "cursor", "move"), setStyle(o, "cursor", "move"), !1
                 }
             },
             _update_pos: function() {
@@ -408,12 +408,12 @@
             d = i("hOuX"),
             u = i("BxOC"),
             f = i("DM26"),
-            h = i("XzvV"),
-            _ = i("MhhX"),
+            _ = i("XzvV"),
+            h = i("MhhX"),
             p = i("P13b"),
             v = i("vT4u");
 
-        function m(e, t) {
+        function g(e, t) {
             return function(e) {
                 if (Array.isArray(e)) return e
             }(e) || function(e, t) {
@@ -438,7 +438,7 @@
             }()
         }
 
-        function g() {
+        function m() {
             return !curFastChat.version || !curFastChat.tabs
         }
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
@@ -450,7 +450,7 @@
                     gotPeers: {},
                     needMedia: {},
                     gotMedia: {},
-                    ldb: Object(s.c)(vk.id),
+                    ldb: Object(s.mount)(vk.id),
                     myTypingEvents: {},
                     typingEvents: {},
                     inited: !0,
@@ -460,53 +460,54 @@
                     lpInstance: Notifier.getLpInstance()
                 }), delete curFastChat.standby, delete curFastChat.standbyTO, curFastChat.lpInstance.onData(function() {
                     for (var e = arguments.length, i = new Array(e), a = 0; a < e; a++) i[a] = arguments[a];
-                    var o = t.getResourcesThatShouldBeLoaded(i);
-                    (o.shouldLoad ? t.loadResources(o) : Promise.resolve()).then(() => {
+                    var o = t.getResourcesThatShouldBeLoaded(i),
+                        r = o.shouldLoad ? t.loadResources(o) : Promise.resolve();
+                    r.then(() => {
                         i.forEach(e => {
                             switch (e.type) {
-                                case l.ab:
+                                case l.TYPING:
                                     var i = t.getTab(e.peerId);
                                     t.setTyping(e), i && (t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.blinkTyping(e.peerId);
                                     break;
-                                case l.a:
+                                case l.ADD_MESSAGE:
                                     var a = t.getTab(e.peerId);
                                     t.setTyping(e), a && (t.addMessage(t.prepareMessageData(e)), t.scroll(e.peerId), t.blinkTab(e.peerId), t.updateTypings(), t.waitTyping(e).then(t.updateTypings)), t.updateTabUnreadCounter(a, e);
                                     break;
-                                case l.g:
-                                case l.R:
+                                case l.EDIT_MESSAGE:
+                                case l.REPLACE_MESSAGE:
                                     var o = e.peerId,
                                         r = e.messageId,
                                         s = t.getTab(o);
                                     s && s.msgs[r] && (delete curFastChat.gotMedia[r], t.editMessage(t.prepareMessageData(e)));
                                     break;
-                                case l.Q:
-                                case l.Y:
-                                case l.U:
-                                    e.flags & l.j && t.deleteMessage(t.prepareMessageData(e));
+                                case l.REPLACE_FLAGS:
+                                case l.SET_FLAGS:
+                                case l.RESET_FLAGS:
+                                    e.flags & l.FLAG_DELETED && t.deleteMessage(t.prepareMessageData(e));
                                     break;
-                                case l.J:
-                                case l.K:
+                                case l.READ_INBOUND:
+                                case l.READ_OUTBOUND:
                                     t.markMessagesAsRead(e);
                                     break;
-                                case l.d:
-                                case l.e:
+                                case l.CHAT_CHANGED:
+                                case l.CONVERSATION_UPDATED:
                                     var n = t.getTab(e.peerId);
                                     t.handleEventChatUpdated(n, e);
                                     break;
-                                case l.cb:
-                                case l.bb:
-                                case l.I:
-                                case l.h:
-                                case l.W:
-                                case l.O:
-                                case l.Z:
-                                case l.V:
-                                case l.H:
-                                case l.b:
-                                case l.c:
-                                case l.i:
-                                case l.S:
-                                case l.f:
+                                case l.VIDEO_CALL:
+                                case l.UNREAD_COUNT:
+                                case l.NOTIFY_SETTINGS_CHANGED:
+                                case l.EMPTY:
+                                case l.RESYNC:
+                                case l.REFRESH_LP_KEY:
+                                case l.TRANSITION:
+                                case l.RESET_PEER:
+                                case l.MUTEX:
+                                case l.CHANGE_PEER:
+                                case l.CHANGE_TAB:
+                                case l.FAILED_MESSAGE:
+                                case l.RESEND:
+                                case l.DELETE_DIALOG:
                             }
                         })
                     })
@@ -621,18 +622,18 @@
                         !curFastChat.version && curFastChat.options && t.settings.version == curFastChat.options.version && FastChat.gotSettings(t.settings), clearTimeout(curFastChat.sendSettingsTO);
                         break;
                     case "standby":
-                        if (g()) break;
+                        if (m()) break;
                         FastChat.standby(t.version);
                         break;
                     case "gotConfig":
                         FastChat.gotConfig(t.navVersion, t.config);
                         break;
                     case "clistOnlines":
-                        if (g()) break;
+                        if (m()) break;
                         FastChat.clistGotOnlines(t);
                         break;
                     case "needPeer":
-                        if (g()) break;
+                        if (m()) break;
                         var i, a = t.id,
                             o = curFastChat.tabs[a],
                             r = !1;
@@ -663,18 +664,18 @@
                         }, curNotifier.is_server ? 0 : irand(50, 100));
                         break;
                     case "fetchingPeers":
-                        if (g()) break;
+                        if (m()) break;
                         each(t, function(e, t) {
                             var i = curFastChat.needPeers[e];
                             i && (t & i[0]) == i[0] && clearTimeout(i[2])
                         });
                         break;
                     case "gotPeers":
-                        if (g()) break;
+                        if (m()) break;
                         FastChat.gotPeers(t);
                         break;
                     case "stateChange":
-                        if (g()) break;
+                        if (m()) break;
                         FastChat.onStateChanged(t);
                         break;
                     case "needMedia":
@@ -703,13 +704,13 @@
             },
             getResourcesThatShouldBeLoaded(e) {
                 var t = {},
-                    i = e.filter(e => e.type === l.a),
-                    a = e.filter(_.l),
+                    i = e.filter(e => e.type === l.ADD_MESSAGE),
+                    a = e.filter(h.isServiceMsg),
                     o = i.filter(e => !this.isTabLoaded(e.peerId)).map(e => e.peerId);
 
                 function r(e, i) {
                     var a = FastChat.getTab(e);
-                    Object(p.ib)(e) && i && a && !a.data.members[i] && (t[e] ? -1 === t[e].indexOf(i) && t[e].push(i) : t[e] = [i])
+                    Object(p.isChatPeer)(e) && i && a && !a.data.members[i] && (t[e] ? -1 === t[e].indexOf(i) && t[e].push(i) : t[e] = [i])
                 }
                 return i.forEach(e => {
                     this.isTabLoaded(e.peerId) && r(e.peerId, e.userId)
@@ -729,11 +730,11 @@
             loadMembers(e) {
                 if (0 === Object.keys(e).length) return Promise.resolve();
                 var t = Object.keys(e).map(t => `${t}:${e[t].join(",")}`).join(";");
-                return Object(u.b)(v.e, {
+                return Object(u.post)(v.CONTROLLER, {
                     act: "a_load_member",
                     need: t
                 }).then(t => {
-                    var i = m(t, 1)[0];
+                    var i = g(t, 1)[0];
                     Object.keys(e).forEach(t => {
                         var a = this.getTab(t);
                         a && a.data && a.data.members && (a.data.members = e[t].reduce((e, t) => {
@@ -748,22 +749,22 @@
             },
             handleEventChatUpdated(e, t) {
                 switch (t.updateType) {
-                    case l.C:
-                    case l.v:
+                    case l.MAIL_CHAT_UPDATE_TYPE_TITLE_CHANGED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_AVATAR_CHANGED:
                         var i = [t.peerId, 0].join(",");
                         this.loadPeers(i, e => {
                             this.updateChatInfo(t.peerId, e)
                         });
                         break;
-                    case l.t:
-                    case l.y:
-                    case l.B:
-                    case l.D:
-                    case l.F:
-                    case l.E:
-                    case l.u:
-                    case l.w:
-                    case l.z:
+                    case l.MAIL_CHAT_UPDATE_TYPE_ADMIN_GRANTED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_FLAGS_CHANGED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_PINNED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_USER_JOINED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_USER_LEFT:
+                    case l.MAIL_CHAT_UPDATE_TYPE_USER_KICKED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_ADMIN_KICKED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_BANNER_CHANGED:
+                    case l.MAIL_CHAT_UPDATE_TYPE_KEYBOARD_CHANGED:
                 }
             },
             updateChatInfo(e, t) {
@@ -1519,7 +1520,7 @@
                 var e = [],
                     t = {};
                 Object.keys(curFastChat.needPeers || {}).forEach(i => {
-                    var a = m(curFastChat.needPeers[i], 3),
+                    var a = g(curFastChat.needPeers[i], 3),
                         o = a[0],
                         r = a[2];
                     e.push(i, o), r && clearTimeout(r), t[i] = o
@@ -1528,7 +1529,7 @@
                 }))
             },
             gotPeers: function(e) {
-                g() || each(curFastChat.needPeers, function(t) {
+                m() || each(curFastChat.needPeers, function(t) {
                     if (e[t]) {
                         e[t] < 2e9 && (curFastChat.friends[t + "_"] = [e[t].name, e[t].photo, e[t].fname, e[t].hash, intval(e[t].sex)]);
                         var i = this[1],
@@ -1550,12 +1551,11 @@
                 }
             },
             decHashCb: function(e) {
-                ! function(e) {
-                    curFastChat.decodedHashes[e] = function(e) {
-                        for (var t = ge ? "" : "___", i = 0; i < e.length; ++i) t += e.charAt(e.length - i - 1);
-                        return geByClass ? t : "___"
-                    }(e.substr(e.length - 5) + e.substr(4, e.length - 12))
-                }(e)
+                var t;
+                t = e, curFastChat.decodedHashes[t] = function(e) {
+                    for (var t = ge ? "" : "___", i = 0; i < e.length; ++i) t += e.charAt(e.length - i - 1);
+                    return geByClass ? t : "___"
+                }(t.substr(t.length - 5) + t.substr(4, t.length - 12))
             },
             decodehash: function(e) {
                 return curFastChat.decodedHashes || (curFastChat.decodedHashes = {}), curFastChat.decodedHashes[e] || FastChat.decHashCb(e), curFastChat.decodedHashes[e]
@@ -1582,7 +1582,7 @@
             },
             setTyping(e) {
                 var t = this.getTab(e.peerId),
-                    i = e.type === l.a;
+                    i = e.type === l.ADD_MESSAGE;
                 if (t && t.typing && i) {
                     var a = t.typing.userIds.filter((t, i) => t !== e.userId);
                     0 === a.length ? delete t.typing : t.typing = Object.assign(t.typing, {
@@ -1593,9 +1593,9 @@
                 }))
             },
             waitTyping(e) {
-                return Object(f.c)(v.b + 2).then(() => {
+                return Object(f.pause)(v.ACTIVITY_PERIOD + 2).then(() => {
                     var t = this.getTab(e.peerId);
-                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * v.b && delete t.typing)
+                    t && t.typing && (Date.now() - 1e3 * t.typing.ts >= 1e3 * v.ACTIVITY_PERIOD && delete t.typing)
                 })
             },
             updateTypings() {
@@ -1620,11 +1620,11 @@
                     i = e.userIds,
                     a = this.getTab(t),
                     o = i[0],
-                    r = Object(p.ib)(t) ? a.data.members[o] : a,
+                    r = Object(p.isChatPeer)(t) ? a.data.members[o] : a,
                     s = e => e.fname || e.name || "";
-                if (1 === i.length || !Object(p.ib)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", s(r));
+                if (1 === i.length || !Object(p.isChatPeer)(t)) return langSex(r.sex, getLang("mail_im_typing")).replace("{user}", s(r));
                 var n = i[i.length - 1],
-                    c = Object(p.ib)(t) ? a.data.members[n] : a;
+                    c = Object(p.isChatPeer)(t) ? a.data.members[n] : a;
                 return getLang("mail_im_multi_typing").replace("{users}", s(r)).replace("{last_user}", s(c))
             },
             markMessagesAsRead(e) {
@@ -1633,7 +1633,7 @@
                     a = e.upToId,
                     o = e.unread,
                     r = this.getTab(i);
-                r && (t === l.J && (r.inUpTo = a), t === l.K && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === l.K)), this.updateTabUnreadCounterElement(r || {
+                r && (t === l.READ_INBOUND && (r.inUpTo = a), t === l.READ_OUTBOUND && (r.outUpTo = a), r.unread = o, this.updateUnreadMessagesInTab(i, a, t === l.READ_OUTBOUND)), this.updateTabUnreadCounterElement(r || {
                     unread: 0
                 }, i)
             },
@@ -1685,7 +1685,7 @@
             },
             getMessageText(e, t) {
                 var i = e || "";
-                return i = Object(c.e)(i, c.b.bind(null, !1)), i = Object(c.f)(i), i = Object(c.c)(i), i = Object(c.d)(i, e => `<a href="/im?sel=${t}&st=${encodeURIComponent(e)}">${e}</a>`), i = Emoji.emojiToHTML(i, 1)
+                return i = Object(c.replaceHyperLinks)(i, c.linksReplacer.bind(null, !1)), i = Object(c.replaceMentions)(i), i = Object(c.replaceEmailLinks)(i), i = Object(c.replaceHashtags)(i, e => `<a href="/im?sel=${t}&st=${encodeURIComponent(e)}">${e}</a>`), i = Emoji.emojiToHTML(i, 1)
             },
             getEditCont: function(e) {
                 return stManager.add([jsc("web/emoji.js")]), '<div class="emoji_cont _emoji_field_wrap">' + Emoji.tplSmile(getLang("mail_emoji_hint")) + '<div class="fc_editable dark" tabindex="0" contenteditable="true" placeholder="' + getLang("mail_chat_placeholder") + '"></div></div>'
@@ -1804,7 +1804,7 @@
                     }), o.imMedia.onChange = setTimeout.pbind(function() {
                         if (curFastChat.sendOnUpload) FastChat.send(curFastChat.sendOnUpload), curFastChat.sendOnUpload = void 0;
                         else {
-                            var t = Object(n.b)(curFastChat.ldb, e);
+                            var t = Object(n.loadDraftForPeer)(curFastChat.ldb, e);
                             t.removeAllAttaches(), o.imMedia.getMedias().forEach(e => t.addAttach(e[0], e[1])), t.destroy()
                         }
                         FastChat.onTxtResize(e)
@@ -1919,23 +1919,23 @@
                             u = curFastChat.clistBox.pos,
                             f = !1;
                         if (window.Call && (Call.box || Call.invitation)) {
-                            var h = Call.calcBoxPos();
-                            l.push([h.x, h.x + h.w]), f = !0
+                            var _ = Call.calcBoxPos();
+                            l.push([_.x, _.x + _.w]), f = !0
                         }
                         u[0] + u[2] > d && (curFastChat.clistBox.visible || !f) && l.push([u[1], u[1] + u[3]]), each(curFastChat.tabs, function(t) {
                             (u = this.box && this.box.pos) && t != e && u[0] + u[2] > d && l.push([u[1], u[1] + u[3]])
                         });
-                        var _, p, v, m = lastWindowWidth - 262 - sbWidth(),
-                            g = !1,
-                            b = !1,
-                            C = 0 > m ? 1 : -1;
-                        for (_ = m; C * _ < 0 * C; _ += 135 * C) {
-                            for (p = 0, v = 0; v < l.length; v++) _ > l[v][0] - 260 && _ < l[v][1] && p++, _ > l[v][0] - 10 && _ < l[v][0] + 10 && (p += 1.1);
-                            (!1 === g || p < b) && (g = _, b = p)
+                        var h, p, v, g = lastWindowWidth - 262 - sbWidth(),
+                            m = !1,
+                            C = !1,
+                            b = 0 > g ? 1 : -1;
+                        for (h = g; b * h < 0 * b; h += 135 * b) {
+                            for (p = 0, v = 0; v < l.length; v++) h > l[v][0] - 260 && h < l[v][1] && p++, h > l[v][0] - 10 && h < l[v][0] + 10 && (p += 1.1);
+                            (!1 === m || p < C) && (m = h, C = p)
                         }
-                        f && b && (g = m), extend(c, {
+                        f && C && (m = g), extend(c, {
                             startBottom: 0,
-                            startLeft: g
+                            startLeft: m
                         })
                     }
                     var w, N = !0;
@@ -1944,7 +1944,7 @@
                             N = !1;
                             break
                         }
-                    N && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.a({
+                    N && (s.posSeq = ++curFastChat.posSeq), c.fixed && (c.startHeight = curFastChat.clistH, c.startWidth = curFastChat.clistW, c.onShow = FastChat.showChatCtrl), s.box = new RBox(r, c), s.iman = new a.default({
                         id: "tab" + e,
                         element: s.box.content,
                         onUnIdleCb: function() {
@@ -2102,7 +2102,7 @@
                     return FastChat.createProgress(c, e, c.lastChild), void(s.style.visibility = "hidden")
                 }
                 if (curFastChat.sendOnUpload = !1, FastChat.removeProgress(e), s.style.visibility = "visible", o || r.length) {
-                    var l = Object(d.a)(),
+                    var l = Object(d.random)(),
                         u = {
                             act: "a_send",
                             to: e,
@@ -2114,7 +2114,7 @@
                             random_id: l
                         };
                     i && (u.sticker_referrer = i);
-                    for (var f, h = 0, _ = r.length; h < _; ++h)(f = r[h]) && u.media.push(f[0] + ":" + f[1]);
+                    for (var f, _ = 0, h = r.length; _ < h; ++_)(f = r[_]) && u.media.push(f[0] + ":" + f[1]);
                     u.media = u.media.join(","), a.sending = !0, Emoji.ttHide(a.emojiId), curFastChat.tabs[e].entrypoint = !1, ajax.post("al_im.php", u, {
                         onDone: function(t) {
                             clearTimeout(a.saveDraftTO), FastChat.saveDraft(e), FastChat.sendOnResponse(t, l, a)
@@ -2151,14 +2151,14 @@
                     i = (t || {}).txt;
                 if (i && t) {
                     var a = Emoji.editableVal(i),
-                        o = Object(n.b)(curFastChat.ldb, e);
+                        o = Object(n.loadDraftForPeer)(curFastChat.ldb, e);
                     o.setText(trim(a) || ""), o.destroy()
                 }
             },
             restoreDraft: function(e) {
                 var t = curFastChat.tabs[e],
                     i = t.txt,
-                    a = Object(n.b)(curFastChat.ldb, e);
+                    a = Object(n.loadDraftForPeer)(curFastChat.ldb, e);
                 return !(!i || !t || val(i).length > a.dData.txt.length && !a.hasAttaches()) && (t.editable ? i.innerHTML = Emoji.emojiToHTML(clean(a.dData.txt), 1) : val(i, clean(a.dData.txt)), setTimeout(() => {
                     for (var e = a.dData.attaches, i = 0; i < e.length; i++) t.imMedia && t.imMedia.chooseMedia(e[i].type, e[i].id, e[i].object || {});
                     a.destroy()
@@ -2196,38 +2196,38 @@
                     a = e.messageId,
                     o = e.text,
                     r = e.date,
-                    s = Object(_.b)(e),
-                    n = m(this.getMessageMedia(e), 2),
+                    s = Object(h.getUserId)(e),
+                    n = g(this.getMessageMedia(e), 2),
                     c = n[0],
                     l = n[1],
                     d = "",
                     u = e.randomId;
-                return Object(_.l)(e) && (d = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (u = Number(a.slice(3))), Object.assign({
+                return Object(h.isServiceMsg)(e) && (d = this.renderServiceMessage(e)), -1 !== String(a).indexOf("rid") && (u = Number(a.slice(3))), Object.assign({
                     id: a,
                     peer: t,
                     from_id: s,
-                    text: Object(_.l)(e) ? d : this.getMessageText(o, t) + c,
-                    out: Object(_.k)(e),
+                    text: Object(h.isServiceMsg)(e) ? d : this.getMessageText(o, t) + c,
+                    out: Object(h.isOut)(e),
                     unread: Boolean(1 & i),
                     date: r,
                     date_str: FastChat.mkdate(r),
                     randomId: u,
-                    isServiceMessage: Object(_.l)(e)
+                    isServiceMessage: Object(h.isServiceMsg)(e)
                 }, this.getMessageAuthor(e), l)
             },
             getMessageAuthor(e) {
                 var t = e.peerId,
-                    i = Object(_.b)(e),
+                    i = Object(h.getUserId)(e),
                     a = this.getTab(e.peerId);
                 if (!a || !i) return {};
-                var o = Object(_.k)(e) ? curFastChat.me : Object(p.ib)(t) ? a.data.members[i] : a,
+                var o = Object(h.isOut)(e) ? curFastChat.me : Object(p.isChatPeer)(t) ? a.data.members[i] : a,
                     r = o.name,
                     s = o.link,
                     n = o.photo,
                     c = o.fname,
                     l = o.first_name;
                 return {
-                    fname: Object(p.ib)(t) ? c || l : "",
+                    fname: Object(p.isChatPeer)(t) ? c || l : "",
                     name: r,
                     link: s,
                     photo: n,
@@ -2239,7 +2239,7 @@
                     i = e.messageId,
                     a = "",
                     o = {};
-                return !Object(_.l)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(e => {
+                return !Object(h.isServiceMsg)(e) && Array.isArray(e.attaches) && (e.attaches.forEach(e => {
                     switch (e.type) {
                         case "sticker":
                             a += i ? this.renderSticker(e.id, e.productId, e.kind, i) : this.renderSticker(e.id, e.productId), o.sticker = !0;
@@ -2248,7 +2248,7 @@
                             var r = e.object ? e.object.fwd_count : e.id.split(";").length;
                             a += rs(curFastChat.tpl.msg_fwd, {
                                 msg_id: i,
-                                peerId_nice: Object(p.I)(t),
+                                peerId_nice: Object(p.convertPeerToUrl)(t),
                                 label: getLang(r > 1 ? "mail_im_fwd_msgs" : "mail_im_fwd_msg")
                             });
                             break;
@@ -2290,64 +2290,64 @@
                     n = "",
                     c = a === r;
                 switch (o) {
-                    case p.j:
+                    case p.CREATE_CHAT_ACTION:
                         n = "mail_im_chat_created";
                         break;
-                    case p.g:
+                    case p.CHAT_TITLE_ACTION:
                         n = t.source_is_channel ? "mail_im_title_updated_channel" : "mail_im_title_updated_dot";
                         break;
-                    case p.b:
+                    case p.CHAT_INVITE_USER:
                         n = c ? "mail_im_returned_to_chat" : "mail_im_invited";
                         break;
-                    case p.c:
+                    case p.CHAT_KICK_USER:
                         n = c ? "mail_im_left" : "mail_im_kicked_from_chat";
                         break;
-                    case p.e:
+                    case p.CHAT_PHOTO_UPDATE:
                         n = "mail_im_photo_set";
                         break;
-                    case p.d:
+                    case p.CHAT_PHOTO_REMOVE:
                         n = t.source_is_channel ? "mail_im_photo_removed_channel" : "mail_im_photo_removed";
                         break;
-                    case p.f:
+                    case p.CHAT_PIN_MESSAGE:
                         n = t.source_message ? "mail_im_pin_message" : "mail_im_pin_message_empty2";
                         break;
-                    case p.h:
+                    case p.CHAT_UNPIN_MESSAGE:
                         n = t.source_message ? "mail_im_unpin_message" : "mail_im_unpin_message_empty2";
                         break;
-                    case p.a:
+                    case p.CHAT_INVITE_BY_LINK:
                         n = "mail_im_invite_by_link";
                         break;
                     default:
                         return "mail_no_support"
                 }
-                if (n = (n = langSex(s.sex, getLang(n, "raw"))).replace("{from}", Object(p.kc)(s.link, s.name, !0)), r && r !== a) {
+                if (n = (n = langSex(s.sex, getLang(n, "raw"))).replace("{from}", Object(p.serviceLink)(s.link, s.name, !0)), r && r !== a) {
                     var l = t.source_email;
-                    if (l) n = n.replace("{user}", Object(p.kc)(`/im?email=${encodeURIComponent(l)}`, "email", !0));
+                    if (l) n = n.replace("{user}", Object(p.serviceLink)(`/im?email=${encodeURIComponent(l)}`, "email", !0));
                     else {
                         var d = this.getMember(i, r) || {
                                 name_inv_case: "",
                                 name_kick_case: "",
                                 link: ""
                             },
-                            u = o === p.c ? d.name_kick_case : d.name_inv_case;
-                        n = n.replace("{user}", Object(p.kc)(d.link, u, !0))
+                            u = o === p.CHAT_KICK_USER ? d.name_kick_case : d.name_inv_case;
+                        n = n.replace("{user}", Object(p.serviceLink)(d.link, u, !0))
                     }
                 }
                 if (t.source_text) {
                     var f = t.source_old_text ? `«<b class="im_srv_lnk">${t.source_old_text}</b>» &rarr; ` : "";
                     n = n.replace("{title}", f + `«<b class="im_srv_lnk">${t.source_text}</b>»`)
                 }
-                if (t.source_act === p.f || t.source_act === p.h)
+                if (t.source_act === p.CHAT_PIN_MESSAGE || t.source_act === p.CHAT_UNPIN_MESSAGE)
                     if (t.source_message) {
-                        var h = Object(p.hc)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
-                            _ = Object(p.kc)("", h, !1, "im_srv_mess_link");
-                        n = n.replace("{msg}", _)
-                    } else n = n.replace(/{link}(.+){\/link}/i, (e, t) => Object(p.kc)("", t, !1, "im_srv_mess_link"));
+                        var _ = Object(p.replaceSpecialSymbols)(Emoji.emojiToHTML(stripHTML(t.source_message.replace(/<br\s?\/?>/gi, " ")), !0)),
+                            h = Object(p.serviceLink)("", _, !1, "im_srv_mess_link");
+                        n = n.replace("{msg}", h)
+                    } else n = n.replace(/{link}(.+){\/link}/i, (e, t) => Object(p.serviceLink)("", t, !1, "im_srv_mess_link"));
                 return n
             },
             getMember(e, t) {
                 var i = this.getTab(e);
-                return Object(p.ib)(e) && i ? i.data.members[t] : i || null
+                return Object(p.isChatPeer)(e) && i ? i.data.members[t] : i || null
             },
             needMsgMedia: function(e, t) {
                 t <= 0 || (FastChat.lcSend("needMedia", {
@@ -2363,7 +2363,7 @@
                     from: "fc"
                 }, {
                     onDone: function(i) {
-                        var a = m(i, 4),
+                        var a = g(i, 4),
                             o = (a[0], a[1]),
                             r = (a[2], a[3]);
                         FastChat.lcSend("gotMedia", {
@@ -2456,7 +2456,7 @@
                         unread: a && Math.max(+a.innerHTML, 0) || 0
                     }
                 }
-                Object(_.k)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
+                Object(h.isOut)(t) ? e.unread = 0 : e.unread++, this.updateTabUnreadCounterElement(e, t.peerId)
             },
             updateTabUnreadCounterElement(e, t) {
                 if (e) {
@@ -2484,7 +2484,7 @@
                 curFastChat.tabs[e].box.close()
             },
             trackActivity(e) {
-                Object(h.d)("im_fastchat_location", e, window.cur.module)
+                Object(_.statlogsValueEvent)("im_fastchat_location", e, window.cur.module)
             },
             toggleFastChats(e) {
                 var t = !e;
@@ -2577,7 +2577,7 @@
     },
     EUzL: function(e, t, i) {
         "use strict";
-        i.d(t, "a", function() {
+        i.r(t), i.d(t, "createLongpollEventsQueue", function() {
             return o
         });
         i("rE2o"), i("ioFf"), i("rGqo");
@@ -2636,10 +2636,12 @@
     },
     "P+eJ": function(e, t, i) {
         "use strict";
-        i.d(t, "b", function() {
+        i.r(t), i.d(t, "lpLogFc", function() {
             return o
-        }), i.d(t, "a", function() {
+        }), i.d(t, "longpollTesting_onFcEvents", function() {
             return u
+        }), i.d(t, "longpollTesting_onImEvents", function() {
+            return f
         });
         var a = i("ERyv");
 
@@ -2667,7 +2669,7 @@
         }
 
         function c() {
-            window.lpWeird.length && (Object(a.b)("fc_im_differ", {
+            window.lpWeird.length && (Object(a.imWeirdLog)("fc_im_differ", {
                 diff: window.lpWeird
             }, !1), window.lpWeird = [])
         }
@@ -2677,16 +2679,13 @@
         }
 
         function d() {
+            var e;
             l() && (s().forEach(e => {
-                    !r().find(t => e.ev === t.ev) && e.time < Date.now() - 1e3 && !e.warned && (e.warned = !0, o("red", "im not fc", e.ev), Object(a.c)() && n("im not fc", e.ev))
-                }), r().forEach(e => {
-                    var t = s().find(t => t.ev === e.ev);
-                    t && t.warned && !e.warned && (e.warned = !0, o("red", "now fc like im", e.ev), Object(a.c)() && n("now fc like im", e.ev))
-                })),
-                function() {
-                    var e = Date.now() - 3e4;
-                    window.lpBufferFc = r().filter(t => t.time > e), window.lpBufferIm = s().filter(t => t.time > e)
-                }()
+                !r().find(t => e.ev === t.ev) && e.time < Date.now() - 1e3 && !e.warned && (e.warned = !0, o("red", "im not fc", e.ev), Object(a.isWeirdLogging)() && n("im not fc", e.ev))
+            }), r().forEach(e => {
+                var t = s().find(t => t.ev === e.ev);
+                t && t.warned && !e.warned && (e.warned = !0, o("red", "now fc like im", e.ev), Object(a.isWeirdLogging)() && n("now fc like im", e.ev))
+            })), e = Date.now() - 3e4, window.lpBufferFc = r().filter(t => t.time > e), window.lpBufferIm = s().filter(t => t.time > e)
         }
 
         function u(e) {
@@ -2696,23 +2695,30 @@
                 warned: !1
             }))), setTimeout(d, 0)), o("green", "fc", ...e)
         }
-        window.longpollTesting_onImEvents = function(e) {
+
+        function f(e) {
             l() && (s().push(...e.map(e => ({
                 time: Date.now(),
                 ev: JSON.stringify(e),
                 warned: !1
             }))), setTimeout(d, 1100)), o("blue", "im", ...e)
         }
+        window.longpollTesting_onImEvents = f
     },
     gF8j: function(e, t, i) {
         "use strict";
+        i.r(t);
         var a = i("uQjJ");
 
         function o() {
             return !!window.isMVK
         }
-        i.d(t, "a", function() {
+        i.d(t, "default", function() {
             return s
+        }), i.d(t, "getVisibilityState", function() {
+            return l
+        }), i.d(t, "getVisiblityEvent", function() {
+            return d
         });
         var r = browser.iphone || browser.ipad || browser.ipod;
 
@@ -2747,7 +2753,7 @@
             var e = "visibilitychange";
             return document.visibilityState || (document.webkitVisibilityState ? e += "webkit" : e = ""), e
         }
-        extend(s.prototype, a.a.prototype), extend(s.prototype, {
+        extend(s.prototype, a.default.prototype), extend(s.prototype, {
             stop: function() {
                 this.started = !1, c(this.opts.element, this.opts.triggerEvents, this.cbActiveB), o() && this._isTopLevel() && d() && c(document, d(), this.onVisiblityChange), o() && r || (c(this.opts.focusElement, "focus", this.cbActiveB), c(this.opts.focusElement, "blur", this.cbInactiveB)), clearTimeout(this.setIdleTo), clearTimeout(this.checkIdleCbTo), clearTimeout(this.sendCbTO), this.is_idle = !0, this.opts.parentManager && this.opts.parentManager.off("idle", this.cbInactiveB)
             },
@@ -2795,14 +2801,14 @@
     },
     gQAo: function(e, t, i) {
         "use strict";
-        i.d(t, "a", function() {
-            return _
-        }), i.d(t, "c", function() {
+        i.r(t), i.d(t, "lpSingleton_getInstance", function() {
+            return h
+        }), i.d(t, "lpSingleton_onTabInitialLoaded", function() {
             return p
-        }), i.d(t, "d", function() {
+        }), i.d(t, "lpSingleton_syncWithNotifier", function() {
             return v
-        }), i.d(t, "b", function() {
-            return m
+        }), i.d(t, "lpSingleton_onNotifierRecv", function() {
+            return g
         });
         i("VRzm"), i("Btvt");
         var a = i("iN1s"),
@@ -2825,94 +2831,97 @@
             return window.curNotifier && window.curNotifier.is_server || window.browser.safari
         }
 
-        function h(e, t, i) {
+        function _(e, t, i) {
             l.onLp(e, t, i), u() && f() && (e != t || i.length) && function(e, t, i) {
                 window.Notifier.lcSend("lp_data", {
                     tsOld: e,
                     tsNow: t,
                     evs: i
-                }), Object(r.b)("silver", "broadcast to others", e, t, i)
+                }), Object(r.lpLogFc)("silver", "broadcast to others", e, t, i)
             }(e, t, i)
         }
 
-        function _() {
-            return d() ? (l || (n.lpConfig.id = n.id, window.lpConnect = c = Object(a.a)(n.lpConfig, h), function() {
-                var e = Object(o.a)(n.lpConfig.ts, e => {
-                        Object(r.a)(e), t.trigger("data", e)
-                    }, g),
-                    t = new window.EventEmitter;
-                window.lpInstance = l = {
-                    onData(e) {
-                        t.on("data", e)
-                    },
-                    offData(e) {
-                        t.off("data", e)
-                    },
-                    pause() {
-                        e.pause()
-                    },
-                    resume() {
-                        e.resume()
-                    },
-                    push(e) {
-                        t.trigger("data", e)
-                    },
-                    abortWaiting() {
-                        c.abortWaiting()
-                    },
-                    onLp(t, i, a) {
-                        e.onLp(t, i, a)
-                    },
-                    isEnabled: () => !(!c || c.isStopped())
-                }
-            }()), l) : null
+        function h() {
+            return d() ? (l || (n.lpConfig.id = n.id, window.lpConnect = c = Object(a.createLongpoll)(n.lpConfig, _), e = Object(o.createLongpollEventsQueue)(n.lpConfig.ts, e => {
+                Object(r.longpollTesting_onFcEvents)(e), t.trigger("data", e)
+            }, m), t = new window.EventEmitter, window.lpInstance = l = {
+                onData(e) {
+                    t.on("data", e)
+                },
+                offData(e) {
+                    t.off("data", e)
+                },
+                pause() {
+                    e.pause()
+                },
+                resume() {
+                    e.resume()
+                },
+                push(e) {
+                    t.trigger("data", e)
+                },
+                abortWaiting() {
+                    c.abortWaiting()
+                },
+                onLp(t, i, a) {
+                    e.onLp(t, i, a)
+                },
+                isEnabled: () => !(!c || c.isStopped())
+            }), l) : null;
+            var e, t
         }
 
         function p() {
-            d() && (Object(r.b)("orange", "init longpoll connection on load"), _(), window.curNotifier.idle_manager.on("unidle", () => {
+            d() && (Object(r.lpLogFc)("orange", "init longpoll connection on load"), h(), window.curNotifier.idle_manager.on("unidle", () => {
                 c.abortWaiting()
             }), v())
         }
 
         function v() {
-            d() && (u() ? c.isStopped() && f() ? (Object(r.b)("orange", "now master, init connection"), Object(s.b)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.b)("orange", "now slave, stop connection"), Object(s.b)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
-        }
-
-        function m(e) {
-            u() && !f() && d() && (Object(r.b)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
+            d() && (u() ? c.isStopped() && f() ? (Object(r.lpLogFc)("orange", "now master, init connection"), Object(s.imWeirdLog)("fc_longpoll_master", {}, !1), c.reinitConnection()) : c.isStopped() || f() || (Object(r.lpLogFc)("orange", "now slave, stop connection"), Object(s.imWeirdLog)("fc_longpoll_slave", {}, !1), c.stopConnection()) : setTimeout(v, 500))
         }
 
         function g(e) {
+            u() && !f() && d() && (Object(r.lpLogFc)("silver", "recv from master", e.tsOld, e.tsNow, e.evs), c.onLp(e.tsOld, e.tsNow, e.evs))
+        }
+
+        function m(e) {
             var t = window.extend({}, window.lpConnect.options, {
                 ts: e
             });
-            return Object(r.b)("orange", "createLongpoll to load from", e), new Promise(e => {
-                var i = Object(a.a)(t, (t, a, o) => {
-                    Object(r.b)("orange", `Loaded [${t},${a})`), i.stopConnection(), e([t, a, o])
+            return Object(r.lpLogFc)("orange", "createLongpoll to load from", e), new Promise(e => {
+                var i = Object(a.createLongpoll)(t, (t, a, o) => {
+                    Object(r.lpLogFc)("orange", `Loaded [${t},${a})`), i.stopConnection(), e([t, a, o])
                 })
             })
         }
     },
     hOuX: function(e, t, i) {
         "use strict";
-        i.d(t, "a", function() {
+        i.r(t), i.d(t, "MAX_SAFE_INTEGER", function() {
+            return a
+        }), i.d(t, "MAX_INTERGER", function() {
             return o
+        }), i.d(t, "random", function() {
+            return r
         });
         i("tuSo");
-        var a = 2147483647;
+        var a = 9007199254740991,
+            o = 2147483647;
 
-        function o() {
+        function r() {
             try {
                 if (window.crypto) {
                     var e = new Int32Array(1);
                     return crypto.getRandomValues(e), Math.abs(e.reduce((e, t) => e + t))
                 }
             } catch (e) {}
-            return intval(rand(0, a).toFixed(0))
+            return intval(rand(0, o).toFixed(0))
         }
     },
     iN1s: function(e, t, i) {
         "use strict";
+        i.r(t);
         i("rGqo"), i("Btvt"), i("rE2o"), i("ioFf"), i("VRzm");
         var a = i("DM26"),
             o = i("BxOC"),
@@ -2949,16 +2958,16 @@
             u = -4,
             f = -5;
 
-        function h(e, t) {
+        function _(e, t) {
             e.waitAbortFns.push(t)
         }
 
-        function _(e) {
+        function h(e) {
             if (e.isStoppedFn()) return Promise.resolve({
                 ts: 0,
                 updates: []
             });
-            var t = Object(o.a)(e.url, {
+            var t = Object(o.plaingetCancelable)(e.url, {
                     act: "a_check",
                     key: e.key,
                     version: e.version,
@@ -2978,19 +2987,19 @@
                     a = (i[0], i[1]);
                 throw e.onData(e, a), ""
             }).then(t => (function(e, t) {
-                var i = t.failed ? Object(a.a)(l, null) : {},
+                var i = t.failed ? Object(a.abortablePause)(l, null) : {},
                     o = i.abort,
                     r = i.pause;
                 switch (t.failed) {
                     case 1:
-                        return h(e, o), e.onHistoryLost(e, t).then(() => e.onResult({
+                        return _(e, o), e.onHistoryLost(e, t).then(() => e.onResult({
                             ts: t.ts,
                             updates: [
                                 [-1]
                             ]
-                        })).then(r).then(() => _(e));
+                        })).then(r).then(() => h(e));
                     case 2:
-                        return h(e, o), e.onKeyExpired(e, t).then(t => {
+                        return _(e, o), e.onKeyExpired(e, t).then(t => {
                             var i = s(t, 4),
                                 a = i[0],
                                 o = i[1],
@@ -3003,7 +3012,7 @@
                                     [-1]
                                 ]
                             })
-                        }).then(r).then(() => _(e));
+                        }).then(r).then(() => h(e));
                     case 3:
                         return e.onLpBroken(e, t);
                     default:
@@ -3013,13 +3022,13 @@
         }
 
         function p(e) {
-            e.isStoppedFn() || _(e).then(e.onResult).then(() => e.isReconnecting && v(e, f)).catch(t => (function(e, t) {
+            e.isStoppedFn() || h(e).then(e.onResult).then(() => e.isReconnecting && v(e, f)).catch(t => (function(e, t) {
                 if (e.isStoppedFn()) return;
                 e.onRequestError(t), e.waitTimeout = Math.min(60, 2 * e.waitTimeout), v(e, d);
-                var i = Object(a.a)(e.waitTimeout, null),
+                var i = Object(a.abortablePause)(e.waitTimeout, null),
                     o = i.abort,
                     r = i.pause;
-                return h(e, o), r().then(() => v(e, u))
+                return _(e, o), r().then(() => v(e, u))
             })(e, t)).then(() => p(e))
         }
 
@@ -3032,7 +3041,7 @@
             })
         }
 
-        function m(e, t) {
+        function g(e, t) {
             var i = !!e.stopped,
                 a = {
                     id: e.id,
@@ -3050,80 +3059,80 @@
                             return e.map(e => {
                                 switch (e[0]) {
                                     case 0:
-                                        return r.lb(e);
+                                        return r.deleteEvent(e);
                                     case 1:
-                                        return r.Cb(e);
+                                        return r.replaceFlagsEvent(e);
                                     case 2:
-                                        return r.Kb(e);
+                                        return r.setFlagsEvent(e);
                                     case 3:
-                                        return r.Gb(e);
+                                        return r.resetFlagsEvent(e);
                                     case 4:
-                                        return r.eb(e);
+                                        return r.addMessageEvent(e);
                                     case 5:
-                                        return r.mb(e);
+                                        return r.editMessageEvent(e);
                                     case 6:
-                                        return r.ub(e);
+                                        return r.readInboundEvent(e);
                                     case 7:
-                                        return r.vb(e);
+                                        return r.readOutboundEvent(e);
                                     case 8:
-                                        return r.rb(e);
+                                        return r.gotOnlineEvent(e);
                                     case 9:
-                                        return r.qb(e);
+                                        return r.gotOfflineEvent(e);
                                     case 10:
-                                        return r.Fb(e);
+                                        return r.resetDirectoriesEvent(e);
                                     case 11:
-                                        return r.Bb(e);
+                                        return r.replaceDirectoriesEvent(e);
                                     case 12:
-                                        return r.Jb(e);
+                                        return r.setDirectoriesEvent(e);
                                     case 13:
-                                        return r.kb(e);
+                                        return r.deleteDialogEvent(e);
                                     case 18:
-                                        return r.Db(e);
+                                        return r.replaceMessageEvent(e);
                                     case 51:
-                                        return r.ib(e);
+                                        return r.chatChangedEvent(e);
                                     case 52:
-                                        return r.jb(e);
+                                        return r.chatUpdatedEvent(e);
                                     case 63:
-                                        return r.Mb(e);
+                                        return r.typingEvent(e);
                                     case 64:
-                                        return r.yb(e);
+                                        return r.recordingAudioEvent(e);
                                     case 70:
-                                        return r.Ob(e);
+                                        return r.videoCallEvent(e);
                                     case 80:
-                                        return r.Nb(e);
+                                        return r.unreadCountEvent(e);
                                     case 114:
-                                        return r.tb(e);
+                                        return r.notifySettingsChangedEvent(e);
                                     case 116:
-                                        return r.Ab(e);
+                                        return r.refreshMessageEvent(e);
                                     case 117:
-                                        return r.fb(e);
+                                        return r.audioStartEvent(e);
                                     case -1:
-                                        return r.Ib();
+                                        return r.resyncEvent();
                                     case -2:
-                                        return r.zb(e);
+                                        return r.refreshLpKeyEvent(e);
                                     case d:
-                                        return r.Pb(e);
+                                        return r.waitingForReconnectEvent(e);
                                     case u:
-                                        return r.xb();
+                                        return r.reconnectingEvent();
                                     case f:
-                                        return r.wb();
+                                        return r.reconnectedEvent();
                                     default:
-                                        return r.ob(e)
+                                        return r.emptyEvent(e)
                                 }
                             })
                         }(e.updates))
                     },
-                    onData: g(t.onData),
-                    onRequestError: g(t.onRequestError),
-                    onHistoryLost: b(t.onHistoryLost),
-                    onKeyExpired: b(t.onKeyExpired),
-                    onLpBroken: b(t.onHistoryLost)
+                    onData: m(t.onData),
+                    onRequestError: m(t.onRequestError),
+                    onHistoryLost: C(t.onHistoryLost),
+                    onKeyExpired: C(t.onKeyExpired),
+                    onLpBroken: C(t.onHistoryLost)
                 },
                 o = t.onEvents;
 
             function s(e, t, i) {
                 a.ts = t;
-                for (var s = 0; s < i.length; ++s) i[s].type === r.O && (a.key = i[s].key, a.url = i[s].url);
+                for (var s = 0; s < i.length; ++s) i[s].type === r.REFRESH_LP_KEY && (a.key = i[s].key, a.url = i[s].url);
                 o(e, t, i)
             }
             var l = {
@@ -3143,36 +3152,36 @@
             return p(a), l
         }
 
-        function g(e) {
+        function m(e) {
             return e || (() => {})
         }
 
-        function b(e) {
+        function C(e) {
             return e ? function() {
                 return Promise.resolve(e(...arguments))
             } : () => Promise.reject()
         }
-        var C = i("P+eJ"),
+        var b = i("P+eJ"),
             w = i("vT4u");
 
         function N(e, t) {
-            return m(e, {
+            return g(e, {
                 onEvents: t,
-                onData: k,
-                onRequestError: E,
+                onData: E,
+                onRequestError: k,
                 onHistoryLost: x,
                 onKeyExpired: S,
-                onLpBroken: B
+                onLpBroken: O
             })
         }
-        i.d(t, "a", function() {
+        i.d(t, "createLongpoll", function() {
             return N
         });
         var y = 3e4,
             T = {},
             F = Date.now();
 
-        function k(e, t) {
+        function E(e, t) {
             if (t && t.status && e.lpstat) {
                 var i = t.status;
                 t.status >= 500 && t.status < 600 && statlogsValueEvent("fc_longpoll", 1, i, t.getResponseHeader("x-frontend")), T[i] = i in T ? T[i] + 1 : 1, Date.now() - F >= y && (Object.keys(T).forEach(e => {
@@ -3181,23 +3190,23 @@
             }
         }
 
-        function E(e) {
-            Object(C.b)("red", "LP error", e.message || "no message (probably browser reset)")
+        function k(e) {
+            Object(b.lpLogFc)("red", "LP error", e.message || "no message (probably browser reset)")
         }
 
         function x(e, t) {
-            Object(C.b)("red", "LP failed: old timestamp; resync, next ts", t.ts)
+            Object(b.lpLogFc)("red", "LP failed: old timestamp; resync, next ts", t.ts)
         }
 
         function S(e) {
-            return Object(C.b)("red", "LP failed: key is incorrect; refresh key"), Object(o.b)(w.e, {
+            return Object(b.lpLogFc)("red", "LP failed: key is incorrect; refresh key"), Object(o.post)(w.CONTROLLER, {
                 act: "a_get_key",
                 uid: e.id,
                 gid: e.id < 0 ? -e.id : 0
             })
         }
 
-        function B() {
+        function O() {
             throw window.nav.reload({
                 force: !0
             }), new Error("ts is very wrong")
@@ -3205,6 +3214,7 @@
     },
     j0Lq: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
+        __webpack_require__.r(__webpack_exports__);
         var core_js_modules_es6_regexp_match__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("SRfc"),
             core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("pIFo"),
             core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("KKXr"),
@@ -3235,14 +3245,14 @@
             },
             onLoad: function onLoad(rows, js, from, header) {
                 if (!from || TopNotifierCur.from !== from) {
-                    void 0 !== rows && "undefined" !== rows || Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.e)("TopNotifier load undefinded response", {
+                    void 0 !== rows && "undefined" !== rows || Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logError)("TopNotifier load undefinded response", {
                         environment: "top_notify"
                     });
                     var evalExpr = `(function(){${js};})()`;
                     try {
                         eval(evalExpr)
                     } catch (e) {
-                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalExpr)
+                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, evalExpr)
                     }
                     TopNotifierCur.loaded = !0, val(TopNotifier.getContentNode(), rows), TopNotifier.trackViews(), show(geByClass1("top_notify_show_all")), TopNotifier.refreshHeader(header), TopNotifier.cleanCount(), TopNotifier.refreshCounters(), TopNotifierCur.from = from
                 }
@@ -3332,7 +3342,7 @@
                             try {
                                 eval(evalExpr)
                             } catch (e) {
-                                Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalExpr)
+                                Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, evalExpr)
                             }
                             if (rows) {
                                 for (var row = null, cont = TopNotifier.getContentNode(), au = cf(rows); row = au.firstChild;) cont.insertBefore(row, btn);
@@ -3360,7 +3370,7 @@
                 })
             },
             createNewEventsBox: function(e) {
-                if (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)("notify_new_events_box")) {
+                if (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.partConfigEnabled)("notify_new_events_box")) {
                     var t = TopNotifier.getContentNode();
                     if (t) {
                         var i = geByClass1("notifications_new_events", t);
@@ -3706,9 +3716,8 @@
                         query: e
                     }, {
                         onDone: function(e) {
-                            var a = domPN(n),
-                                o = `<div class="feedback_apicallText">${i?`<div class="feedback_apicallIcon ${i}Icon"></div>`:""}${t}</div>`;
-                            val(a, o)
+                            var a = domPN(n);
+                            val(a, `<div class="feedback_apicallText">${i?`<div class="feedback_apicallIcon ${i}Icon"></div>`:""}${t}</div>`)
                         },
                         onFail: function(e) {
                             if (e) return setTimeout(showFastBox(getLang("global_error"), e).hide, 3e3), !0
@@ -3884,6 +3893,7 @@
     },
     zNZe: function(__webpack_module__, __webpack_exports__, __webpack_require__) {
         "use strict";
+        __webpack_require__.r(__webpack_exports__);
         var core_js_modules_es6_regexp_match__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("SRfc"),
             core_js_modules_es6_regexp_replace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("pIFo"),
             core_js_modules_es6_string_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("tUrg"),
@@ -3944,7 +3954,7 @@
                             onConnectionId: [],
                             showDoneBoxLastId: -1
                         }, e), !this.initFrameTransport()) return !1;
-                    this.initIdleMan(), this.initCommunityQueues(), Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.c)(), (curNotifier.cont = ge("notifiers_wrap")) || bodyNode.insertBefore(curNotifier.cont = ce("div", {
+                    this.initIdleMan(), this.initCommunityQueues(), Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.lpSingleton_onTabInitialLoaded)(), (curNotifier.cont = ge("notifiers_wrap")) || bodyNode.insertBefore(curNotifier.cont = ce("div", {
                         id: "notifiers_wrap",
                         className: "fixed"
                     }), ge("page_wrap"))
@@ -4022,7 +4032,7 @@
             },
             unfreezeEvents: function() {
                 curNotifier.tooltipShown ? curNotifier.unfreezeAfterTooltipHide = !0 : (curNotifier.frozen = !1, each(curNotifier.q_shown, function(e, t) {
-                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && t.timeoutConf ? t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? t.timeoutConf.unfreeze_am : t.timeoutConf.unfreeze) : t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.partConfigEnabled)(FEATURE_SHOW_DONE_BOX_NEW) && t.timeoutConf ? t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? t.timeoutConf.unfreeze_am : t.timeoutConf.unfreeze) : t.fadeTO = setTimeout(t.startFading, hasAccessibilityMode() ? 3e4 : 5e3)
                 }))
             },
             getTransportWrap: function() {
@@ -4037,7 +4047,7 @@
                 }), this.onInstanceFocus(t))
             },
             initIdleMan: function() {
-                curNotifier.idle_manager && curNotifier.idle_manager.started || (curNotifier.idle_manager = new _shared_lib_idle_manager__WEBPACK_IMPORTED_MODULE_8__.a({
+                curNotifier.idle_manager && curNotifier.idle_manager.started || (curNotifier.idle_manager = new _shared_lib_idle_manager__WEBPACK_IMPORTED_MODULE_8__.default({
                     onIdleCb: function() {
                         Notifier.freezeEvents(), Notifier.setFocus(0), cur.onIdle && each(cur.onIdle, function(e, t) {
                             t()
@@ -4087,9 +4097,9 @@
                 e = e.substr(1), "1" == t ? (curNotifier.focus_instance = e, e != curNotifier.instance_id && (curNotifier.idle_manager.is_idle || curNotifier.idle_manager.idle(), Notifier.hideAllEvents())) : curNotifier.focus_instance == e && (curNotifier.focus_instance = "")
             },
             onInstanceServer: function(e) {
-                curNotifier.is_server = !!e, Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.d)()
+                curNotifier.is_server = !!e, Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.lpSingleton_syncWithNotifier)()
             },
-            getLpInstance: () => Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.a)(),
+            getLpInstance: () => Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.lpSingleton_getInstance)(),
             pushEvents: function(e, t) {
                 var i = 0;
                 each(e, function(e, a) {
@@ -4101,9 +4111,9 @@
                     if ("string" == typeof ev) try {
                         ev = JSON.parse(ev)
                     } catch (e) {
-                        return void Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, ev)
+                        return void Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, ev)
                     }
-                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
+                    Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.partConfigEnabled)(FEATURE_SHOW_DONE_BOX_NEW) && (ev.timeoutConf = {
                         default: ev.timeout ? ev.timeout : NOTIFICATION_FADE_TIMEOUT,
                         default_am: ev.timeout ? 5 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE,
                         unfreeze: ev.timeout ? .7 * ev.timeout : NOTIFICATION_FADE_TIMEOUT_AFTER_UNFREEZE,
@@ -4184,7 +4194,7 @@
                                     try {
                                         ev.add = eval(evalText), TopNotifier.showTooltip(ev.add.text, ev.add.key)
                                     } catch (e) {
-                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, evalText)
+                                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, evalText)
                                     }
                                     push = 0
                                 }
@@ -4277,7 +4287,7 @@
                 (!curNotifier.q_events.length || curNotifier.q_shown.length >= (curNotifier.idle_manager.is_idle ? curNotifier.q_idle_max : curNotifier.q_max)) && !curNotifier.q_prior_events.length || !curNotifier.idle_manager.is_idle && curNotifier.frozen || (cur.noDisturbMode || (e = curNotifier.q_prior_events.length ? curNotifier.q_prior_events.shift() : curNotifier.q_events.shift()) && this.showEvent(e))
             },
             showEvent: function showEvent(ev, force) {
-                ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.add.id), "mail" !== ev.type && Math.random() < .1 && statlogsValueEvent("feed_top_notify_popup", 1, "show", ev.type), curNotifier.q_shown.push(ev);
+                ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.confirmDelivery)(ev.add.id), "mail" !== ev.type && Math.random() < .1 && statlogsValueEvent("feed_top_notify_popup", 1, "show", ev.type), curNotifier.q_shown.push(ev);
                 var thumbEl = showEventThumb(ev),
                     addPhoto = showEventAddPhoto(ev);
                 ev.baloonWrapEl = ce("div", {
@@ -4295,7 +4305,7 @@
                                 try {
                                     eval(ev.onclick)
                                 } catch (e) {
-                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, ev.onclick)
+                                    Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, ev.onclick)
                                 }
                                 Notifier.trackEvent("click", {
                                     event_id: ev.id
@@ -4334,7 +4344,7 @@
                     visibility: "visible"
                 }), animate(curNotifier.cont, {
                     bottom: 0
-                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && ev.timeoutConf ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
+                }, 200), curNotifier.idle_manager.is_idle && !force || (Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.partConfigEnabled)(FEATURE_SHOW_DONE_BOX_NEW) && ev.timeoutConf ? ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? ev.timeoutConf.default_am : ev.timeoutConf.default) : ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? NOTIFICATION_FADE_TIMEOUT_ACCESSIBILITY_MODE : NOTIFICATION_FADE_TIMEOUT)), isFunction(ev.tooltipHandler) && ev.tooltipHandler(ev.baloonWrapEl)
             },
             trackEvent: function(e, t) {
                 ajax.post("al_feed.php", extend({
@@ -4350,7 +4360,7 @@
             showEventUi: function showEventUi(ev) {
                 if (!this.canNotifyUi()) return !1;
                 var title, text;
-                if (ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.a)(ev.add.id), "mail" === ev.type) {
+                if (ev.add && ev.add.ttl && Object(_helpers_im_shared_helpers__WEBPACK_IMPORTED_MODULE_4__.confirmDelivery)(ev.add.id), "mail" === ev.type) {
                     var div = ce("div");
                     div.innerHTML = ev.text, title = div.firstChild.textContent.trim(), text = stripHTML(replaceEntities(ev.text.replace(/<br\/?>/g, "\n")).replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, "$1").replace(/<img.*?alt="(.*?)".*?>/gi, "$1")).replace(/&laquo;|&raquo;/gi, '"').trim()
                 } else title = ev.title, text = ev.text;
@@ -4360,7 +4370,7 @@
                     else try {
                         eval(ev.onclick)
                     } catch (e) {
-                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.f)(e, ev.onclick)
+                        Object(_lib_debug_tools__WEBPACK_IMPORTED_MODULE_6__.logEvalError)(e, ev.onclick)
                     }
                     Notifier.hideEvent(ev)
                 }, notification.onclose = function() {
@@ -4373,7 +4383,7 @@
                     event_id: e.id
                 }), !0 !== a && curNotifier.idle_manager.is_idle || curNotifier.q_events.length || curNotifier.q_shown.length || ajax.post("notifier.php", {
                     act: "a_clear_notifier"
-                }), isFunction(e.onHide) && Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.b)(FEATURE_SHOW_DONE_BOX_NEW) && e.onHide()
+                }), isFunction(e.onHide) && Object(_shared_user_user_env__WEBPACK_IMPORTED_MODULE_7__.partConfigEnabled)(FEATURE_SHOW_DONE_BOX_NEW) && e.onHide()
             },
             hideAllEvents: function() {
                 curNotifier.q_events = [], each(clone(curNotifier.q_shown), function() {
@@ -4488,7 +4498,7 @@
                             window.Emoji && Emoji.setRecentEmojiList(e);
                             break;
                         case "lp_data":
-                            Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.b)(e);
+                            Object(_longpoll_singleton__WEBPACK_IMPORTED_MODULE_5__.lpSingleton_onNotifierRecv)(e);
                             break;
                         default:
                             if (curNotifier.recvClbks && curNotifier.recvClbks[t])

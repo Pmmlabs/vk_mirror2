@@ -69,9 +69,9 @@
     n.push = e, n = n.slice();
     for (var h = 0; h < n.length; h++) e(n[h]);
     var u = c;
-    a.push([148, "bundles/common"]), i()
+    a.push([149, "bundles/common"]), i()
 }({
-    148: function(t, e, i) {
+    149: function(t, e, i) {
         t.exports = i("IOlP")
     },
     IOlP: function(t, e, i) {
@@ -160,7 +160,7 @@
             }
         }
         var u = i("i/qW");
-        Object(r.a)();
+        Object(r.initFailBack)();
         class d {
             addEventListener(t, e, i) {
                 this.eventTarget.addEventListener(t, e, i)
@@ -217,21 +217,21 @@
                 }), t.addEventListener("stop", () => {
                     this.isRecording = !1, this.buffer = new Blob(e, {
                         type: i.mimeType
-                    }), this.wave = Object(u.b)(this._waveData, 256), this.eventTarget.dispatchEvent(new Event("finish"))
+                    }), this.wave = Object(u.fastResample)(this._waveData, 256), this.eventTarget.dispatchEvent(new Event("finish"))
                 }), t
             }
             _createResampler() {
                 if (!this._resampler) {
-                    this._resampler = new u.a({
+                    this._resampler = new u.Resampler({
                         srcSampleRate: this._ctx.sampleRate,
                         dstSampleRate: 1e3 / 60
                     });
                     var t = this.source.context.createScriptProcessor(4096, 1, 1);
-                    t.onaudioprocess = (t => {
+                    t.onaudioprocess = t => {
                         var e = t.inputBuffer.getChannelData(0),
                             i = this._resampler.push(e);
                         i.length && (this._waveData = this._waveData.concat(i))
-                    }), this._resamplerNode = t
+                    }, this._resamplerNode = t
                 }
                 this.source.connect(this._resamplerNode), this._resamplerNode.connect(this._ctx.destination), this._waveData = []
             }
@@ -276,9 +276,9 @@
                         i = this._getOption("visTime") / e,
                         s = 0,
                         r = t.context.createScriptProcessor(2048, 1, 1);
-                    return r.onaudioprocess = (t => {
+                    return r.onaudioprocess = t => {
                         for (var e = t.inputBuffer.getChannelData(0), r = t.inputBuffer.duration / e.length, a = 0; a < e.length; a++) s += r, this._accum = Math.min(1, Math.max(this._accum, Math.abs(e[a]))), s > i && (++this.timeAccumIndex > this.timeAccumItems.length - 1 && (this.timeAccumIndex = 0), this.timeAccumItems[this.timeAccumIndex] = this._accum, this._accum = 0, s = 0)
-                    }), this.timeAccumItems = new Array(e), this.timeAccumIndex = 0, t.connect(r), r.connect(t.context.destination), r
+                    }, this.timeAccumItems = new Array(e), this.timeAccumIndex = 0, t.connect(r), r.connect(t.context.destination), r
                 }
                 constructor(t, e, i) {
                     this._accum = 0, this._source = t, this._canvas = e;
@@ -398,13 +398,13 @@
                     var e = 1 / this._getOption("pulseRate"),
                         i = 0,
                         s = t.context.createScriptProcessor(2048, 1, 1);
-                    return s.onaudioprocess = (t => {
+                    return s.onaudioprocess = t => {
                         for (var s = t.inputBuffer.getChannelData(0), r = t.inputBuffer.duration / s.length, a = 0; a < s.length; a++) i += r, this._accum = Math.min(1, Math.max(this._accum, Math.abs(s[a]))), i > e && (i -= e, this._stopped ? setStyle(this._getOption("el"), {
                             transform: "scale(0.8)"
                         }) : setStyle(this._getOption("el"), {
                             transform: "scale(" + (.8 + .95 * Math.sqrt(this._accum)) + ")"
                         }), this._accum = 0, i = 0)
-                    }), t.connect(s), s.connect(t.context.destination), s
+                    }, t.connect(s), s.connect(t.context.destination), s
                 }
                 constructor(t, e, i) {
                     this._accum = 0, this._source = t, this._options = i || {}, this._node = this._createWaveNode(t)
@@ -425,7 +425,7 @@
                 isSupport: () => !(!window.AudioContext || !(navigator.getUserMedia || navigator.mediaDevices && navigator.mediaDevices.getUserMedia)),
                 getAvailableMicrophones: () => d.isSupport() ? d.getAvailableMicrophones() : v.resolve([]),
                 newRecorder: () => (window.Promise || (window.Promise = v), new d),
-                resample: (t, e, i) => Object(u.b)(t, e, i),
+                resample: (t, e, i) => Object(u.fastResample)(t, e, i),
                 createVisualization: function(t, e, i, s) {
                     if (g[t]) {
                         if (e instanceof HTMLMediaElement) {
@@ -443,7 +443,7 @@
     },
     g6Ay: function(t, e, i) {
         "use strict";
-        i.d(e, "a", function() {
+        i.r(e), i.d(e, "initFailBack", function() {
             return s
         });
         i("VRzm"), i("Btvt");
@@ -479,9 +479,10 @@
     },
     "i/qW": function(t, e, i) {
         "use strict";
-        i.d(e, "a", function() {
+        i.r(e);
+        i.d(e, "Resampler", function() {
             return r
-        }), i.d(e, "b", function() {
+        }), i.d(e, "fastResample", function() {
             return a
         });
         var s = {
